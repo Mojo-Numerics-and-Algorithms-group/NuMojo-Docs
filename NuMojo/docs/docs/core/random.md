@@ -19,7 +19,7 @@ Generate a random NDArray of the given shape and dtype.
   
 Parameters:  
 
-- dtype
+- dtype: The data type of the NDArray elements.
   
 Args:  
 

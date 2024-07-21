@@ -19,8 +19,8 @@ Sum of array elements over a given axis.
   
 Args:  
 
-- array
-- axis
+- array: NDArray.
+- axis: The axis along which the sum is performed.
 
 ## sumall
 
@@ -34,7 +34,7 @@ Sum of all items in the array.
   
 Args:  
 
-- array
+- array: NDArray.
 
 ## prod
 
@@ -48,8 +48,8 @@ Product of array elements over a given axis.
   
 Args:  
 
-- array
-- axis
+- array: NDArray.
+- axis: The axis along which the product is performed.
 
 ## prodall
 
@@ -63,7 +63,7 @@ Product of all items in the array.
   
 Args:  
 
-- array
+- array: NDArray.
 
 ## mean
 
@@ -92,7 +92,7 @@ Mean of all items in the array.
   
 Args:  
 
-- array
+- array: NDArray.
 
 ## max
 

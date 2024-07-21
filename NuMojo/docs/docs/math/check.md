@@ -19,12 +19,12 @@ Checks if each element of the input array is infinite.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: DType - Data type of the input array.
+- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
   
 Args:  
 
-- array
+- array: NDArray[dtype] - Input array to check.
 
 ## isfinite
 
@@ -38,12 +38,12 @@ Checks if each element of the input array is finite.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: DType - Data type of the input array.
+- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
   
 Args:  
 
-- array
+- array: NDArray[dtype] - Input array to check.
 
 ## isnan
 
@@ -57,12 +57,12 @@ Checks if each element of the input array is NaN.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: DType - Data type of the input array.
+- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
   
 Args:  
 
-- array
+- array: NDArray[dtype] - Input array to check.
 
 ## any
 
@@ -76,7 +76,7 @@ If any True.
   
 Args:  
 
-- array
+- array: A NDArray.
 
 ## allt
 
@@ -90,4 +90,4 @@ If all True.
   
 Args:  
 
-- array
+- array: A NDArray.

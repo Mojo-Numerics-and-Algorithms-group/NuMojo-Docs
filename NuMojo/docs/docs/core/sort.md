@@ -19,11 +19,11 @@ Bubble sort the NDArray. Average complexity: O(n^2) comparisons, O(n^2) swaps. W
   
 Parameters:  
 
-- dtype
+- dtype: The input element type.
   
 Args:  
 
-- ndarray
+- ndarray: An NDArray.
 
 ## quick_sort_inplace
 
@@ -37,13 +37,13 @@ Quick sort (in-place) the NDArray.
   
 Parameters:  
 
-- dtype
+- dtype: The input element type.
   
 Args:  
 
-- ndarray
-- left
-- right
+- ndarray: An NDArray.
+- left: Left index of the partition.
+- right: Right index of the partition.
 
 ## quick_sort
 
@@ -57,11 +57,11 @@ Quick sort the NDArray. Adopt in-place partition. Average complexity: O(nlogn). 
   
 Parameters:  
 
-- dtype
+- dtype: The input element type.
   
 Args:  
 
-- ndarray
+- ndarray: An NDArray.
 
 ## binary_sort
 
@@ -75,12 +75,12 @@ Binary sorting of NDArray.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: A NDArray.
 
 ## argsort_inplace
 
@@ -94,14 +94,14 @@ Conduct Argsort (in-place) based on the NDArray using quick sort.
   
 Parameters:  
 
-- dtype
+- dtype: The input element type.
   
 Args:  
 
-- ndarray
-- idx_array
-- left
-- right
+- ndarray: An NDArray.
+- idx_array: An NDArray of the indices.
+- left: Left index of the partition.
+- right: Right index of the partition.
 
 ## argsort
 
@@ -115,8 +115,8 @@ Argsort of the NDArray using quick sort algorithm.
   
 Parameters:  
 
-- dtype
+- dtype: The input element type.
   
 Args:  
 
-- ndarray
+- ndarray: An NDArray.

@@ -19,13 +19,13 @@ Performs elementwise check of whether values in x are greater than values in y.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The dtype of the input NDArray.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: First NDArray to compare.
+- array2: Second NDArray to compare.
 
 ## greater_equal
 
@@ -39,13 +39,13 @@ Performs elementwise check of whether values in x are greater than or equal to v
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The dtype of the input NDArray.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: First NDArray to compare.
+- array2: Second NDArray to compare.
 
 ## less
 
@@ -59,13 +59,13 @@ Performs elementwise check of whether values in x are to values in y.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The dtype of the input NDArray.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: First NDArray to compare.
+- array2: Second NDArray to compare.
 
 ## less_equal
 
@@ -79,13 +79,13 @@ Performs elementwise check of whether values in x are less than or equal to valu
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The dtype of the input NDArray.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: First NDArray to compare.
+- array2: Second NDArray to compare.
 
 ## equal
 
@@ -99,13 +99,13 @@ Performs elementwise check of whether values in x are equal to values in y.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The dtype of the input NDArray.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: First NDArray to compare.
+- array2: Second NDArray to compare.
 
 ## not_equal
 
@@ -119,10 +119,10 @@ Performs elementwise check of whether values in x are not equal to values in y.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The dtype of the input NDArray.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: First NDArray to compare.
+- array2: Second NDArray to compare.

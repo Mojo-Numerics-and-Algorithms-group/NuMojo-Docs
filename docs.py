@@ -20,18 +20,41 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
             mdfile.new_line("""Parameters:""")
             mdfile.new_line()
             for param in overload["parameters"]:
-                paramlist.append(param["name"] if "*" not in param["name"] else param["name"].replace("*","\*")+f""": {param["description"]}"""+ f"""{"Defualt: "+""+param["default"]+"" if "default" in param.keys() else ""}""")
+                if "*" not in param["name"]:
+                        name =param["name"] 
+                else:
+                    name = param["name"].replace("*","\*")
+                if param["description"]:
+                    description = f': {param["description"]}'
+                else:
+                    description = ""
+                if "defualt" in  list(param.keys()):
+                    defualt = f"""Defualt: {param["default"]}"""
+                else:
+                    defualt = ""
+                paramlist.append(name + description + defualt)
             mdfile.new_list(paramlist)
             
         arglist = list()
         if overload["args"]:
-                mdfile.new_line("""Args:""")
-                mdfile.new_line()
-                for arg in overload["args"]:
-                    arglist.append(arg["name"] if "*" not in arg["name"] else arg["name"].replace("*","\*")+
-                                   f""": {arg["description"]}""" + 
-                                   f"""{"Defualt: "+""+arg["default"]+"" if "default" in arg.keys() else ""}""")
-                mdfile.new_list(arglist)
+            mdfile.new_line("""Args:""")
+            mdfile.new_line()
+            for arg in overload["args"]:
+                if "*" not in arg["name"]:
+                    name =arg["name"] 
+                else:
+                    name = arg["name"].replace("*","\*")
+                if arg["description"]:
+                    description = f': {arg["description"]}'
+                    print(description)
+                else:
+                    description = ""
+                if "defualt" in  list(arg.keys()):
+                    defualt = f"""Defualt: {arg["default"]}"""
+                else:
+                    defualt = ""
+                arglist.append(name + description + defualt)
+            mdfile.new_list(arglist)
 
 def doc_alias(alias,mdfile:MdUtils,top_header=2):
     if not alias:

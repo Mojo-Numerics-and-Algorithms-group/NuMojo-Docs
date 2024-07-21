@@ -19,7 +19,7 @@ Check if the given dtype is an integer type at compile time.
   
 Parameters:  
 
-- dtype
+- dtype: DType.
 
 
 ```rust
@@ -31,7 +31,7 @@ Check if the given dtype is an integer type at run time.
   
 Args:  
 
-- dtype
+- dtype: DType.
 
 ## is_floattype
 
@@ -45,7 +45,7 @@ Check if the given dtype is a floating point type at compile time.
   
 Parameters:  
 
-- dtype
+- dtype: DType.
 
 
 ```rust
@@ -57,4 +57,4 @@ Check if the given dtype is a floating point type at run time.
   
 Args:  
 
-- dtype
+- dtype: DType.

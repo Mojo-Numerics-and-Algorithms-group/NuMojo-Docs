@@ -19,14 +19,14 @@ Function that computes a series of values starting from "start" to "stop" with g
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: Input datatype of the input values.
+- out_dtype: Output datatype of the output NDArray.
   
 Args:  
 
-- start
-- stop
-- step
+- start: Scalar[in_dtype] - Start value.
+- stop: Scalar[in_dtype]  - End value.
+- step: Scalar[in_dtype]  - Step size between each element (default 1).
 
 ## linspace
 
@@ -40,16 +40,16 @@ Function that computes a series of linearly spaced values starting from "start" 
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: Datatype of the input values.
+- out_dtype: Datatype of the output NDArray.
   
 Args:  
 
-- start
-- stop
-- num
-- endpoint
-- parallel
+- start: Start value.
+- stop: End value.
+- num: No of linearly spaced elements.
+- endpoint: Specifies whether to include endpoint in the final NDArray, defaults to True.
+- parallel: Specifies whether the linspace should be calculated using parallelization, deafults to False.
 
 ## logspace
 
@@ -63,17 +63,17 @@ Generate a logrithmic spaced NDArray of `num` elements between `start` and `stop
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: Datatype of the input values.
+- out_dtype: Datatype of the output NDArray.
   
 Args:  
 
-- start
-- stop
-- num
-- endpoint
-- base
-- parallel
+- start: The starting value of the NDArray.
+- stop: The ending value of the NDArray.
+- num: The number of elements in the NDArray.
+- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.
+- base: Base value of the logarithm, defaults to 10.
+- parallel: Specifies whether to calculate the logarithmic spaced values using parallelization.
 
 ## geomspace
 
@@ -87,15 +87,15 @@ Generate a NDArray of `num` elements between `start` and `stop` in a geometric s
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: Datatype of the input values.
+- out_dtype: Datatype of the output NDArray.
   
 Args:  
 
-- start
-- stop
-- num
-- endpoint
+- start: The starting value of the NDArray.
+- stop: The ending value of the NDArray.
+- num: The number of elements in the NDArray.
+- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.
 
 ## empty
 
@@ -109,7 +109,7 @@ Generate a NDArray of given shape with arbitrary values.
   
 Parameters:  
 
-- dtype
+- dtype: Datatype of the NDArray elements.
   
 Args:  
 
@@ -127,7 +127,7 @@ Generate a NDArray of zeros with given shape.
   
 Parameters:  
 
-- dtype
+- dtype: Datatype of the NDArray elements.
   
 Args:  
 
@@ -145,12 +145,12 @@ Return a 2-D NDArray with ones on the diagonal and zeros elsewhere.
   
 Parameters:  
 
-- dtype
+- dtype: Datatype of the NDArray elements.
   
 Args:  
 
-- N
-- M
+- N: Number of rows in the matrix.
+- M: Number of columns in the matrix.
 
 ## identity
 
@@ -164,11 +164,11 @@ Generate an identity matrix of size N x N.
   
 Parameters:  
 
-- dtype
+- dtype: Datatype of the NDArray elements.
   
 Args:  
 
-- N
+- N: Size of the matrix.
 
 ## ones
 
@@ -182,7 +182,7 @@ Generate a NDArray of ones with given shape filled with ones.
   
 Parameters:  
 
-- dtype
+- dtype: Datatype of the NDArray.
   
 Args:  
 
@@ -200,12 +200,12 @@ Generate a NDArray of `fill_value` with given shape.
   
 Parameters:  
 
-- dtype
+- dtype: Datatype of the NDArray elements.
   
 Args:  
 
 - \*shape: Shape of the NDArray.
-- fill_value
+- fill_value: Value to be splatted over the NDArray.
 
 
 ```rust
@@ -217,12 +217,12 @@ Generate a NDArray of `fill_value` with given shape.
   
 Parameters:  
 
-- dtype
+- dtype: Datatype of the NDArray elements.
   
 Args:  
 
-- shape
-- fill_value
+- shape: Shape of the NDArray.
+- fill_value: Value to be splatted over the NDArray.
 
 ## diagflat
 

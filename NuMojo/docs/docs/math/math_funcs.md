@@ -47,14 +47,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- array3
+- array1: A NDArray.
+- array2: A NDArray.
+- array3: A NDArray.
 
 
 ```rust
@@ -66,14 +66,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- simd
+- array1: A NDArray.
+- array2: A NDArray.
+- simd: A SIMD[dtype,1] value to be added.
 
 ### math_func_1_array_in_one_array_out
 
@@ -87,13 +87,13 @@ Apply a SIMD function of one variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
+- array: A NDArray.
 
 ### math_func_2_array_in_one_array_out
 
@@ -107,14 +107,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 ### math_func_1_array_1_scalar_in_one_array_out
 
@@ -128,14 +128,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
-- scalar
+- array: A NDArray.
+- scalar: A Scalars.
 
 ### math_func_compare_2_arrays
 
@@ -239,14 +239,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- array3
+- array1: A NDArray.
+- array2: A NDArray.
+- array3: A NDArray.
 
 
 ```rust
@@ -258,14 +258,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- simd
+- array1: A NDArray.
+- array2: A NDArray.
+- simd: A SIMD[dtype,1] value to be added.
 
 ### math_func_1_array_in_one_array_out
 
@@ -279,13 +279,13 @@ Apply a SIMD function of one variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
+- array: A NDArray.
 
 ### math_func_2_array_in_one_array_out
 
@@ -299,14 +299,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 ### math_func_1_array_1_scalar_in_one_array_out
 
@@ -320,14 +320,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
-- scalar
+- array: A NDArray.
+- scalar: A Scalars.
 
 ### math_func_compare_2_arrays
 
@@ -431,14 +431,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- array3
+- array1: A NDArray.
+- array2: A NDArray.
+- array3: A NDArray.
 
 
 ```rust
@@ -450,14 +450,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- simd
+- array1: A NDArray.
+- array2: A NDArray.
+- simd: A SIMD[dtype,1] value to be added.
 
 ### math_func_1_array_in_one_array_out
 
@@ -471,13 +471,13 @@ Apply a SIMD function of one variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
+- array: A NDArray.
 
 ### math_func_2_array_in_one_array_out
 
@@ -491,14 +491,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 ### math_func_1_array_1_scalar_in_one_array_out
 
@@ -512,14 +512,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
-- scalar
+- array: A NDArray.
+- scalar: A Scalars.
 
 ### math_func_compare_2_arrays
 
@@ -623,14 +623,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- array3
+- array1: A NDArray.
+- array2: A NDArray.
+- array3: A NDArray.
 
 
 ```rust
@@ -642,14 +642,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- simd
+- array1: A NDArray.
+- array2: A NDArray.
+- simd: A SIMD[dtype,1] value to be added.
 
 ### math_func_1_array_in_one_array_out
 
@@ -663,13 +663,13 @@ Apply a SIMD function of one variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
+- array: A NDArray.
 
 ### math_func_2_array_in_one_array_out
 
@@ -683,14 +683,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 ### math_func_1_array_1_scalar_in_one_array_out
 
@@ -704,14 +704,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
-- scalar
+- array: A NDArray.
+- scalar: A Scalars.
 
 ### math_func_compare_2_arrays
 
@@ -815,14 +815,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- array3
+- array1: A NDArray.
+- array2: A NDArray.
+- array3: A NDArray.
 
 
 ```rust
@@ -834,14 +834,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- simd
+- array1: A NDArray.
+- array2: A NDArray.
+- simd: A SIMD[dtype,1] value to be added.
 
 ### math_func_1_array_in_one_array_out
 
@@ -855,13 +855,13 @@ Apply a SIMD function of one variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
+- array: A NDArray.
 
 ### math_func_2_array_in_one_array_out
 
@@ -875,14 +875,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 ### math_func_1_array_1_scalar_in_one_array_out
 
@@ -896,14 +896,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
-- scalar
+- array: A NDArray.
+- scalar: A Scalars.
 
 ### math_func_compare_2_arrays
 
@@ -1007,14 +1007,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- array3
+- array1: A NDArray.
+- array2: A NDArray.
+- array3: A NDArray.
 
 
 ```rust
@@ -1026,14 +1026,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- simd
+- array1: A NDArray.
+- array2: A NDArray.
+- simd: A SIMD[dtype,1] value to be added.
 
 ### math_func_1_array_in_one_array_out
 
@@ -1047,13 +1047,13 @@ Apply a SIMD function of one variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
+- array: A NDArray.
 
 ### math_func_2_array_in_one_array_out
 
@@ -1067,14 +1067,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 ### math_func_1_array_1_scalar_in_one_array_out
 
@@ -1088,14 +1088,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
-- scalar
+- array: A NDArray.
+- scalar: A Scalars.
 
 ### math_func_compare_2_arrays
 
@@ -1199,14 +1199,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- array3
+- array1: A NDArray.
+- array2: A NDArray.
+- array3: A NDArray.
 
 
 ```rust
@@ -1218,14 +1218,14 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
 - self
-- array1
-- array2
-- simd
+- array1: A NDArray.
+- array2: A NDArray.
+- simd: A SIMD[dtype,1] value to be added.
 
 ### math_func_1_array_in_one_array_out
 
@@ -1239,13 +1239,13 @@ Apply a SIMD function of one variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
+- array: A NDArray.
 
 ### math_func_2_array_in_one_array_out
 
@@ -1259,14 +1259,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 ### math_func_1_array_1_scalar_in_one_array_out
 
@@ -1280,14 +1280,14 @@ Apply a SIMD function of two variable and one return to a NDArray.
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array
-- scalar
+- array: A NDArray.
+- scalar: A Scalars.
 
 ### math_func_compare_2_arrays
 

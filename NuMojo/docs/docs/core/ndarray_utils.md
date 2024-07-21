@@ -19,11 +19,11 @@ Convert a boolean NDArray to a numeric NDArray.
   
 Parameters:  
 
-- dtype
+- dtype: The data type of the output NDArray elements.
   
 Args:  
 
-- array
+- array: The boolean NDArray to convert.
 
 ## to_numpy
 
@@ -37,8 +37,8 @@ Convert a NDArray to a numpy array.
   
 Parameters:  
 
-- dtype
+- dtype: The data type of the NDArray elements.
   
 Args:  
 
-- array
+- array: The NDArray to convert.

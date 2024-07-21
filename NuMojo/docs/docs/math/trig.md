@@ -19,12 +19,12 @@ Apply acos also known as inverse cosine .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array.
 
 ## asin
 
@@ -38,12 +38,12 @@ Apply asin also known as inverse sine .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array.
 
 ## atan
 
@@ -57,12 +57,12 @@ Apply atan also known as inverse tangent .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array.
 
 ## atan2
 
@@ -76,13 +76,13 @@ Apply atan2 also known as inverse tangent. [atan2 wikipedia](https://en.wikipedi
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: An Array.
+- array2: An Array.
 
 ## cos
 
@@ -96,12 +96,12 @@ Apply cos also known as cosine.
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array assumed to be in radian.
 
 ## sin
 
@@ -115,12 +115,12 @@ Apply sin also known as sine .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array assumed to be in radian.
 
 ## tan
 
@@ -134,12 +134,12 @@ Apply tan also known as tangent .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array assumed to be in radian.
 
 ## hypot
 
@@ -153,13 +153,13 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: An Array.
+- array2: An Array.
 
 ## hypot_fma
 
@@ -173,13 +173,13 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array1
-- array2
+- array1: An Array.
+- array2: An Array.
 
 ## acosh
 
@@ -193,12 +193,12 @@ Apply acosh also known as inverse hyperbolic cosine .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array.
 
 ## asinh
 
@@ -212,12 +212,12 @@ Apply asinh also known as inverse hyperbolic sine .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array.
 
 ## atanh
 
@@ -231,12 +231,12 @@ Apply atanh also known as inverse hyperbolic tangent .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array.
 
 ## cosh
 
@@ -250,12 +250,12 @@ Apply cosh also known as hyperbolic cosine .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array assumed to be in radian.
 
 ## sinh
 
@@ -269,12 +269,12 @@ Apply sin also known as hyperbolic sine .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array assumed to be in radian.
 
 ## tanh
 
@@ -288,9 +288,9 @@ Apply tan also known as hyperbolic tangent .
   
 Parameters:  
 
-- dtype
-- backend
+- dtype: The element type.
+- backend: Sets utility function origin, defualts to `Vectorized.
   
 Args:  
 
-- array
+- array: An Array assumed to be in radian.

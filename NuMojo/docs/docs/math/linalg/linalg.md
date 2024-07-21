@@ -24,5 +24,5 @@ Parameters:
   
 Args:  
 
-- array1
-- array2
+- array1: A array.
+- array2: A array.

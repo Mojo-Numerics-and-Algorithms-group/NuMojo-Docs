@@ -48,7 +48,7 @@ Args:
 
 - self
 - \*shape: Variable number of integers representing the shape dimensions.
-- size
+- size: The total number of elements in the array.
 
 
 ```rust
@@ -61,7 +61,7 @@ Initializes the NDArrayShape with a list of shape dimensions.
 Args:  
 
 - self
-- shape
+- shape: A list of integers representing the shape dimensions.
 
 
 ```rust
@@ -74,8 +74,8 @@ Initializes the NDArrayShape with a list of shape dimensions and a specified siz
 Args:  
 
 - self
-- shape
-- size
+- shape: A list of integers representing the shape dimensions.
+- size: The specified size of the NDArrayShape.
 
 
 ```rust
@@ -88,7 +88,7 @@ Initializes the NDArrayShape with a list of shape dimensions.
 Args:  
 
 - self
-- shape
+- shape: A list of integers representing the shape dimensions.
 
 
 ```rust
@@ -101,8 +101,8 @@ Initializes the NDArrayShape with a list of shape dimensions and a specified siz
 Args:  
 
 - self
-- shape
-- size
+- shape: A list of integers representing the shape dimensions.
+- size: The specified size of the NDArrayShape.
 
 
 ```rust
@@ -115,7 +115,7 @@ Initializes the NDArrayShape with another NDArrayShape.
 Args:  
 
 - self
-- shape
+- shape: Another NDArrayShape to initialize from.
 
 ### __getitem__
 
@@ -318,7 +318,7 @@ Summary
 Args:  
 
 - self
-- \*stride: 
+- \*stride
 - offset
 
 
@@ -387,7 +387,7 @@ Summary
 Args:  
 
 - self
-- \*shape: 
+- \*shape
 - offset
 - order
 
@@ -650,7 +650,7 @@ Example:     NDArray[DType.int8](3,2,4)     Returns an zero array with shape 3 x
 Args:  
 
 - self
-- \*shape: 
+- \*shape
 - random
 - order
 
@@ -695,7 +695,7 @@ Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)    
 Args:  
 
 - self
-- \*shape: 
+- \*shape
 - fill
 - order
 
@@ -896,7 +896,7 @@ Example:     `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).
 Args:  
 
 - self
-- \*slices: 
+- \*slices
 
 
 ```rust
@@ -935,7 +935,7 @@ Get items of array from a list of indices.
 Args:  
 
 - self
-- index
+- index: List[Int].
 
 
 ```rust
@@ -961,7 +961,7 @@ Get items of array from mask.
 Args:  
 
 - self
-- mask
+- mask: NDArray with Dtype.bool.
 
 ### __setitem__
 
@@ -990,7 +990,7 @@ Summary
 Args:  
 
 - self
-- \*index: 
+- \*index
 - val
 
 
@@ -1895,7 +1895,7 @@ Parameters:
 Args:  
 
 - self
-- \*index: 
+- \*index
 
 ### store
 
@@ -1932,7 +1932,7 @@ Parameters:
 Args:  
 
 - self
-- \*index: 
+- \*index
 - val
 
 ### all
@@ -2225,7 +2225,7 @@ Args:
 
 - self
 - \*Shape: Variadic list of shape.
-- order
+- order: Order of the array - Row major `C` or Column major `F`.
 
 ### unsafe_ptr
 

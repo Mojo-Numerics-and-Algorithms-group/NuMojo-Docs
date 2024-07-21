@@ -32,13 +32,13 @@ Converts datatype of a value from in_dtype to out_dtype at run time.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
-- width
+- in_dtype: The input datatype.
+- out_dtype: The output dataytpe.
+- width: The width of the SIMD vector.
   
 Args:  
 
-- value
+- value: The SIMD value to be converted.
 
 
 ```rust
@@ -50,7 +50,7 @@ Converts datatype of a value from in_dtype to out_dtype at compile time.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
-- width
-- value
+- in_dtype: The input datatype.
+- out_dtype: The output dataytpe.
+- width: The width of the SIMD vector.
+- value: The SIMD value to be converted.

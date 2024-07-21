@@ -19,10 +19,10 @@ Compute the integral of y over x using the trapezoidal rule.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: Input data type.
+- out_dtype: Output data type, defaults to float32.
   
 Args:  
 
-- x
-- spacing
+- x: An array.
+- spacing: An array of the same shape as x containing the spacing between adjacent elements.

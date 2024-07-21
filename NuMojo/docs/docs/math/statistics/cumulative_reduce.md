@@ -19,12 +19,12 @@ Sum of all items of an array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: An NDArray.
 
 ## cumprod
 
@@ -38,12 +38,12 @@ Product of all items in an array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: An NDArray.
 
 ## cummean
 
@@ -57,12 +57,12 @@ Arithmatic mean of all items of an array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: An NDArray.
 
 ## mode
 
@@ -76,12 +76,12 @@ Mode of all items of an array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: An NDArray.
 
 ## median
 
@@ -95,12 +95,12 @@ Median value of all items of an array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: An NDArray.
 
 ## maxT
 
@@ -114,12 +114,12 @@ Maximum value of a array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: A NDArray.
 
 ## minT
 
@@ -133,12 +133,12 @@ Minimum value of a array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: A NDArray.
 
 ## cumpvariance
 
@@ -152,13 +152,13 @@ Population variance of a array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type..
   
 Args:  
 
-- array
-- mu
+- array: A NDArray.
+- mu: The mean of the array, if provided.
 
 ## cumvariance
 
@@ -172,13 +172,13 @@ Variance of a array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
-- mu
+- array: A NDArray.
+- mu: The mean of the array, if provided.
 
 ## cumpstdev
 
@@ -192,13 +192,13 @@ Population standard deviation of a array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
-- mu
+- array: A NDArray.
+- mu: The mean of the array, if provided.
 
 ## cumstdev
 
@@ -212,13 +212,13 @@ Standard deviation of a array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
-- mu
+- array: A NDArray.
+- mu: The mean of the array, if provided.
 
 ## amin
 
@@ -232,12 +232,12 @@ Minimum value of an array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: An array.
 
 ## amax
 
@@ -251,12 +251,12 @@ Maximum value of a array.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array
+- array: A array.
 
 ## mimimum
 
@@ -270,13 +270,13 @@ Minimum value of two SIMD values.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- s1
-- s2
+- s1: A SIMD Value.
+- s2: A SIMD Value.
 
 ## maximum
 
@@ -290,13 +290,13 @@ Maximum value of two SIMD values.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- s1
-- s2
+- s1: A SIMD Value.
+- s2: A SIMD Value.
 
 
 ```rust
@@ -308,13 +308,13 @@ Element wise maximum of two arrays.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array1
-- array2
+- array1: A array.
+- array2: A array.
 
 ## minimum
 
@@ -328,13 +328,13 @@ Element wise minimum of two arrays.
   
 Parameters:  
 
-- in_dtype
-- out_dtype
+- in_dtype: The input element type.
+- out_dtype: The output element type.
   
 Args:  
 
-- array1
-- array2
+- array1: An array.
+- array2: An array.
 
 ## argmax
 
@@ -348,11 +348,11 @@ Argmax of a array.
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
-- array
+- array: A array.
 
 ## argmin
 
@@ -370,4 +370,4 @@ Parameters:
   
 Args:  
 
-- array
+- array: A array.
