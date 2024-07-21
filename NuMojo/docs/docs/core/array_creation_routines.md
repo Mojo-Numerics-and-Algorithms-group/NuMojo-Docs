@@ -20,7 +20,7 @@ Function that computes a series of values starting from "start" to "stop" with g
 Parameters:  
 
 - in_dtype: Input datatype of the input values.
-- out_dtype: Output datatype of the output NDArray.Defualt: float64
+- out_dtype: Output datatype of the output NDArray.Defualt: `float64`
   
 Args:  
 
@@ -41,7 +41,7 @@ Function that computes a series of linearly spaced values starting from "start" 
 Parameters:  
 
 - in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray.Defualt: float64
+- out_dtype: Datatype of the output NDArray.Defualt: `float64`
   
 Args:  
 
@@ -64,7 +64,7 @@ Generate a logrithmic spaced NDArray of `num` elements between `start` and `stop
 Parameters:  
 
 - in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray.Defualt: float64
+- out_dtype: Datatype of the output NDArray.Defualt: `float64`
   
 Args:  
 
@@ -88,7 +88,7 @@ Generate a NDArray of `num` elements between `start` and `stop` in a geometric s
 Parameters:  
 
 - in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray.Defualt: float64
+- out_dtype: Datatype of the output NDArray.Defualt: `float64`
   
 Args:  
 

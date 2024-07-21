@@ -73,7 +73,7 @@ def doc_struct(struct, mdfile:MdUtils,top_header=1):
         print(struct["name"])
     mdfile.new_line()
     if struct['parentTraits']:
-        mdfile.new_header(top_header+1,"Parent Traits:")
+        mdfile.new_header(top_header+1,"Parent Traits")
         mdfile.new_line()
         mdfile.new_list(struct['parentTraits'])
     if "aliases" in list(struct.keys()):
@@ -86,10 +86,11 @@ def doc_struct(struct, mdfile:MdUtils,top_header=1):
             mdfile.new_line(f"* {field['name']} `{field['type']}`")
             if field["summary"]:
                 mdfile.new_line("   **" + field["summary"])
-    mdfile.new_line("Functions:")
+    mdfile.new_line()           
+    mdfile.new_header(top_header+1,"Functions")
     if struct["functions"]:
         for func in struct["functions"]:
-            doc_func(func, mdfile,top_header=top_header+1)
+            doc_func(func, mdfile,top_header=top_header+2)
 
 def doc_modules(module, root:Path, parent:Path):
     mdfile = MdUtils(str(root/parent)+"/"+module["name"])

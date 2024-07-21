@@ -20,8 +20,10 @@ Implements the NDArrayShape.
 - AnyType
 - Stringable
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -117,7 +119,7 @@ Args:
 - self
 - shape: Another NDArrayShape to initialize from.
 
-### __getitem__
+#### __getitem__
 
 
 ```rust
@@ -132,7 +134,7 @@ Args:
 - self
 - index
 
-### __setitem__
+#### __setitem__
 
 
 ```rust
@@ -148,7 +150,7 @@ Args:
 - index
 - val
 
-### __eq__
+#### __eq__
 
 
 ```rust
@@ -163,7 +165,7 @@ Args:
 - self
 - other
 
-### __ne__
+#### __ne__
 
 
 ```rust
@@ -178,7 +180,7 @@ Args:
 - self
 - other
 
-### __contains__
+#### __contains__
 
 
 ```rust
@@ -193,7 +195,7 @@ Args:
 - self
 - val
 
-### size
+#### size
 
 
 ```rust
@@ -207,7 +209,7 @@ Args:
 
 - self
 
-### len
+#### len
 
 
 ```rust
@@ -221,7 +223,7 @@ Args:
 
 - self
 
-### load
+#### load
 
 
 ```rust
@@ -233,14 +235,14 @@ Summary
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
 - self
 - index
 
-### store
+#### store
 
 
 ```rust
@@ -252,7 +254,7 @@ Summary
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
@@ -260,7 +262,7 @@ Args:
 - index
 - val
 
-### load_int
+#### load_int
 
 
 ```rust
@@ -275,7 +277,7 @@ Args:
 - self
 - index
 
-### store_int
+#### store_int
 
 
 ```rust
@@ -304,8 +306,10 @@ Implements the NDArrayStride.
 - AnyType
 - Stringable
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -436,7 +440,7 @@ Args:
 - offsetDefault: 0
 - orderDefault: "C"
 
-### __getitem__
+#### __getitem__
 
 
 ```rust
@@ -451,7 +455,7 @@ Args:
 - self
 - index
 
-### __setitem__
+#### __setitem__
 
 
 ```rust
@@ -467,7 +471,7 @@ Args:
 - index
 - val
 
-### __eq__
+#### __eq__
 
 
 ```rust
@@ -482,7 +486,7 @@ Args:
 - self
 - other
 
-### __ne__
+#### __ne__
 
 
 ```rust
@@ -497,7 +501,7 @@ Args:
 - self
 - other
 
-### __contains__
+#### __contains__
 
 
 ```rust
@@ -512,7 +516,7 @@ Args:
 - self
 - val
 
-### len
+#### len
 
 
 ```rust
@@ -526,7 +530,7 @@ Args:
 
 - self
 
-### load
+#### load
 
 
 ```rust
@@ -538,14 +542,14 @@ Summary
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
 - self
 - index
 
-### store
+#### store
 
 
 ```rust
@@ -557,7 +561,7 @@ Summary
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
@@ -565,7 +569,7 @@ Args:
 - index
 - val
 
-### load_unsafe
+#### load_unsafe
 
 
 ```rust
@@ -577,14 +581,14 @@ Summary
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
 - self
 - index
 
-### store_unsafe
+#### store_unsafe
 
 
 ```rust
@@ -596,7 +600,7 @@ Summary
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
@@ -636,8 +640,10 @@ The N-dimensional array (NDArray).
 * coefficient `NDArrayStride[int32]`  
 * datatype `DType`  
 * order `String`  
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -812,7 +818,7 @@ Args:
 - coefficient
 - orderDefault: "C"
 
-### __copyinit__
+#### __copyinit__
 
 
 ```rust
@@ -827,7 +833,7 @@ Args:
 - self
 - other
 
-### __moveinit__
+#### __moveinit__
 
 
 ```rust
@@ -842,7 +848,7 @@ Args:
 - self
 - existing
 
-### __del__
+#### __del__
 
 
 ```rust
@@ -856,7 +862,7 @@ Args:
 
 - self
 
-### __bool__
+#### __bool__
 
 
 ```rust
@@ -870,7 +876,7 @@ Args:
 
 - self
 
-### __getitem__
+#### __getitem__
 
 
 ```rust
@@ -963,7 +969,7 @@ Args:
 - self
 - mask: NDArray with Dtype.bool.
 
-### __setitem__
+#### __setitem__
 
 
 ```rust
@@ -1035,7 +1041,7 @@ Args:
 - mask
 - value
 
-### __neg__
+#### __neg__
 
 
 ```rust
@@ -1049,7 +1055,7 @@ Args:
 
 - self
 
-### __pos__
+#### __pos__
 
 
 ```rust
@@ -1063,7 +1069,7 @@ Args:
 
 - self
 
-### __invert__
+#### __invert__
 
 
 ```rust
@@ -1077,7 +1083,7 @@ Args:
 
 - self
 
-### __lt__
+#### __lt__
 
 
 ```rust
@@ -1105,7 +1111,7 @@ Args:
 - self
 - other
 
-### __le__
+#### __le__
 
 
 ```rust
@@ -1133,7 +1139,7 @@ Args:
 - self
 - other
 
-### __eq__
+#### __eq__
 
 
 ```rust
@@ -1161,7 +1167,7 @@ Args:
 - self
 - other
 
-### __ne__
+#### __ne__
 
 
 ```rust
@@ -1189,7 +1195,7 @@ Args:
 - self
 - other
 
-### __gt__
+#### __gt__
 
 
 ```rust
@@ -1217,7 +1223,7 @@ Args:
 - self
 - other
 
-### __ge__
+#### __ge__
 
 
 ```rust
@@ -1245,7 +1251,7 @@ Args:
 - self
 - other
 
-### __add__
+#### __add__
 
 
 ```rust
@@ -1273,7 +1279,7 @@ Args:
 - self
 - other
 
-### __sub__
+#### __sub__
 
 
 ```rust
@@ -1301,7 +1307,7 @@ Args:
 - self
 - other
 
-### __mul__
+#### __mul__
 
 
 ```rust
@@ -1329,7 +1335,7 @@ Args:
 - self
 - other
 
-### __matmul__
+#### __matmul__
 
 
 ```rust
@@ -1344,7 +1350,7 @@ Args:
 - self
 - other
 
-### __truediv__
+#### __truediv__
 
 
 ```rust
@@ -1372,7 +1378,7 @@ Args:
 - self
 - other
 
-### __floordiv__
+#### __floordiv__
 
 
 ```rust
@@ -1400,7 +1406,7 @@ Args:
 - self
 - other
 
-### __mod__
+#### __mod__
 
 
 ```rust
@@ -1428,7 +1434,7 @@ Args:
 - self
 - other
 
-### __pow__
+#### __pow__
 
 
 ```rust
@@ -1456,7 +1462,7 @@ Args:
 - self
 - p
 
-### __radd__
+#### __radd__
 
 
 ```rust
@@ -1471,7 +1477,7 @@ Args:
 - self
 - rhs
 
-### __rsub__
+#### __rsub__
 
 
 ```rust
@@ -1486,7 +1492,7 @@ Args:
 - self
 - s
 
-### __rmul__
+#### __rmul__
 
 
 ```rust
@@ -1501,7 +1507,7 @@ Args:
 - self
 - s
 
-### __rtruediv__
+#### __rtruediv__
 
 
 ```rust
@@ -1516,7 +1522,7 @@ Args:
 - self
 - s
 
-### __rfloordiv__
+#### __rfloordiv__
 
 
 ```rust
@@ -1531,7 +1537,7 @@ Args:
 - self
 - s
 
-### __rmod__
+#### __rmod__
 
 
 ```rust
@@ -1559,7 +1565,7 @@ Args:
 - self
 - other
 
-### __iadd__
+#### __iadd__
 
 
 ```rust
@@ -1587,7 +1593,7 @@ Args:
 - self
 - other
 
-### __isub__
+#### __isub__
 
 
 ```rust
@@ -1602,7 +1608,7 @@ Args:
 - self
 - s
 
-### __imul__
+#### __imul__
 
 
 ```rust
@@ -1630,7 +1636,7 @@ Args:
 - self
 - s
 
-### __itruediv__
+#### __itruediv__
 
 
 ```rust
@@ -1658,7 +1664,7 @@ Args:
 - self
 - other
 
-### __ifloordiv__
+#### __ifloordiv__
 
 
 ```rust
@@ -1686,7 +1692,7 @@ Args:
 - self
 - other
 
-### __imod__
+#### __imod__
 
 
 ```rust
@@ -1714,7 +1720,7 @@ Args:
 - self
 - other
 
-### __ipow__
+#### __ipow__
 
 
 ```rust
@@ -1729,7 +1735,7 @@ Args:
 - self
 - p
 
-### get_scalar
+#### get_scalar
 
 
 ```rust
@@ -1744,7 +1750,7 @@ Args:
 - self
 - index
 
-### vdot
+#### vdot
 
 
 ```rust
@@ -1759,7 +1765,7 @@ Args:
 - self
 - other
 
-### mdot
+#### mdot
 
 
 ```rust
@@ -1774,7 +1780,7 @@ Args:
 - self
 - other
 
-### row
+#### row
 
 
 ```rust
@@ -1789,7 +1795,7 @@ Args:
 - self
 - id
 
-### col
+#### col
 
 
 ```rust
@@ -1804,7 +1810,7 @@ Args:
 - self
 - id
 
-### rdot
+#### rdot
 
 
 ```rust
@@ -1819,7 +1825,7 @@ Args:
 - self
 - other
 
-### size
+#### size
 
 
 ```rust
@@ -1833,7 +1839,7 @@ Args:
 
 - self
 
-### num_elements
+#### num_elements
 
 
 ```rust
@@ -1847,7 +1853,7 @@ Args:
 
 - self
 
-### shape
+#### shape
 
 
 ```rust
@@ -1861,7 +1867,7 @@ Args:
 
 - self
 
-### load
+#### load
 
 
 ```rust
@@ -1873,7 +1879,7 @@ Loads a SIMD element of size `width` at the given index `index`.
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
@@ -1890,14 +1896,14 @@ Loads a SIMD element of size `width` at given variadic indices argument.
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
 - self
 - \*index
 
-### store
+#### store
 
 
 ```rust
@@ -1927,7 +1933,7 @@ Stores the SIMD element of size `width` at the given variadic indices argument.
   
 Parameters:  
 
-- widthDefualt: 1
+- widthDefualt: `1`
   
 Args:  
 
@@ -1935,7 +1941,7 @@ Args:
 - \*index
 - val
 
-### all
+#### all
 
 
 ```rust
@@ -1949,7 +1955,7 @@ Args:
 
 - self
 
-### any
+#### any
 
 
 ```rust
@@ -1963,7 +1969,7 @@ Args:
 
 - self
 
-### argmax
+#### argmax
 
 
 ```rust
@@ -1977,7 +1983,7 @@ Args:
 
 - self
 
-### argmin
+#### argmin
 
 
 ```rust
@@ -1991,7 +1997,7 @@ Args:
 
 - self
 
-### argsort
+#### argsort
 
 
 ```rust
@@ -2005,7 +2011,7 @@ Args:
 
 - self
 
-### astype
+#### astype
 
 
 ```rust
@@ -2023,7 +2029,7 @@ Args:
 
 - self
 
-### cumprod
+#### cumprod
 
 
 ```rust
@@ -2037,7 +2043,7 @@ Args:
 
 - self
 
-### cumsum
+#### cumsum
 
 
 ```rust
@@ -2051,7 +2057,7 @@ Args:
 
 - self
 
-### diagonal
+#### diagonal
 
 
 ```rust
@@ -2065,7 +2071,7 @@ Args:
 
 - self
 
-### fill
+#### fill
 
 
 ```rust
@@ -2080,7 +2086,7 @@ Args:
 - self
 - val
 
-### flatten
+#### flatten
 
 
 ```rust
@@ -2095,7 +2101,7 @@ Args:
 - self
 - inplaceDefault: 0
 
-### item
+#### item
 
 
 ```rust
@@ -2110,7 +2116,7 @@ Args:
 - self
 - \*index: The coordinates of the item.
 
-### max
+#### max
 
 
 ```rust
@@ -2125,7 +2131,7 @@ Args:
 - self
 - axisDefault: 0
 
-### min
+#### min
 
 
 ```rust
@@ -2140,7 +2146,7 @@ Args:
 - self
 - axisDefault: 0
 
-### mean
+#### mean
 
 
 ```rust
@@ -2167,7 +2173,7 @@ Args:
 
 - self
 
-### prod
+#### prod
 
 
 ```rust
@@ -2182,7 +2188,7 @@ Args:
 - self
 - axis
 
-### sort
+#### sort
 
 
 ```rust
@@ -2196,7 +2202,7 @@ Args:
 
 - self
 
-### sum
+#### sum
 
 
 ```rust
@@ -2211,7 +2217,7 @@ Args:
 - self
 - axis
 
-### reshape
+#### reshape
 
 
 ```rust
@@ -2227,7 +2233,7 @@ Args:
 - \*Shape: Variadic list of shape.
 - order: Order of the array - Row major `C` or Column major `F`.Default: "C"
 
-### unsafe_ptr
+#### unsafe_ptr
 
 
 ```rust
@@ -2241,7 +2247,7 @@ Args:
 
 - self
 
-### to_numpy
+#### to_numpy
 
 
 ```rust

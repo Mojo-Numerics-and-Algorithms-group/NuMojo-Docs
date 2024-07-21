@@ -26,8 +26,10 @@ Define constants.
 `c`:   
 `pi`:   
 `e`:   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -41,7 +43,7 @@ Args:
 
 - self
 
-### __del__
+#### __del__
 
 
 ```rust

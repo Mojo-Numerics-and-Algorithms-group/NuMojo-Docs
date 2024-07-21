@@ -8114,7 +8114,7 @@
                 "description": "",
                 "kind": "alias",
                 "name": "ln",
-                "summary": "",
+                "summary": "Natural Log equivelent to log",
                 "value": "log[stdlib::builtin::dtype::DType,numojo::traits::backend::Backend]"
               }
             ],

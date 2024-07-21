@@ -20,7 +20,7 @@ Sum of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -39,7 +39,7 @@ Product of all items in an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -58,7 +58,7 @@ Arithmatic mean of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -77,7 +77,7 @@ Mode of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -96,7 +96,7 @@ Median value of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -115,7 +115,7 @@ Maximum value of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -134,7 +134,7 @@ Minimum value of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -153,7 +153,7 @@ Population variance of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type..Defualt: float64
+- out_dtype: The output element type..Defualt: `float64`
   
 Args:  
 
@@ -173,7 +173,7 @@ Variance of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -193,7 +193,7 @@ Population standard deviation of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -213,7 +213,7 @@ Standard deviation of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -233,7 +233,7 @@ Minimum value of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -252,7 +252,7 @@ Maximum value of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -271,7 +271,7 @@ Minimum value of two SIMD values.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -291,7 +291,7 @@ Maximum value of two SIMD values.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -309,7 +309,7 @@ Element wise maximum of two arrays.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 
@@ -329,7 +329,7 @@ Element wise minimum of two arrays.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: float64
+- out_dtype: The output element type.Defualt: `float64`
   
 Args:  
 

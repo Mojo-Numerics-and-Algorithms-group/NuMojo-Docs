@@ -20,8 +20,10 @@ Vectorized Backend Struct. Parameters     unroll_factor: factor by which loops a
 - AnyType
 - Backend
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -35,7 +37,7 @@ Args:
 
 - self
 
-### math_func_fma
+#### math_func_fma
 
 
 ```rust
@@ -75,7 +77,7 @@ Args:
 - array2: A NDArray.
 - simd: A SIMD[dtype,1] value to be added.
 
-### math_func_1_array_in_one_array_out
+#### math_func_1_array_in_one_array_out
 
 
 ```rust
@@ -95,7 +97,7 @@ Args:
 - self
 - array: A NDArray.
 
-### math_func_2_array_in_one_array_out
+#### math_func_2_array_in_one_array_out
 
 
 ```rust
@@ -116,7 +118,7 @@ Args:
 - array1: A NDArray.
 - array2: A NDArray.
 
-### math_func_1_array_1_scalar_in_one_array_out
+#### math_func_1_array_1_scalar_in_one_array_out
 
 
 ```rust
@@ -137,7 +139,7 @@ Args:
 - array: A NDArray.
 - scalar: A Scalars.
 
-### math_func_compare_2_arrays
+#### math_func_compare_2_arrays
 
 
 ```rust
@@ -158,7 +160,7 @@ Args:
 - array1
 - array2
 
-### math_func_is
+#### math_func_is
 
 
 ```rust
@@ -178,7 +180,7 @@ Args:
 - self
 - array
 
-### math_func_simd_int
+#### math_func_simd_int
 
 
 ```rust
@@ -212,8 +214,10 @@ Vectorized Backend Struct. Parameters     unroll_factor: factor by which loops a
 - AnyType
 - Backend
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -227,7 +231,7 @@ Args:
 
 - self
 
-### math_func_fma
+#### math_func_fma
 
 
 ```rust
@@ -267,7 +271,7 @@ Args:
 - array2: A NDArray.
 - simd: A SIMD[dtype,1] value to be added.
 
-### math_func_1_array_in_one_array_out
+#### math_func_1_array_in_one_array_out
 
 
 ```rust
@@ -287,7 +291,7 @@ Args:
 - self
 - array: A NDArray.
 
-### math_func_2_array_in_one_array_out
+#### math_func_2_array_in_one_array_out
 
 
 ```rust
@@ -308,7 +312,7 @@ Args:
 - array1: A NDArray.
 - array2: A NDArray.
 
-### math_func_1_array_1_scalar_in_one_array_out
+#### math_func_1_array_1_scalar_in_one_array_out
 
 
 ```rust
@@ -329,7 +333,7 @@ Args:
 - array: A NDArray.
 - scalar: A Scalars.
 
-### math_func_compare_2_arrays
+#### math_func_compare_2_arrays
 
 
 ```rust
@@ -350,7 +354,7 @@ Args:
 - array1
 - array2
 
-### math_func_is
+#### math_func_is
 
 
 ```rust
@@ -370,7 +374,7 @@ Args:
 - self
 - array
 
-### math_func_simd_int
+#### math_func_simd_int
 
 
 ```rust
@@ -404,8 +408,10 @@ Parrallelized Backend Struct.
 - AnyType
 - Backend
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -419,7 +425,7 @@ Args:
 
 - self
 
-### math_func_fma
+#### math_func_fma
 
 
 ```rust
@@ -459,7 +465,7 @@ Args:
 - array2: A NDArray.
 - simd: A SIMD[dtype,1] value to be added.
 
-### math_func_1_array_in_one_array_out
+#### math_func_1_array_in_one_array_out
 
 
 ```rust
@@ -479,7 +485,7 @@ Args:
 - self
 - array: A NDArray.
 
-### math_func_2_array_in_one_array_out
+#### math_func_2_array_in_one_array_out
 
 
 ```rust
@@ -500,7 +506,7 @@ Args:
 - array1: A NDArray.
 - array2: A NDArray.
 
-### math_func_1_array_1_scalar_in_one_array_out
+#### math_func_1_array_1_scalar_in_one_array_out
 
 
 ```rust
@@ -521,7 +527,7 @@ Args:
 - array: A NDArray.
 - scalar: A Scalars.
 
-### math_func_compare_2_arrays
+#### math_func_compare_2_arrays
 
 
 ```rust
@@ -542,7 +548,7 @@ Args:
 - array1
 - array2
 
-### math_func_is
+#### math_func_is
 
 
 ```rust
@@ -562,7 +568,7 @@ Args:
 - self
 - array
 
-### math_func_simd_int
+#### math_func_simd_int
 
 
 ```rust
@@ -596,8 +602,10 @@ Vectorized and Parrallelized Backend Struct.
 - AnyType
 - Backend
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -611,7 +619,7 @@ Args:
 
 - self
 
-### math_func_fma
+#### math_func_fma
 
 
 ```rust
@@ -651,7 +659,7 @@ Args:
 - array2: A NDArray.
 - simd: A SIMD[dtype,1] value to be added.
 
-### math_func_1_array_in_one_array_out
+#### math_func_1_array_in_one_array_out
 
 
 ```rust
@@ -671,7 +679,7 @@ Args:
 - self
 - array: A NDArray.
 
-### math_func_2_array_in_one_array_out
+#### math_func_2_array_in_one_array_out
 
 
 ```rust
@@ -692,7 +700,7 @@ Args:
 - array1: A NDArray.
 - array2: A NDArray.
 
-### math_func_1_array_1_scalar_in_one_array_out
+#### math_func_1_array_1_scalar_in_one_array_out
 
 
 ```rust
@@ -713,7 +721,7 @@ Args:
 - array: A NDArray.
 - scalar: A Scalars.
 
-### math_func_compare_2_arrays
+#### math_func_compare_2_arrays
 
 
 ```rust
@@ -734,7 +742,7 @@ Args:
 - array1
 - array2
 
-### math_func_is
+#### math_func_is
 
 
 ```rust
@@ -754,7 +762,7 @@ Args:
 - self
 - array
 
-### math_func_simd_int
+#### math_func_simd_int
 
 
 ```rust
@@ -788,8 +796,10 @@ Vectorized and Parrallelized Backend Struct with manual setting of number of wor
 - AnyType
 - Backend
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -803,7 +813,7 @@ Args:
 
 - self
 
-### math_func_fma
+#### math_func_fma
 
 
 ```rust
@@ -843,7 +853,7 @@ Args:
 - array2: A NDArray.
 - simd: A SIMD[dtype,1] value to be added.
 
-### math_func_1_array_in_one_array_out
+#### math_func_1_array_in_one_array_out
 
 
 ```rust
@@ -863,7 +873,7 @@ Args:
 - self
 - array: A NDArray.
 
-### math_func_2_array_in_one_array_out
+#### math_func_2_array_in_one_array_out
 
 
 ```rust
@@ -884,7 +894,7 @@ Args:
 - array1: A NDArray.
 - array2: A NDArray.
 
-### math_func_1_array_1_scalar_in_one_array_out
+#### math_func_1_array_1_scalar_in_one_array_out
 
 
 ```rust
@@ -905,7 +915,7 @@ Args:
 - array: A NDArray.
 - scalar: A Scalars.
 
-### math_func_compare_2_arrays
+#### math_func_compare_2_arrays
 
 
 ```rust
@@ -926,7 +936,7 @@ Args:
 - array1
 - array2
 
-### math_func_is
+#### math_func_is
 
 
 ```rust
@@ -946,7 +956,7 @@ Args:
 - self
 - array
 
-### math_func_simd_int
+#### math_func_simd_int
 
 
 ```rust
@@ -980,8 +990,10 @@ Naive Backend Struct.
 - AnyType
 - Backend
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -995,7 +1007,7 @@ Args:
 
 - self
 
-### math_func_fma
+#### math_func_fma
 
 
 ```rust
@@ -1035,7 +1047,7 @@ Args:
 - array2: A NDArray.
 - simd: A SIMD[dtype,1] value to be added.
 
-### math_func_1_array_in_one_array_out
+#### math_func_1_array_in_one_array_out
 
 
 ```rust
@@ -1055,7 +1067,7 @@ Args:
 - self
 - array: A NDArray.
 
-### math_func_2_array_in_one_array_out
+#### math_func_2_array_in_one_array_out
 
 
 ```rust
@@ -1076,7 +1088,7 @@ Args:
 - array1: A NDArray.
 - array2: A NDArray.
 
-### math_func_1_array_1_scalar_in_one_array_out
+#### math_func_1_array_1_scalar_in_one_array_out
 
 
 ```rust
@@ -1097,7 +1109,7 @@ Args:
 - array: A NDArray.
 - scalar: A Scalars.
 
-### math_func_compare_2_arrays
+#### math_func_compare_2_arrays
 
 
 ```rust
@@ -1118,7 +1130,7 @@ Args:
 - array1
 - array2
 
-### math_func_is
+#### math_func_is
 
 
 ```rust
@@ -1138,7 +1150,7 @@ Args:
 - self
 - array
 
-### math_func_simd_int
+#### math_func_simd_int
 
 
 ```rust
@@ -1172,8 +1184,10 @@ Vectorized Backend Struct.
 - AnyType
 - Backend
   
-Functions:
-### __init__
+
+### Functions:
+
+#### __init__
 
 
 ```rust
@@ -1187,7 +1201,7 @@ Args:
 
 - self
 
-### math_func_fma
+#### math_func_fma
 
 
 ```rust
@@ -1227,7 +1241,7 @@ Args:
 - array2: A NDArray.
 - simd: A SIMD[dtype,1] value to be added.
 
-### math_func_1_array_in_one_array_out
+#### math_func_1_array_in_one_array_out
 
 
 ```rust
@@ -1247,7 +1261,7 @@ Args:
 - self
 - array: A NDArray.
 
-### math_func_2_array_in_one_array_out
+#### math_func_2_array_in_one_array_out
 
 
 ```rust
@@ -1268,7 +1282,7 @@ Args:
 - array1: A NDArray.
 - array2: A NDArray.
 
-### math_func_1_array_1_scalar_in_one_array_out
+#### math_func_1_array_1_scalar_in_one_array_out
 
 
 ```rust
@@ -1289,7 +1303,7 @@ Args:
 - array: A NDArray.
 - scalar: A Scalars.
 
-### math_func_compare_2_arrays
+#### math_func_compare_2_arrays
 
 
 ```rust
@@ -1310,7 +1324,7 @@ Args:
 - array1
 - array2
 
-### math_func_is
+#### math_func_is
 
 
 ```rust
@@ -1330,7 +1344,7 @@ Args:
 - self
 - array
 
-### math_func_simd_int
+#### math_func_simd_int
 
 
 ```rust

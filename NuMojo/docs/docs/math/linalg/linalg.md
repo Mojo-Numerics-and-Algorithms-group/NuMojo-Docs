@@ -20,7 +20,7 @@ Compute the cross product of two arrays.
 Parameters:  
 
 - in_dtype
-- out_dtypeDefualt: float32
+- out_dtypeDefualt: `float32`
   
 Args:  
 

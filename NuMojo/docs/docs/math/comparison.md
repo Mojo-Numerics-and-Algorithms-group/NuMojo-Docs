@@ -20,7 +20,7 @@ Performs elementwise check of whether values in x are greater than values in y.
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: `Vectorized`
   
 Args:  
 
@@ -40,7 +40,7 @@ Performs elementwise check of whether values in x are greater than or equal to v
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: `Vectorized`
   
 Args:  
 
@@ -60,7 +60,7 @@ Performs elementwise check of whether values in x are to values in y.
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: `Vectorized`
   
 Args:  
 
@@ -80,7 +80,7 @@ Performs elementwise check of whether values in x are less than or equal to valu
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: `Vectorized`
   
 Args:  
 
@@ -100,7 +100,7 @@ Performs elementwise check of whether values in x are equal to values in y.
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: `Vectorized`
   
 Args:  
 
@@ -120,7 +120,7 @@ Performs elementwise check of whether values in x are not equal to values in y.
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: `Vectorized`
   
 Args:  
 
