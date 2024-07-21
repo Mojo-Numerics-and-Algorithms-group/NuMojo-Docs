@@ -26,7 +26,7 @@ Args:
 
 - start: Scalar[in_dtype] - Start value.
 - stop: Scalar[in_dtype]  - End value.
-- step: Scalar[in_dtype]  - Step size between each element (default 1).
+- step: Scalar[in_dtype]  - Step size between each element (default 1).Defualt: 1
 
 ## linspace
 
@@ -47,9 +47,9 @@ Args:
 
 - start: Start value.
 - stop: End value.
-- num: No of linearly spaced elements.
-- endpoint: Specifies whether to include endpoint in the final NDArray, defaults to True.
-- parallel: Specifies whether the linspace should be calculated using parallelization, deafults to False.
+- num: No of linearly spaced elements.Defualt: 50
+- endpoint: Specifies whether to include endpoint in the final NDArray, defaults to True.Defualt: 1
+- parallel: Specifies whether the linspace should be calculated using parallelization, deafults to False.Defualt: 0
 
 ## logspace
 
@@ -71,9 +71,9 @@ Args:
 - start: The starting value of the NDArray.
 - stop: The ending value of the NDArray.
 - num: The number of elements in the NDArray.
-- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.
-- base: Base value of the logarithm, defaults to 10.
-- parallel: Specifies whether to calculate the logarithmic spaced values using parallelization.
+- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.Defualt: 1
+- base: Base value of the logarithm, defaults to 10.Defualt: #kgen.float_literal<10|1>
+- parallel: Specifies whether to calculate the logarithmic spaced values using parallelization.Defualt: 0
 
 ## geomspace
 
@@ -95,7 +95,7 @@ Args:
 - start: The starting value of the NDArray.
 - stop: The ending value of the NDArray.
 - num: The number of elements in the NDArray.
-- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.
+- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.Defualt: 1
 
 ## empty
 

@@ -319,7 +319,7 @@ Args:
 
 - self
 - \*stride
-- offset
+- offsetDefualt: 0
 
 
 ```rust
@@ -333,7 +333,7 @@ Args:
 
 - self
 - stride
-- offset
+- offsetDefualt: 0
 
 
 ```rust
@@ -347,7 +347,7 @@ Args:
 
 - self
 - stride
-- offset
+- offsetDefualt: 0
 
 
 ```rust
@@ -374,7 +374,7 @@ Args:
 
 - self
 - stride
-- offset
+- offsetDefualt: 0
 
 
 ```rust
@@ -388,8 +388,8 @@ Args:
 
 - self
 - \*shape
-- offset
-- order
+- offsetDefualt: 0
+- orderDefualt: "C"
 
 
 ```rust
@@ -403,8 +403,8 @@ Args:
 
 - self
 - shape
-- offset
-- order
+- offsetDefualt: 0
+- orderDefualt: "C"
 
 
 ```rust
@@ -418,8 +418,8 @@ Args:
 
 - self
 - shape
-- offset
-- order
+- offsetDefualt: 0
+- orderDefualt: "C"
 
 
 ```rust
@@ -433,8 +433,8 @@ Args:
 
 - self
 - shape
-- offset
-- order
+- offsetDefualt: 0
+- orderDefualt: "C"
 
 ### __getitem__
 
@@ -651,8 +651,8 @@ Args:
 
 - self
 - \*shape
-- random
-- order
+- randomDefualt: 0
+- orderDefualt: "C"
 
 
 ```rust
@@ -666,8 +666,8 @@ Args:
 
 - self
 - shape
-- random
-- order
+- randomDefualt: 0
+- orderDefualt: "C"
 
 
 ```rust
@@ -681,8 +681,8 @@ Args:
 
 - self
 - shape
-- random
-- order
+- randomDefualt: 0
+- orderDefualt: "C"
 
 
 ```rust
@@ -697,7 +697,7 @@ Args:
 - self
 - \*shape
 - fill
-- order
+- orderDefualt: "C"
 
 
 ```rust
@@ -712,7 +712,7 @@ Args:
 - self
 - shape
 - fill
-- order
+- orderDefualt: "C"
 
 
 ```rust
@@ -727,7 +727,7 @@ Args:
 - self
 - shape
 - fill
-- order
+- orderDefualt: "C"
 
 
 ```rust
@@ -741,8 +741,8 @@ Args:
 
 - self
 - shape
-- random
-- order
+- randomDefualt: 0
+- orderDefualt: "C"
 
 
 ```rust
@@ -757,7 +757,7 @@ Args:
 - self
 - shape
 - fill
-- order
+- orderDefualt: "C"
 
 
 ```rust
@@ -772,7 +772,7 @@ Args:
 - self
 - data
 - shape
-- order
+- orderDefualt: "C"
 
 
 ```rust
@@ -791,7 +791,7 @@ Args:
 - shape
 - strides
 - coefficient
-- order
+- orderDefualt: "C"
 
 
 ```rust
@@ -810,7 +810,7 @@ Args:
 - shape
 - strides
 - coefficient
-- order
+- orderDefualt: "C"
 
 ### __copyinit__
 
@@ -2093,7 +2093,7 @@ Summary
 Args:  
 
 - self
-- inplace
+- inplaceDefualt: 0
 
 ### item
 
@@ -2123,7 +2123,7 @@ Summary
 Args:  
 
 - self
-- axis
+- axisDefualt: 0
 
 ### min
 
@@ -2138,7 +2138,7 @@ Summary
 Args:  
 
 - self
-- axis
+- axisDefualt: 0
 
 ### mean
 
@@ -2225,7 +2225,7 @@ Args:
 
 - self
 - \*Shape: Variadic list of shape.
-- order: Order of the array - Row major `C` or Column major `F`.
+- order: Order of the array - Row major `C` or Column major `F`.Defualt: "C"
 
 ### unsafe_ptr
 

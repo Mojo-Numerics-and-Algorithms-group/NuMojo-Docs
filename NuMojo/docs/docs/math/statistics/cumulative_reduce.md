@@ -158,7 +158,7 @@ Parameters:
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.
+- mu: The mean of the array, if provided.Defualt: #kgen.none
 
 ## cumvariance
 
@@ -178,7 +178,7 @@ Parameters:
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.
+- mu: The mean of the array, if provided.Defualt: #kgen.none
 
 ## cumpstdev
 
@@ -198,7 +198,7 @@ Parameters:
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.
+- mu: The mean of the array, if provided.Defualt: #kgen.none
 
 ## cumstdev
 
@@ -218,7 +218,7 @@ Parameters:
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.
+- mu: The mean of the array, if provided.Defualt: #kgen.none
 
 ## amin
 

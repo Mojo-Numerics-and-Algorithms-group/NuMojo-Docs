@@ -46,14 +46,14 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
                     name = arg["name"].replace("*","\*")
                 if arg["description"]:
                     description = f': {arg["description"]}'
-                    print(description)
+                    
                 else:
                     description = ""
-                if "defualt" in  list(arg.keys()):
-                    defualt = f"""Defualt: {arg["default"]}"""
+                if "default" in  list(arg.keys()):
+                    default = f"""Defualt: {arg["default"]}"""
                 else:
-                    defualt = ""
-                arglist.append(name + description + defualt)
+                    default = ""
+                arglist.append(name + description + default)
             mdfile.new_list(arglist)
 
 def doc_alias(alias,mdfile:MdUtils,top_header=2):

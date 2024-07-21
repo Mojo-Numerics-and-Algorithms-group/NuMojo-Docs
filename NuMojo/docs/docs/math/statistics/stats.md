@@ -20,7 +20,7 @@ Sum of array elements over a given axis.
 Args:  
 
 - array: NDArray.
-- axis: The axis along which the sum is performed.
+- axis: The axis along which the sum is performed.Defualt: 0
 
 ## sumall
 
@@ -49,7 +49,7 @@ Product of array elements over a given axis.
 Args:  
 
 - array: NDArray.
-- axis: The axis along which the product is performed.
+- axis: The axis along which the product is performed.Defualt: 0
 
 ## prodall
 
@@ -78,7 +78,7 @@ Mean of array elements over a given axis. Args:     array: NDArray.     axis: Th
 Args:  
 
 - array
-- axis
+- axisDefualt: 0
 
 ## meanall
 
@@ -111,7 +111,7 @@ Parameters:
 Args:  
 
 - array
-- axis
+- axisDefualt: 0
 
 ## min
 
@@ -130,4 +130,4 @@ Parameters:
 Args:  
 
 - array
-- axis
+- axisDefualt: 0
