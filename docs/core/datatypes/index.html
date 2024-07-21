@@ -1247,13 +1247,13 @@ Summary  </p>
 <p>Converts datatype of a value from in_dtype to out_dtype at run time.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype</li>
-<li>out_dtype</li>
-<li>width</li>
+<li>in_dtype: The input datatype.</li>
+<li>out_dtype: The output dataytpe.</li>
+<li>width: The width of the SIMD vector.</li>
 </ul>
 <p>Args:  </p>
 <ul>
-<li>value</li>
+<li>value: The SIMD value to be converted.</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">cvtdtype</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">out_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__init__</span><span class="p">[</span><span class="n">stdlib</span><span class="p">::</span><span class="n">builtin</span><span class="p">::</span><span class="kt">bool</span><span class="p">::</span><span class="n">Boolable</span><span class="p">](</span><span class="n">SIMD</span><span class="p">())]()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">2</span><span class="p">]</span>
 </code></pre></div>
@@ -1261,10 +1261,10 @@ Summary  </p>
 <p>Converts datatype of a value from in_dtype to out_dtype at compile time.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype</li>
-<li>out_dtype</li>
-<li>width</li>
-<li>value</li>
+<li>in_dtype: The input datatype.</li>
+<li>out_dtype: The output dataytpe.</li>
+<li>width: The width of the SIMD vector.</li>
+<li>value: The SIMD value to be converted.</li>
 </ul>
 
 

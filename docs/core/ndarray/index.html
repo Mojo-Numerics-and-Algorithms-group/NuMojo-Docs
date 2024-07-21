@@ -3109,7 +3109,7 @@ Summary  </p>
 <ul>
 <li>self</li>
 <li>*shape: Variable number of integers representing the shape dimensions.</li>
-<li>size</li>
+<li>size: The total number of elements in the array.</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Int</span><span class="p">])</span>
 </code></pre></div>
@@ -3118,7 +3118,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>shape</li>
+<li>shape: A list of integers representing the shape dimensions.</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">)</span>
 </code></pre></div>
@@ -3127,8 +3127,8 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>shape</li>
-<li>size</li>
+<li>shape: A list of integers representing the shape dimensions.</li>
+<li>size: The specified size of the NDArrayShape.</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="nc">VariadicList</span><span class="p">[</span><span class="n">Int</span><span class="p">])</span>
 </code></pre></div>
@@ -3137,7 +3137,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>shape</li>
+<li>shape: A list of integers representing the shape dimensions.</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="nc">VariadicList</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">)</span>
 </code></pre></div>
@@ -3146,8 +3146,8 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>shape</li>
-<li>size</li>
+<li>shape: A list of integers representing the shape dimensions.</li>
+<li>size: The specified size of the NDArrayShape.</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArrayShape</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span>
 </code></pre></div>
@@ -3156,7 +3156,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>shape</li>
+<li>shape: Another NDArrayShape to initialize from.</li>
 </ul>
 <h3 id="getitem"><strong>getitem</strong></h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Int</span>
@@ -3282,7 +3282,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*stride: </li>
+<li>*stride</li>
 <li>offset</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">stride</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">offset</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
@@ -3326,7 +3326,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*shape: </li>
+<li>*shape</li>
 <li>offset</li>
 <li>order</li>
 </ul>
@@ -3503,7 +3503,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*shape: </li>
+<li>*shape</li>
 <li>random</li>
 <li>order</li>
 </ul>
@@ -3536,7 +3536,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*shape: </li>
+<li>*shape</li>
 <li>fill</li>
 <li>order</li>
 </ul>
@@ -3674,7 +3674,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*slices: </li>
+<li>*slices</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">owned</span><span class="w"> </span><span class="n">slices</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Slice</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Self</span>
 </code></pre></div>
@@ -3701,7 +3701,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>index</li>
+<li>index: List[Int].</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">index</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Self</span>
 </code></pre></div>
@@ -3719,7 +3719,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>mask</li>
+<li>mask: NDArray with Dtype.bool.</li>
 </ul>
 <h3 id="setitem_2"><strong>setitem</strong></h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">__setitem__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
@@ -3737,7 +3737,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*index: </li>
+<li>*index</li>
 <li>val</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__setitem__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">val</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
@@ -4296,7 +4296,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*index: </li>
+<li>*index</li>
 </ul>
 <h3 id="store_2">store</h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">store</span><span class="p">[</span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">](</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">])</span>
@@ -4324,7 +4324,7 @@ Summary  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>*index: </li>
+<li>*index</li>
 <li>val</li>
 </ul>
 <h3 id="all">all</h3>
@@ -4507,7 +4507,7 @@ Summary  </p>
 <ul>
 <li>self</li>
 <li>*Shape: Variadic list of shape.</li>
-<li>order</li>
+<li>order: Order of the array - Row major <code>C</code> or Column major <code>F</code>.</li>
 </ul>
 <h3 id="unsafe_ptr">unsafe_ptr</h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">unsafe_ptr</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">DTypePointer</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
