@@ -20,7 +20,7 @@ Apply acos also known as inverse cosine .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -39,7 +39,7 @@ Apply asin also known as inverse sine .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -58,7 +58,7 @@ Apply atan also known as inverse tangent .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -77,7 +77,7 @@ Apply atan2 also known as inverse tangent. [atan2 wikipedia](https://en.wikipedi
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -97,7 +97,7 @@ Apply cos also known as cosine.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -116,7 +116,7 @@ Apply sin also known as sine .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -135,7 +135,7 @@ Apply tan also known as tangent .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -154,7 +154,7 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -174,7 +174,7 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -194,7 +194,7 @@ Apply acosh also known as inverse hyperbolic cosine .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -213,7 +213,7 @@ Apply asinh also known as inverse hyperbolic sine .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -232,7 +232,7 @@ Apply atanh also known as inverse hyperbolic tangent .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -251,7 +251,7 @@ Apply cosh also known as hyperbolic cosine .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -270,7 +270,7 @@ Apply sin also known as hyperbolic sine .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -289,7 +289,7 @@ Apply tan also known as hyperbolic tangent .
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized.
+- backend: Sets utility function origin, defualts to `Vectorized.Defualt: Vectorized
   
 Args:  
 

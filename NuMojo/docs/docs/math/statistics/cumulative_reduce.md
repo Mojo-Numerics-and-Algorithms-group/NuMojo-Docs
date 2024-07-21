@@ -20,7 +20,7 @@ Sum of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -39,7 +39,7 @@ Product of all items in an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -58,7 +58,7 @@ Arithmatic mean of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -77,7 +77,7 @@ Mode of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -96,7 +96,7 @@ Median value of all items of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -115,7 +115,7 @@ Maximum value of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -134,7 +134,7 @@ Minimum value of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -153,12 +153,12 @@ Population variance of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type..
+- out_dtype: The output element type..Defualt: float64
   
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.Defualt: #kgen.none
+- mu: The mean of the array, if provided.Default: #kgen.none
 
 ## cumvariance
 
@@ -173,12 +173,12 @@ Variance of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.Defualt: #kgen.none
+- mu: The mean of the array, if provided.Default: #kgen.none
 
 ## cumpstdev
 
@@ -193,12 +193,12 @@ Population standard deviation of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.Defualt: #kgen.none
+- mu: The mean of the array, if provided.Default: #kgen.none
 
 ## cumstdev
 
@@ -213,12 +213,12 @@ Standard deviation of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
 - array: A NDArray.
-- mu: The mean of the array, if provided.Defualt: #kgen.none
+- mu: The mean of the array, if provided.Default: #kgen.none
 
 ## amin
 
@@ -233,7 +233,7 @@ Minimum value of an array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -252,7 +252,7 @@ Maximum value of a array.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -271,7 +271,7 @@ Minimum value of two SIMD values.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -291,7 +291,7 @@ Maximum value of two SIMD values.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -309,7 +309,7 @@ Element wise maximum of two arrays.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 
@@ -329,7 +329,7 @@ Element wise minimum of two arrays.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.
+- out_dtype: The output element type.Defualt: float64
   
 Args:  
 

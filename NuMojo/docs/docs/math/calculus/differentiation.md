@@ -20,7 +20,7 @@ Compute the integral of y over x using the trapezoidal rule.
 Parameters:  
 
 - in_dtype: Input data type.
-- out_dtype: Output data type, defaults to float32.
+- out_dtype: Output data type, defaults to float32.Defualt: float32
   
 Args:  
 

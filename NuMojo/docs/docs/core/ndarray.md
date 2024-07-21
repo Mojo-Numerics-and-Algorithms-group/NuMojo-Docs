@@ -233,7 +233,7 @@ Summary
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -252,7 +252,7 @@ Summary
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -319,7 +319,7 @@ Args:
 
 - self
 - \*stride
-- offsetDefualt: 0
+- offsetDefault: 0
 
 
 ```rust
@@ -333,7 +333,7 @@ Args:
 
 - self
 - stride
-- offsetDefualt: 0
+- offsetDefault: 0
 
 
 ```rust
@@ -347,7 +347,7 @@ Args:
 
 - self
 - stride
-- offsetDefualt: 0
+- offsetDefault: 0
 
 
 ```rust
@@ -374,7 +374,7 @@ Args:
 
 - self
 - stride
-- offsetDefualt: 0
+- offsetDefault: 0
 
 
 ```rust
@@ -388,8 +388,8 @@ Args:
 
 - self
 - \*shape
-- offsetDefualt: 0
-- orderDefualt: "C"
+- offsetDefault: 0
+- orderDefault: "C"
 
 
 ```rust
@@ -403,8 +403,8 @@ Args:
 
 - self
 - shape
-- offsetDefualt: 0
-- orderDefualt: "C"
+- offsetDefault: 0
+- orderDefault: "C"
 
 
 ```rust
@@ -418,8 +418,8 @@ Args:
 
 - self
 - shape
-- offsetDefualt: 0
-- orderDefualt: "C"
+- offsetDefault: 0
+- orderDefault: "C"
 
 
 ```rust
@@ -433,8 +433,8 @@ Args:
 
 - self
 - shape
-- offsetDefualt: 0
-- orderDefualt: "C"
+- offsetDefault: 0
+- orderDefault: "C"
 
 ### __getitem__
 
@@ -538,7 +538,7 @@ Summary
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -557,7 +557,7 @@ Summary
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -577,7 +577,7 @@ Summary
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -596,7 +596,7 @@ Summary
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -651,8 +651,8 @@ Args:
 
 - self
 - \*shape
-- randomDefualt: 0
-- orderDefualt: "C"
+- randomDefault: 0
+- orderDefault: "C"
 
 
 ```rust
@@ -666,8 +666,8 @@ Args:
 
 - self
 - shape
-- randomDefualt: 0
-- orderDefualt: "C"
+- randomDefault: 0
+- orderDefault: "C"
 
 
 ```rust
@@ -681,8 +681,8 @@ Args:
 
 - self
 - shape
-- randomDefualt: 0
-- orderDefualt: "C"
+- randomDefault: 0
+- orderDefault: "C"
 
 
 ```rust
@@ -697,7 +697,7 @@ Args:
 - self
 - \*shape
 - fill
-- orderDefualt: "C"
+- orderDefault: "C"
 
 
 ```rust
@@ -712,7 +712,7 @@ Args:
 - self
 - shape
 - fill
-- orderDefualt: "C"
+- orderDefault: "C"
 
 
 ```rust
@@ -727,7 +727,7 @@ Args:
 - self
 - shape
 - fill
-- orderDefualt: "C"
+- orderDefault: "C"
 
 
 ```rust
@@ -741,8 +741,8 @@ Args:
 
 - self
 - shape
-- randomDefualt: 0
-- orderDefualt: "C"
+- randomDefault: 0
+- orderDefault: "C"
 
 
 ```rust
@@ -757,7 +757,7 @@ Args:
 - self
 - shape
 - fill
-- orderDefualt: "C"
+- orderDefault: "C"
 
 
 ```rust
@@ -772,7 +772,7 @@ Args:
 - self
 - data
 - shape
-- orderDefualt: "C"
+- orderDefault: "C"
 
 
 ```rust
@@ -791,7 +791,7 @@ Args:
 - shape
 - strides
 - coefficient
-- orderDefualt: "C"
+- orderDefault: "C"
 
 
 ```rust
@@ -810,7 +810,7 @@ Args:
 - shape
 - strides
 - coefficient
-- orderDefualt: "C"
+- orderDefault: "C"
 
 ### __copyinit__
 
@@ -1873,7 +1873,7 @@ Loads a SIMD element of size `width` at the given index `index`.
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -1890,7 +1890,7 @@ Loads a SIMD element of size `width` at given variadic indices argument.
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -1927,7 +1927,7 @@ Stores the SIMD element of size `width` at the given variadic indices argument.
   
 Parameters:  
 
-- width
+- widthDefualt: 1
   
 Args:  
 
@@ -2093,7 +2093,7 @@ Summary
 Args:  
 
 - self
-- inplaceDefualt: 0
+- inplaceDefault: 0
 
 ### item
 
@@ -2123,7 +2123,7 @@ Summary
 Args:  
 
 - self
-- axisDefualt: 0
+- axisDefault: 0
 
 ### min
 
@@ -2138,7 +2138,7 @@ Summary
 Args:  
 
 - self
-- axisDefualt: 0
+- axisDefault: 0
 
 ### mean
 
@@ -2225,7 +2225,7 @@ Args:
 
 - self
 - \*Shape: Variadic list of shape.
-- order: Order of the array - Row major `C` or Column major `F`.Defualt: "C"
+- order: Order of the array - Row major `C` or Column major `F`.Default: "C"
 
 ### unsafe_ptr
 

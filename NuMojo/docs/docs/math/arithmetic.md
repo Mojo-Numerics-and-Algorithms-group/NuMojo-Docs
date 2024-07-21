@@ -23,7 +23,7 @@ Perform addition on two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -41,7 +41,7 @@ Perform addition on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -59,7 +59,7 @@ Perform addition on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -77,7 +77,7 @@ Perform addition on a list of arrays and a scalars.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -96,7 +96,7 @@ Perform subtraction on two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -114,7 +114,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -132,7 +132,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -152,7 +152,7 @@ Compute the n-th order difference of the input array.
 Parameters:  
 
 - in_dtype: Input data type.
-- out_dtype: Output data type, defaults to float32.
+- out_dtype: Output data type, defaults to float32.Defualt: $0
   
 Args:  
 
@@ -172,7 +172,7 @@ Copy the sign of the first NDArray and apply it to the second NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -192,7 +192,7 @@ Elementwise modulo of array1 and array2.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -210,7 +210,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -228,7 +228,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -248,7 +248,7 @@ Elementwise product of array1 and array2.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -266,7 +266,7 @@ Perform multiplication on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -284,7 +284,7 @@ Perform multiplication on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -302,7 +302,7 @@ Perform multiplication on a list of arrays an arrays and a scalars.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -321,7 +321,7 @@ Elementwise quotent of array1 and array2.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -339,7 +339,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -357,7 +357,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -377,7 +377,7 @@ Elementwise quotent of array1 and array2.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -395,7 +395,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -413,7 +413,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -433,7 +433,7 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -452,7 +452,7 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -473,7 +473,7 @@ Elementwise remainders of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -493,7 +493,7 @@ Elementwise cuberoot of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -512,7 +512,7 @@ Elementwise reciprocal squareroot of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -531,7 +531,7 @@ Elementwise squareroot of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -550,7 +550,7 @@ Calculate elementwise two to the power of NDArray[i].
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -569,7 +569,7 @@ Calculate elementwise euler's constant(e) to the power of NDArray[i].
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -588,7 +588,7 @@ Calculate elementwise euler's constant(e) to the power of NDArray[i] minus1.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -607,7 +607,7 @@ Calculate the scalb of array1 and array2.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -627,7 +627,7 @@ Elementwise natural logarithm of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -646,7 +646,7 @@ Elementwise logarithm base two of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -665,7 +665,7 @@ Elementwise logarithm base ten of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -684,7 +684,7 @@ Elementwise natural logarithm of 1 plus NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -703,7 +703,7 @@ Elementwise absolute value of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -722,7 +722,7 @@ Elementwise round down to nearest whole number of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -741,7 +741,7 @@ Elementwise round up to nearest whole number of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -760,7 +760,7 @@ Elementwise remove decimal value from float whole number of NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -779,7 +779,7 @@ Elementwise round NDArray to whole number.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -798,7 +798,7 @@ Performs elementwise banker's rounding on the elements of a NDArray.
 Parameters:  
 
 - dtype: The dtype of the input and output array.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -817,7 +817,7 @@ Computes the nextafter of the inputs.
 Parameters:  
 
 - dtype: The dtype of the input and output array. Constraints: must be a floating-point type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 
@@ -837,7 +837,7 @@ Elementwise invert of an array.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`.
+- backend: Sets utility function origin, defualts to `Vectorized`.Defualt: Vectorized
   
 Args:  
 

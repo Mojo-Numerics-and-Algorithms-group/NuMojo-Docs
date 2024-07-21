@@ -20,7 +20,7 @@ Checks if each element of the input array is infinite.
 Parameters:  
 
 - dtype: DType - Data type of the input array.
-- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -39,7 +39,7 @@ Checks if each element of the input array is finite.
 Parameters:  
 
 - dtype: DType - Data type of the input array.
-- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.Defualt: Vectorized
   
 Args:  
 
@@ -58,7 +58,7 @@ Checks if each element of the input array is NaN.
 Parameters:  
 
 - dtype: DType - Data type of the input array.
-- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+- backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.Defualt: Vectorized
   
 Args:  
 

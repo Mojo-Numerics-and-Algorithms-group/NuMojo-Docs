@@ -28,11 +28,11 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
                     description = f': {param["description"]}'
                 else:
                     description = ""
-                if "defualt" in  list(param.keys()):
-                    defualt = f"""Defualt: {param["default"]}"""
+                if "default" in  list(param.keys()):
+                    default = f"""Defualt: `{param["default"]}`"""
                 else:
-                    defualt = ""
-                paramlist.append(name + description + defualt)
+                    default = ""
+                paramlist.append(name + description + default)
             mdfile.new_list(paramlist)
             
         arglist = list()
@@ -50,7 +50,7 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
                 else:
                     description = ""
                 if "default" in  list(arg.keys()):
-                    default = f"""Defualt: {arg["default"]}"""
+                    default = f"""Default: {arg["default"]}"""
                 else:
                     default = ""
                 arglist.append(name + description + default)

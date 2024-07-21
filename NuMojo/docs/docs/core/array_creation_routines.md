@@ -20,13 +20,13 @@ Function that computes a series of values starting from "start" to "stop" with g
 Parameters:  
 
 - in_dtype: Input datatype of the input values.
-- out_dtype: Output datatype of the output NDArray.
+- out_dtype: Output datatype of the output NDArray.Defualt: float64
   
 Args:  
 
 - start: Scalar[in_dtype] - Start value.
 - stop: Scalar[in_dtype]  - End value.
-- step: Scalar[in_dtype]  - Step size between each element (default 1).Defualt: 1
+- step: Scalar[in_dtype]  - Step size between each element (default 1).Default: 1
 
 ## linspace
 
@@ -41,15 +41,15 @@ Function that computes a series of linearly spaced values starting from "start" 
 Parameters:  
 
 - in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray.
+- out_dtype: Datatype of the output NDArray.Defualt: float64
   
 Args:  
 
 - start: Start value.
 - stop: End value.
-- num: No of linearly spaced elements.Defualt: 50
-- endpoint: Specifies whether to include endpoint in the final NDArray, defaults to True.Defualt: 1
-- parallel: Specifies whether the linspace should be calculated using parallelization, deafults to False.Defualt: 0
+- num: No of linearly spaced elements.Default: 50
+- endpoint: Specifies whether to include endpoint in the final NDArray, defaults to True.Default: 1
+- parallel: Specifies whether the linspace should be calculated using parallelization, deafults to False.Default: 0
 
 ## logspace
 
@@ -64,16 +64,16 @@ Generate a logrithmic spaced NDArray of `num` elements between `start` and `stop
 Parameters:  
 
 - in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray.
+- out_dtype: Datatype of the output NDArray.Defualt: float64
   
 Args:  
 
 - start: The starting value of the NDArray.
 - stop: The ending value of the NDArray.
 - num: The number of elements in the NDArray.
-- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.Defualt: 1
-- base: Base value of the logarithm, defaults to 10.Defualt: #kgen.float_literal<10|1>
-- parallel: Specifies whether to calculate the logarithmic spaced values using parallelization.Defualt: 0
+- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.Default: 1
+- base: Base value of the logarithm, defaults to 10.Default: #kgen.float_literal<10|1>
+- parallel: Specifies whether to calculate the logarithmic spaced values using parallelization.Default: 0
 
 ## geomspace
 
@@ -88,14 +88,14 @@ Generate a NDArray of `num` elements between `start` and `stop` in a geometric s
 Parameters:  
 
 - in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray.
+- out_dtype: Datatype of the output NDArray.Defualt: float64
   
 Args:  
 
 - start: The starting value of the NDArray.
 - stop: The ending value of the NDArray.
 - num: The number of elements in the NDArray.
-- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.Defualt: 1
+- endpoint: Whether to include the `stop` value in the NDArray. Defaults to True.Default: 1
 
 ## empty
 
