@@ -1,0 +1,106 @@
+import json
+from mdutils.mdutils import MdUtils
+from mdutils import Html
+import os
+from pathlib import Path
+docs = json.load(open("docs.json"))
+
+def doc_func(func,mdfile:MdUtils,top_header=2):
+    mdfile.new_header(top_header,f"""{func["name"]}""")
+    for overload in func["overloads"]:
+        mdfile.insert_code(f"""{overload["signature"]}""",language="rust")
+        mdfile.new_line("""Summary""")
+        mdfile.new_line()
+        mdfile.new_line(overload["summary"])
+        mdfile.new_line()
+        
+        paramlist = list()
+        
+        if overload["parameters"]:
+            mdfile.new_line("""Parameters:""")
+            mdfile.new_line()
+            for param in overload["parameters"]:
+                paramlist.append(param["name"] if "*" not in param["name"] else param["name"].replace("*","\*")+f""": {param["description"]}"""+ f"""{"Defualt: "+""+param["default"]+"" if "default" in param.keys() else ""}""")
+            mdfile.new_list(paramlist)
+            
+        arglist = list()
+        if overload["args"]:
+                mdfile.new_line("""Args:""")
+                mdfile.new_line()
+                for arg in overload["args"]:
+                    arglist.append(arg["name"] if "*" not in arg["name"] else arg["name"].replace("*","\*")+
+                                   f""": {arg["description"]}""" + 
+                                   f"""{"Defualt: "+""+arg["default"]+"" if "default" in arg.keys() else ""}""")
+                mdfile.new_list(arglist)
+
+def doc_alias(alias,mdfile:MdUtils,top_header=2):
+    if not alias:
+        return
+    mdfile.new_header(top_header,"Aliases")
+    for al in alias:
+        mdfile.new_line(f"""`{al["name"]}`: {al["summary"]}""")
+
+def doc_struct(struct, mdfile:MdUtils,top_header=1):
+    mdfile.new_header(top_header,struct["name"])
+    mdfile.new_header(top_header+1,f"{struct['name']} Summary")
+    mdfile.new_line()
+    try:
+        mdfile.new_line(struct["summary"])
+    except:
+        print(struct["name"])
+    mdfile.new_line()
+    if struct['parentTraits']:
+        mdfile.new_header(top_header+1,"Parent Traits:")
+        mdfile.new_line()
+        mdfile.new_list(struct['parentTraits'])
+    if "aliases" in list(struct.keys()):
+        if struct["aliases"]:
+            doc_alias(struct["aliases"],mdfile,top_header=top_header+1)
+    if struct["fields"]:
+        mdfile.new_header(top_header+1,"Fields:")
+        mdfile.new_line()
+        for field in struct["fields"]:
+            mdfile.new_line(f"* {field['name']} `{field['type']}`")
+            if field["summary"]:
+                mdfile.new_line("   **" + field["summary"])
+    mdfile.new_line("Functions:")
+    if struct["functions"]:
+        for func in struct["functions"]:
+            doc_func(func, mdfile,top_header=top_header+1)
+
+def doc_modules(module, root:Path, parent:Path):
+    mdfile = MdUtils(str(root/parent)+"/"+module["name"])
+    mdfile.new_header(1,module["name"])
+    mdfile.new_header(2," Module Summary")
+    mdfile.new_line(module["summary"])
+    if module["aliases"]:
+        doc_alias(module["aliases"], mdfile=mdfile)
+    if module["structs"]:
+        for struct in module["structs"]:
+            doc_struct(struct, mdfile,top_header=2)
+    if module["traits"]:
+        for trait in module["traits"]:
+            doc_struct(trait, mdfile,top_header=2)
+    if module["functions"]:
+        for func in module["functions"]:
+            doc_func(func, mdfile,top_header=2)
+    mdfile.create_md_file()
+
+def doc_package(package, root, parent):
+    print("dumb")
+    Path(str(root/parent)+"/"+package["name"]).mkdir(parents=True,exist_ok=True)
+    print("dumb")
+    if package["packages"]:
+        for pack in package["packages"]:
+            Path(str(root/parent)+"/"+package["name"]).mkdir(parents=True,exist_ok=True)
+            doc_package(pack,root,Path(str(parent)+"/"+package["name"]))
+    if package["modules"]:
+        for mod in package["modules"]:
+            if mod["name"] == "__init__":
+                continue
+            doc_modules(mod,root,str(parent)+"/"+package["name"])
+
+if __name__ == "__main__":
+    for pack in docs["decl"]["packages"]:
+        doc_package(pack,Path("./NuMojo/docs/docs"),Path(""))
+
