@@ -1289,12 +1289,12 @@ Summary  </p>
 <p>Checks if each element of the input array is infinite.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
-<li>backend</li>
+<li>dtype: DType - Data type of the input array.</li>
+<li>backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.</li>
 </ul>
 <p>Args:  </p>
 <ul>
-<li>array</li>
+<li>array: NDArray[dtype] - Input array to check.</li>
 </ul>
 <h2 id="isfinite">isfinite</h2>
 <p><div class="highlight"><pre><span></span><code><span class="n">isfinite</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">backend</span><span class="p">:</span><span class="w"> </span><span class="nc">Backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vectorized</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>
@@ -1303,12 +1303,12 @@ Summary  </p>
 <p>Checks if each element of the input array is finite.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
-<li>backend</li>
+<li>dtype: DType - Data type of the input array.</li>
+<li>backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.</li>
 </ul>
 <p>Args:  </p>
 <ul>
-<li>array</li>
+<li>array: NDArray[dtype] - Input array to check.</li>
 </ul>
 <h2 id="isnan">isnan</h2>
 <p><div class="highlight"><pre><span></span><code><span class="n">isnan</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">backend</span><span class="p">:</span><span class="w"> </span><span class="nc">Backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vectorized</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>
@@ -1317,12 +1317,12 @@ Summary  </p>
 <p>Checks if each element of the input array is NaN.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
-<li>backend</li>
+<li>dtype: DType - Data type of the input array.</li>
+<li>backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.</li>
 </ul>
 <p>Args:  </p>
 <ul>
-<li>array</li>
+<li>array: NDArray[dtype] - Input array to check.</li>
 </ul>
 <h2 id="any">any</h2>
 <p><div class="highlight"><pre><span></span><code><span class="n">any</span><span class="p">(</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span>
@@ -1331,7 +1331,7 @@ Summary  </p>
 <p>If any True.  </p>
 <p>Args:  </p>
 <ul>
-<li>array</li>
+<li>array: A NDArray.</li>
 </ul>
 <h2 id="allt">allt</h2>
 <p><div class="highlight"><pre><span></span><code><span class="n">allt</span><span class="p">(</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span>
@@ -1340,7 +1340,7 @@ Summary  </p>
 <p>If all True.  </p>
 <p>Args:  </p>
 <ul>
-<li>array</li>
+<li>array: A NDArray.</li>
 </ul>
 
 

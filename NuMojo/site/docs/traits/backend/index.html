@@ -1405,14 +1405,14 @@ Summary  </p>
 <p>Apply a SIMD level fuse multipy add function of three variables and one return to a NDArray.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
+<li>dtype: The element type.</li>
 </ul>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>array1</li>
-<li>array2</li>
-<li>array3</li>
+<li>array1: A NDArray.</li>
+<li>array2: A NDArray.</li>
+<li>array3: A NDArray.</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_fma</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">array2</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">simd</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
@@ -1420,14 +1420,14 @@ Summary  </p>
 <p>Apply a SIMD level fuse multipy add function of three variables and one return to a NDArray.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
+<li>dtype: The element type.</li>
 </ul>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>array1</li>
-<li>array2</li>
-<li>simd</li>
+<li>array1: A NDArray.</li>
+<li>array2: A NDArray.</li>
+<li>simd: A SIMD[dtype,1] value to be added.</li>
 </ul>
 <h3 id="math_func_1_array_in_one_array_out">math_func_1_array_in_one_array_out</h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_1_array_in_one_array_out</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
@@ -1436,13 +1436,13 @@ Summary  </p>
 <p>Apply a SIMD function of one variable and one return to a NDArray.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
-<li>func</li>
+<li>dtype: The element type.</li>
+<li>func: The SIMD function to to apply.</li>
 </ul>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>array</li>
+<li>array: A NDArray.</li>
 </ul>
 <h3 id="math_func_2_array_in_one_array_out">math_func_2_array_in_one_array_out</h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_2_array_in_one_array_out</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">array2</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
@@ -1451,14 +1451,14 @@ Summary  </p>
 <p>Apply a SIMD function of two variable and one return to a NDArray.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
-<li>func</li>
+<li>dtype: The element type.</li>
+<li>func: The SIMD function to to apply.</li>
 </ul>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>array1</li>
-<li>array2</li>
+<li>array1: A NDArray.</li>
+<li>array2: A NDArray.</li>
 </ul>
 <h3 id="math_func_1_array_1_scalar_in_one_array_out">math_func_1_array_1_scalar_in_one_array_out</h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_1_array_1_scalar_in_one_array_out</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">scalar</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
@@ -1467,14 +1467,14 @@ Summary  </p>
 <p>Apply a SIMD function of two variable and one return to a NDArray.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
-<li>func</li>
+<li>dtype: The element type.</li>
+<li>func: The SIMD function to to apply.</li>
 </ul>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>array</li>
-<li>scalar</li>
+<li>array: A NDArray.</li>
+<li>scalar: A Scalars.</li>
 </ul>
 <h3 id="math_func_compare_2_arrays">math_func_compare_2_arrays</h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_compare_2_arrays</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">array2</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>
