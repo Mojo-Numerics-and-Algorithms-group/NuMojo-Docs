@@ -29,7 +29,7 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
                 else:
                     description = ""
                 if "default" in  list(param.keys()):
-                    default = f"""Defualt: `{param["default"]}`"""
+                    default = f""" Defualt: `{param["default"]}`"""
                 else:
                     default = ""
                 paramlist.append(name + description + default)
@@ -50,7 +50,7 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
                 else:
                     description = ""
                 if "default" in  list(arg.keys()):
-                    default = f"""Default: {arg["default"]}"""
+                    default = f""" Default: {arg["default"]}"""
                 else:
                     default = ""
                 arglist.append(name + description + default)
@@ -80,12 +80,12 @@ def doc_struct(struct, mdfile:MdUtils,top_header=1):
         if struct["aliases"]:
             doc_alias(struct["aliases"],mdfile,top_header=top_header+1)
     if struct["fields"]:
-        mdfile.new_header(top_header+1,"Fields:")
+        mdfile.new_header(top_header+1,"Fields")
         mdfile.new_line()
         for field in struct["fields"]:
             mdfile.new_line(f"* {field['name']} `{field['type']}`")
             if field["summary"]:
-                mdfile.new_line("   **" + field["summary"])
+                mdfile.new_line("    - " + field["summary"])
     mdfile.new_line()           
     mdfile.new_header(top_header+1,"Functions")
     if struct["functions"]:

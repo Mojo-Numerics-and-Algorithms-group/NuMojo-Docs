@@ -14,7 +14,7 @@ Constants
   
 Define constants.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
@@ -27,7 +27,7 @@ Define constants.
 `pi`:   
 `e`:   
 
-### Functions:
+### Functions
 
 #### __init__
 

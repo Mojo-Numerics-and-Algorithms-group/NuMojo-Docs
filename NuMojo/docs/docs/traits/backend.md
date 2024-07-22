@@ -14,13 +14,13 @@
   
 A trait that defines backends for calculations in the rest of the library.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -146,18 +146,18 @@ math_func_compare_2_arrays[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD
 ```  
 Summary  
   
-  
+Apply a SIMD comparison functions to two NDArrays.  
   
 Parameters:  
 
-- dtype
-- func
+- dtype: The element type.
+- func: The SIMD function to to apply.
   
 Args:  
 
 - self
-- array1
-- array2
+- array1: A NDArray.
+- array2: A NDArray.
 
 #### math_func_is
 

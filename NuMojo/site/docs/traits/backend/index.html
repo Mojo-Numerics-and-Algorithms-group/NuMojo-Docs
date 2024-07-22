@@ -1114,7 +1114,7 @@
           <li class="md-nav__item">
   <a href="#parent-traits" class="md-nav__link">
     <span class="md-ellipsis">
-      Parent Traits:
+      Parent Traits
     </span>
   </a>
   
@@ -1123,11 +1123,11 @@
           <li class="md-nav__item">
   <a href="#functions" class="md-nav__link">
     <span class="md-ellipsis">
-      Functions:
+      Functions
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Functions:">
+    <nav class="md-nav" aria-label="Functions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1305,7 +1305,7 @@
           <li class="md-nav__item">
   <a href="#parent-traits" class="md-nav__link">
     <span class="md-ellipsis">
-      Parent Traits:
+      Parent Traits
     </span>
   </a>
   
@@ -1314,11 +1314,11 @@
           <li class="md-nav__item">
   <a href="#functions" class="md-nav__link">
     <span class="md-ellipsis">
-      Functions:
+      Functions
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Functions:">
+    <nav class="md-nav" aria-label="Functions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1414,11 +1414,11 @@
 <h2 id="backend_1">Backend</h2>
 <h3 id="backend-summary">Backend Summary</h3>
 <p>A trait that defines backends for calculations in the rest of the library.  </p>
-<h3 id="parent-traits">Parent Traits:</h3>
+<h3 id="parent-traits">Parent Traits</h3>
 <ul>
 <li>AnyType</li>
 </ul>
-<h3 id="functions">Functions:</h3>
+<h3 id="functions">Functions</h3>
 <h4 id="init"><strong>init</strong></h4>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
 </code></pre></div>
@@ -1510,16 +1510,17 @@ Summary  </p>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_compare_2_arrays</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">array2</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
+<p>Apply a SIMD comparison functions to two NDArrays.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype</li>
-<li>func</li>
+<li>dtype: The element type.</li>
+<li>func: The SIMD function to to apply.</li>
 </ul>
 <p>Args:  </p>
 <ul>
 <li>self</li>
-<li>array1</li>
-<li>array2</li>
+<li>array1: A NDArray.</li>
+<li>array2: A NDArray.</li>
 </ul>
 <h4 id="math_func_is">math_func_is</h4>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_is</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>

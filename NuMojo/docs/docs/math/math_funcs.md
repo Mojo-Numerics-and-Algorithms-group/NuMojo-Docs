@@ -14,14 +14,14 @@ Implements backend functions for mathematics
   
 Vectorized Backend Struct. Parameters     unroll_factor: factor by which loops are unrolled.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Backend
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -208,14 +208,14 @@ Args:
   
 Vectorized Backend Struct. Parameters     unroll_factor: factor by which loops are unrolled.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Backend
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -402,14 +402,14 @@ Args:
   
 Parrallelized Backend Struct.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Backend
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -596,14 +596,14 @@ Args:
   
 Vectorized and Parrallelized Backend Struct.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Backend
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -790,14 +790,14 @@ Args:
   
 Vectorized and Parrallelized Backend Struct with manual setting of number of workers.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Backend
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -984,14 +984,14 @@ Args:
   
 Naive Backend Struct.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Backend
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -1178,14 +1178,14 @@ Args:
   
 Vectorized Backend Struct.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Backend
   
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -1373,14 +1373,14 @@ bool_simd_store[width: Int](ptr: DTypePointer[bool, 0], start: Int, val: SIMD[bo
 ```  
 Summary  
   
-  
+Work around function for storing bools from a simd into a DTypePointer.  
   
 Parameters:  
 
-- width
+- width: Number of items to be retrieved.
   
 Args:  
 
-- ptr
-- start
-- val
+- ptr: Pointer to be retreived from.
+- start: Start position in pointer.
+- val: Value to store at locations.

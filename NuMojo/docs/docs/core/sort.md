@@ -76,7 +76,7 @@ Binary sorting of NDArray.
 Parameters:  
 
 - in_dtype: The input element type.
-- out_dtype: The output element type.Defualt: `float64`
+- out_dtype: The output element type. Defualt: `float64`
   
 Args:  
 

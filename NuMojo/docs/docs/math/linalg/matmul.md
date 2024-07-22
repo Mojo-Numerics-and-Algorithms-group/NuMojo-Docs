@@ -36,7 +36,7 @@ matmul_tiled_unrolled_parallelized[dtype: DType](A: NDArray[dtype], B: NDArray[d
 ```  
 Summary  
   
-  
+Matrix multiplication vectorized, tiled, unrolled, and parallelized.  
   
 Parameters:  
 
@@ -55,7 +55,7 @@ matmul_parallelized[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArr
 ```  
 Summary  
   
-Conduct `matmul` using `vectorize` and `parallelize`.  
+Matrix multiplication Vectorized and parallelized.  
   
 Parameters:  
 
@@ -74,7 +74,7 @@ matmul_naive[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[$0]
 ```  
 Summary  
   
-  
+Matrix multiplication with three nested loops.  
   
 Parameters:  
 

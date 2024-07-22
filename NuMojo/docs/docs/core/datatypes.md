@@ -34,7 +34,7 @@ Parameters:
 
 - in_dtype: The input datatype.
 - out_dtype: The output dataytpe.
-- width: The width of the SIMD vector.Defualt: `1`
+- width: The width of the SIMD vector. Defualt: `1`
   
 Args:  
 
@@ -52,5 +52,5 @@ Parameters:
 
 - in_dtype: The input datatype.
 - out_dtype: The output dataytpe.
-- width: The width of the SIMD vector.Defualt: `1`
-- value: The SIMD value to be converted.Defualt: `__init__[stdlib::builtin::bool::Boolable](SIMD())`
+- width: The width of the SIMD vector. Defualt: `1`
+- value: The SIMD value to be converted. Defualt: `__init__[stdlib::builtin::bool::Boolable](SIMD())`

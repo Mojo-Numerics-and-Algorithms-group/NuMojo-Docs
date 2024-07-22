@@ -20,7 +20,7 @@ Sum of array elements over a given axis.
 Args:  
 
 - array: NDArray.
-- axis: The axis along which the sum is performed.Default: 0
+- axis: The axis along which the sum is performed. Default: 0
 
 ## sumall
 
@@ -49,7 +49,7 @@ Product of array elements over a given axis.
 Args:  
 
 - array: NDArray.
-- axis: The axis along which the product is performed.Default: 0
+- axis: The axis along which the product is performed. Default: 0
 
 ## prodall
 
@@ -78,7 +78,7 @@ Mean of array elements over a given axis. Args:     array: NDArray.     axis: Th
 Args:  
 
 - array
-- axisDefault: 0
+- axis Default: 0
 
 ## meanall
 
@@ -102,7 +102,7 @@ max[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[$0]
 ```  
 Summary  
   
-  
+Maximums of array elements over a given axis.  
   
 Parameters:  
 
@@ -110,8 +110,8 @@ Parameters:
   
 Args:  
 
-- array
-- axisDefault: 0
+- array: NDArray.
+- axis: The axis along which the sum is performed. Default: 0
 
 ## min
 
@@ -121,7 +121,7 @@ min[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[$0]
 ```  
 Summary  
   
-  
+Minumums of array elements over a given axis.  
   
 Parameters:  
 
@@ -129,5 +129,5 @@ Parameters:
   
 Args:  
 
-- array
-- axisDefault: 0
+- array: NDArray.
+- axis: The axis along which the sum is performed. Default: 0

@@ -14,14 +14,23 @@ Implements N-Dimensional Array
   
 Implements the NDArrayShape.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Stringable
-  
 
-### Functions:
+### Fields
+  
+  
+* ndsize `Int`  
+    - Total no of elements in the corresponding array.  
+* ndshape `DTypePointer[dtype, 0]`  
+    - Shape of the corresponding array.  
+* ndlen `Int`  
+    - Length of ndshape.  
+
+### Functions
 
 #### __init__
 
@@ -127,7 +136,7 @@ __getitem__(self: Self, index: Int) -> Int
 ```  
 Summary  
   
-  
+Get shape at specified index.  
   
 Args:  
 
@@ -142,7 +151,7 @@ __setitem__(inout self: Self, index: Int, val: Int)
 ```  
 Summary  
   
-  
+Set shape at specified index.  
   
 Args:  
 
@@ -158,7 +167,7 @@ __eq__(self: Self, other: Self) -> Bool
 ```  
 Summary  
   
-  
+Check if two arrayshapes have identical dimensions.  
   
 Args:  
 
@@ -173,7 +182,7 @@ __ne__(self: Self, other: Self) -> Bool
 ```  
 Summary  
   
-  
+Check if two arrayshapes don't have identical dimensions.  
   
 Args:  
 
@@ -188,7 +197,7 @@ __contains__(self: Self, val: Int) -> Bool
 ```  
 Summary  
   
-  
+Check if any of the dimensions are equal to a value.  
   
 Args:  
 
@@ -203,7 +212,7 @@ size(self: Self) -> Int
 ```  
 Summary  
   
-  
+Get Size of array described by arrayshape.  
   
 Args:  
 
@@ -217,7 +226,7 @@ len(self: Self) -> Int
 ```  
 Summary  
   
-  
+Get number of dimensions of the array described by arrayshape.  
   
 Args:  
 
@@ -231,11 +240,11 @@ load[width: Int = 1](self: Self, index: Int) -> SIMD[dtype, $0]
 ```  
 Summary  
   
-  
+SIMD load dimensional information.  
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -250,11 +259,11 @@ store[width: Int = 1](inout self: Self, index: Int, val: SIMD[dtype, width])
 ```  
 Summary  
   
-  
+SIMD store dimensional information.  
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -270,7 +279,7 @@ load_int(self: Self, index: Int) -> Int
 ```  
 Summary  
   
-  
+SIMD load dimensional information.  
   
 Args:  
 
@@ -285,7 +294,7 @@ store_int(inout self: Self, index: Int, val: Int)
 ```  
 Summary  
   
-  
+SIMD store dimensional information.  
   
 Args:  
 
@@ -300,14 +309,20 @@ Args:
   
 Implements the NDArrayStride.  
 
-### Parent Traits:
+### Parent Traits
   
 
 - AnyType
 - Stringable
-  
 
-### Functions:
+### Fields
+  
+  
+* ndoffset `Int`  
+* ndstride `DTypePointer[dtype, 0]`  
+* ndlen `Int`  
+
+### Functions
 
 #### __init__
 
@@ -323,7 +338,7 @@ Args:
 
 - self
 - \*stride
-- offsetDefault: 0
+- offset Default: 0
 
 
 ```rust
@@ -337,7 +352,7 @@ Args:
 
 - self
 - stride
-- offsetDefault: 0
+- offset Default: 0
 
 
 ```rust
@@ -351,7 +366,7 @@ Args:
 
 - self
 - stride
-- offsetDefault: 0
+- offset Default: 0
 
 
 ```rust
@@ -378,7 +393,7 @@ Args:
 
 - self
 - stride
-- offsetDefault: 0
+- offset Default: 0
 
 
 ```rust
@@ -392,8 +407,8 @@ Args:
 
 - self
 - \*shape
-- offsetDefault: 0
-- orderDefault: "C"
+- offset Default: 0
+- order Default: "C"
 
 
 ```rust
@@ -407,8 +422,8 @@ Args:
 
 - self
 - shape
-- offsetDefault: 0
-- orderDefault: "C"
+- offset Default: 0
+- order Default: "C"
 
 
 ```rust
@@ -422,8 +437,8 @@ Args:
 
 - self
 - shape
-- offsetDefault: 0
-- orderDefault: "C"
+- offset Default: 0
+- order Default: "C"
 
 
 ```rust
@@ -437,8 +452,8 @@ Args:
 
 - self
 - shape
-- offsetDefault: 0
-- orderDefault: "C"
+- offset Default: 0
+- order Default: "C"
 
 #### __getitem__
 
@@ -542,7 +557,7 @@ Summary
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -561,7 +576,7 @@ Summary
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -581,7 +596,7 @@ Summary
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -600,7 +615,7 @@ Summary
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -615,7 +630,7 @@ Args:
   
 The N-dimensional array (NDArray).  
 
-### Parent Traits:
+### Parent Traits
   
 
 - Absable
@@ -629,19 +644,26 @@ The N-dimensional array (NDArray).
 
 ### Aliases
   
-`simd_width`: 
-### Fields:
+`simd_width`: Vector size of the data type.
+### Fields
   
   
 * data `DTypePointer[dtype, 0]`  
+    - Data buffer of the items in the NDArray.  
 * ndim `Int`  
+    - Number of Dimensions.  
 * ndshape `NDArrayShape[int32]`  
+    - Size and shape of NDArray.  
 * stride `NDArrayStride[int32]`  
+    - Contains offset, strides.  
 * coefficient `NDArrayStride[int32]`  
+    - Contains offset, coefficient.  
 * datatype `DType`  
+    - The datatype of memory.  
 * order `String`  
+    - Memory layout of array C (C order row major) or F (Fortran order col major).  
 
-### Functions:
+### Functions
 
 #### __init__
 
@@ -651,14 +673,14 @@ __init__(inout self: Self, *shape: Int, *, random: Bool = 0, order: String = "C"
 ```  
 Summary  
   
-Example:     NDArray[DType.int8](3,2,4)     Returns an zero array with shape 3 x 2 x 4.  
+NDArray initialization for variadic shape.  
   
 Args:  
 
 - self
-- \*shape
-- randomDefault: 0
-- orderDefault: "C"
+- \*shape: Variadic shape.
+- random: Set the values randomly. Default: 0
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -666,14 +688,14 @@ __init__(inout self: Self, shape: List[Int], random: Bool = 0, order: String = "
 ```  
 Summary  
   
-Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values.  
+NDArray initialization for list shape.  
   
 Args:  
 
 - self
-- shape
-- randomDefault: 0
-- orderDefault: "C"
+- shape: List of shape.
+- random: Set the values randomly. Default: 0
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -681,14 +703,14 @@ __init__(inout self: Self, shape: VariadicList[Int], random: Bool = 0, order: St
 ```  
 Summary  
   
-Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values.  
+NDArray initialization for variadic shape.  
   
 Args:  
 
 - self
-- shape
-- randomDefault: 0
-- orderDefault: "C"
+- shape: Variadic List shape.
+- random: Set the values randomly. Default: 0
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -696,14 +718,14 @@ __init__(inout self: Self, *shape: Int, *, fill: SIMD[dtype, 1], order: String =
 ```  
 Summary  
   
-Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values.  
+NDArray initialization for variadic shape with option to fill.  
   
 Args:  
 
 - self
-- \*shape
-- fill
-- orderDefault: "C"
+- \*shape: Variadic shape.
+- fill: Set all the values to this.
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -711,14 +733,14 @@ __init__(inout self: Self, shape: List[Int], fill: SIMD[dtype, 1], order: String
 ```  
 Summary  
   
-Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values.  
+NDArray initialization for variadic shape with option to fill.  
   
 Args:  
 
 - self
-- shape
-- fill
-- orderDefault: "C"
+- shape: List of shape.
+- fill: Set all the values to this.
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -726,14 +748,14 @@ __init__(inout self: Self, shape: VariadicList[Int], fill: SIMD[dtype, 1], order
 ```  
 Summary  
   
-Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values.  
+NDArray initialization for List of shape with option to fill.  
   
 Args:  
 
 - self
-- shape
-- fill
-- orderDefault: "C"
+- shape: Variadic List of shape.
+- fill: Set all the values to this.
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -741,14 +763,14 @@ __init__(inout self: Self, shape: NDArrayShape[dtype], random: Bool = 0, order: 
 ```  
 Summary  
   
-Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values.  
+NDArray initialization for NDArrayShape.  
   
 Args:  
 
 - self
-- shape
-- randomDefault: 0
-- orderDefault: "C"
+- shape: Variadic shape.
+- random: Set all the values randomly. Default: 0
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -756,14 +778,14 @@ __init__(inout self: Self, shape: NDArrayShape[dtype], fill: SIMD[dtype, 1], ord
 ```  
 Summary  
   
-Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values.  
+NDArray initialization for NDArrayShape with option to fill.  
   
 Args:  
 
 - self
-- shape
-- fill
-- orderDefault: "C"
+- shape: Variadic shape.
+- fill: Set all the the values to this.
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -771,14 +793,14 @@ __init__(inout self: Self, data: List[SIMD[dtype, 1]], shape: List[Int], order: 
 ```  
 Summary  
   
-Example:     `NDArray[DType.int8](List[Int8](1,2,3,4,5,6), shape=List[Int](2,3))`     Returns an array with shape 3 x 2 with input values.  
+NDArray initialization from list of data.  
   
 Args:  
 
 - self
-- data
-- shape
-- orderDefault: "C"
+- data: List of data.
+- shape: List of shape.
+- order: Memory order C or F. Default: "C"
 
 
 ```rust
@@ -786,7 +808,7 @@ __init__(inout self: Self, ndim: Int, offset: Int, size: Int, shape: List[Int], 
 ```  
 Summary  
   
-  
+Extremely specific NDArray initializer.  
   
 Args:  
 
@@ -797,7 +819,7 @@ Args:
 - shape
 - strides
 - coefficient
-- orderDefault: "C"
+- order Default: "C"
 
 
 ```rust
@@ -805,7 +827,7 @@ __init__(inout self: Self, data: DTypePointer[dtype, 0], ndim: Int, offset: Int,
 ```  
 Summary  
   
-  
+Extremely specific NDArray initializer.  
   
 Args:  
 
@@ -816,7 +838,7 @@ Args:
 - shape
 - strides
 - coefficient
-- orderDefault: "C"
+- order Default: "C"
 
 #### __copyinit__
 
@@ -826,7 +848,7 @@ __copyinit__(inout self: Self, other: Self)
 ```  
 Summary  
   
-  
+Copy other into self.  
   
 Args:  
 
@@ -841,7 +863,7 @@ __moveinit__(inout self: Self, owned existing: Self)
 ```  
 Summary  
   
-  
+Move other into self.  
   
 Args:  
 
@@ -870,7 +892,7 @@ __bool__(self: Self) -> Bool
 ```  
 Summary  
   
-  
+If all true return true.  
   
 Args:  
 
@@ -884,7 +906,7 @@ __getitem__(self: Self, idx: Int) -> Self
 ```  
 Summary  
   
-Example:     `arr[1]` returns the second row of the array.  
+Retreive a slice of the array corrisponding to the index at the first dimension.  
   
 Args:  
 
@@ -897,7 +919,7 @@ __getitem__(self: Self, owned *slices: Slice) -> Self
 ```  
 Summary  
   
-Example:     `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).  
+Retreive slices of an array from variadic slices.  
   
 Args:  
 
@@ -910,7 +932,7 @@ __getitem__(self: Self, owned slices: List[Slice]) -> Self
 ```  
 Summary  
   
-Example:     `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).  
+Retreive slices of an array from list of slices.  
   
 Args:  
 
@@ -949,7 +971,7 @@ __getitem__(self: Self, index: NDArray[index]) -> Self
 ```  
 Summary  
   
-Get items of array from a list of indices. Refer to `__getitem__(self, index: List[Int])`.  
+Get items of array from an array of indices.  
   
 Args:  
 
@@ -962,7 +984,7 @@ __getitem__(self: Self, mask: NDArray[bool]) -> Self
 ```  
 Summary  
   
-Get items of array from mask.  
+Get items of array corrisponding to a mask.  
   
 Args:  
 
@@ -977,7 +999,7 @@ __setitem__(inout self: Self, index: Int, val: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Set the value of a single index.  
   
 Args:  
 
@@ -991,7 +1013,7 @@ __setitem__(inout self: Self, *index: Int, *, val: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Set the value at the index list.  
   
 Args:  
 
@@ -1005,7 +1027,7 @@ __setitem__(inout self: Self, index: List[Int], val: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Set the value at the index list.  
   
 Args:  
 
@@ -1019,7 +1041,7 @@ __setitem__(inout self: Self, index: VariadicList[Int], val: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Set the value at the index corisponding to the varaidic list.  
   
 Args:  
 
@@ -1049,7 +1071,7 @@ __neg__(self: Self) -> Self
 ```  
 Summary  
   
-  
+Unary negative returens self unless boolean type.  
   
 Args:  
 
@@ -1063,7 +1085,7 @@ __pos__(self: Self) -> Self
 ```  
 Summary  
   
-  
+Unary positve returens self unless boolean type.  
   
 Args:  
 
@@ -1077,7 +1099,7 @@ __invert__(self: Self) -> Self
 ```  
 Summary  
   
-  
+Elementwise inverse (~ or not), only for bools and integral types.  
   
 Args:  
 
@@ -1091,7 +1113,7 @@ __lt__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise less than.  
   
 Args:  
 
@@ -1104,7 +1126,7 @@ __lt__(self: Self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise less than between scalar and Array.  
   
 Args:  
 
@@ -1119,7 +1141,7 @@ __le__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise less than or equal to.  
   
 Args:  
 
@@ -1132,7 +1154,7 @@ __le__(self: Self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise less than or equal to between scalar and Array.  
   
 Args:  
 
@@ -1147,7 +1169,7 @@ __eq__(self: Self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise equivelence.  
   
 Args:  
 
@@ -1160,7 +1182,7 @@ __eq__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise equivelence between scalar and Array.  
   
 Args:  
 
@@ -1175,7 +1197,7 @@ __ne__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise nonequivelence.  
   
 Args:  
 
@@ -1188,7 +1210,7 @@ __ne__(self: Self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise nonequivelence between scalar and Array.  
   
 Args:  
 
@@ -1203,7 +1225,7 @@ __gt__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise greater than.  
   
 Args:  
 
@@ -1216,7 +1238,7 @@ __gt__(self: Self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise greater than between scalar and Array.  
   
 Args:  
 
@@ -1231,7 +1253,7 @@ __ge__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise greater than or equal to.  
   
 Args:  
 
@@ -1244,7 +1266,7 @@ __ge__(self: Self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
-  
+Itemwise less than or equal to between scalar and Array.  
   
 Args:  
 
@@ -1259,7 +1281,7 @@ __add__(inout self: Self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `array + scalar`.  
   
 Args:  
 
@@ -1272,7 +1294,7 @@ __add__(inout self: Self, other: Self) -> Self
 ```  
 Summary  
   
-  
+Enables `array + array`.  
   
 Args:  
 
@@ -1287,7 +1309,7 @@ __sub__(self: Self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `array - scalar`.  
   
 Args:  
 
@@ -1300,7 +1322,7 @@ __sub__(self: Self, other: Self) -> Self
 ```  
 Summary  
   
-  
+Enables `array - array`.  
   
 Args:  
 
@@ -1315,7 +1337,7 @@ __mul__(self: Self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `array * scalar`.  
   
 Args:  
 
@@ -1328,7 +1350,7 @@ __mul__(self: Self, other: Self) -> Self
 ```  
 Summary  
   
-  
+Enables `array * array`.  
   
 Args:  
 
@@ -1358,7 +1380,7 @@ __truediv__(self: Self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `array / scalar`.  
   
 Args:  
 
@@ -1371,7 +1393,7 @@ __truediv__(self: Self, other: Self) -> Self
 ```  
 Summary  
   
-  
+Enables `array / array`.  
   
 Args:  
 
@@ -1386,7 +1408,7 @@ __floordiv__(self: Self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `array // scalar`.  
   
 Args:  
 
@@ -1399,7 +1421,7 @@ __floordiv__(self: Self, other: Self) -> Self
 ```  
 Summary  
   
-  
+Enables `array // array`.  
   
 Args:  
 
@@ -1414,7 +1436,7 @@ __mod__(inout self: Self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `array % scalar`.  
   
 Args:  
 
@@ -1427,7 +1449,7 @@ __mod__(inout self: Self, other: Self) -> Self
 ```  
 Summary  
   
-  
+Enables `array % array`.  
   
 Args:  
 
@@ -1470,7 +1492,7 @@ __radd__(inout self: Self, rhs: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `scalar + array`.  
   
 Args:  
 
@@ -1485,7 +1507,7 @@ __rsub__(self: Self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `scalar - array`.  
   
 Args:  
 
@@ -1500,7 +1522,7 @@ __rmul__(self: Self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `scalar * array`.  
   
 Args:  
 
@@ -1515,7 +1537,7 @@ __rtruediv__(self: Self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `scalar / array`.  
   
 Args:  
 
@@ -1530,7 +1552,7 @@ __rfloordiv__(self: Self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Enables `scalar // array`.  
   
 Args:  
 
@@ -1545,20 +1567,7 @@ __rmod__(inout self: Self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
-  
-Args:  
-
-- self
-- other
-
-
-```rust
-__rmod__(inout self: Self, other: Self) -> Self
-```  
-Summary  
-  
-  
+Enables `scalar % array`.  
   
 Args:  
 
@@ -1573,7 +1582,7 @@ __iadd__(inout self: Self, other: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Enables `array += scalar`.  
   
 Args:  
 
@@ -1586,7 +1595,7 @@ __iadd__(inout self: Self, other: Self)
 ```  
 Summary  
   
-  
+Enables `array *= array`.  
   
 Args:  
 
@@ -1601,7 +1610,20 @@ __isub__(inout self: Self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
+Enables `array -= scalar`.  
   
+Args:  
+
+- self
+- s
+
+
+```rust
+__isub__(inout self: Self, s: Self)
+```  
+Summary  
+  
+Enables `array -= array`.  
   
 Args:  
 
@@ -1616,7 +1638,7 @@ __imul__(inout self: Self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Enables `array *= scalar`.  
   
 Args:  
 
@@ -1629,7 +1651,7 @@ __imul__(inout self: Self, s: Self)
 ```  
 Summary  
   
-  
+Enables `array *= array`.  
   
 Args:  
 
@@ -1644,7 +1666,7 @@ __itruediv__(inout self: Self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Enables `array /= scalar`.  
   
 Args:  
 
@@ -1657,7 +1679,7 @@ __itruediv__(inout self: Self, other: Self)
 ```  
 Summary  
   
-  
+Enables `array /= array`.  
   
 Args:  
 
@@ -1672,7 +1694,7 @@ __ifloordiv__(inout self: Self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Enables `array //= scalar`.  
   
 Args:  
 
@@ -1685,7 +1707,7 @@ __ifloordiv__(inout self: Self, other: Self)
 ```  
 Summary  
   
-  
+Enables `array //= array`.  
   
 Args:  
 
@@ -1700,7 +1722,7 @@ __imod__(inout self: Self, other: SIMD[dtype, 1])
 ```  
 Summary  
   
-  
+Enables `array %= scalar`.  
   
 Args:  
 
@@ -1713,7 +1735,7 @@ __imod__(inout self: Self, other: Self)
 ```  
 Summary  
   
-  
+Enables `array %= array`.  
   
 Args:  
 
@@ -1743,7 +1765,7 @@ get_scalar(self: Self, index: Int) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Example: ```console > Array.get_scalar(15) ``` returns the item of index 15 from the array's data buffer.  
+Linearly retreive a value from the underlying Pointer.  
   
 Args:  
 
@@ -1833,7 +1855,7 @@ size(self: Self) -> Int
 ```  
 Summary  
   
-  
+Function to retreive size.  
   
 Args:  
 
@@ -1847,7 +1869,7 @@ num_elements(self: Self) -> Int
 ```  
 Summary  
   
-  
+Function to retreive size (compatability).  
   
 Args:  
 
@@ -1861,7 +1883,7 @@ shape(self: Self) -> NDArrayShape[int32]
 ```  
 Summary  
   
-  
+Get the shape as an NDArray Shape.  
   
 Args:  
 
@@ -1879,7 +1901,7 @@ Loads a SIMD element of size `width` at the given index `index`.
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -1896,7 +1918,7 @@ Loads a SIMD element of size `width` at given variadic indices argument.
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -1933,7 +1955,7 @@ Stores the SIMD element of size `width` at the given variadic indices argument.
   
 Parameters:  
 
-- widthDefualt: `1`
+- width Defualt: `1`
   
 Args:  
 
@@ -1949,7 +1971,7 @@ all(self: Self) -> Bool
 ```  
 Summary  
   
-  
+If all true return true.  
   
 Args:  
 
@@ -1963,7 +1985,7 @@ any(self: Self) -> Bool
 ```  
 Summary  
   
-  
+True if any true.  
   
 Args:  
 
@@ -1977,7 +1999,7 @@ argmax(self: Self) -> Int
 ```  
 Summary  
   
-  
+Get location in pointer of max value.  
   
 Args:  
 
@@ -1991,7 +2013,7 @@ argmin(self: Self) -> Int
 ```  
 Summary  
   
-  
+Get location in pointer of min value.  
   
 Args:  
 
@@ -2019,7 +2041,7 @@ astype[type: DType](inout self: Self) -> NDArray[$0]
 ```  
 Summary  
   
-  
+Convert type of array.  
   
 Parameters:  
 
@@ -2079,7 +2101,7 @@ fill(inout self: Self, val: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-  
+Fill all items of array with value.  
   
 Args:  
 
@@ -2094,12 +2116,12 @@ flatten(inout self: Self, inplace: Bool = 0) -> Optional[NDArray[dtype]]
 ```  
 Summary  
   
-  
+Convert shape of array to one dimensional.  
   
 Args:  
 
 - self
-- inplaceDefault: 0
+- inplace Default: 0
 
 #### item
 
@@ -2124,12 +2146,12 @@ max(self: Self, axis: Int = 0) -> Self
 ```  
 Summary  
   
-  
+Max on axis.  
   
 Args:  
 
 - self
-- axisDefault: 0
+- axis Default: 0
 
 #### min
 
@@ -2139,12 +2161,12 @@ min(self: Self, axis: Int = 0) -> Self
 ```  
 Summary  
   
-  
+Min on axis.  
   
 Args:  
 
 - self
-- axisDefault: 0
+- axis Default: 0
 
 #### mean
 
@@ -2196,7 +2218,7 @@ sort(self: Self) -> Self
 ```  
 Summary  
   
-  
+Sort the array using quickstort.  
   
 Args:  
 
@@ -2231,7 +2253,7 @@ Args:
 
 - self
 - \*Shape: Variadic list of shape.
-- order: Order of the array - Row major `C` or Column major `F`.Default: "C"
+- order: Order of the array - Row major `C` or Column major `F`. Default: "C"
 
 #### unsafe_ptr
 
@@ -2241,7 +2263,7 @@ unsafe_ptr(self: Self) -> DTypePointer[dtype, 0]
 ```  
 Summary  
   
-  
+Retreive pointer without taking ownership.  
   
 Args:  
 
@@ -2255,7 +2277,7 @@ to_numpy(self: Self) -> PythonObject
 ```  
 Summary  
   
-  
+Convert to a numpy array.  
   
 Args:  
 

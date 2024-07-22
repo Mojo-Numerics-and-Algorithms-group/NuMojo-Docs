@@ -1227,7 +1227,29 @@
                 "constraints": "",
                 "deprecated": "",
                 "description": "",
-                "fields": [],
+                "fields": [
+                  {
+                    "description": "",
+                    "kind": "field",
+                    "name": "ndsize",
+                    "summary": "Total no of elements in the corresponding array.",
+                    "type": "Int"
+                  },
+                  {
+                    "description": "",
+                    "kind": "field",
+                    "name": "ndshape",
+                    "summary": "Shape of the corresponding array.",
+                    "type": "DTypePointer[dtype, 0]"
+                  },
+                  {
+                    "description": "",
+                    "kind": "field",
+                    "name": "ndlen",
+                    "summary": "Length of ndshape.",
+                    "type": "Int"
+                  }
+                ],
                 "functions": [
                   {
                     "kind": "function",
@@ -1541,7 +1563,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "__getitem__(self: Self, index: Int) -> Int",
-                        "summary": ""
+                        "summary": "Get shape at specified index."
                       }
                     ]
                   },
@@ -1590,7 +1612,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__setitem__(inout self: Self, index: Int, val: Int)",
-                        "summary": ""
+                        "summary": "Set shape at specified index."
                       }
                     ]
                   },
@@ -1631,7 +1653,7 @@
                         "returnType": "Bool",
                         "returnsDoc": "",
                         "signature": "__eq__(self: Self, other: Self) -> Bool",
-                        "summary": ""
+                        "summary": "Check if two arrayshapes have identical dimensions."
                       }
                     ]
                   },
@@ -1672,7 +1694,7 @@
                         "returnType": "Bool",
                         "returnsDoc": "",
                         "signature": "__ne__(self: Self, other: Self) -> Bool",
-                        "summary": ""
+                        "summary": "Check if two arrayshapes don't have identical dimensions."
                       }
                     ]
                   },
@@ -1713,7 +1735,7 @@
                         "returnType": "Bool",
                         "returnsDoc": "",
                         "signature": "__contains__(self: Self, val: Int) -> Bool",
-                        "summary": ""
+                        "summary": "Check if any of the dimensions are equal to a value."
                       }
                     ]
                   },
@@ -1746,7 +1768,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "size(self: Self) -> Int",
-                        "summary": ""
+                        "summary": "Get Size of array described by arrayshape."
                       }
                     ]
                   },
@@ -1779,7 +1801,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "len(self: Self) -> Int",
-                        "summary": ""
+                        "summary": "Get number of dimensions of the array described by arrayshape."
                       }
                     ]
                   },
@@ -1829,7 +1851,7 @@
                         "returnType": "SIMD[dtype, $0]",
                         "returnsDoc": "",
                         "signature": "load[width: Int = 1](self: Self, index: Int) -> SIMD[dtype, $0]",
-                        "summary": ""
+                        "summary": "SIMD load dimensional information."
                       }
                     ]
                   },
@@ -1887,7 +1909,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "store[width: Int = 1](inout self: Self, index: Int, val: SIMD[dtype, width])",
-                        "summary": ""
+                        "summary": "SIMD store dimensional information."
                       }
                     ]
                   },
@@ -1928,7 +1950,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "load_int(self: Self, index: Int) -> Int",
-                        "summary": ""
+                        "summary": "SIMD load dimensional information."
                       }
                     ]
                   },
@@ -1977,7 +1999,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "store_int(inout self: Self, index: Int, val: Int)",
-                        "summary": ""
+                        "summary": "SIMD store dimensional information."
                       }
                     ]
                   }
@@ -2005,7 +2027,29 @@
                 "constraints": "",
                 "deprecated": "",
                 "description": "",
-                "fields": [],
+                "fields": [
+                  {
+                    "description": "",
+                    "kind": "field",
+                    "name": "ndoffset",
+                    "summary": "",
+                    "type": "Int"
+                  },
+                  {
+                    "description": "",
+                    "kind": "field",
+                    "name": "ndstride",
+                    "summary": "",
+                    "type": "DTypePointer[dtype, 0]"
+                  },
+                  {
+                    "description": "",
+                    "kind": "field",
+                    "name": "ndlen",
+                    "summary": "",
+                    "type": "Int"
+                  }
+                ],
                 "functions": [
                   {
                     "kind": "function",
@@ -2924,7 +2968,7 @@
                     "description": "",
                     "kind": "alias",
                     "name": "simd_width",
-                    "summary": "",
+                    "summary": "Vector size of the data type.",
                     "value": "simdwidthof[stdlib::builtin::dtype::DType,__mlir_type.!kgen.target]()"
                   }
                 ],
@@ -2936,49 +2980,49 @@
                     "description": "",
                     "kind": "field",
                     "name": "data",
-                    "summary": "",
+                    "summary": "Data buffer of the items in the NDArray.",
                     "type": "DTypePointer[dtype, 0]"
                   },
                   {
                     "description": "",
                     "kind": "field",
                     "name": "ndim",
-                    "summary": "",
+                    "summary": "Number of Dimensions.",
                     "type": "Int"
                   },
                   {
                     "description": "",
                     "kind": "field",
                     "name": "ndshape",
-                    "summary": "",
+                    "summary": "Size and shape of NDArray.",
                     "type": "NDArrayShape[int32]"
                   },
                   {
                     "description": "",
                     "kind": "field",
                     "name": "stride",
-                    "summary": "",
+                    "summary": "Contains offset, strides.",
                     "type": "NDArrayStride[int32]"
                   },
                   {
                     "description": "",
                     "kind": "field",
                     "name": "coefficient",
-                    "summary": "",
+                    "summary": "Contains offset, coefficient.",
                     "type": "NDArrayStride[int32]"
                   },
                   {
                     "description": "",
                     "kind": "field",
                     "name": "datatype",
-                    "summary": "",
+                    "summary": "The datatype of memory.",
                     "type": "DType"
                   },
                   {
                     "description": "",
                     "kind": "field",
                     "name": "order",
-                    "summary": "",
+                    "summary": "Memory layout of array C (C order row major) or F (Fortran order col major).",
                     "type": "String"
                   }
                 ],
@@ -2999,7 +3043,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Variadic shape.",
                             "kind": "argument",
                             "name": "*shape",
                             "passingKind": "pos_or_kw",
@@ -3008,7 +3052,7 @@
                           {
                             "convention": "borrowed",
                             "default": "0",
-                            "description": "",
+                            "description": "Set the values randomly.",
                             "kind": "argument",
                             "name": "random",
                             "passingKind": "kw",
@@ -3017,7 +3061,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "kw",
@@ -3027,7 +3071,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.int8](3,2,4)\n    Returns an zero array with shape 3 x 2 x 4.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3038,7 +3082,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, *shape: Int, *, random: Bool = 0, order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.int8](3,2,4)     Returns an zero array with shape 3 x 2 x 4."
+                        "summary": "NDArray initialization for variadic shape."
                       },
                       {
                         "args": [
@@ -3052,7 +3096,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "List of shape.",
                             "kind": "argument",
                             "name": "shape",
                             "passingKind": "pos_or_kw",
@@ -3061,7 +3105,7 @@
                           {
                             "convention": "borrowed",
                             "default": "0",
-                            "description": "",
+                            "description": "Set the values randomly.",
                             "kind": "argument",
                             "name": "random",
                             "passingKind": "pos_or_kw",
@@ -3070,7 +3114,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "pos_or_kw",
@@ -3080,7 +3124,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)\n    Returns an array with shape 3 x 2 x 4 and randomly values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3091,7 +3135,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, shape: List[Int], random: Bool = 0, order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values."
+                        "summary": "NDArray initialization for list shape."
                       },
                       {
                         "args": [
@@ -3105,7 +3149,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Variadic List shape.",
                             "kind": "argument",
                             "name": "shape",
                             "passingKind": "pos_or_kw",
@@ -3114,7 +3158,7 @@
                           {
                             "convention": "borrowed",
                             "default": "0",
-                            "description": "",
+                            "description": "Set the values randomly.",
                             "kind": "argument",
                             "name": "random",
                             "passingKind": "pos_or_kw",
@@ -3123,7 +3167,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "pos_or_kw",
@@ -3133,7 +3177,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)\n    Returns an array with shape 3 x 2 x 4 and randomly values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3144,7 +3188,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, shape: VariadicList[Int], random: Bool = 0, order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values."
+                        "summary": "NDArray initialization for variadic shape."
                       },
                       {
                         "args": [
@@ -3158,7 +3202,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Variadic shape.",
                             "kind": "argument",
                             "name": "*shape",
                             "passingKind": "pos_or_kw",
@@ -3166,7 +3210,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Set all the values to this.",
                             "kind": "argument",
                             "name": "fill",
                             "passingKind": "kw",
@@ -3175,7 +3219,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "kw",
@@ -3185,7 +3229,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)\n    Returns an array with shape 3 x 2 x 4 and randomly values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3196,7 +3240,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, *shape: Int, *, fill: SIMD[dtype, 1], order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values."
+                        "summary": "NDArray initialization for variadic shape with option to fill."
                       },
                       {
                         "args": [
@@ -3210,7 +3254,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "List of shape.",
                             "kind": "argument",
                             "name": "shape",
                             "passingKind": "pos_or_kw",
@@ -3218,7 +3262,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Set all the values to this.",
                             "kind": "argument",
                             "name": "fill",
                             "passingKind": "pos_or_kw",
@@ -3227,7 +3271,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "pos_or_kw",
@@ -3237,7 +3281,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)\n    Returns an array with shape 3 x 2 x 4 and randomly values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3248,7 +3292,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, shape: List[Int], fill: SIMD[dtype, 1], order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values."
+                        "summary": "NDArray initialization for variadic shape with option to fill."
                       },
                       {
                         "args": [
@@ -3262,7 +3306,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Variadic List of shape.",
                             "kind": "argument",
                             "name": "shape",
                             "passingKind": "pos_or_kw",
@@ -3270,7 +3314,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Set all the values to this.",
                             "kind": "argument",
                             "name": "fill",
                             "passingKind": "pos_or_kw",
@@ -3279,7 +3323,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "pos_or_kw",
@@ -3289,7 +3333,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)\n    Returns an array with shape 3 x 2 x 4 and randomly values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3300,7 +3344,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, shape: VariadicList[Int], fill: SIMD[dtype, 1], order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values."
+                        "summary": "NDArray initialization for List of shape with option to fill."
                       },
                       {
                         "args": [
@@ -3314,7 +3358,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Variadic shape.",
                             "kind": "argument",
                             "name": "shape",
                             "passingKind": "pos_or_kw",
@@ -3323,7 +3367,7 @@
                           {
                             "convention": "borrowed",
                             "default": "0",
-                            "description": "",
+                            "description": "Set all the values randomly.",
                             "kind": "argument",
                             "name": "random",
                             "passingKind": "pos_or_kw",
@@ -3332,7 +3376,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "pos_or_kw",
@@ -3342,7 +3386,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)\n    Returns an array with shape 3 x 2 x 4 and randomly values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3353,7 +3397,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, shape: NDArrayShape[dtype], random: Bool = 0, order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values."
+                        "summary": "NDArray initialization for NDArrayShape."
                       },
                       {
                         "args": [
@@ -3367,7 +3411,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Variadic shape.",
                             "kind": "argument",
                             "name": "shape",
                             "passingKind": "pos_or_kw",
@@ -3375,7 +3419,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "Set all the the values to this.",
                             "kind": "argument",
                             "name": "fill",
                             "passingKind": "pos_or_kw",
@@ -3384,7 +3428,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "pos_or_kw",
@@ -3394,7 +3438,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)\n    Returns an array with shape 3 x 2 x 4 and randomly values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3405,7 +3449,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, shape: NDArrayShape[dtype], fill: SIMD[dtype, 1], order: String = \"C\")",
-                        "summary": "Example:     NDArray[DType.float16](VariadicList[Int](3, 2, 4), random=True)     Returns an array with shape 3 x 2 x 4 and randomly values."
+                        "summary": "NDArray initialization for NDArrayShape with option to fill."
                       },
                       {
                         "args": [
@@ -3419,7 +3463,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "List of data.",
                             "kind": "argument",
                             "name": "data",
                             "passingKind": "pos_or_kw",
@@ -3427,7 +3471,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "List of shape.",
                             "kind": "argument",
                             "name": "shape",
                             "passingKind": "pos_or_kw",
@@ -3436,7 +3480,7 @@
                           {
                             "convention": "borrowed",
                             "default": "\"C\"",
-                            "description": "",
+                            "description": "Memory order C or F.",
                             "kind": "argument",
                             "name": "order",
                             "passingKind": "pos_or_kw",
@@ -3446,7 +3490,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    `NDArray[DType.int8](List[Int8](1,2,3,4,5,6), shape=List[Int](2,3))`\n    Returns an array with shape 3 x 2 with input values.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3457,7 +3501,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, data: List[SIMD[dtype, 1]], shape: List[Int], order: String = \"C\")",
-                        "summary": "Example:     `NDArray[DType.int8](List[Int8](1,2,3,4,5,6), shape=List[Int](2,3))`     Returns an array with shape 3 x 2 with input values."
+                        "summary": "NDArray initialization from list of data."
                       },
                       {
                         "args": [
@@ -3541,7 +3585,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, ndim: Int, offset: Int, size: Int, shape: List[Int], strides: List[Int], coefficient: List[Int], order: String = \"C\")",
-                        "summary": ""
+                        "summary": "Extremely specific NDArray initializer."
                       },
                       {
                         "args": [
@@ -3625,7 +3669,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__init__(inout self: Self, data: DTypePointer[dtype, 0], ndim: Int, offset: Int, shape: List[Int], strides: List[Int], coefficient: List[Int], order: String = \"C\")",
-                        "summary": ""
+                        "summary": "Extremely specific NDArray initializer."
                       }
                     ]
                   },
@@ -3666,7 +3710,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__copyinit__(inout self: Self, other: Self)",
-                        "summary": ""
+                        "summary": "Copy other into self."
                       }
                     ]
                   },
@@ -3707,7 +3751,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__moveinit__(inout self: Self, owned existing: Self)",
-                        "summary": ""
+                        "summary": "Move other into self."
                       }
                     ]
                   },
@@ -3773,7 +3817,7 @@
                         "returnType": "Bool",
                         "returnsDoc": "",
                         "signature": "__bool__(self: Self) -> Bool",
-                        "summary": ""
+                        "summary": "If all true return true."
                       }
                     ]
                   },
@@ -3803,7 +3847,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    `arr[1]` returns the second row of the array.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3814,7 +3858,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__getitem__(self: Self, idx: Int) -> Self",
-                        "summary": "Example:     `arr[1]` returns the second row of the array."
+                        "summary": "Retreive a slice of the array corrisponding to the index at the first dimension."
                       },
                       {
                         "args": [
@@ -3838,7 +3882,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3849,7 +3893,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__getitem__(self: Self, owned *slices: Slice) -> Self",
-                        "summary": "Example:     `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2)."
+                        "summary": "Retreive slices of an array from variadic slices."
                       },
                       {
                         "args": [
@@ -3873,7 +3917,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "Example:\n    `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3884,7 +3928,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__getitem__(self: Self, owned slices: List[Slice]) -> Self",
-                        "summary": "Example:     `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2)."
+                        "summary": "Retreive slices of an array from list of slices."
                       },
                       {
                         "args": [
@@ -3978,7 +4022,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "Example:\n```console\n> var X = nm.NDArray[nm.i8](3,random=True)\n> print(X)\n[       32      21      53      ]\n1-D array  Shape: [3]  DType: int8\n> print(X.argsort())\n[       1       0       2       ]\n1-D array  Shape: [3]  DType: index\n> print(X[X.argsort()])\n[       21      32      53      ]\n1-D array  Shape: [3]  DType: int8\n```",
+                        "description": "Refer to `__getitem__(self, index: List[Int])`.\n\nExample:\n```console\n> var X = nm.NDArray[nm.i8](3,random=True)\n> print(X)\n[       32      21      53      ]\n1-D array  Shape: [3]  DType: int8\n> print(X.argsort())\n[       1       0       2       ]\n1-D array  Shape: [3]  DType: index\n> print(X[X.argsort()])\n[       21      32      53      ]\n1-D array  Shape: [3]  DType: int8\n```",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -3989,7 +4033,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__getitem__(self: Self, index: NDArray[index]) -> Self",
-                        "summary": "Get items of array from a list of indices. Refer to `__getitem__(self, index: List[Int])`."
+                        "summary": "Get items of array from an array of indices."
                       },
                       {
                         "args": [
@@ -4024,7 +4068,7 @@
                         "returnType": "Self",
                         "returnsDoc": "NDArray with items from the mask.",
                         "signature": "__getitem__(self: Self, mask: NDArray[bool]) -> Self",
-                        "summary": "Get items of array from mask."
+                        "summary": "Get items of array corrisponding to a mask."
                       }
                     ]
                   },
@@ -4073,7 +4117,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__setitem__(inout self: Self, index: Int, val: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Set the value of a single index."
                       },
                       {
                         "args": [
@@ -4116,7 +4160,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__setitem__(inout self: Self, *index: Int, *, val: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Set the value at the index list."
                       },
                       {
                         "args": [
@@ -4159,7 +4203,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__setitem__(inout self: Self, index: List[Int], val: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Set the value at the index list."
                       },
                       {
                         "args": [
@@ -4202,7 +4246,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__setitem__(inout self: Self, index: VariadicList[Int], val: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Set the value at the index corisponding to the varaidic list."
                       },
                       {
                         "args": [
@@ -4267,7 +4311,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "For bolean use `__invert__`(~)",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -4278,7 +4322,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__neg__(self: Self) -> Self",
-                        "summary": ""
+                        "summary": "Unary negative returens self unless boolean type."
                       }
                     ]
                   },
@@ -4311,7 +4355,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__pos__(self: Self) -> Self",
-                        "summary": ""
+                        "summary": "Unary positve returens self unless boolean type."
                       }
                     ]
                   },
@@ -4344,7 +4388,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__invert__(self: Self) -> Self",
-                        "summary": ""
+                        "summary": "Elementwise inverse (~ or not), only for bools and integral types."
                       }
                     ]
                   },
@@ -4385,7 +4429,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__lt__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise less than."
                       },
                       {
                         "args": [
@@ -4420,7 +4464,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__lt__(self: Self, other: Self) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise less than between scalar and Array."
                       }
                     ]
                   },
@@ -4461,7 +4505,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__le__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise less than or equal to."
                       },
                       {
                         "args": [
@@ -4496,7 +4540,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__le__(self: Self, other: Self) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise less than or equal to between scalar and Array."
                       }
                     ]
                   },
@@ -4537,7 +4581,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__eq__(self: Self, other: Self) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise equivelence."
                       },
                       {
                         "args": [
@@ -4572,7 +4616,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__eq__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise equivelence between scalar and Array."
                       }
                     ]
                   },
@@ -4613,7 +4657,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__ne__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise nonequivelence."
                       },
                       {
                         "args": [
@@ -4648,7 +4692,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__ne__(self: Self, other: Self) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise nonequivelence between scalar and Array."
                       }
                     ]
                   },
@@ -4689,7 +4733,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__gt__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise greater than."
                       },
                       {
                         "args": [
@@ -4724,7 +4768,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__gt__(self: Self, other: Self) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise greater than between scalar and Array."
                       }
                     ]
                   },
@@ -4765,7 +4809,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__ge__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise greater than or equal to."
                       },
                       {
                         "args": [
@@ -4800,7 +4844,7 @@
                         "returnType": "NDArray[bool]",
                         "returnsDoc": "",
                         "signature": "__ge__(self: Self, other: Self) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Itemwise less than or equal to between scalar and Array."
                       }
                     ]
                   },
@@ -4841,7 +4885,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__add__(inout self: Self, other: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array + scalar`."
                       },
                       {
                         "args": [
@@ -4876,7 +4920,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__add__(inout self: Self, other: Self) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array + array`."
                       }
                     ]
                   },
@@ -4917,7 +4961,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__sub__(self: Self, other: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array - scalar`."
                       },
                       {
                         "args": [
@@ -4952,7 +4996,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__sub__(self: Self, other: Self) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array - array`."
                       }
                     ]
                   },
@@ -4993,7 +5037,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__mul__(self: Self, other: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array * scalar`."
                       },
                       {
                         "args": [
@@ -5028,7 +5072,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__mul__(self: Self, other: Self) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array * array`."
                       }
                     ]
                   },
@@ -5110,7 +5154,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__truediv__(self: Self, other: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array / scalar`."
                       },
                       {
                         "args": [
@@ -5145,7 +5189,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__truediv__(self: Self, other: Self) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array / array`."
                       }
                     ]
                   },
@@ -5186,7 +5230,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__floordiv__(self: Self, other: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array // scalar`."
                       },
                       {
                         "args": [
@@ -5221,7 +5265,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__floordiv__(self: Self, other: Self) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array // array`."
                       }
                     ]
                   },
@@ -5262,7 +5306,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__mod__(inout self: Self, other: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array % scalar`."
                       },
                       {
                         "args": [
@@ -5297,7 +5341,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__mod__(inout self: Self, other: Self) -> Self",
-                        "summary": ""
+                        "summary": "Enables `array % array`."
                       }
                     ]
                   },
@@ -5414,7 +5458,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__radd__(inout self: Self, rhs: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `scalar + array`."
                       }
                     ]
                   },
@@ -5455,7 +5499,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__rsub__(self: Self, s: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `scalar - array`."
                       }
                     ]
                   },
@@ -5496,7 +5540,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__rmul__(self: Self, s: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `scalar * array`."
                       }
                     ]
                   },
@@ -5537,7 +5581,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__rtruediv__(self: Self, s: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `scalar / array`."
                       }
                     ]
                   },
@@ -5578,7 +5622,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__rfloordiv__(self: Self, s: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Enables `scalar // array`."
                       }
                     ]
                   },
@@ -5619,42 +5663,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "__rmod__(inout self: Self, other: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
-                      },
-                      {
-                        "args": [
-                          {
-                            "convention": "inout",
-                            "description": "",
-                            "kind": "argument",
-                            "name": "self",
-                            "passingKind": "pos_or_kw",
-                            "type": "Self"
-                          },
-                          {
-                            "convention": "borrowed",
-                            "description": "",
-                            "kind": "argument",
-                            "name": "other",
-                            "passingKind": "pos_or_kw",
-                            "type": "Self"
-                          }
-                        ],
-                        "async": false,
-                        "constraints": "",
-                        "deprecated": "",
-                        "description": "",
-                        "isDef": false,
-                        "isStatic": false,
-                        "kind": "function",
-                        "name": "__rmod__",
-                        "parameters": [],
-                        "raises": true,
-                        "raisesDoc": "",
-                        "returnType": "Self",
-                        "returnsDoc": "",
-                        "signature": "__rmod__(inout self: Self, other: Self) -> Self",
-                        "summary": ""
+                        "summary": "Enables `scalar % array`."
                       }
                     ]
                   },
@@ -5695,7 +5704,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__iadd__(inout self: Self, other: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Enables `array += scalar`."
                       },
                       {
                         "args": [
@@ -5730,7 +5739,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__iadd__(inout self: Self, other: Self)",
-                        "summary": ""
+                        "summary": "Enables `array *= array`."
                       }
                     ]
                   },
@@ -5771,7 +5780,42 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__isub__(inout self: Self, s: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Enables `array -= scalar`."
+                      },
+                      {
+                        "args": [
+                          {
+                            "convention": "inout",
+                            "description": "",
+                            "kind": "argument",
+                            "name": "self",
+                            "passingKind": "pos_or_kw",
+                            "type": "Self"
+                          },
+                          {
+                            "convention": "borrowed",
+                            "description": "",
+                            "kind": "argument",
+                            "name": "s",
+                            "passingKind": "pos_or_kw",
+                            "type": "Self"
+                          }
+                        ],
+                        "async": false,
+                        "constraints": "",
+                        "deprecated": "",
+                        "description": "",
+                        "isDef": false,
+                        "isStatic": false,
+                        "kind": "function",
+                        "name": "__isub__",
+                        "parameters": [],
+                        "raises": true,
+                        "raisesDoc": "",
+                        "returnType": null,
+                        "returnsDoc": "",
+                        "signature": "__isub__(inout self: Self, s: Self)",
+                        "summary": "Enables `array -= array`."
                       }
                     ]
                   },
@@ -5812,7 +5856,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__imul__(inout self: Self, s: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Enables `array *= scalar`."
                       },
                       {
                         "args": [
@@ -5847,7 +5891,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__imul__(inout self: Self, s: Self)",
-                        "summary": ""
+                        "summary": "Enables `array *= array`."
                       }
                     ]
                   },
@@ -5888,7 +5932,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__itruediv__(inout self: Self, s: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Enables `array /= scalar`."
                       },
                       {
                         "args": [
@@ -5923,7 +5967,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__itruediv__(inout self: Self, other: Self)",
-                        "summary": ""
+                        "summary": "Enables `array /= array`."
                       }
                     ]
                   },
@@ -5964,7 +6008,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__ifloordiv__(inout self: Self, s: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Enables `array //= scalar`."
                       },
                       {
                         "args": [
@@ -5999,7 +6043,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__ifloordiv__(inout self: Self, other: Self)",
-                        "summary": ""
+                        "summary": "Enables `array //= array`."
                       }
                     ]
                   },
@@ -6040,7 +6084,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__imod__(inout self: Self, other: SIMD[dtype, 1])",
-                        "summary": ""
+                        "summary": "Enables `array %= scalar`."
                       },
                       {
                         "args": [
@@ -6075,7 +6119,7 @@
                         "returnType": null,
                         "returnsDoc": "",
                         "signature": "__imod__(inout self: Self, other: Self)",
-                        "summary": ""
+                        "summary": "Enables `array %= array`."
                       }
                     ]
                   },
@@ -6146,7 +6190,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "Not that it is different from `item()` as `get_scalar` does not checked\nagainst C-order or F-order.\n```console\n> # A is a 3x3 matrix, F-order (column-major)\n> A.get_scalar(3)  # Row 0, Col 1\n> A.item(3)  # Row 1, Col 0\n```",
+                        "description": "Example:\n```console\n> Array.get_scalar(15)\n```\nreturns the item of index 15 from the array's data buffer.\n\nNot that it is different from `item()` as `get_scalar` does not checked\nagainst C-order or F-order.\n```console\n> # A is a 3x3 matrix, F-order (column-major)\n> A.get_scalar(3)  # Row 0, Col 1\n> A.item(3)  # Row 1, Col 0\n```",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -6157,7 +6201,7 @@
                         "returnType": "SIMD[dtype, 1]",
                         "returnsDoc": "",
                         "signature": "get_scalar(self: Self, index: Int) -> SIMD[dtype, 1]",
-                        "summary": "Example: ```console > Array.get_scalar(15) ``` returns the item of index 15 from the array's data buffer."
+                        "summary": "Linearly retreive a value from the underlying Pointer."
                       }
                     ]
                   },
@@ -6395,7 +6439,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "size(self: Self) -> Int",
-                        "summary": ""
+                        "summary": "Function to retreive size."
                       }
                     ]
                   },
@@ -6428,7 +6472,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "num_elements(self: Self) -> Int",
-                        "summary": ""
+                        "summary": "Function to retreive size (compatability)."
                       }
                     ]
                   },
@@ -6450,7 +6494,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "",
+                        "description": "To get a list of shape call this then list",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -6461,7 +6505,7 @@
                         "returnType": "NDArrayShape[int32]",
                         "returnsDoc": "",
                         "signature": "shape(self: Self) -> NDArrayShape[int32]",
-                        "summary": ""
+                        "summary": "Get the shape as an NDArray Shape."
                       }
                     ]
                   },
@@ -6697,7 +6741,7 @@
                         "returnType": "Bool",
                         "returnsDoc": "",
                         "signature": "all(self: Self) -> Bool",
-                        "summary": ""
+                        "summary": "If all true return true."
                       }
                     ]
                   },
@@ -6730,7 +6774,7 @@
                         "returnType": "Bool",
                         "returnsDoc": "",
                         "signature": "any(self: Self) -> Bool",
-                        "summary": ""
+                        "summary": "True if any true."
                       }
                     ]
                   },
@@ -6763,7 +6807,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "argmax(self: Self) -> Int",
-                        "summary": ""
+                        "summary": "Get location in pointer of max value."
                       }
                     ]
                   },
@@ -6796,7 +6840,7 @@
                         "returnType": "Int",
                         "returnsDoc": "",
                         "signature": "argmin(self: Self) -> Int",
-                        "summary": ""
+                        "summary": "Get location in pointer of min value."
                       }
                     ]
                   },
@@ -6870,7 +6914,7 @@
                         "returnType": "NDArray[$0]",
                         "returnsDoc": "",
                         "signature": "astype[type: DType](inout self: Self) -> NDArray[$0]",
-                        "summary": ""
+                        "summary": "Convert type of array."
                       }
                     ]
                   },
@@ -7010,7 +7054,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "fill(inout self: Self, val: SIMD[dtype, 1]) -> Self",
-                        "summary": ""
+                        "summary": "Fill all items of array with value."
                       }
                     ]
                   },
@@ -7052,7 +7096,7 @@
                         "returnType": "Optional[NDArray[dtype]]",
                         "returnsDoc": "",
                         "signature": "flatten(inout self: Self, inplace: Bool = 0) -> Optional[NDArray[dtype]]",
-                        "summary": ""
+                        "summary": "Convert shape of array to one dimensional."
                       }
                     ]
                   },
@@ -7135,7 +7179,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "max(self: Self, axis: Int = 0) -> Self",
-                        "summary": ""
+                        "summary": "Max on axis."
                       }
                     ]
                   },
@@ -7177,7 +7221,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "min(self: Self, axis: Int = 0) -> Self",
-                        "summary": ""
+                        "summary": "Min on axis."
                       }
                     ]
                   },
@@ -7319,7 +7363,7 @@
                         "returnType": "Self",
                         "returnsDoc": "",
                         "signature": "sort(self: Self) -> Self",
-                        "summary": ""
+                        "summary": "Sort the array using quickstort."
                       }
                     ]
                   },
@@ -7443,7 +7487,7 @@
                         "returnType": "DTypePointer[dtype, 0]",
                         "returnsDoc": "",
                         "signature": "unsafe_ptr(self: Self) -> DTypePointer[dtype, 0]",
-                        "summary": ""
+                        "summary": "Retreive pointer without taking ownership."
                       }
                     ]
                   },
@@ -7476,7 +7520,7 @@
                         "returnType": "PythonObject",
                         "returnsDoc": "",
                         "signature": "to_numpy(self: Self) -> PythonObject",
-                        "summary": ""
+                        "summary": "Convert to a numpy array."
                       }
                     ]
                   }
@@ -7486,7 +7530,7 @@
                 "parameters": [
                   {
                     "default": "float32",
-                    "description": "",
+                    "description": "Type of item in NDArray.",
                     "kind": "parameter",
                     "name": "dtype",
                     "passingKind": "pos_or_kw",
@@ -11008,7 +11052,7 @@
                     "args": [
                       {
                         "convention": "borrowed",
-                        "description": "",
+                        "description": "Pointer to be retreived from.",
                         "kind": "argument",
                         "name": "ptr",
                         "passingKind": "pos_or_kw",
@@ -11016,7 +11060,7 @@
                       },
                       {
                         "convention": "borrowed",
-                        "description": "",
+                        "description": "Start position in pointer.",
                         "kind": "argument",
                         "name": "start",
                         "passingKind": "pos_or_kw",
@@ -11024,7 +11068,7 @@
                       },
                       {
                         "convention": "borrowed",
-                        "description": "",
+                        "description": "Value to store at locations.",
                         "kind": "argument",
                         "name": "val",
                         "passingKind": "pos_or_kw",
@@ -11041,7 +11085,7 @@
                     "name": "bool_simd_store",
                     "parameters": [
                       {
-                        "description": "",
+                        "description": "Number of items to be retrieved.",
                         "kind": "parameter",
                         "name": "width",
                         "passingKind": "pos_or_kw",
@@ -11053,7 +11097,7 @@
                     "returnType": null,
                     "returnsDoc": "",
                     "signature": "bool_simd_store[width: Int](ptr: DTypePointer[bool, 0], start: Int, val: SIMD[bool, width])",
-                    "summary": ""
+                    "summary": "Work around function for storing bools from a simd into a DTypePointer."
                   }
                 ]
               }
@@ -15999,7 +16043,7 @@
                         "returnType": "NDArray[$0]",
                         "returnsDoc": "",
                         "signature": "matmul_tiled_unrolled_parallelized[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[$0]",
-                        "summary": ""
+                        "summary": "Matrix multiplication vectorized, tiled, unrolled, and parallelized."
                       }
                     ]
                   },
@@ -16029,7 +16073,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "Reference: https://docs.modular.com/mojo/notebooks/Matmul\nCompared to the reference, this function increases the size of\nthe SIMD vector from the default width to 16. The purpose is to\nincrease the performance via SIMD.\nThe function reduces the execution time by ~50 percent compared to\nmatmul_parallelized and matmul_tiled_unrolled_parallelized for large\nmatrices.",
+                        "description": "Conduct `matmul` using `vectorize` and `parallelize`.\n\nReference: https://docs.modular.com/mojo/notebooks/Matmul\nCompared to the reference, this function increases the size of\nthe SIMD vector from the default width to 16. The purpose is to\nincrease the performance via SIMD.\nThe function reduces the execution time by ~50 percent compared to\nmatmul_parallelized and matmul_tiled_unrolled_parallelized for large\nmatrices.",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -16048,7 +16092,7 @@
                         "returnType": "NDArray[$0]",
                         "returnsDoc": "",
                         "signature": "matmul_parallelized[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[$0]",
-                        "summary": "Conduct `matmul` using `vectorize` and `parallelize`."
+                        "summary": "Matrix multiplication Vectorized and parallelized."
                       }
                     ]
                   },
@@ -16097,7 +16141,7 @@
                         "returnType": "NDArray[$0]",
                         "returnsDoc": "",
                         "signature": "matmul_naive[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[$0]",
-                        "summary": ""
+                        "summary": "Matrix multiplication with three nested loops."
                       }
                     ]
                   }
@@ -16149,7 +16193,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "To-do:\n1. The function currently returns a single number. In future, the function\nreturns an array of the same shape as the input one.\n2. In future, allow users to specify the axis along which the statistics are \ncalculated.\n",
+                        "description": "",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -16198,7 +16242,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "To-do:\n1. The function currently returns a single number. In future, the function\nreturns an array of the same shape as the input one.\n2. In future, allow users to specify the axis along which the statistics are \ncalculated.\n",
+                        "description": "",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -16247,7 +16291,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "To-do:\n1. The function currently returns a single number. In future, the function\nreturns an array of the same shape as the input one.\n2. In future, allow users to specify the axis along which the statistics are \ncalculated.\n",
+                        "description": "",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -16296,7 +16340,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "To-do:\nIn future, allow users to specify the axis along which the statistics are \ncalculated.\n",
+                        "description": "",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -16345,7 +16389,7 @@
                         "async": false,
                         "constraints": "",
                         "deprecated": "",
-                        "description": "To-do:\nIn future, allow users to specify the axis along which the statistics are \ncalculated.\n",
+                        "description": "",
                         "isDef": false,
                         "isStatic": false,
                         "kind": "function",
@@ -17352,7 +17396,7 @@
                         "args": [
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "NDArray.",
                             "kind": "argument",
                             "name": "array",
                             "passingKind": "pos_or_kw",
@@ -17361,7 +17405,7 @@
                           {
                             "convention": "borrowed",
                             "default": "0",
-                            "description": "",
+                            "description": "The axis along which the sum is performed.",
                             "kind": "argument",
                             "name": "axis",
                             "passingKind": "pos_or_kw",
@@ -17388,9 +17432,9 @@
                         "raises": true,
                         "raisesDoc": "",
                         "returnType": "NDArray[$0]",
-                        "returnsDoc": "",
+                        "returnsDoc": "An NDArray.",
                         "signature": "max[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[$0]",
-                        "summary": ""
+                        "summary": "Maximums of array elements over a given axis."
                       }
                     ]
                   },
@@ -17402,7 +17446,7 @@
                         "args": [
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "NDArray.",
                             "kind": "argument",
                             "name": "array",
                             "passingKind": "pos_or_kw",
@@ -17411,7 +17455,7 @@
                           {
                             "convention": "borrowed",
                             "default": "0",
-                            "description": "",
+                            "description": "The axis along which the sum is performed.",
                             "kind": "argument",
                             "name": "axis",
                             "passingKind": "pos_or_kw",
@@ -17438,9 +17482,9 @@
                         "raises": true,
                         "raisesDoc": "",
                         "returnType": "NDArray[$0]",
-                        "returnsDoc": "",
+                        "returnsDoc": "An NDArray.",
                         "signature": "min[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[$0]",
-                        "summary": ""
+                        "summary": "Minumums of array elements over a given axis."
                       }
                     ]
                   }
@@ -17854,7 +17898,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "A NDArray.",
                             "kind": "argument",
                             "name": "array1",
                             "passingKind": "pos_or_kw",
@@ -17862,7 +17906,7 @@
                           },
                           {
                             "convention": "borrowed",
-                            "description": "",
+                            "description": "A NDArray.",
                             "kind": "argument",
                             "name": "array2",
                             "passingKind": "pos_or_kw",
@@ -17870,7 +17914,7 @@
                           }
                         ],
                         "async": false,
-                        "constraints": "",
+                        "constraints": "Both arrays must have the same shape",
                         "deprecated": "",
                         "description": "",
                         "isDef": false,
@@ -17879,14 +17923,14 @@
                         "name": "math_func_compare_2_arrays",
                         "parameters": [
                           {
-                            "description": "",
+                            "description": "The element type.",
                             "kind": "parameter",
                             "name": "dtype",
                             "passingKind": "pos_or_kw",
                             "type": "DType"
                           },
                           {
-                            "description": "",
+                            "description": "The SIMD function to to apply.",
                             "kind": "parameter",
                             "name": "func",
                             "passingKind": "pos_or_kw",
@@ -17896,9 +17940,9 @@
                         "raises": true,
                         "raisesDoc": "",
                         "returnType": "NDArray[bool]",
-                        "returnsDoc": "",
+                        "returnsDoc": "Boolean array with results of elementwise comparison.",
                         "signature": "math_func_compare_2_arrays[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: T, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]",
-                        "summary": ""
+                        "summary": "Apply a SIMD comparison functions to two NDArrays."
                       }
                     ]
                   },

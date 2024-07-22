@@ -1285,6 +1285,7 @@ Summary  </p>
 <p><div class="highlight"><pre><span></span><code><span class="n">matmul_tiled_unrolled_parallelized</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">A</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">B</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
+<p>Matrix multiplication vectorized, tiled, unrolled, and parallelized.  </p>
 <p>Parameters:  </p>
 <ul>
 <li>dtype</li>
@@ -1298,7 +1299,7 @@ Summary  </p>
 <p><div class="highlight"><pre><span></span><code><span class="n">matmul_parallelized</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">A</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">B</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
-<p>Conduct <code>matmul</code> using <code>vectorize</code> and <code>parallelize</code>.  </p>
+<p>Matrix multiplication Vectorized and parallelized.  </p>
 <p>Parameters:  </p>
 <ul>
 <li>dtype</li>
@@ -1312,6 +1313,7 @@ Summary  </p>
 <p><div class="highlight"><pre><span></span><code><span class="n">matmul_naive</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">A</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">B</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
+<p>Matrix multiplication with three nested loops.  </p>
 <p>Parameters:  </p>
 <ul>
 <li>dtype</li>
