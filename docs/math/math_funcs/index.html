@@ -3867,15 +3867,16 @@ Summary  </p>
 <p><div class="highlight"><pre><span></span><code><span class="n">bool_simd_store</span><span class="p">[</span><span class="n">width</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">](</span><span class="n">ptr</span><span class="p">:</span><span class="w"> </span><span class="nc">DTypePointer</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">])</span>
 </code></pre></div>
 Summary  </p>
+<p>Work around function for storing bools from a simd into a DTypePointer.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>width</li>
+<li>width: Number of items to be retrieved.</li>
 </ul>
 <p>Args:  </p>
 <ul>
-<li>ptr</li>
-<li>start</li>
-<li>val</li>
+<li>ptr: Pointer to be retreived from.</li>
+<li>start: Start position in pointer.</li>
+<li>val: Value to store at locations.</li>
 </ul>
 
 
