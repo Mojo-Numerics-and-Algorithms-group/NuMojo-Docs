@@ -1229,27 +1229,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../traits/NDArrayTraits.mdd" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ndarraytraits
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1445,31 +1424,31 @@
 <h2 id="module-summary">Module Summary</h2>
 <p>Array creation routine.</p>
 <h2 id="arange">arange</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">arange</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">out_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float64</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">step</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">1</span><span class="p">]</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">arange</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float64</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">step</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
 <p>Function that computes a series of values starting from "start" to "stop" with given "step" size.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype: Input datatype of the input values.</li>
-<li>out_dtype: Output datatype of the output NDArray. Defualt: <code>float64</code></li>
+<li>dtype: Data type of values. Defualt: <code>float64</code></li>
 </ul>
 <p>Args:  </p>
 <ul>
-<li>start: Scalar[in_dtype] - Start value.</li>
-<li>stop: Scalar[in_dtype]  - End value.</li>
-<li>step: Scalar[in_dtype]  - Step size between each element (default 1). Default: 1</li>
+<li>start: Scalar[dtype] - Start value.</li>
+<li>stop: Scalar[dtype]  - End value.</li>
+<li>step: Scalar[dtype]  - Step size between each element (default 1). Default: 1</li>
 </ul>
 <h2 id="linspace">linspace</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">linspace</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">out_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float64</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">num</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">parallel</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">1</span><span class="p">]</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">linspace</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">num</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">parallel</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
 <p>Function that computes a series of linearly spaced values starting from "start" to "stop" with given size. Wrapper function for _linspace_serial, _linspace_parallel.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype: Datatype of the input values.</li>
-<li>out_dtype: Datatype of the output NDArray. Defualt: <code>float64</code></li>
+<li>dtype: Data type of values.</li>
 </ul>
+<p>Constraints:</p>
+<p>Non-Integral dtype.  </p>
 <p>Args:  </p>
 <ul>
 <li>start: Start value.</li>
@@ -1479,15 +1458,16 @@ Summary  </p>
 <li>parallel: Specifies whether the linspace should be calculated using parallelization, deafults to False. Default: 0</li>
 </ul>
 <h2 id="logspace">logspace</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">logspace</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">out_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float64</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">num</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">#</span><span class="n">kgen</span><span class="p">.</span><span class="n">float_literal</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">|</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">parallel</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">1</span><span class="p">]</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">logspace</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">num</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">#</span><span class="n">kgen</span><span class="p">.</span><span class="n">float_literal</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">|</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">parallel</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
 <p>Generate a logrithmic spaced NDArray of <code>num</code> elements between <code>start</code> and <code>stop</code>. Wrapper function for _logspace_serial, _logspace_parallel functions.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype: Datatype of the input values.</li>
-<li>out_dtype: Datatype of the output NDArray. Defualt: <code>float64</code></li>
+<li>dtype: Data type of values.</li>
 </ul>
+<p>Constraints:</p>
+<p>Non-Integral dtype.  </p>
 <p>Args:  </p>
 <ul>
 <li>start: The starting value of the NDArray.</li>
@@ -1498,15 +1478,16 @@ Summary  </p>
 <li>parallel: Specifies whether to calculate the logarithmic spaced values using parallelization. Default: 0</li>
 </ul>
 <h2 id="geomspace">geomspace</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">geomspace</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">out_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float64</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">num</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">1</span><span class="p">]</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">geomspace</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">stop</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">num</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">:</span><span class="w"> </span><span class="nc">Bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
 <p>Generate a NDArray of <code>num</code> elements between <code>start</code> and <code>stop</code> in a geometric series.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype: Datatype of the input values.</li>
-<li>out_dtype: Datatype of the output NDArray. Defualt: <code>float64</code></li>
+<li>dtype: Data type of values.</li>
 </ul>
+<p>Constraints:</p>
+<p>Non-Integral dtype.  </p>
 <p>Args:  </p>
 <ul>
 <li>start: The starting value of the NDArray.</li>

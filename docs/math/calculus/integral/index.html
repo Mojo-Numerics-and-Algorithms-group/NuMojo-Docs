@@ -1114,27 +1114,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../traits/NDArrayTraits.mdd" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ndarraytraits
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1221,6 +1200,8 @@ Summary  </p>
 <li>in_dtype: Input data type.</li>
 <li>out_dtype: Output data type, defaults to float32. Defualt: <code>float32</code></li>
 </ul>
+<p>Constraints:</p>
+<p><code>x</code> and <code>y</code> must have the same shape. <code>fdtype</code> must be a floating-point type if <code>idtype</code> is not a floating-point type.  </p>
 <p>Args:  </p>
 <ul>
 <li>y: An array.</li>

@@ -2111,27 +2111,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../traits/NDArrayTraits.mdd" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ndarraytraits
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3772,6 +3751,16 @@ Summary  </p>
 <li>self</li>
 <li>data: List of data.</li>
 <li>shape: List of shape.</li>
+<li>order: Memory order C or F. Default: "C"</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+</code></pre></div>
+Summary  </p>
+<p>NDArray initialization from string representation of an ndarray. The shape can be inferred from the string representation. The literals will be casted to the dtype of the NDArray.  </p>
+<p>Args:  </p>
+<ul>
+<li>self</li>
+<li>text: String representation of an ndarray.</li>
 <li>order: Memory order C or F. Default: "C"</li>
 </ul>
 <p><div class="highlight"><pre><span></span><code><span class="n">__init__</span><span class="p">(</span><span class="n">inout</span><span class="w"> </span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Self</span><span class="p">,</span><span class="w"> </span><span class="n">ndim</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">strides</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">coefficient</span><span class="p">:</span><span class="w"> </span><span class="nc">List</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">order</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">)</span>
