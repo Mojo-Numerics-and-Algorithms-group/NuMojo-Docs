@@ -1430,7 +1430,7 @@ Summary  </p>
 <p>Function that computes a series of values starting from "start" to "stop" with given "step" size.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype: Data type of values. Defualt: <code>float64</code></li>
+<li>dtype: Datatype of the output array. Defualt: <code>float64</code></li>
 </ul>
 <p>Args:  </p>
 <ul>
@@ -1445,10 +1445,8 @@ Summary  </p>
 <p>Function that computes a series of linearly spaced values starting from "start" to "stop" with given size. Wrapper function for _linspace_serial, _linspace_parallel.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype: Data type of values.</li>
+<li>dtype: Datatype of the output array.</li>
 </ul>
-<p>Constraints:</p>
-<p>Non-Integral dtype.  </p>
 <p>Args:  </p>
 <ul>
 <li>start: Start value.</li>
@@ -1464,10 +1462,8 @@ Summary  </p>
 <p>Generate a logrithmic spaced NDArray of <code>num</code> elements between <code>start</code> and <code>stop</code>. Wrapper function for _logspace_serial, _logspace_parallel functions.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype: Data type of values.</li>
+<li>dtype: Datatype of the output array.</li>
 </ul>
-<p>Constraints:</p>
-<p>Non-Integral dtype.  </p>
 <p>Args:  </p>
 <ul>
 <li>start: The starting value of the NDArray.</li>
@@ -1484,10 +1480,8 @@ Summary  </p>
 <p>Generate a NDArray of <code>num</code> elements between <code>start</code> and <code>stop</code> in a geometric series.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>dtype: Data type of values.</li>
+<li>dtype: Datatype of the input values.</li>
 </ul>
-<p>Constraints:</p>
-<p>Non-Integral dtype.  </p>
 <p>Args:  </p>
 <ul>
 <li>start: The starting value of the NDArray.</li>
@@ -1589,9 +1583,19 @@ Summary  </p>
 <li>fill_value: Value to be splatted over the NDArray.</li>
 </ul>
 <h2 id="diagflat">diagflat</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">diagflat</span><span class="p">()</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">diagflat</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">inout</span><span class="w"> </span><span class="n">v</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">k</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
+<p>Generate a 2-D NDArray with the flattened input as the diagonal.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype: Datatype of the NDArray elements.</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>v: NDArray to be flattened and used as the diagonal.</li>
+<li>k: Diagonal offset. Default: 0</li>
+</ul>
 <h2 id="tri">tri</h2>
 <p><div class="highlight"><pre><span></span><code><span class="n">tri</span><span class="p">()</span>
 </code></pre></div>

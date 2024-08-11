@@ -1321,14 +1321,13 @@ Summary  </p>
 <li>ndarray: An NDArray.</li>
 </ul>
 <h2 id="binary_sort">binary_sort</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">binary_sort</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">out_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float64</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">1</span><span class="p">]</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">binary_sort</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float64</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
 <p>Binary sorting of NDArray.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype: The input element type.</li>
-<li>out_dtype: The output element type. Defualt: <code>float64</code></li>
+<li>dtype: The element type. Defualt: <code>float64</code></li>
 </ul>
 <p>Args:  </p>
 <ul>

@@ -511,9 +511,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ndim" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#shape" class="md-nav__link">
     <span class="md-ellipsis">
       shape
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#size" class="md-nav__link">
+    <span class="md-ellipsis">
+      size
     </span>
   </a>
   
@@ -532,6 +550,24 @@
   <a href="#ravel" class="md-nav__link">
     <span class="md-ellipsis">
       ravel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      where
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flip" class="md-nav__link">
+    <span class="md-ellipsis">
+      flip
     </span>
   </a>
   
@@ -1199,9 +1235,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ndim" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#shape" class="md-nav__link">
     <span class="md-ellipsis">
       shape
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#size" class="md-nav__link">
+    <span class="md-ellipsis">
+      size
     </span>
   </a>
   
@@ -1220,6 +1274,24 @@
   <a href="#ravel" class="md-nav__link">
     <span class="md-ellipsis">
       ravel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      where
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flip" class="md-nav__link">
+    <span class="md-ellipsis">
+      flip
     </span>
   </a>
   
@@ -1247,18 +1319,118 @@
 <p><div class="highlight"><pre><span></span><code><span class="n">copyto</span><span class="p">()</span>
 </code></pre></div>
 Summary  </p>
+<h2 id="ndim">ndim</h2>
+<p><div class="highlight"><pre><span></span><code><span class="n">ndim</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Int</span>
+</code></pre></div>
+Summary  </p>
+<p>Returns the number of dimensions of the NDArray.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>array: A NDArray.</li>
+</ul>
 <h2 id="shape">shape</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">shape</span><span class="p">()</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">shape</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArrayShape</span><span class="p">[</span><span class="n">int32</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
+<p>Returns the shape of the NDArray.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>array: A NDArray.</li>
+</ul>
+<h2 id="size">size</h2>
+<p><div class="highlight"><pre><span></span><code><span class="n">size</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">axis</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Int</span>
+</code></pre></div>
+Summary  </p>
+<p>Returns the size of the NDArray.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>array: A NDArray.</li>
+<li>axis: The axis to get the size of.</li>
+</ul>
 <h2 id="reshape">reshape</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">reshape</span><span class="p">()</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">reshape</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">inout</span><span class="w"> </span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">shape</span><span class="p">:</span><span class="w"> </span><span class="nc">VariadicList</span><span class="p">[</span><span class="n">Int</span><span class="p">],</span><span class="w"> </span><span class="n">order</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 </code></pre></div>
 Summary  </p>
+<div class="highlight"><pre><span></span><code>Reshapes the NDArray to given Shape.
+</code></pre></div>
+<p>Parameters:  </p>
+<ul>
+<li>dtype</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>array: A NDArray.</li>
+<li>shape: Variadic integers of shape.</li>
+<li>order: Order of the array - Row major <code>C</code> or Column major <code>F</code>. Default: "C"</li>
+</ul>
 <h2 id="ravel">ravel</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">ravel</span><span class="p">()</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">ravel</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">inout</span><span class="w"> </span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">order</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 </code></pre></div>
 Summary  </p>
+<p>Returns the raveled version of the NDArray.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>array</li>
+<li>order Default: "C"</li>
+</ul>
+<h2 id="where">where</h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">where</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">inout</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">scalar</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">mask</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">])</span>
+</code></pre></div>
+Summary  </p>
+<p>Replaces elements in <code>x</code> with <code>scalar</code> where <code>mask</code> is True.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype: DType.</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>x: A NDArray.</li>
+<li>scalar: A SIMD value.</li>
+<li>mask: A NDArray.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="k">where</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">inout</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">mask</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">])</span>
+</code></pre></div>
+Summary  </p>
+<p>Replaces elements in <code>x</code> with elements from <code>y</code> where <code>mask</code> is True.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype: DType.</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>x: NDArray[dtype].</li>
+<li>y: NDArray[dtype].</li>
+<li>mask: NDArray[DType.bool].</li>
+</ul>
+<h2 id="flip">flip</h2>
+<p><div class="highlight"><pre><span></span><code><span class="n">flip</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+Summary  </p>
+<p>Flips the NDArray along the given axis.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype: DType.</li>
+</ul>
+<p>Args:  </p>
+<ul>
+<li>array: A NDArray.</li>
+</ul>
 
 
 

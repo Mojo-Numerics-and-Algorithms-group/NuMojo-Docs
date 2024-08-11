@@ -1185,6 +1185,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#math_func_compare_array_and_scalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      math_func_compare_array_and_scalar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#math_func_is" class="md-nav__link">
     <span class="md-ellipsis">
       math_func_is
@@ -1355,6 +1364,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#math_func_compare_array_and_scalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      math_func_compare_array_and_scalar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#math_func_is" class="md-nav__link">
     <span class="md-ellipsis">
       math_func_is
@@ -1497,19 +1515,37 @@ Summary  </p>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_compare_2_arrays</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">array2</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
-<p>Apply a SIMD comparison functions to two NDArrays.  </p>
+<p>Apply a SIMD comparision function of two variable.  </p>
 <p>Parameters:  </p>
 <ul>
 <li>dtype: The element type.</li>
-<li>func: The SIMD function to to apply.</li>
+<li>func: The SIMD comparision function to to apply.</li>
 </ul>
 <p>Constraints:</p>
-<p>Both arrays must have the same shape  </p>
+<p>Both arrays must have the same shape.  </p>
 <p>Args:  </p>
 <ul>
 <li>self</li>
 <li>array1: A NDArray.</li>
 <li>array2: A NDArray.</li>
+</ul>
+<h4 id="math_func_compare_array_and_scalar">math_func_compare_array_and_scalar</h4>
+<p><div class="highlight"><pre><span></span><code><span class="n">math_func_compare_array_and_scalar</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">scalar</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>
+</code></pre></div>
+Summary  </p>
+<p>Apply a SIMD comparision function of two variable.  </p>
+<p>Parameters:  </p>
+<ul>
+<li>dtype: The element type.</li>
+<li>func: The SIMD comparision function to to apply.</li>
+</ul>
+<p>Constraints:</p>
+<p>Both arrays must have the same shape.  </p>
+<p>Args:  </p>
+<ul>
+<li>self</li>
+<li>array1: A NDArray.</li>
+<li>scalar: A scalar.</li>
 </ul>
 <h4 id="math_func_is">math_func_is</h4>
 <p><div class="highlight"><pre><span></span><code><span class="n">math_func_is</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">:</span><span class="w"> </span><span class="nc">fn</span><span class="p">[</span><span class="n">DType</span><span class="p">,</span><span class="w"> </span><span class="n">Int</span><span class="p">](</span><span class="n">SIMD</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="cp">$</span><span class="mi">1</span><span class="p">]](</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="kt">bool</span><span class="p">]</span>
