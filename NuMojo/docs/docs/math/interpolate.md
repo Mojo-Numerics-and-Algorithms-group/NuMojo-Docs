@@ -6,7 +6,7 @@
 
 ##  Module Summary
   
-# ===----------------------------------------------------------------------=== # # Interpolate Module - Implements interpolation functions # Last updated: 2024-06-14 # ===----------------------------------------------------------------------=== #
+Interpolate Module - Implements interpolation functions
 ## interp1d
 
 

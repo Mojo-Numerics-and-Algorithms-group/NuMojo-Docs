@@ -11655,7 +11655,7 @@
             "kind": "module",
             "name": "interpolate",
             "structs": [],
-            "summary": "# ===----------------------------------------------------------------------=== # # Interpolate Module - Implements interpolation functions # Last updated: 2024-06-14 # ===----------------------------------------------------------------------=== #",
+            "summary": "Interpolate Module - Implements interpolation functions",
             "traits": []
           },
           {
