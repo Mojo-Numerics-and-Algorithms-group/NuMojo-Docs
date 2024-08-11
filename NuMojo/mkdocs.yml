@@ -32,7 +32,7 @@ nav:
                 Matmul: docs/math/linalg/matmul.md
         - traits:
             Backend: docs/traits/backend.md
-            Ndarraytraits: docs/traits/NDArrayTraits.mdd
+            # Ndarraytraits: docs/traits/NDArrayTraits.mdd
 
 
 

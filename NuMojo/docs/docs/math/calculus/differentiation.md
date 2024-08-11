@@ -11,16 +11,19 @@
 
 
 ```rust
-gradient[in_dtype: DType, out_dtype: DType = float32](x: NDArray[in_dtype], spacing: SIMD[in_dtype, 1]) -> NDArray[$1]
+gradient[dtype: DType](x: NDArray[dtype], spacing: SIMD[dtype, 1]) -> NDArray[$0]
 ```  
 Summary  
   
-Compute the integral of y over x using the trapezoidal rule.  
+Compute the gradient of y over x using the trapezoidal rule.  
   
 Parameters:  
 
-- in_dtype: Input data type.
-- out_dtype: Output data type, defaults to float32. Defualt: `float32`
+- dtype: Input data type.
+  
+Constraints:
+
+`fdtype` must be a floating-point type if `idtype` is not a floating-point type.  
   
 Args:  
 

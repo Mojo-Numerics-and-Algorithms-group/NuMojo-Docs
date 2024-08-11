@@ -804,6 +804,20 @@ Args:
 
 
 ```rust
+__init__(inout self: Self, text: String, order: String = "C")
+```  
+Summary  
+  
+NDArray initialization from string representation of an ndarray. The shape can be inferred from the string representation. The literals will be casted to the dtype of the NDArray.  
+  
+Args:  
+
+- self
+- text: String representation of an ndarray.
+- order: Memory order C or F. Default: "C"
+
+
+```rust
 __init__(inout self: Self, ndim: Int, offset: Int, size: Int, shape: List[Int], strides: List[Int], coefficient: List[Int], order: String = "C")
 ```  
 Summary  
@@ -2243,7 +2257,7 @@ Args:
 
 
 ```rust
-reshape(inout self: Self, *Shape: Int, *, order: String = "C")
+reshape(inout self: Self, *shape: Int, *, order: String = "C")
 ```  
 Summary  
   
@@ -2252,7 +2266,7 @@ Reshapes the NDArray to given Shape.
 Args:  
 
 - self
-- \*Shape: Variadic list of shape.
+- \*shape: Variadic list of shape.
 - order: Order of the array - Row major `C` or Column major `F`. Default: "C"
 
 #### unsafe_ptr

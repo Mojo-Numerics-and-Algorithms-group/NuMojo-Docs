@@ -20,37 +20,3 @@ Datatypes Module - Implements datatypes aliases, conversions
 `f16`: Data type alias for DType.float16  
 `f32`: Data type alias for DType.float32  
 `f64`: Data type alias for DType.float64
-## cvtdtype
-
-
-```rust
-cvtdtype[in_dtype: DType, out_dtype: DType, width: Int = 1](value: SIMD[in_dtype, width]) -> SIMD[$1, $2]
-```  
-Summary  
-  
-Converts datatype of a value from in_dtype to out_dtype at run time.  
-  
-Parameters:  
-
-- in_dtype: The input datatype.
-- out_dtype: The output dataytpe.
-- width: The width of the SIMD vector. Defualt: `1`
-  
-Args:  
-
-- value: The SIMD value to be converted.
-
-
-```rust
-cvtdtype[in_dtype: DType, out_dtype: DType, width: Int = 1, value: SIMD[$0, $2] = __init__[stdlib::builtin::bool::Boolable](SIMD())]() -> SIMD[$1, $2]
-```  
-Summary  
-  
-Converts datatype of a value from in_dtype to out_dtype at compile time.  
-  
-Parameters:  
-
-- in_dtype: The input datatype.
-- out_dtype: The output dataytpe.
-- width: The width of the SIMD vector. Defualt: `1`
-- value: The SIMD value to be converted. Defualt: `__init__[stdlib::builtin::bool::Boolable](SIMD())`

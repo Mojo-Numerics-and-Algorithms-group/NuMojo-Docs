@@ -34,7 +34,12 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
                     default = ""
                 paramlist.append(name + description + default)
             mdfile.new_list(paramlist)
-            
+
+        if overload["constraints"]:
+            mdfile.new_line("""Constraints:""")
+            mdfile.new_paragraph(overload["constraints"])
+            mdfile.new_line()
+
         arglist = list()
         if overload["args"]:
             mdfile.new_line("""Args:""")

@@ -79,6 +79,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shapes.  
+  
 Args:  
 
 - array1: An Array.
@@ -156,6 +160,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shapes.  
+  
 Args:  
 
 - array1: An Array.
@@ -175,6 +183,10 @@ Parameters:
 
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+  
+Constraints:
+
+Both arrays must have the same shapes.  
   
 Args:  
 

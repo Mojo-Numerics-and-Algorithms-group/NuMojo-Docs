@@ -1114,27 +1114,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../traits/NDArrayTraits.mdd" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ndarraytraits
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1212,15 +1191,16 @@
 <h1 id="differentiation">differentiation</h1>
 <h2 id="module-summary">Module Summary</h2>
 <h2 id="gradient">gradient</h2>
-<p><div class="highlight"><pre><span></span><code><span class="n">gradient</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">,</span><span class="w"> </span><span class="n">out_dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float32</span><span class="p">](</span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">],</span><span class="w"> </span><span class="n">spacing</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">in_dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">1</span><span class="p">]</span>
+<p><div class="highlight"><pre><span></span><code><span class="n">gradient</span><span class="p">[</span><span class="n">dtype</span><span class="p">:</span><span class="w"> </span><span class="nc">DType</span><span class="p">](</span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="n">dtype</span><span class="p">],</span><span class="w"> </span><span class="n">spacing</span><span class="p">:</span><span class="w"> </span><span class="nc">SIMD</span><span class="p">[</span><span class="n">dtype</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">NDArray</span><span class="p">[</span><span class="cp">$</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 Summary  </p>
 <p>Compute the integral of y over x using the trapezoidal rule.  </p>
 <p>Parameters:  </p>
 <ul>
-<li>in_dtype: Input data type.</li>
-<li>out_dtype: Output data type, defaults to float32. Defualt: <code>float32</code></li>
+<li>dtype: Input data type.</li>
 </ul>
+<p>Constraints:</p>
+<p><code>fdtype</code> must be a floating-point type if <code>idtype</code> is not a floating-point type.  </p>
 <p>Args:  </p>
 <ul>
 <li>x: An array.</li>

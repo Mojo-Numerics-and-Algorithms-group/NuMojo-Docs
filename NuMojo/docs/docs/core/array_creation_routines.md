@@ -11,7 +11,7 @@ Array creation routine.
 
 
 ```rust
-arange[in_dtype: DType, out_dtype: DType = float64](start: SIMD[in_dtype, 1], stop: SIMD[in_dtype, 1], step: SIMD[in_dtype, 1] = 1) -> NDArray[$1]
+arange[dtype: DType = float64](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], step: SIMD[dtype, 1] = 1) -> NDArray[$0]
 ```  
 Summary  
   
@@ -19,20 +19,19 @@ Function that computes a series of values starting from "start" to "stop" with g
   
 Parameters:  
 
-- in_dtype: Input datatype of the input values.
-- out_dtype: Output datatype of the output NDArray. Defualt: `float64`
+- dtype: Datatype of the output array. Defualt: `float64`
   
 Args:  
 
-- start: Scalar[in_dtype] - Start value.
-- stop: Scalar[in_dtype]  - End value.
-- step: Scalar[in_dtype]  - Step size between each element (default 1). Default: 1
+- start: Scalar[dtype] - Start value.
+- stop: Scalar[dtype]  - End value.
+- step: Scalar[dtype]  - Step size between each element (default 1). Default: 1
 
 ## linspace
 
 
 ```rust
-linspace[in_dtype: DType, out_dtype: DType = float64](start: SIMD[in_dtype, 1], stop: SIMD[in_dtype, 1], num: Int = 50, endpoint: Bool = 1, parallel: Bool = 0) -> NDArray[$1]
+linspace[dtype: DType](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], num: Int = 50, endpoint: Bool = 1, parallel: Bool = 0) -> NDArray[$0]
 ```  
 Summary  
   
@@ -40,8 +39,7 @@ Function that computes a series of linearly spaced values starting from "start" 
   
 Parameters:  
 
-- in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray. Defualt: `float64`
+- dtype: Datatype of the output array.
   
 Args:  
 
@@ -55,7 +53,7 @@ Args:
 
 
 ```rust
-logspace[in_dtype: DType, out_dtype: DType = float64](start: SIMD[in_dtype, 1], stop: SIMD[in_dtype, 1], num: Int, endpoint: Bool = 1, base: SIMD[in_dtype, 1] = #kgen.float_literal<10|1>, parallel: Bool = 0) -> NDArray[$1]
+logspace[dtype: DType](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], num: Int, endpoint: Bool = 1, base: SIMD[dtype, 1] = #kgen.float_literal<10|1>, parallel: Bool = 0) -> NDArray[$0]
 ```  
 Summary  
   
@@ -63,8 +61,7 @@ Generate a logrithmic spaced NDArray of `num` elements between `start` and `stop
   
 Parameters:  
 
-- in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray. Defualt: `float64`
+- dtype: Datatype of the output array.
   
 Args:  
 
@@ -79,7 +76,7 @@ Args:
 
 
 ```rust
-geomspace[in_dtype: DType, out_dtype: DType = float64](start: SIMD[in_dtype, 1], stop: SIMD[in_dtype, 1], num: Int, endpoint: Bool = 1) -> NDArray[$1]
+geomspace[dtype: DType](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], num: Int, endpoint: Bool = 1) -> NDArray[$0]
 ```  
 Summary  
   
@@ -87,8 +84,7 @@ Generate a NDArray of `num` elements between `start` and `stop` in a geometric s
   
 Parameters:  
 
-- in_dtype: Datatype of the input values.
-- out_dtype: Datatype of the output NDArray. Defualt: `float64`
+- dtype: Datatype of the input values.
   
 Args:  
 
@@ -228,11 +224,20 @@ Args:
 
 
 ```rust
-diagflat()
+diagflat[dtype: DType](inout v: NDArray[dtype], k: Int = 0) -> NDArray[$0]
 ```  
 Summary  
   
+Generate a 2-D NDArray with the flattened input as the diagonal.  
   
+Parameters:  
+
+- dtype: Datatype of the NDArray elements.
+  
+Args:  
+
+- v: NDArray to be flattened and used as the diagonal.
+- k: Diagonal offset. Default: 0
 
 ## tri
 

@@ -25,6 +25,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shapes.  
+  
 Args:  
 
 - array1: A NDArray.
@@ -98,6 +102,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shapes.  
+  
 Args:  
 
 - array1: A NDArray.
@@ -143,7 +151,7 @@ Args:
 
 
 ```rust
-diff[in_dtype: DType, out_dtype: DType = $0](array: NDArray[in_dtype], n: Int) -> NDArray[$1]
+diff[dtype: DType = float64](array: NDArray[dtype], n: Int) -> NDArray[$0]
 ```  
 Summary  
   
@@ -151,8 +159,7 @@ Compute the n-th order difference of the input array.
   
 Parameters:  
 
-- in_dtype: Input data type.
-- out_dtype: Output data type, defaults to float32. Defualt: `$0`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -174,6 +181,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shapes.  
+  
 Args:  
 
 - array1: A NDArray.
@@ -193,6 +204,10 @@ Parameters:
 
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+  
+Constraints:
+
+Both arrays must have the same shapes.  
   
 Args:  
 
@@ -249,6 +264,10 @@ Parameters:
 
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+  
+Constraints:
+
+Both arrays must have the same shapes.  
   
 Args:  
 
@@ -323,6 +342,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shapes.  
+  
 Args:  
 
 - array1: A NDArray.
@@ -378,6 +401,10 @@ Parameters:
 
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+  
+Constraints:
+
+Both arrays must have the same shapes.  
   
 Args:  
 
@@ -435,6 +462,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shape.  
+  
 Args:  
 
 - array1: A NDArray.
@@ -453,6 +484,10 @@ Parameters:
 
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -475,6 +510,10 @@ Parameters:
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
   
+Constraints:
+
+Both arrays must have the same shapes.  
+  
 Args:  
 
 - array1: A NDArray.
@@ -494,6 +533,10 @@ Parameters:
 
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+  
+Constraints:
+
+Both arrays must have the same shapes.  
   
 Args:  
 
@@ -838,6 +881,10 @@ Parameters:
 
 - dtype: The element type.
 - backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+  
+Constraints:
+
+The array must be either a boolean or integral array.  
   
 Args:  
 

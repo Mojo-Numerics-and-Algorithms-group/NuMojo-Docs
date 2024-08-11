@@ -11,7 +11,7 @@ Cumulative reduction statistics functions for NDArrays
 
 
 ```rust
-cumsum[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+cumsum[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -19,8 +19,7 @@ Sum of all items of an array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -30,7 +29,7 @@ Args:
 
 
 ```rust
-cumprod[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+cumprod[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -38,8 +37,7 @@ Product of all items in an array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -49,7 +47,7 @@ Args:
 
 
 ```rust
-cummean[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+cummean[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -57,8 +55,7 @@ Arithmatic mean of all items of an array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -68,7 +65,7 @@ Args:
 
 
 ```rust
-mode[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+mode[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -76,8 +73,7 @@ Mode of all items of an array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -87,7 +83,7 @@ Args:
 
 
 ```rust
-median[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+median[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -95,8 +91,7 @@ Median value of all items of an array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -106,7 +101,7 @@ Args:
 
 
 ```rust
-maxT[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+maxT[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -114,8 +109,7 @@ Maximum value of a array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -125,7 +119,7 @@ Args:
 
 
 ```rust
-minT[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+minT[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -133,8 +127,7 @@ Minimum value of a array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -144,7 +137,7 @@ Args:
 
 
 ```rust
-cumpvariance[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype], mu: Optional[SIMD[in_dtype, 1]] = #kgen.none) -> SIMD[$1, 1]
+cumpvariance[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = #kgen.none) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -152,8 +145,7 @@ Population variance of a array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type.. Defualt: `float64`
+- dtype: The element type.. Defualt: `float64`
   
 Args:  
 
@@ -164,7 +156,7 @@ Args:
 
 
 ```rust
-cumvariance[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype], mu: Optional[SIMD[in_dtype, 1]] = #kgen.none) -> SIMD[$1, 1]
+cumvariance[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = #kgen.none) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -172,8 +164,7 @@ Variance of a array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -184,7 +175,7 @@ Args:
 
 
 ```rust
-cumpstdev[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype], mu: Optional[SIMD[in_dtype, 1]] = #kgen.none) -> SIMD[$1, 1]
+cumpstdev[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = #kgen.none) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -192,8 +183,7 @@ Population standard deviation of a array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -204,7 +194,7 @@ Args:
 
 
 ```rust
-cumstdev[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype], mu: Optional[SIMD[in_dtype, 1]] = #kgen.none) -> SIMD[$1, 1]
+cumstdev[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = #kgen.none) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -212,8 +202,7 @@ Standard deviation of a array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -224,7 +213,7 @@ Args:
 
 
 ```rust
-amin[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+amin[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -232,8 +221,7 @@ Minimum value of an array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -243,7 +231,7 @@ Args:
 
 
 ```rust
-amax[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> SIMD[$1, 1]
+amax[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -251,8 +239,7 @@ Maximum value of a array.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -262,7 +249,7 @@ Args:
 
 
 ```rust
-mimimum[in_dtype: DType, out_dtype: DType = float64](s1: SIMD[in_dtype, 1], s2: SIMD[in_dtype, 1]) -> SIMD[$1, 1]
+mimimum[dtype: DType = float64](s1: SIMD[dtype, 1], s2: SIMD[dtype, 1]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -270,8 +257,7 @@ Minimum value of two SIMD values.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -282,7 +268,7 @@ Args:
 
 
 ```rust
-maximum[in_dtype: DType, out_dtype: DType = float64](s1: SIMD[in_dtype, 1], s2: SIMD[in_dtype, 1]) -> SIMD[$1, 1]
+maximum[dtype: DType = float64](s1: SIMD[dtype, 1], s2: SIMD[dtype, 1]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -290,8 +276,7 @@ Maximum value of two SIMD values.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -300,7 +285,7 @@ Args:
 
 
 ```rust
-maximum[in_dtype: DType, out_dtype: DType = float64](array1: NDArray[in_dtype], array2: NDArray[in_dtype]) -> NDArray[$1]
+maximum[dtype: DType = float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[$0]
 ```  
 Summary  
   
@@ -308,8 +293,7 @@ Element wise maximum of two arrays.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 
@@ -320,7 +304,7 @@ Args:
 
 
 ```rust
-minimum[in_dtype: DType, out_dtype: DType = float64](array1: NDArray[in_dtype], array2: NDArray[in_dtype]) -> NDArray[$1]
+minimum[dtype: DType = float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[$0]
 ```  
 Summary  
   
@@ -328,8 +312,7 @@ Element wise minimum of two arrays.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 

@@ -11,7 +11,7 @@
 
 
 ```rust
-trapz[in_dtype: DType, out_dtype: DType = float32](y: NDArray[in_dtype], x: NDArray[in_dtype]) -> SIMD[$1, 1]
+trapz[dtype: DType = float64](y: NDArray[dtype], x: NDArray[dtype]) -> SIMD[$0, 1]
 ```  
 Summary  
   
@@ -19,8 +19,11 @@ Compute the integral of y over x using the trapezoidal rule.
   
 Parameters:  
 
-- in_dtype: Input data type.
-- out_dtype: Output data type, defaults to float32. Defualt: `float32`
+- dtype: The element type. Defualt: `float64`
+  
+Constraints:
+
+`x` and `y` must have the same shape. `fdtype` must be a floating-point type if `idtype` is not a floating-point type.  
   
 Args:  
 

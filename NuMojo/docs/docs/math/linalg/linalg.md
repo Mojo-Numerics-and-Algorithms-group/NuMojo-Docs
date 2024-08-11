@@ -11,7 +11,7 @@ Linear Algebra misc. functions
 
 
 ```rust
-cross[in_dtype: DType, out_dtype: DType = float32](array1: NDArray[in_dtype], array2: NDArray[in_dtype]) -> NDArray[$1]
+cross[dtype: DType = float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[$0]
 ```  
 Summary  
   
@@ -19,8 +19,11 @@ Compute the cross product of two arrays.
   
 Parameters:  
 
-- in_dtype
-- out_dtype Defualt: `float32`
+- dtype Defualt: `float64`
+  
+Constraints:
+
+`array1` and `array2` must be of shape (3,).  
   
 Args:  
 

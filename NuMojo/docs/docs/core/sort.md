@@ -67,7 +67,7 @@ Args:
 
 
 ```rust
-binary_sort[in_dtype: DType, out_dtype: DType = float64](array: NDArray[in_dtype]) -> NDArray[$1]
+binary_sort[dtype: DType = float64](array: NDArray[dtype]) -> NDArray[$0]
 ```  
 Summary  
   
@@ -75,8 +75,7 @@ Binary sorting of NDArray.
   
 Parameters:  
 
-- in_dtype: The input element type.
-- out_dtype: The output element type. Defualt: `float64`
+- dtype: The element type. Defualt: `float64`
   
 Args:  
 

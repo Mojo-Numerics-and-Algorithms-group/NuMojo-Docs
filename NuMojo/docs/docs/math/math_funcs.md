@@ -51,6 +51,10 @@ Parameters:
 
 - dtype: The element type.
   
+Constraints:
+
+Both arrays must have the same shape  
+  
 Args:  
 
 - self
@@ -69,6 +73,10 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -111,6 +119,10 @@ Parameters:
 
 - dtype: The element type.
 - func: The SIMD function to to apply.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -159,6 +171,27 @@ Args:
 - self
 - array1
 - array2
+
+#### math_func_compare_array_and_scalar
+
+
+```rust
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+- func
+  
+Args:  
+
+- self
+- array1
+- scalar
 
 #### math_func_is
 
@@ -245,6 +278,10 @@ Parameters:
 
 - dtype: The element type.
   
+Constraints:
+
+Both arrays must have the same shape  
+  
 Args:  
 
 - self
@@ -263,6 +300,10 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -305,6 +346,10 @@ Parameters:
 
 - dtype: The element type.
 - func: The SIMD function to to apply.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -353,6 +398,27 @@ Args:
 - self
 - array1
 - array2
+
+#### math_func_compare_array_and_scalar
+
+
+```rust
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+- func
+  
+Args:  
+
+- self
+- array1
+- scalar
 
 #### math_func_is
 
@@ -439,6 +505,10 @@ Parameters:
 
 - dtype: The element type.
   
+Constraints:
+
+Both arrays must have the same shape  
+  
 Args:  
 
 - self
@@ -457,6 +527,10 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
+  
+Constraints:
+
+Both arrays must have the same shape.  
   
 Args:  
 
@@ -499,6 +573,10 @@ Parameters:
 
 - dtype: The element type.
 - func: The SIMD function to to apply.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -547,6 +625,27 @@ Args:
 - self
 - array1
 - array2
+
+#### math_func_compare_array_and_scalar
+
+
+```rust
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+- func
+  
+Args:  
+
+- self
+- array1
+- scalar
 
 #### math_func_is
 
@@ -633,6 +732,10 @@ Parameters:
 
 - dtype: The element type.
   
+Constraints:
+
+Both arrays must have the same shape  
+  
 Args:  
 
 - self
@@ -651,6 +754,10 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
+  
+Constraints:
+
+Both arrays must have the same shape.  
   
 Args:  
 
@@ -693,6 +800,10 @@ Parameters:
 
 - dtype: The element type.
 - func: The SIMD function to to apply.
+  
+Constraints:
+
+Both arrays must have the same shape.  
   
 Args:  
 
@@ -741,6 +852,27 @@ Args:
 - self
 - array1
 - array2
+
+#### math_func_compare_array_and_scalar
+
+
+```rust
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+- func
+  
+Args:  
+
+- self
+- array1
+- scalar
 
 #### math_func_is
 
@@ -827,6 +959,10 @@ Parameters:
 
 - dtype: The element type.
   
+Constraints:
+
+Both arrays must have the same shape.  
+  
 Args:  
 
 - self
@@ -845,6 +981,10 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
+  
+Constraints:
+
+Both arrays must have the same shape.  
   
 Args:  
 
@@ -887,6 +1027,10 @@ Parameters:
 
 - dtype: The element type.
 - func: The SIMD function to to apply.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -935,6 +1079,27 @@ Args:
 - self
 - array1
 - array2
+
+#### math_func_compare_array_and_scalar
+
+
+```rust
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+- func
+  
+Args:  
+
+- self
+- array1
+- scalar
 
 #### math_func_is
 
@@ -1021,6 +1186,10 @@ Parameters:
 
 - dtype: The element type.
   
+Constraints:
+
+Both arrays must have the same shape  
+  
 Args:  
 
 - self
@@ -1039,6 +1208,10 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -1081,6 +1254,10 @@ Parameters:
 
 - dtype: The element type.
 - func: The SIMD function to to apply.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -1129,6 +1306,27 @@ Args:
 - self
 - array1
 - array2
+
+#### math_func_compare_array_and_scalar
+
+
+```rust
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+- func
+  
+Args:  
+
+- self
+- array1
+- scalar
 
 #### math_func_is
 
@@ -1215,6 +1413,10 @@ Parameters:
 
 - dtype: The element type.
   
+Constraints:
+
+Both arrays must have the same shape  
+  
 Args:  
 
 - self
@@ -1233,6 +1435,10 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -1275,6 +1481,10 @@ Parameters:
 
 - dtype: The element type.
 - func: The SIMD function to to apply.
+  
+Constraints:
+
+Both arrays must have the same shape  
   
 Args:  
 
@@ -1323,6 +1533,27 @@ Args:
 - self
 - array1
 - array2
+
+#### math_func_compare_array_and_scalar
+
+
+```rust
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+- func
+  
+Args:  
+
+- self
+- array1
+- scalar
 
 #### math_func_is
 
