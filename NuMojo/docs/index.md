@@ -1,14 +1,15 @@
 # NuMojo
 
-NuNojo is an numerics library for [Mojo](https://www.modular.com/mojo) similiar to [numpy](https://numpy.org/) for Python.
-
+NuMojo is an numerics library for [Mojo](https://www.modular.com/mojo) similiar to [numpy](https://numpy.org/) for Python.
 
 ## Installation
 [Installation](./getting_started/install.md)
 
-## Examples
+<!-- ## Examples -->
 
 ## Documentation
 [Documenation](./docs/)
 
-# This site is a work in progress.
+## Contibuting to NuMojo
+
+If you would like to contribute to either [NuMojo](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo) or [its documentation](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo-Docs) Pull requests are welcome.
