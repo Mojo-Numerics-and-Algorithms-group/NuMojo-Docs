@@ -3,12 +3,12 @@ from mdutils.mdutils import MdUtils
 from mdutils import Html
 import os
 from pathlib import Path
-docs = json.load(open("docs.json"))
+docs = json.load(open("../NuMojo/docs.json"))
 
 def doc_func(func,mdfile:MdUtils,top_header=2):
     mdfile.new_header(top_header,f"""{func["name"]}""")
     for overload in func["overloads"]:
-        mdfile.insert_code(f"""{overload["signature"]}""",language="rust")
+        mdfile.insert_code(f"""{overload["signature"]}""",language="Mojo")
         mdfile.new_line("""Summary""")
         mdfile.new_line()
         mdfile.new_line(overload["summary"])
@@ -60,6 +60,9 @@ def doc_func(func,mdfile:MdUtils,top_header=2):
                     default = ""
                 arglist.append(name + description + default)
             mdfile.new_list(arglist)
+            if overload["description"]:
+                mdfile.new_paragraph(f"""{overload["description"]}""")
+
 
 def doc_alias(alias,mdfile:MdUtils,top_header=2):
     if not alias:

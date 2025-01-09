@@ -18,6 +18,7 @@ A trait that defines backends for calculations in the rest of the library.
   
 
 - AnyType
+- UnknownDestructibility
   
 
 ### Functions
@@ -25,8 +26,8 @@ A trait that defines backends for calculations in the rest of the library.
 #### __init__
 
 
-```rust
-__init__(inout self: T, /)
+```Mojo
+__init__(out self: _Self)
 ```  
 Summary  
   
@@ -39,8 +40,8 @@ Args:
 #### math_func_fma
 
 
-```rust
-math_func_fma[dtype: DType](self: T, array1: NDArray[dtype], array2: NDArray[dtype], array3: NDArray[dtype]) -> NDArray[$0]
+```Mojo
+math_func_fma[dtype: DType](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype], array3: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
   
@@ -62,8 +63,8 @@ Args:
 - array3: A NDArray.
 
 
-```rust
-math_func_fma[dtype: DType](self: T, array1: NDArray[dtype], array2: NDArray[dtype], simd: SIMD[dtype, 1]) -> NDArray[$0]
+```Mojo
+math_func_fma[dtype: DType](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype], simd: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
   
@@ -87,8 +88,8 @@ Args:
 #### math_func_1_array_in_one_array_out
 
 
-```rust
-math_func_1_array_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1]) -> SIMD[$0, $1]](self: T, array: NDArray[dtype]) -> NDArray[$0]
+```Mojo
+math_func_1_array_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1]) -> SIMD[$0, $1]](self: _Self, array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
   
@@ -107,8 +108,8 @@ Args:
 #### math_func_2_array_in_one_array_out
 
 
-```rust
-math_func_2_array_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[$0, $1]](self: T, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[$0]
+```Mojo
+math_func_2_array_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[$0, $1]](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
   
@@ -132,8 +133,8 @@ Args:
 #### math_func_1_array_1_scalar_in_one_array_out
 
 
-```rust
-math_func_1_array_1_scalar_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[$0, $1]](self: T, array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[$0]
+```Mojo
+math_func_1_array_1_scalar_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[$0, $1]](self: _Self, array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
   
@@ -157,8 +158,8 @@ Args:
 #### math_func_compare_2_arrays
 
 
-```rust
-math_func_compare_2_arrays[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: T, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
+```Mojo
+math_func_compare_2_arrays[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -182,8 +183,8 @@ Args:
 #### math_func_compare_array_and_scalar
 
 
-```rust
-math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: T, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
+```Mojo
+math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: _Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -207,8 +208,8 @@ Args:
 #### math_func_is
 
 
-```rust
-math_func_is[dtype: DType, func: fn[DType, Int](SIMD[$0, $1]) -> SIMD[bool, $1]](self: T, array: NDArray[dtype]) -> NDArray[bool]
+```Mojo
+math_func_is[dtype: DType, func: fn[DType, Int](SIMD[$0, $1]) -> SIMD[bool, $1]](self: _Self, array: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
   

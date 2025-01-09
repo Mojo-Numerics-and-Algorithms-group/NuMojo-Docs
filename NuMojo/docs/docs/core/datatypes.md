@@ -13,6 +13,7 @@ Datatypes Module - Implements datatypes aliases, conversions
 `i16`: Data type alias for DType.int16  
 `i32`: Data type alias for DType.int32  
 `i64`: Data type alias for DType.int64  
+`isize`: Data type alias for DType.index  
 `u8`: Data type alias for DType.uint8  
 `u16`: Data type alias for DType.uint16  
 `u32`: Data type alias for DType.uint32  

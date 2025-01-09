@@ -7,622 +7,6 @@
 ##  Module Summary
   
 Implements N-Dimensional Array
-## NDArrayShape
-
-### NDArrayShape Summary
-  
-  
-Implements the NDArrayShape.  
-
-### Parent Traits
-  
-
-- AnyType
-- Stringable
-
-### Fields
-  
-  
-* ndsize `Int`  
-    - Total no of elements in the corresponding array.  
-* ndshape `DTypePointer[dtype, 0]`  
-    - Shape of the corresponding array.  
-* ndlen `Int`  
-    - Length of ndshape.  
-
-### Functions
-
-#### __init__
-
-
-```rust
-__init__(inout self: Self, *shape: Int)
-```  
-Summary  
-  
-Initializes the NDArrayShape with variable shape dimensions.  
-  
-Args:  
-
-- self
-- \*shape: Variable number of integers representing the shape dimensions.
-
-
-```rust
-__init__(inout self: Self, *shape: Int, *, size: Int)
-```  
-Summary  
-  
-Initializes the NDArrayShape with variable shape dimensions and a specified size.  
-  
-Args:  
-
-- self
-- \*shape: Variable number of integers representing the shape dimensions.
-- size: The total number of elements in the array.
-
-
-```rust
-__init__(inout self: Self, shape: List[Int])
-```  
-Summary  
-  
-Initializes the NDArrayShape with a list of shape dimensions.  
-  
-Args:  
-
-- self
-- shape: A list of integers representing the shape dimensions.
-
-
-```rust
-__init__(inout self: Self, shape: List[Int], size: Int)
-```  
-Summary  
-  
-Initializes the NDArrayShape with a list of shape dimensions and a specified size.  
-  
-Args:  
-
-- self
-- shape: A list of integers representing the shape dimensions.
-- size: The specified size of the NDArrayShape.
-
-
-```rust
-__init__(inout self: Self, shape: VariadicList[Int])
-```  
-Summary  
-  
-Initializes the NDArrayShape with a list of shape dimensions.  
-  
-Args:  
-
-- self
-- shape: A list of integers representing the shape dimensions.
-
-
-```rust
-__init__(inout self: Self, shape: VariadicList[Int], size: Int)
-```  
-Summary  
-  
-Initializes the NDArrayShape with a list of shape dimensions and a specified size.  
-  
-Args:  
-
-- self
-- shape: A list of integers representing the shape dimensions.
-- size: The specified size of the NDArrayShape.
-
-
-```rust
-__init__(inout self: Self, shape: NDArrayShape[dtype])
-```  
-Summary  
-  
-Initializes the NDArrayShape with another NDArrayShape.  
-  
-Args:  
-
-- self
-- shape: Another NDArrayShape to initialize from.
-
-#### __getitem__
-
-
-```rust
-__getitem__(self: Self, index: Int) -> Int
-```  
-Summary  
-  
-Get shape at specified index.  
-  
-Args:  
-
-- self
-- index
-
-#### __setitem__
-
-
-```rust
-__setitem__(inout self: Self, index: Int, val: Int)
-```  
-Summary  
-  
-Set shape at specified index.  
-  
-Args:  
-
-- self
-- index
-- val
-
-#### __eq__
-
-
-```rust
-__eq__(self: Self, other: Self) -> Bool
-```  
-Summary  
-  
-Check if two arrayshapes have identical dimensions.  
-  
-Args:  
-
-- self
-- other
-
-#### __ne__
-
-
-```rust
-__ne__(self: Self, other: Self) -> Bool
-```  
-Summary  
-  
-Check if two arrayshapes don't have identical dimensions.  
-  
-Args:  
-
-- self
-- other
-
-#### __contains__
-
-
-```rust
-__contains__(self: Self, val: Int) -> Bool
-```  
-Summary  
-  
-Check if any of the dimensions are equal to a value.  
-  
-Args:  
-
-- self
-- val
-
-#### size
-
-
-```rust
-size(self: Self) -> Int
-```  
-Summary  
-  
-Get Size of array described by arrayshape.  
-  
-Args:  
-
-- self
-
-#### len
-
-
-```rust
-len(self: Self) -> Int
-```  
-Summary  
-  
-Get number of dimensions of the array described by arrayshape.  
-  
-Args:  
-
-- self
-
-#### load
-
-
-```rust
-load[width: Int = 1](self: Self, index: Int) -> SIMD[dtype, $0]
-```  
-Summary  
-  
-SIMD load dimensional information.  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- index
-
-#### store
-
-
-```rust
-store[width: Int = 1](inout self: Self, index: Int, val: SIMD[dtype, width])
-```  
-Summary  
-  
-SIMD store dimensional information.  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- index
-- val
-
-#### load_int
-
-
-```rust
-load_int(self: Self, index: Int) -> Int
-```  
-Summary  
-  
-SIMD load dimensional information.  
-  
-Args:  
-
-- self
-- index
-
-#### store_int
-
-
-```rust
-store_int(inout self: Self, index: Int, val: Int)
-```  
-Summary  
-  
-SIMD store dimensional information.  
-  
-Args:  
-
-- self
-- index
-- val
-
-## NDArrayStride
-
-### NDArrayStride Summary
-  
-  
-Implements the NDArrayStride.  
-
-### Parent Traits
-  
-
-- AnyType
-- Stringable
-
-### Fields
-  
-  
-* ndoffset `Int`  
-* ndstride `DTypePointer[dtype, 0]`  
-* ndlen `Int`  
-
-### Functions
-
-#### __init__
-
-
-```rust
-__init__(inout self: Self, *stride: Int, *, offset: Int = 0)
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- \*stride
-- offset Default: 0
-
-
-```rust
-__init__(inout self: Self, stride: List[Int], offset: Int = 0)
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- stride
-- offset Default: 0
-
-
-```rust
-__init__(inout self: Self, stride: VariadicList[Int], offset: Int = 0)
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- stride
-- offset Default: 0
-
-
-```rust
-__init__(inout self: Self, stride: NDArrayStride[dtype])
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- stride
-
-
-```rust
-__init__(inout self: Self, stride: NDArrayStride[dtype], offset: Int = 0)
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- stride
-- offset Default: 0
-
-
-```rust
-__init__(inout self: Self, *shape: Int, *, offset: Int = 0, order: String = "C")
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- \*shape
-- offset Default: 0
-- order Default: "C"
-
-
-```rust
-__init__(inout self: Self, shape: List[Int], offset: Int = 0, order: String = "C")
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- shape
-- offset Default: 0
-- order Default: "C"
-
-
-```rust
-__init__(inout self: Self, shape: VariadicList[Int], offset: Int = 0, order: String = "C")
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- shape
-- offset Default: 0
-- order Default: "C"
-
-
-```rust
-__init__(inout self: Self, owned shape: NDArrayShape[dtype], offset: Int = 0, order: String = "C")
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- shape
-- offset Default: 0
-- order Default: "C"
-
-#### __getitem__
-
-
-```rust
-__getitem__(self: Self, index: Int) -> Int
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- index
-
-#### __setitem__
-
-
-```rust
-__setitem__(inout self: Self, index: Int, val: Int)
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- index
-- val
-
-#### __eq__
-
-
-```rust
-__eq__(self: Self, other: Self) -> Bool
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- other
-
-#### __ne__
-
-
-```rust
-__ne__(self: Self, other: Self) -> Bool
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- other
-
-#### __contains__
-
-
-```rust
-__contains__(self: Self, val: Int) -> Bool
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- val
-
-#### len
-
-
-```rust
-len(self: Self) -> Int
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-
-#### load
-
-
-```rust
-load[width: Int = 1](self: Self, index: Int) -> SIMD[dtype, $0]
-```  
-Summary  
-  
-  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- index
-
-#### store
-
-
-```rust
-store[width: Int = 1](inout self: Self, index: Int, val: SIMD[dtype, width])
-```  
-Summary  
-  
-  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- index
-- val
-
-#### load_unsafe
-
-
-```rust
-load_unsafe[width: Int = 1](self: Self, index: Int) -> Int
-```  
-Summary  
-  
-  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- index
-
-#### store_unsafe
-
-
-```rust
-store_unsafe[width: Int = 1](inout self: Self, index: Int, val: SIMD[dtype, width])
-```  
-Summary  
-  
-  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- index
-- val
-
 ## NDArray
 
 ### NDArray Summary
@@ -641,23 +25,25 @@ The N-dimensional array (NDArray).
 - Representable
 - Sized
 - Stringable
+- UnknownDestructibility
+- Writable
 
 ### Aliases
   
-`simd_width`: Vector size of the data type.
+`width`: Vector size of the data type.
 ### Fields
   
   
-* data `DTypePointer[dtype, 0]`  
-    - Data buffer of the items in the NDArray.  
 * ndim `Int`  
     - Number of Dimensions.  
-* ndshape `NDArrayShape[int32]`  
+* shape `NDArrayShape`  
     - Size and shape of NDArray.  
-* stride `NDArrayStride[int32]`  
+* size `Int`  
+    - Size of NDArray.  
+* strides `NDArrayStrides`  
     - Contains offset, strides.  
-* coefficient `NDArrayStride[int32]`  
-    - Contains offset, coefficient.  
+* coefficient `NDArrayStrides`  
+    - Contains offset, coefficients for slicing.  
 * datatype `DType`  
     - The datatype of memory.  
 * order `String`  
@@ -668,157 +54,53 @@ The N-dimensional array (NDArray).
 #### __init__
 
 
-```rust
-__init__(inout self: Self, *shape: Int, *, random: Bool = 0, order: String = "C")
+```Mojo
+__init__(out self, shape: NDArrayShape, order: String = String("C"))
 ```  
 Summary  
   
-NDArray initialization for variadic shape.  
+Initialize an NDArray with given shape.  
   
 Args:  
 
 - self
-- \*shape: Variadic shape.
-- random: Set the values randomly. Default: 0
-- order: Memory order C or F. Default: "C"
+- shape: Variadic shape.
+- order: Memory order C or F. Default: String("C")
 
 
-```rust
-__init__(inout self: Self, shape: List[Int], random: Bool = 0, order: String = "C")
+The memory is not filled with values.
+
+
+```Mojo
+__init__(out self, shape: List[Int], order: String = String("C"))
 ```  
 Summary  
   
-NDArray initialization for list shape.  
-  
-Args:  
-
-- self
-- shape: List of shape.
-- random: Set the values randomly. Default: 0
-- order: Memory order C or F. Default: "C"
-
-
-```rust
-__init__(inout self: Self, shape: VariadicList[Int], random: Bool = 0, order: String = "C")
-```  
-Summary  
-  
-NDArray initialization for variadic shape.  
-  
-Args:  
-
-- self
-- shape: Variadic List shape.
-- random: Set the values randomly. Default: 0
-- order: Memory order C or F. Default: "C"
-
-
-```rust
-__init__(inout self: Self, *shape: Int, *, fill: SIMD[dtype, 1], order: String = "C")
-```  
-Summary  
-  
-NDArray initialization for variadic shape with option to fill.  
-  
-Args:  
-
-- self
-- \*shape: Variadic shape.
-- fill: Set all the values to this.
-- order: Memory order C or F. Default: "C"
-
-
-```rust
-__init__(inout self: Self, shape: List[Int], fill: SIMD[dtype, 1], order: String = "C")
-```  
-Summary  
-  
-NDArray initialization for variadic shape with option to fill.  
+(Overload) Initialize an NDArray with given shape (list of integers).  
   
 Args:  
 
 - self
 - shape: List of shape.
-- fill: Set all the values to this.
-- order: Memory order C or F. Default: "C"
+- order: Memory order C or F. Default: String("C")
 
 
-```rust
-__init__(inout self: Self, shape: VariadicList[Int], fill: SIMD[dtype, 1], order: String = "C")
+```Mojo
+__init__(out self, shape: VariadicList[Int], order: String = String("C"))
 ```  
 Summary  
   
-NDArray initialization for List of shape with option to fill.  
+(Overload) Initialize an NDArray with given shape (variadic list of integers).  
   
 Args:  
 
 - self
 - shape: Variadic List of shape.
-- fill: Set all the values to this.
-- order: Memory order C or F. Default: "C"
+- order: Memory order C or F. Default: String("C")
 
 
-```rust
-__init__(inout self: Self, shape: NDArrayShape[dtype], random: Bool = 0, order: String = "C")
-```  
-Summary  
-  
-NDArray initialization for NDArrayShape.  
-  
-Args:  
-
-- self
-- shape: Variadic shape.
-- random: Set all the values randomly. Default: 0
-- order: Memory order C or F. Default: "C"
-
-
-```rust
-__init__(inout self: Self, shape: NDArrayShape[dtype], fill: SIMD[dtype, 1], order: String = "C")
-```  
-Summary  
-  
-NDArray initialization for NDArrayShape with option to fill.  
-  
-Args:  
-
-- self
-- shape: Variadic shape.
-- fill: Set all the the values to this.
-- order: Memory order C or F. Default: "C"
-
-
-```rust
-__init__(inout self: Self, data: List[SIMD[dtype, 1]], shape: List[Int], order: String = "C")
-```  
-Summary  
-  
-NDArray initialization from list of data.  
-  
-Args:  
-
-- self
-- data: List of data.
-- shape: List of shape.
-- order: Memory order C or F. Default: "C"
-
-
-```rust
-__init__(inout self: Self, text: String, order: String = "C")
-```  
-Summary  
-  
-NDArray initialization from string representation of an ndarray. The shape can be inferred from the string representation. The literals will be casted to the dtype of the NDArray.  
-  
-Args:  
-
-- self
-- text: String representation of an ndarray.
-- order: Memory order C or F. Default: "C"
-
-
-```rust
-__init__(inout self: Self, ndim: Int, offset: Int, size: Int, shape: List[Int], strides: List[Int], coefficient: List[Int], order: String = "C")
+```Mojo
+__init__(out self, ndim: Int, offset: Int, size: Int, shape: List[Int], strides: List[Int], coefficient: List[Int], order: String = String("C"))
 ```  
 Summary  
   
@@ -833,11 +115,11 @@ Args:
 - shape
 - strides
 - coefficient
-- order Default: "C"
+- order Default: String("C")
 
 
-```rust
-__init__(inout self: Self, data: DTypePointer[dtype, 0], ndim: Int, offset: Int, shape: List[Int], strides: List[Int], coefficient: List[Int], order: String = "C")
+```Mojo
+__init__(out self, data: UnsafePointer[SIMD[dtype, 1]], ndim: Int, offset: Int, shape: List[Int], strides: List[Int], coefficient: List[Int], order: String = String("C"))
 ```  
 Summary  
   
@@ -852,13 +134,13 @@ Args:
 - shape
 - strides
 - coefficient
-- order Default: "C"
+- order Default: String("C")
 
 #### __copyinit__
 
 
-```rust
-__copyinit__(inout self: Self, other: Self)
+```Mojo
+__copyinit__(out self, other: Self)
 ```  
 Summary  
   
@@ -872,8 +154,8 @@ Args:
 #### __moveinit__
 
 
-```rust
-__moveinit__(inout self: Self, owned existing: Self)
+```Mojo
+__moveinit__(out self, owned existing: Self)
 ```  
 Summary  
   
@@ -887,8 +169,8 @@ Args:
 #### __del__
 
 
-```rust
-__del__(owned self: Self)
+```Mojo
+__del__(owned self)
 ```  
 Summary  
   
@@ -901,8 +183,8 @@ Args:
 #### __bool__
 
 
-```rust
-__bool__(self: Self) -> Bool
+```Mojo
+__bool__(self) -> Bool
 ```  
 Summary  
   
@@ -915,12 +197,12 @@ Args:
 #### __getitem__
 
 
-```rust
-__getitem__(self: Self, idx: Int) -> Self
+```Mojo
+__getitem__(self, idx: Int) -> Self
 ```  
 Summary  
   
-Retreive a slice of the array corrisponding to the index at the first dimension.  
+Retreive a slice of the array corresponding to the index at the first dimension.  
   
 Args:  
 
@@ -928,8 +210,24 @@ Args:
 - idx
 
 
-```rust
-__getitem__(self: Self, owned *slices: Slice) -> Self
+Example:
+    `arr[1]` returns the second row of the array.
+
+```Mojo
+__getitem__(self, index: Idx) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Set the value at the index list.  
+  
+Args:  
+
+- self
+- index
+
+
+```Mojo
+__getitem__(self, owned *slices: Slice) -> Self
 ```  
 Summary  
   
@@ -941,8 +239,11 @@ Args:
 - \*slices
 
 
-```rust
-__getitem__(self: Self, owned slices: List[Slice]) -> Self
+Example:
+    `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).
+
+```Mojo
+__getitem__(self, owned slice_list: List[Slice]) -> Self
 ```  
 Summary  
   
@@ -951,11 +252,14 @@ Retreive slices of an array from list of slices.
 Args:  
 
 - self
-- slices
+- slice_list
 
 
-```rust
-__getitem__(self: Self, owned *slices: Variant[Slice, Int]) -> Self
+Example:
+    `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).
+
+```Mojo
+__getitem__(self, owned *slices: Variant[Slice, Int]) -> Self
 ```  
 Summary  
   
@@ -967,8 +271,169 @@ Args:
 - \*slices: A series of either Slice or Int.
 
 
-```rust
-__getitem__(self: Self, index: List[Int]) -> Self
+A decrease of dimensions may or may not happen when `__getitem__` is
+called on an ndarray. An ndarray of X-D array can become Y-D array after
+`__getitem__` where `Y <= X`.
+
+Whether the dimension decerases or not depends on:
+1. What types of arguments are passed into `__getitem__`.
+2. The number of arguments that are passed in `__getitem__`.
+
+PRINCIPAL: The number of dimensions to be decreased is determined by
+the number of `Int` passed in `__getitem__`.
+
+For example, `A` is a 10x10x10 ndarray (3-D). Then,
+
+- `A[1, 2, 3]` leads to a 0-D array (scalar), since there are 3 integers.
+- `A[1, 2]` leads to a 1-D array (vector), since there are 2 integers,
+so the dimension decreases by 2.
+- `A[1]` leads to a 2-D array (matrix), since there is 1 integer, so the
+dimension decreases by 1.
+
+The number of dimensions will not decrease when Slice is passed in
+`__getitem__` or no argument is passed in for a certain dimension
+(it is an implicit slide and a slide of all items will be used).
+
+Take the same example `A` with 10x10x10 in shape. Then,
+
+- `A[1:4, 2:5, 3:6]`, leads to a 3-D array (no decrease in dimension),
+since there are 3 slices.
+- `A[2:8]`, leads to a 3-D array (no decrease in dimension), since there
+are 1 explicit slice and 2 implicit slices.
+
+When there is a mixture of int and slices passed into `__getitem__`,
+the number of integers will be the number of dimensions to be decreased.
+Example,
+
+- `A[1:4, 2, 2]`, leads to a 1-D array (vector), since there are 2
+integers, so the dimension decreases by 2.
+
+Note that, even though a slice contains one row, it does not reduce the
+dimensions. Example,
+
+- `A[1:2, 2:3, 3:4]`, leads to a 3-D array (no decrease in dimension),
+since there are 3 slices.
+
+Note that, when the number of integers equals to the number of
+dimensions, the final outcome is an 0-D array instead of a number.
+The user has to upack the 0-D array with the method`A.item(0)` to get the
+corresponding number.
+This behavior is different from numpy where the latter returns a number.
+
+More examples for 1-D, 2-D, and 3-D arrays.
+
+```console
+A is a matrix
+[[      -128    -95     65      -11     ]
+[      8       -72     -116    45      ]
+[      45      111     -30     4       ]
+[      84      -120    -115    7       ]]
+2-D array  Shape: [4, 4]  DType: int8
+
+A[0]
+[       -128    -95     65      -11     ]
+1-D array  Shape: [4]  DType: int8
+
+A[0, 1]
+-95
+0-D array  Shape: [0]  DType: int8
+
+A[Slice(1,3)]
+[[      8       -72     -116    45      ]
+[      45      111     -30     4       ]]
+2-D array  Shape: [2, 4]  DType: int8
+
+A[1, Slice(2,4)]
+[       -116    45      ]
+1-D array  Shape: [2]  DType: int8
+
+A[Slice(1,3), Slice(1,3)]
+[[      -72     -116    ]
+[      111     -30     ]]
+2-D array  Shape: [2, 2]  DType: int8
+
+A.item(0,1) as Scalar
+-95
+
+==============================
+A is a vector
+[       43      -127    -30     -111    ]
+1-D array  Shape: [4]  DType: int8
+
+A[0]
+43
+0-D array  Shape: [0]  DType: int8
+
+A[Slice(1,3)]
+[       -127    -30     ]
+1-D array  Shape: [2]  DType: int8
+
+A.item(0) as Scalar
+43
+
+==============================
+A is a 3darray
+[[[     -22     47      22      110     ]
+[     88      6       -105    39      ]
+[     -22     51      105     67      ]
+[     -61     -116    60      -44     ]]
+[[     33      65      125     -35     ]
+[     -65     123     57      64      ]
+[     38      -110    33      98      ]
+[     -59     -17     68      -6      ]]
+[[     -68     -58     -37     -86     ]
+[     -4      101     104     -113    ]
+[     103     1       4       -47     ]
+[     124     -2      -60     -105    ]]
+[[     114     -110    0       -30     ]
+[     -58     105     7       -10     ]
+[     112     -116    66      69      ]
+[     83      -96     -124    48      ]]]
+3-D array  Shape: [4, 4, 4]  DType: int8
+
+A[0]
+[[      -22     47      22      110     ]
+[      88      6       -105    39      ]
+[      -22     51      105     67      ]
+[      -61     -116    60      -44     ]]
+2-D array  Shape: [4, 4]  DType: int8
+
+A[0, 1]
+[       88      6       -105    39      ]
+1-D array  Shape: [4]  DType: int8
+
+A[0, 1, 2]
+-105
+0-D array  Shape: [0]  DType: int8
+
+A[Slice(1,3)]
+[[[     33      65      125     -35     ]
+[     -65     123     57      64      ]
+[     38      -110    33      98      ]
+[     -59     -17     68      -6      ]]
+[[     -68     -58     -37     -86     ]
+[     -4      101     104     -113    ]
+[     103     1       4       -47     ]
+[     124     -2      -60     -105    ]]]
+3-D array  Shape: [2, 4, 4]  DType: int8
+
+A[1, Slice(2,4)]
+[[      38      -110    33      98      ]
+[      -59     -17     68      -6      ]]
+2-D array  Shape: [2, 4]  DType: int8
+
+A[Slice(1,3), Slice(1,3), 2]
+[[      57      33      ]
+[      104     4       ]]
+2-D array  Shape: [2, 2]  DType: int8
+
+A.item(0,1,2) as Scalar
+-105
+```
+
+
+```Mojo
+__getitem__(self, index: List[Int]) -> Self
 ```  
 Summary  
   
@@ -980,8 +445,69 @@ Args:
 - index: List[Int].
 
 
-```rust
-__getitem__(self: Self, index: NDArray[index]) -> Self
+It always gets the first dimension.
+
+Example:
+```console
+> var A = nm.NDArray[nm.i8](3,random=True)
+> print(A)
+[       14      97      -59     ]
+1-D array  Shape: [3]  DType: int8
+>
+> print(A[List[Int](2,1,0,1,2)])
+[       -59     97      14      97      -59     ]
+1-D array  Shape: [5]  DType: int8
+>
+> var B = nm.NDArray[nm.i8](3, 3,random=True)
+> print(B)
+[[      -4      112     -94     ]
+[      -48     -40     66      ]
+[      -2      -94     -18     ]]
+2-D array  Shape: [3, 3]  DType: int8
+>
+> print(B[List[Int](2,1,0,1,2)])
+[[      -2      -94     -18     ]
+[      -48     -40     66      ]
+[      -4      112     -94     ]
+[      -48     -40     66      ]
+[      -2      -94     -18     ]]
+2-D array  Shape: [5, 3]  DType: int8
+>
+> var C = nm.NDArray[nm.i8](3, 3, 3, random=True)
+> print(C)
+[[[     -126    -88     -79     ]
+[     14      78      99      ]
+[     -32     3       -42     ]]
+[[     56      -45     -71     ]
+[     -13     18      -102    ]
+[     4       83      26      ]]
+[[     61      -73     86      ]
+[     -125    -84     66      ]
+[     32      21      53      ]]]
+3-D array  Shape: [3, 3, 3]  DType: int8
+>
+> print(C[List[Int](2,1,0,1,2)])
+[[[     61      -73     86      ]
+[     -125    -84     66      ]
+[     32      21      53      ]]
+[[     56      -45     -71     ]
+[     -13     18      -102    ]
+[     4       83      26      ]]
+[[     -126    -88     -79     ]
+[     14      78      99      ]
+[     -32     3       -42     ]]
+[[     56      -45     -71     ]
+[     -13     18      -102    ]
+[     4       83      26      ]]
+[[     61      -73     86      ]
+[     -125    -84     66      ]
+[     32      21      53      ]]]
+3-D array  Shape: [5, 3, 3]  DType: int8
+```
+
+
+```Mojo
+__getitem__(self, index: NDArray[index]) -> Self
 ```  
 Summary  
   
@@ -993,51 +519,66 @@ Args:
 - index
 
 
-```rust
-__getitem__(self: Self, mask: NDArray[bool]) -> Self
+Refer to `__getitem__(self, index: List[Int])`.
+
+Example:
+```console
+> var X = nm.NDArray[nm.i8](3,random=True)
+> print(X)
+[       32      21      53      ]
+1-D array  Shape: [3]  DType: int8
+> print(X.argsort())
+[       1       0       2       ]
+1-D array  Shape: [3]  DType: index
+> print(X[X.argsort()])
+[       21      32      53      ]
+1-D array  Shape: [3]  DType: int8
+```
+
+```Mojo
+__getitem__(self, mask: NDArray[bool]) -> Self
 ```  
 Summary  
   
-Get items of array corrisponding to a mask.  
+Get items of array corresponding to a mask.  
   
 Args:  
 
 - self
 - mask: NDArray with Dtype.bool.
 
+
+Example:
+    ```
+    var A = numojo.core.NDArray[numojo.i16](6, random=True)
+    var mask = A > 0
+    print(A)
+    print(mask)
+    print(A[mask])
+    ```
+
 #### __setitem__
 
 
-```rust
-__setitem__(inout self: Self, index: Int, val: SIMD[dtype, 1])
+```Mojo
+__setitem__(mut self, idx: Int, val: Self)
 ```  
 Summary  
   
-Set the value of a single index.  
+Set a slice of array with given array.  
   
 Args:  
 
 - self
-- index
+- idx
 - val
 
 
-```rust
-__setitem__(inout self: Self, *index: Int, *, val: SIMD[dtype, 1])
-```  
-Summary  
-  
-Set the value at the index list.  
-  
-Args:  
+Example:
+    `arr[1]` returns the second row of the array.
 
-- self
-- \*index
-- val
-
-
-```rust
-__setitem__(inout self: Self, index: List[Int], val: SIMD[dtype, 1])
+```Mojo
+__setitem__(mut self, index: Idx, val: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -1050,12 +591,46 @@ Args:
 - val
 
 
-```rust
-__setitem__(inout self: Self, index: VariadicList[Int], val: SIMD[dtype, 1])
+```Mojo
+__setitem__(mut self, owned *slices: Slice, *, val: Self)
 ```  
 Summary  
   
-Set the value at the index corisponding to the varaidic list.  
+Retreive slices of an array from variadic slices.  
+  
+Args:  
+
+- self
+- \*slices
+- val
+
+
+Example:
+    `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).
+
+```Mojo
+__setitem__(mut self, owned slices: List[Slice], val: Self)
+```  
+Summary  
+  
+Sets the slices of an array from list of slices and array.  
+  
+Args:  
+
+- self
+- slices
+- val
+
+
+Example:
+    `arr[1:3, 2:4]` returns the corresponding sliced array (2 x 2).
+
+```Mojo
+__setitem__(self, index: NDArray[index], val: NDArray[dtype])
+```  
+Summary  
+  
+Returns the items of the array from an array of indices.  
   
 Args:  
 
@@ -1064,8 +639,24 @@ Args:
 - val
 
 
-```rust
-__setitem__(inout self: Self, mask: NDArray[bool], value: Self)
+Refer to `__getitem__(self, index: List[Int])`.
+
+Example:
+```console
+> var X = nm.NDArray[nm.i8](3,random=True)
+> print(X)
+[       32      21      53      ]
+1-D array  Shape: [3]  DType: int8
+> print(X.argsort())
+[       1       0       2       ]
+1-D array  Shape: [3]  DType: index
+> print(X[X.argsort()])
+[       21      32      53      ]
+1-D array  Shape: [3]  DType: int8
+```
+
+```Mojo
+__setitem__(mut self, mask: NDArray[bool], val: Self)
 ```  
 Summary  
   
@@ -1075,13 +666,23 @@ Args:
 
 - self
 - mask
-- value
+- val
 
+
+Example:
+```
+var A = numojo.core.NDArray[numojo.i16](6, random=True)
+var mask = A > 0
+print(A)
+print(mask)
+A[mask] = 0
+print(A)
+```
 #### __neg__
 
 
-```rust
-__neg__(self: Self) -> Self
+```Mojo
+__neg__(self) -> Self
 ```  
 Summary  
   
@@ -1091,11 +692,13 @@ Args:
 
 - self
 
+
+For bolean use `__invert__`(~)
 #### __pos__
 
 
-```rust
-__pos__(self: Self) -> Self
+```Mojo
+__pos__(self) -> Self
 ```  
 Summary  
   
@@ -1108,8 +711,8 @@ Args:
 #### __invert__
 
 
-```rust
-__invert__(self: Self) -> Self
+```Mojo
+__invert__(self) -> Self
 ```  
 Summary  
   
@@ -1122,8 +725,8 @@ Args:
 #### __lt__
 
 
-```rust
-__lt__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
+```Mojo
+__lt__(self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1135,8 +738,8 @@ Args:
 - other
 
 
-```rust
-__lt__(self: Self, other: Self) -> NDArray[bool]
+```Mojo
+__lt__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1150,8 +753,8 @@ Args:
 #### __le__
 
 
-```rust
-__le__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
+```Mojo
+__le__(self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1163,8 +766,8 @@ Args:
 - other
 
 
-```rust
-__le__(self: Self, other: Self) -> NDArray[bool]
+```Mojo
+__le__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1178,8 +781,8 @@ Args:
 #### __eq__
 
 
-```rust
-__eq__(self: Self, other: Self) -> NDArray[bool]
+```Mojo
+__eq__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1191,8 +794,8 @@ Args:
 - other
 
 
-```rust
-__eq__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
+```Mojo
+__eq__(self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1206,8 +809,8 @@ Args:
 #### __ne__
 
 
-```rust
-__ne__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
+```Mojo
+__ne__(self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1219,8 +822,8 @@ Args:
 - other
 
 
-```rust
-__ne__(self: Self, other: Self) -> NDArray[bool]
+```Mojo
+__ne__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1234,8 +837,8 @@ Args:
 #### __gt__
 
 
-```rust
-__gt__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
+```Mojo
+__gt__(self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1247,8 +850,8 @@ Args:
 - other
 
 
-```rust
-__gt__(self: Self, other: Self) -> NDArray[bool]
+```Mojo
+__gt__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1262,8 +865,8 @@ Args:
 #### __ge__
 
 
-```rust
-__ge__(self: Self, other: SIMD[dtype, 1]) -> NDArray[bool]
+```Mojo
+__ge__(self, other: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1275,8 +878,8 @@ Args:
 - other
 
 
-```rust
-__ge__(self: Self, other: Self) -> NDArray[bool]
+```Mojo
+__ge__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
@@ -1290,8 +893,8 @@ Args:
 #### __add__
 
 
-```rust
-__add__(inout self: Self, other: SIMD[dtype, 1]) -> Self
+```Mojo
+__add__(mut self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1303,8 +906,8 @@ Args:
 - other
 
 
-```rust
-__add__(inout self: Self, other: Self) -> Self
+```Mojo
+__add__(mut self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1318,8 +921,8 @@ Args:
 #### __sub__
 
 
-```rust
-__sub__(self: Self, other: SIMD[dtype, 1]) -> Self
+```Mojo
+__sub__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1331,8 +934,8 @@ Args:
 - other
 
 
-```rust
-__sub__(self: Self, other: Self) -> Self
+```Mojo
+__sub__(self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1346,8 +949,8 @@ Args:
 #### __mul__
 
 
-```rust
-__mul__(self: Self, other: SIMD[dtype, 1]) -> Self
+```Mojo
+__mul__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1359,8 +962,8 @@ Args:
 - other
 
 
-```rust
-__mul__(self: Self, other: Self) -> Self
+```Mojo
+__mul__(self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1374,8 +977,8 @@ Args:
 #### __matmul__
 
 
-```rust
-__matmul__(self: Self, other: Self) -> Self
+```Mojo
+__matmul__(self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1389,8 +992,8 @@ Args:
 #### __truediv__
 
 
-```rust
-__truediv__(self: Self, other: SIMD[dtype, 1]) -> Self
+```Mojo
+__truediv__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1402,8 +1005,8 @@ Args:
 - other
 
 
-```rust
-__truediv__(self: Self, other: Self) -> Self
+```Mojo
+__truediv__(self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1417,8 +1020,8 @@ Args:
 #### __floordiv__
 
 
-```rust
-__floordiv__(self: Self, other: SIMD[dtype, 1]) -> Self
+```Mojo
+__floordiv__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1430,8 +1033,8 @@ Args:
 - other
 
 
-```rust
-__floordiv__(self: Self, other: Self) -> Self
+```Mojo
+__floordiv__(self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1445,8 +1048,8 @@ Args:
 #### __mod__
 
 
-```rust
-__mod__(inout self: Self, other: SIMD[dtype, 1]) -> Self
+```Mojo
+__mod__(mut self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1458,8 +1061,8 @@ Args:
 - other
 
 
-```rust
-__mod__(inout self: Self, other: Self) -> Self
+```Mojo
+__mod__(mut self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1473,8 +1076,8 @@ Args:
 #### __pow__
 
 
-```rust
-__pow__(self: Self, p: Int) -> Self
+```Mojo
+__pow__(self, p: Int) -> Self
 ```  
 Summary  
   
@@ -1486,8 +1089,8 @@ Args:
 - p
 
 
-```rust
-__pow__(self: Self, p: Self) -> Self
+```Mojo
+__pow__(self, p: Self) -> Self
 ```  
 Summary  
   
@@ -1501,8 +1104,8 @@ Args:
 #### __radd__
 
 
-```rust
-__radd__(inout self: Self, rhs: SIMD[dtype, 1]) -> Self
+```Mojo
+__radd__(mut self, rhs: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1516,8 +1119,8 @@ Args:
 #### __rsub__
 
 
-```rust
-__rsub__(self: Self, s: SIMD[dtype, 1]) -> Self
+```Mojo
+__rsub__(self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1531,8 +1134,8 @@ Args:
 #### __rmul__
 
 
-```rust
-__rmul__(self: Self, s: SIMD[dtype, 1]) -> Self
+```Mojo
+__rmul__(self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1546,8 +1149,8 @@ Args:
 #### __rtruediv__
 
 
-```rust
-__rtruediv__(self: Self, s: SIMD[dtype, 1]) -> Self
+```Mojo
+__rtruediv__(self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1561,8 +1164,8 @@ Args:
 #### __rfloordiv__
 
 
-```rust
-__rfloordiv__(self: Self, s: SIMD[dtype, 1]) -> Self
+```Mojo
+__rfloordiv__(self, s: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1576,8 +1179,8 @@ Args:
 #### __rmod__
 
 
-```rust
-__rmod__(inout self: Self, other: SIMD[dtype, 1]) -> Self
+```Mojo
+__rmod__(mut self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
@@ -1591,8 +1194,8 @@ Args:
 #### __iadd__
 
 
-```rust
-__iadd__(inout self: Self, other: SIMD[dtype, 1])
+```Mojo
+__iadd__(mut self, other: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -1604,8 +1207,8 @@ Args:
 - other
 
 
-```rust
-__iadd__(inout self: Self, other: Self)
+```Mojo
+__iadd__(mut self, other: Self)
 ```  
 Summary  
   
@@ -1619,8 +1222,8 @@ Args:
 #### __isub__
 
 
-```rust
-__isub__(inout self: Self, s: SIMD[dtype, 1])
+```Mojo
+__isub__(mut self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -1632,8 +1235,8 @@ Args:
 - s
 
 
-```rust
-__isub__(inout self: Self, s: Self)
+```Mojo
+__isub__(mut self, s: Self)
 ```  
 Summary  
   
@@ -1647,8 +1250,8 @@ Args:
 #### __imul__
 
 
-```rust
-__imul__(inout self: Self, s: SIMD[dtype, 1])
+```Mojo
+__imul__(mut self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -1660,8 +1263,8 @@ Args:
 - s
 
 
-```rust
-__imul__(inout self: Self, s: Self)
+```Mojo
+__imul__(mut self, s: Self)
 ```  
 Summary  
   
@@ -1675,8 +1278,8 @@ Args:
 #### __itruediv__
 
 
-```rust
-__itruediv__(inout self: Self, s: SIMD[dtype, 1])
+```Mojo
+__itruediv__(mut self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -1688,8 +1291,8 @@ Args:
 - s
 
 
-```rust
-__itruediv__(inout self: Self, other: Self)
+```Mojo
+__itruediv__(mut self, other: Self)
 ```  
 Summary  
   
@@ -1703,8 +1306,8 @@ Args:
 #### __ifloordiv__
 
 
-```rust
-__ifloordiv__(inout self: Self, s: SIMD[dtype, 1])
+```Mojo
+__ifloordiv__(mut self, s: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -1716,8 +1319,8 @@ Args:
 - s
 
 
-```rust
-__ifloordiv__(inout self: Self, other: Self)
+```Mojo
+__ifloordiv__(mut self, other: Self)
 ```  
 Summary  
   
@@ -1731,8 +1334,8 @@ Args:
 #### __imod__
 
 
-```rust
-__imod__(inout self: Self, other: SIMD[dtype, 1])
+```Mojo
+__imod__(mut self, other: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -1744,8 +1347,8 @@ Args:
 - other
 
 
-```rust
-__imod__(inout self: Self, other: Self)
+```Mojo
+__imod__(mut self, other: Self)
 ```  
 Summary  
   
@@ -1759,8 +1362,8 @@ Args:
 #### __ipow__
 
 
-```rust
-__ipow__(inout self: Self, p: Int)
+```Mojo
+__ipow__(mut self, p: Int)
 ```  
 Summary  
   
@@ -1771,11 +1374,41 @@ Args:
 - self
 - p
 
-#### get_scalar
+#### set
 
 
-```rust
-get_scalar(self: Self, index: Int) -> SIMD[dtype, 1]
+```Mojo
+set(self, index: Int, val: SIMD[dtype, 1])
+```  
+Summary  
+  
+Linearly retreive a value from the underlying Pointer.  
+  
+Args:  
+
+- self
+- index
+- val
+
+
+Example:
+```console
+> Array.get(15)
+```
+returns the item of index 15 from the array's data buffer.
+
+Not that it is different from `item()` as `get` does not checked
+against C-order or F-order.
+```console
+> # A is a 3x3 matrix, F-order (column-major)
+> A.get(3)  # Row 0, Col 1
+> A.item(3)  # Row 1, Col 0
+```
+#### get
+
+
+```Mojo
+get(self, index: Int) -> SIMD[dtype, 1]
 ```  
 Summary  
   
@@ -1786,11 +1419,176 @@ Args:
 - self
 - index
 
+
+Example:
+```console
+> Array.get(15)
+```
+returns the item of index 15 from the array's data buffer.
+
+Not that it is different from `item()` as `get` does not checked
+against C-order or F-order.
+```console
+> # A is a 3x3 matrix, F-order (column-major)
+> A.get(3)  # Row 0, Col 1
+> A.item(3)  # Row 1, Col 0
+```
+#### __int__
+
+
+```Mojo
+__int__(self) -> Int
+```  
+Summary  
+  
+Get Int representation of the array.  
+  
+Args:  
+
+- self
+
+
+Similar to Numpy, only 0-D arrays or length-1 arrays can be converted to
+scalars.
+
+Example:
+```console
+> var A = NDArray[dtype](6, random=True)
+> print(int(A))
+
+Unhandled exception caught during execution: Only 0-D arrays or length-1 arrays can be converted to scalars
+mojo: error: execution exited with a non-zero result: 1
+
+> var B = NDArray[dtype](1, 1, random=True)
+> print(int(B))
+14
+```
+
+#### __abs__
+
+
+```Mojo
+__abs__(self) -> Self
+```  
+Summary  
+  
+  
+  
+Args:  
+
+- self
+
+#### __str__
+
+
+```Mojo
+__str__(self) -> String
+```  
+Summary  
+  
+Enables str(array).  
+  
+Args:  
+
+- self
+
+#### write_to
+
+
+```Mojo
+write_to[W: Writer](self, mut writer: W)
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- W
+  
+Args:  
+
+- self
+- writer
+
+#### __repr__
+
+
+```Mojo
+__repr__(self) -> String
+```  
+Summary  
+  
+Compute the "official" string representation of NDArray.  
+  
+Args:  
+
+- self
+
+
+Example:
+
+```Mojo
+fn main() raises:
+    var A = NDArray[DType.int8](List[Scalar[DType.int8]](14,97,-59,-4,112,), shape=List[Int](5,))
+    print(repr(A))
+```
+
+It prints what can be used to construct the array itself:
+
+```console
+NDArray[DType.int8](List[Scalar[DType.int8]](14,97,-59,-4,112,), shape=List[Int](5,))
+```
+#### __len__
+
+
+```Mojo
+__len__(self) -> Int
+```  
+Summary  
+  
+  
+  
+Args:  
+
+- self
+
+#### __iter__
+
+
+```Mojo
+__iter__(self) -> _NDArrayIter[self, dtype]
+```  
+Summary  
+  
+Iterate over elements of the NDArray, returning copied value.  
+  
+Args:  
+
+- self
+
+
+Notes:
+    Need to add lifetimes after the new release.
+#### __reversed__
+
+
+```Mojo
+__reversed__(self) -> _NDArrayIter[self, dtype, False]
+```  
+Summary  
+  
+Iterate backwards over elements of the NDArray, returning copied value.  
+  
+Args:  
+
+- self
+
 #### vdot
 
 
-```rust
-vdot(self: Self, other: Self) -> SIMD[dtype, 1]
+```Mojo
+vdot(self, other: Self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
@@ -1804,8 +1602,8 @@ Args:
 #### mdot
 
 
-```rust
-mdot(self: Self, other: Self) -> Self
+```Mojo
+mdot(self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1819,8 +1617,8 @@ Args:
 #### row
 
 
-```rust
-row(self: Self, id: Int) -> Self
+```Mojo
+row(self, id: Int) -> Self
 ```  
 Summary  
   
@@ -1834,8 +1632,8 @@ Args:
 #### col
 
 
-```rust
-col(self: Self, id: Int) -> Self
+```Mojo
+col(self, id: Int) -> Self
 ```  
 Summary  
   
@@ -1849,8 +1647,8 @@ Args:
 #### rdot
 
 
-```rust
-rdot(self: Self, other: Self) -> Self
+```Mojo
+rdot(self, other: Self) -> Self
 ```  
 Summary  
   
@@ -1861,25 +1659,11 @@ Args:
 - self
 - other
 
-#### size
-
-
-```rust
-size(self: Self) -> Int
-```  
-Summary  
-  
-Function to retreive size.  
-  
-Args:  
-
-- self
-
 #### num_elements
 
 
-```rust
-num_elements(self: Self) -> Int
+```Mojo
+num_elements(self) -> Int
 ```  
 Summary  
   
@@ -1889,25 +1673,11 @@ Args:
 
 - self
 
-#### shape
-
-
-```rust
-shape(self: Self) -> NDArrayShape[int32]
-```  
-Summary  
-  
-Get the shape as an NDArray Shape.  
-  
-Args:  
-
-- self
-
 #### load
 
 
-```rust
-load[width: Int = 1](self: Self, index: Int) -> SIMD[dtype, $0]
+```Mojo
+load[width: Int = 1](self, index: Int) -> SIMD[dtype, width]
 ```  
 Summary  
   
@@ -1923,8 +1693,8 @@ Args:
 - index
 
 
-```rust
-load[width: Int = 1](self: Self, *index: Int) -> SIMD[dtype, $0]
+```Mojo
+load[width: Int = 1](self, *index: Int) -> SIMD[dtype, width]
 ```  
 Summary  
   
@@ -1942,8 +1712,8 @@ Args:
 #### store
 
 
-```rust
-store[width: Int](inout self: Self, index: Int, val: SIMD[dtype, width])
+```Mojo
+store[width: Int](mut self, index: Int, val: SIMD[dtype, width])
 ```  
 Summary  
   
@@ -1960,8 +1730,8 @@ Args:
 - val
 
 
-```rust
-store[width: Int = 1](inout self: Self, *index: Int, *, val: SIMD[dtype, width])
+```Mojo
+store[width: Int = 1](mut self, *index: Int, *, val: SIMD[dtype, width])
 ```  
 Summary  
   
@@ -1977,11 +1747,44 @@ Args:
 - \*index
 - val
 
+#### T
+
+
+```Mojo
+T(self, axes: List[Int]) -> Self
+```  
+Summary  
+  
+Transpose array of any number of dimensions according to arbitrary permutation of the axes.  
+  
+Args:  
+
+- self
+- axes
+
+
+If `axes` is not given, it is equal to flipping the axes.
+
+Defined in `numojo.routines.manipulation.transpose`.
+
+```Mojo
+T(self) -> Self
+```  
+Summary  
+  
+(overload) Transpose the array when `axes` is not given. If `axes` is not given, it is equal to flipping the axes. See docstring of `transpose`.  
+  
+Args:  
+
+- self
+
+
+Defined in `numojo.routines.manipulation.transpose`.
 #### all
 
 
-```rust
-all(self: Self) -> Bool
+```Mojo
+all(self) -> Bool
 ```  
 Summary  
   
@@ -1994,8 +1797,8 @@ Args:
 #### any
 
 
-```rust
-any(self: Self) -> Bool
+```Mojo
+any(self) -> Bool
 ```  
 Summary  
   
@@ -2008,8 +1811,8 @@ Args:
 #### argmax
 
 
-```rust
-argmax(self: Self) -> Int
+```Mojo
+argmax(self) -> Int
 ```  
 Summary  
   
@@ -2022,8 +1825,8 @@ Args:
 #### argmin
 
 
-```rust
-argmin(self: Self) -> Int
+```Mojo
+argmin(self) -> Int
 ```  
 Summary  
   
@@ -2036,8 +1839,8 @@ Args:
 #### argsort
 
 
-```rust
-argsort(self: Self) -> NDArray[index]
+```Mojo
+argsort(self) -> NDArray[index]
 ```  
 Summary  
   
@@ -2047,11 +1850,14 @@ Args:
 
 - self
 
+
+See `numojo.routines.sorting.argsort()`.
+
 #### astype
 
 
-```rust
-astype[type: DType](inout self: Self) -> NDArray[$0]
+```Mojo
+astype[type: DType](self) -> NDArray[type]
 ```  
 Summary  
   
@@ -2068,8 +1874,8 @@ Args:
 #### cumprod
 
 
-```rust
-cumprod(self: Self) -> SIMD[dtype, 1]
+```Mojo
+cumprod(self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
@@ -2082,8 +1888,8 @@ Args:
 #### cumsum
 
 
-```rust
-cumsum(self: Self) -> SIMD[dtype, 1]
+```Mojo
+cumsum(self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
@@ -2096,8 +1902,8 @@ Args:
 #### diagonal
 
 
-```rust
-diagonal(self: Self)
+```Mojo
+diagonal(self)
 ```  
 Summary  
   
@@ -2110,8 +1916,8 @@ Args:
 #### fill
 
 
-```rust
-fill(inout self: Self, val: SIMD[dtype, 1]) -> Self
+```Mojo
+fill(mut self, val: SIMD[dtype, 1])
 ```  
 Summary  
   
@@ -2125,8 +1931,8 @@ Args:
 #### flatten
 
 
-```rust
-flatten(inout self: Self, inplace: Bool = 0) -> Optional[NDArray[dtype]]
+```Mojo
+flatten(mut self)
 ```  
 Summary  
   
@@ -2135,13 +1941,12 @@ Convert shape of array to one dimensional.
 Args:  
 
 - self
-- inplace Default: 0
 
 #### item
 
 
-```rust
-item(self: Self, *index: Int) -> SIMD[dtype, 1]
+```Mojo
+item(self, *index: Int) -> SIMD[dtype, 1]
 ```  
 Summary  
   
@@ -2152,11 +1957,107 @@ Args:
 - self
 - \*index: The coordinates of the item.
 
+
+If one index is given, get the i-th item of the array.
+It first scans over the first row, even it is a colume-major array.
+
+If more than one index is given, the length of the indices must match
+the number of dimensions of the array.
+
+Example:
+```console
+> var A = nm.NDArray[dtype](3, 3, random=True, order="F")
+> print(A)
+[[      14      -4      -48     ]
+[      97      112     -40     ]
+[      -59     -94     66      ]]
+2-D array  Shape: [3, 3]  DType: int8
+
+> for i in A:
+>     print(i)  # Return rows
+[       14      -4      -48     ]
+1-D array  Shape: [3]  DType: int8
+[       97      112     -40     ]
+1-D array  Shape: [3]  DType: int8
+[       -59     -94     66      ]
+1-D array  Shape: [3]  DType: int8
+
+> for i in range(A.size()):
+>    print(A.item(i))  # Return 0-d arrays
+c strides Stride: [3, 1]
+14
+c strides Stride: [3, 1]
+-4
+c strides Stride: [3, 1]
+-48
+c strides Stride: [3, 1]
+97
+c strides Stride: [3, 1]
+112
+c strides Stride: [3, 1]
+-40
+c strides Stride: [3, 1]
+-59
+c strides Stride: [3, 1]
+-94
+c strides Stride: [3, 1]
+66
+==============================
+```
+
+#### itemset
+
+
+```Mojo
+itemset(mut self, index: Variant[Int, List[Int]], item: SIMD[dtype, 1])
+```  
+Summary  
+  
+Set the scalar at the coordinates.  
+  
+Args:  
+
+- self
+- index: The coordinates of the item. Can either be `Int` or `List[Int]`. If `Int` is passed, it is the index of i-th item of the whole array. If `List[Int]` is passed, it is the coordinate of the item.
+- item: The scalar to be set.
+
+
+Note:
+    This is similar to `numpy.ndarray.itemset`.
+    The difference is that we takes in `List[Int]`, but numpy takes in a tuple.
+
+An example goes as follows.
+
+```
+import numojo as nm
+
+fn main() raises:
+    var A = nm.zeros[nm.i16](3, 3)
+    print(A)
+    A.itemset(5, 256)
+    print(A)
+    A.itemset(List(1,1), 1024)
+    print(A)
+```
+```console
+[[      0       0       0       ]
+ [      0       0       0       ]
+ [      0       0       0       ]]
+2-D array  Shape: [3, 3]  DType: int16
+[[      0       0       0       ]
+ [      0       0       256     ]
+ [      0       0       0       ]]
+2-D array  Shape: [3, 3]  DType: int16
+[[      0       0       0       ]
+ [      0       1024    256     ]
+ [      0       0       0       ]]
+2-D array  Shape: [3, 3]  DType: int16
+```
 #### max
 
 
-```rust
-max(self: Self, axis: Int = 0) -> Self
+```Mojo
+max(self, axis: Int = 0) -> Self
 ```  
 Summary  
   
@@ -2170,8 +2071,8 @@ Args:
 #### min
 
 
-```rust
-min(self: Self, axis: Int = 0) -> Self
+```Mojo
+min(self, axis: Int = 0) -> Self
 ```  
 Summary  
   
@@ -2185,8 +2086,8 @@ Args:
 #### mean
 
 
-```rust
-mean(self: Self, axis: Int) -> Self
+```Mojo
+mean(self, axis: Int) -> Self
 ```  
 Summary  
   
@@ -2198,8 +2099,8 @@ Args:
 - axis
 
 
-```rust
-mean(self: Self) -> SIMD[dtype, 1]
+```Mojo
+mean(self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
@@ -2212,8 +2113,8 @@ Args:
 #### prod
 
 
-```rust
-prod(self: Self, axis: Int) -> Self
+```Mojo
+prod(self, axis: Int) -> Self
 ```  
 Summary  
   
@@ -2224,25 +2125,60 @@ Args:
 - self
 - axis
 
-#### sort
+#### round
 
 
-```rust
-sort(self: Self) -> Self
+```Mojo
+round(self) -> Self
 ```  
 Summary  
   
-Sort the array using quickstort.  
+Rounds the elements of the array to a whole number.  
   
 Args:  
 
 - self
 
+#### sort
+
+
+```Mojo
+sort(mut self)
+```  
+Summary  
+  
+Sort NDArray using quick sort method. It is not guaranteed to be unstable.  
+  
+Args:  
+
+- self
+
+
+When no axis is given, the array is flattened before sorting.
+
+See `numojo.sorting.sort` for more information.
+
+```Mojo
+sort(mut self, owned axis: Int)
+```  
+Summary  
+  
+Sort NDArray along the given axis using quick sort method. It is not guaranteed to be unstable.  
+  
+Args:  
+
+- self
+- axis
+
+
+When no axis is given, the array is flattened before sorting.
+
+See `numojo.sorting.sort` for more information.
 #### sum
 
 
-```rust
-sum(self: Self, axis: Int) -> Self
+```Mojo
+sum(self, axis: Int) -> Self
 ```  
 Summary  
   
@@ -2253,11 +2189,42 @@ Args:
 - self
 - axis
 
+#### tolist
+
+
+```Mojo
+tolist(self) -> List[SIMD[dtype, 1]]
+```  
+Summary  
+  
+Convert NDArray to a 1-D List.  
+  
+Args:  
+
+- self
+
+#### trace
+
+
+```Mojo
+trace(self, offset: Int = 0, axis1: Int = 0, axis2: Int = 1) -> Self
+```  
+Summary  
+  
+Computes the trace of a ndarray.  
+  
+Args:  
+
+- self
+- offset: Offset of the diagonal from the main diagonal. Default: 0
+- axis1: First axis. Default: 0
+- axis2: Second axis. Default: 1
+
 #### reshape
 
 
-```rust
-reshape(inout self: Self, *shape: Int, *, order: String = "C")
+```Mojo
+reshape(mut self, *shape: Int, *, order: String = String("C"))
 ```  
 Summary  
   
@@ -2267,13 +2234,13 @@ Args:
 
 - self
 - \*shape: Variadic list of shape.
-- order: Order of the array - Row major `C` or Column major `F`. Default: "C"
+- order: Order of the array - Row major `C` or Column major `F`. Default: String("C")
 
 #### unsafe_ptr
 
 
-```rust
-unsafe_ptr(self: Self) -> DTypePointer[dtype, 0]
+```Mojo
+unsafe_ptr(self) -> UnsafePointer[SIMD[dtype, 1]]
 ```  
 Summary  
   
@@ -2286,8 +2253,8 @@ Args:
 #### to_numpy
 
 
-```rust
-to_numpy(self: Self) -> PythonObject
+```Mojo
+to_numpy(self) -> PythonObject
 ```  
 Summary  
   
