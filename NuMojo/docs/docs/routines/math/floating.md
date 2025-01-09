@@ -20,7 +20,7 @@ Copy the sign of the first NDArray and apply it to the second NDArray.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 

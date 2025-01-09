@@ -102,11 +102,11 @@ Args:
 - A
 - B
 
-## matmul_1d
+## matmul_1darray
 
 
 ```Mojo
-matmul_1d[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+matmul_1darray[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
   
@@ -121,15 +121,87 @@ Args:
 - A
 - B
 
-## matmul_parallelized
+## matmul_2darray
 
 
 ```Mojo
-matmul_parallelized[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+matmul_2darray[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
   
-Matrix multiplication Vectorized and parallelized.  
+Array multiplication for 2-d arrays (inner dot).  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A: First array.
+- B: Second array.
+
+
+Parameter:
+    dtype: Data type.
+
+Return:
+    A multiplied by B.
+
+Notes:
+    The multiplication is vectorized and parallelized.
+
+References:
+    [1] https://docs.modular.com/mojo/notebooks/Matmul.
+    Compared to the reference, we increases the size of
+    the SIMD vector from the default width to 16. The purpose is to
+    increase the performance via SIMD.
+    This reduces the execution time by ~50 percent compared to
+    `matmul_parallelized` and `matmul_tiled_unrolled_parallelized` for large
+    matrices.
+## matmul
+
+
+```Mojo
+matmul[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+```  
+Summary  
+  
+Array multiplication for any dimensions.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A: First array.
+- B: Second array.
+
+
+Parameter:
+    dtype: Data type.
+
+Return:
+    A multiplied by B.
+
+Notes:
+
+    When A and B are 1darray, it is equal to dot of vectors:
+    `(i) @ (i) -> (1)`.
+
+    When A and B are 2darray, it is equal to inner products of matrices:
+    `(i,j) @ (j,k) -> (i,k)`.
+
+    When A and B are more than 2d, it is equal to a stack of 2darrays:
+    `(i,j,k) @ (i,k,l) -> (i,j,l)` and
+    `(i,j,k,l) @ (i,j,l,m) -> (i,j,k,m)`.
+
+```Mojo
+matmul[dtype: DType](A: Matrix[dtype], B: Matrix[dtype]) -> Matrix[dtype]
+```  
+Summary  
+  
+Matrix multiplication.  
   
 Parameters:  
 
@@ -141,15 +213,13 @@ Args:
 - B
 
 
-Conduct `matmul` using `vectorize` and `parallelize`.
-
-Reference: https://docs.modular.com/mojo/notebooks/Matmul
-Compared to the reference, this function increases the size of
-the SIMD vector from the default width to 16. The purpose is to
-increase the performance via SIMD.
-The function reduces the execution time by ~50 percent compared to
-matmul_parallelized and matmul_tiled_unrolled_parallelized for large
-matrices.
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.rand(shape=(1000, 1000))
+var B = Matrix.rand(shape=(1000, 1000))
+var C = mat.matmul(A, B)
+```
 ## matmul_naive
 
 

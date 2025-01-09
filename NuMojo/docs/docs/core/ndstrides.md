@@ -25,7 +25,6 @@ Implements the NDArrayStrides.
 ### Fields
   
   
-* offset `Int`  
 * ndim `Int`  
     - Number of dimensions of array.  
 
@@ -35,7 +34,7 @@ Implements the NDArrayStrides.
 
 
 ```Mojo
-__init__(out self, *strides: Int, *, offset: Int = 0)
+__init__(out self, *strides: Int)
 ```  
 Summary  
   
@@ -45,11 +44,10 @@ Args:
 
 - self
 - \*strides
-- offset Default: 0
 
 
 ```Mojo
-__init__(out self, strides: List[Int], offset: Int = 0)
+__init__(out self, strides: List[Int])
 ```  
 Summary  
   
@@ -59,11 +57,10 @@ Args:
 
 - self
 - strides
-- offset Default: 0
 
 
 ```Mojo
-__init__(out self, strides: VariadicList[Int], offset: Int = 0)
+__init__(out self, strides: VariadicList[Int])
 ```  
 Summary  
   
@@ -73,7 +70,6 @@ Args:
 
 - self
 - strides
-- offset Default: 0
 
 
 ```Mojo
@@ -90,21 +86,7 @@ Args:
 
 
 ```Mojo
-__init__(out self, strides: Self, offset: Int = 0)
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- strides
-- offset Default: 0
-
-
-```Mojo
-__init__(out self, *shape: Int, *, offset: Int = 0, order: String = String("C"))
+__init__(out self, *shape: Int, *, order: String)
 ```  
 Summary  
   
@@ -114,12 +96,11 @@ Args:
 
 - self
 - \*shape
-- offset Default: 0
-- order Default: String("C")
+- order
 
 
 ```Mojo
-__init__(out self, shape: List[Int], offset: Int = 0, order: String = String("C"))
+__init__(out self, shape: List[Int], order: String = String("C"))
 ```  
 Summary  
   
@@ -129,12 +110,11 @@ Args:
 
 - self
 - shape
-- offset Default: 0
 - order Default: String("C")
 
 
 ```Mojo
-__init__(out self, shape: VariadicList[Int], offset: Int = 0, order: String = String("C"))
+__init__(out self, shape: VariadicList[Int], order: String = String("C"))
 ```  
 Summary  
   
@@ -144,12 +124,11 @@ Args:
 
 - self
 - shape
-- offset Default: 0
 - order Default: String("C")
 
 
 ```Mojo
-__init__(out self, owned shape: NDArrayShape, offset: Int = 0, order: String = String("C"))
+__init__(out self, owned shape: NDArrayShape, order: String = String("C"))
 ```  
 Summary  
   
@@ -159,7 +138,6 @@ Args:
 
 - self
 - shape
-- offset Default: 0
 - order Default: String("C")
 
 #### __getitem__
@@ -238,26 +216,11 @@ Args:
 - self
 - val
 
-#### __copy__
+#### __len__
 
 
 ```Mojo
-__copy__(mut self, other: Self)
-```  
-Summary  
-  
-  
-  
-Args:  
-
-- self
-- other
-
-#### len
-
-
-```Mojo
-len(self) -> Int
+__len__(self) -> Int
 ```  
 Summary  
   

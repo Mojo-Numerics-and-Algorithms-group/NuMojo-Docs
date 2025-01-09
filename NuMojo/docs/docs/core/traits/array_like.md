@@ -2,7 +2,7 @@
 
 
 
-# NDArrayTraits
+# array_like
 
 ##  Module Summary
   

@@ -7,6 +7,25 @@
 ##  Module Summary
   
 
+## round
+
+
+```Mojo
+round[dtype: DType](owned A: Matrix[dtype], decimals: Int = 0) -> Matrix[dtype]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+- decimals Default: 0
+
 ## tabs
 
 
@@ -15,12 +34,12 @@ tabs[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDAr
 ```  
 Summary  
   
-Elementwise absolute value of NDArray.  
+Element-wise absolute value of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -34,12 +53,12 @@ tfloor[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> ND
 ```  
 Summary  
   
-Elementwise round down to nearest whole number of NDArray.  
+Element-wise round down to nearest whole number of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -53,12 +72,12 @@ tceil[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDA
 ```  
 Summary  
   
-Elementwise round up to nearest whole number of NDArray.  
+Element-wise round up to nearest whole number of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -72,12 +91,12 @@ ttrunc[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> ND
 ```  
 Summary  
   
-Elementwise remove decimal value from float whole number of NDArray.  
+Element-wise remove decimal value from float whole number of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -91,12 +110,12 @@ tround[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> ND
 ```  
 Summary  
   
-Elementwise round NDArray to whole number.  
+Element-wise round NDArray to whole number.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -110,12 +129,12 @@ roundeven[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) ->
 ```  
 Summary  
   
-Performs elementwise banker's rounding on the elements of a NDArray.  
+Performs element-wise banker's rounding on the elements of a NDArray.  
   
 Parameters:  
 
 - dtype: The dtype of the input and output array.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -134,7 +153,7 @@ Computes the nextafter of the inputs.
 Parameters:  
 
 - dtype: The dtype of the input and output array. Constraints: must be a floating-point type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, default to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 

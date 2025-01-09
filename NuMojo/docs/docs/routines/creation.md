@@ -27,6 +27,22 @@ Args:
 - stop: Scalar[dtype]  - End value.
 - step: Scalar[dtype]  - Step size between each element (default 1). Default: SIMD(1)
 
+
+```Mojo
+arange[dtype: DType = float64](stop: SIMD[dtype, 1]) -> NDArray[dtype]
+```  
+Summary  
+  
+(Overload) When start is 0 and step is 1.  
+  
+Parameters:  
+
+- dtype Defualt: `float64`
+  
+Args:  
+
+- stop
+
 ## linspace
 
 
@@ -600,6 +616,25 @@ casted to the dtype of the NDArray.
 [       0       2       41      19      199     ]
 1-D array  Shape: [5]  DType: int32
 ```
+
+## astype
+
+
+```Mojo
+astype[dtype: DType, //, target: DType](a: NDArray[dtype]) -> NDArray[target]
+```  
+Summary  
+  
+Cast an NDArray to a different dtype.  
+  
+Parameters:  
+
+- dtype: Data type of the input array, always inferred.
+- target: Data type to cast the NDArray to.
+  
+Args:  
+
+- a: NDArray to be casted.
 
 ## array
 

@@ -15,12 +15,12 @@ invert[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> ND
 ```  
 Summary  
   
-Elementwise invert of an array.  
+Element-wise invert of an array.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 

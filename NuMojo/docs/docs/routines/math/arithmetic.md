@@ -20,7 +20,7 @@ Perform addition on two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -42,7 +42,7 @@ Perform addition on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -60,7 +60,7 @@ Perform addition on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -78,7 +78,7 @@ Perform addition on a list of arrays and a scalars.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -97,7 +97,7 @@ Perform subtraction on two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -119,7 +119,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -137,7 +137,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -171,12 +171,12 @@ mod[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2:
 ```  
 Summary  
   
-Elementwise modulo of array1 and array2.  
+Element-wise modulo of array1 and array2.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -198,7 +198,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -216,7 +216,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -231,12 +231,12 @@ mul[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2:
 ```  
 Summary  
   
-Elementwise product of array1 and array2.  
+Element-wise product of array1 and array2.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -258,7 +258,7 @@ Perform multiplication on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -276,7 +276,7 @@ Perform multiplication on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -294,7 +294,7 @@ Perform multiplication on a list of arrays an arrays and a scalars.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -308,12 +308,12 @@ div[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2:
 ```  
 Summary  
   
-Elementwise quotent of array1 and array2.  
+Element-wise quotent of array1 and array2.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -335,7 +335,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -353,7 +353,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -368,12 +368,12 @@ floor_div[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], a
 ```  
 Summary  
   
-Elementwise quotent of array1 and array2.  
+Element-wise quotent of array1 and array2.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -395,7 +395,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -413,7 +413,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -433,7 +433,7 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -456,7 +456,7 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -476,12 +476,12 @@ remainder[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], a
 ```  
 Summary  
   
-Elementwise remainders of NDArray.  
+Element-wise remainders of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 

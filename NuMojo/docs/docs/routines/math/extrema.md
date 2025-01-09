@@ -7,6 +7,58 @@
 ##  Module Summary
   
 TODO:  1) Add support for axis parameter.   2) Currently, constrained is crashing mojo, so commented it out and added raise Error. Check later. 3) Relax constrained[] to let user get whatever output they want, but make a warning instead.
+## max
+
+
+```Mojo
+max[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
+```  
+Summary  
+  
+Maximums of array elements over a given axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- array: NDArray.
+- axis: The axis along which the sum is performed. Default: 0
+
+
+```Mojo
+max[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Find max item. It is first flattened before sorting.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+
+
+```Mojo
+max[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
+```  
+Summary  
+  
+Find max item along the given axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+- axis
+
 ## maxT
 
 
@@ -24,6 +76,58 @@ Parameters:
 Args:  
 
 - array: A NDArray.
+
+## min
+
+
+```Mojo
+min[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
+```  
+Summary  
+  
+Minumums of array elements over a given axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- array: NDArray.
+- axis: The axis along which the sum is performed. Default: 0
+
+
+```Mojo
+min[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Find min item. It is first flattened before sorting.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+
+
+```Mojo
+min[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
+```  
+Summary  
+  
+Find min item along the given axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+- axis
 
 ## minT
 

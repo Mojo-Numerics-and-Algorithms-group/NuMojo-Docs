@@ -15,7 +15,7 @@ sum[dtype: DType](A: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Sum of all items in the array.  
+Returns sum of all items in the array.  
   
 Parameters:  
 
@@ -39,11 +39,11 @@ Example:
 
 
 ```Mojo
-sum[dtype: DType](A: NDArray[dtype], axis: Int) -> NDArray[dtype]
+sum[dtype: DType](A: NDArray[dtype], owned axis: Int) -> NDArray[dtype]
 ```  
 Summary  
   
-Sum of array elements over a given axis.  
+Returns sums of array elements over a given axis.  
   
 Parameters:  
 
@@ -62,20 +62,134 @@ var A = nm.random.randn(100, 100)
 print(nm.sum(A, axis=0))
 ```
 
+
+```Mojo
+sum[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Sum up all items in the Matrix.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A: Matrix.
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
+print(mat.sum(A))
+```
+
+```Mojo
+sum[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
+```  
+Summary  
+  
+Sum up the items in a Matrix along the axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A: Matrix.
+- axis: 0 or 1.
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
+print(mat.sum(A, axis=0))
+print(mat.sum(A, axis=1))
+```
 ## cumsum
 
 
 ```Mojo
-cumsum[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
+cumsum[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
   
-Sum of all items of an array.  
+Returns cumsum of all items of an array. The array is flattened before cumsum.  
   
 Parameters:  
 
-- dtype: The element type. Defualt: `float64`
+- dtype: The element type.
   
 Args:  
 
-- array: An NDArray.
+- A: NDArray.
+
+
+```Mojo
+cumsum[dtype: DType](owned A: NDArray[dtype], owned axis: Int) -> NDArray[dtype]
+```  
+Summary  
+  
+Returns cumsum of array by axis.  
+  
+Parameters:  
+
+- dtype: The element type.
+  
+Args:  
+
+- A: NDArray.
+- axis: Axis.
+
+
+```Mojo
+cumsum[dtype: DType](owned A: Matrix[dtype]) -> Matrix[dtype]
+```  
+Summary  
+  
+Cumsum of flattened matrix.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A: Matrix.
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
+print(mat.cumsum(A))
+```
+
+```Mojo
+cumsum[dtype: DType](owned A: Matrix[dtype], axis: Int) -> Matrix[dtype]
+```  
+Summary  
+  
+Cumsum of Matrix along the axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A: Matrix.
+- axis: 0 or 1.
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
+print(mat.cumsum(A, axis=0))
+print(mat.cumsum(A, axis=1))
+```

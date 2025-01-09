@@ -15,12 +15,12 @@ cbrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDAr
 ```  
 Summary  
   
-Elementwise cuberoot of NDArray.  
+Element-wise cuberoot of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Constraints:
 
@@ -38,12 +38,12 @@ rsqrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDA
 ```  
 Summary  
   
-Elementwise reciprocal squareroot of NDArray.  
+Element-wise reciprocal squareroot of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -57,12 +57,12 @@ sqrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDAr
 ```  
 Summary  
   
-Elementwise squareroot of NDArray.  
+Element-wise squareroot of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -81,7 +81,7 @@ Calculate the scalb of array1 and array2.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 

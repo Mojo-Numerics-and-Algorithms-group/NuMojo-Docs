@@ -74,6 +74,39 @@ Args:
 
 When no axis is given, the array is flattened before sorting.
 
+
+```Mojo
+sort[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+```  
+Summary  
+  
+Sort the Matrix. It is first flattened before sorting.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+
+
+```Mojo
+sort[dtype: DType](owned A: Matrix[dtype], axis: Int) -> Matrix[dtype]
+```  
+Summary  
+  
+Sort the Matrix along the given axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+- axis
+
 ## binary_sort
 
 
@@ -100,36 +133,15 @@ Example:
     print(sorted_arr)
     ```
 
-## argsort_inplace
-
-
-```Mojo
-argsort_inplace[dtype: DType](mut ndarray: NDArray[dtype], mut idx_array: NDArray[index], left: Int, right: Int)
-```  
-Summary  
-  
-Conduct Argsort (in-place) based on the NDArray using quick sort.  
-  
-Parameters:  
-
-- dtype: The input element type.
-  
-Args:  
-
-- ndarray: An NDArray.
-- idx_array: An NDArray of the indices.
-- left: Left index of the partition.
-- right: Right index of the partition.
-
 ## argsort
 
 
 ```Mojo
-argsort[dtype: DType](ndarray: NDArray[dtype]) -> NDArray[index]
+argsort[dtype: DType](owned A: NDArray[dtype]) -> NDArray[index]
 ```  
 Summary  
   
-Argsort of the NDArray using quick sort algorithm.  
+Returns the indices that would sort an array. It is not guaranteed to be unstable.  
   
 Parameters:  
 
@@ -137,12 +149,60 @@ Parameters:
   
 Args:  
 
-- ndarray: An NDArray.
+- A: NDArray.
 
 
-Example:
-    ```py
-    var arr = numojo.core.random.rand[numojo.i16](100)
-    var sorted_arr = numojo.core.sort.argsort(arr)
-    print(sorted_arr)
-    ```
+When no axis is given, the array is flattened before sorting.
+
+
+```Mojo
+argsort[dtype: DType](owned A: NDArray[dtype], owned axis: Int) -> NDArray[index]
+```  
+Summary  
+  
+Returns the indices that would sort an array. It is not guaranteed to be unstable.  
+  
+Parameters:  
+
+- dtype: The input element type.
+  
+Args:  
+
+- A: NDArray to sort.
+- axis: The axis along which the array is sorted.
+
+
+When no axis is given, the array is flattened before sorting.
+
+
+```Mojo
+argsort[dtype: DType](A: Matrix[dtype]) -> Matrix[index]
+```  
+Summary  
+  
+Argsort the Matrix. It is first flattened before sorting.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+
+
+```Mojo
+argsort[dtype: DType](owned A: Matrix[dtype], axis: Int) -> Matrix[index]
+```  
+Summary  
+  
+Argsort the Matrix along the given axis.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+- axis

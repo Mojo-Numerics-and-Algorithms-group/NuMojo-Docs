@@ -15,12 +15,12 @@ greater[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], arr
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are greater than values in y.  
+Performs element-wise check of whether values in x are greater than values in y.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -33,12 +33,12 @@ greater[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], sca
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are greater than a scalar.  
+Performs element-wise check of whether values in x are greater than a scalar.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -53,12 +53,12 @@ greater_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are greater than or equal to values in y.  
+Performs element-wise check of whether values in x are greater than or equal to values in y.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -71,12 +71,12 @@ greater_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are greater than or equal to a scalar.  
+Performs element-wise check of whether values in x are greater than or equal to a scalar.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -91,12 +91,12 @@ less[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are to values in y.  
+Performs element-wise check of whether values in x are to values in y.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -109,12 +109,12 @@ less[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are to a scalar.  
+Performs element-wise check of whether values in x are to a scalar.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -129,12 +129,12 @@ less_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], 
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are less than or equal to values in y.  
+Performs element-wise check of whether values in x are less than or equal to values in y.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -147,12 +147,12 @@ less_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], 
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are less than or equal to a scalar.  
+Performs element-wise check of whether values in x are less than or equal to a scalar.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -167,12 +167,12 @@ equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are equal to values in y.  
+Performs element-wise check of whether values in x are equal to values in y.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -185,12 +185,12 @@ equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scala
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are equal to a scalar.  
+Performs element-wise check of whether values in x are equal to a scalar.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -205,12 +205,12 @@ not_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], a
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are not equal to values in y.  
+Performs element-wise check of whether values in x are not equal to values in y.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 
@@ -223,12 +223,12 @@ not_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], s
 ```  
 Summary  
   
-Performs elementwise check of whether values in x are not equal to values in y.  
+Performs element-wise check of whether values in x are not equal to values in y.  
   
 Parameters:  
 
 - dtype: The dtype of the input NDArray.
-- backend: Sets utility function origin, defualts to `Vectorized. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized. Defualt: `Vectorized`
   
 Args:  
 

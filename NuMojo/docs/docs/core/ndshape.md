@@ -39,6 +39,19 @@ Implements the NDArrayShape.
 
 
 ```Mojo
+__init__(out self, shape: Int)
+```  
+Summary  
+  
+Initializes the NDArrayShape with one dimension.  
+  
+Args:  
+
+- self
+- shape: Size of the array.
+
+
+```Mojo
 __init__(out self, *shape: Int)
 ```  
 Summary  
@@ -207,26 +220,11 @@ Args:
 - self
 - val
 
-#### __copy__
+#### __len__
 
 
 ```Mojo
-__copy__(mut self, other: Self)
-```  
-Summary  
-  
-Copy from other into self.  
-  
-Args:  
-
-- self
-- other
-
-#### len
-
-
-```Mojo
-len(self) -> Int
+__len__(self) -> Int
 ```  
 Summary  
   

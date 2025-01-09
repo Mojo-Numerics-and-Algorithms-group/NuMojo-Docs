@@ -6,13 +6,13 @@
 
 ##  Module Summary
   
-`numojo.mat.matrix` provides:
+`numojo.Matrix` provides:
 ## Matrix
 
 ### Matrix Summary
   
   
-`Matrix` is a special case of `NDArray` (2DArray) but has some targeted optimization since the number of dimensions is known at the compile time. It gains some advantages in running speed, which is very useful when users only want to work with 2-dimensional arrays. The indexing and slicing is also more consistent with `numpy`.  
+`Matrix` is a special case of `NDArray` (2DArray) but has some targeted optimization since the number of dimensions is known at the compile time. It has simpler indexing and slicing methods, which is very useful when users only want to work with 2-dimensional arrays.  
 
 ### Parent Traits
   
@@ -270,8 +270,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(A < 2)
 ```
 #### __le__
@@ -304,8 +304,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(A <= 2)
 ```
 #### __eq__
@@ -338,8 +338,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(A == 2)
 ```
 #### __ne__
@@ -372,8 +372,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(A != 2)
 ```
 #### __gt__
@@ -406,8 +406,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(A > 2)
 ```
 #### __ge__
@@ -440,8 +440,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(A >= 2)
 ```
 #### __add__
@@ -474,8 +474,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+var A = Matrix.ones(shape=(4, 4))
 print(A + 2)
 ```
 #### __sub__
@@ -499,7 +499,7 @@ __sub__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
   
-Substract matrix by scalar.  
+Subtract matrix by scalar.  
   
 Args:  
 
@@ -508,8 +508,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix(shape=(4, 4))
 print(A - 2)
 ```
 #### __mul__
@@ -542,8 +542,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(A * 2)
 ```
 #### __matmul__
@@ -621,8 +621,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(2 + A)
 ```
 #### __rsub__
@@ -642,8 +642,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(2 - A)
 ```
 #### __rmul__
@@ -663,8 +663,8 @@ Args:
 
 
 ```mojo
-from numojo.mat import ones
-A = ones(shape=(4, 4))
+from numojo import Matrix
+A = Matrix.ones(shape=(4, 4))
 print(2 * A)
 ```
 #### __str__
@@ -717,8 +717,8 @@ Args:
 
 Example:
 ```mojo
-from numojo import mat
-var A = mat.rand((4,4))
+from numojo import Matrix
+var A = Matrix.rand((4,4))
 for i in A:
     print(i)
 ```
@@ -907,8 +907,8 @@ Args:
 
 Example:
 ```mojo
-from numojo import mat
-var A = mat.rand(shape=(100, 100))
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
 print(A.cumprod())
 ```
 
@@ -927,8 +927,8 @@ Args:
 
 Example:
 ```mojo
-from numojo import mat
-var A = mat.rand(shape=(100, 100))
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
 print(A.cumprod(axis=0))
 print(A.cumprod(axis=1))
 ```
@@ -1115,8 +1115,8 @@ Args:
 
 Example:
 ```mojo
-from numojo import mat
-var A = mat.rand(shape=(100, 100))
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
 print(A.prod(axis=0))
 print(A.prod(axis=1))
 ```
@@ -1211,8 +1211,8 @@ Args:
 
 Example:
 ```mojo
-from numojo import mat
-var A = mat.rand(shape=(100, 100))
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
 print(A.sum())
 ```
 
@@ -1231,8 +1231,8 @@ Args:
 
 Example:
 ```mojo
-from numojo import mat
-var A = mat.rand(shape=(100, 100))
+from numojo import Matrix
+var A = Matrix.rand(shape=(100, 100))
 print(A.sum(axis=0))
 print(A.sum(axis=1))
 ```
@@ -1337,6 +1337,197 @@ Args:
 
 - self
 
+#### full
+
+
+```Mojo
+full[dtype: DType = float64](shape: Tuple[Int, Int], fill_value: SIMD[dtype, 1] = SIMD(0)) -> Matrix[dtype]
+```  
+Summary  
+  
+Return a matrix with given shape and filled value.  
+  
+Parameters:  
+
+- dtype Defualt: `float64`
+  
+Args:  
+
+- shape
+- fill_value Default: SIMD(0)
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.full(shape=(10, 10), fill_value=100)
+```
+#### zeros
+
+
+```Mojo
+zeros[dtype: DType = float64](shape: Tuple[Int, Int]) -> Matrix[dtype]
+```  
+Summary  
+  
+Return a matrix with given shape and filled with zeros.  
+  
+Parameters:  
+
+- dtype Defualt: `float64`
+  
+Args:  
+
+- shape
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.ones(shape=(10, 10))
+```
+#### ones
+
+
+```Mojo
+ones[dtype: DType = float64](shape: Tuple[Int, Int]) -> Matrix[dtype]
+```  
+Summary  
+  
+Return a matrix with given shape and filled with ones.  
+  
+Parameters:  
+
+- dtype Defualt: `float64`
+  
+Args:  
+
+- shape
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.ones(shape=(10, 10))
+```
+#### identity
+
+
+```Mojo
+identity[dtype: DType = float64](len: Int) -> Matrix[dtype]
+```  
+Summary  
+  
+Return a matrix with given shape and filled value.  
+  
+Parameters:  
+
+- dtype Defualt: `float64`
+  
+Args:  
+
+- len
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.identity(12)
+```
+#### rand
+
+
+```Mojo
+rand[dtype: DType = float64](shape: Tuple[Int, Int]) -> Matrix[dtype]
+```  
+Summary  
+  
+Return a matrix with random values uniformed distributed between 0 and 1.  
+  
+Parameters:  
+
+- dtype: The data type of the NDArray elements. Defualt: `float64`
+  
+Args:  
+
+- shape: The shape of the Matrix.
+
+
+Example:
+```mojo
+from numojo import Matrix
+var A = Matrix.rand((12, 12))
+```
+
+#### fromlist
+
+
+```Mojo
+fromlist[dtype: DType](object: List[SIMD[dtype, 1]], shape: Tuple[Int, Int] = Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))) -> Matrix[dtype]
+```  
+Summary  
+  
+Create a matrix from a 1-dimensional list into given shape.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- object
+- shape Default: Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))
+
+
+If no shape is passed, the return matrix will be a row vector.
+
+Example:
+```mojo
+from numojo import Matrix
+fn main() raises:
+    print(Matrix.fromlist(List[Float64](1, 2, 3, 4, 5), (5, 1)))
+```
+#### fromstring
+
+
+```Mojo
+fromstring[dtype: DType = float64](text: String, shape: Tuple[Int, Int] = Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))) -> Matrix[dtype]
+```  
+Summary  
+  
+Matrix initialization from string representation of an matrix.  
+  
+Parameters:  
+
+- dtype Defualt: `float64`
+  
+Args:  
+
+- text: String representation of a matrix.
+- shape: Shape of the matrix. Default: Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))
+
+
+Comma, right brackets, and whitespace are treated as seperators of numbers.
+Digits, underscores, and minus signs are treated as a part of the numbers.
+
+If now shape is passed, the return matrix will be a row vector.
+
+Example:
+```mojo
+from numojo.prelude import *
+from numojo import Matrix
+fn main() raises:
+    var A = Matrix.fromstring[f32](
+    "1 2 .3 4 5 6.5 7 1_323.12 9 10, 11.12, 12 13 14 15 16", (4, 4))
+```
+```console
+[[1.0   2.0     0.30000001192092896     4.0]
+[5.0   6.5     7.0     1323.1199951171875]
+[9.0   10.0    11.119999885559082      12.0]
+[13.0  14.0    15.0    16.0]]
+Size: 4x4  DType: float32
+```
+
 ## broadcast_to
 
 
@@ -1360,26 +1551,26 @@ Args:
 Example:
 
 ```console
-> from numojo import mat
-> a = mat.fromstring("1 2 3", shape=(1, 3))
+> from numojo import Matrix
+> a = Matrix.fromstring("1 2 3", shape=(1, 3))
 > print(mat.broadcast_to(a, (3, 3)))
 [[1.0   2.0     3.0]
  [1.0   2.0     3.0]
  [1.0   2.0     3.0]]
-> a = mat.fromstring("1 2 3", shape=(3, 1))
+> a = Matrix.fromstring("1 2 3", shape=(3, 1))
 > print(mat.broadcast_to(a, (3, 3)))
 [[1.0   1.0     1.0]
  [2.0   2.0     2.0]
  [3.0   3.0     3.0]]
-> a = mat.fromstring("1", shape=(1, 1))
+> a = Matrix.fromstring("1", shape=(1, 1))
 > print(mat.broadcast_to(a, (3, 3)))
 [[1.0   1.0     1.0]
  [1.0   1.0     1.0]
  [1.0   1.0     1.0]]
-> a = mat.fromstring("1 2", shape=(1, 2))
+> a = Matrix.fromstring("1 2", shape=(1, 2))
 > print(mat.broadcast_to(a, (1, 2)))
 [[1.0   2.0]]
-> a = mat.fromstring("1 2 3 4", shape=(2, 2))
+> a = Matrix.fromstring("1 2 3 4", shape=(2, 2))
 > print(mat.broadcast_to(a, (4, 2)))
 Unhandled exception caught during execution: Cannot broadcast shape 2x2 to shape 4x2!
 ```

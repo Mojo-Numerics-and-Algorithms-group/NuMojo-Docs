@@ -81,46 +81,6 @@ Example:
     print(arr)
     ```
 
-## int_rand_func
-
-
-```Mojo
-int_rand_func[dtype: DType](mut result: NDArray[dtype], min: SIMD[dtype, 1], max: SIMD[dtype, 1])
-```  
-Summary  
-  
-Generate random integers between `min` and `max` and store them in the given NDArray.  
-  
-Parameters:  
-
-- dtype: The data type of the random integers.
-  
-Args:  
-
-- result: The NDArray to store the random integers.
-- min: The minimum value of the random integers.
-- max: The maximum value of the random integers.
-
-## float_rand_func
-
-
-```Mojo
-float_rand_func[dtype: DType](mut result: NDArray[dtype], min: SIMD[dtype, 1], max: SIMD[dtype, 1])
-```  
-Summary  
-  
-Generate random floating-point numbers between `min` and `max` and store them in the given NDArray.  
-  
-Parameters:  
-
-- dtype: The data type of the random floating-point numbers.
-  
-Args:  
-
-- result: The NDArray to store the random floating-point numbers.
-- min: The minimum value of the random floating-point numbers.
-- max: The maximum value of the random floating-point numbers.
-
 ## randn
 
 

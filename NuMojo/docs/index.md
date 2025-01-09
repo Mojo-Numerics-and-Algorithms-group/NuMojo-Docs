@@ -6,9 +6,9 @@ NuMojo is an numerics library for [Mojo](https://www.modular.com/mojo) similiar 
 [Installation](./getting_started/install.md)
 
 <!-- ## Examples -->
-
+<!-- 
 ## Documentation
-[Documenation](./docs/)
+[Documenation](./docs/) -->
 
 ## Contibuting to NuMojo
 

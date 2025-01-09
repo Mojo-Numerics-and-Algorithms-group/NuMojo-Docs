@@ -18,12 +18,12 @@ exp[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArr
 ```  
 Summary  
   
-Calculate elementwise euler's constant(e) to the power of NDArray[i].  
+Calculate element-wise euler's constant(e) to the power of NDArray[i].  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -37,12 +37,12 @@ exp2[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDAr
 ```  
 Summary  
   
-Calculate elementwise two to the power of NDArray[i].  
+Calculate element-wise two to the power of NDArray[i].  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -56,12 +56,12 @@ expm1[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDA
 ```  
 Summary  
   
-Calculate elementwise euler's constant(e) to the power of NDArray[i] minus1.  
+Calculate element-wise euler's constant(e) to the power of NDArray[i] minus1.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -75,12 +75,12 @@ log[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArr
 ```  
 Summary  
   
-Elementwise natural logarithm of NDArray.  
+Element-wise natural logarithm of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -94,12 +94,12 @@ log2[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDAr
 ```  
 Summary  
   
-Elementwise logarithm base two of NDArray.  
+Element-wise logarithm base two of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -113,12 +113,12 @@ log10[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDA
 ```  
 Summary  
   
-Elementwise logarithm base ten of NDArray.  
+Element-wise logarithm base ten of NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
@@ -132,12 +132,12 @@ log1p[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDA
 ```  
 Summary  
   
-Elementwise natural logarithm of 1 plus NDArray.  
+Element-wise natural logarithm of 1 plus NDArray.  
   
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
   
 Args:  
 
