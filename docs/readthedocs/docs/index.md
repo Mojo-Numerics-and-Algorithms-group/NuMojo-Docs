@@ -123,4 +123,4 @@ fn main() raises:
 
 ## Contibuting to NuMojo
 
-If you would like to contribute to either [NuMojo](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo) or its documentation pull requests are welcome.
+If you would like to contribute to either [NuMojo](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo) or its [documentation](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo-Docs) pull requests are welcome.
