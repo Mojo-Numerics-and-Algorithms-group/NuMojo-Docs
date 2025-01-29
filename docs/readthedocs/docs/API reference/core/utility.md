@@ -10,7 +10,7 @@ Implements N-DIMENSIONAL ARRAY UTILITY FUNCTIONS
 ## fill_pointer
 
 
-```Mojo
+```rust
 fill_pointer[dtype: DType](mut array: UnsafePointer[SIMD[dtype, 1]], size: Int, value: SIMD[dtype, 1])
 ```  
 Summary  
@@ -30,7 +30,7 @@ Args:
 ## bool_to_numeric
 
 
-```Mojo
+```rust
 bool_to_numeric[dtype: DType](array: NDArray[bool]) -> NDArray[dtype]
 ```  
 Summary  
@@ -48,7 +48,7 @@ Args:
 ## to_numpy
 
 
-```Mojo
+```rust
 to_numpy[dtype: DType](array: NDArray[dtype]) -> PythonObject
 ```  
 Summary  
@@ -63,18 +63,10 @@ Args:
 
 - array: The NDArray to convert.
 
-
-Example:
-```console
-var arr = NDArray[DType.float32](3, 3, 3)
-var np_arr = to_numpy(arr)
-var np_arr1 = arr.to_numpy()
-```
-
 ## to_tensor
 
 
-```Mojo
+```rust
 to_tensor[dtype: DType](a: NDArray[dtype]) -> Tensor[dtype]
 ```  
 Summary  
@@ -92,7 +84,7 @@ Args:
 ## is_inttype
 
 
-```Mojo
+```rust
 is_inttype[dtype: DType]() -> Bool
 ```  
 Summary  
@@ -104,7 +96,7 @@ Parameters:
 - dtype: DType.
 
 
-```Mojo
+```rust
 is_inttype(dtype: DType) -> Bool
 ```  
 Summary  
@@ -118,7 +110,7 @@ Args:
 ## is_floattype
 
 
-```Mojo
+```rust
 is_floattype[dtype: DType]() -> Bool
 ```  
 Summary  
@@ -130,7 +122,7 @@ Parameters:
 - dtype: DType.
 
 
-```Mojo
+```rust
 is_floattype(dtype: DType) -> Bool
 ```  
 Summary  
@@ -144,7 +136,7 @@ Args:
 ## is_booltype
 
 
-```Mojo
+```rust
 is_booltype[dtype: DType]() -> Bool
 ```  
 Summary  
@@ -156,7 +148,7 @@ Parameters:
 - dtype: DType.
 
 
-```Mojo
+```rust
 is_booltype(dtype: DType) -> Bool
 ```  
 Summary  

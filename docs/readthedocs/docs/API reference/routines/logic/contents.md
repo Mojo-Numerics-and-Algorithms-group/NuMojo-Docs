@@ -10,7 +10,7 @@ Implements Checking routines: currently not SIMD due to bool bit packing issue
 ## isinf
 
 
-```Mojo
+```rust
 isinf[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -29,7 +29,7 @@ Args:
 ## isfinite
 
 
-```Mojo
+```rust
 isfinite[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -48,7 +48,7 @@ Args:
 ## isnan
 
 
-```Mojo
+```rust
 isnan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  

@@ -46,7 +46,7 @@ Represents a Complex N-Dimensional Array.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, owned re: NDArray[dtype], owned im: NDArray[dtype])
 ```  
 Summary  
@@ -60,7 +60,7 @@ Args:
 - im
 
 
-```Mojo
+```rust
 __init__(out self, shape: NDArrayShape, order: String = String("C"))
 ```  
 Summary  
@@ -74,15 +74,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-The memory is not filled with values.
-
-Example:
-```mojo
-import numojo as nm
-var A = nm.ComplexNDArray[cf32](Shape(2,3,4))
-```
-
-```Mojo
+```rust
 __init__(out self, shape: List[Int], order: String = String("C"))
 ```  
 Summary  
@@ -96,7 +88,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-```Mojo
+```rust
 __init__(out self, shape: VariadicList[Int], order: String = String("C"))
 ```  
 Summary  
@@ -110,7 +102,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-```Mojo
+```rust
 __init__(out self, shape: List[Int], offset: Int, strides: List[Int])
 ```  
 Summary  
@@ -125,7 +117,7 @@ Args:
 - strides
 
 
-```Mojo
+```rust
 __init__(out self, shape: NDArrayShape, ref buffer_re: UnsafePointer[SIMD[dtype, 1]], ref buffer_im: UnsafePointer[SIMD[dtype, 1]], offset: Int, strides: NDArrayStrides)
 ```  
 Summary  
@@ -144,7 +136,7 @@ Args:
 #### __copyinit__
 
 
-```Mojo
+```rust
 __copyinit__(out self, other: Self)
 ```  
 Summary  
@@ -159,7 +151,7 @@ Args:
 #### __moveinit__
 
 
-```Mojo
+```rust
 __moveinit__(out self, owned existing: Self)
 ```  
 Summary  
@@ -174,7 +166,7 @@ Args:
 #### __getitem__
 
 
-```Mojo
+```rust
 __getitem__(self, idx: Int) -> Self
 ```  
 Summary  
@@ -187,10 +179,7 @@ Args:
 - idx
 
 
-Example:
-    `arr[1]` returns the second row of the ComplexNDArray.
-
-```Mojo
+```rust
 __getitem__(self, index: Item) -> ComplexSIMD[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -203,7 +192,7 @@ Args:
 - index
 
 
-```Mojo
+```rust
 __getitem__(self, owned *slices: Slice) -> Self
 ```  
 Summary  
@@ -216,10 +205,7 @@ Args:
 - \*slices
 
 
-Example:
-    `arr[1:3, 2:4]` returns the corresponding sliced ComplexNDArray (2 x 2).
-
-```Mojo
+```rust
 __getitem__(self, owned slice_list: List[Slice]) -> Self
 ```  
 Summary  
@@ -232,10 +218,7 @@ Args:
 - slice_list
 
 
-Example:
-    `arr[1:3, 2:4]` returns the corresponding sliced ComplexNDArray (2 x 2).
-
-```Mojo
+```rust
 __getitem__(self, owned *slices: Variant[Slice, Int]) -> Self
 ```  
 Summary  
@@ -248,7 +231,7 @@ Args:
 - \*slices: A series of either Slice or Int.
 
 
-```Mojo
+```rust
 __getitem__(self, index: List[Int]) -> Self
 ```  
 Summary  
@@ -261,11 +244,7 @@ Args:
 - index: List[Int].
 
 
-It always gets the first dimension.
-```
-
-
-```Mojo
+```rust
 __getitem__(self, index: NDArray[index]) -> Self
 ```  
 Summary  
@@ -278,9 +257,7 @@ Args:
 - index
 
 
-Refer to `__getitem__(self, index: List[Int])`.
-
-```Mojo
+```rust
 __getitem__(self, mask: NDArray[bool]) -> Self
 ```  
 Summary  
@@ -292,20 +269,10 @@ Args:
 - self
 - mask: NDArray with Dtype.bool.
 
-
-Example:
-    ```
-    var A = numojo.core.NDArray[numojo.i16](6, random=True)
-    var mask = A > 0
-    print(A)
-    print(mask)
-    print(A[mask])
-    ```
-
 #### __setitem__
 
 
-```Mojo
+```rust
 __setitem__(mut self, idx: Int, val: Self)
 ```  
 Summary  
@@ -319,15 +286,7 @@ Args:
 - val
 
 
-Example:
-```mojo
-import numojo as nm
-var A = nm.random.rand[nm.i16](3, 2)
-var B = nm.random.rand[nm.i16](3)
-A[1:4] = B
-```
-
-```Mojo
+```rust
 __setitem__(mut self, index: Item, val: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -341,7 +300,7 @@ Args:
 - val
 
 
-```Mojo
+```rust
 __setitem__(mut self, mask: Self, value: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -355,7 +314,7 @@ Args:
 - value
 
 
-```Mojo
+```rust
 __setitem__(mut self, owned *slices: Slice, *, val: Self)
 ```  
 Summary  
@@ -369,10 +328,7 @@ Args:
 - val
 
 
-Example:
-    `arr[1:3, 2:4]` returns the corresponding sliced ComplexNDArray (2 x 2).
-
-```Mojo
+```rust
 __setitem__(mut self, owned slices: List[Slice], val: Self)
 ```  
 Summary  
@@ -386,10 +342,7 @@ Args:
 - val
 
 
-Example:
-    `arr[1:3, 2:4]` returns the corresponding sliced ComplexNDArray (2 x 2).
-
-```Mojo
+```rust
 __setitem__(self, index: NDArray[index], val: Self)
 ```  
 Summary  
@@ -403,9 +356,7 @@ Args:
 - val
 
 
-Refer to `__getitem__(self, index: List[Int])`.
-
-```Mojo
+```rust
 __setitem__(mut self, mask: Self, val: Self)
 ```  
 Summary  
@@ -421,7 +372,7 @@ Args:
 #### __neg__
 
 
-```Mojo
+```rust
 __neg__(self) -> Self
 ```  
 Summary  
@@ -432,12 +383,10 @@ Args:
 
 - self
 
-
-For bolean use `__invert__`(~)
 #### __pos__
 
 
-```Mojo
+```rust
 __pos__(self) -> Self
 ```  
 Summary  
@@ -451,7 +400,7 @@ Args:
 #### __eq__
 
 
-```Mojo
+```rust
 __eq__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
@@ -464,7 +413,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __eq__(self, other: ComplexSIMD[cdtype, dtype=dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -479,7 +428,7 @@ Args:
 #### __ne__
 
 
-```Mojo
+```rust
 __ne__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
@@ -492,7 +441,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __ne__(self, other: ComplexSIMD[cdtype, dtype=dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -507,7 +456,7 @@ Args:
 #### __add__
 
 
-```Mojo
+```rust
 __add__(self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -520,7 +469,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __add__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -533,7 +482,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __add__(self, other: Self) -> Self
 ```  
 Summary  
@@ -546,7 +495,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __add__(self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -561,7 +510,7 @@ Args:
 #### __sub__
 
 
-```Mojo
+```rust
 __sub__(self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -574,7 +523,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __sub__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -587,7 +536,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __sub__(self, other: Self) -> Self
 ```  
 Summary  
@@ -600,7 +549,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __sub__(self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -615,7 +564,7 @@ Args:
 #### __mul__
 
 
-```Mojo
+```rust
 __mul__(self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -628,7 +577,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __mul__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -641,7 +590,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __mul__(self, other: Self) -> Self
 ```  
 Summary  
@@ -654,7 +603,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __mul__(self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -669,7 +618,7 @@ Args:
 #### __matmul__
 
 
-```Mojo
+```rust
 __matmul__(self, other: Self) -> Self
 ```  
 Summary  
@@ -684,7 +633,7 @@ Args:
 #### __truediv__
 
 
-```Mojo
+```rust
 __truediv__(self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -697,7 +646,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __truediv__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -710,7 +659,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __truediv__(self, other: Self) -> Self
 ```  
 Summary  
@@ -723,7 +672,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __truediv__(self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -738,7 +687,7 @@ Args:
 #### __radd__
 
 
-```Mojo
+```rust
 __radd__(mut self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -751,7 +700,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __radd__(mut self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -764,7 +713,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __radd__(mut self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -779,7 +728,7 @@ Args:
 #### __rsub__
 
 
-```Mojo
+```rust
 __rsub__(mut self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -792,7 +741,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __rsub__(mut self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -805,7 +754,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __rsub__(mut self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -820,7 +769,7 @@ Args:
 #### __rmul__
 
 
-```Mojo
+```rust
 __rmul__(self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -833,7 +782,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __rmul__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -846,7 +795,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __rmul__(self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -861,7 +810,7 @@ Args:
 #### __rtruediv__
 
 
-```Mojo
+```rust
 __rtruediv__(mut self, other: ComplexSIMD[cdtype, dtype=dtype]) -> Self
 ```  
 Summary  
@@ -874,7 +823,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __rtruediv__(mut self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -887,7 +836,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __rtruediv__(mut self, other: NDArray[dtype]) -> Self
 ```  
 Summary  
@@ -902,7 +851,7 @@ Args:
 #### __iadd__
 
 
-```Mojo
+```rust
 __iadd__(mut self, other: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -915,7 +864,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __iadd__(mut self, other: SIMD[dtype, 1])
 ```  
 Summary  
@@ -928,7 +877,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __iadd__(mut self, other: Self)
 ```  
 Summary  
@@ -941,7 +890,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __iadd__(mut self, other: NDArray[dtype])
 ```  
 Summary  
@@ -956,7 +905,7 @@ Args:
 #### __isub__
 
 
-```Mojo
+```rust
 __isub__(mut self, other: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -969,7 +918,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __isub__(mut self, other: SIMD[dtype, 1])
 ```  
 Summary  
@@ -982,7 +931,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __isub__(mut self, other: Self)
 ```  
 Summary  
@@ -995,7 +944,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __isub__(mut self, other: NDArray[dtype])
 ```  
 Summary  
@@ -1010,7 +959,7 @@ Args:
 #### __imul__
 
 
-```Mojo
+```rust
 __imul__(mut self, other: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -1023,7 +972,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __imul__(mut self, other: SIMD[dtype, 1])
 ```  
 Summary  
@@ -1036,7 +985,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __imul__(mut self, other: Self)
 ```  
 Summary  
@@ -1049,7 +998,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __imul__(mut self, other: NDArray[dtype])
 ```  
 Summary  
@@ -1064,7 +1013,7 @@ Args:
 #### __itruediv__
 
 
-```Mojo
+```rust
 __itruediv__(mut self, other: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -1077,7 +1026,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __itruediv__(mut self, other: SIMD[dtype, 1])
 ```  
 Summary  
@@ -1090,7 +1039,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __itruediv__(mut self, other: Self)
 ```  
 Summary  
@@ -1103,7 +1052,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __itruediv__(mut self, other: NDArray[dtype])
 ```  
 Summary  
@@ -1118,7 +1067,7 @@ Args:
 #### __str__
 
 
-```Mojo
+```rust
 __str__(self) -> String
 ```  
 Summary  
@@ -1132,7 +1081,7 @@ Args:
 #### write_to
 
 
-```Mojo
+```rust
 write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  
@@ -1151,7 +1100,7 @@ Args:
 #### __repr__
 
 
-```Mojo
+```rust
 __repr__(self) -> String
 ```  
 Summary  
@@ -1165,7 +1114,7 @@ Args:
 #### __len__
 
 
-```Mojo
+```rust
 __len__(self) -> Int
 ```  
 Summary  
@@ -1179,7 +1128,7 @@ Args:
 #### load
 
 
-```Mojo
+```rust
 load[width: Int = 1](self, index: Int) -> ComplexSIMD[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1196,10 +1145,7 @@ Args:
 - index
 
 
-To bypass boundary checks, use `self._buf.ptr.load` directly.
-
-
-```Mojo
+```rust
 load[width: Int = 1](self, *indices: Int) -> ComplexSIMD[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1215,13 +1161,10 @@ Args:
 - self
 - \*indices
 
-
-To bypass boundary checks, use `self._buf.ptr.load` directly.
-
 #### store
 
 
-```Mojo
+```rust
 store[width: Int = 1](mut self, index: Int, val: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -1239,10 +1182,7 @@ Args:
 - val
 
 
-To bypass boundary checks, use `self._buf.ptr.store` directly.
-
-
-```Mojo
+```rust
 store[width: Int = 1](mut self, *indices: Int, *, val: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -1259,13 +1199,10 @@ Args:
 - \*indices
 - val
 
-
-To bypass boundary checks, use `self._buf.ptr.store` directly.
-
 #### item
 
 
-```Mojo
+```rust
 item(self, owned index: Int) -> ComplexSIMD[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1278,14 +1215,7 @@ Args:
 - index: Index of item, counted in row-major way.
 
 
-If one index is given, get the i-th item of the ComplexNDArray (not buffer).
-It first scans over the first row, even it is a colume-major array.
-
-If more than one index is given, the length of the indices must match
-the number of dimensions of the array.
-
-
-```Mojo
+```rust
 item(self, *index: Int) -> ComplexSIMD[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1297,17 +1227,10 @@ Args:
 - self
 - \*index: The coordinates of the item.
 
-
-If one index is given, get the i-th item of the ComplexNDArray (not buffer).
-It first scans over the first row, even it is a colume-major array.
-
-If more than one index is given, the length of the indices must match
-the number of dimensions of the array.
-
 #### itemset
 
 
-```Mojo
+```rust
 itemset(mut self, index: Variant[Int, List[Int]], item: ComplexSIMD[cdtype, dtype=dtype])
 ```  
 Summary  
@@ -1323,7 +1246,7 @@ Args:
 #### conj
 
 
-```Mojo
+```rust
 conj(self) -> Self
 ```  
 Summary  
@@ -1337,7 +1260,7 @@ Args:
 #### to_ndarray
 
 
-```Mojo
+```rust
 to_ndarray(self, type: String = String("re")) -> NDArray[dtype]
 ```  
 Summary  

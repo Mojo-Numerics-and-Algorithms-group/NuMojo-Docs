@@ -31,7 +31,7 @@
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, size: Int)
 ```  
 Summary  
@@ -44,12 +44,7 @@ Args:
 - size
 
 
-Notes:
-Although it has the lifetime of another array, it owns the data.
-`ndarray.flags['OWN_DATA']` should be set as True.
-The memory should be freed by `__del__`.
-
-```Mojo
+```rust
 __init__(out self, ptr: UnsafePointer[SIMD[float16, 1]])
 ```  
 Summary  
@@ -61,14 +56,10 @@ Args:
 - self
 - ptr
 
-
-Notes:
-`ndarray.flags['OWN_DATA']` should be set as False.
-The memory should not be freed by `__del__`.
 #### __moveinit__
 
 
-```Mojo
+```rust
 __moveinit__(out self, owned other: Self)
 ```  
 Summary  
@@ -83,7 +74,7 @@ Args:
 #### get_ptr
 
 
-```Mojo
+```rust
 get_ptr(self) -> UnsafePointer[SIMD[float16, 1]]
 ```  
 Summary  

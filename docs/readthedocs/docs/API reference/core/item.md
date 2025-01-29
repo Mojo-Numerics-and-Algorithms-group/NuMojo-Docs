@@ -37,7 +37,7 @@ Implements Item type.
 #### __init__
 
 
-```Mojo
+```rust
 __init__[T: Indexer](out self, *args: T)
 ```  
 Summary  
@@ -54,11 +54,7 @@ Args:
 - \*args: Initial values.
 
 
-Parameter:
-    T: Type of values. It can be converted to `Int` with `index()`.
-
-
-```Mojo
+```rust
 __init__[T: IndexerCollectionElement](out self, args: List[T])
 ```  
 Summary  
@@ -75,11 +71,7 @@ Args:
 - args: Initial values.
 
 
-Parameter:
-    T: Type of values. It can be converted to `Int` with `index()`.
-
-
-```Mojo
+```rust
 __init__(out self, args: VariadicList[Int])
 ```  
 Summary  
@@ -92,7 +84,7 @@ Args:
 - args: Initial values.
 
 
-```Mojo
+```rust
 __init__(out self, ndim: Int, initialized: Bool)
 ```  
 Summary  
@@ -105,14 +97,10 @@ Args:
 - ndim: Number of dimensions.
 - initialized: Whether the shape is initialized. If yes, the values will be set to 0. If no, the values will be uninitialized.
 
-
-This method is useful when you want to create a Item with given ndim
-without knowing the Item values.
-
 #### __copyinit__
 
 
-```Mojo
+```rust
 __copyinit__(out self, other: Self)
 ```  
 Summary  
@@ -127,7 +115,7 @@ Args:
 #### __del__
 
 
-```Mojo
+```rust
 __del__(owned self)
 ```  
 Summary  
@@ -141,7 +129,7 @@ Args:
 #### __getitem__
 
 
-```Mojo
+```rust
 __getitem__[T: Indexer](self, idx: T) -> Int
 ```  
 Summary  
@@ -157,14 +145,10 @@ Args:
 - self
 - idx: The index of the value to get.
 
-
-Parameter:
-    T: Type of values. It can be converted to `Int` with `index()`.
-
 #### __setitem__
 
 
-```Mojo
+```rust
 __setitem__[T: Indexer, U: Indexer](self, idx: T, val: U)
 ```  
 Summary  
@@ -182,15 +166,10 @@ Args:
 - idx: The index of the value to set.
 - val: The value to set.
 
-
-Parameter:
-    T: Type of values. It can be converted to `Int` with `index()`.
-    U: Type of values. It can be converted to `Int` with `index()`.
-
 #### __len__
 
 
-```Mojo
+```rust
 __len__(self) -> Int
 ```  
 Summary  
@@ -204,7 +183,7 @@ Args:
 #### __iter__
 
 
-```Mojo
+```rust
 __iter__(self) -> _ItemIter
 ```  
 Summary  
@@ -215,13 +194,10 @@ Args:
 
 - self
 
-
-Notes:
-    Need to add lifetimes after the new release.
 #### __repr__
 
 
-```Mojo
+```rust
 __repr__(self) -> String
 ```  
 Summary  
@@ -235,7 +211,7 @@ Args:
 #### __str__
 
 
-```Mojo
+```rust
 __str__(self) -> String
 ```  
 Summary  
@@ -249,7 +225,7 @@ Args:
 #### write_to
 
 
-```Mojo
+```rust
 write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  

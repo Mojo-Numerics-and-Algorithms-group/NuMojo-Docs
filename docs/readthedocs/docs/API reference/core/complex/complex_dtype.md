@@ -67,7 +67,7 @@ Represents CDType and provides methods for working with it.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, *, other: Self)
 ```  
 Summary  
@@ -80,10 +80,7 @@ Args:
 - other
 
 
-Arguments:
-    other: The CDType to copy.
-
-```Mojo
+```rust
 __init__(out self, re_value: dtype, im_value: dtype)
 ```  
 Summary  
@@ -96,13 +93,10 @@ Args:
 - re_value
 - im_value
 
-
-Arguments:
-    value: The MLIR dtype.
 #### __eq__
 
 
-```Mojo
+```rust
 __eq__(self, rhs: Self) -> Bool
 ```  
 Summary  
@@ -114,14 +108,10 @@ Args:
 - self
 - rhs
 
-
-Arguments:
-    rhs: The CDType to compare against.
-
 #### __ne__
 
 
-```Mojo
+```rust
 __ne__(self, rhs: Self) -> Bool
 ```  
 Summary  
@@ -133,14 +123,10 @@ Args:
 - self
 - rhs
 
-
-Arguments:
-    rhs: The CDType to compare against.
-
 #### __is__
 
 
-```Mojo
+```rust
 __is__(self, rhs: Self) -> Bool
 ```  
 Summary  
@@ -152,14 +138,10 @@ Args:
 - self
 - rhs
 
-
-Arguments:
-    rhs: The CDType to compare against.
-
 #### __isnot__
 
 
-```Mojo
+```rust
 __isnot__(self, rhs: Self) -> Bool
 ```  
 Summary  
@@ -171,14 +153,10 @@ Args:
 - self
 - rhs
 
-
-Arguments:
-    rhs: The CDType to compare against.
-
 #### to_dtype
 
 
-```Mojo
+```rust
 to_dtype[other: Self]() -> DType
 ```  
 Summary  
@@ -192,7 +170,7 @@ Parameters:
 #### __str__
 
 
-```Mojo
+```rust
 __str__(self) -> String
 ```  
 Summary  
@@ -206,7 +184,7 @@ Args:
 #### write_to
 
 
-```Mojo
+```rust
 write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  
@@ -222,13 +200,10 @@ Args:
 - self
 - writer
 
-
-Arguments:
-    writer: The object to write to.
 #### __repr__
 
 
-```Mojo
+```rust
 __repr__(self) -> String
 ```  
 Summary  
@@ -242,7 +217,7 @@ Args:
 #### get_value
 
 
-```Mojo
+```rust
 get_value(self) -> dtype
 ```  
 Summary  
@@ -256,7 +231,7 @@ Args:
 #### __hash__
 
 
-```Mojo
+```rust
 __hash__(self) -> UInt
 ```  
 Summary  
@@ -268,7 +243,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 __hash__[H: _Hasher](self, mut hasher: H)
 ```  
 Summary  
@@ -284,13 +259,10 @@ Args:
 - self
 - hasher
 
-
-Arguments:
-    hasher: The hasher instance.
 #### is_unsigned
 
 
-```Mojo
+```rust
 is_unsigned(self) -> Bool
 ```  
 Summary  
@@ -304,7 +276,7 @@ Args:
 #### is_signed
 
 
-```Mojo
+```rust
 is_signed(self) -> Bool
 ```  
 Summary  
@@ -318,7 +290,7 @@ Args:
 #### is_integral
 
 
-```Mojo
+```rust
 is_integral(self) -> Bool
 ```  
 Summary  
@@ -332,7 +304,7 @@ Args:
 #### is_floating_point
 
 
-```Mojo
+```rust
 is_floating_point(self) -> Bool
 ```  
 Summary  
@@ -346,7 +318,7 @@ Args:
 #### is_float8
 
 
-```Mojo
+```rust
 is_float8(self) -> Bool
 ```  
 Summary  
@@ -360,7 +332,7 @@ Args:
 #### is_half_float
 
 
-```Mojo
+```rust
 is_half_float(self) -> Bool
 ```  
 Summary  
@@ -374,7 +346,7 @@ Args:
 #### is_numeric
 
 
-```Mojo
+```rust
 is_numeric(self) -> Bool
 ```  
 Summary  
@@ -388,7 +360,7 @@ Args:
 #### sizeof
 
 
-```Mojo
+```rust
 sizeof(self) -> Int
 ```  
 Summary  
@@ -402,7 +374,7 @@ Args:
 #### bitwidth
 
 
-```Mojo
+```rust
 bitwidth(self) -> Int
 ```  
 Summary  
@@ -416,7 +388,7 @@ Args:
 #### dispatch_integral
 
 
-```Mojo
+```rust
 dispatch_integral[: origin.set, //, func: fn[CDType]() capturing -> None](self)
 ```  
 Summary  
@@ -439,7 +411,7 @@ Args:
 #### dispatch_floating
 
 
-```Mojo
+```rust
 dispatch_floating[: origin.set, //, func: fn[CDType]() capturing -> None](self)
 ```  
 Summary  
@@ -462,7 +434,7 @@ Args:
 #### dispatch_arithmetic
 
 
-```Mojo
+```rust
 dispatch_arithmetic[: origin.set, //, func: fn[CDType]() capturing -> None](self)
 ```  
 Summary  

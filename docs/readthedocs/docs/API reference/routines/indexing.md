@@ -10,7 +10,7 @@ Indexing routines.
 ## where
 
 
-```Mojo
+```rust
 where[dtype: DType](mut x: NDArray[dtype], scalar: SIMD[dtype, 1], mask: NDArray[bool])
 ```  
 Summary  
@@ -28,7 +28,7 @@ Args:
 - mask: A NDArray.
 
 
-```Mojo
+```rust
 where[dtype: DType](mut x: NDArray[dtype], y: NDArray[dtype], mask: NDArray[bool])
 ```  
 Summary  

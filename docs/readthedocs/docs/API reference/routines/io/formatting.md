@@ -64,7 +64,7 @@
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, precision: Int = 4, suppress_small: Bool = False, separator: String = String(" "), padding: String = String(""), threshold: Int = 10, line_width: Int = 75, edge_items: Int = 3, sign: Bool = False, float_format: String = String("fixed"), complex_format: String = String("parentheses"), nan_string: String = String("nan"), inf_string: String = String("inf"), formatted_width: Int = 8, exponent_threshold: Int = 4, suppress_scientific: Bool = False)
 ```  
 Summary  
@@ -93,7 +93,7 @@ Args:
 #### set_options
 
 
-```Mojo
+```rust
 set_options(mut self, precision: Int = 4, suppress_small: Bool = False, separator: String = String(" "), padding: String = String(""), threshold: Int = 10, line_width: Int = 75, edge_items: Int = 3, sign: Bool = False, float_format: String = String("fixed"), complex_format: String = String("parentheses"), nan_string: String = String("nan"), inf_string: String = String("inf"), formatted_width: Int = 8, exponent_threshold: Int = 4, suppress_scientific: Bool = False)
 ```  
 Summary  
@@ -122,7 +122,7 @@ Args:
 #### __enter__
 
 
-```Mojo
+```rust
 __enter__(mut self) -> Self
 ```  
 Summary  
@@ -136,7 +136,7 @@ Args:
 #### __exit__
 
 
-```Mojo
+```rust
 __exit__(mut self)
 ```  
 Summary  
@@ -150,7 +150,7 @@ Args:
 ## set_printoptions
 
 
-```Mojo
+```rust
 set_printoptions(precision: Int = 4, suppress_small: Bool = False, separator: String = String(" "), padding: String = String(""), edge_items: Int = 3)
 ```  
 Summary  
@@ -168,7 +168,7 @@ Args:
 ## format_floating_scientific
 
 
-```Mojo
+```rust
 format_floating_scientific[dtype: DType = float64](x: SIMD[dtype, 1], precision: Int = 10, sign: Bool = False) -> String
 ```  
 Summary  
@@ -185,14 +185,10 @@ Args:
 - precision: The number of decimal places to include in the mantissa. Default: 10
 - sign: Whether to include the sign of the float in the result. Defaults to False. Default: False
 
-
-Notes: A scientific notation takes the form `-a.bbbbe+ii`. It will take
-`7 + precision` letters in total.
-
 ## format_floating_precision
 
 
-```Mojo
+```rust
 format_floating_precision[dtype: DType](value: SIMD[dtype, 1], precision: Int, sign: Bool = False) -> String
 ```  
 Summary  
@@ -210,7 +206,7 @@ Args:
 - sign: Whether to include the sign of the float in the result. Defaults to False. Default: False
 
 
-```Mojo
+```rust
 format_floating_precision[cdtype: CDType, dtype: DType](value: ComplexSIMD[cdtype, dtype=dtype]) -> String
 ```  
 Summary  
@@ -229,7 +225,7 @@ Args:
 ## format_value
 
 
-```Mojo
+```rust
 format_value[dtype: DType](value: SIMD[dtype, 1], print_options: PrintOptions) -> String
 ```  
 Summary  
@@ -246,7 +242,7 @@ Args:
 - print_options: The print options.
 
 
-```Mojo
+```rust
 format_value[cdtype: CDType, dtype: DType](value: ComplexSIMD[cdtype, dtype=dtype], print_options: PrintOptions) -> String
 ```  
 Summary  

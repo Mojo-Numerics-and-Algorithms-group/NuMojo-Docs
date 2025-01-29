@@ -26,7 +26,7 @@ A trait that defines backends for calculations in the rest of the library.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self: _Self)
 ```  
 Summary  
@@ -40,7 +40,7 @@ Args:
 #### math_func_fma
 
 
-```Mojo
+```rust
 math_func_fma[dtype: DType](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype], array3: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -63,7 +63,7 @@ Args:
 - array3: A NDArray.
 
 
-```Mojo
+```rust
 math_func_fma[dtype: DType](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype], simd: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -88,7 +88,7 @@ Args:
 #### math_func_1_array_in_one_array_out
 
 
-```Mojo
+```rust
 math_func_1_array_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1]) -> SIMD[$0, $1]](self: _Self, array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -108,7 +108,7 @@ Args:
 #### math_func_2_array_in_one_array_out
 
 
-```Mojo
+```rust
 math_func_2_array_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[$0, $1]](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -133,7 +133,7 @@ Args:
 #### math_func_1_array_1_scalar_in_one_array_out
 
 
-```Mojo
+```rust
 math_func_1_array_1_scalar_in_one_array_out[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[$0, $1]](self: _Self, array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -158,7 +158,7 @@ Args:
 #### math_func_compare_2_arrays
 
 
-```Mojo
+```rust
 math_func_compare_2_arrays[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: _Self, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -183,7 +183,7 @@ Args:
 #### math_func_compare_array_and_scalar
 
 
-```Mojo
+```rust
 math_func_compare_array_and_scalar[dtype: DType, func: fn[DType, Int](SIMD[$0, $1], SIMD[$0, $1]) -> SIMD[bool, $1]](self: _Self, array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
@@ -208,7 +208,7 @@ Args:
 #### math_func_is
 
 
-```Mojo
+```rust
 math_func_is[dtype: DType, func: fn[DType, Int](SIMD[$0, $1]) -> SIMD[bool, $1]](self: _Self, array: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  

@@ -10,7 +10,7 @@ Array creation routine.
 ## arange
 
 
-```Mojo
+```rust
 arange[dtype: DType = float64](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], step: SIMD[dtype, 1] = SIMD(1)) -> NDArray[dtype]
 ```  
 Summary  
@@ -28,7 +28,7 @@ Args:
 - step: Scalar[dtype]  - Step size between each element (default 1). Default: SIMD(1)
 
 
-```Mojo
+```rust
 arange[dtype: DType = float64](stop: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -44,7 +44,7 @@ Args:
 - stop
 
 
-```Mojo
+```rust
 arange[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](start: ComplexSIMD[cdtype, dtype=dtype], stop: ComplexSIMD[cdtype, dtype=dtype], step: ComplexSIMD[cdtype, dtype=dtype] = ComplexSIMD(SIMD(1), SIMD(1))) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -63,7 +63,7 @@ Args:
 - step: ComplexSIMD[cdtype]  - Step size between each element (default 1). Default: ComplexSIMD(SIMD(1), SIMD(1))
 
 
-```Mojo
+```rust
 arange[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](stop: ComplexSIMD[cdtype, dtype=dtype]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -82,7 +82,7 @@ Args:
 ## linspace
 
 
-```Mojo
+```rust
 linspace[dtype: DType = float64](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], num: Int = 50, endpoint: Bool = True, parallel: Bool = False) -> NDArray[dtype]
 ```  
 Summary  
@@ -102,7 +102,7 @@ Args:
 - parallel: Specifies whether the linspace should be calculated using parallelization, deafults to False. Default: False
 
 
-```Mojo
+```rust
 linspace[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](start: ComplexSIMD[cdtype, dtype=dtype], stop: ComplexSIMD[cdtype, dtype=dtype], num: Int = 50, endpoint: Bool = True, parallel: Bool = False) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -125,7 +125,7 @@ Args:
 ## logspace
 
 
-```Mojo
+```rust
 logspace[dtype: DType = float64](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], num: Int, endpoint: Bool = True, base: SIMD[dtype, 1] = SIMD(#kgen.float_literal<10|1>), parallel: Bool = False) -> NDArray[dtype]
 ```  
 Summary  
@@ -146,7 +146,7 @@ Args:
 - parallel: Specifies whether to calculate the logarithmic spaced values using parallelization. Default: False
 
 
-```Mojo
+```rust
 logspace[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](start: ComplexSIMD[cdtype, dtype=dtype], stop: ComplexSIMD[cdtype, dtype=dtype], num: Int, endpoint: Bool = True, base: ComplexSIMD[cdtype, dtype=dtype] = ComplexSIMD(SIMD(#kgen.float_literal<10|1>), SIMD(#kgen.float_literal<10|1>)), parallel: Bool = False) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -170,7 +170,7 @@ Args:
 ## geomspace
 
 
-```Mojo
+```rust
 geomspace[dtype: DType = float64](start: SIMD[dtype, 1], stop: SIMD[dtype, 1], num: Int, endpoint: Bool = True) -> NDArray[dtype]
 ```  
 Summary  
@@ -189,7 +189,7 @@ Args:
 - endpoint: Whether to include the `stop` value in the NDArray. Defaults to True. Default: True
 
 
-```Mojo
+```rust
 geomspace[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](start: ComplexSIMD[cdtype, dtype=dtype], stop: ComplexSIMD[cdtype, dtype=dtype], num: Int, endpoint: Bool = True) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -211,7 +211,7 @@ Args:
 ## empty
 
 
-```Mojo
+```rust
 empty[dtype: DType = float64](shape: NDArrayShape) -> NDArray[dtype]
 ```  
 Summary  
@@ -227,7 +227,7 @@ Args:
 - shape: Shape of the NDArray.
 
 
-```Mojo
+```rust
 empty[dtype: DType = float64](shape: List[Int]) -> NDArray[dtype]
 ```  
 Summary  
@@ -243,7 +243,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 empty[dtype: DType = float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```  
 Summary  
@@ -259,7 +259,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 empty[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: NDArrayShape) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -276,7 +276,7 @@ Args:
 - shape: Shape of the ComplexNDArray.
 
 
-```Mojo
+```rust
 empty[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: List[Int]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -293,7 +293,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 empty[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: VariadicList[Int]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -312,7 +312,7 @@ Args:
 ## empty_like
 
 
-```Mojo
+```rust
 empty_like[dtype: DType = float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -328,7 +328,7 @@ Args:
 - array: NDArray to be used as a reference for the shape.
 
 
-```Mojo
+```rust
 empty_like[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](array: ComplexNDArray[cdtype, dtype=dtype]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -347,7 +347,7 @@ Args:
 ## eye
 
 
-```Mojo
+```rust
 eye[dtype: DType = float64](N: Int, M: Int) -> NDArray[dtype]
 ```  
 Summary  
@@ -364,7 +364,7 @@ Args:
 - M: Number of columns in the matrix.
 
 
-```Mojo
+```rust
 eye[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](N: Int, M: Int) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -384,7 +384,7 @@ Args:
 ## identity
 
 
-```Mojo
+```rust
 identity[dtype: DType = float64](N: Int) -> NDArray[dtype]
 ```  
 Summary  
@@ -400,7 +400,7 @@ Args:
 - N: Size of the matrix.
 
 
-```Mojo
+```rust
 identity[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](N: Int) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -419,7 +419,7 @@ Args:
 ## ones
 
 
-```Mojo
+```rust
 ones[dtype: DType = float64](shape: NDArrayShape) -> NDArray[dtype]
 ```  
 Summary  
@@ -435,10 +435,7 @@ Args:
 - shape: Shape of the NDArray.
 
 
-It calls the function `full`.
-
-
-```Mojo
+```rust
 ones[dtype: DType = float64](shape: List[Int]) -> NDArray[dtype]
 ```  
 Summary  
@@ -454,7 +451,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 ones[dtype: DType = float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```  
 Summary  
@@ -470,7 +467,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 ones[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: NDArrayShape) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -487,10 +484,7 @@ Args:
 - shape: Shape of the ComplexNDArray.
 
 
-It calls the function `full`.
-
-
-```Mojo
+```rust
 ones[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: List[Int]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -507,7 +501,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 ones[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: VariadicList[Int]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -526,7 +520,7 @@ Args:
 ## ones_like
 
 
-```Mojo
+```rust
 ones_like[dtype: DType = float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -542,7 +536,7 @@ Args:
 - array: NDArray to be used as a reference for the shape.
 
 
-```Mojo
+```rust
 ones_like[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](array: ComplexNDArray[cdtype, dtype=dtype]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -561,7 +555,7 @@ Args:
 ## zeros
 
 
-```Mojo
+```rust
 zeros[dtype: DType = float64](shape: NDArrayShape) -> NDArray[dtype]
 ```  
 Summary  
@@ -577,11 +571,7 @@ Args:
 - shape: Shape of the NDArray.
 
 
-It calls the function `full`.
-
-of NDArray.
-
-```Mojo
+```rust
 zeros[dtype: DType = float64](shape: List[Int]) -> NDArray[dtype]
 ```  
 Summary  
@@ -597,7 +587,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 zeros[dtype: DType = float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```  
 Summary  
@@ -613,7 +603,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 zeros[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: NDArrayShape) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -630,10 +620,7 @@ Args:
 - shape: Shape of the ComplexNDArray.
 
 
-It calls the function `full`.
-
-
-```Mojo
+```rust
 zeros[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: List[Int]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -650,7 +637,7 @@ Args:
 - shape
 
 
-```Mojo
+```rust
 zeros[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: VariadicList[Int]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -669,7 +656,7 @@ Args:
 ## zeros_like
 
 
-```Mojo
+```rust
 zeros_like[dtype: DType = float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -685,7 +672,7 @@ Args:
 - array: NDArray to be used as a reference for the shape.
 
 
-```Mojo
+```rust
 zeros_like[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](array: ComplexNDArray[cdtype, dtype=dtype]) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -704,7 +691,7 @@ Args:
 ## full
 
 
-```Mojo
+```rust
 full[dtype: DType = float64](shape: NDArrayShape, fill_value: SIMD[dtype, 1], order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -722,14 +709,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-Example:
-    ```mojo
-    import numojo as nm
-    from numojo.prelude import *
-    var a = nm.full(Shape(2,3,4), fill_value=10)
-    ```
-
-```Mojo
+```rust
 full[dtype: DType = float64](shape: List[Int], fill_value: SIMD[dtype, 1], order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -747,7 +727,7 @@ Args:
 - order Default: String("C")
 
 
-```Mojo
+```rust
 full[dtype: DType = float64](shape: VariadicList[Int], fill_value: SIMD[dtype, 1], order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -765,7 +745,7 @@ Args:
 - order Default: String("C")
 
 
-```Mojo
+```rust
 full[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: NDArrayShape, fill_value: ComplexSIMD[cdtype, dtype=dtype], order: String = String("C")) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -784,14 +764,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-Example:
-    ```mojo
-    import numojo as nm
-    from numojo.prelude import *
-    var a = nm.full[cf32](Shape(2,3,4), fill_value=ComplexSIMD[cf32](10, 10))
-    ```
-
-```Mojo
+```rust
 full[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: List[Int], fill_value: ComplexSIMD[cdtype, dtype=dtype], order: String = String("C")) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -810,7 +783,7 @@ Args:
 - order Default: String("C")
 
 
-```Mojo
+```rust
 full[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](shape: VariadicList[Int], fill_value: ComplexSIMD[cdtype, dtype=dtype], order: String = String("C")) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -831,7 +804,7 @@ Args:
 ## full_like
 
 
-```Mojo
+```rust
 full_like[dtype: DType = float64](array: NDArray[dtype], fill_value: SIMD[dtype, 1], order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -849,7 +822,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-```Mojo
+```rust
 full_like[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](array: ComplexNDArray[cdtype, dtype=dtype], fill_value: ComplexSIMD[cdtype, dtype=dtype], order: String = String("C")) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -870,7 +843,7 @@ Args:
 ## diag
 
 
-```Mojo
+```rust
 diag[dtype: DType = float64](v: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -887,7 +860,7 @@ Args:
 - k: Diagonal offset. Default: 0
 
 
-```Mojo
+```rust
 diag[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](v: ComplexNDArray[cdtype, dtype=dtype], k: Int = 0) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -907,7 +880,7 @@ Args:
 ## diagflat
 
 
-```Mojo
+```rust
 diagflat[dtype: DType = float64](v: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -924,7 +897,7 @@ Args:
 - k: Diagonal offset. Default: 0
 
 
-```Mojo
+```rust
 diagflat[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](v: ComplexNDArray[cdtype, dtype=dtype], k: Int = 0) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -944,7 +917,7 @@ Args:
 ## tri
 
 
-```Mojo
+```rust
 tri[dtype: DType = float64](N: Int, M: Int, k: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -962,7 +935,7 @@ Args:
 - k: Diagonal offset. Default: 0
 
 
-```Mojo
+```rust
 tri[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](N: Int, M: Int, k: Int = 0) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -983,7 +956,7 @@ Args:
 ## tril
 
 
-```Mojo
+```rust
 tril[dtype: DType = float64](m: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -1000,7 +973,7 @@ Args:
 - k: Diagonal offset. Default: 0
 
 
-```Mojo
+```rust
 tril[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](m: ComplexNDArray[cdtype, dtype=dtype], k: Int = 0) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1020,7 +993,7 @@ Args:
 ## triu
 
 
-```Mojo
+```rust
 triu[dtype: DType = float64](m: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -1037,7 +1010,7 @@ Args:
 - k: Diagonal offset. Default: 0
 
 
-```Mojo
+```rust
 triu[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](m: ComplexNDArray[cdtype, dtype=dtype], k: Int = 0) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1057,7 +1030,7 @@ Args:
 ## vander
 
 
-```Mojo
+```rust
 vander[dtype: DType = float64](x: NDArray[dtype], N: Optional[Int] = Optional(None), increasing: Bool = False) -> NDArray[dtype]
 ```  
 Summary  
@@ -1075,7 +1048,7 @@ Args:
 - increasing: Order of the powers of the columns. If True, the powers increase from left to right, if False (the default) they are reversed. Default: False
 
 
-```Mojo
+```rust
 vander[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](x: ComplexNDArray[cdtype, dtype=dtype], N: Optional[Int] = Optional(None), increasing: Bool = False) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1096,7 +1069,7 @@ Args:
 ## astype
 
 
-```Mojo
+```rust
 astype[dtype: DType, //, target: DType](a: NDArray[dtype]) -> NDArray[target]
 ```  
 Summary  
@@ -1113,7 +1086,7 @@ Args:
 - a: NDArray to be casted.
 
 
-```Mojo
+```rust
 astype[cdtype: CDType, //, target: CDType, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType](), target_dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](a: ComplexNDArray[cdtype, dtype=dtype]) -> ComplexNDArray[target, dtype=target_dtype]
 ```  
 Summary  
@@ -1134,7 +1107,7 @@ Args:
 ## fromstring
 
 
-```Mojo
+```rust
 fromstring[dtype: DType = float64](text: String, order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -1150,52 +1123,10 @@ Args:
 - text: String representation of an ndarray.
 - order: Memory order C or F. Default: String("C")
 
-
-Note:
-StringLiteral is also allowed as input as it is coerced to String type
-before it is passed into the function.
-
-Example:
-```
-import numojo as nm
-
-fn main() raises:
-    var A = nm.fromstring[DType.int8]("[[[1,2],[3,4]],[[5,6],[7,8]]]")
-    var B = nm.fromstring[DType.float16]("[[1,2,3,4],[5,6,7,8]]")
-    var C = nm.fromstring[DType.float32]("[0.1, -2.3, 41.5, 19.29145, -199]")
-    var D = nm.fromstring[DType.int32]("[0.1, -2.3, 41.5, 19.29145, -199]")
-
-    print(A)
-    print(B)
-    print(C)
-    print(D)
-```
-
-The output goes as follows. Note that the numbers are automatically
-casted to the dtype of the NDArray.
-
-```console
-[[[     1       2       ]
- [     3       4       ]]
- [[     5       6       ]
- [     7       8       ]]]
-3-D array  Shape: [2, 2, 2]  DType: int8
-
-[[      1.0     2.0     3.0     4.0     ]
- [      5.0     6.0     7.0     8.0     ]]
-2-D array  Shape: [2, 4]  DType: float16
-
-[       0.10000000149011612     2.2999999523162842      41.5    19.291450500488281      199.0   ]
-1-D array  Shape: [5]  DType: float32
-
-[       0       2       41      19      199     ]
-1-D array  Shape: [5]  DType: int32
-```
-
 ## from_tensor
 
 
-```Mojo
+```rust
 from_tensor[dtype: DType = float64](data: Tensor[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -1213,7 +1144,7 @@ Args:
 ## array
 
 
-```Mojo
+```rust
 array[dtype: DType = float64](text: String, order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -1230,7 +1161,7 @@ Args:
 - order Default: String("C")
 
 
-```Mojo
+```rust
 array[dtype: DType = float64](data: List[SIMD[dtype, 1]], shape: List[Int], order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -1248,15 +1179,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-Example:
-    ```mojo
-    import numojo as nm
-    from numojo.prelude import *
-    nm.array[f16](data=List[Scalar[f16]](1, 2, 3, 4), shape=List[Int](2, 2))
-    ```
-
-
-```Mojo
+```rust
 array[cdtype: CDType = {float64, float64}, *, dtype: DType = to_dtype[numojo::core::complex::complex_dtype::CDType]()](real: List[SIMD[dtype, 1]], imag: List[SIMD[dtype, 1]], shape: List[Int], order: String = String("C")) -> ComplexNDArray[cdtype, dtype=dtype]
 ```  
 Summary  
@@ -1276,19 +1199,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-Example:
-    ```mojo
-    import numojo as nm
-    from numojo.prelude import *
-    nm.array[cf32](
-        real=List[Scalar[f32]](1, 2, 3, 4),
-        imag=List[Scalar[f32]](5, 6, 7, 8),
-        shape=List[Int](2, 2),
-    )
-    ```
-
-
-```Mojo
+```rust
 array[dtype: DType = float64](data: PythonObject, order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -1305,18 +1216,7 @@ Args:
 - order: Memory order C or F. Default: String("C")
 
 
-Example:
-```mojo
-import numojo as nm
-from numojo.prelude import *
-from python import Python
-var np = Python.import_module("numpy")
-var np_arr = np.array([1, 2, 3, 4])
-A = nm.array[f16](data=np_arr, order="C")
-```
-
-
-```Mojo
+```rust
 array[dtype: DType = float64](data: Tensor[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -1330,19 +1230,3 @@ Parameters:
 Args:  
 
 - data: Tensor.
-
-
-Example:
-```mojo
-import numojo as nm
-from tensor import Tensor, TensorShape
-from numojo.prelude import *
-
-fn main() raises:
-    height = 256
-    width = 256
-    channels = 3
-    image = Tensor[DType.float32].rand(TensorShape(height, width, channels))
-    print(image)
-    print(nm.array(image))
-```

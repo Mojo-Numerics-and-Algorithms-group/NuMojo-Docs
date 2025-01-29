@@ -10,7 +10,7 @@
 ## argmax
 
 
-```Mojo
+```rust
 argmax[dtype: DType](array: NDArray[dtype]) -> Int
 ```  
 Summary  
@@ -26,7 +26,7 @@ Args:
 - array: A array.
 
 
-```Mojo
+```rust
 argmax[dtype: DType](A: Matrix[dtype]) -> SIMD[index, 1]
 ```  
 Summary  
@@ -42,7 +42,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 argmax[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[index]
 ```  
 Summary  
@@ -61,7 +61,7 @@ Args:
 ## argmin
 
 
-```Mojo
+```rust
 argmin[dtype: DType](array: NDArray[dtype]) -> Int
 ```  
 Summary  
@@ -77,7 +77,7 @@ Args:
 - array: A array.
 
 
-```Mojo
+```rust
 argmin[dtype: DType](A: Matrix[dtype]) -> SIMD[index, 1]
 ```  
 Summary  
@@ -93,7 +93,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 argmin[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[index]
 ```  
 Summary  

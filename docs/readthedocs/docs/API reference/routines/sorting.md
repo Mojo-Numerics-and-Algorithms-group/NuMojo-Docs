@@ -10,7 +10,7 @@
 ## bubble_sort
 
 
-```Mojo
+```rust
 bubble_sort[dtype: DType](ndarray: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -25,18 +25,10 @@ Args:
 
 - ndarray: An NDArray.
 
-
-Example:
-    ```py
-    var arr = numojo.core.random.rand[numojo.i16](100)
-    var sorted_arr = numojo.core.sort.bubble_sort(arr)
-    print(sorted_arr)
-    ```
-
 ## sort
 
 
-```Mojo
+```rust
 sort[dtype: DType](owned A: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -52,10 +44,7 @@ Args:
 - A: NDArray.
 
 
-When no axis is given, the array is flattened before sorting.
-
-
-```Mojo
+```rust
 sort[dtype: DType](owned A: NDArray[dtype], owned axis: Int) -> NDArray[dtype]
 ```  
 Summary  
@@ -72,10 +61,7 @@ Args:
 - axis: The axis along which the array is sorted.
 
 
-When no axis is given, the array is flattened before sorting.
-
-
-```Mojo
+```rust
 sort[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -91,7 +77,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 sort[dtype: DType](owned A: Matrix[dtype], axis: Int) -> Matrix[dtype]
 ```  
 Summary  
@@ -110,7 +96,7 @@ Args:
 ## binary_sort
 
 
-```Mojo
+```rust
 binary_sort[dtype: DType = float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -125,18 +111,10 @@ Args:
 
 - array: A NDArray.
 
-
-Example:
-    ```py
-    var arr = numojo.core.random.rand[numojo.i16](100)
-    var sorted_arr = numojo.core.sort.binary_sort(arr)
-    print(sorted_arr)
-    ```
-
 ## argsort
 
 
-```Mojo
+```rust
 argsort[dtype: DType](owned A: NDArray[dtype]) -> NDArray[index]
 ```  
 Summary  
@@ -152,10 +130,7 @@ Args:
 - A: NDArray.
 
 
-When no axis is given, the array is flattened before sorting.
-
-
-```Mojo
+```rust
 argsort[dtype: DType](owned A: NDArray[dtype], owned axis: Int) -> NDArray[index]
 ```  
 Summary  
@@ -172,10 +147,7 @@ Args:
 - axis: The axis along which the array is sorted.
 
 
-When no axis is given, the array is flattened before sorting.
-
-
-```Mojo
+```rust
 argsort[dtype: DType](A: Matrix[dtype]) -> Matrix[index]
 ```  
 Summary  
@@ -191,7 +163,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 argsort[dtype: DType](owned A: Matrix[dtype], axis: Int) -> Matrix[index]
 ```  
 Summary  

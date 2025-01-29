@@ -34,7 +34,7 @@ Define constants.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self)
 ```  
 Summary  
@@ -48,7 +48,7 @@ Args:
 #### __del__
 
 
-```Mojo
+```rust
 __del__(owned self)
 ```  
 Summary  

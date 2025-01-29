@@ -35,7 +35,7 @@ Implements the NDArrayStrides.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, *strides: Int)
 ```  
 Summary  
@@ -48,7 +48,7 @@ Args:
 - \*strides
 
 
-```Mojo
+```rust
 __init__(out self, strides: List[Int])
 ```  
 Summary  
@@ -61,7 +61,7 @@ Args:
 - strides
 
 
-```Mojo
+```rust
 __init__(out self, strides: VariadicList[Int])
 ```  
 Summary  
@@ -74,7 +74,7 @@ Args:
 - strides
 
 
-```Mojo
+```rust
 __init__(out self, strides: Self)
 ```  
 Summary  
@@ -87,7 +87,7 @@ Args:
 - strides
 
 
-```Mojo
+```rust
 __init__(out self, *shape: Int, *, order: String)
 ```  
 Summary  
@@ -101,7 +101,7 @@ Args:
 - order
 
 
-```Mojo
+```rust
 __init__(out self, shape: List[Int], order: String = String("C"))
 ```  
 Summary  
@@ -115,7 +115,7 @@ Args:
 - order Default: String("C")
 
 
-```Mojo
+```rust
 __init__(out self, shape: VariadicList[Int], order: String = String("C"))
 ```  
 Summary  
@@ -129,7 +129,7 @@ Args:
 - order Default: String("C")
 
 
-```Mojo
+```rust
 __init__(out self, owned shape: NDArrayShape, order: String = String("C"))
 ```  
 Summary  
@@ -145,7 +145,7 @@ Args:
 #### __copyinit__
 
 
-```Mojo
+```rust
 __copyinit__(out self, other: Self)
 ```  
 Summary  
@@ -160,7 +160,7 @@ Args:
 #### __getitem__
 
 
-```Mojo
+```rust
 __getitem__(self, index: Int) -> Int
 ```  
 Summary  
@@ -175,7 +175,7 @@ Args:
 #### __setitem__
 
 
-```Mojo
+```rust
 __setitem__(mut self, index: Int, val: Int)
 ```  
 Summary  
@@ -191,7 +191,7 @@ Args:
 #### __eq__
 
 
-```Mojo
+```rust
 __eq__(self, other: Self) -> Bool
 ```  
 Summary  
@@ -206,7 +206,7 @@ Args:
 #### __ne__
 
 
-```Mojo
+```rust
 __ne__(self, other: Self) -> Bool
 ```  
 Summary  
@@ -221,7 +221,7 @@ Args:
 #### __contains__
 
 
-```Mojo
+```rust
 __contains__(self, val: Int) -> Bool
 ```  
 Summary  
@@ -236,7 +236,7 @@ Args:
 #### __len__
 
 
-```Mojo
+```rust
 __len__(self) -> Int
 ```  
 Summary  
@@ -250,7 +250,7 @@ Args:
 #### __repr__
 
 
-```Mojo
+```rust
 __repr__(self) -> String
 ```  
 Summary  
@@ -264,7 +264,7 @@ Args:
 #### __str__
 
 
-```Mojo
+```rust
 __str__(self) -> String
 ```  
 Summary  
@@ -278,7 +278,7 @@ Args:
 #### write_to
 
 
-```Mojo
+```rust
 write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  

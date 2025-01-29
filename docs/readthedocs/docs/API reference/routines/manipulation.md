@@ -10,7 +10,7 @@ Array manipulation routines.
 ## copyto
 
 
-```Mojo
+```rust
 copyto()
 ```  
 Summary  
@@ -20,7 +20,7 @@ Summary
 ## ndim
 
 
-```Mojo
+```rust
 ndim[dtype: DType](array: NDArray[dtype]) -> Int
 ```  
 Summary  
@@ -38,7 +38,7 @@ Args:
 ## shape
 
 
-```Mojo
+```rust
 shape[dtype: DType](array: NDArray[dtype]) -> NDArrayShape
 ```  
 Summary  
@@ -56,7 +56,7 @@ Args:
 ## size
 
 
-```Mojo
+```rust
 size[dtype: DType](array: NDArray[dtype], axis: Int) -> Int
 ```  
 Summary  
@@ -75,7 +75,7 @@ Args:
 ## reshape
 
 
-```Mojo
+```rust
 reshape[dtype: DType](owned A: NDArray[dtype], shape: NDArrayShape, order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -95,7 +95,7 @@ Args:
 ## ravel
 
 
-```Mojo
+```rust
 ravel[dtype: DType](owned A: NDArray[dtype], order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
@@ -111,13 +111,10 @@ Args:
 - A: NDArray.
 - order: The order to flatten the array. Default: String("C")
 
-
-Return:
-    A contiguous flattened array.
 ## transpose
 
 
-```Mojo
+```rust
 transpose[dtype: DType](A: NDArray[dtype], axes: List[Int]) -> NDArray[dtype]
 ```  
 Summary  
@@ -134,24 +131,7 @@ Args:
 - axes
 
 
-If `axes` is not given, it is equal to flipping the axes.
-```mojo
-import numojo as nm
-var A = nm.random.rand(2,3,4,5)
-print(nm.transpose(A))  # A is a 4darray.
-print(nm.transpose(A, axes=List(3,2,1,0)))
-```
-
-Examples.
-```mojo
-import numojo as nm
-# A is a 2darray
-print(nm.transpose(A, axes=List(0, 1)))  # equal to transpose of matrix
-# A is a 3darray
-print(nm.transpose(A, axes=List(2, 1, 0)))  # transpose 0-th and 2-th dimensions
-```
-
-```Mojo
+```rust
 transpose[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -167,7 +147,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 transpose[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -185,7 +165,7 @@ Args:
 ## flip
 
 
-```Mojo
+```rust
 flip[dtype: DType](owned A: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -201,7 +181,7 @@ Args:
 - A: A NDArray.
 
 
-```Mojo
+```rust
 flip[dtype: DType](owned A: NDArray[dtype], owned axis: Int) -> NDArray[dtype]
 ```  
 Summary  

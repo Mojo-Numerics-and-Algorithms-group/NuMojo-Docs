@@ -10,7 +10,7 @@ Implements arithmetic operations functions
 ## add
 
 
-```Mojo
+```rust
 add[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -32,7 +32,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 add[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array1: NDArray[dtype], array2: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -56,7 +56,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 add[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -74,7 +74,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 add[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array: NDArray[dtype], scalar: SIMD[OtherDType, 1]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -98,7 +98,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 add[dtype: DType, backend: Backend = Vectorized](scalar: SIMD[dtype, 1], array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -116,7 +116,7 @@ Args:
 - array: A NDArray.
 
 
-```Mojo
+```rust
 add[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](scalar: SIMD[dtype, 1], array: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -136,7 +136,7 @@ Args:
 - array: A NDArray.
 
 
-```Mojo
+```rust
 add[dtype: DType, backend: Backend = Vectorized](owned *values: Variant[NDArray[dtype], SIMD[dtype, 1]]) -> NDArray[dtype]
 ```  
 Summary  
@@ -155,7 +155,7 @@ Args:
 ## sub
 
 
-```Mojo
+```rust
 sub[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -177,7 +177,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 sub[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array1: NDArray[dtype], array2: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -201,7 +201,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 sub[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -219,7 +219,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 sub[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array: NDArray[dtype], scalar: SIMD[OtherDType, 1]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -239,7 +239,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 sub[dtype: DType, backend: Backend = Vectorized](scalar: SIMD[dtype, 1], array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -257,7 +257,7 @@ Args:
 - array: A NDArray.
 
 
-```Mojo
+```rust
 sub[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](scalar: SIMD[dtype, 1], array: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -279,7 +279,7 @@ Args:
 ## diff
 
 
-```Mojo
+```rust
 diff[dtype: DType = float64](array: NDArray[dtype], n: Int) -> NDArray[dtype]
 ```  
 Summary  
@@ -298,7 +298,7 @@ Args:
 ## mod
 
 
-```Mojo
+```rust
 mod[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -320,7 +320,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 mod[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -338,7 +338,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 mod[dtype: DType, backend: Backend = Vectorized](scalar: SIMD[dtype, 1], array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -358,7 +358,7 @@ Args:
 ## mul
 
 
-```Mojo
+```rust
 mul[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -380,7 +380,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 mul[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array1: NDArray[dtype], array2: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -400,7 +400,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 mul[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -418,7 +418,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 mul[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array: NDArray[dtype], scalar: SIMD[OtherDType, 1]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -438,7 +438,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 mul[dtype: DType, backend: Backend = Vectorized](scalar: SIMD[dtype, 1], array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -456,7 +456,7 @@ Args:
 - array: A NDArray.
 
 
-```Mojo
+```rust
 mul[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](scalar: SIMD[dtype, 1], array: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -476,7 +476,7 @@ Args:
 - array: A NDArray.
 
 
-```Mojo
+```rust
 mul[dtype: DType, backend: Backend = Vectorized](owned *values: Variant[NDArray[dtype], SIMD[dtype, 1]]) -> NDArray[dtype]
 ```  
 Summary  
@@ -495,7 +495,7 @@ Args:
 ## div
 
 
-```Mojo
+```rust
 div[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -517,7 +517,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 div[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array1: NDArray[dtype], array2: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -537,7 +537,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 div[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -555,7 +555,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 div[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](array: NDArray[dtype], scalar: SIMD[OtherDType, 1]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -575,7 +575,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 div[dtype: DType, backend: Backend = Vectorized](scalar: SIMD[dtype, 1], array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -593,7 +593,7 @@ Args:
 - array: A NDArray.
 
 
-```Mojo
+```rust
 div[dtype: DType, backend: Backend = Vectorized, *, OtherDType: DType, ResultDType: DType = result[::DType,::DType]()](scalar: SIMD[dtype, 1], array: NDArray[OtherDType]) -> NDArray[ResultDType]
 ```  
 Summary  
@@ -615,7 +615,7 @@ Args:
 ## floor_div
 
 
-```Mojo
+```rust
 floor_div[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -637,7 +637,7 @@ Args:
 - array2: A NDArray.
 
 
-```Mojo
+```rust
 floor_div[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -655,7 +655,7 @@ Args:
 - scalar: A NDArray.
 
 
-```Mojo
+```rust
 floor_div[dtype: DType, backend: Backend = Vectorized](scalar: SIMD[dtype, 1], array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -675,7 +675,7 @@ Args:
 ## fma
 
 
-```Mojo
+```rust
 fma[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype], array3: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -698,7 +698,7 @@ Args:
 - array3: A NDArray.
 
 
-```Mojo
+```rust
 fma[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype], simd: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -723,7 +723,7 @@ Args:
 ## remainder
 
 
-```Mojo
+```rust
 remainder[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  

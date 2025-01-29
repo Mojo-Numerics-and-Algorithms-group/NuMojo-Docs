@@ -46,7 +46,7 @@
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, shape: Tuple[Int, Int])
 ```  
 Summary  
@@ -59,7 +59,7 @@ Args:
 - shape: List of shape.
 
 
-```Mojo
+```rust
 __init__(out self, data: Self)
 ```  
 Summary  
@@ -72,7 +72,7 @@ Args:
 - data
 
 
-```Mojo
+```rust
 __init__(out self, data: NDArray[dtype])
 ```  
 Summary  
@@ -87,7 +87,7 @@ Args:
 #### __copyinit__
 
 
-```Mojo
+```rust
 __copyinit__(out self, other: Self)
 ```  
 Summary  
@@ -102,7 +102,7 @@ Args:
 #### __moveinit__
 
 
-```Mojo
+```rust
 __moveinit__(out self, owned other: Self)
 ```  
 Summary  
@@ -117,7 +117,7 @@ Args:
 #### __del__
 
 
-```Mojo
+```rust
 __del__(owned self)
 ```  
 Summary  
@@ -131,7 +131,7 @@ Args:
 #### __getitem__
 
 
-```Mojo
+```rust
 __getitem__(self, owned x: Int, owned y: Int) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -145,7 +145,7 @@ Args:
 - y: The column number.
 
 
-```Mojo
+```rust
 __getitem__(self, owned x: Int) -> Self
 ```  
 Summary  
@@ -158,7 +158,7 @@ Args:
 - x: The row number.
 
 
-```Mojo
+```rust
 __getitem__(self, x: Slice, y: Slice) -> Self
 ```  
 Summary  
@@ -172,7 +172,7 @@ Args:
 - y
 
 
-```Mojo
+```rust
 __getitem__(self, x: Slice, owned y: Int) -> Self
 ```  
 Summary  
@@ -186,7 +186,7 @@ Args:
 - y
 
 
-```Mojo
+```rust
 __getitem__(self, owned x: Int, y: Slice) -> Self
 ```  
 Summary  
@@ -200,7 +200,7 @@ Args:
 - y
 
 
-```Mojo
+```rust
 __getitem__(self, indices: List[Int]) -> Self
 ```  
 Summary  
@@ -215,7 +215,7 @@ Args:
 #### __setitem__
 
 
-```Mojo
+```rust
 __setitem__(self, x: Int, y: Int, value: SIMD[dtype, 1])
 ```  
 Summary  
@@ -230,7 +230,7 @@ Args:
 - value: The value to be set.
 
 
-```Mojo
+```rust
 __setitem__(self, owned x: Int, value: Self)
 ```  
 Summary  
@@ -246,7 +246,7 @@ Args:
 #### __lt__
 
 
-```Mojo
+```rust
 __lt__(self, other: Self) -> Matrix[bool]
 ```  
 Summary  
@@ -259,7 +259,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __lt__(self, other: SIMD[dtype, 1]) -> Matrix[bool]
 ```  
 Summary  
@@ -271,16 +271,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(A < 2)
-```
 #### __le__
 
 
-```Mojo
+```rust
 __le__(self, other: Self) -> Matrix[bool]
 ```  
 Summary  
@@ -293,7 +287,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __le__(self, other: SIMD[dtype, 1]) -> Matrix[bool]
 ```  
 Summary  
@@ -305,16 +299,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(A <= 2)
-```
 #### __eq__
 
 
-```Mojo
+```rust
 __eq__(self, other: Self) -> Matrix[bool]
 ```  
 Summary  
@@ -327,7 +315,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __eq__(self, other: SIMD[dtype, 1]) -> Matrix[bool]
 ```  
 Summary  
@@ -339,16 +327,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(A == 2)
-```
 #### __ne__
 
 
-```Mojo
+```rust
 __ne__(self, other: Self) -> Matrix[bool]
 ```  
 Summary  
@@ -361,7 +343,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __ne__(self, other: SIMD[dtype, 1]) -> Matrix[bool]
 ```  
 Summary  
@@ -373,16 +355,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(A != 2)
-```
 #### __gt__
 
 
-```Mojo
+```rust
 __gt__(self, other: Self) -> Matrix[bool]
 ```  
 Summary  
@@ -395,7 +371,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __gt__(self, other: SIMD[dtype, 1]) -> Matrix[bool]
 ```  
 Summary  
@@ -407,16 +383,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(A > 2)
-```
 #### __ge__
 
 
-```Mojo
+```rust
 __ge__(self, other: Self) -> Matrix[bool]
 ```  
 Summary  
@@ -429,7 +399,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __ge__(self, other: SIMD[dtype, 1]) -> Matrix[bool]
 ```  
 Summary  
@@ -441,16 +411,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(A >= 2)
-```
 #### __add__
 
 
-```Mojo
+```rust
 __add__(self, other: Self) -> Self
 ```  
 Summary  
@@ -463,7 +427,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __add__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -475,16 +439,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-var A = Matrix.ones(shape=(4, 4))
-print(A + 2)
-```
 #### __sub__
 
 
-```Mojo
+```rust
 __sub__(self, other: Self) -> Self
 ```  
 Summary  
@@ -497,7 +455,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __sub__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -509,16 +467,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix(shape=(4, 4))
-print(A - 2)
-```
 #### __mul__
 
 
-```Mojo
+```rust
 __mul__(self, other: Self) -> Self
 ```  
 Summary  
@@ -531,7 +483,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __mul__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -543,16 +495,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(A * 2)
-```
 #### __matmul__
 
 
-```Mojo
+```rust
 __matmul__(self, other: Self) -> Self
 ```  
 Summary  
@@ -567,7 +513,7 @@ Args:
 #### __truediv__
 
 
-```Mojo
+```rust
 __truediv__(self, other: Self) -> Self
 ```  
 Summary  
@@ -580,7 +526,7 @@ Args:
 - other
 
 
-```Mojo
+```rust
 __truediv__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -595,7 +541,7 @@ Args:
 #### __pow__
 
 
-```Mojo
+```rust
 __pow__(self, rhs: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -610,7 +556,7 @@ Args:
 #### __radd__
 
 
-```Mojo
+```rust
 __radd__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -622,16 +568,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(2 + A)
-```
 #### __rsub__
 
 
-```Mojo
+```rust
 __rsub__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -643,16 +583,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(2 - A)
-```
 #### __rmul__
 
 
-```Mojo
+```rust
 __rmul__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -664,16 +598,10 @@ Args:
 - self
 - other
 
-
-```mojo
-from numojo import Matrix
-A = Matrix.ones(shape=(4, 4))
-print(2 * A)
-```
 #### __iter__
 
 
-```Mojo
+```rust
 __iter__(self) -> _MatrixIter[self, dtype]
 ```  
 Summary  
@@ -684,19 +612,10 @@ Args:
 
 - self
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand((4,4))
-for i in A:
-    print(i)
-```
-
 #### __len__
 
 
-```Mojo
+```rust
 __len__(self) -> Int
 ```  
 Summary  
@@ -710,7 +629,7 @@ Args:
 #### __reversed__
 
 
-```Mojo
+```rust
 __reversed__(self) -> _MatrixIter[self, dtype, False]
 ```  
 Summary  
@@ -724,7 +643,7 @@ Args:
 #### __str__
 
 
-```Mojo
+```rust
 __str__(self) -> String
 ```  
 Summary  
@@ -738,7 +657,7 @@ Args:
 #### write_to
 
 
-```Mojo
+```rust
 write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  
@@ -757,7 +676,7 @@ Args:
 #### all
 
 
-```Mojo
+```rust
 all(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -769,7 +688,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 all(self, axis: Int) -> Self
 ```  
 Summary  
@@ -784,7 +703,7 @@ Args:
 #### any
 
 
-```Mojo
+```rust
 any(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -796,7 +715,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 any(self, axis: Int) -> Self
 ```  
 Summary  
@@ -811,7 +730,7 @@ Args:
 #### argmax
 
 
-```Mojo
+```rust
 argmax(self) -> SIMD[index, 1]
 ```  
 Summary  
@@ -823,7 +742,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 argmax(self, axis: Int) -> Matrix[index]
 ```  
 Summary  
@@ -838,7 +757,7 @@ Args:
 #### argmin
 
 
-```Mojo
+```rust
 argmin(self) -> SIMD[index, 1]
 ```  
 Summary  
@@ -850,7 +769,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 argmin(self, axis: Int) -> Matrix[index]
 ```  
 Summary  
@@ -865,7 +784,7 @@ Args:
 #### argsort
 
 
-```Mojo
+```rust
 argsort(self) -> Matrix[index]
 ```  
 Summary  
@@ -877,7 +796,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 argsort(self, axis: Int) -> Matrix[index]
 ```  
 Summary  
@@ -892,7 +811,7 @@ Args:
 #### astype
 
 
-```Mojo
+```rust
 astype[asdtype: DType](self) -> Matrix[asdtype]
 ```  
 Summary  
@@ -910,7 +829,7 @@ Args:
 #### cumprod
 
 
-```Mojo
+```rust
 cumprod(self) -> Self
 ```  
 Summary  
@@ -922,14 +841,7 @@ Args:
 - self
 
 
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(A.cumprod())
-```
-
-```Mojo
+```rust
 cumprod(self, axis: Int) -> Self
 ```  
 Summary  
@@ -941,18 +853,10 @@ Args:
 - self
 - axis: 0 or 1.
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(A.cumprod(axis=0))
-print(A.cumprod(axis=1))
-```
 #### cumsum
 
 
-```Mojo
+```rust
 cumsum(self) -> Self
 ```  
 Summary  
@@ -964,7 +868,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 cumsum(self, axis: Int) -> Self
 ```  
 Summary  
@@ -979,7 +883,7 @@ Args:
 #### fill
 
 
-```Mojo
+```rust
 fill(self, fill_value: SIMD[dtype, 1])
 ```  
 Summary  
@@ -991,12 +895,10 @@ Args:
 - self
 - fill_value
 
-
-See also function `mat.creation.full`.
 #### flatten
 
 
-```Mojo
+```rust
 flatten(self) -> Self
 ```  
 Summary  
@@ -1010,7 +912,7 @@ Args:
 #### inv
 
 
-```Mojo
+```rust
 inv(self) -> Self
 ```  
 Summary  
@@ -1024,7 +926,7 @@ Args:
 #### max
 
 
-```Mojo
+```rust
 max(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1036,7 +938,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 max(self, axis: Int) -> Self
 ```  
 Summary  
@@ -1051,7 +953,7 @@ Args:
 #### mean
 
 
-```Mojo
+```rust
 mean(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1063,7 +965,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 mean(self, axis: Int) -> Self
 ```  
 Summary  
@@ -1078,7 +980,7 @@ Args:
 #### min
 
 
-```Mojo
+```rust
 min(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1090,7 +992,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 min(self, axis: Int) -> Self
 ```  
 Summary  
@@ -1105,7 +1007,7 @@ Args:
 #### prod
 
 
-```Mojo
+```rust
 prod(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1117,7 +1019,7 @@ Args:
 - self
 
 
-```Mojo
+```rust
 prod(self, axis: Int) -> Self
 ```  
 Summary  
@@ -1129,18 +1031,10 @@ Args:
 - self
 - axis: 0 or 1.
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(A.prod(axis=0))
-print(A.prod(axis=1))
-```
 #### reshape
 
 
-```Mojo
+```rust
 reshape(self, shape: Tuple[Int, Int]) -> Self
 ```  
 Summary  
@@ -1155,7 +1049,7 @@ Args:
 #### resize
 
 
-```Mojo
+```rust
 resize(mut self, shape: Tuple[Int, Int])
 ```  
 Summary  
@@ -1170,7 +1064,7 @@ Args:
 #### round
 
 
-```Mojo
+```rust
 round(self, decimals: Int) -> Self
 ```  
 Summary  
@@ -1185,7 +1079,7 @@ Args:
 #### std
 
 
-```Mojo
+```rust
 std(self, ddof: Int = 0) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1198,7 +1092,7 @@ Args:
 - ddof: Delta degree of freedom. Default: 0
 
 
-```Mojo
+```rust
 std(self, axis: Int, ddof: Int = 0) -> Self
 ```  
 Summary  
@@ -1214,7 +1108,7 @@ Args:
 #### sum
 
 
-```Mojo
+```rust
 sum(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1226,14 +1120,7 @@ Args:
 - self
 
 
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(A.sum())
-```
-
-```Mojo
+```rust
 sum(self, axis: Int) -> Self
 ```  
 Summary  
@@ -1245,18 +1132,10 @@ Args:
 - self
 - axis: 0 or 1.
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(A.sum(axis=0))
-print(A.sum(axis=1))
-```
 #### trace
 
 
-```Mojo
+```rust
 trace(self) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1270,7 +1149,7 @@ Args:
 #### transpose
 
 
-```Mojo
+```rust
 transpose(self) -> Self
 ```  
 Summary  
@@ -1284,7 +1163,7 @@ Args:
 #### T
 
 
-```Mojo
+```rust
 T(self) -> Self
 ```  
 Summary  
@@ -1298,7 +1177,7 @@ Args:
 #### variance
 
 
-```Mojo
+```rust
 variance(self, ddof: Int = 0) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -1311,7 +1190,7 @@ Args:
 - ddof: Delta degree of freedom. Default: 0
 
 
-```Mojo
+```rust
 variance(self, axis: Int, ddof: Int = 0) -> Self
 ```  
 Summary  
@@ -1327,7 +1206,7 @@ Args:
 #### to_ndarray
 
 
-```Mojo
+```rust
 to_ndarray(self) -> NDArray[dtype]
 ```  
 Summary  
@@ -1338,12 +1217,10 @@ Args:
 
 - self
 
-
-It makes a copy of the buffer of the matrix.
 #### to_numpy
 
 
-```Mojo
+```rust
 to_numpy(self) -> PythonObject
 ```  
 Summary  
@@ -1357,7 +1234,7 @@ Args:
 #### full
 
 
-```Mojo
+```rust
 full[dtype: DType = float64](shape: Tuple[Int, Int], fill_value: SIMD[dtype, 1] = SIMD(0)) -> Matrix[dtype]
 ```  
 Summary  
@@ -1373,16 +1250,10 @@ Args:
 - shape
 - fill_value Default: SIMD(0)
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.full(shape=(10, 10), fill_value=100)
-```
 #### zeros
 
 
-```Mojo
+```rust
 zeros[dtype: DType = float64](shape: Tuple[Int, Int]) -> Matrix[dtype]
 ```  
 Summary  
@@ -1397,16 +1268,10 @@ Args:
 
 - shape
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.ones(shape=(10, 10))
-```
 #### ones
 
 
-```Mojo
+```rust
 ones[dtype: DType = float64](shape: Tuple[Int, Int]) -> Matrix[dtype]
 ```  
 Summary  
@@ -1421,16 +1286,10 @@ Args:
 
 - shape
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.ones(shape=(10, 10))
-```
 #### identity
 
 
-```Mojo
+```rust
 identity[dtype: DType = float64](len: Int) -> Matrix[dtype]
 ```  
 Summary  
@@ -1445,16 +1304,10 @@ Args:
 
 - len
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.identity(12)
-```
 #### rand
 
 
-```Mojo
+```rust
 rand[dtype: DType = float64](shape: Tuple[Int, Int]) -> Matrix[dtype]
 ```  
 Summary  
@@ -1469,17 +1322,10 @@ Args:
 
 - shape: The shape of the Matrix.
 
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand((12, 12))
-```
-
 #### fromlist
 
 
-```Mojo
+```rust
 fromlist[dtype: DType](object: List[SIMD[dtype, 1]], shape: Tuple[Int, Int] = Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))) -> Matrix[dtype]
 ```  
 Summary  
@@ -1495,19 +1341,10 @@ Args:
 - object
 - shape Default: Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))
 
-
-If no shape is passed, the return matrix will be a row vector.
-
-Example:
-```mojo
-from numojo import Matrix
-fn main() raises:
-    print(Matrix.fromlist(List[Float64](1, 2, 3, 4, 5), (5, 1)))
-```
 #### fromstring
 
 
-```Mojo
+```rust
 fromstring[dtype: DType = float64](text: String, shape: Tuple[Int, Int] = Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))) -> Matrix[dtype]
 ```  
 Summary  
@@ -1523,32 +1360,10 @@ Args:
 - text: String representation of a matrix.
 - shape: Shape of the matrix. Default: Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))
 
-
-Comma, right brackets, and whitespace are treated as seperators of numbers.
-Digits, underscores, and minus signs are treated as a part of the numbers.
-
-If now shape is passed, the return matrix will be a row vector.
-
-Example:
-```mojo
-from numojo.prelude import *
-from numojo import Matrix
-fn main() raises:
-    var A = Matrix.fromstring[f32](
-    "1 2 .3 4 5 6.5 7 1_323.12 9 10, 11.12, 12 13 14 15 16", (4, 4))
-```
-```console
-[[1.0   2.0     0.30000001192092896     4.0]
-[5.0   6.5     7.0     1323.1199951171875]
-[9.0   10.0    11.119999885559082      12.0]
-[13.0  14.0    15.0    16.0]]
-Size: 4x4  DType: float32
-```
-
 ## broadcast_to
 
 
-```Mojo
+```rust
 broadcast_to[dtype: DType](A: Matrix[dtype], shape: Tuple[Int, Int]) -> Matrix[dtype]
 ```  
 Summary  
@@ -1565,34 +1380,7 @@ Args:
 - shape
 
 
-Example:
-
-```console
-> from numojo import Matrix
-> a = Matrix.fromstring("1 2 3", shape=(1, 3))
-> print(mat.broadcast_to(a, (3, 3)))
-[[1.0   2.0     3.0]
- [1.0   2.0     3.0]
- [1.0   2.0     3.0]]
-> a = Matrix.fromstring("1 2 3", shape=(3, 1))
-> print(mat.broadcast_to(a, (3, 3)))
-[[1.0   1.0     1.0]
- [2.0   2.0     2.0]
- [3.0   3.0     3.0]]
-> a = Matrix.fromstring("1", shape=(1, 1))
-> print(mat.broadcast_to(a, (3, 3)))
-[[1.0   1.0     1.0]
- [1.0   1.0     1.0]
- [1.0   1.0     1.0]]
-> a = Matrix.fromstring("1 2", shape=(1, 2))
-> print(mat.broadcast_to(a, (1, 2)))
-[[1.0   2.0]]
-> a = Matrix.fromstring("1 2 3 4", shape=(2, 2))
-> print(mat.broadcast_to(a, (4, 2)))
-Unhandled exception caught during execution: Cannot broadcast shape 2x2 to shape 4x2!
-```
-
-```Mojo
+```rust
 broadcast_to[dtype: DType](A: SIMD[dtype, 1], shape: Tuple[Int, Int]) -> Matrix[dtype]
 ```  
 Summary  

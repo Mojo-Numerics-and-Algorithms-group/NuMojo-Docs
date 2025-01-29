@@ -30,7 +30,7 @@ The IndexerCollectionElement trait denotes a trait composition of the `Indexer` 
 #### __copyinit__
 
 
-```Mojo
+```rust
 __copyinit__(out self: _Self, existing: _Self, /)
 ```  
 Summary  
@@ -45,7 +45,7 @@ Args:
 #### __moveinit__
 
 
-```Mojo
+```rust
 __moveinit__(out self: _Self, owned existing: _Self, /)
 ```  
 Summary  
@@ -60,7 +60,7 @@ Args:
 #### __index__
 
 
-```Mojo
+```rust
 __index__(self: _Self) -> Int
 ```  
 Summary  

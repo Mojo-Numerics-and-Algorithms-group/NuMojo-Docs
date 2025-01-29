@@ -10,7 +10,7 @@
 ## all
 
 
-```Mojo
+```rust
 all[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -26,7 +26,7 @@ Args:
 - A: Matrix.
 
 
-```Mojo
+```rust
 all[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
 ```  
 Summary  
@@ -45,7 +45,7 @@ Args:
 ## allt
 
 
-```Mojo
+```rust
 allt(array: NDArray[bool]) -> SIMD[bool, 1]
 ```  
 Summary  
@@ -59,7 +59,7 @@ Args:
 ## any
 
 
-```Mojo
+```rust
 any(array: NDArray[bool]) -> SIMD[bool, 1]
 ```  
 Summary  
@@ -71,7 +71,7 @@ Args:
 - array: A NDArray.
 
 
-```Mojo
+```rust
 any[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -87,7 +87,7 @@ Args:
 - A: Matrix.
 
 
-```Mojo
+```rust
 any[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
 ```  
 Summary  

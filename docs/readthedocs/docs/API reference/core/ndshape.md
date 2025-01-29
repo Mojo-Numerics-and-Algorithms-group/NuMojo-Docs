@@ -36,7 +36,7 @@ Implements the NDArrayShape.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, shape: Int)
 ```  
 Summary  
@@ -49,7 +49,7 @@ Args:
 - shape: Size of the array.
 
 
-```Mojo
+```rust
 __init__(out self, *shape: Int)
 ```  
 Summary  
@@ -62,7 +62,7 @@ Args:
 - \*shape: Variable number of integers representing the shape dimensions.
 
 
-```Mojo
+```rust
 __init__(out self, *shape: Int, *, size: Int)
 ```  
 Summary  
@@ -76,7 +76,7 @@ Args:
 - size: The total number of elements in the array.
 
 
-```Mojo
+```rust
 __init__(out self, shape: List[Int])
 ```  
 Summary  
@@ -89,7 +89,7 @@ Args:
 - shape: A list of integers representing the shape dimensions.
 
 
-```Mojo
+```rust
 __init__(out self, shape: List[Int], size: Int)
 ```  
 Summary  
@@ -103,7 +103,7 @@ Args:
 - size: The specified size of the NDArrayShape.
 
 
-```Mojo
+```rust
 __init__(out self, shape: VariadicList[Int])
 ```  
 Summary  
@@ -116,7 +116,7 @@ Args:
 - shape: A list of integers representing the shape dimensions.
 
 
-```Mojo
+```rust
 __init__(out self, shape: VariadicList[Int], size: Int)
 ```  
 Summary  
@@ -130,7 +130,7 @@ Args:
 - size: The specified size of the NDArrayShape.
 
 
-```Mojo
+```rust
 __init__(out self, shape: Self)
 ```  
 Summary  
@@ -143,7 +143,7 @@ Args:
 - shape: Another NDArrayShape to initialize from.
 
 
-```Mojo
+```rust
 __init__(out self, ndim: Int, initialized: Bool)
 ```  
 Summary  
@@ -156,14 +156,10 @@ Args:
 - ndim: Number of dimensions.
 - initialized: Whether the shape is initialized. If yes, the values will be set to 1. If no, the values will be uninitialized.
 
-
-This method is useful when you want to create a shape with given ndim
-without knowing the shape values.
-
 #### __copyinit__
 
 
-```Mojo
+```rust
 __copyinit__(out self, other: Self)
 ```  
 Summary  
@@ -178,7 +174,7 @@ Args:
 #### __getitem__
 
 
-```Mojo
+```rust
 __getitem__(self, index: Int) -> Int
 ```  
 Summary  
@@ -193,7 +189,7 @@ Args:
 #### __setitem__
 
 
-```Mojo
+```rust
 __setitem__(mut self, index: Int, val: Int)
 ```  
 Summary  
@@ -209,7 +205,7 @@ Args:
 #### __eq__
 
 
-```Mojo
+```rust
 __eq__(self, other: Self) -> Bool
 ```  
 Summary  
@@ -224,7 +220,7 @@ Args:
 #### __ne__
 
 
-```Mojo
+```rust
 __ne__(self, other: Self) -> Bool
 ```  
 Summary  
@@ -239,7 +235,7 @@ Args:
 #### __contains__
 
 
-```Mojo
+```rust
 __contains__(self, val: Int) -> Bool
 ```  
 Summary  
@@ -254,7 +250,7 @@ Args:
 #### __len__
 
 
-```Mojo
+```rust
 __len__(self) -> Int
 ```  
 Summary  
@@ -268,7 +264,7 @@ Args:
 #### __repr__
 
 
-```Mojo
+```rust
 __repr__(self) -> String
 ```  
 Summary  
@@ -282,7 +278,7 @@ Args:
 #### __str__
 
 
-```Mojo
+```rust
 __str__(self) -> String
 ```  
 Summary  
@@ -296,7 +292,7 @@ Args:
 #### write_to
 
 
-```Mojo
+```rust
 write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  
@@ -315,7 +311,7 @@ Args:
 #### size_of_array
 
 
-```Mojo
+```rust
 size_of_array(self) -> Int
 ```  
 Summary  
@@ -329,7 +325,7 @@ Args:
 #### join
 
 
-```Mojo
+```rust
 join(*shapes) -> Self
 ```  
 Summary  

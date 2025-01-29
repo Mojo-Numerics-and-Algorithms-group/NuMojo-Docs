@@ -26,7 +26,7 @@ Data buffer types that can be used as a container of the underlying buffer.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self: _Self, size: Int)
 ```  
 Summary  
@@ -39,7 +39,7 @@ Args:
 - size
 
 
-```Mojo
+```rust
 __init__(out self: _Self, ptr: UnsafePointer[SIMD[float16, 1]])
 ```  
 Summary  
@@ -54,7 +54,7 @@ Args:
 #### __moveinit__
 
 
-```Mojo
+```rust
 __moveinit__(out self: _Self, owned other: _Self)
 ```  
 Summary  
@@ -69,7 +69,7 @@ Args:
 #### get_ptr
 
 
-```Mojo
+```rust
 get_ptr(self: _Self) -> UnsafePointer[SIMD[float16, 1]]
 ```  
 Summary  

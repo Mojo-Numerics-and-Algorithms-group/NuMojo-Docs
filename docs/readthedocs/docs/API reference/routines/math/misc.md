@@ -10,7 +10,7 @@
 ## cbrt
 
 
-```Mojo
+```rust
 cbrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -33,7 +33,7 @@ Args:
 ## rsqrt
 
 
-```Mojo
+```rust
 rsqrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -52,7 +52,7 @@ Args:
 ## sqrt
 
 
-```Mojo
+```rust
 sqrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -71,7 +71,7 @@ Args:
 ## scalb
 
 
-```Mojo
+```rust
 scalb[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  

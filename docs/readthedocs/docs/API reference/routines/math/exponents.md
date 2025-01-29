@@ -13,7 +13,7 @@
 ## exp
 
 
-```Mojo
+```rust
 exp[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -32,7 +32,7 @@ Args:
 ## exp2
 
 
-```Mojo
+```rust
 exp2[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -51,7 +51,7 @@ Args:
 ## expm1
 
 
-```Mojo
+```rust
 expm1[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -70,7 +70,7 @@ Args:
 ## log
 
 
-```Mojo
+```rust
 log[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -89,7 +89,7 @@ Args:
 ## log2
 
 
-```Mojo
+```rust
 log2[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -108,7 +108,7 @@ Args:
 ## log10
 
 
-```Mojo
+```rust
 log10[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -127,7 +127,7 @@ Args:
 ## log1p
 
 
-```Mojo
+```rust
 log1p[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  

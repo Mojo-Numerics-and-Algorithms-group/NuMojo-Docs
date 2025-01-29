@@ -10,7 +10,7 @@ Implements Hyperbolic functions for arrays.
 ## arccosh
 
 
-```Mojo
+```rust
 arccosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -28,7 +28,7 @@ Args:
 ## acosh
 
 
-```Mojo
+```rust
 acosh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -45,7 +45,7 @@ Args:
 - array: An Array.
 
 
-```Mojo
+```rust
 acosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -63,7 +63,7 @@ Args:
 ## arcsinh
 
 
-```Mojo
+```rust
 arcsinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -81,7 +81,7 @@ Args:
 ## asinh
 
 
-```Mojo
+```rust
 asinh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -98,7 +98,7 @@ Args:
 - array: An Array.
 
 
-```Mojo
+```rust
 asinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -116,7 +116,7 @@ Args:
 ## arctanh
 
 
-```Mojo
+```rust
 arctanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -134,7 +134,7 @@ Args:
 ## atanh
 
 
-```Mojo
+```rust
 atanh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -151,7 +151,7 @@ Args:
 - array: An Array.
 
 
-```Mojo
+```rust
 atanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -169,7 +169,7 @@ Args:
 ## cosh
 
 
-```Mojo
+```rust
 cosh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -186,7 +186,7 @@ Args:
 - array: An Array assumed to be in radian.
 
 
-```Mojo
+```rust
 cosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -204,7 +204,7 @@ Args:
 ## sinh
 
 
-```Mojo
+```rust
 sinh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -221,7 +221,7 @@ Args:
 - array: An Array assumed to be in radian.
 
 
-```Mojo
+```rust
 sinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -239,7 +239,7 @@ Args:
 ## tanh
 
 
-```Mojo
+```rust
 tanh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -256,7 +256,7 @@ Args:
 - array: An Array assumed to be in radian.
 
 
-```Mojo
+```rust
 tanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  

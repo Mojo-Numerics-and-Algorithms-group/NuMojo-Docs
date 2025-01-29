@@ -10,7 +10,7 @@
 ## compute_householder
 
 
-```Mojo
+```rust
 compute_householder[dtype: DType](mut H: Matrix[dtype], mut R: Matrix[dtype], row: Int, column: Int)
 ```  
 Summary  
@@ -31,7 +31,7 @@ Args:
 ## compute_qr
 
 
-```Mojo
+```rust
 compute_qr[dtype: DType](mut H: Matrix[dtype], work_index: Int, mut A: Matrix[dtype], row_start: Int, column_start: Int)
 ```  
 Summary  
@@ -53,7 +53,7 @@ Args:
 ## lu_decomposition
 
 
-```Mojo
+```rust
 lu_decomposition[dtype: DType](A: NDArray[dtype]) -> Tuple[NDArray[dtype], NDArray[dtype]]
 ```  
 Summary  
@@ -69,43 +69,7 @@ Args:
 - A: Input matrix for decomposition. It should be a row-major matrix.
 
 
-For efficiency, `dtype` of the output arrays will be the same as the input
-array. Thus, use `astype()` before passing the array to this function.
-
-Example:
-```
-import numojo as nm
-fn main() raises:
-    var arr = nm.NDArray[nm.f64]("[[1,2,3], [4,5,6], [7,8,9]]")
-    var U: nm.NDArray
-    var L: nm.NDArray
-    L, U = nm.linalg.lu_decomposition(arr)
-    print(arr)
-    print(L)
-    print(U)
-```
-```console
-[[      1.0     2.0     3.0     ]
- [      4.0     5.0     6.0     ]
- [      7.0     8.0     9.0     ]]
-2-D array  Shape: [3, 3]  DType: float64
-[[      1.0     0.0     0.0     ]
- [      4.0     1.0     0.0     ]
- [      7.0     2.0     1.0     ]]
-2-D array  Shape: [3, 3]  DType: float64
-[[      1.0     2.0     3.0     ]
- [      0.0     -3.0    -6.0    ]
- [      0.0     0.0     0.0     ]]
-2-D array  Shape: [3, 3]  DType: float64
-```
-
-Further readings:
-- Linear Algebra And Its Applications, fourth edition, Gilbert Strang
-- https://en.wikipedia.org/wiki/LU_decomposition
-- https://www.scicoding.com/how-to-calculate-lu-decomposition-in-python/
-- https://courses.physics.illinois.edu/cs357/sp2020/notes/ref-9-linsys.html.
-
-```Mojo
+```rust
 lu_decomposition[dtype: DType](A: Matrix[dtype]) -> Tuple[Matrix[dtype], Matrix[dtype]]
 ```  
 Summary  
@@ -123,7 +87,7 @@ Args:
 ## partial_pivoting
 
 
-```Mojo
+```rust
 partial_pivoting[dtype: DType](owned A: NDArray[dtype]) -> Tuple[NDArray[dtype], NDArray[dtype], Int]
 ```  
 Summary  
@@ -139,7 +103,7 @@ Args:
 - A: 2-d square array.
 
 
-```Mojo
+```rust
 partial_pivoting[dtype: DType](owned A: Matrix[dtype]) -> Tuple[Matrix[dtype], Matrix[dtype], Int]
 ```  
 Summary  
@@ -157,7 +121,7 @@ Args:
 ## qr
 
 
-```Mojo
+```rust
 qr[dtype: DType](owned A: Matrix[dtype]) -> Tuple[Matrix[dtype], Matrix[dtype]]
 ```  
 Summary  
@@ -171,7 +135,3 @@ Parameters:
 Args:  
 
 - A: The input matrix to be factorized.
-
-
-Decompose the matrix `A` as `QR`, where `Q` is orthonormal and `R` is upper-triangular.
-This function is similar to `numpy.linalg.qr`.

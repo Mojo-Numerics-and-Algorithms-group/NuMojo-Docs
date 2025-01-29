@@ -10,7 +10,7 @@
 ## invert
 
 
-```Mojo
+```rust
 invert[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  

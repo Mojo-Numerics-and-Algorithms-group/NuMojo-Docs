@@ -10,7 +10,7 @@
 ## gradient
 
 
-```Mojo
+```rust
 gradient[dtype: DType = float64](x: NDArray[dtype], spacing: SIMD[dtype, 1]) -> NDArray[dtype]
 ```  
 Summary  
@@ -33,7 +33,7 @@ Args:
 ## trapz
 
 
-```Mojo
+```rust
 trapz[dtype: DType = float64](y: NDArray[dtype], x: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  

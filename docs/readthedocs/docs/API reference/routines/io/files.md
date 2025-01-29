@@ -10,7 +10,7 @@
 ## loadtxt
 
 
-```Mojo
+```rust
 loadtxt[dtype: DType = float64](filename: String, delimiter: String = String(","), skiprows: Int = 0, usecols: Optional[List[Int]] = Optional(None)) -> NDArray[dtype]
 ```  
 Summary  
@@ -31,7 +31,7 @@ Args:
 ## savetxt
 
 
-```Mojo
+```rust
 savetxt[dtype: DType = float64](filename: String, array: NDArray[dtype], delimiter: String = String(","))
 ```  
 Summary  

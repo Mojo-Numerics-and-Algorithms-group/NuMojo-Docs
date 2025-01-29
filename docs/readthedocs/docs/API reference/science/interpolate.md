@@ -10,7 +10,7 @@ Interpolate Module - Implements interpolation functions
 ## interp1d
 
 
-```Mojo
+```rust
 interp1d[dtype: DType = float64](xi: NDArray[dtype], x: NDArray[dtype], y: NDArray[dtype], type: String = String("linear"), fill_method: String = String("interpolate")) -> NDArray[dtype]
 ```  
 Summary  

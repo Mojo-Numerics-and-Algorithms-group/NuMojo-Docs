@@ -10,7 +10,7 @@ Averages and variances
 ## mean
 
 
-```Mojo
+```rust
 mean(array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -23,7 +23,7 @@ Args:
 - axis Default: 0
 
 
-```Mojo
+```rust
 mean[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -39,7 +39,7 @@ Args:
 - A: Matrix.
 
 
-```Mojo
+```rust
 mean[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
 ```  
 Summary  
@@ -58,7 +58,7 @@ Args:
 ## meanall
 
 
-```Mojo
+```rust
 meanall(array: NDArray[dtype]) -> SIMD[float64, 1]
 ```  
 Summary  
@@ -69,23 +69,10 @@ Args:
 
 - array: NDArray.
 
-
-Example:
-```console
-> print(A)
-[[      0.1315377950668335      0.458650141954422       0.21895918250083923     ]
-[      0.67886471748352051     0.93469291925430298     0.51941639184951782     ]
-[      0.034572109580039978    0.52970021963119507     0.007698186207562685    ]]
-2-D array  Shape: [3, 3]  DType: float32
-
-> print(nm.math.stats.meanall(A))
-0.39045463667975533
-```
-
 ## cummean
 
 
-```Mojo
+```rust
 cummean[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -103,7 +90,7 @@ Args:
 ## mode
 
 
-```Mojo
+```rust
 mode[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -121,7 +108,7 @@ Args:
 ## median
 
 
-```Mojo
+```rust
 median[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -139,7 +126,7 @@ Args:
 ## std
 
 
-```Mojo
+```rust
 std[dtype: DType](A: Matrix[dtype], ddof: Int = 0) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -156,7 +143,7 @@ Args:
 - ddof: Delta degree of freedom. Default: 0
 
 
-```Mojo
+```rust
 std[dtype: DType](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[dtype]
 ```  
 Summary  
@@ -176,7 +163,7 @@ Args:
 ## variance
 
 
-```Mojo
+```rust
 variance[dtype: DType](A: Matrix[dtype], ddof: Int = 0) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -193,7 +180,7 @@ Args:
 - ddof: Delta degree of freedom. Default: 0
 
 
-```Mojo
+```rust
 variance[dtype: DType](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[dtype]
 ```  
 Summary  
@@ -213,7 +200,7 @@ Args:
 ## cumpvariance
 
 
-```Mojo
+```rust
 cumpvariance[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -232,7 +219,7 @@ Args:
 ## cumvariance
 
 
-```Mojo
+```rust
 cumvariance[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -251,7 +238,7 @@ Args:
 ## cumpstdev
 
 
-```Mojo
+```rust
 cumpstdev[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -270,7 +257,7 @@ Args:
 ## cumstdev
 
 
-```Mojo
+```rust
 cumstdev[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
 ```  
 Summary  

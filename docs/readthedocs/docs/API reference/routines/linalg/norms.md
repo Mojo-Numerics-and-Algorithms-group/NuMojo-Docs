@@ -10,7 +10,7 @@
 ## det
 
 
-```Mojo
+```rust
 det[dtype: DType](A: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -26,7 +26,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 det[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -44,7 +44,7 @@ Args:
 ## trace
 
 
-```Mojo
+```rust
 trace[dtype: DType](array: NDArray[dtype], offset: Int = 0, axis1: Int = 0, axis2: Int = 1) -> NDArray[dtype]
 ```  
 Summary  
@@ -63,7 +63,7 @@ Args:
 - axis2: Second axis. Default: 1
 
 
-```Mojo
+```rust
 trace[dtype: DType](A: Matrix[dtype], offset: Int = 0) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -78,6 +78,3 @@ Args:
 
 - A
 - offset Default: 0
-
-
-Similar to `numpy.trace`.

@@ -10,7 +10,7 @@
 ## round
 
 
-```Mojo
+```rust
 round[dtype: DType](owned A: Matrix[dtype], decimals: Int = 0) -> Matrix[dtype]
 ```  
 Summary  
@@ -29,7 +29,7 @@ Args:
 ## tabs
 
 
-```Mojo
+```rust
 tabs[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -48,7 +48,7 @@ Args:
 ## tfloor
 
 
-```Mojo
+```rust
 tfloor[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -67,7 +67,7 @@ Args:
 ## tceil
 
 
-```Mojo
+```rust
 tceil[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -86,7 +86,7 @@ Args:
 ## ttrunc
 
 
-```Mojo
+```rust
 ttrunc[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -105,7 +105,7 @@ Args:
 ## tround
 
 
-```Mojo
+```rust
 tround[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -124,7 +124,7 @@ Args:
 ## roundeven
 
 
-```Mojo
+```rust
 roundeven[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -143,7 +143,7 @@ Args:
 ## nextafter
 
 
-```Mojo
+```rust
 nextafter[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  

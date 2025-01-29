@@ -10,7 +10,7 @@ Implements Trigonometry functions for arrays.
 ## arccos
 
 
-```Mojo
+```rust
 arccos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -28,7 +28,7 @@ Args:
 ## acos
 
 
-```Mojo
+```rust
 acos[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -45,7 +45,7 @@ Args:
 - array: An Array.
 
 
-```Mojo
+```rust
 acos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -63,7 +63,7 @@ Args:
 ## arcsin
 
 
-```Mojo
+```rust
 arcsin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -81,7 +81,7 @@ Args:
 ## asin
 
 
-```Mojo
+```rust
 asin[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -98,7 +98,7 @@ Args:
 - array: An Array.
 
 
-```Mojo
+```rust
 asin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -116,7 +116,7 @@ Args:
 ## arctan
 
 
-```Mojo
+```rust
 arctan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -134,7 +134,7 @@ Args:
 ## atan
 
 
-```Mojo
+```rust
 atan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -151,7 +151,7 @@ Args:
 - array: An Array.
 
 
-```Mojo
+```rust
 atan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -169,7 +169,7 @@ Args:
 ## atan2
 
 
-```Mojo
+```rust
 atan2[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -193,7 +193,7 @@ Args:
 ## cos
 
 
-```Mojo
+```rust
 cos[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -210,7 +210,7 @@ Args:
 - array: An Array assumed to be in radian.
 
 
-```Mojo
+```rust
 cos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -228,7 +228,7 @@ Args:
 ## sin
 
 
-```Mojo
+```rust
 sin[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -245,7 +245,7 @@ Args:
 - array: An Array assumed to be in radian.
 
 
-```Mojo
+```rust
 sin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -263,7 +263,7 @@ Args:
 ## tan
 
 
-```Mojo
+```rust
 tan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -280,7 +280,7 @@ Args:
 - array: An Array assumed to be in radian.
 
 
-```Mojo
+```rust
 tan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ```  
 Summary  
@@ -298,7 +298,7 @@ Args:
 ## hypot
 
 
-```Mojo
+```rust
 hypot[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -322,7 +322,7 @@ Args:
 ## hypot_fma
 
 
-```Mojo
+```rust
 hypot_fma[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  

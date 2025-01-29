@@ -10,7 +10,7 @@ Implements comparison math currently not using backend due to bool bitpacking is
 ## greater
 
 
-```Mojo
+```rust
 greater[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -28,7 +28,7 @@ Args:
 - array2: Second NDArray to compare.
 
 
-```Mojo
+```rust
 greater[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
@@ -48,7 +48,7 @@ Args:
 ## greater_equal
 
 
-```Mojo
+```rust
 greater_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -66,7 +66,7 @@ Args:
 - array2: Second NDArray to compare.
 
 
-```Mojo
+```rust
 greater_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
@@ -86,7 +86,7 @@ Args:
 ## less
 
 
-```Mojo
+```rust
 less[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -104,7 +104,7 @@ Args:
 - array2: Second NDArray to compare.
 
 
-```Mojo
+```rust
 less[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
@@ -124,7 +124,7 @@ Args:
 ## less_equal
 
 
-```Mojo
+```rust
 less_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -142,7 +142,7 @@ Args:
 - array2: Second NDArray to compare.
 
 
-```Mojo
+```rust
 less_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
@@ -162,7 +162,7 @@ Args:
 ## equal
 
 
-```Mojo
+```rust
 equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -180,7 +180,7 @@ Args:
 - array2: Second NDArray to compare.
 
 
-```Mojo
+```rust
 equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  
@@ -200,7 +200,7 @@ Args:
 ## not_equal
 
 
-```Mojo
+```rust
 not_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[bool]
 ```  
 Summary  
@@ -218,7 +218,7 @@ Args:
 - array2: Second NDArray to compare.
 
 
-```Mojo
+```rust
 not_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: SIMD[dtype, 1]) -> NDArray[bool]
 ```  
 Summary  

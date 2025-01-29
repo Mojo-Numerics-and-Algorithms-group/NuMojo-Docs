@@ -36,7 +36,7 @@ Represents a SIMD[dtype, 1] Complex number with real and imaginary parts.
 #### __init__
 
 
-```Mojo
+```rust
 __init__(out self, other: Self)
 ```  
 Summary  
@@ -49,10 +49,7 @@ Args:
 - other
 
 
-Arguments:
-    other: Another ComplexSIMD instance to copy from.
-
-```Mojo
+```rust
 __init__(out self, re: SIMD[dtype, size], im: SIMD[dtype, size])
 ```  
 Summary  
@@ -66,19 +63,7 @@ Args:
 - im
 
 
-Arguments:
-    re: The real part of the complex number.
-    im: The imaginary part of the complex number.
-
-Example:
-```mojo
-var A = ComplexSIMD[cf32](SIMD[f32, 1](1.0), SIMD[f32, 1](2.0))
-var B = ComplexSIMD[cf32](SIMD[f32, 1](3.0), SIMD[f32, 1](4.0))
-var C = A + B
-print(C)
-```
-
-```Mojo
+```rust
 __init__(out self, val: SIMD[dtype, size])
 ```  
 Summary  
@@ -90,14 +75,10 @@ Args:
 - self
 - val
 
-
-Arguments:
-    re: The real part of the complex number.
-    im: The imaginary part of the complex number.
 #### __getitem__
 
 
-```Mojo
+```rust
 __getitem__(self, idx: Int) -> SIMD[dtype, size]
 ```  
 Summary  
@@ -109,15 +90,10 @@ Args:
 - self
 - idx
 
-
-Arguments:
-    self: The ComplexSIMD instance.
-    idx: The index to access (0 for real, 1 for imaginary).
-
 #### __setitem__
 
 
-```Mojo
+```rust
 __setitem__(mut self, idx: Int, value: Self)
 ```  
 Summary  
@@ -131,12 +107,7 @@ Args:
 - value
 
 
-Arguments:
-    self: The ComplexSIMD instance to modify.
-    idx: The index to access (0 for real, 1 for imaginary).
-    value: The new value to set.
-
-```Mojo
+```rust
 __setitem__(mut self, idx: Int, re: SIMD[dtype, size], im: SIMD[dtype, size])
 ```  
 Summary  
@@ -150,16 +121,10 @@ Args:
 - re
 - im
 
-
-Arguments:
-    self: The ComplexSIMD instance to modify.
-    idx: The index to access (0 for real, 1 for imaginary).
-    re: The new value for the real part.
-    im: The new value for the imaginary part.
 #### __neg__
 
 
-```Mojo
+```rust
 __neg__(self) -> Self
 ```  
 Summary  
@@ -173,7 +138,7 @@ Args:
 #### __pos__
 
 
-```Mojo
+```rust
 __pos__(self) -> Self
 ```  
 Summary  
@@ -187,7 +152,7 @@ Args:
 #### __eq__
 
 
-```Mojo
+```rust
 __eq__(self, other: Self) -> Bool
 ```  
 Summary  
@@ -199,15 +164,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    self: The first ComplexSIMD instance.
-    other: The second ComplexSIMD instance to compare with.
-
 #### __ne__
 
 
-```Mojo
+```rust
 __ne__(self, other: Self) -> Bool
 ```  
 Summary  
@@ -219,15 +179,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    self: The first ComplexSIMD instance.
-    other: The second ComplexSIMD instance to compare with.
-
 #### __add__
 
 
-```Mojo
+```rust
 __add__(self, other: Self) -> Self
 ```  
 Summary  
@@ -239,14 +194,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to add.
-
 #### __sub__
 
 
-```Mojo
+```rust
 __sub__(self, other: Self) -> Self
 ```  
 Summary  
@@ -258,14 +209,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to subtract.
-
 #### __mul__
 
 
-```Mojo
+```rust
 __mul__(self, other: Self) -> Self
 ```  
 Summary  
@@ -277,14 +224,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to multiply with.
-
 #### __truediv__
 
 
-```Mojo
+```rust
 __truediv__(self, other: Self) -> Self
 ```  
 Summary  
@@ -296,14 +239,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to divide by.
-
 #### __pow__
 
 
-```Mojo
+```rust
 __pow__(self, other: Self) -> Self
 ```  
 Summary  
@@ -316,11 +255,7 @@ Args:
 - other
 
 
-Arguments:
-    other: The ComplexSIMD instance to raise to the power of.
-
-
-```Mojo
+```rust
 __pow__(self, other: SIMD[dtype, 1]) -> Self
 ```  
 Summary  
@@ -332,14 +267,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The scalar to raise to the power of.
-
 #### __iadd__
 
 
-```Mojo
+```rust
 __iadd__(mut self, other: Self)
 ```  
 Summary  
@@ -351,13 +282,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to add.
 #### __isub__
 
 
-```Mojo
+```rust
 __isub__(mut self, other: Self)
 ```  
 Summary  
@@ -369,13 +297,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to subtract.
 #### __imul__
 
 
-```Mojo
+```rust
 __imul__(mut self, other: Self)
 ```  
 Summary  
@@ -387,13 +312,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to multiply with.
 #### __itruediv__
 
 
-```Mojo
+```rust
 __itruediv__(mut self, other: Self)
 ```  
 Summary  
@@ -405,13 +327,10 @@ Args:
 - self
 - other
 
-
-Arguments:
-    other: The ComplexSIMD instance to divide by.
 #### __str__
 
 
-```Mojo
+```rust
 __str__(self) -> String
 ```  
 Summary  
@@ -425,7 +344,7 @@ Args:
 #### write_to
 
 
-```Mojo
+```rust
 write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  
@@ -441,14 +360,10 @@ Args:
 - self
 - writer
 
-
-Arguments:
-    self: The ComplexSIMD instance to write.
-    writer: The writer to write to.
 #### __repr__
 
 
-```Mojo
+```rust
 __repr__(self) -> String
 ```  
 Summary  
@@ -462,7 +377,7 @@ Args:
 #### __abs__
 
 
-```Mojo
+```rust
 __abs__(self) -> SIMD[dtype, size]
 ```  
 Summary  
@@ -476,7 +391,7 @@ Args:
 #### norm
 
 
-```Mojo
+```rust
 norm(self) -> SIMD[dtype, size]
 ```  
 Summary  
@@ -490,7 +405,7 @@ Args:
 #### conj
 
 
-```Mojo
+```rust
 conj(self) -> Self
 ```  
 Summary  
@@ -504,7 +419,7 @@ Args:
 #### real
 
 
-```Mojo
+```rust
 real(self) -> SIMD[dtype, size]
 ```  
 Summary  
@@ -518,7 +433,7 @@ Args:
 #### imag
 
 
-```Mojo
+```rust
 imag(self) -> SIMD[dtype, size]
 ```  
 Summary  

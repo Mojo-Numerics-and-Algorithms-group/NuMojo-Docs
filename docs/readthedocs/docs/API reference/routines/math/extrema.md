@@ -10,7 +10,7 @@ TODO:  1) Add support for axis parameter.   2) Currently, constrained is crashin
 ## max
 
 
-```Mojo
+```rust
 max[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -27,7 +27,7 @@ Args:
 - axis: The axis along which the sum is performed. Default: 0
 
 
-```Mojo
+```rust
 max[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -43,7 +43,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 max[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
 ```  
 Summary  
@@ -62,7 +62,7 @@ Args:
 ## maxT
 
 
-```Mojo
+```rust
 maxT[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -80,7 +80,7 @@ Args:
 ## min
 
 
-```Mojo
+```rust
 min[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
 ```  
 Summary  
@@ -97,7 +97,7 @@ Args:
 - axis: The axis along which the sum is performed. Default: 0
 
 
-```Mojo
+```rust
 min[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -113,7 +113,7 @@ Args:
 - A
 
 
-```Mojo
+```rust
 min[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
 ```  
 Summary  
@@ -132,7 +132,7 @@ Args:
 ## minT
 
 
-```Mojo
+```rust
 minT[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -150,7 +150,7 @@ Args:
 ## amin
 
 
-```Mojo
+```rust
 amin[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -168,7 +168,7 @@ Args:
 ## amax
 
 
-```Mojo
+```rust
 amax[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -186,7 +186,7 @@ Args:
 ## mimimum
 
 
-```Mojo
+```rust
 mimimum[dtype: DType = float64](s1: SIMD[dtype, 1], s2: SIMD[dtype, 1]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -205,7 +205,7 @@ Args:
 ## maximum
 
 
-```Mojo
+```rust
 maximum[dtype: DType = float64](s1: SIMD[dtype, 1], s2: SIMD[dtype, 1]) -> SIMD[dtype, 1]
 ```  
 Summary  
@@ -222,7 +222,7 @@ Args:
 - s2: A SIMD Value.
 
 
-```Mojo
+```rust
 maximum[dtype: DType = float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
@@ -241,7 +241,7 @@ Args:
 ## minimum
 
 
-```Mojo
+```rust
 minimum[dtype: DType = float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  

@@ -10,7 +10,7 @@
 ## copysign
 
 
-```Mojo
+```rust
 copysign[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```  
 Summary  
