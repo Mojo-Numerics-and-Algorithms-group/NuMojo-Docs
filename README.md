@@ -12,4 +12,8 @@ cd into NuMojo and run `mkdocs serve` in the terminal.
 
 ## Generating MD files from Mojo docs jsons
 
-In the folder containing the NuMojo package run `mojo doc numojo/ -o docs.json` then move docs.json into the directory that you cloned NuMojo-Docs into. Then run docs.py, and it will generate the documentation and put it in the correct place.
+Run the following command in terminal.
+
+```console
+bash build.sh
+```

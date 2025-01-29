@@ -1,0 +1,14 @@
+# Magic env
+.magic
+magic.lock
+mojoproject.toml
+
+# numojo package
+numojo
+numojo.mojopkg
+
+# Temp files
+.temp
+
+# Temp doc file
+docs/readthedocs/docs.json
