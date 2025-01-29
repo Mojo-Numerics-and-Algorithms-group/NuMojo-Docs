@@ -11,7 +11,7 @@ cp -R .temp/mojoproject.toml mojoproject.toml
 magic run mojo package numojo
 
 # Build docs
-rm -Rf docs/readthedocs/docs/autodocs
+rm -Rf docs/readthedocs/docs/types_and_routines
 magic run mojo doc numojo -o docs/readthedocs/docs.json
 python docs/readthedocs/docs.py
 

@@ -4,11 +4,17 @@ Documentation and Base for documentation website for NuMojo.
 
 ## How to run checks and change code
 
-Clone this repository
+Clone this repository:
 
-`pip install mdutils mkdocs mkdocs-material`
+```console
+pip install mdutils mkdocs mkdocs-material
+```
 
-cd into NuMojo and run `mkdocs serve` in the terminal.
+Run the following command to view the website:
+
+```console
+cd docs/readthedocs && mkdocs serve
+```
 
 ## Generating MD files from Mojo docs jsons
 
