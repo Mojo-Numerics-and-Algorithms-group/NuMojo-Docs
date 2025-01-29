@@ -3,10 +3,16 @@ from mdutils.mdutils import MdUtils
 from mdutils import Html
 import os
 from pathlib import Path
+print("Ignore the syntax warnigs they are necessary for variadic arguaments")
 docs = json.load(open("docs.json"))
 
-def doc_func(func,mdfile:MdUtils,top_header=2):
-    mdfile.new_header(top_header,f"""{func["name"]}""")
+os.system("rm -rf docs/readthedocs/docs/API reference")
+
+docs = json.load(open("docs.json"))
+
+
+def doc_func(func, mdfile: MdUtils, top_header=2):
+    mdfile.new_header(top_header, f"""{func["name"]}""")
     for overload in func["overloads"]:
         mdfile.insert_code(f"""{overload["signature"]}""",language="rust")
         mdfile.new_line("""Summary""")
@@ -116,9 +122,7 @@ def doc_modules(module, root:Path, parent:Path):
     mdfile.create_md_file()
 
 def doc_package(package, root, parent):
-    print("dumb")
     Path(str(root/parent)+"/"+package["name"]).mkdir(parents=True,exist_ok=True)
-    print("dumb")
     if package["packages"]:
         for pack in package["packages"]:
             Path(str(root/parent)+"/"+package["name"]).mkdir(parents=True,exist_ok=True)
@@ -131,5 +135,4 @@ def doc_package(package, root, parent):
 
 if __name__ == "__main__":
     for pack in docs["decl"]["packages"]:
-        doc_package(pack,Path("./NuMojo/docs/docs"),Path(""))
-
+        doc_package(pack, Path("./docs/readthedocs/docs/API reference"), Path(""))
