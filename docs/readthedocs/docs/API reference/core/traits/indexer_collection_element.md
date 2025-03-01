@@ -21,6 +21,7 @@ The IndexerCollectionElement trait denotes a trait composition of the `Indexer` 
 - CollectionElement
 - Copyable
 - Indexer
+- Intable
 - Movable
 - UnknownDestructibility
   
@@ -39,8 +40,8 @@ Create a new instance of the value by copying an existing one.
   
 Args:  
 
-- self
 - existing: The value to copy.
+- self
 
 #### __moveinit__
 
@@ -54,18 +55,32 @@ Create a new instance of the value by moving the value of another.
   
 Args:  
 
-- self
 - existing: The value to move.
+- self
 
 #### __index__
 
 
 ```rust
-__index__(self: _Self) -> Int
+__index__(self: _Self) -> index
 ```  
 Summary  
   
-Return the index value.  
+Convert to index.  
+  
+Args:  
+
+- self
+
+#### __int__
+
+
+```rust
+__int__(self: _Self) -> Int
+```  
+Summary  
+  
+Get the integral representation of the value.  
   
 Args:  
 

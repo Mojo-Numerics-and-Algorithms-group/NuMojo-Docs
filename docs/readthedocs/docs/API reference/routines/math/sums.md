@@ -27,7 +27,7 @@ Args:
 
 
 ```rust
-sum[dtype: DType](A: NDArray[dtype], owned axis: Int) -> NDArray[dtype]
+sum[dtype: DType](A: NDArray[dtype], axis: Int) -> NDArray[dtype]
 ```  
 Summary  
   

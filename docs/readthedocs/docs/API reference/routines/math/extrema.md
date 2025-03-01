@@ -6,25 +6,60 @@
 
 ##  Module Summary
   
-TODO:  1) Add support for axis parameter.   2) Currently, constrained is crashing mojo, so commented it out and added raise Error. Check later. 3) Relax constrained[] to let user get whatever output they want, but make a warning instead.
+Extrema finding
+## extrema_1d
+
+
+```rust
+extrema_1d[dtype: DType, //, is_max: Bool](a: NDArray[dtype]) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Finds the max or min value in the buffer. Regardless of the shape of input, it is treated as a 1-d array. It is the backend function for `max` and `min`, with or without `axis`.  
+  
+Parameters:  
+
+- dtype: The element type.
+- is_max: If True, find max value, otherwise find min value.
+  
+Args:  
+
+- a: An array.
+
 ## max
 
 
 ```rust
-max[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
+max[dtype: DType](a: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Maximums of array elements over a given axis.  
+Finds the max value of an array. When no axis is given, the array is flattened before sorting.  
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
-- array: NDArray.
-- axis: The axis along which the sum is performed. Default: 0
+- a: An array.
+
+
+```rust
+max[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+```  
+Summary  
+  
+Finds the max value of an array along the axis. The number of dimension will be reduced by 1. When no axis is given, the array is flattened before sorting.  
+  
+Parameters:  
+
+- dtype: The element type.
+  
+Args:  
+
+- a: An array.
+- axis: The axis along which the max is performed.
 
 
 ```rust
@@ -59,42 +94,40 @@ Args:
 - A
 - axis
 
-## maxT
-
-
-```rust
-maxT[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Maximum value of a array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: A NDArray.
-
 ## min
 
 
 ```rust
-min[dtype: DType](array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
+min[dtype: DType](a: NDArray[dtype]) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Minumums of array elements over a given axis.  
+Finds the min value of an array. When no axis is given, the array is flattened before sorting.  
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
   
 Args:  
 
-- array: NDArray.
-- axis: The axis along which the sum is performed. Default: 0
+- a: An array.
+
+
+```rust
+min[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+```  
+Summary  
+  
+Finds the min value of an array along the axis. The number of dimension will be reduced by 1. When no axis is given, the array is flattened before sorting.  
+  
+Parameters:  
+
+- dtype: The element type.
+  
+Args:  
+
+- a: An array.
+- axis: The axis along which the max is performed.
 
 
 ```rust
@@ -128,60 +161,6 @@ Args:
 
 - A
 - axis
-
-## minT
-
-
-```rust
-minT[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Minimum value of a array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: A NDArray.
-
-## amin
-
-
-```rust
-amin[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Minimum value of an array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: An array.
-
-## amax
-
-
-```rust
-amax[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Maximum value of a array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: A array.
 
 ## mimimum
 

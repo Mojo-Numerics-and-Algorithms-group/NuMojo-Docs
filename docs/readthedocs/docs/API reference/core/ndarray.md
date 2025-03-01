@@ -21,6 +21,8 @@ The N-dimensional array (NDArray).
 - AnyType
 - CollectionElement
 - Copyable
+- FloatableRaising
+- IntableRaising
 - Movable
 - Representable
 - Sized
@@ -42,7 +44,7 @@ The N-dimensional array (NDArray).
     - Size of NDArray.  
 * strides `NDArrayStrides`  
     - Contains offset, strides.  
-* flags `Dict[String, Bool]`  
+* flags `Flags`  
     - Information about the memory layout of the array.  
 
 ### Functions
@@ -55,13 +57,13 @@ __init__(out self, shape: NDArrayShape, order: String = String("C"))
 ```  
 Summary  
   
-Initialize an NDArray with given shape.  
+Initializes an NDArray with given shape. The memory is not filled with values.  
   
 Args:  
 
-- self
 - shape: Variadic shape.
 - order: Memory order C or F. Default: String("C")
+- self
 
 
 ```rust
@@ -69,13 +71,13 @@ __init__(out self, shape: List[Int], order: String = String("C"))
 ```  
 Summary  
   
-(Overload) Initialize an NDArray with given shape (list of integers).  
+(Overload) Initializes an NDArray with given shape (list of integers).  
   
 Args:  
 
-- self
 - shape: List of shape.
 - order: Memory order C or F. Default: String("C")
+- self
 
 
 ```rust
@@ -83,13 +85,13 @@ __init__(out self, shape: VariadicList[Int], order: String = String("C"))
 ```  
 Summary  
   
-(Overload) Initialize an NDArray with given shape (variadic list of integers).  
+(Overload) Initializes an NDArray with given shape (variadic list of integers).  
   
 Args:  
 
-- self
 - shape: Variadic List of shape.
 - order: Memory order C or F. Default: String("C")
+- self
 
 
 ```rust
@@ -101,10 +103,27 @@ Extremely specific NDArray initializer.
   
 Args:  
 
+- shape: List of shape.
+- offset: Offset value.
+- strides: List of strides.
 - self
-- shape
-- offset
-- strides
+
+
+```rust
+__init__(out self, shape: NDArrayShape, strides: NDArrayStrides, ndim: Int, size: Int, flags: Flags)
+```  
+Summary  
+  
+Constructs an extremely specific array, with value uninitialized. The properties do not need to be compatible and are not checked. For example, it can construct a 0-D array (numojo scalar).  
+  
+Args:  
+
+- shape: Shape of array.
+- strides: Strides of array.
+- ndim: Number of dimensions.
+- size: Size of array.
+- flags: Flags of array.
+- self
 
 
 ```rust
@@ -112,15 +131,15 @@ __init__(out self, shape: NDArrayShape, ref buffer: UnsafePointer[SIMD[dtype, 1]
 ```  
 Summary  
   
-  
+Initialize an NDArray view with given shape, buffer, offset, and strides. ***Unsafe!*** This function is currently unsafe. Only for internal use.  
   
 Args:  
 
+- shape: Shape of the array.
+- buffer: Unsafe pointer to the buffer.
+- offset: Offset value.
+- strides: Strides of the array.
 - self
-- shape
-- buffer
-- offset
-- strides
 
 #### __copyinit__
 
@@ -130,12 +149,12 @@ __copyinit__(out self, other: Self)
 ```  
 Summary  
   
-Copy other into self.  
+Copy other into self. It is a deep copy. So the new array owns the data.  
   
 Args:  
 
+- other: The NDArray to copy from.
 - self
-- other
 
 #### __moveinit__
 
@@ -149,8 +168,8 @@ Move other into self.
   
 Args:  
 
+- existing: The NDArray to move from.
 - self
-- existing
 
 #### __del__
 
@@ -160,7 +179,7 @@ __del__(owned self)
 ```  
 Summary  
   
-  
+Destroys all elements in the list and free its memory.  
   
 Args:  
 
@@ -184,16 +203,28 @@ Args:
 
 
 ```rust
-__getitem__(self, index: Item) -> SIMD[dtype, 1]
+__getitem__(self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Set the value at the index list.  
+Gets the value of the 0-D array.  
   
 Args:  
 
 - self
-- index
+
+
+```rust
+__getitem__(self, index: Item) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Get the value at the index list.  
+  
+Args:  
+
+- self
+- index: Index list.
 
 
 ```rust
@@ -201,12 +232,12 @@ __getitem__(self, idx: Int) -> Self
 ```  
 Summary  
   
-Retreive a slice of the array corresponding to the index at the first dimension.  
+Retrieve a slice of the array corresponding to the index at the first dimension.  
   
 Args:  
 
 - self
-- idx
+- idx: Index to get the slice.
 
 
 ```rust
@@ -214,12 +245,12 @@ __getitem__(self, owned *slices: Slice) -> Self
 ```  
 Summary  
   
-Retreive slices of an array from variadic slices.  
+Retrieve slices of an array from variadic slices.  
   
 Args:  
 
 - self
-- \*slices
+- \*slices: Variadic slices.
 
 
 ```rust
@@ -227,12 +258,12 @@ __getitem__(self, owned slice_list: List[Slice]) -> Self
 ```  
 Summary  
   
-Retreive slices of an array from list of slices.  
+Retrieve slices of an array from a list of slices.  
   
 Args:  
 
 - self
-- slice_list
+- slice_list: List of slices.
 
 
 ```rust
@@ -253,12 +284,12 @@ __getitem__(self, indices: NDArray[index]) -> Self
 ```  
 Summary  
   
-Get items from 0-th dimension of an ndarray of indices.  
+Get items from 0-th dimension of an ndarray of indices. If the original array is of shape (i,j,k) and the indices array is of shape (l, m, n), then the output array will be of shape (l,m,n,j,k).  
   
 Args:  
 
 - self
-- indices: Array of intable values.
+- indices: Array of indices.
 
 
 ```rust
@@ -279,7 +310,7 @@ __getitem__(self, mask: NDArray[bool]) -> Self
 ```  
 Summary  
   
-Get item from an array according to a mask array.  
+Get item from an array according to a mask array. If array shape is equal to mask shape, it returns a flattened array of the values where mask is True. If array shape is not equal to mask shape, it returns items from the 0-th dimension of the array where mask is True.  
   
 Args:  
 
@@ -312,8 +343,8 @@ Set a slice of array with given array.
 Args:  
 
 - self
-- idx
-- val
+- idx: Index to set.
+- val: Value to set.
 
 
 ```rust
@@ -321,13 +352,13 @@ __setitem__(mut self, index: Item, val: SIMD[dtype, 1])
 ```  
 Summary  
   
-Set the value at the index list.  
+Sets the value at the index list.  
   
 Args:  
 
 - self
-- index
-- val
+- index: Index list.
+- val: Value to set.
 
 
 ```rust
@@ -335,13 +366,13 @@ __setitem__(mut self, mask: NDArray[bool], value: SIMD[dtype, 1])
 ```  
 Summary  
   
-Set the value of the array at the indices where the mask is true.  
+Sets the value of the array at the indices where the mask is true.  
   
 Args:  
 
 - self
-- mask
-- value
+- mask: Boolean mask array.
+- value: Value to set.
 
 
 ```rust
@@ -349,13 +380,13 @@ __setitem__(mut self, *slices: Slice, *, val: Self)
 ```  
 Summary  
   
-Retreive slices of an array from variadic slices.  
+Sets the elements of the array at the slices with given array.  
   
 Args:  
 
 - self
-- \*slices
-- val
+- \*slices: Variadic slices.
+- val: A NDArray to set.
 
 
 ```rust
@@ -368,8 +399,8 @@ Sets the slices of an array from list of slices and array.
 Args:  
 
 - self
-- slices
-- val
+- slices: List of slices.
+- val: Value to set.
 
 
 ```rust
@@ -377,13 +408,13 @@ __setitem__(mut self, *slices: Variant[Slice, Int], *, val: Self)
 ```  
 Summary  
   
-Get items by a series of either slices or integers.  
+Gets items by a series of either slices or integers.  
   
 Args:  
 
 - self
-- \*slices
-- val
+- \*slices: Variadic slices or integers.
+- val: Value to set.
 
 
 ```rust
@@ -396,8 +427,8 @@ Returns the items of the array from an array of indices.
 Args:  
 
 - self
-- index
-- val
+- index: Array of indices.
+- val: Value to set.
 
 
 ```rust
@@ -405,13 +436,13 @@ __setitem__(mut self, mask: NDArray[bool], val: Self)
 ```  
 Summary  
   
-Set the value of the array at the indices where the mask is true.  
+Sets the value of the array at the indices where the mask is true.  
   
 Args:  
 
 - self
-- mask
-- val
+- mask: Boolean mask array.
+- val: Value to set.
 
 #### __neg__
 
@@ -467,13 +498,13 @@ Itemwise less than.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other Scalar.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other Scalar to compare with.
 
 
 ```rust
@@ -485,13 +516,13 @@ Itemwise less than between scalar and Array.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other array.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 
 ```rust
@@ -504,7 +535,7 @@ Itemwise less than.
 Args:  
 
 - self
-- other
+- other: The other SIMD value to compare with.
 
 
 ```rust
@@ -517,7 +548,7 @@ Itemwise less than between scalar and Array.
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 #### __le__
 
@@ -531,13 +562,13 @@ Itemwise less than or equal to.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other Scalar.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other Scalar to compare with.
 
 
 ```rust
@@ -549,13 +580,13 @@ Itemwise less than or equal to between scalar and Array.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other array.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 
 ```rust
@@ -568,7 +599,7 @@ Itemwise less than or equal to.
 Args:  
 
 - self
-- other
+- other: The other SIMD value to compare with.
 
 
 ```rust
@@ -581,7 +612,7 @@ Itemwise less than or equal to between scalar and Array.
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 #### __eq__
 
@@ -595,13 +626,13 @@ Itemwise equivalence.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other array.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 
 ```rust
@@ -613,13 +644,13 @@ Itemwise equivalence.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other Scalar.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other Scalar to compare with.
 
 
 ```rust
@@ -632,7 +663,7 @@ Itemwise equivalence.
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 
 ```rust
@@ -645,7 +676,7 @@ Itemwise equivalence between scalar and Array.
 Args:  
 
 - self
-- other
+- other: The other SIMD value to compare with.
 
 #### __ne__
 
@@ -659,13 +690,13 @@ Itemwise nonequivelence.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other array.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 
 ```rust
@@ -677,13 +708,13 @@ Itemwise nonequivelence between scalar and Array.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other Scalar.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other Scalar to compare with.
 
 
 ```rust
@@ -696,7 +727,7 @@ Itemwise nonequivelence.
 Args:  
 
 - self
-- other
+- other: The other SIMD value to compare with.
 
 
 ```rust
@@ -709,7 +740,7 @@ Itemwise nonequivelence between scalar and Array.
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 #### __gt__
 
@@ -723,13 +754,13 @@ Itemwise greater than.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other Scalar.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other Scalar to compare with.
 
 
 ```rust
@@ -741,13 +772,13 @@ Itemwise greater than between scalar and Array.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other array.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 
 ```rust
@@ -760,7 +791,7 @@ Itemwise greater than.
 Args:  
 
 - self
-- other
+- other: The other SIMD value to compare with.
 
 
 ```rust
@@ -773,7 +804,7 @@ Itemwise greater than between scalar and Array.
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 #### __ge__
 
@@ -787,13 +818,13 @@ Itemwise greater than or equal to.
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other Scalar.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other Scalar to compare with.
 
 
 ```rust
@@ -801,17 +832,17 @@ __ge__[OtherDtype: DType, ResultDType: DType = result[::DType,::DType]()](self, 
 ```  
 Summary  
   
-Itemwise less than or equal to between scalar and Array.  
+Itemwise greater than or equal to between scalar and Array.  
   
 Parameters:  
 
-- OtherDtype
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDtype: The data type of the other array.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 
 ```rust
@@ -824,7 +855,7 @@ Itemwise greater than or equal to.
 Args:  
 
 - self
-- other
+- other: The other SIMD value to compare with.
 
 
 ```rust
@@ -832,12 +863,12 @@ __ge__(self, other: Self) -> NDArray[bool]
 ```  
 Summary  
   
-Itemwise less than or equal to between scalar and Array.  
+Itemwise greater than or equal to between Array and Array.  
   
 Args:  
 
 - self
-- other
+- other: The other array to compare with.
 
 #### __add__
 
@@ -851,13 +882,13 @@ Enables `array + scalar`.
   
 Parameters:  
 
-- OtherDType
-- ResultDType Defualt: `result[::DType,::DType]()`
+- OtherDType: The data type of the other Scalar.
+- ResultDType: The data type of the result array. Defualt: `result[::DType,::DType]()`
   
 Args:  
 
 - self
-- other
+- other: The other Scalar to compare with.
 
 
 ```rust
@@ -1255,6 +1286,19 @@ Args:
 
 
 ```rust
+__pow__(self, rhs: SIMD[dtype, 1]) -> Self
+```  
+Summary  
+  
+Power of items.  
+  
+Args:  
+
+- self
+- rhs
+
+
+```rust
 __pow__(self, p: Self) -> Self
 ```  
 Summary  
@@ -1647,6 +1691,151 @@ Args:
 - self
 - p
 
+#### item
+
+
+```rust
+item(self, owned index: Int) -> ref [MutableAnyOrigin] SIMD[dtype, 1]
+```  
+Summary  
+  
+Return the scalar at the coordinates. If one index is given, get the i-th item of the array (not buffer). It first scans over the first row, even it is a colume-major array. If more than one index is given, the length of the indices must match the number of dimensions of the array. If the ndim is 0 (0-D array), get the value as a mojo scalar.  
+  
+Args:  
+
+- self
+- index: Index of item, counted in row-major way.
+
+
+```rust
+item(self, *index: Int) -> ref [MutableAnyOrigin] SIMD[dtype, 1]
+```  
+Summary  
+  
+Return the scalar at the coordinates. If one index is given, get the i-th item of the array (not buffer). It first scans over the first row, even it is a colume-major array. If more than one index is given, the length of the indices must match the number of dimensions of the array. For 0-D array (numojo scalar), return the scalar value.  
+  
+Args:  
+
+- self
+- \*index: The coordinates of the item.
+
+#### load
+
+
+```rust
+load(self, owned index: Int) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Safely retrieve i-th item from the underlying buffer.  
+  
+Args:  
+
+- self
+- index: Index of the item.
+
+
+```rust
+load[width: Int = 1](self, index: Int) -> SIMD[dtype, width]
+```  
+Summary  
+  
+Safely loads a SIMD element of size `width` at `index` from the underlying buffer.  
+  
+Parameters:  
+
+- width Defualt: `1`
+  
+Args:  
+
+- self
+- index: Index of the item.
+
+
+```rust
+load[width: Int = 1](self, *indices: Int) -> SIMD[dtype, width]
+```  
+Summary  
+  
+Safely loads SIMD element of size `width` at given variadic indices from the underlying buffer.  
+  
+Parameters:  
+
+- width Defualt: `1`
+  
+Args:  
+
+- self
+- \*indices: Variadic indices.
+
+#### itemset
+
+
+```rust
+itemset(mut self, index: Variant[Int, List[Int]], item: SIMD[dtype, 1])
+```  
+Summary  
+  
+Set the scalar at the coordinates.  
+  
+Args:  
+
+- self
+- index: The coordinates of the item. Can either be `Int` or `List[Int]`. If `Int` is passed, it is the index of i-th item of the whole array. If `List[Int]` is passed, it is the coordinate of the item.
+- item: The scalar to be set.
+
+#### store
+
+
+```rust
+store(self, owned index: Int, val: SIMD[dtype, 1])
+```  
+Summary  
+  
+Safely store a scalar to i-th item of the underlying buffer.  
+  
+Args:  
+
+- self
+- index: Index of the item.
+- val: Value to store.
+
+
+```rust
+store[width: Int](mut self, index: Int, val: SIMD[dtype, width])
+```  
+Summary  
+  
+Safely stores SIMD element of size `width` at `index` of the underlying buffer.  
+  
+Parameters:  
+
+- width
+  
+Args:  
+
+- self
+- index: Index of the item.
+- val: Value to store.
+
+
+```rust
+store[width: Int = 1](mut self, *indices: Int, *, val: SIMD[dtype, width])
+```  
+Summary  
+  
+Safely stores SIMD element of size `width` at given variadic indices of the underlying buffer.  
+  
+Parameters:  
+
+- width Defualt: `1`
+  
+Args:  
+
+- self
+- \*indices: Variadic indices.
+- val: Value to store.
+
 #### __int__
 
 
@@ -1655,7 +1844,21 @@ __int__(self) -> Int
 ```  
 Summary  
   
-Get Int representation of the array.  
+Gets `Int` representation of the array.  
+  
+Args:  
+
+- self
+
+#### __float__
+
+
+```rust
+__float__(self) -> SIMD[float64, 1]
+```  
+Summary  
+  
+Gets `Float64` representation of the array.  
   
 Args:  
 
@@ -1683,7 +1886,7 @@ __str__(self) -> String
 ```  
 Summary  
   
-Enables str(array).  
+Enables String(array).  
   
 Args:  
 
@@ -1697,7 +1900,7 @@ write_to[W: Writer](self, mut writer: W)
 ```  
 Summary  
   
-  
+Writes the array to a writer.  
   
 Parameters:  
 
@@ -1706,7 +1909,7 @@ Parameters:
 Args:  
 
 - self
-- writer
+- writer: The writer to write the array to.
 
 #### __repr__
 
@@ -1716,7 +1919,7 @@ __repr__(self) -> String
 ```  
 Summary  
   
-Compute the "official" string representation of NDArray.  
+Computes the "official" string representation of NDArray. You can construct the array using this representation.  
   
 Args:  
 
@@ -1744,7 +1947,7 @@ __iter__(self) -> _NDArrayIter[self, dtype]
 ```  
 Summary  
   
-Iterate over elements of the NDArray and return sub-arrays as view.  
+Iterates over elements of the NDArray and return sub-arrays as view.  
   
 Args:  
 
@@ -1758,224 +1961,7 @@ __reversed__(self) -> _NDArrayIter[self, dtype, False]
 ```  
 Summary  
   
-Iterate backwards over elements of the NDArray, returning copied value.  
-  
-Args:  
-
-- self
-
-#### vdot
-
-
-```rust
-vdot(self, other: Self) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Inner product of two vectors.  
-  
-Args:  
-
-- self
-- other
-
-#### mdot
-
-
-```rust
-mdot(self, other: Self) -> Self
-```  
-Summary  
-  
-Dot product of two matrix. Matrix A: M * N. Matrix B: N * L.  
-  
-Args:  
-
-- self
-- other
-
-#### row
-
-
-```rust
-row(self, id: Int) -> Self
-```  
-Summary  
-  
-Get the ith row of the matrix.  
-  
-Args:  
-
-- self
-- id
-
-#### col
-
-
-```rust
-col(self, id: Int) -> Self
-```  
-Summary  
-  
-Get the ith column of the matrix.  
-  
-Args:  
-
-- self
-- id
-
-#### rdot
-
-
-```rust
-rdot(self, other: Self) -> Self
-```  
-Summary  
-  
-Dot product of two matrix. Matrix A: M * N. Matrix B: N * L.  
-  
-Args:  
-
-- self
-- other
-
-#### num_elements
-
-
-```rust
-num_elements(self) -> Int
-```  
-Summary  
-  
-Function to retreive size (compatability).  
-  
-Args:  
-
-- self
-
-#### load
-
-
-```rust
-load(self, owned index: Int) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Safely retrieve i-th item from the underlying buffer.  
-  
-Args:  
-
-- self
-- index
-
-
-```rust
-load[width: Int = 1](self, index: Int) -> SIMD[dtype, width]
-```  
-Summary  
-  
-Safely loads a SIMD element of size `width` at `index` from the underlying buffer.  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- index
-
-
-```rust
-load[width: Int = 1](self, *indices: Int) -> SIMD[dtype, width]
-```  
-Summary  
-  
-Safely loads SIMD element of size `width` at given variadic indices from the underlying buffer.  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- \*indices
-
-#### store
-
-
-```rust
-store(self, owned index: Int, val: SIMD[dtype, 1])
-```  
-Summary  
-  
-Safely store a scalar to i-th item of the underlying buffer.  
-  
-Args:  
-
-- self
-- index
-- val
-
-
-```rust
-store[width: Int](mut self, index: Int, val: SIMD[dtype, width])
-```  
-Summary  
-  
-Safely stores SIMD element of size `width` at `index` of the underlying buffer.  
-  
-Parameters:  
-
-- width
-  
-Args:  
-
-- self
-- index
-- val
-
-
-```rust
-store[width: Int = 1](mut self, *indices: Int, *, val: SIMD[dtype, width])
-```  
-Summary  
-  
-Safely stores SIMD element of size `width` at given variadic indices of the underlying buffer.  
-  
-Parameters:  
-
-- width Defualt: `1`
-  
-Args:  
-
-- self
-- \*indices
-- val
-
-#### T
-
-
-```rust
-T(self, axes: List[Int]) -> Self
-```  
-Summary  
-  
-Transpose array of any number of dimensions according to arbitrary permutation of the axes.  
-  
-Args:  
-
-- self
-- axes
-
-
-```rust
-T(self) -> Self
-```  
-Summary  
-  
-(overload) Transpose the array when `axes` is not given. If `axes` is not given, it is equal to flipping the axes. See docstring of `transpose`.  
+Iterates backwards over elements of the NDArray, returning copied value.  
   
 Args:  
 
@@ -2045,11 +2031,24 @@ argsort(self) -> NDArray[index]
 ```  
 Summary  
   
-Sort the NDArray and return the sorted indices.  
+Sort the NDArray and return the sorted indices. See `numojo.argsort()`.  
   
 Args:  
 
 - self
+
+
+```rust
+argsort(self, axis: Int) -> NDArray[index]
+```  
+Summary  
+  
+Sort the NDArray and return the sorted indices. See `numojo.argsort()`.  
+  
+Args:  
+
+- self
+- axis
 
 #### astype
 
@@ -2063,11 +2062,79 @@ Convert type of array.
   
 Parameters:  
 
-- target
+- target: Target data type.
   
 Args:  
 
 - self
+
+#### clip
+
+
+```rust
+clip(self, a_min: SIMD[dtype, 1], a_max: SIMD[dtype, 1]) -> Self
+```  
+Summary  
+  
+Limit the values in an array between [a_min, a_max]. If a_min is greater than a_max, the value is equal to a_max. See `numojo.clip()` for more details.  
+  
+Args:  
+
+- self
+- a_min: The minimum value.
+- a_max: The maximum value.
+
+#### compress
+
+
+```rust
+compress[dtype: DType](self, condition: NDArray[bool], axis: Int) -> Self
+```  
+Summary  
+  
+Return selected slices of an array along given axis. If no axis is provided, the array is flattened before use.  
+  
+Parameters:  
+
+- dtype: DType.
+  
+Args:  
+
+- self
+- condition: 1-D array of booleans that selects which entries to return. If length of condition is less than the size of the array along the given axis, then output is filled to the length of the condition with False.
+- axis: The axis along which to take slices.
+
+
+```rust
+compress[dtype: DType](self, condition: NDArray[bool]) -> Self
+```  
+Summary  
+  
+Return selected slices of an array along given axis. If no axis is provided, the array is flattened before use. This is a function ***OVERLOAD***.  
+  
+Parameters:  
+
+- dtype: DType.
+  
+Args:  
+
+- self
+- condition: 1-D array of booleans that selects which entries to return. If length of condition is less than the size of the array along the given axis, then output is filled to the length of the condition with False.
+
+#### col
+
+
+```rust
+col(self, id: Int) -> Self
+```  
+Summary  
+  
+Get the ith column of the matrix.  
+  
+Args:  
+
+- self
+- id: The column index.
 
 #### copy
 
@@ -2077,7 +2144,7 @@ copy(self) -> Self
 ```  
 Summary  
   
-Returns a copy of the array that owns the data. The returned array will be continuous in memory.  
+Returns a copy of the array that owns the data. The returned array will be contiguous in memory.  
   
 Args:  
 
@@ -2141,15 +2208,20 @@ Args:
 
 
 ```rust
-diagonal(self)
+diagonal[dtype: DType](self, offset: Int = 0) -> Self
 ```  
 Summary  
   
+Returns specific diagonals. Currently supports only 2D arrays.  
   
+Parameters:  
+
+- dtype: Data type of the array.
   
 Args:  
 
 - self
+- offset: Offset of the diagonal from the main diagonal. Default: 0
 
 #### fill
 
@@ -2164,7 +2236,7 @@ Fill all items of array with value.
 Args:  
 
 - self
-- val
+- val: Value to fill.
 
 #### flatten
 
@@ -2181,106 +2253,183 @@ Args:
 - self
 - order: A NDArray. Default: String("C")
 
-#### item
+#### iter_along_axis
 
 
 ```rust
-item(self, owned index: Int) -> ref [MutableAnyOrigin] SIMD[dtype, 1]
+iter_along_axis[forward: Bool = True](self, axis: Int, order: String = String("C")) -> _NDAxisIter[self, dtype, forward]
 ```  
 Summary  
   
-Return the scalar at the coordinates.  
+Returns an iterator yielding 1-d array slices along the given axis.  
+  
+Parameters:  
+
+- forward: If True, iterate from the beginning to the end. If False, iterate from the end to the beginning. Defualt: `True`
   
 Args:  
 
 - self
-- index: Index of item, counted in row-major way.
+- axis: The axis by which the iteration is performed.
+- order: The order to traverse the array. Default: String("C")
+
+#### iter_over_dimension
 
 
 ```rust
-item(self, *index: Int) -> ref [MutableAnyOrigin] SIMD[dtype, 1]
+iter_over_dimension[forward: Bool = True](self, dimension: Int) -> _NDArrayIter[self, dtype, forward]
 ```  
 Summary  
   
-Return the scalar at the coordinates.  
+Returns an iterator yielding `ndim-1` arrays over the given dimension.  
+  
+Parameters:  
+
+- forward: If True, iterate from the beginning to the end. If False, iterate from the end to the beginning. Defualt: `True`
   
 Args:  
 
 - self
-- \*index: The coordinates of the item.
-
-#### itemset
-
-
-```rust
-itemset(mut self, index: Variant[Int, List[Int]], item: SIMD[dtype, 1])
-```  
-Summary  
-  
-Set the scalar at the coordinates.  
-  
-Args:  
-
-- self
-- index: The coordinates of the item. Can either be `Int` or `List[Int]`. If `Int` is passed, it is the index of i-th item of the whole array. If `List[Int]` is passed, it is the coordinate of the item.
-- item: The scalar to be set.
+- dimension: The dimension by which the iteration is performed.
 
 #### max
 
 
 ```rust
-max(self, axis: Int = 0) -> Self
+max(self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Max on axis.  
+Finds the max value of an array. When no axis is given, the array is flattened before sorting.  
   
 Args:  
 
 - self
-- axis Default: 0
-
-#### min
 
 
 ```rust
-min(self, axis: Int = 0) -> Self
+max(self, axis: Int) -> Self
 ```  
 Summary  
   
-Min on axis.  
+Finds the max value of an array along the axis. The number of dimension will be reduced by 1. When no axis is given, the array is flattened before sorting.  
   
 Args:  
 
 - self
-- axis Default: 0
+- axis: The axis along which the max is performed.
+
+#### mdot
+
+
+```rust
+mdot(self, other: Self) -> Self
+```  
+Summary  
+  
+Dot product of two matrix. Matrix A: M * N. Matrix B: N * L.  
+  
+Args:  
+
+- self
+- other: The other matrix.
 
 #### mean
 
 
 ```rust
-mean(self, axis: Int) -> Self
+mean[returned_dtype: DType = float64](self) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
-Mean of array elements over a given axis. Args:     array: NDArray.     axis: The axis along which the mean is performed. Returns:     An NDArray.  
+Mean of a array.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
 - self
-- axis
 
 
 ```rust
-mean(self) -> SIMD[dtype, 1]
+mean[returned_dtype: DType = float64](self, axis: Int) -> NDArray[returned_dtype]
 ```  
 Summary  
   
-Cumulative mean of a array.  
+Mean of array elements over a given axis.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
 - self
+- axis: The axis along which the mean is performed.
+
+#### median
+
+
+```rust
+median[returned_dtype: DType = float64](self) -> SIMD[returned_dtype, 1]
+```  
+Summary  
+  
+Median of a array.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
+  
+Args:  
+
+- self
+
+
+```rust
+median[returned_dtype: DType = float64](self, axis: Int) -> NDArray[returned_dtype]
+```  
+Summary  
+  
+Median of array elements over a given axis.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
+  
+Args:  
+
+- self
+- axis: The axis along which the median is performed.
+
+#### min
+
+
+```rust
+min(self) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Finds the min value of an array. When no axis is given, the array is flattened before sorting.  
+  
+Args:  
+
+- self
+
+
+```rust
+min(self, axis: Int) -> Self
+```  
+Summary  
+  
+Finds the min value of an array along the axis. The number of dimension will be reduced by 1. When no axis is given, the array is flattened before sorting.  
+  
+Args:  
+
+- self
+- axis: The axis along which the min is performed.
 
 #### nditer
 
@@ -2290,7 +2439,7 @@ nditer(self) -> _NDIter[self, dtype]
 ```  
 Summary  
   
-(Overload) Return an iterator yielding the array elements according to the memory layout of the array.  
+***Overload*** Return an iterator yielding the array elements according to the memory layout of the array.  
   
 Args:  
 
@@ -2307,7 +2456,21 @@ Return an iterator yielding the array elements according to the order.
 Args:  
 
 - self
-- order
+- order: Order of the array.
+
+#### num_elements
+
+
+```rust
+num_elements(self) -> Int
+```  
+Summary  
+  
+Function to retreive size (compatability).  
+  
+Args:  
+
+- self
 
 #### prod
 
@@ -2317,7 +2480,7 @@ prod(self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Product of all array elements. Returns:     Scalar.  
+Product of all array elements.  
   
 Args:  
 
@@ -2329,12 +2492,27 @@ prod(self, axis: Int) -> Self
 ```  
 Summary  
   
-Product of array elements over a given axis. Args:     axis: The axis along which the product is performed. Returns:     An NDArray.  
+Product of array elements over a given axis.  
   
 Args:  
 
 - self
-- axis
+- axis: The axis along which the product is performed.
+
+#### rdot
+
+
+```rust
+rdot(self, other: Self) -> Self
+```  
+Summary  
+  
+Dot product of two matrix. Matrix A: M * N. Matrix B: N * L.  
+  
+Args:  
+
+- self
+- other: The other matrix.
 
 #### reshape
 
@@ -2381,32 +2559,72 @@ Args:
 
 - self
 
+#### row
+
+
+```rust
+row(self, id: Int) -> Self
+```  
+Summary  
+  
+Get the ith row of the matrix.  
+  
+Args:  
+
+- self
+- id: The row index.
+
 #### sort
 
 
 ```rust
-sort(mut self)
+sort(mut self, axis: Int = -1)
 ```  
 Summary  
   
-Sort NDArray using quick sort method. It is not guaranteed to be unstable.  
+Sorts the array in-place along the given axis using quick sort method. The deault axis is -1. See `numojo.sorting.sort` for more information.  
   
 Args:  
 
 - self
+- axis: The axis along which the array is sorted. Defaults to -1. Default: -1
+
+#### std
 
 
 ```rust
-sort(mut self, owned axis: Int)
+std[returned_dtype: DType = float64](self, ddof: Int = 0) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
-Sort NDArray along the given axis using quick sort method. It is not guaranteed to be unstable.  
+Compute the standard deviation. See `numojo.std`.  
+  
+Parameters:  
+
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
 - self
-- axis
+- ddof: Delta degree of freedom. Default: 0
+
+
+```rust
+std[returned_dtype: DType = float64](self, axis: Int, ddof: Int = 0) -> NDArray[returned_dtype]
+```  
+Summary  
+  
+Compute the standard deviation along the axis. See `numojo.std`.  
+  
+Parameters:  
+
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- self
+- axis: The axis along which the mean is performed.
+- ddof: Delta degree of freedom. Default: 0
 
 #### sum
 
@@ -2416,7 +2634,7 @@ sum(self) -> SIMD[dtype, 1]
 ```  
 Summary  
   
-Sum of all array elements. Returns:     Scalar.  
+Returns sum of all array elements.  
   
 Args:  
 
@@ -2428,12 +2646,39 @@ sum(self, axis: Int) -> Self
 ```  
 Summary  
   
-Sum of array elements over a given axis. Args:     axis: The axis along which the sum is performed. Returns:     An NDArray.  
+Sum of array elements over a given axis.  
   
 Args:  
 
 - self
-- axis
+- axis: The axis along which the sum is performed.
+
+#### T
+
+
+```rust
+T(self, axes: List[Int]) -> Self
+```  
+Summary  
+  
+Transpose array of any number of dimensions according to arbitrary permutation of the axes.  
+  
+Args:  
+
+- self
+- axes: List of axes.
+
+
+```rust
+T(self) -> Self
+```  
+Summary  
+  
+***Overload*** Transposes the array when `axes` is not given. If `axes` is not given, it is equal to flipping the axes. See docstring of `transpose`.  
+  
+Args:  
+
+- self
 
 #### tolist
 
@@ -2443,7 +2688,7 @@ tolist(self) -> List[SIMD[dtype, 1]]
 ```  
 Summary  
   
-Convert NDArray to a 1-D List.  
+Converts NDArray to a 1-D List.  
   
 Args:  
 
@@ -2507,3 +2752,55 @@ Retreive pointer without taking ownership.
 Args:  
 
 - self
+
+#### variance
+
+
+```rust
+variance[returned_dtype: DType = float64](self, ddof: Int = 0) -> SIMD[returned_dtype, 1]
+```  
+Summary  
+  
+Returns the variance of array.  
+  
+Parameters:  
+
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- self
+- ddof: Delta degree of freedom. Default: 0
+
+
+```rust
+variance[returned_dtype: DType = float64](self, axis: Int, ddof: Int = 0) -> NDArray[returned_dtype]
+```  
+Summary  
+  
+Returns the variance of array along the axis. See `numojo.variance`.  
+  
+Parameters:  
+
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- self
+- axis: The axis along which the mean is performed.
+- ddof: Delta degree of freedom. Default: 0
+
+#### vdot
+
+
+```rust
+vdot(self, other: Self) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Inner product of two vectors.  
+  
+Args:  
+
+- self
+- other: The other vector.

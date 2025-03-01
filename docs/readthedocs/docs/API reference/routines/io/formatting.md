@@ -37,6 +37,7 @@
 
 - AnyType
 - Copyable
+- ExplicitlyCopyable
 - Movable
 - UnknownDestructibility
 
@@ -44,18 +45,23 @@
   
   
 * precision `Int`  
+    - The number of decimal places to include in the formatted string. Defaults to 4.  
 * suppress_small `Bool`  
 * separator `String`  
+    - The separator between elements in the array. Defaults to a space.  
 * padding `String`  
+    - The padding symbol between the elements at the edge and the brackets. Defaults to an empty string.  
 * threshold `Int`  
 * line_width `Int`  
 * edge_items `Int`  
+    - The number of items to display at the beginning and end of a dimension. Defaults to 3.  
 * sign `Bool`  
 * float_format `String`  
 * complex_format `String`  
 * nan_string `String`  
 * inf_string `String`  
 * formatted_width `Int`  
+    - The width of the formatted string per element of array.  
 * exponent_threshold `Int`  
 * suppress_scientific `Bool`  
 
@@ -73,7 +79,6 @@ Summary
   
 Args:  
 
-- self
 - precision Default: 4
 - suppress_small Default: False
 - separator Default: String(" ")
@@ -89,6 +94,7 @@ Args:
 - formatted_width Default: 8
 - exponent_threshold Default: 4
 - suppress_scientific Default: False
+- self
 
 #### set_options
 

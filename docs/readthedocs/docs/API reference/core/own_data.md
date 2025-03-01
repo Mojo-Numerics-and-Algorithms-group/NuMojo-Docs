@@ -39,8 +39,8 @@ Allocate given space on memory. The bytes allocated is `size` * `byte size of dt
   
 Args:  
 
-- self
 - size
+- self
 
 
 ```rust
@@ -52,8 +52,8 @@ Do not use this if you know what it means. If the pointer is associated with ano
   
 Args:  
 
-- self
 - ptr
+- self
 
 #### __moveinit__
 
@@ -67,8 +67,8 @@ Summary
   
 Args:  
 
-- self
 - other
+- self
 
 #### get_ptr
 

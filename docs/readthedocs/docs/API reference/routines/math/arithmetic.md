@@ -42,7 +42,7 @@ Perform addition on two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -84,7 +84,7 @@ Perform addition on two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -126,7 +126,7 @@ Perform addition on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -187,7 +187,7 @@ Perform subtraction on two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -229,7 +229,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -267,7 +267,7 @@ Perform subtraction on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -390,7 +390,7 @@ Perform multiplication on between two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -428,7 +428,7 @@ Perform multiplication on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -466,7 +466,7 @@ Perform multiplication on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -500,7 +500,7 @@ div[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2:
 ```  
 Summary  
   
-Element-wise quotent of array1 and array2.  
+Element-wise quotient of array1 and array2.  
   
 Parameters:  
 
@@ -527,7 +527,7 @@ Perform true division on between two arrays.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -565,7 +565,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -603,7 +603,7 @@ Perform true division on between an array and a scalar.
 Parameters:  
 
 - dtype: The element type.
-- backend: Sets utility function origin, defualts to `Vectorized`. Defualt: `Vectorized`
+- backend: Sets utility function origin, defaults to `Vectorized`. Defualt: `Vectorized`
 - OtherDType: The element type of the second array.
 - ResultDType: The element type of the result array. Defualt: `result[::DType,::DType]()`
   
@@ -620,7 +620,7 @@ floor_div[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], a
 ```  
 Summary  
   
-Element-wise quotent of array1 and array2.  
+Element-wise quotient of array1 and array2.  
   
 Parameters:  
 
@@ -680,7 +680,7 @@ fma[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2:
 ```  
 Summary  
   
-Apply a SIMD level fuse multipy add function of three variables and one return to a NDArray.  
+Apply a SIMD level fuse multiply add function of three variables and one return to a NDArray.  
   
 Parameters:  
 
@@ -703,7 +703,7 @@ fma[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2:
 ```  
 Summary  
   
-Apply a SIMD level fuse multipy add function of three variables and one return to a NDArray.  
+Apply a SIMD level fuse multiply add function of three variables and one return to a NDArray.  
   
 Parameters:  
 

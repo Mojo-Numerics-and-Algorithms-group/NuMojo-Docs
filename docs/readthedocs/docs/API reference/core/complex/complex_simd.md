@@ -37,7 +37,7 @@ Represents a SIMD[dtype, 1] Complex number with real and imaginary parts.
 
 
 ```rust
-__init__(out self, other: Self)
+__init__(other: Self) -> Self
 ```  
 Summary  
   
@@ -45,12 +45,11 @@ Initializes a ComplexSIMD instance by copying another instance.
   
 Args:  
 
-- self
 - other
 
 
 ```rust
-__init__(out self, re: SIMD[dtype, size], im: SIMD[dtype, size])
+__init__(re: SIMD[dtype, size], im: SIMD[dtype, size]) -> Self
 ```  
 Summary  
   
@@ -58,13 +57,12 @@ Initializes a ComplexSIMD instance with specified real and imaginary parts.
   
 Args:  
 
-- self
 - re
 - im
 
 
 ```rust
-__init__(out self, val: SIMD[dtype, size])
+__init__(val: SIMD[dtype, size]) -> Self
 ```  
 Summary  
   
@@ -72,7 +70,6 @@ Initializes a ComplexSIMD instance with specified real and imaginary parts.
   
 Args:  
 
-- self
 - val
 
 #### __getitem__

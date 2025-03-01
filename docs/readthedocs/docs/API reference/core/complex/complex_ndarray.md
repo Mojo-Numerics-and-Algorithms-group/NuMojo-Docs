@@ -20,6 +20,7 @@ Represents a Complex N-Dimensional Array.
 - AnyType
 - CollectionElement
 - Copyable
+- ExplicitlyCopyable
 - Movable
 - Representable
 - Sized
@@ -38,7 +39,7 @@ Represents a Complex N-Dimensional Array.
     - Size of ComplexNDArray.  
 * strides `NDArrayStrides`  
     - Contains offset, strides.  
-* flags `Dict[String, Bool]`  
+* flags `Flags`  
     - Information about the memory layout of the array.  
 
 ### Functions
@@ -55,9 +56,9 @@ Summary
   
 Args:  
 
-- self
 - re
 - im
+- self
 
 
 ```rust
@@ -69,9 +70,9 @@ Initialize a ComplexNDArray with given shape.
   
 Args:  
 
-- self
 - shape: Variadic shape.
 - order: Memory order C or F. Default: String("C")
+- self
 
 
 ```rust
@@ -83,9 +84,9 @@ Summary
   
 Args:  
 
-- self
 - shape: List of shape.
 - order: Memory order C or F. Default: String("C")
+- self
 
 
 ```rust
@@ -97,9 +98,9 @@ Summary
   
 Args:  
 
-- self
 - shape: Variadic List of shape.
 - order: Memory order C or F. Default: String("C")
+- self
 
 
 ```rust
@@ -111,10 +112,10 @@ Extremely specific ComplexNDArray initializer.
   
 Args:  
 
-- self
 - shape
 - offset
 - strides
+- self
 
 
 ```rust
@@ -126,12 +127,12 @@ Extremely specific ComplexNDArray initializer.
   
 Args:  
 
-- self
 - shape
 - buffer_re
 - buffer_im
 - offset
 - strides
+- self
 
 #### __copyinit__
 
@@ -145,8 +146,8 @@ Copy other into self.
   
 Args:  
 
-- self
 - other
+- self
 
 #### __moveinit__
 
@@ -160,8 +161,8 @@ Move other into self.
   
 Args:  
 
-- self
 - existing
+- self
 
 #### __getitem__
 
@@ -1072,7 +1073,7 @@ __str__(self) -> String
 ```  
 Summary  
   
-Enables str(array).  
+Enables String(array).  
   
 Args:  
 

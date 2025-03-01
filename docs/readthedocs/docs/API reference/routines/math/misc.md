@@ -30,6 +30,26 @@ Args:
 
 - array: A NDArray.
 
+## clip
+
+
+```rust
+clip[dtype: DType, //](a: NDArray[dtype], a_min: SIMD[dtype, 1], a_max: SIMD[dtype, 1]) -> NDArray[dtype]
+```  
+Summary  
+  
+Limit the values in an array between [a_min, a_max]. If a_min is greater than a_max, the value is equal to a_max.  
+  
+Parameters:  
+
+- dtype: The data type.
+  
+Args:  
+
+- a: A array.
+- a_min: The minimum value.
+- a_max: The maximum value.
+
 ## rsqrt
 
 
@@ -57,7 +77,7 @@ sqrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDAr
 ```  
 Summary  
   
-Element-wise squareroot of NDArray.  
+Element-wise square root of NDArray.  
   
 Parameters:  
 

@@ -38,7 +38,7 @@
     - Size of Matrix.  
 * strides `Tuple[Int, Int]`  
     - Strides of matrix.  
-* flags `Dict[String, Bool]`  
+* flags `Flags`  
     - Information about the memory layout of the array.  
 
 ### Functions
@@ -55,8 +55,8 @@ Construct a matrix without initializing data.
   
 Args:  
 
-- self
 - shape: List of shape.
+- self
 
 
 ```rust
@@ -68,8 +68,8 @@ Construct a matrix from matrix.
   
 Args:  
 
-- self
 - data
+- self
 
 
 ```rust
@@ -81,8 +81,8 @@ Construct a matrix from array.
   
 Args:  
 
-- self
 - data
+- self
 
 #### __copyinit__
 
@@ -96,8 +96,8 @@ Copy other into self.
   
 Args:  
 
-- self
 - other
+- self
 
 #### __moveinit__
 
@@ -111,8 +111,8 @@ Move other into self.
   
 Args:  
 
-- self
 - other
+- self
 
 #### __del__
 
@@ -954,11 +954,15 @@ Args:
 
 
 ```rust
-mean(self) -> SIMD[dtype, 1]
+mean[returned_dtype: DType = float64](self) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
 Calculate the arithmetic average of all items in the Matrix.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
@@ -966,11 +970,15 @@ Args:
 
 
 ```rust
-mean(self, axis: Int) -> Self
+mean[returned_dtype: DType = float64](self, axis: Int) -> Matrix[returned_dtype]
 ```  
 Summary  
   
 Calculate the arithmetic average of a Matrix along the axis.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
@@ -1080,11 +1088,15 @@ Args:
 
 
 ```rust
-std(self, ddof: Int = 0) -> SIMD[dtype, 1]
+std[returned_dtype: DType = float64](self, ddof: Int = 0) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
 Compute the standard deviation.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
@@ -1093,11 +1105,15 @@ Args:
 
 
 ```rust
-std(self, axis: Int, ddof: Int = 0) -> Self
+std[returned_dtype: DType = float64](self, axis: Int, ddof: Int = 0) -> Matrix[returned_dtype]
 ```  
 Summary  
   
 Compute the standard deviation along axis.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
@@ -1178,11 +1194,15 @@ Args:
 
 
 ```rust
-variance(self, ddof: Int = 0) -> SIMD[dtype, 1]
+variance[returned_dtype: DType = float64](self, ddof: Int = 0) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
 Compute the variance.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
@@ -1191,11 +1211,15 @@ Args:
 
 
 ```rust
-variance(self, axis: Int, ddof: Int = 0) -> Self
+variance[returned_dtype: DType = float64](self, axis: Int, ddof: Int = 0) -> Matrix[returned_dtype]
 ```  
 Summary  
   
 Compute the variance along axis.  
+  
+Parameters:  
+
+- returned_dtype Defualt: `float64`
   
 Args:  
 
@@ -1359,39 +1383,3 @@ Args:
 
 - text: String representation of a matrix.
 - shape: Shape of the matrix. Default: Tuple(VariadicPack(<store_to_mem({0}), store_to_mem({0})>, True))
-
-## broadcast_to
-
-
-```rust
-broadcast_to[dtype: DType](A: Matrix[dtype], shape: Tuple[Int, Int]) -> Matrix[dtype]
-```  
-Summary  
-  
-Broadcase the vector to the given shape.  
-  
-Parameters:  
-
-- dtype
-  
-Args:  
-
-- A
-- shape
-
-
-```rust
-broadcast_to[dtype: DType](A: SIMD[dtype, 1], shape: Tuple[Int, Int]) -> Matrix[dtype]
-```  
-Summary  
-  
-Broadcase the scalar to the given shape.  
-  
-Parameters:  
-
-- dtype
-  
-Args:  
-
-- A
-- shape

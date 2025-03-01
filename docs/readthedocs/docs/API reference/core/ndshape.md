@@ -9,27 +9,30 @@
 Implements NDArrayShape type.
 ## Aliases
   
-`Shape`: 
+`Shape`: An alias of the NDArrayShape.
 ## NDArrayShape
 
 ### NDArrayShape Summary
   
   
-Implements the NDArrayShape.  
+Presents the shape of `NDArray` type.  
 
 ### Parent Traits
   
 
 - AnyType
+- Representable
+- Sized
 - Stringable
 - UnknownDestructibility
 - Writable
+- _CurlyEntryFormattable
 
 ### Fields
   
   
 * ndim `Int`  
-    - Number of dimensions of array.  
+    - Number of dimensions of array. It must be larger than 0.  
 
 ### Functions
 
@@ -45,8 +48,8 @@ Initializes the NDArrayShape with one dimension.
   
 Args:  
 
-- self
 - shape: Size of the array.
+- self
 
 
 ```rust
@@ -58,8 +61,8 @@ Initializes the NDArrayShape with variable shape dimensions.
   
 Args:  
 
-- self
 - \*shape: Variable number of integers representing the shape dimensions.
+- self
 
 
 ```rust
@@ -71,9 +74,9 @@ Initializes the NDArrayShape with variable shape dimensions and a specified size
   
 Args:  
 
-- self
 - \*shape: Variable number of integers representing the shape dimensions.
 - size: The total number of elements in the array.
+- self
 
 
 ```rust
@@ -85,8 +88,8 @@ Initializes the NDArrayShape with a list of shape dimensions.
   
 Args:  
 
-- self
 - shape: A list of integers representing the shape dimensions.
+- self
 
 
 ```rust
@@ -98,9 +101,9 @@ Initializes the NDArrayShape with a list of shape dimensions and a specified siz
   
 Args:  
 
-- self
 - shape: A list of integers representing the shape dimensions.
 - size: The specified size of the NDArrayShape.
+- self
 
 
 ```rust
@@ -112,8 +115,8 @@ Initializes the NDArrayShape with a list of shape dimensions.
   
 Args:  
 
-- self
 - shape: A list of integers representing the shape dimensions.
+- self
 
 
 ```rust
@@ -125,21 +128,20 @@ Initializes the NDArrayShape with a list of shape dimensions and a specified siz
   
 Args:  
 
-- self
 - shape: A list of integers representing the shape dimensions.
 - size: The specified size of the NDArrayShape.
+- self
 
 
 ```rust
-__init__(out self, shape: Self)
+__init__(shape: Self) -> Self
 ```  
 Summary  
   
-Initializes the NDArrayShape with another NDArrayShape.  
+Initializes the NDArrayShape from another NDArrayShape. A deep copy of the data buffer is conducted.  
   
 Args:  
 
-- self
 - shape: Another NDArrayShape to initialize from.
 
 
@@ -148,27 +150,26 @@ __init__(out self, ndim: Int, initialized: Bool)
 ```  
 Summary  
   
-Construct NDArrayShape with number of dimensions.  
+Construct NDArrayShape with number of dimensions. This method is useful when you want to create a shape with given ndim without knowing the shape values. `ndim == 0` is allowed in this method for 0darray (numojo scalar).  
   
 Args:  
 
-- self
 - ndim: Number of dimensions.
 - initialized: Whether the shape is initialized. If yes, the values will be set to 1. If no, the values will be uninitialized.
+- self
 
 #### __copyinit__
 
 
 ```rust
-__copyinit__(out self, other: Self)
+__copyinit__(other: Self) -> Self
 ```  
 Summary  
   
-Initializes the NDArrayShape from another NDArrayShape.  
+Initializes the NDArrayShape from another NDArrayShape. A deep copy of the data buffer is conducted.  
   
 Args:  
 
-- self
 - other: Another NDArrayShape to initialize from.
 
 #### __getitem__
@@ -179,12 +180,12 @@ __getitem__(self, index: Int) -> Int
 ```  
 Summary  
   
-Get shape at specified index.  
+Gets shape at specified index.  
   
 Args:  
 
 - self
-- index
+- index: Index to get the shape.
 
 #### __setitem__
 
@@ -194,13 +195,13 @@ __setitem__(mut self, index: Int, val: Int)
 ```  
 Summary  
   
-Set shape at specified index.  
+Sets shape at specified index.  
   
 Args:  
 
 - self
-- index
-- val
+- index: Index to get the shape.
+- val: Value to set at the given index.
 
 #### __eq__
 
@@ -210,12 +211,12 @@ __eq__(self, other: Self) -> Bool
 ```  
 Summary  
   
-Check if two shapes are identical.  
+Checks if two shapes have identical dimensions and values.  
   
 Args:  
 
 - self
-- other
+- other: The shape to compare with.
 
 #### __ne__
 
@@ -225,7 +226,7 @@ __ne__(self, other: Self) -> Bool
 ```  
 Summary  
   
-Check if two arrayshapes don't have identical dimensions.  
+Checks if two shapes have identical dimensions and values.  
   
 Args:  
 
@@ -240,7 +241,7 @@ __contains__(self, val: Int) -> Bool
 ```  
 Summary  
   
-Check if any of the dimensions are equal to a value.  
+Checks if the given value is present in the array.  
   
 Args:  
 
@@ -255,7 +256,7 @@ __len__(self) -> Int
 ```  
 Summary  
   
-Get number of dimensions of the array described by arrayshape.  
+Gets number of elements in the shape. It equals the number of dimensions of the array.  
   
 Args:  
 
@@ -269,7 +270,7 @@ __repr__(self) -> String
 ```  
 Summary  
   
-Return a string of the shape of the array described by arrayshape.  
+Returns a string of the shape of the array.  
   
 Args:  
 
@@ -283,7 +284,7 @@ __str__(self) -> String
 ```  
 Summary  
   
-Return a string of the shape of the array.  
+Returns a string of the shape of the array.  
   
 Args:  
 
@@ -308,6 +309,35 @@ Args:
 - self
 - writer
 
+#### copy
+
+
+```rust
+copy(self) -> Self
+```  
+Summary  
+  
+Returns a deep copy of the shape.  
+  
+Args:  
+
+- self
+
+#### join
+
+
+```rust
+join(self, *shapes: Self) -> Self
+```  
+Summary  
+  
+Join multiple shapes into a single shape.  
+  
+Args:  
+
+- self
+- \*shapes: Variable number of NDArrayShape objects.
+
 #### size_of_array
 
 
@@ -322,16 +352,18 @@ Args:
 
 - self
 
-#### join
+#### swapaxes
 
 
 ```rust
-join(*shapes) -> Self
+swapaxes(self, axis1: Int, axis2: Int) -> Self
 ```  
 Summary  
   
-Join multiple shapes into a single shape.  
+Returns a new shape with the given axes swapped.  
   
 Args:  
 
-- \*shapes: Variable number of NDArrayShape objects.
+- self
+- axis1: The first axis to swap.
+- axis2: The second axis to swap.

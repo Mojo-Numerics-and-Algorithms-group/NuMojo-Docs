@@ -15,7 +15,7 @@ Implements Item type.
 ### Item Summary
   
   
-  
+Specifies the indices of an item of an array.  
 
 ### Parent Traits
   
@@ -26,6 +26,7 @@ Implements Item type.
 - Movable
 - Stringable
 - UnknownDestructibility
+- Writable
 
 ### Fields
   
@@ -38,7 +39,7 @@ Implements Item type.
 
 
 ```rust
-__init__[T: Indexer](out self, *args: T)
+__init__[T: Indexer](*args: T) -> Self
 ```  
 Summary  
   
@@ -50,7 +51,6 @@ Parameters:
   
 Args:  
 
-- self
 - \*args: Initial values.
 
 
@@ -67,8 +67,8 @@ Parameters:
   
 Args:  
 
-- self
 - args: Initial values.
+- self
 
 
 ```rust
@@ -80,28 +80,42 @@ Construct the tuple.
   
 Args:  
 
-- self
 - args: Initial values.
+- self
 
 
 ```rust
-__init__(out self, ndim: Int, initialized: Bool)
+__init__(out self, *, ndim: Int, initialized: Bool)
 ```  
 Summary  
   
-Construct Item with number of dimensions.  
+Construct Item with number of dimensions. This method is useful when you want to create a Item with given ndim without knowing the Item values.  
   
 Args:  
 
-- self
 - ndim: Number of dimensions.
 - initialized: Whether the shape is initialized. If yes, the values will be set to 0. If no, the values will be uninitialized.
+- self
+
+
+```rust
+__init__(out self, idx: Int, shape: NDArrayShape)
+```  
+Summary  
+  
+Get indices of the i-th item of the array of the given shape. The item traverse the array in C-order.  
+  
+Args:  
+
+- idx: The i-th item of the array.
+- shape: The strides of the array.
+- self
 
 #### __copyinit__
 
 
 ```rust
-__copyinit__(out self, other: Self)
+__copyinit__(other: Self) -> Self
 ```  
 Summary  
   
@@ -109,7 +123,6 @@ Copy construct the tuple.
   
 Args:  
 
-- self
 - other: The tuple to copy.
 
 #### __del__
@@ -134,7 +147,7 @@ __getitem__[T: Indexer](self, idx: T) -> Int
 ```  
 Summary  
   
-Get the value at the specified index.  
+Gets the value at the specified index.  
   
 Parameters:  
 
@@ -240,3 +253,18 @@ Args:
 
 - self
 - writer
+
+#### offset
+
+
+```rust
+offset(self, strides: NDArrayStrides) -> Int
+```  
+Summary  
+  
+Calculates the offset of the item according to strides.  
+  
+Args:  
+
+- self
+- strides: The strides of the array.

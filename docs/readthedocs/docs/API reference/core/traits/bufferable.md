@@ -35,8 +35,8 @@ Summary
   
 Args:  
 
-- self
 - size
+- self
 
 
 ```rust
@@ -48,8 +48,8 @@ Summary
   
 Args:  
 
-- self
 - ptr
+- self
 
 #### __moveinit__
 
@@ -63,8 +63,8 @@ Summary
   
 Args:  
 
-- self
 - other
+- self
 
 #### get_ptr
 

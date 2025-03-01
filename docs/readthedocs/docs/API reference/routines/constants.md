@@ -19,6 +19,7 @@ Define constants.
 
 - AnyType
 - Copyable
+- ExplicitlyCopyable
 - Movable
 - UnknownDestructibility
 

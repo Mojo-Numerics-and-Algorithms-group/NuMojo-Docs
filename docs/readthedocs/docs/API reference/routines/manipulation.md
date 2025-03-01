@@ -96,7 +96,7 @@ Args:
 
 
 ```rust
-ravel[dtype: DType](owned A: NDArray[dtype], order: String = String("C")) -> NDArray[dtype]
+ravel[dtype: DType](a: NDArray[dtype], order: String = String("C")) -> NDArray[dtype]
 ```  
 Summary  
   
@@ -108,7 +108,7 @@ Parameters:
   
 Args:  
 
-- A: NDArray.
+- a: NDArray.
 - order: The order to flatten the array. Default: String("C")
 
 ## transpose
@@ -161,6 +161,59 @@ Parameters:
 Args:  
 
 - A
+
+## broadcast_to
+
+
+```rust
+broadcast_to[dtype: DType](a: NDArray[dtype], shape: NDArrayShape) -> NDArray[dtype]
+```  
+Summary  
+  
+  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- a
+- shape
+
+
+```rust
+broadcast_to[dtype: DType](A: Matrix[dtype], shape: Tuple[Int, Int]) -> Matrix[dtype]
+```  
+Summary  
+  
+Broadcasts the vector to the given shape.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+- shape
+
+
+```rust
+broadcast_to[dtype: DType](A: SIMD[dtype, 1], shape: Tuple[Int, Int]) -> Matrix[dtype]
+```  
+Summary  
+  
+Broadcasts the scalar to the given shape.  
+  
+Parameters:  
+
+- dtype
+  
+Args:  
+
+- A
+- shape
 
 ## flip
 

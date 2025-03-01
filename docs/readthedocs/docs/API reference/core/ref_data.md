@@ -40,8 +40,8 @@ Allocate given space on memory. The bytes allocated is `size` * `byte size of dt
   
 Args:  
 
-- self
 - size
+- self
 
 
 ```rust
@@ -53,8 +53,8 @@ Reads the underlying data of another array.
   
 Args:  
 
-- self
 - ptr
+- self
 
 #### __moveinit__
 
@@ -68,8 +68,8 @@ Summary
   
 Args:  
 
-- self
 - other
+- self
 
 #### get_ptr
 

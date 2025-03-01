@@ -46,10 +46,10 @@ Represents CDType and provides methods for working with it.
 `uint32`: Represents an unsigned integer type whose bitwidth is 32.  
 `int64`: Represents a signed integer type whose bitwidth is 64.  
 `uint64`: Represents an unsigned integer type whose bitwidth is 64.  
-`float8e5m2`: Represents a FP8E5M2 floating point format from the [OFP8 standard](https://www.opencompute.org/documents/ocp-8-bit-floating-point-specification-ofp8-revision-1-0-2023-12-01-pdf-1).  
-`float8e5m2fnuz`: Represents a FP8E5M2FNUZ floating point format.  
-`float8e4m3`: Represents a FP8E4M3 floating point format from the [OFP8 standard](https://www.opencompute.org/documents/ocp-8-bit-floating-point-specification-ofp8-revision-1-0-2023-12-01-pdf-1).  
-`float8e4m3fnuz`: Represents a FP8E4M3FNUZ floating point format.  
+`float8_e5m2`: Represents a FP8E5M2 floating point format from the [OFP8 standard](https://www.opencompute.org/documents/ocp-8-bit-floating-point-specification-ofp8-revision-1-0-2023-12-01-pdf-1).  
+`float8_e5m2fnuz`: Represents a FP8E5M2FNUZ floating point format.  
+`float8_e4m3`: Represents a FP8E4M3 floating point format from the [OFP8 standard](https://www.opencompute.org/documents/ocp-8-bit-floating-point-specification-ofp8-revision-1-0-2023-12-01-pdf-1).  
+`float8_e4m3fnuz`: Represents a FP8E4M3FNUZ floating point format.  
 `bfloat16`: Represents a brain floating point value whose bitwidth is 16.  
 `float16`: Represents an IEEE754-2008 `binary16` floating point value.  
 `float32`: Represents an IEEE754-2008 `binary32` floating point value.  
@@ -68,7 +68,7 @@ Represents CDType and provides methods for working with it.
 
 
 ```rust
-__init__(out self, *, other: Self)
+__init__(*, other: Self) -> Self
 ```  
 Summary  
   
@@ -76,12 +76,11 @@ Copy this CDType.
   
 Args:  
 
-- self
 - other
 
 
 ```rust
-__init__(out self, re_value: dtype, im_value: dtype)
+__init__(re_value: dtype, im_value: dtype) -> Self
 ```  
 Summary  
   
@@ -89,7 +88,6 @@ Construct a CDType from MLIR dtype.
   
 Args:  
 
-- self
 - re_value
 - im_value
 
@@ -323,7 +321,7 @@ is_float8(self) -> Bool
 ```  
 Summary  
   
-Returns True if the type is a 8bit-precision floating point type, e.g. float8e5m2, float8e5m2fnuz, float8e4m3 and float8e4m3fnuz.  
+Returns True if the type is a 8bit-precision floating point type, e.g. float8_e5m2, float8_e5m2fnuz, float8_e4m3 and float8_e4m3fnuz.  
   
 Args:  
 

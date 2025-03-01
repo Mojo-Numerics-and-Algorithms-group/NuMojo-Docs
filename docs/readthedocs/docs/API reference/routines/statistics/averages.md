@@ -7,24 +7,65 @@
 ##  Module Summary
   
 Averages and variances
+## mean_1d
+
+
+```rust
+mean_1d[dtype: DType, //, returned_dtype: DType = float64](a: NDArray[dtype]) -> SIMD[returned_dtype, 1]
+```  
+Summary  
+  
+Calculate the arithmetic average of all items in an array. Regardless of the shape of input, it is treated as a 1-d array. It is the backend function for `mean`, with or without `axis`.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- a: A 1-d array.
+
 ## mean
 
 
 ```rust
-mean(array: NDArray[dtype], axis: Int = 0) -> NDArray[dtype]
+mean[dtype: DType, //, returned_dtype: DType = float64](a: NDArray[dtype]) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
-Mean of array elements over a given axis. Args:     array: NDArray.     axis: The axis along which the mean is performed. Returns:     An NDArray.  
+Calculate the arithmetic average of all items in the array.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
-- array
-- axis Default: 0
+- a: NDArray.
 
 
 ```rust
-mean[dtype: DType](A: Matrix[dtype]) -> SIMD[dtype, 1]
+mean[dtype: DType, //, returned_dtype: DType = float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
+```  
+Summary  
+  
+Mean of array elements over a given axis.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- a: NDArray.
+- axis: The axis along which the mean is performed.
+
+
+```rust
+mean[dtype: DType, //, returned_dtype: DType = float64](a: Matrix[dtype]) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
@@ -32,15 +73,16 @@ Calculate the arithmetic average of all items in the Matrix.
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
-- A: Matrix.
+- a: A matrix.
 
 
 ```rust
-mean[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
+mean[dtype: DType, //, returned_dtype: DType = float64](a: Matrix[dtype], axis: Int) -> Matrix[returned_dtype]
 ```  
 Summary  
   
@@ -48,68 +90,38 @@ Calculate the arithmetic average of a Matrix along the axis.
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
-- A: Matrix.
-- axis: 0 or 1.
+- a: A matrix.
+- axis: The axis along which the mean is performed.
 
-## meanall
-
-
-```rust
-meanall(array: NDArray[dtype]) -> SIMD[float64, 1]
-```  
-Summary  
-  
-Mean of all items in the array.  
-  
-Args:  
-
-- array: NDArray.
-
-## cummean
+## median_1d
 
 
 ```rust
-cummean[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
+median_1d[dtype: DType, //, returned_dtype: DType = float64](a: NDArray[dtype]) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
-Arithmatic mean of all items of an array.  
+Median value of all items an array. Regardless of the shape of input, it is treated as a 1-d array.  
   
 Parameters:  
 
-- dtype: The element type. Defualt: `float64`
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
-- array: An NDArray.
-
-## mode
-
-
-```rust
-mode[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Mode of all items of an array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: An NDArray.
+- a: A 1-d array.
 
 ## median
 
 
 ```rust
-median[dtype: DType = float64](array: NDArray[dtype]) -> SIMD[dtype, 1]
+median[dtype: DType, //, returned_dtype: DType = float64](a: NDArray[dtype]) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
@@ -117,17 +129,89 @@ Median value of all items of an array.
   
 Parameters:  
 
-- dtype: The element type. Defualt: `float64`
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- a: A 1-d array.
+
+
+```rust
+median[dtype: DType, //, returned_dtype: DType = float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
+```  
+Summary  
+  
+Returns median of the array elements along the given axis.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- a: An array.
+- axis: The axis along which the median is performed.
+
+## mode_1d
+
+
+```rust
+mode_1d[dtype: DType](a: NDArray[dtype]) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Returns mode of all items of an array. Regardless of the shape of input, it is treated as a 1-d array.  
+  
+Parameters:  
+
+- dtype: The element type.
+  
+Args:  
+
+- a: An NDArray.
+
+## mode
+
+
+```rust
+mode[dtype: DType](array: NDArray[dtype]) -> SIMD[dtype, 1]
+```  
+Summary  
+  
+Mode of all items of an array.  
+  
+Parameters:  
+
+- dtype: The element type.
   
 Args:  
 
 - array: An NDArray.
 
+
+```rust
+mode[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+```  
+Summary  
+  
+Returns mode of the array elements along the given axis.  
+  
+Parameters:  
+
+- dtype: The element type.
+  
+Args:  
+
+- a: An NDArray.
+- axis: The axis along which the mode is performed.
+
 ## std
 
 
 ```rust
-std[dtype: DType](A: Matrix[dtype], ddof: Int = 0) -> SIMD[dtype, 1]
+std[dtype: DType, //, returned_dtype: DType = float64](A: NDArray[dtype], ddof: Int = 0) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
@@ -135,7 +219,45 @@ Compute the standard deviation.
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- A: An array.
+- ddof: Delta degree of freedom. Default: 0
+
+
+```rust
+std[dtype: DType, //, returned_dtype: DType = float64](A: NDArray[dtype], axis: Int, ddof: Int = 0) -> NDArray[returned_dtype]
+```  
+Summary  
+  
+Computes the standard deviation along the axis.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- A: An array.
+- axis: The axis along which the mean is performed.
+- ddof: Delta degree of freedom. Default: 0
+
+
+```rust
+std[dtype: DType, //, returned_dtype: DType = float64](A: Matrix[dtype], ddof: Int = 0) -> SIMD[returned_dtype, 1]
+```  
+Summary  
+  
+Compute the standard deviation.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
@@ -144,7 +266,7 @@ Args:
 
 
 ```rust
-std[dtype: DType](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[dtype]
+std[dtype: DType, //, returned_dtype: DType = float64](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[returned_dtype]
 ```  
 Summary  
   
@@ -152,7 +274,8 @@ Compute the standard deviation along axis.
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
@@ -164,7 +287,7 @@ Args:
 
 
 ```rust
-variance[dtype: DType](A: Matrix[dtype], ddof: Int = 0) -> SIMD[dtype, 1]
+variance[dtype: DType, //, returned_dtype: DType = float64](A: NDArray[dtype], ddof: Int = 0) -> SIMD[returned_dtype, 1]
 ```  
 Summary  
   
@@ -172,7 +295,45 @@ Compute the variance.
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- A: An array.
+- ddof: Delta degree of freedom. Default: 0
+
+
+```rust
+variance[dtype: DType, //, returned_dtype: DType = float64](A: NDArray[dtype], axis: Int, ddof: Int = 0) -> NDArray[returned_dtype]
+```  
+Summary  
+  
+Computes the variance along the axis.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
+  
+Args:  
+
+- A: An array.
+- axis: The axis along which the mean is performed.
+- ddof: Delta degree of freedom. Default: 0
+
+
+```rust
+variance[dtype: DType, //, returned_dtype: DType = float64](A: Matrix[dtype], ddof: Int = 0) -> SIMD[returned_dtype, 1]
+```  
+Summary  
+  
+Compute the variance.  
+  
+Parameters:  
+
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
@@ -181,7 +342,7 @@ Args:
 
 
 ```rust
-variance[dtype: DType](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[dtype]
+variance[dtype: DType, //, returned_dtype: DType = float64](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[returned_dtype]
 ```  
 Summary  
   
@@ -189,86 +350,11 @@ Compute the variance along axis.
   
 Parameters:  
 
-- dtype
+- dtype: The element type.
+- returned_dtype: The returned data type, defaulting to float64. Defualt: `float64`
   
 Args:  
 
 - A: Matrix.
 - axis: 0 or 1.
 - ddof: Delta degree of freedom. Default: 0
-
-## cumpvariance
-
-
-```rust
-cumpvariance[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Population variance of a array.  
-  
-Parameters:  
-
-- dtype: The element type.. Defualt: `float64`
-  
-Args:  
-
-- array: A NDArray.
-- mu: The mean of the array, if provided. Default: Optional(None)
-
-## cumvariance
-
-
-```rust
-cumvariance[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Variance of a array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: A NDArray.
-- mu: The mean of the array, if provided. Default: Optional(None)
-
-## cumpstdev
-
-
-```rust
-cumpstdev[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Population standard deviation of a array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: A NDArray.
-- mu: The mean of the array, if provided. Default: Optional(None)
-
-## cumstdev
-
-
-```rust
-cumstdev[dtype: DType = float64](array: NDArray[dtype], mu: Optional[SIMD[dtype, 1]] = Optional(None)) -> SIMD[dtype, 1]
-```  
-Summary  
-  
-Standard deviation of a array.  
-  
-Parameters:  
-
-- dtype: The element type. Defualt: `float64`
-  
-Args:  
-
-- array: A NDArray.
-- mu: The mean of the array, if provided. Default: Optional(None)

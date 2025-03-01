@@ -7,26 +7,6 @@
 ##  Module Summary
   
 Implements N-DIMENSIONAL ARRAY UTILITY FUNCTIONS
-## fill_pointer
-
-
-```rust
-fill_pointer[dtype: DType](mut array: UnsafePointer[SIMD[dtype, 1]], size: Int, value: SIMD[dtype, 1])
-```  
-Summary  
-  
-Fill a NDArray with a specific value.  
-  
-Parameters:  
-
-- dtype: The data type of the NDArray elements.
-  
-Args:  
-
-- array: The pointer to the NDArray.
-- size: The size of the NDArray.
-- value: The value to fill the NDArray with.
-
 ## bool_to_numeric
 
 

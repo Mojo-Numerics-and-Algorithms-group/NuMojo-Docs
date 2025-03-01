@@ -89,7 +89,8 @@ fn main() raises:
     print(nm.lstsq(A, C))
 ```
 
-An example of ComplexNDArray is as follows, 
+An example of ComplexNDArray is as follows,
+
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -117,6 +118,7 @@ fn main() raises:
     # Set an element of the array
     A[item(291, 141)] = complexscalar
 ```
+
 <!-- 
 ## Documentation
 [Documenation](./docs/) -->
