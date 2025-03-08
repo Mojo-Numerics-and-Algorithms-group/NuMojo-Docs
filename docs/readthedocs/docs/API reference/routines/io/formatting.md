@@ -24,7 +24,7 @@
 `DEFAULT_FORMATTED_WIDTH`:   
 `DEFAULT_EXPONENT_THRESHOLD`:   
 `DEFAULT_SUPPRESS_SCIENTIFIC`:   
-`printoptions`: 
+`GLOBAL_PRINT_OPTIONS`: 
 ## PrintOptions
 
 ### PrintOptions Summary
@@ -175,7 +175,7 @@ Args:
 
 
 ```rust
-format_floating_scientific[dtype: DType = float64](x: SIMD[dtype, 1], precision: Int = 10, sign: Bool = False) -> String
+format_floating_scientific[dtype: DType = float64](x: SIMD[dtype, 1], precision: Int = 10, sign: Bool = False, suppress_scientific: Bool = False, exponent_threshold: Int = 4, formatted_width: Int = 8) -> String
 ```  
 Summary  
   
@@ -190,12 +190,15 @@ Args:
 - x: The float to format.
 - precision: The number of decimal places to include in the mantissa. Default: 10
 - sign: Whether to include the sign of the float in the result. Defaults to False. Default: False
+- suppress_scientific: Whether to suppress scientific notation for small numbers. Defaults to False. Default: False
+- exponent_threshold: The threshold for suppressing scientific notation. Defaults to 4. Default: 4
+- formatted_width: The width of the formatted string. Defaults to 8. Default: 8
 
 ## format_floating_precision
 
 
 ```rust
-format_floating_precision[dtype: DType](value: SIMD[dtype, 1], precision: Int, sign: Bool = False) -> String
+format_floating_precision[dtype: DType](value: SIMD[dtype, 1], precision: Int, sign: Bool = False, suppress_small: Bool = False) -> String
 ```  
 Summary  
   
@@ -210,10 +213,11 @@ Args:
 - value: The value to format.
 - precision: The number of decimal places to include.
 - sign: Whether to include the sign of the float in the result. Defaults to False. Default: False
+- suppress_small: Whether to suppress small numbers. Defaults to False. Default: False
 
 
 ```rust
-format_floating_precision[cdtype: CDType, dtype: DType](value: ComplexSIMD[cdtype, dtype=dtype]) -> String
+format_floating_precision[cdtype: CDType, dtype: DType](value: ComplexSIMD[cdtype, dtype=dtype], precision: Int = 4, sign: Bool = False) -> String
 ```  
 Summary  
   
@@ -227,6 +231,8 @@ Parameters:
 Args:  
 
 - value: The complex value to format.
+- precision: The number of decimal places to include. Default: 4
+- sign: Whether to include the sign of the float in the result. Defaults to False. Default: False
 
 ## format_value
 

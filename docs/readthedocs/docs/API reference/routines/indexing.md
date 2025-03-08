@@ -81,3 +81,23 @@ Args:
 
 - condition: 1-D array of booleans that selects which entries to return. If length of condition is less than the size of the array along the given axis, then output is filled to the length of the condition with False.
 - a: The array.
+
+## take_along_axis
+
+
+```rust
+take_along_axis[dtype: DType, //](arr: NDArray[dtype], indices: NDArray[index], axis: Int = 0) -> NDArray[dtype]
+```  
+Summary  
+  
+Takes values from the input array along the given axis based on indices.  
+  
+Parameters:  
+
+- dtype: DType of the input array.
+  
+Args:  
+
+- arr: The source array.
+- indices: The indices array.
+- axis: The axis along which to take values. Default is 0. Default: 0
