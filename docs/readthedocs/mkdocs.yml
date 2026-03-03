@@ -1,65 +1,45 @@
 site_name: NuMojo
+site_description: NuMojo — A numerics library for Mojo, inspired by NumPy.
+site_author: NuMojo Contributors
 docs_dir: "./docs"
-# nav:
-    # - Home: index.md
-    # - "Getting Started":
-    #     Installation: getting_started/install.md
-    # - Docs:
-    #     - core:
-    #         Constants: docs/core/constants.md
-    #         Array Creation Routines: docs/core/array_creation_routines.md
-    #         Ndarray Utils: docs/core/ndarray_utils.md
-    #         Array Manipulation Routines: docs/core/array_manipulation_routines.md
-    #         Datatypes: docs/core/datatypes.md
-    #         Ndarray: docs/core/ndarray.md
-    #         Sort: docs/core/sort.md
-    #         Random: docs/core/random.md
-    #         Utility Funcs: docs/core/utility_funcs.md
-    #     - math:
-    #         Check: docs/math/check.md
-    #         Math Funcs: docs/math/math_funcs.md
-    #         Interpolate: docs/math/interpolate.md
-    #         Trig: docs/math/trig.md
-    #         Comparison: docs/math/comparison.md
-    #         Arithmetic: docs/math/arithmetic.md
-    #         statistics:
-    #             Stats: docs/math/statistics/stats.md
-    #             Cumulative Reduce: docs/math/statistics/cumulative_reduce.md
-    #         calculus:
-    #             Integral: docs/math/calculus/integral.md
-    #             Differentiation: docs/math/calculus/differentiation.md
-    #         linalg:
-    #             Linalg: docs/math/linalg/linalg.md
-    #             Matmul: docs/math/linalg/matmul.md
-    #     - traits:
-    #         Backend: docs/traits/backend.md
-    #         # Ndarraytraits: docs/traits/NDArrayTraits.mdd
-
-
-
-
+repo_url: https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo
+repo_name: NuMojo/NuMojo
 
 theme:
   name: material
-  palette: 
-    # Palette toggle for light mode
+  logo: https://raw.githubusercontent.com/Mojo-Numerics-and-Algorithms-group/NuMojo/main/assets/numojo_logo.png
+  favicon: https://raw.githubusercontent.com/Mojo-Numerics-and-Algorithms-group/NuMojo/main/assets/numojo_logo.png
+  palette:
     - scheme: default
+      primary: deep purple
+      accent: purple
       toggle:
-        icon: material/brightness-7 
-
-
+        icon: material/brightness-7
         name: Switch to dark mode
-
-    # Palette toggle for dark mode
     - scheme: slate
+      primary: deep purple
+      accent: purple
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
 
+plugins:
+  - search
 
 markdown_extensions:
-
-  # Python Markdown
   - abbr
   - admonition
   - attr_list
@@ -68,18 +48,17 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
-
-  # Python Markdown Extensions
+      toc_depth: 4
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
   - pymdownx.details
-  # - pymdownx.emoji:
-  #     emoji_index: !!python/name:material.extensions.emoji.twemoji
-  #     emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.highlight
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.mark
@@ -90,6 +69,148 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  - toc:
-    #   permalink: true
-      toc_depth: 4
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quickstart: getting_started/quickstart.md
+    - Installation: getting_started/install.md
+    - NDArray vs Matrix: getting_started/ndarray-vs-matrix.md
+  - User Guide:
+    - "Array Creation & Manipulation": user-guide/ndarray-creation-manipulation.md
+    - Indexing: user-guide/indexing.md
+    - Linear Algebra: user-guide/linalg.md
+    - I/O: user-guide/io.md
+  - Developer Guide:
+    - Architecture: developer-guide/architecture.md
+    - Adding Functions: developer-guide/adding-functions.md
+    - Backend Dispatch: developer-guide/backend-dispatch.md
+    - NDArray Structure: developer-guide/ndarray-basic-structure.md
+    - Style Guide: developer-guide/style-guide.md
+    - Testing: developer-guide/testing.md
+  - Links:
+    - GitHub: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo"
+    - Discord: "https://discord.gg/NcnSH5n26F"
+    - Changelog: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/changelog.md"
+    - Roadmap: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/roadmap.md"
+    - Contributing: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/CONTRIBUTING.md"
+  - API Reference:
+    - Overview: API reference/numojo/index.md
+    - numojo (init): API reference/numojo/__init__.md
+    - prelude: API reference/numojo/prelude.md
+    - Core:
+      - Overview: API reference/numojo/core/index.md
+      - core (init): API reference/numojo/core/__init__.md
+      - error: API reference/numojo/core/error.md
+      - ndarray: API reference/numojo/core/ndarray.md
+      - type_aliases: API reference/numojo/core/type_aliases.md
+      - accelerator:
+        - Overview: API reference/numojo/core/accelerator/index.md
+        - accelerator (init): API reference/numojo/core/accelerator/__init__.md
+        - device: API reference/numojo/core/accelerator/device.md
+      - complex:
+        - Overview: API reference/numojo/core/complex/index.md
+        - complex (init): API reference/numojo/core/complex/__init__.md
+        - complex_ndarray: API reference/numojo/core/complex/complex_ndarray.md
+        - complex_simd: API reference/numojo/core/complex/complex_simd.md
+      - dtype:
+        - Overview: API reference/numojo/core/dtype/index.md
+        - dtype (init): API reference/numojo/core/dtype/__init__.md
+        - complex_dtype: API reference/numojo/core/dtype/complex_dtype.md
+        - default_dtype: API reference/numojo/core/dtype/default_dtype.md
+        - utility: API reference/numojo/core/dtype/utility.md
+      - indexing:
+        - Overview: API reference/numojo/core/indexing/index.md
+        - indexing (init): API reference/numojo/core/indexing/__init__.md
+        - index_buffer: API reference/numojo/core/indexing/index_buffer.md
+        - item: API reference/numojo/core/indexing/item.md
+        - offset: API reference/numojo/core/indexing/offset.md
+        - slicing: API reference/numojo/core/indexing/slicing.md
+        - traversal: API reference/numojo/core/indexing/traversal.md
+        - utility: API reference/numojo/core/indexing/utility.md
+        - validation: API reference/numojo/core/indexing/validation.md
+      - layout:
+        - Overview: API reference/numojo/core/layout/index.md
+        - layout (init): API reference/numojo/core/layout/__init__.md
+        - array_methods: API reference/numojo/core/layout/array_methods.md
+        - flags: API reference/numojo/core/layout/flags.md
+        - ndshape: API reference/numojo/core/layout/ndshape.md
+        - ndstrides: API reference/numojo/core/layout/ndstrides.md
+      - matrix:
+        - Overview: API reference/numojo/core/matrix/index.md
+        - matrix (init): API reference/numojo/core/matrix/__init__.md
+        - base: API reference/numojo/core/matrix/base.md
+      - memory:
+        - Overview: API reference/numojo/core/memory/index.md
+        - memory (init): API reference/numojo/core/memory/__init__.md
+        - data_container: API reference/numojo/core/memory/data_container.md
+        - dlpack: API reference/numojo/core/memory/dlpack.md
+        - storage: API reference/numojo/core/memory/storage.md
+      - traits:
+        - Overview: API reference/numojo/core/traits/index.md
+        - traits (init): API reference/numojo/core/traits/__init__.md
+        - backend: API reference/numojo/core/traits/backend.md
+        - buffered: API reference/numojo/core/traits/buffered.md
+        - indexer_collection_element: API reference/numojo/core/traits/indexer_collection_element.md
+    - Routines:
+      - Overview: API reference/numojo/routines/index.md
+      - routines (init): API reference/numojo/routines/__init__.md
+      - bitwise: API reference/numojo/routines/bitwise.md
+      - constants: API reference/numojo/routines/constants.md
+      - creation: API reference/numojo/routines/creation.md
+      - functional: API reference/numojo/routines/functional.md
+      - indexing: API reference/numojo/routines/indexing.md
+      - manipulation: API reference/numojo/routines/manipulation.md
+      - random: API reference/numojo/routines/random.md
+      - searching: API reference/numojo/routines/searching.md
+      - sorting: API reference/numojo/routines/sorting.md
+      - io:
+        - Overview: API reference/numojo/routines/io/index.md
+        - io (init): API reference/numojo/routines/io/__init__.md
+        - files: API reference/numojo/routines/io/files.md
+        - formatting: API reference/numojo/routines/io/formatting.md
+      - linalg:
+        - Overview: API reference/numojo/routines/linalg/index.md
+        - linalg (init): API reference/numojo/routines/linalg/__init__.md
+        - decompositions: API reference/numojo/routines/linalg/decompositions.md
+        - misc: API reference/numojo/routines/linalg/misc.md
+        - norms: API reference/numojo/routines/linalg/norms.md
+        - products: API reference/numojo/routines/linalg/products.md
+        - solving: API reference/numojo/routines/linalg/solving.md
+      - logic:
+        - Overview: API reference/numojo/routines/logic/index.md
+        - logic (init): API reference/numojo/routines/logic/__init__.md
+        - comparison: API reference/numojo/routines/logic/comparison.md
+        - contents: API reference/numojo/routines/logic/contents.md
+        - logical_ops: API reference/numojo/routines/logic/logical_ops.md
+        - truth: API reference/numojo/routines/logic/truth.md
+      - math:
+        - Overview: API reference/numojo/routines/math/index.md
+        - math (init): API reference/numojo/routines/math/__init__.md
+        - arithmetic: API reference/numojo/routines/math/arithmetic.md
+        - differences: API reference/numojo/routines/math/differences.md
+        - exponents: API reference/numojo/routines/math/exponents.md
+        - extrema: API reference/numojo/routines/math/extrema.md
+        - floating: API reference/numojo/routines/math/floating.md
+        - hyper: API reference/numojo/routines/math/hyper.md
+        - misc: API reference/numojo/routines/math/misc.md
+        - products: API reference/numojo/routines/math/products.md
+        - rounding: API reference/numojo/routines/math/rounding.md
+        - sums: API reference/numojo/routines/math/sums.md
+        - trig: API reference/numojo/routines/math/trig.md
+      - statistics:
+        - Overview: API reference/numojo/routines/statistics/index.md
+        - statistics (init): API reference/numojo/routines/statistics/__init__.md
+        - averages: API reference/numojo/routines/statistics/averages.md
+    - Science:
+      - Overview: API reference/numojo/science/index.md
+      - science (init): API reference/numojo/science/__init__.md
+      - interpolate: API reference/numojo/science/interpolate.md
+      - signal: API reference/numojo/science/signal.md
