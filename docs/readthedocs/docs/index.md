@@ -1,128 +1,140 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # NuMojo
 
-NuMojo is an numerics library for [Mojo](https://www.modular.com/mojo) similiar to [numpy](https://numpy.org/) for Python.
+<p style="font-size:1.2em">
+A library for numerical computing in <strong>Mojo 🔥</strong> — fast, vectorized, and GPU-ready.
+Inspired by NumPy and SciPy.
+</p>
+
+<div style="margin: 1.5em 0; display:flex; gap:0.7em; flex-wrap:wrap;">
+<a href="getting_started/quickstart/" class="md-button md-button--primary">Quickstart →</a>
+<a href="getting_started/install/" class="md-button">Installation</a>
+<a href="API reference/numojo/" class="md-button">API Reference</a>
+<a href="https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo" class="md-button">GitHub</a>
+<a href="https://discord.gg/NcnSH5n26F" class="md-button">Discord</a>
+</div>
+
+---
+
+## What is NuMojo?
+
+NuMojo provides fast, vectorized numerical routines for Mojo — the same role NumPy and SciPy play in
+the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD, parallelism, and
+(future) GPU acceleration.
+
+**NuMojo is not** a machine learning library and will never include back-propagation.
+
+---
+
+## Core types
+
+| Type | Description |
+|------|-------------|
+| `NDArray` | General-purpose N-dimensional array for tensors, grids, batches |
+| `Matrix` | Dedicated 2-D array optimized for linear-algebra workflows |
+| `ComplexNDArray` | N-dimensional array of complex numbers |
+
+---
+
+## Highlights
+
+=== "NDArray"
+
+    ```mojo
+    import numojo as nm
+    from numojo.prelude import *
+
+    fn main() raises:
+        var A = nm.random.randn(Shape(1000, 1000))
+        var B = nm.random.randn(Shape(1000, 1000))
+        var C = A @ B
+        var I = nm.inv(A)
+        var s = A[1:3, 4:19]
+        print(nm.sum(A))
+    ```
+
+=== "Matrix"
+
+    ```mojo
+    from numojo import Matrix
+    import numojo as nm
+
+    fn main() raises:
+        var A = Matrix.rand(shape=(1000, 1000))
+        var B = Matrix.rand(shape=(1000, 1))
+        var x = nm.solve(A, B)
+        print(x)
+    ```
+
+=== "ComplexNDArray"
+
+    ```mojo
+    import numojo as nm
+    from numojo.prelude import *
+
+    fn main() raises:
+        var z = CScalar[cf32](5)
+        var A = nm.full[cf32](Shape(4, 4), fill_value=z)
+        var B = nm.ones[cf32](Shape(4, 4))
+        print(A * B)
+    ```
+
+---
+
+## Routines at a glance
+
+- **Creation** — `zeros`, `ones`, `arange`, `linspace`, `fromstring`, `random`, …
+- **Manipulation** — `reshape`, `transpose`, `flip`, `broadcast_to`, …
+- **Math** — `sin`, `cos`, `exp`, `log`, `sqrt`, arithmetic, rounding, …
+- **Linear algebra** — `matmul`, `inv`, `solve`, `lstsq`, `det`, `norm`, decompositions, …
+- **Logic** — `all`, `any`, comparison, logical ops, …
+- **Statistics** — `mean`, `std`, `var`, `sum`, `prod`, `min`, `max`, …
+- **Sorting & searching** — `sort`, `argsort`, `argmin`, `argmax`, …
+- **I/O** — file read/write, formatting, …
+- **Science** — interpolation, signal processing, …
+
+---
 
 ## Installation
-[Installation](./getting_started/install.md)
 
-## Examples
-An example of n-dimensional array (`NDArray` type) goes as follows.
+The fastest way to get started:
 
-```mojo
-import numojo as nm
-from numojo.prelude import *
+```toml
+[workspace]
+channels = ["https://repo.prefix.dev/modular-community"]
 
-
-fn main() raises:
-    # Generate two 1000x1000 matrices with random float64 values
-    var A = nm.random.randn(Shape(1000, 1000))
-    var B = nm.random.randn(Shape(1000, 1000))
-
-    # Generate a 3x2 matrix from string representation
-    var X = nm.fromstring[f32]("[[1.1, -0.32, 1], [0.1, -3, 2.124]]")
-
-    # Print array
-    print(A)
-
-    # Array multiplication
-    var C = A @ B
-
-    # Array inversion
-    var I = nm.inv(A)
-
-    # Array slicing
-    var A_slice = A[1:3, 4:19]
-
-    # Get scalar from array
-    var A_item = A[item(291, 141)]
-    var A_item_2 = A.item(291, 141)
+[dependencies]
+numojo = "=0.8.0"
 ```
 
-An example of matrix (`Matrix` type) goes as follows.
-
-```mojo
-from numojo import Matrix
-from numojo.prelude import *
-
-
-fn main() raises:
-    # Generate two 1000x1000 matrices with random float64 values
-    var A = Matrix.rand(shape=(1000, 1000))
-    var B = Matrix.rand(shape=(1000, 1000))
-
-    # Generate 1000x1 matrix (column vector) with random float64 values
-    var C = Matrix.rand(shape=(1000, 1))
-
-    # Generate a 4x3 matrix from string representation
-    var F = Matrix.fromstring[i8](
-        "[[12,11,10],[9,8,7],[6,5,4],[3,2,1]]", shape=(4, 3)
-    )
-
-    # Matrix slicing
-    var A_slice = A[1:3, 4:19]
-    var B_slice = B[255, 103:241:2]
-
-    # Get scalar from matrix
-    var A_item = A[291, 141]
-
-    # Flip the column vector
-    print(C[::-1, :])
-
-    # Sort and argsort along axis
-    print(nm.sort(A, axis=1))
-    print(nm.argsort(A, axis=0))
-
-    # Sum the matrix
-    print(nm.sum(B))
-    print(nm.sum(B, axis=1))
-
-    # Matrix multiplication
-    print(A @ B)
-
-    # Matrix inversion
-    print(A.inv())
-
-    # Solve linear algebra
-    print(nm.solve(A, B))
-
-    # Least square
-    print(nm.lstsq(A, C))
+```bash
+pixi install
 ```
 
-An example of ComplexNDArray is as follows,
+See the [full installation guide](getting_started/install.md) for all methods.
 
-```mojo
-import numojo as nm
-from numojo.prelude import *
+---
 
+## Version compatibility
 
-fn main() raises:
-    # Create a complexscalar 5 + 5j
-    var complexscalar = ComplexSIMD[cf32](re=5, im=5) 
-    # Create complex array filled with (5 + 5j)
-    var A = nm.full[cf32](Shape(1000, 1000), fill_value=complexscalar)
-    # Create complex array filled with (1 + 1j)
-    var B = nm.ones[cf32](Shape(1000, 1000))
+| NuMojo | Mojo |
+|--------|------|
+| v0.8.0 | ==25.7 |
+| v0.7.0 | ==25.3 |
+| v0.6.1 | ==25.2 |
 
-    # Print array
-    print(A)
+---
 
-    # Array slicing
-    var A_slice = A[1:3, 4:19]
+## License
 
-    # Array multiplication
-    var C = A * B
+Apache 2.0 with LLVM Exceptions.
+See [LICENSE](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/LICENSE).
 
-    # Get scalar from array
-    var A_item = A[item(291, 141)]
-    # Set an element of the array
-    A[item(291, 141)] = complexscalar
-```
+## Contributors
 
-<!-- 
-## Documentation
-[Documenation](./docs/) -->
-
-## Contibuting to NuMojo
-
-If you would like to contribute to either [NuMojo](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo) or its [documentation](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo-Docs) pull requests are welcome.
+[![Contributors](https://contrib.rocks/image?repo=Mojo-Numerics-and-Algorithms-group/NuMojo)](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/graphs/contributors)
