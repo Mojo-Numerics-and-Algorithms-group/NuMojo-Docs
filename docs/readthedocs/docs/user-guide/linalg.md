@@ -13,7 +13,7 @@ For purely linear-algebra-heavy code, `Matrix` is usually the clearest choice.
 
 ## Imports
 
-```/dev/null/example.mojo#L1-3
+```mojo
 import numojo as nm
 from numojo import Matrix
 from numojo.prelude import *
@@ -25,7 +25,7 @@ from numojo.prelude import *
 
 Use the `@` operator for matrix multiplication.
 
-```/dev/null/example.mojo#L1-11
+```mojo
 import numojo as nm
 from numojo import Matrix
 
@@ -52,7 +52,7 @@ fn main() raises:
 
 Use `nm.solve(A, b)` to solve linear systems.
 
-```/dev/null/example.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo import Matrix
 
@@ -80,7 +80,7 @@ fn main() raises:
 
 Use `A.inv()` for matrix inverse.
 
-```/dev/null/example.mojo#L1-10
+```mojo
 from numojo import Matrix
 
 fn main() raises:
@@ -106,7 +106,7 @@ Prefer solving systems (`solve`) over explicitly computing inverses when possibl
 
 Use `nm.lstsq(A, b)` for overdetermined systems.
 
-```/dev/null/example.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo import Matrix
 
@@ -128,7 +128,7 @@ fn main() raises:
 
 Use the linear algebra routines for scalar matrix properties.
 
-```/dev/null/example.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo import Matrix
 
@@ -165,7 +165,7 @@ Check current exports in:
 
 If your data starts as `NDArray`, keep tensor operations in `NDArray` and move into matrix workflows when shape semantics are clearly 2D.
 
-```/dev/null/example.mojo#L1-13
+```mojo
 import numojo as nm
 from numojo.prelude import *
 

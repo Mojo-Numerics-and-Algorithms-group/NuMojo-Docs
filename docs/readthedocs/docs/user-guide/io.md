@@ -16,7 +16,7 @@ NuMojo provides binary save/load helpers for arrays.
 
 ## Save an array
 
-```/dev/null/example_save.mojo#L1-11
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -28,7 +28,7 @@ fn main() raises:
 
 ## Load an array
 
-```/dev/null/example_load.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -51,7 +51,7 @@ Text files are useful for debugging, inspection, and interoperability with simpl
 
 ## Save as text
 
-```/dev/null/example_savetxt.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -63,7 +63,7 @@ fn main() raises:
 
 ## Load from text
 
-```/dev/null/example_loadtxt.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -87,7 +87,7 @@ Text parsing/serialization is slower and can lose precision compared to binary f
 
 Use `set_printoptions` to control how arrays are displayed.
 
-```/dev/null/example_printoptions.mojo#L1-15
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -121,7 +121,7 @@ High-level flow:
 
 Example pattern (conceptual):
 
-```/dev/null/example_dlpack_pattern.mojo#L1-15
+```mojo
 from python import Python
 from numojo.core.memory.dlpack import from_dlpack
 from numojo.prelude import *
@@ -169,7 +169,7 @@ After any load operation, verify:
 
 Example:
 
-```/dev/null/example_post_load_validation.mojo#L1-16
+```mojo
 import numojo as nm
 from numojo.prelude import *
 

@@ -19,7 +19,7 @@ Most examples below use `NDArray`, but many patterns also apply to `Matrix`.
 
 ## Imports used in examples
 
-```/dev/null/indexing_imports.mojo#L1-3
+```mojo
 import numojo as nm
 from numojo.prelude import *
 ```
@@ -30,7 +30,7 @@ from numojo.prelude import *
 
 Use `Item(...)` for explicit coordinate-based indexing on `NDArray`.
 
-```/dev/null/scalar_indexing.mojo#L1-11
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -44,7 +44,7 @@ fn main() raises:
 
 You can also use method-style access in places where available:
 
-```/dev/null/item_method.mojo#L1-8
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -59,7 +59,7 @@ fn main() raises:
 
 Slicing follows `start:stop:step` semantics.
 
-```/dev/null/basic_slicing.mojo#L1-13
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -88,7 +88,7 @@ fn main() raises:
 
 Negative indices count from the end.
 
-```/dev/null/negative_indexing.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -108,7 +108,7 @@ fn main() raises:
 
 Use step to subsample or reverse.
 
-```/dev/null/step_slicing.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -128,7 +128,7 @@ fn main() raises:
 
 You can slice each axis independently.
 
-```/dev/null/multi_axis_slicing.mojo#L1-11
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -147,7 +147,7 @@ fn main() raises:
 
 Assign to scalar positions or slices.
 
-```/dev/null/index_assignment.mojo#L1-15
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -171,7 +171,7 @@ When assigning slices, shape compatibility matters. If shapes do not align, NuMo
 
 Create a boolean mask and select matching values.
 
-```/dev/null/boolean_masking.mojo#L1-14
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -196,7 +196,7 @@ Mask shape should be compatible with the indexed array (or selected axis behavio
 
 Use `where` to modify values based on a mask.
 
-```/dev/null/where_example.mojo#L1-14
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -216,7 +216,7 @@ fn main() raises:
 
 Use `compress` to select slices along a specific axis.
 
-```/dev/null/compress_example.mojo#L1-13
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -237,7 +237,7 @@ fn main() raises:
 
 `take_along_axis` is useful when you already have index arrays.
 
-```/dev/null/take_along_axis_example.mojo#L1-15
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -261,7 +261,7 @@ fn main() raises:
 
 For `Matrix`, common indexing style is direct 2D indexing:
 
-```/dev/null/matrix_indexing.mojo#L1-10
+```mojo
 from numojo import Matrix
 
 fn main() raises:

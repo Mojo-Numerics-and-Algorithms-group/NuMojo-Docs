@@ -4,7 +4,7 @@ This guide covers common `NDArray` creation and transformation workflows in NuMo
 
 ## Imports used in examples
 
-```/dev/null/imports.mojo#L1-3
+```mojo
 import numojo as nm
 from numojo.prelude import *
 ```
@@ -15,7 +15,7 @@ from numojo.prelude import *
 
 ### Zeros, ones, full, empty
 
-```/dev/null/create_basic.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -37,7 +37,7 @@ Notes:
 
 ### Ranges and spaces
 
-```/dev/null/create_ranges.mojo#L1-11
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -55,7 +55,7 @@ fn main() raises:
 
 ### Construct from text / literals
 
-```/dev/null/create_from_text.mojo#L1-9
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -71,19 +71,19 @@ fn main() raises:
 
 ## 2) Inspecting array metadata
 
-```/dev/null/inspect_metadata.mojo#L1-13
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
 fn main() raises:
     var a = nm.arange[f32](12).reshape(Shape(3, 4))
 
-    print("ndim:", nm.ndim(a))
-    print("shape:", nm.shape(a))
-    print("size:", nm.size(a))
-    print("dtype:", a.dtype)
-    print("is C contiguous:", a.is_c_contiguous())
+    print("ndim:", nm.ndim(a), a.ndim)
+    print("shape:", nm.shape(a), a.shape)
     print("strides:", a.strides)
+    print("size:", nm.size(a), a.size)
+    print("dtype:", a.dtype, a.dtype)
+    print("is C contiguous:", a.is_c_contiguous())
 ```
 
 ---
@@ -92,7 +92,7 @@ fn main() raises:
 
 ### reshape
 
-```/dev/null/reshape.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -108,7 +108,7 @@ fn main() raises:
 
 ### ravel (flatten view/copy style behavior depends on layout safety)
 
-```/dev/null/ravel.mojo#L1-8
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -120,7 +120,7 @@ fn main() raises:
 
 ### transpose
 
-```/dev/null/transpose.mojo#L1-9
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -138,7 +138,7 @@ fn main() raises:
 
 ### broadcast_to
 
-```/dev/null/broadcast_to.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -154,14 +154,14 @@ fn main() raises:
 
 ### Scalar broadcasting in arithmetic
 
-```/dev/null/scalar_broadcast.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
 fn main() raises:
     var a = nm.arange[f32](6).reshape(Shape(2, 3))
-    var b = nm.add(a, SIMD[f32, 1](10))
-    var c = nm.mul(a, SIMD[f32, 1](2))
+    var b = nm.add(a, Scalar[f32](10))
+    var c = nm.mul(a, Scalar[f32](2))
 
     print(b)
     print(c)
@@ -173,7 +173,7 @@ fn main() raises:
 
 ### flip
 
-```/dev/null/flip.mojo#L1-9
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -187,7 +187,7 @@ fn main() raises:
 
 ### Basic slicing and subarray extraction
 
-```/dev/null/slicing_extract.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -211,7 +211,7 @@ fn main() raises:
 
 ### Set by index
 
-```/dev/null/set_by_index.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -225,7 +225,7 @@ fn main() raises:
 
 ### Set by slice
 
-```/dev/null/set_by_slice.mojo#L1-10
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -239,11 +239,11 @@ fn main() raises:
 
 ---
 
-## 7) Patterns for real projects
+## 7) More patterns
 
 ### Pattern A: initialize -> transform -> reduce
 
-```/dev/null/pattern_a.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -259,7 +259,7 @@ fn main() raises:
 
 ### Pattern B: batch-friendly shaping
 
-```/dev/null/pattern_b.mojo#L1-12
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
