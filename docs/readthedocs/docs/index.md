@@ -34,9 +34,9 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 
 | Type | Description |
 |------|-------------|
-| `NDArray` | General-purpose N-dimensional array of real numbers |
-| `ComplexNDArray` | General-purpose N-dimensional array of complex numbers |
+| `NDArray` | General-purpose N-dimensional array for tensors, grids, batches |
 | `Matrix` | Dedicated 2-D array optimized for linear-algebra workflows |
+| `ComplexNDArray` | N-dimensional array of complex numbers |
 
 ---
 
@@ -95,7 +95,6 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 - **Statistics** — `mean`, `std`, `var`, `sum`, `prod`, `min`, `max`, …
 - **Sorting & searching** — `sort`, `argsort`, `argmin`, `argmax`, …
 - **I/O** — file read/write, formatting, …
-- **Science** — interpolation, signal processing, …
 
 ---
 
