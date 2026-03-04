@@ -12,7 +12,7 @@ This guide helps you run NuMojo in minutes.
 
 Add this to your `pixi.toml`:
 
-```/dev/null/pixi.toml#L1-24
+```toml
 [workspace]
 preview = ["pixi-build"]
 
@@ -44,7 +44,7 @@ numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo",
 
 Then install dependencies:
 
-```/dev/null/terminal.sh#L1-1
+```console
 pixi install
 ```
 
@@ -52,7 +52,7 @@ pixi install
 
 Create `main.mojo`:
 
-```/dev/null/main.mojo#L1-28
+```mojo
 import numojo as nm
 from numojo.prelude import *
 
@@ -89,13 +89,13 @@ fn main() raises:
 
 Run it:
 
-```/dev/null/terminal.sh#L1-1
+```console
 pixi run mojo run main.mojo
 ```
 
 ## Matrix example
 
-```/dev/null/matrix_example.mojo#L1-17
+```mojo
 from numojo import Matrix
 import numojo as nm
 
@@ -119,7 +119,7 @@ fn main() raises:
 
 ## Complex numbers example
 
-```/dev/null/complex_example.mojo#L1-15
+```mojo
 import numojo as nm
 from numojo.prelude import *
 

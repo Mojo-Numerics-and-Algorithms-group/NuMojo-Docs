@@ -7,8 +7,7 @@ hide:
 # NuMojo
 
 <p style="font-size:1.2em">
-A library for numerical computing in <strong>Mojo 🔥</strong> — fast, vectorized, and GPU-ready.
-Inspired by NumPy and SciPy.
+A library for numerical computing in <strong>Mojo 🔥</strong>. Inspired by NumPy.
 </p>
 
 <div style="margin: 1.5em 0; display:flex; gap:0.7em; flex-wrap:wrap;">
@@ -35,9 +34,9 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 
 | Type | Description |
 |------|-------------|
-| `NDArray` | General-purpose N-dimensional array for tensors, grids, batches |
+| `NDArray` | General-purpose N-dimensional array of real numbers |
+| `ComplexNDArray` | General-purpose N-dimensional array of complex numbers |
 | `Matrix` | Dedicated 2-D array optimized for linear-algebra workflows |
-| `ComplexNDArray` | N-dimensional array of complex numbers |
 
 ---
 
