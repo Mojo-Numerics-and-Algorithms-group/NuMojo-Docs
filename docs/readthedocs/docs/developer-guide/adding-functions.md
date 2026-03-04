@@ -52,11 +52,11 @@ Public API should stay simple and predictable.
 
 ## 3) Implement with shared execution helpers
 
-When adding element-wise or reduction style functions, reuse existing internal helpers instead of rewriting loops in each function.
+When adding element-wise or reduction style functions, reuse existing internal helpers whenever possible instead of rewriting loops in each function.
 
 ### Element-wise unary pattern
 
-```/dev/null/unary_pattern.mojo#L1-13
+```mojo
 import math
 import numojo.routines.math._math_funcs as _mf
 from numojo.core.ndarray import NDArray
@@ -69,7 +69,7 @@ fn sin[
 
 ### Element-wise binary pattern
 
-```/dev/null/binary_pattern.mojo#L1-14
+```mojo
 import numojo.routines.math._math_funcs as _mf
 from numojo.core.ndarray import NDArray
 
@@ -93,11 +93,11 @@ Prefer explicit checks up front:
 - shape compatibility
 - dtype constraints
 
-Use consistent error messages and categories where available.
+Use consistent error messages and categories where available. Check `NumojoError` for more information on how to raise Errors. 
 
 ### Axis validation example
 
-```/dev/null/axis_validation.mojo#L1-13
+```mojo
 var normalized_axis = axis
 if normalized_axis < 0:
     normalized_axis += a.ndim
@@ -142,7 +142,6 @@ Every new function should include tests.
 
 - routine functions: `tests/routines/`
 - core behavior: `tests/core/`
-- science modules: `tests/science/`
 
 ### Test style
 
@@ -154,7 +153,7 @@ Every new function should include tests.
 
 ### Minimal test example
 
-```/dev/null/test_example.mojo#L1-19
+```mojo
 from testing import TestSuite
 from tests.utils_for_test import check
 from python import Python
@@ -193,9 +192,6 @@ Before opening PR:
    - `pixi run format`
 2. run tests:
    - `pixi run test`
-3. optional targeted test:
-   - `pixi run run-test TEST_FILE=tests/routines/test_<module>.mojo`
-
 ---
 
 ## 10) PR checklist (copy into your PR)

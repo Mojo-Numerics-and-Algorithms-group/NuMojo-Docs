@@ -16,11 +16,8 @@ This document explains how NuMojo is organized, what each layer is responsible f
 NuMojo is currently evolving toward a layered structure:
 
 1. **Core layer** (`numojo/core`)
-2. **Routines/API layer** (`numojo/routines`, top-level `numojo`)
-3. **Science/domain layer** (`numojo/science`)
+2. **Routines layer** (`numojo/routines`, top-level `numojo`)
 4. **Tests + docs + examples** (`tests`, `docs`, `examples`)
-
-A future refinement is to make the API/ops split explicit (`api` vs `ops`) while keeping compatibility at the top-level import surface.
 
 ---
 
@@ -79,18 +76,6 @@ Top-level `numojo/__init__.mojo` exposes a curated, user-friendly import surface
 
 ---
 
-## Layer 3: Science (`numojo/science`)
-
-Science modules provide higher-level domain functionality (SciPy-like direction), currently including interpolation and signal processing.
-
-### Science responsibilities
-
-- Build specialized algorithms on top of core + routines.
-- Keep domain code separate from core data structure mechanics.
-- Reuse routines instead of duplicating basic numerical operations.
-
----
-
 ## Execution model and backend strategy
 
 NuMojo currently uses vectorized helpers and backend-style abstractions in several routines. The recommended direction is:
@@ -99,7 +84,6 @@ NuMojo currently uses vectorized helpers and backend-style abstractions in sever
   - example: `sin(x)`
 - Internal execution chooses strategy:
   - vectorized CPU path
-  - scalar fallback
   - future GPU path
 
 A practical long-term pattern is an internal execution engine with methods like:
@@ -152,44 +136,15 @@ Recommended governance:
 
 ---
 
-## How to navigate the codebase quickly
-
-### If you are fixing a bug in array behavior
-Start in:
-- `numojo/core/ndarray.mojo`
-- `numojo/core/matrix/*`
-- `numojo/core/indexing/*`
-- `numojo/core/layout/*`
-
-### If you are adding/modifying a math routine
-Start in:
-- `numojo/routines/math/*`
-- then update exports in:
-  - `numojo/routines/math/__init__.mojo`
-  - `numojo/routines/__init__.mojo` (if required by current convention)
-  - `numojo/__init__.mojo` (if top-level export is desired)
-
-### If you are adding domain algorithms
-Start in:
-- `numojo/science/*`
-
-### If you are validating behavior
-Use:
-- `tests/core/*`
-- `tests/routines/*`
-- `tests/science/*`
-
----
-
 ## Architectural pain points (known)
 
 These are active cleanup targets and should guide new contributions:
 
-1. Duplication between `NDArray` and `Matrix` implementations in routines.
-2. Inconsistent naming in some public symbols.
-3. Backend/internal execution details exposed in some public signatures.
-4. Export duplication across multiple `__init__` modules.
-5. Stale docs/examples in some parts of the documentation set.
+1. Inconsistent naming in some public symbols.
+2. Backend/internal execution details exposed in some public signatures.
+3. Export duplication across multiple `__init__` modules.
+4. Stale docs/examples in some parts of the documentation set.
+5. Inconsistent Error handling (we prefer to use internal `NumojoError`).
 
 When contributing, prefer patterns that reduce these issues.
 
@@ -202,7 +157,7 @@ Before opening a PR, verify:
 1. **Placement**
    - Did you put code in the correct layer?
 2. **Reuse**
-   - Are you reusing shared helpers instead of duplicating loops/logic?
+   - Are you reusing shared helpers instead of duplicating loops/logic whenever possible?
 3. **API cleanliness**
    - Did internal mechanics leak into public function signatures?
 4. **Consistency**
@@ -211,24 +166,6 @@ Before opening a PR, verify:
    - Tests added/updated in the appropriate test module?
 6. **Docs**
    - Relevant docs updated if user-facing behavior changed?
-
----
-
-## Suggested medium-term architecture direction
-
-A clean end-state can be:
-
-- `core` = data model + low-level mechanics
-- `ops` = internal compute kernels/execution engine
-- `api` = user-facing routine wrappers
-- `science` = domain modules
-
-This direction supports:
-
-- stable public API
-- internal backend evolution
-- easier GPU integration later
-- lower duplication and better maintainability
 
 ---
 

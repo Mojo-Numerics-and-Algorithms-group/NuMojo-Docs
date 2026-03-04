@@ -1,19 +1,29 @@
 # Numojo Style Guide
 
-In the interest of keeping our code clean and consistent, and enabling some automation for documentation the following simple standards will be required for new commits.
+In the interest of keeping our code clean and consistent, and enabling some automation for documentation the following simple standards will be required for new commits. 
+Please also refer to [Mojo style Guide](https://github.com/modular/modular/blob/main/mojo/stdlib/docs/style-guide.md) for details. 
 
 ## File Level
-All files must begin with a triple quoted docstring describing the functionality created by the file. It should be a single sentence with the first letter capitalized and ending with a period.
-```python
+All files must begin with a License header and a triple quoted docstring describing the functionality created by the file. It should be a single sentence with the first letter capitalized and ending with a period.
+```mojo
+# ===----------------------------------------------------------------------=== #
+# NuMojo: Module/Submodule/file name
+# Distributed under the Apache 2.0 License with LLVM Exceptions.
+# See LICENSE and the LLVM License for more information.
+# https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/LICENSE
+# https://llvm.org/LICENSE.txt
+#  ===----------------------------------------------------------------------=== #
 """
 Document docstring describing what it does, if it is in an init file it will be the docstring for the module.
 """
 ```
+
 All comptimes and file-level variable definitions must have a docstring that describes what they are placed below the declaration.
-```python
+```mojo
 comptime Example = Int
 """ Aliases can be explained with docstrings and should if they exist in the global scope."""
 ```
+
 Aliases should be snake_case if they are a value and CamelCase if they are a type. With the exception of the `DType` mapping types ex: `f32`. Alias names should clearly indicate what they are for and in addition to their docstring require no further information to understand assuming the reader understands the Mojo, and the domain.
 
 ## Functions

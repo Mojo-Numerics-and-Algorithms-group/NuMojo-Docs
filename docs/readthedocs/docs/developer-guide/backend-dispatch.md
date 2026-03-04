@@ -1,4 +1,4 @@
-# Backend Dispatch Guide
+# Backend Dispatch Guide (Future)
 
 This guide explains how NuMojo should route math operations internally while keeping the public API simple and stable.
 
@@ -10,7 +10,7 @@ NuMojo should expose clean user-facing functions like:
 - `nm.add(x, y)`
 - `nm.greater(x, y)`
 
-Backend selection (CPU SIMD, CPU scalar fallback, future GPU kernels) should happen internally in one place, not in user-facing signatures.
+Backend selection (CPU SIMD, future GPU kernels) should happen internally in one place, not in user-facing signatures.
 
 ---
 
@@ -63,16 +63,13 @@ This keeps behavior consistent across all ops.
 
 ## Recommended Layering
 
-- **`numojo/api/*`**: user-facing functions (`sin`, `add`, etc.)
-- **`numojo/ops/*`**: internal op wrappers and shared engines
-- **`numojo/ops/backend/*`**: backend-specific implementations (CPU vectorized/scalar, future GPU)
+- **`numojo/routines/operations/*`**: internal op wrappers and shared engines
+- **`numojo/routines/operations/backend/*`**: backend-specific implementations (CPU vectorized, future GPU)
 
 Suggested flow:
 
-1. `api.math.sin(x)`
-2. calls `ops.elementwise.sin(x)`
-3. calls `ExecutionEngine.apply_unary(math.sin, x)`
-4. engine dispatches to backend implementation
+1. `math.sin(x)`
+2. calls `HostExecutor.apply_unary(math.sin, x)`
 
 ---
 
@@ -80,46 +77,32 @@ Suggested flow:
 
 ### Public API
 
-```/dev/null/api_math_trig.mojo#L1-8
+```mojo
 import math
 from numojo.core.ndarray import NDArray
 from numojo.ops.execution.engine import ExecutionEngine
 
 fn sin[dtype: DType](x: NDArray[dtype]) raises -> NDArray[dtype]:
-    return ExecutionEngine.apply_unary[dtype, math.sin](x)
-```
-
-### Execution Engine
-
-```/dev/null/execution_engine.mojo#L1-22
-from numojo.core.ndarray import NDArray
-from numojo.ops.backend.cpu.vectorized import CpuVectorized
-from numojo.ops.backend.cpu.scalar import CpuScalar
-
-struct ExecutionEngine:
-    @staticmethod
-    fn apply_unary[
-        dtype: DType,
-        f: fn[type: DType, w: Int](SIMD[type, w]) -> SIMD[type, w],
-    ](x: NDArray[dtype]) raises -> NDArray[dtype]:
-        if x.is_c_contiguous() and x.size >= 128 and dtype.is_floating_point():
-            return CpuVectorized.apply_unary[dtype, f](x)
-        return CpuScalar.apply_unary[dtype, f](x)
+    return HostExecutor.apply_unary[dtype, math.sin](x)
 ```
 
 ### CPU Vectorized Backend
 
-```/dev/null/cpu_vectorized.mojo#L1-18
+```mojo
 from algorithm.functional import vectorize
 from sys import simd_width_of
 from numojo.core.ndarray import NDArray
 
-struct CpuVectorized:
+struct HostExecutor:
     @staticmethod
     fn apply_unary[
         dtype: DType,
         f: fn[type: DType, w: Int](SIMD[type, w]) -> SIMD[type, w],
     ](x: NDArray[dtype]) raises -> NDArray[dtype]:
+        
+        if x.is_c_contiguous() and x.size >= 128 and dtype.is_floating_point():
+            return HostExecutor.apply_unary[dtype, f](x)
+            
         var out = NDArray[dtype](x.shape)
         comptime width = simd_width_of[dtype]()
 
@@ -163,8 +146,8 @@ This gives robust behavior now and a stable architecture for future acceleration
 When GPU kernels become available:
 
 1. Add backend modules:
-   - `ops/backend/gpu/cuda.mojo`
-   - `ops/backend/gpu/mps.mojo` (as needed)
+   - `operations/gpu/cuda.mojo`
+   - `operations/gpu/mps.mojo` (as needed)
 
 2. Extend engine policy:
 
@@ -183,9 +166,7 @@ Suggested checks in order:
 
 1. Validate dtype/op support.
 2. Normalize layout assumptions (contiguous fast path vs fallback).
-3. Evaluate size threshold for vectorization.
-4. Choose backend implementation.
-5. Fallback to scalar if fast path unavailable.
+3. Choose backend implementation.
 
 Use clear errors for unsupported op/dtype combinations.
 
@@ -201,7 +182,7 @@ Use clear errors for unsupported op/dtype combinations.
 
 2. **Path coverage**
    - contiguous arrays trigger vectorized path
-   - strided/small arrays trigger fallback path
+   - strided/small arrays trigger fallback path / convert them to contiguous arrays and trigger vectorized path. 
 
 3. **Edge cases**
    - empty arrays
@@ -210,12 +191,6 @@ Use clear errors for unsupported op/dtype combinations.
 
 4. **Performance smoke tests**
    - verify no major regressions for common sizes
-
-### Suggested test organization
-
-- operation correctness tests stay under routine/module tests
-- dispatch behavior tests in a focused internal test file
-- avoid testing private details too tightly; assert behavior, not implementation quirks
 
 ---
 
@@ -231,19 +206,10 @@ This avoids a risky all-at-once refactor.
 
 ---
 
-## Common Pitfalls
-
-- Reintroducing backend generics in public modules.
-- Copy-pasting loop code into each op instead of reusing engine.
-- Hiding unsupported dtype failures with silent behavior changes.
-- Mixing dispatch policy across many files.
-
----
-
 ## Recommended Naming
 
 - `ExecutionEngine` for centralized routing/apply methods.
-- `CpuVectorized`, `CpuScalar` for backend implementations.
+- `HostExecutor`, for backend implementations.
 - `apply_unary`, `apply_binary`, `apply_compare` for shared executors.
 
 Keep names explicit and consistent.

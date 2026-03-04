@@ -9,7 +9,7 @@ NuMojo tests should:
 - validate numerical correctness against trusted references (primarily NumPy),
 - catch regressions quickly,
 - be easy for new contributors to run and extend,
-- keep behavior consistent across modules (`core`, `routines`, `science`).
+- keep behavior consistent across modules (`core`, `routines`).
 
 ---
 
@@ -19,7 +19,6 @@ Current test structure:
 
 - `tests/core/*` — core containers, indexing, shape/stride behavior, matrix/core semantics
 - `tests/routines/*` — user-facing functional routines (math, linalg, io, sorting, etc.)
-- `tests/science/*` — higher-level scientific modules
 - `tests/utils_for_test.mojo` — helper assertions and NumPy comparison utilities
 
 Keep new tests in the correct bucket. If a test spans layers, place it where the user-facing behavior is asserted.
@@ -30,7 +29,7 @@ Keep new tests in the correct bucket. If a test spans layers, place it where the
 
 From repo root:
 
-```/dev/null/terminal.sh#L1-4
+```console
 pixi run test
 pixi run test_core
 pixi run test_routines
@@ -39,19 +38,19 @@ pixi run test_science
 
 Run one file directly:
 
-```/dev/null/terminal.sh#L1-1
+```console
 pixi run mojo run -I tests/ tests/routines/test_math.mojo
 ```
 
 Or use the helper task:
 
-```/dev/null/terminal.sh#L1-1
+```console
 pixi run run-test TEST_FILE=tests/routines/test_math.mojo
 ```
 
 Before opening a PR, run:
 
-```/dev/null/terminal.sh#L1-1
+```console
 pixi run final
 ```
 
@@ -63,7 +62,7 @@ pixi run final
 
 Every test file should expose test functions and have the standard discovery runner:
 
-```/dev/null/example_test_file.mojo#L1-8
+```console
 from testing.testing import TestSuite
 
 def test_example():
@@ -92,7 +91,7 @@ Use helpers from `tests/utils_for_test.mojo`:
 
 Example pattern:
 
-```/dev/null/example_check.mojo#L1-14
+```mojo
 from python import Python
 import numojo as nm
 from utils_for_test import check_is_close
@@ -134,7 +133,7 @@ When adding a new API function, include tests for:
 
 For invalid inputs, assert that errors are raised and messages are meaningful.
 
-```/dev/null/example_error_test.mojo#L1-12
+```mojo
 from testing import assert_raises
 import numojo as nm
 from numojo.prelude import *
