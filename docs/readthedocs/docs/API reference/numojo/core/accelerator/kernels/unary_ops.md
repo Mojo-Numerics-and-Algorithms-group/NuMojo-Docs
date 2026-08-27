@@ -22,11 +22,11 @@ def neg_kernel[dtype: DType](result: Pointer[Scalar[dtype], MutAnyOrigin], a: Po
 
 GPU kernel: `result[i] = -a[i]` for contiguous buffers.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `result` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
 - `a` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
@@ -45,11 +45,11 @@ def launch_neg[dtype: DType](context: DeviceContext, result: Pointer[Scalar[dtyp
 
 Launch the GPU negation kernel over `size` contiguous elements.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `context` (`DeviceContext`) `[imm]`
 - `result` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`

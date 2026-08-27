@@ -18,7 +18,7 @@ Exports
 
 ### `is_inttype`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def is_inttype[dtype: DType]() -> Bool
@@ -26,15 +26,15 @@ def is_inttype[dtype: DType]() -> Bool
 
 Check if the given dtype is an integer type at compile time.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): DType.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def is_inttype(dtype: DType) -> Bool
@@ -42,11 +42,11 @@ def is_inttype(dtype: DType) -> Bool
 
 Check if the given dtype is an integer type at run time.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `dtype` (`DType`) `[imm]`: DType.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -57,7 +57,7 @@ Check if the given dtype is an integer type at run time.
 
 ### `is_floattype`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def is_floattype[dtype: DType]() -> Bool
@@ -65,15 +65,15 @@ def is_floattype[dtype: DType]() -> Bool
 
 Check if the given dtype is a floating point type at compile time.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): DType.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def is_floattype(dtype: DType) -> Bool
@@ -81,11 +81,11 @@ def is_floattype(dtype: DType) -> Bool
 
 Check if the given dtype is a floating point type at run time.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `dtype` (`DType`) `[imm]`: DType.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -96,7 +96,7 @@ Check if the given dtype is a floating point type at run time.
 
 ### `is_booltype`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def is_booltype[dtype: DType]() -> Bool
@@ -104,15 +104,15 @@ def is_booltype[dtype: DType]() -> Bool
 
 Check if the given dtype is a boolean type at compile time.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): DType.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def is_booltype(dtype: DType) -> Bool
@@ -120,11 +120,11 @@ def is_booltype(dtype: DType) -> Bool
 
 Check if the given dtype is a boolean type at run time.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `dtype` (`DType`) `[imm]`: DType.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 

@@ -21,7 +21,7 @@ def invert[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is
 
 Element-wise invert of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -37,15 +37,15 @@ var result2 = invert(arr2) # result2 is [false, true, false
 !!! info "Constraints"
     The array must be either a boolean or integral array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

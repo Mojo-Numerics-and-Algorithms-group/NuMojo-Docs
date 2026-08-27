@@ -2,7 +2,7 @@
 
 NuMojo offers several installation methods to suit different development needs. Choose the method that best fits your workflow:
 
-### Method 1: Git Installation with pixi-build-mojo  (Recommended)
+### Method 1: Git Installation with pixi-build-mojo (Recommended)
 
 Install NuMojo directly from the GitHub repository to access both stable releases and cutting-edge features. This method is perfect for developers who want the latest functionality or need to work with the most recent stable version.
 
@@ -48,8 +48,8 @@ pixi install
 ```
 
 **Branch Selection:**
-- **`main` branch**: Provides stable release. Currently supports NuMojo v0.9.0, compatible with Mojo 26.2. For earlier NuMojo versions, use Method 2.
-- **`pre-x.y` branches**: Active development branch supporting the latest Mojo version (currently NuMojo v0.10.0, requiring Mojo >=1.0.0, <1.1.0). Note that this branch receives frequent updates and may have breaking changes in features and syntax.
+- **`main` branch**: Provides the latest stable release. Currently NuMojo v0.10.0, compatible with Mojo >=1.0.0, <1.1.0. For earlier NuMojo versions, use Method 2.
+- **`pre-x.y` branches**: Active development branch for the next release. Note that this branch receives frequent updates and may have breaking changes in features and syntax.
 
 The package will be automatically available in your Pixi environment, and VSCode LSP will provide intelligent code hints.
 

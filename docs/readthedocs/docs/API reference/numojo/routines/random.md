@@ -13,7 +13,7 @@ Exports
 - `exponential`: Exponential distribution.
 - `randbool`: Random boolean values.
 
-Notes:
+<div class="prose-label">Notes</div>
     Similar to numpy.random but shape is always the first argument.
 
 ## Functions
@@ -23,7 +23,7 @@ Notes:
 
 ### `rand`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def rand[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
@@ -31,28 +31,28 @@ def rand[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
 
 Creates an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo import Shape
 var arr = numojo.core.random.rand[numojo.i16](Shape(3,2,4))
 print(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def rand[dtype: DType = DType.float64](*shape: Int) -> NDArray[dtype]
@@ -60,21 +60,21 @@ def rand[dtype: DType = DType.float64](*shape: Int) -> NDArray[dtype]
 
 Overloads the function `rand(shape: NDArrayShape)`. Creates an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def rand[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
@@ -82,21 +82,21 @@ def rand[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
 
 Overloads the function `rand(shape: NDArrayShape)`. Creates an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def rand[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
@@ -104,21 +104,21 @@ def rand[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtyp
 
 Overloads the function `rand(shape: NDArrayShape)` Creates an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`VariadicList[Int]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 5
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
 def rand[dtype: DType = DType.float64](shape: NDArrayShape, min: Scalar[dtype], max: Scalar[dtype]) -> NDArray[dtype]
@@ -126,31 +126,31 @@ def rand[dtype: DType = DType.float64](shape: NDArrayShape, min: Scalar[dtype], 
 
 Creates an array of the given shape and populate it with random samples from a uniform distribution over [min, max). This is equivalent to `min + rand() * (max - min)`.
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo import Shape
 var arr = numojo.core.random.rand[numojo.i16](Shape(3,2,4), min=0, max=100)
 print(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 - `min` (`Scalar[dtype]`) `[imm]`: The minimum value of the random values.
 - `max` (`Scalar[dtype]`) `[imm]`: The maximum value of the random values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
     NumojoError: If the dtype is not a floating-point type.
 
-#### Overload 6
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
 def rand[dtype: DType = DType.float64](*shape: Int, *, min: Scalar[dtype], max: Scalar[dtype]) -> NDArray[dtype]
@@ -158,23 +158,23 @@ def rand[dtype: DType = DType.float64](*shape: Int, *, min: Scalar[dtype], max: 
 
 Overloads the function `rand(shape: NDArrayShape, min, max)`. Creates an array of the given shape and populate it with random samples from a uniform distribution over [min, max). This is equivalent to `min + rand() * (max - min)`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `min` (`Scalar[dtype]`) `[imm]`
 - `max` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 7
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
 def rand[dtype: DType = DType.float64](shape: List[Int], min: Scalar[dtype], max: Scalar[dtype]) -> NDArray[dtype]
@@ -182,17 +182,17 @@ def rand[dtype: DType = DType.float64](shape: List[Int], min: Scalar[dtype], max
 
 Overloads the function `rand(shape: NDArrayShape, min, max)`. Creates an array of the given shape and populate it with random samples from a uniform distribution over [min, max). This is equivalent to `min + rand() * (max - min)`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `min` (`Scalar[dtype]`) `[imm]`
 - `max` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -205,7 +205,7 @@ Overloads the function `rand(shape: NDArrayShape, min, max)`. Creates an array o
 
 ### `randint`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def randint[dtype: DType = DType.int64](shape: NDArrayShape, low: Int, high: Int) -> NDArray[dtype] where dtype.is_integral()
@@ -213,17 +213,17 @@ def randint[dtype: DType = DType.int64](shape: NDArrayShape, low: Int, high: Int
 
 Return an array of random integers from low (inclusive) to high (exclusive). Note that it is different from the built-in `random.randint()` function which returns integer in range low (inclusive) to high (inclusive).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 - `low` (`Int`) `[imm]`: The minimum value of the random values.
 - `high` (`Int`) `[imm]`: The maximum value of the random values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -231,7 +231,7 @@ Return an array of random integers from low (inclusive) to high (exclusive). Not
     NumojoError: If the dtype is not a integer type.
 NumojoError: If high is not greater than low.
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def randint[dtype: DType = DType.int64](*shape: Int, *, low: Int, high: Int) -> NDArray[dtype] where dtype.is_integral()
@@ -239,23 +239,23 @@ def randint[dtype: DType = DType.int64](*shape: Int, *, low: Int, high: Int) -> 
 
 Overloads the function `randint(shape: NDArrayShape, low, high)`. Return an array of random integers from low (inclusive) to high (exclusive). Note that it is different from the built-in `random.randint()` function which returns integer in range low (inclusive) to high (inclusive).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `low` (`Int`) `[imm]`
 - `high` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def randint[dtype: DType = DType.int64](shape: NDArrayShape, high: Int) -> NDArray[dtype] where dtype.is_integral()
@@ -263,16 +263,16 @@ def randint[dtype: DType = DType.int64](shape: NDArrayShape, high: Int) -> NDArr
 
 Return an array of random integers from 0 (inclusive) to high (exclusive).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 - `high` (`Int`) `[imm]`: The maximum value of the random values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -280,7 +280,7 @@ Return an array of random integers from 0 (inclusive) to high (exclusive).
     NumojoError: If the dtype is not a integer type.
 NumojoError: If high <= 0.
 
-#### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def randint[dtype: DType = DType.int64](*shape: Int, *, high: Int) -> NDArray[dtype] where dtype.is_integral()
@@ -288,16 +288,16 @@ def randint[dtype: DType = DType.int64](*shape: Int, *, high: Int) -> NDArray[dt
 
 Overloads the function `randint(shape: NDArrayShape, high)`. Return an array of random integers from 0 (inclusive) to high (exclusive).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `high` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -310,7 +310,7 @@ Overloads the function `randint(shape: NDArrayShape, high)`. Return an array of 
 
 ### `randn`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def randn[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
@@ -318,21 +318,21 @@ def randn[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
 
 Creates an array of the given shape and populate it with random samples from a standard normal distribution.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def randn[dtype: DType = DType.float64](*shape: Int) -> NDArray[dtype]
@@ -340,21 +340,21 @@ def randn[dtype: DType = DType.float64](*shape: Int) -> NDArray[dtype]
 
 Overloads the function `randn(shape: NDArrayShape)`. Creates an array of the given shape and populate it with random samples from a standard normal distribution.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def randn[dtype: DType = DType.float64](shape: NDArrayShape, mean: Scalar[dtype], variance: Scalar[dtype]) -> NDArray[dtype]
@@ -362,23 +362,23 @@ def randn[dtype: DType = DType.float64](shape: NDArrayShape, mean: Scalar[dtype]
 
 Creates an array of the given shape and populate it with random samples from a normal distribution with given mean and variance.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 - `mean` (`Scalar[dtype]`) `[imm]`: The mean value of the random values.
 - `variance` (`Scalar[dtype]`) `[imm]`: The variance of the random values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def randn[dtype: DType = DType.float64](*shape: Int, *, mean: Scalar[dtype], variance: Scalar[dtype]) -> NDArray[dtype]
@@ -386,23 +386,23 @@ def randn[dtype: DType = DType.float64](*shape: Int, *, mean: Scalar[dtype], var
 
 Overloads the function `randn(shape: NDArrayShape, mean, variance)`. Creates an array of the given shape and populate it with random samples from a normal distribution with given mean and variance.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `mean` (`Scalar[dtype]`) `[imm]`
 - `variance` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 5
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
 def randn[dtype: DType = DType.float64](shape: List[Int], mean: Scalar[dtype], variance: Scalar[dtype]) -> NDArray[dtype]
@@ -410,17 +410,17 @@ def randn[dtype: DType = DType.float64](shape: List[Int], mean: Scalar[dtype], v
 
 Overloads the function `randn(shape: NDArrayShape, mean, variance)`. Creates an array of the given shape and populate it with random samples from a normal distribution with given mean and variance.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `mean` (`Scalar[dtype]`) `[imm]`
 - `variance` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -433,7 +433,7 @@ Overloads the function `randn(shape: NDArrayShape, mean, variance)`. Creates an 
 
 ### `exponential`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def exponential[dtype: DType = DType.float64](shape: NDArrayShape, scale: Scalar[dtype] = 1) -> NDArray[dtype] where dtype.is_floating_point()
@@ -441,28 +441,28 @@ def exponential[dtype: DType = DType.float64](shape: NDArrayShape, scale: Scalar
 
 Creates an array of the given shape and populate it with random samples from an exponential distribution with given scale parameter.
 
-Example:
+<div class="prose-label">Examples</div>
 ```py
 var arr = numojo.random.exponential(Shape(3, 2, 4), 2.0)
 print(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 - `scale` (`Scalar[dtype]`) `[imm]`: The scale parameter of the exponential distribution (lambda).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def exponential[dtype: DType = DType.float64](*shape: Int, *, scale: Scalar[dtype] = 1) -> NDArray[dtype] where dtype.is_floating_point()
@@ -470,22 +470,22 @@ def exponential[dtype: DType = DType.float64](*shape: Int, *, scale: Scalar[dtyp
 
 Overloads the function `exponential(shape: NDArrayShape, rate)`. Creates an array of the given shape and populate it with random samples from an exponential distribution with given scale parameter.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `scale` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def exponential[dtype: DType = DType.float64](shape: List[Int], scale: Scalar[dtype] = 1) -> NDArray[dtype] where dtype.is_floating_point()
@@ -493,16 +493,16 @@ def exponential[dtype: DType = DType.float64](shape: List[Int], scale: Scalar[dt
 
 Overloads the function `exponential(shape: NDArrayShape, rate)`. Creates an array of the given shape and populate it with random samples from an exponential distribution with given scale parameter.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `scale` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -515,7 +515,7 @@ Overloads the function `exponential(shape: NDArrayShape, rate)`. Creates an arra
 
 ### `randbool`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def randbool(shape: NDArrayShape, p: Float64 = 0.5) -> NDArray[DType.bool]
@@ -523,26 +523,26 @@ def randbool(shape: NDArrayShape, p: Float64 = 0.5) -> NDArray[DType.bool]
 
 Creates an array of the given shape and populates it with random boolean values where each element is `True` with probability `p` and `False` with probability `1 - p`.
 
-Example:
+<div class="prose-label">Examples</div>
 ```py
 var arr = numojo.random.randbool(Shape(3, 4))
 var biased = numojo.random.randbool(Shape(10, 10), p=0.8)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the NDArray.
 - `p` (`Float64`) `[imm]`: Probability of `True` for each element. Must be in [0.0, 1.0].
    Defaults to 0.5.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
     NumojoError: If `p` is not in the range [0.0, 1.0].
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def randbool(*shape: Int, *, p: Float64 = 0.5) -> NDArray[DType.bool]
@@ -550,18 +550,18 @@ def randbool(*shape: Int, *, p: Float64 = 0.5) -> NDArray[DType.bool]
 
 Overloads the function `randbool(shape: NDArrayShape, p)`. Creates an array of the given shape and populates it with random boolean values where each element is `True` with probability `p`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `p` (`Float64`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def randbool(shape: List[Int], p: Float64 = 0.5) -> NDArray[DType.bool]
@@ -569,12 +569,12 @@ def randbool(shape: List[Int], p: Float64 = 0.5) -> NDArray[DType.bool]
 
 Overloads the function `randbool(shape: NDArrayShape, p)`. Creates an array of the given shape and populates it with random boolean values where each element is `True` with probability `p`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `p` (`Float64`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 

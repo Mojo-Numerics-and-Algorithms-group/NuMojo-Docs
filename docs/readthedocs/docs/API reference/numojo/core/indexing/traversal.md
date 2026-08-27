@@ -13,6 +13,10 @@ Exports
 
 ### `TraverseMethods`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct TraverseMethods
 ```
@@ -20,12 +24,14 @@ struct TraverseMethods
 **Memory convention:** `memory_only`  
 **Implements:** `AnyType`, `Deinitable`, `Movable`
 
+</div>
+
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `traverse_buffer_according_to_shape_and_strides`
+#### `traverse_buffer_according_to_shape_and_strides`
 
 ```mojo
 def traverse_buffer_according_to_shape_and_strides[origin: MutOrigin](mut ptr: Pointer[Int, origin], shape: NDArrayShape, strides: NDArrayStrides, current_dim: Int = Int(0), previous_sum: Int = Int(0))
@@ -37,11 +43,11 @@ Store sequence of indices according to shape and strides into the pointer. Auxil
 
 UNSAFE: Raw pointer is used!
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `origin` (`MutOrigin`): The mutability origin of the pointer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `ptr` (`Pointer[Int, origin]`) `[mut]`: Pointer to buffer of uninitialized 1-d index array.
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the array.
@@ -56,7 +62,7 @@ UNSAFE: Raw pointer is used!
 
 <div class="fn-card" markdown="1">
 
-##### `traverse_iterative`
+#### `traverse_iterative`
 
 ```mojo
 def traverse_iterative[dtype: DType](orig: NDArray[dtype], mut narr: NDArray[dtype], ndim: List[Int], coefficients: List[Int], strides: List[Int], offset: Int, mut index: List[Int], depth: Int)
@@ -66,11 +72,11 @@ def traverse_iterative[dtype: DType](orig: NDArray[dtype], mut narr: NDArray[dty
 
 Traverse a multi-dimensional array in an iterative manner.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `orig` (`NDArray[dtype]`) `[imm]`: The original array.
 - `narr` (`NDArray[dtype]`) `[mut]`: The array to store the result.
@@ -88,7 +94,7 @@ Traverse a multi-dimensional array in an iterative manner.
 
 <div class="fn-card" markdown="1">
 
-##### `traverse_iterative_setter`
+#### `traverse_iterative_setter`
 
 ```mojo
 def traverse_iterative_setter[dtype: DType](orig: NDArray[dtype], mut narr: NDArray[dtype], ndim: List[Int], coefficients: List[Int], strides: List[Int], offset: Int, mut index: List[Int])
@@ -98,11 +104,11 @@ def traverse_iterative_setter[dtype: DType](orig: NDArray[dtype], mut narr: NDAr
 
 Traverse a multi-dimensional array in an iterative manner for setter.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the NDArray elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `orig` (`NDArray[dtype]`) `[imm]`: The original array (source).
 - `narr` (`NDArray[dtype]`) `[mut]`: The array to store the result (destination).

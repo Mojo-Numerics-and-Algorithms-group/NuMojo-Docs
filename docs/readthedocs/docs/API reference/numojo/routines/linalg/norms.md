@@ -20,15 +20,15 @@ def det[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
 
 Find the determinant of A using LUP decomposition.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -47,18 +47,18 @@ def trace[dtype: DType](array: NDArray[dtype], offset: Int = Int(0), axis1: Int 
 
 Computes the trace of a ndarray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `offset` (`Int`) `[imm]`: Offset of the diagonal from the main diagonal.
 - `axis1` (`Int`) `[imm]`: First axis.
 - `axis2` (`Int`) `[imm]`: Second axis.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

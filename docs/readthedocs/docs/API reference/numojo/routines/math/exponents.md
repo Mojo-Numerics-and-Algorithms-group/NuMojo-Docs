@@ -17,7 +17,7 @@ Exports
 
 ### `exp`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def exp[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
@@ -25,7 +25,7 @@ def exp[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_fl
 
 Compute the element-wise exponential of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -34,21 +34,21 @@ var arr = nm.linspace[f64](0.0, 1.0, 10)
 var result = nm.exp(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def exp[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
@@ -56,7 +56,7 @@ def exp[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floa
 
 Compute the exponential of a scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -65,15 +65,15 @@ var value: Scalar[f32] = 1.0
 var result = nm.exp(value)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -86,7 +86,7 @@ var result = nm.exp(value)
 
 ### `exp2`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def exp2[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
@@ -94,7 +94,7 @@ def exp2[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_f
 
 Compute the element-wise base-2 exponential of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -103,21 +103,21 @@ var arr = nm.linspace[f64](0.0, 1.0, 10)
 var result = nm.exp2(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def exp2[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
@@ -125,7 +125,7 @@ def exp2[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_flo
 
 Compute the base-2 exponential of a scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -134,15 +134,15 @@ var value: Scalar[f32] = 1.0
 var result = nm.exp2(value)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -155,7 +155,7 @@ var result = nm.exp2(value)
 
 ### `expm1`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def expm1[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
@@ -163,7 +163,7 @@ def expm1[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_
 
 Compute the element-wise exp(x) - 1 of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -171,21 +171,21 @@ var arr = nm.linspace[f64](0.0, 1.0, 10)
 var result = nm.expm1(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def expm1[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
@@ -193,7 +193,7 @@ def expm1[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_fl
 
 Compute exp(value) - 1 for a scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -201,15 +201,15 @@ var value: Scalar[f32] = 1.0
 var result = nm.expm1(value)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -222,7 +222,7 @@ var result = nm.expm1(value)
 
 ### `log`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def log[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
@@ -230,7 +230,7 @@ def log[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_fl
 
 Compute the element-wise natural logarithm of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -238,21 +238,21 @@ var arr = nm.arange[f64](1.0, 10.0, 1.0)
 var result = nm.log(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def log[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
@@ -260,7 +260,7 @@ def log[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floa
 
 Compute the natural logarithm of a scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -268,15 +268,15 @@ from numojo.prelude import *
 var result = nm.log(10.0)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -289,7 +289,7 @@ var result = nm.log(10.0)
 
 ### `log2`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def log2[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
@@ -297,7 +297,7 @@ def log2[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_f
 
 Compute the element-wise base-2 logarithm of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -306,21 +306,21 @@ var arr = nm.arange[f64](1.0, 10.0, 1.0)
 var result = nm.log2(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def log2[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
@@ -328,22 +328,22 @@ def log2[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_flo
 
 Compute the base-2 logarithm of a scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
 var result = nm.log2(10.0)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -356,7 +356,7 @@ var result = nm.log2(10.0)
 
 ### `log10`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def log10[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
@@ -364,7 +364,7 @@ def log10[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_
 
 Compute the element-wise base-10 logarithm of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -372,21 +372,21 @@ var arr = nm.arange[f64](1.0, 10.0, 1.0)
 var result = nm.log10(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def log10[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
@@ -394,7 +394,7 @@ def log10[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_fl
 
 Compute the base-10 logarithm of a scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -402,15 +402,15 @@ from numojo.prelude import *
 var result = nm.log10(10.0)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -423,7 +423,7 @@ var result = nm.log10(10.0)
 
 ### `log1p`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def log1p[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
@@ -431,7 +431,7 @@ def log1p[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_
 
 Compute the element-wise ln(1 + x) of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -440,21 +440,21 @@ var arr = nm.linspace[f64](0.0, 1.0, 10)
 var result = nm.log1p(arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def log1p[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
@@ -462,22 +462,22 @@ def log1p[dtype: DType](value: Scalar[dtype]) -> Scalar[dtype] where dtype.is_fl
 
 Compute ln(1 + value) for a scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
 var result = nm.log1p(1.0)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 

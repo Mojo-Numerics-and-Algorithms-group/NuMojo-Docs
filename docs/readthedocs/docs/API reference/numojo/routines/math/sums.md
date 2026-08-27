@@ -17,7 +17,7 @@ Exports
 
 ### `sum`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def sum[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
@@ -25,7 +25,7 @@ def sum[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
 
 Returns sum of all items in the array.
 
-Example:
+<div class="prose-label">Examples</div>
 ```console
 > print(A)
 [[      0.1315377950668335      0.458650141954422       0.21895918250083923     ]
@@ -36,21 +36,21 @@ Example:
 3.5140917301177979
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def sum[dtype: DType](A: NDArray[dtype], axis: Int) -> NDArray[dtype]
@@ -58,23 +58,23 @@ def sum[dtype: DType](A: NDArray[dtype], axis: Int) -> NDArray[dtype]
 
 Returns sums of array elements over a given axis.
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.random.randn(100, 100)
 print(nm.sum(A, axis=0))
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[imm]`: The axis along which the sum is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -89,7 +89,7 @@ NumojoError: If the number of dimensions is 1.
 
 ### `cumsum`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def cumsum[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
@@ -97,21 +97,21 @@ def cumsum[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
 
 Returns cumsum of all items of an array. The array is flattened before cumsum.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def cumsum[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
@@ -119,16 +119,16 @@ def cumsum[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
 
 Returns cumsum of array by axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[var]`: Axis.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

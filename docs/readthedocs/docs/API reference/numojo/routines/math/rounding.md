@@ -28,15 +28,15 @@ def tabs[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise absolute value of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -55,15 +55,15 @@ def tfloor[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise floor of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -82,15 +82,15 @@ def tceil[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise ceiling of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -109,15 +109,15 @@ def ttrunc[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise truncation of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -136,15 +136,15 @@ def tround[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise rounding of a NDArray to a whole number.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -163,15 +163,15 @@ def roundeven[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise banker's rounding of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -193,16 +193,16 @@ Compute the next representable value after one array toward another.
 !!! info "Constraints"
     Datatype `dtype` must be a floating-point type.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: The first input array.
 - `array2` (`NDArray[dtype]`) `[imm]`: The second input array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

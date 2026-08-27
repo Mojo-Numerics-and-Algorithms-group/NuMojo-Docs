@@ -22,7 +22,7 @@ Exports
 
 ### `greater`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def greater[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
@@ -30,7 +30,7 @@ def greater[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDA
 
 Performs element-wise comparison to check if values in `array1` are greater than values in `array2`.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -41,22 +41,22 @@ var arr2 = nm.array[nm.f64]([0.5, 2.5, 2.0], shape=[3])
 print(greater[nm.f64](arr1, arr2))  # Output: [True, False, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
 - `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def greater[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
@@ -64,7 +64,7 @@ def greater[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDAr
 
 Performs element-wise comparison to check if values in `array1` are greater than a scalar value.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -74,16 +74,16 @@ var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
 print(greater[nm.f64](arr, 2.0))  # Output: [False, False, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
 - `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -96,7 +96,7 @@ print(greater[nm.f64](arr, 2.0))  # Output: [False, False, True]
 
 ### `greater_equal`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def greater_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
@@ -104,7 +104,7 @@ def greater_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) 
 
 Performs element-wise comparison to check if values in `array1` are greater than or equal to values in `array2`.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -115,22 +115,22 @@ var arr2 = nm.array[nm.f64]([0.5, 2.0, 4.0], shape=[3])
 print(greater_equal[nm.f64](arr1, arr2))  # Output: [True, True, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
 - `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def greater_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
@@ -138,7 +138,7 @@ def greater_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -
 
 Performs element-wise comparison to check if values in `array1` are greater than or equal to a scalar value.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -148,16 +148,16 @@ var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
 print(greater_equal[nm.f64](arr, 2.0))  # Output: [False, True, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
 - `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -170,7 +170,7 @@ print(greater_equal[nm.f64](arr, 2.0))  # Output: [False, True, True]
 
 ### `less`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def less[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
@@ -178,7 +178,7 @@ def less[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArra
 
 Performs element-wise comparison to check if values in `array1` are less than values in `array2`.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -189,22 +189,22 @@ var arr2 = nm.array[nm.f64]([0.5, 2.5, 2.0], shape=[3])
 print(less[nm.f64](arr1, arr2))  # Output: [False, True, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
 - `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def less[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
@@ -212,7 +212,7 @@ def less[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray
 
 Performs element-wise comparison to check if values in `array1` are less than a scalar value.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -222,16 +222,16 @@ var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
 print(less[nm.f64](arr, 2.0))  # Output: [True, False, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
 - `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -244,7 +244,7 @@ print(less[nm.f64](arr, 2.0))  # Output: [True, False, False]
 
 ### `less_equal`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def less_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
@@ -252,7 +252,7 @@ def less_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> 
 
 Performs element-wise comparison to check if values in `array1` are less than or equal to values in `array2`.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -263,22 +263,22 @@ var arr2 = nm.array[nm.f64]([0.5, 2.0, 4.0], shape=[3])
 print(less_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
 - `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def less_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
@@ -286,7 +286,7 @@ def less_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> N
 
 Performs element-wise comparison to check if values in `array1` are less than or equal to a scalar value.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -296,16 +296,16 @@ var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
 print(less_equal[nm.f64](arr, 2.0))  # Output: [True, True, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
 - `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -318,7 +318,7 @@ print(less_equal[nm.f64](arr, 2.0))  # Output: [True, True, False]
 
 ### `equal`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
@@ -326,7 +326,7 @@ def equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArr
 
 Performs element-wise comparison to check if values in `array1` are equal to values in `array2`.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -337,22 +337,22 @@ var arr2 = nm.array[nm.f64]([1.0, 2.5, 3.0], shape=[3])
 print(equal[nm.f64](arr1, arr2))  # Output: [True, False, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
 - `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
@@ -360,7 +360,7 @@ def equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArra
 
 Performs element-wise comparison to check if values in `array1` are equal to a scalar value.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -370,16 +370,16 @@ var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
 print(equal[nm.f64](arr, 2.0))  # Output: [False, True, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
 - `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -392,7 +392,7 @@ print(equal[nm.f64](arr, 2.0))  # Output: [False, True, False]
 
 ### `not_equal`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def not_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
@@ -400,7 +400,7 @@ def not_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> N
 
 Performs element-wise comparison to check if values in `array1` are not equal to values in `array2`.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -411,22 +411,22 @@ var arr2 = nm.array[nm.f64]([1.0, 2.5, 2.0], shape=[3])
 print(not_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
 - `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def not_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
@@ -434,7 +434,7 @@ def not_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> ND
 
 Performs element-wise comparison to check if values in `array1` are not equal to a scalar value.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -444,16 +444,16 @@ var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
 print(not_equal[nm.f64](arr, 2.0))  # Output: [True, False, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The dtype of the input NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
 - `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -476,7 +476,7 @@ For each element pair (a_i, b_i), this function returns True if:
     abs(a_i - b_i) <= atol + rtol * abs(b_i)
 for all elements. If `equal_nan` is True, NaN values at the same position are considered equal.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.routines.logic.comparison import allclose
@@ -485,11 +485,11 @@ var arr2 = nm.array[nm.f64]([1.0, 2.00001, 2.99999], shape=[3])
 print(allclose[nm.f64](arr1, arr2))  # Output: True.
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: First array to compare.
 - `b` (`NDArray[dtype]`) `[imm]`: Second array to compare.
@@ -497,7 +497,7 @@ print(allclose[nm.f64](arr1, arr2))  # Output: True.
 - `atol` (`Scalar[dtype]`) `[imm]`: Absolute tolerance. Default is 1e-8.
 - `equal_nan` (`Bool`) `[imm]`: If True, NaNs at the same position are considered equal. Default is False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -521,7 +521,7 @@ For each element pair (a_i, b_i), the result is True if:
     abs(a_i - b_i) <= atol + rtol * abs(b_i)
 If `equal_nan` is True, NaN values at the same position are considered equal.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.routines.logic.comparison import isclose
@@ -530,11 +530,11 @@ var arr2 = nm.array[nm.f64]([1.0, 2.00001, 2.99999], shape=[3])
 print(isclose[nm.f64](arr1, arr2))  # Output: [True, True, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: First array to compare.
 - `b` (`NDArray[dtype]`) `[imm]`: Second array to compare.
@@ -542,7 +542,7 @@ print(isclose[nm.f64](arr1, arr2))  # Output: [True, True, True]
 - `atol` (`Scalar[dtype]`) `[imm]`: Absolute tolerance. Default is 1e-8.
 - `equal_nan` (`Bool`) `[imm]`: If True, NaNs at the same position are considered equal. Default is False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -565,7 +565,7 @@ Determine whether two NDArrays are exactly equal in both shape and element value
 This function compares the shapes of `array1` and `array2`, and then checks each element for equality.
 The arrays are considered equal only if their shapes match and all corresponding elements are equal.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -576,16 +576,16 @@ var arr2 = nm.arange[i32](0, 10)
 print(array_equal[i32](arr, arr2))  # Output: True
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
 - `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 

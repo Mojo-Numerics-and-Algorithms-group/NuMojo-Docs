@@ -26,6 +26,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.tabs
     - navigation.sections
     - navigation.indexes
     - navigation.top
@@ -89,17 +90,14 @@ nav:
     - Installation: getting_started/install.md
   - User Guide:
     - Overview: user-guide/overview.md
+    - Roadmap: user-guide/roadmap.md
+    - Changelog: user-guide/changelog.md
   - Developer Guide:
     - Architecture: developer-guide/architecture.md
     - NDArray Structure: developer-guide/ndarray-basic-structure.md
     - Style Guide: developer-guide/style-guide.md
     - Contributing: developer-guide/contributing.md
     - "Pre-PR Checks": developer-guide/pre-pr-checks.md
-  - Links:
-    - GitHub: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo"
-    - Discord: "https://discord.gg/NcnSH5n26F"
-    - Changelog: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/changelog.md"
-    - Roadmap: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/roadmap.md"
   - API Reference:
     - Overview: API reference/numojo/index.md
     - numojo (init): API reference/numojo/__init__.md
@@ -216,3 +214,6 @@ nav:
         - Overview: API reference/numojo/routines/statistics/index.md
         - statistics (init): API reference/numojo/routines/statistics/__init__.md
         - averages: API reference/numojo/routines/statistics/averages.md
+  - Links:
+    - GitHub: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo"
+    - Discord: "https://discord.gg/NcnSH5n26F"

@@ -13,6 +13,10 @@ Exports
 
 ### `Buffered`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">trait</span>
+
 **Extends:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `Movable`
 
 A trait to denote whether the data buffer is owned or not.
@@ -23,14 +27,16 @@ There will be two implementations:
 
 The `RefData` type will record the origin of the data to ensure safety.
 
+</div>
+
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self)
@@ -38,15 +44,15 @@ def __init__(out self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`_Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, *, copy: Self)
@@ -56,16 +62,16 @@ def __init__(out self, *, copy: Self)
 
 Create a new instance of the value by copying an existing one.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `copy` (`_Self`) `[imm]`: The value to copy.
 - `self` (`_Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__(out self, *, deinit move: Self)
@@ -75,12 +81,12 @@ def __init__(out self, *, deinit move: Self)
 
 Create a new instance of the value by moving the value of another.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `move` (`_Self`) `[deinit]`: The value to move.
 - `self` (`_Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_Self`
 
@@ -89,7 +95,7 @@ Create a new instance of the value by moving the value of another.
 
 <div class="fn-card" markdown="1">
 
-##### `is_own_data`
+#### `is_own_data`
 
 ```mojo
 def is_own_data() -> Bool
@@ -97,7 +103,7 @@ def is_own_data() -> Bool
 
 <span class="badge badge-static">static</span>
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -106,7 +112,7 @@ def is_own_data() -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `is_ref_data`
+#### `is_ref_data`
 
 ```mojo
 def is_ref_data() -> Bool
@@ -114,7 +120,7 @@ def is_ref_data() -> Bool
 
 <span class="badge badge-static">static</span>
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -123,17 +129,17 @@ def is_ref_data() -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`_Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -142,7 +148,7 @@ def __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `copy`
+#### `copy`
 
 ```mojo
 def copy(self) -> Self
@@ -152,11 +158,11 @@ Explicitly construct a copy of self, a convenience method for `Self(copy=self)` 
 
 Overriding this method is not allowed.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`_Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_Self`
 

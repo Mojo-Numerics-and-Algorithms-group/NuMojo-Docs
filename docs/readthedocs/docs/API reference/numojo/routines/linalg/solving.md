@@ -26,16 +26,16 @@ Perform forward substitution to solve `Lx = y`.
 Paramters:
     dtype: dtype of the resulting vector.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `L` (`NDArray[dtype]`) `[imm]`: A lower triangular matrix.
 - `y` (`NDArray[dtype]`) `[imm]`: A vector.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -57,16 +57,16 @@ Perform forward substitution to solve `Ux = y`.
 Paramters:
     dtype: dtype of the resulting vector.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `U` (`NDArray[dtype]`) `[imm]`: A upper triangular matrix.
 - `y` (`NDArray[dtype]`) `[imm]`: A vector.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -91,15 +91,15 @@ an identity matrix.
 The speed is faster than numpy for matrices smaller than 100x100,
 and is slower for larger matrices.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the inverse matrix.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: Input matrix. It should be non-singular, square, and row-major.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -125,15 +125,15 @@ and is slower for larger matrices.
 
 `AX = I` where `I` is an identity matrix.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the inverse matrix.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: Input matrix. It should be non-singular, square, and row-major.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -183,16 +183,16 @@ def main() raises:
 
 The example is also a way to calculate inverse of matrix.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the inversed matrix.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: Non-singular, square, and row-major matrix. The size is m x m.
 - `Y` (`NDArray[dtype]`) `[imm]`: Array of size m x n.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

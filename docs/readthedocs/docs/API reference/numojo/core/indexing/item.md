@@ -6,7 +6,7 @@ The `Item` struct holds a sequence of integer indices (one per dimension) used t
 coordinates within an N-dimensional array. For example, `arr[Item(1, 2, 3)]` accesses
 element at position (1, 2, 3) in a 3D array.
 
-Notes:
+<div class="prose-label">Notes</div>
     - Each Item instance is backed by a heap-allocated IndexBuffer.
     - Indices are stored as a series of Int values.
     - Item can be used for arbitrary-dimensional array indexing.
@@ -18,6 +18,10 @@ Exports
 ## Structs
 
 ### `Item`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct Item
@@ -34,7 +38,7 @@ For example, `arr[Item(1, 2, 3)]` retrieves the element at position (1, 2, 3) in
 Each `Item` instance holds a sequence of integer indices, one for each dimension of the array.
 This allows for precise and flexible indexing into arrays of arbitrary dimensionality.
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 import numojo as nm
@@ -42,13 +46,15 @@ var arr = nm.arange[f32](0, 27).reshape(Shape(3, 3, 3))
 var value = arr[Item(1, 2, 3)]  # Accesses arr[1, 2, 3]
 ```
 
+</div>
+
 #### Fields
 
 - **`ndim`** (`Int`): Number of dimensions (length of the index tuple).
 
 #### Aliases
 
-##### `element_type`
+#### `element_type`
 
 ```mojo
 comptime element_type
@@ -63,9 +69,9 @@ The data type of the Item elements.
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__() -> Self
@@ -75,11 +81,11 @@ def __init__() -> Self
 
 Initializes an empty Item.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(buf: IndexBuffer) -> Self
@@ -89,15 +95,15 @@ def __init__(buf: IndexBuffer) -> Self
 
 Initializes the Item from an IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `buf` (`IndexBuffer`) `[imm]`: The IndexBuffer to initialize from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__[T: Indexer](*args: T) -> Self
@@ -107,19 +113,19 @@ def __init__[T: Indexer](*args: T) -> Self
 
 Construct the Item with variable arguments.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `T` (`Indexer`): Type of values. It can be converted to `Int` with `Int()`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*args` (`T`) `[imm]`: Initial values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def __init__[T: IndexerCollectionElement](args: List[T]) -> Self
@@ -129,19 +135,19 @@ def __init__[T: IndexerCollectionElement](args: List[T]) -> Self
 
 Construct the Item from a list.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `T` (`IndexerCollectionElement`): Type of values. It can be converted to `Int` with `Int()`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `args` (`List[T]`) `[imm]`: Initial values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 5
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
 def __init__(args: List[Int]) -> Self
@@ -151,15 +157,15 @@ def __init__(args: List[Int]) -> Self
 
 Construct the Item from a list.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `args` (`List[Int]`) `[imm]`: Initial values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 6
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
 def __init__(args: VariadicList[Int]) -> Self
@@ -169,15 +175,15 @@ def __init__(args: VariadicList[Int]) -> Self
 
 Construct the Item from a variadic list.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `args` (`VariadicList[Int]`) `[imm]`: Initial values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 7
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
 def __init__(*, ndim: Int) -> Self
@@ -187,15 +193,15 @@ def __init__(*, ndim: Int) -> Self
 
 Construct the Item with given length and initialize to zero.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `ndim` (`Int`) `[imm]`: The length of the Item.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 8
+<div class="overload-divider">Overload 8</div>
 
 ```mojo
 def __init__(*, copy: Self) -> Self
@@ -205,11 +211,11 @@ def __init__(*, copy: Self) -> Self
 
 Copy construct the Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `copy` (`Self`) `[imm]`: The Item to copy.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -218,9 +224,9 @@ Copy construct the Item.
 
 <div class="fn-card" markdown="1">
 
-##### `__getitem__`
+#### `__getitem__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __getitem__(self, idx: Int) -> Int
@@ -228,19 +234,19 @@ def __getitem__(self, idx: Int) -> Int
 
 Gets the value at the specified index.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The index of the value to get.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
 !!! failure "Raises"
     NumojoError: If index is out of range.
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __getitem__(self, slice_index: Slice) -> Self
@@ -248,12 +254,12 @@ def __getitem__(self, slice_index: Slice) -> Self
 
 Return a sliced view of the item as a new Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `slice_index` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -264,7 +270,7 @@ Return a sliced view of the item as a new Item.
 
 <div class="fn-card" markdown="1">
 
-##### `__setitem__`
+#### `__setitem__`
 
 ```mojo
 def __setitem__(mut self, idx: Int, val: Int)
@@ -272,7 +278,7 @@ def __setitem__(mut self, idx: Int, val: Int)
 
 Set the value at the specified index.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `idx` (`Int`) `[imm]`: The index of the value to set.
@@ -286,7 +292,7 @@ Set the value at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
 def __eq__(self, other: Self) -> Bool
@@ -294,12 +300,12 @@ def __eq__(self, other: Self) -> Bool
 
 Checks if two items have identical dimensions and values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`: The item to compare with.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -308,7 +314,7 @@ Checks if two items have identical dimensions and values.
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
 def __ne__(self, other: Self) -> Bool
@@ -316,12 +322,12 @@ def __ne__(self, other: Self) -> Bool
 
 Checks if two items have different dimensions or values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`: The item to compare with.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -330,7 +336,7 @@ Checks if two items have different dimensions or values.
 
 <div class="fn-card" markdown="1">
 
-##### `__contains__`
+#### `__contains__`
 
 ```mojo
 def __contains__(self, val: Int) -> Bool
@@ -338,12 +344,12 @@ def __contains__(self, val: Int) -> Bool
 
 Check if the Item contains the given value.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `val` (`Int`) `[imm]`: Value to check for.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -352,7 +358,7 @@ Check if the Item contains the given value.
 
 <div class="fn-card" markdown="1">
 
-##### `load`
+#### `load`
 
 ```mojo
 def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
@@ -360,16 +366,16 @@ def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 
 Load a SIMD vector from the Item at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to load from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `SIMD[DType.int, width]`
 
@@ -381,7 +387,7 @@ Load a SIMD vector from the Item at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `store`
+#### `store`
 
 ```mojo
 def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
@@ -389,11 +395,11 @@ def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 
 Store a SIMD vector into the Item at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to store to.
@@ -407,7 +413,7 @@ Store a SIMD vector into the Item at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_load`
+#### `unsafe_load`
 
 ```mojo
 def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
@@ -415,16 +421,16 @@ def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 
 Unsafely load a SIMD vector from the Item at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to load from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `SIMD[DType.int, width]`
 
@@ -433,7 +439,7 @@ Unsafely load a SIMD vector from the Item at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_store`
+#### `unsafe_store`
 
 ```mojo
 def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
@@ -441,11 +447,11 @@ def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, wid
 
 Unsafely store a SIMD vector into the Item at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to store to.
@@ -456,18 +462,18 @@ Unsafely store a SIMD vector into the Item at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_get`
+#### `unsafe_get`
 
 ```mojo
 def unsafe_get(self, idx: Int) -> Int
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -476,13 +482,13 @@ def unsafe_get(self, idx: Int) -> Int
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_set`
+#### `unsafe_set`
 
 ```mojo
 def unsafe_set(mut self, idx: Int, value: Int)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `idx` (`Int`) `[imm]`
@@ -493,7 +499,7 @@ def unsafe_set(mut self, idx: Int, value: Int)
 
 <div class="fn-card" markdown="1">
 
-##### `swapaxes`
+#### `swapaxes`
 
 ```mojo
 def swapaxes(self, axis1: Int, axis2: Int) -> Self
@@ -501,13 +507,13 @@ def swapaxes(self, axis1: Int, axis2: Int) -> Self
 
 Returns a new item with the given axes swapped.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `axis1` (`Int`) `[imm]`: The first axis to swap.
 - `axis2` (`Int`) `[imm]`: The second axis to swap.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -518,7 +524,7 @@ Returns a new item with the given axes swapped.
 
 <div class="fn-card" markdown="1">
 
-##### `join`
+#### `join`
 
 ```mojo
 def join(self, *others: Self) -> Self
@@ -526,12 +532,12 @@ def join(self, *others: Self) -> Self
 
 Join multiple items into a single item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `*others` (`Self`) `[imm]`: Variable number of Item objects.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -540,7 +546,7 @@ Join multiple items into a single item.
 
 <div class="fn-card" markdown="1">
 
-##### `extend`
+#### `extend`
 
 ```mojo
 def extend(self, *values: Int) -> Self
@@ -548,12 +554,12 @@ def extend(self, *values: Int) -> Self
 
 Extend the shape by sizes of extended dimensions.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `*values` (`Int`) `[imm]`: Sizes of extended dimensions.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -562,7 +568,7 @@ Extend the shape by sizes of extended dimensions.
 
 <div class="fn-card" markdown="1">
 
-##### `flip`
+#### `flip`
 
 ```mojo
 def flip(mut self)
@@ -570,7 +576,7 @@ def flip(mut self)
 
 Flip the items in-place.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 
@@ -579,7 +585,7 @@ Flip the items in-place.
 
 <div class="fn-card" markdown="1">
 
-##### `flipped`
+#### `flipped`
 
 ```mojo
 def flipped(self) -> Self
@@ -587,11 +593,11 @@ def flipped(self) -> Self
 
 Returns a new item by flipping the items.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -600,7 +606,7 @@ Returns a new item by flipping the items.
 
 <div class="fn-card" markdown="1">
 
-##### `move_axis_to_end`
+#### `move_axis_to_end`
 
 ```mojo
 def move_axis_to_end(self, axis: Int) -> Self
@@ -608,12 +614,12 @@ def move_axis_to_end(self, axis: Int) -> Self
 
 Returns a new item by moving the value of axis to the end.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `axis` (`Int`) `[imm]`: The axis (index) to move.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -622,7 +628,7 @@ Returns a new item by moving the value of axis to the end.
 
 <div class="fn-card" markdown="1">
 
-##### `pop`
+#### `pop`
 
 ```mojo
 def pop(self, axis: Int) -> Self
@@ -630,12 +636,12 @@ def pop(self, axis: Int) -> Self
 
 Drops information of certain axis.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `axis` (`Int`) `[imm]`: The axis (index) to drop.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -646,7 +652,7 @@ Drops information of certain axis.
 
 <div class="fn-card" markdown="1">
 
-##### `rank`
+#### `rank`
 
 ```mojo
 def rank(self) -> Int
@@ -654,11 +660,11 @@ def rank(self) -> Int
 
 Returns the number of dimensions of the Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -667,7 +673,7 @@ Returns the number of dimensions of the Item.
 
 <div class="fn-card" markdown="1">
 
-##### `sum`
+#### `sum`
 
 ```mojo
 def sum(self) -> Int
@@ -675,11 +681,11 @@ def sum(self) -> Int
 
 Compute the sum of all elements in Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -688,7 +694,7 @@ Compute the sum of all elements in Item.
 
 <div class="fn-card" markdown="1">
 
-##### `product`
+#### `product`
 
 ```mojo
 def product(self) -> Int
@@ -696,11 +702,11 @@ def product(self) -> Int
 
 Compute the product of all elements in the Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -709,7 +715,7 @@ Compute the product of all elements in the Item.
 
 <div class="fn-card" markdown="1">
 
-##### `__len__`
+#### `__len__`
 
 ```mojo
 def __len__(self) -> Int
@@ -717,11 +723,11 @@ def __len__(self) -> Int
 
 Get the length of the Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -730,7 +736,7 @@ Get the length of the Item.
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
 def __repr__(self) -> String
@@ -738,11 +744,11 @@ def __repr__(self) -> String
 
 Returns a string representation of the Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -751,7 +757,7 @@ Returns a string representation of the Item.
 
 <div class="fn-card" markdown="1">
 
-##### `write_repr_to`
+#### `write_repr_to`
 
 ```mojo
 def write_repr_to[W: Writer](self, mut writer: W)
@@ -759,11 +765,11 @@ def write_repr_to[W: Writer](self, mut writer: W)
 
 Write the string representation to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`): The writer type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -773,7 +779,7 @@ Write the string representation to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
@@ -781,11 +787,11 @@ def __str__(self) -> String
 
 Returns a string representation of the Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -794,7 +800,7 @@ Returns a string representation of the Item.
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
@@ -802,11 +808,11 @@ def write_to[W: Writer](self, mut writer: W)
 
 Writes the Item representation to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -816,7 +822,7 @@ Writes the Item representation to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `tolist`
+#### `tolist`
 
 ```mojo
 def tolist(self) -> List[Int]
@@ -824,11 +830,11 @@ def tolist(self) -> List[Int]
 
 Convert the Item to a list of integers.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `List[Int]`
 
@@ -837,7 +843,7 @@ Convert the Item to a list of integers.
 
 <div class="fn-card" markdown="1">
 
-##### `normalize_index`
+#### `normalize_index`
 
 ```mojo
 def normalize_index(self, index: Int) -> Int
@@ -845,12 +851,12 @@ def normalize_index(self, index: Int) -> Int
 
 Normalizes the given index to be within the valid range [0, ndim).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `index` (`Int`) `[imm]`: The index to normalize.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -859,7 +865,7 @@ Normalizes the given index to be within the valid range [0, ndim).
 
 <div class="fn-card" markdown="1">
 
-##### `__iter__`
+#### `__iter__`
 
 ```mojo
 def __iter__(ref self) -> _ItemIter[origin_of(self)]
@@ -867,11 +873,11 @@ def __iter__(ref self) -> _ItemIter[origin_of(self)]
 
 Iterate over elements of the Item.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_ItemIter[origin_of(self)]`
 
@@ -880,7 +886,7 @@ Iterate over elements of the Item.
 
 <div class="fn-card" markdown="1">
 
-##### `__reversed__`
+#### `__reversed__`
 
 ```mojo
 def __reversed__(ref self) -> _ItemIter[origin_of(self), False]
@@ -888,11 +894,11 @@ def __reversed__(ref self) -> _ItemIter[origin_of(self), False]
 
 Iterate over elements of the Item in reverse.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_ItemIter[origin_of(self), False]`
 

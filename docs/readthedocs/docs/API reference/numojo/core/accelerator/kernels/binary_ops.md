@@ -56,12 +56,12 @@ def binary_op_kernel[dtype: DType, op_code: Int](result: Pointer[Scalar[dtype], 
 
 GPU kernel: `result[i] = op(a[i], b[i])` for contiguous buffers.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `op_code` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `result` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
 - `a` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
@@ -81,11 +81,11 @@ def launch_config(size: Int) -> Tuple[Int, Int]
 
 Compute (grid_dim, block_dim) for a one-thread-per-element launch.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `size` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Tuple[Int, Int]`
 
@@ -102,12 +102,12 @@ def launch_binary_op[dtype: DType, op_code: Int](context: DeviceContext, result:
 
 Launch the GPU binary-op kernel over `size` contiguous elements.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `op_code` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `context` (`DeviceContext`) `[imm]`
 - `result` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`

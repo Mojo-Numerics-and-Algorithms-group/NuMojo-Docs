@@ -25,16 +25,16 @@ def mean_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[
 
 Calculate the arithmetic average of all items in an array. Regardless of the shape of input, it is treated as a 1-d array. It is the backend function for `mean`, with or without `axis`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: A 1-d array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[returned_dtype]`
 
@@ -47,7 +47,7 @@ Calculate the arithmetic average of all items in an array. Regardless of the sha
 
 ### `mean`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
@@ -55,22 +55,22 @@ def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dty
 
 Calculate the arithmetic average of all items in the array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
@@ -78,17 +78,17 @@ def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dty
 
 Mean of array elements over a given axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[imm]`: The axis along which the mean is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[returned_dtype]`
 
@@ -107,16 +107,16 @@ def median_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArra
 
 Median value of all items an array. Regardless of the shape of input, it is treated as a 1-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: A 1-d array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[returned_dtype]`
 
@@ -129,7 +129,7 @@ Median value of all items an array. Regardless of the shape of input, it is trea
 
 ### `median`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
@@ -137,22 +137,22 @@ def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[d
 
 Median value of all items of an array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: A 1-d array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
@@ -160,17 +160,17 @@ def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[d
 
 Returns median of the array elements along the given axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 - `axis` (`Int`) `[imm]`: The axis along which the median is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[returned_dtype]`
 
@@ -189,15 +189,15 @@ def mode_1d[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
 
 Returns mode of all items of an array. Regardless of the shape of input, it is treated as a 1-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -210,7 +210,7 @@ Returns mode of all items of an array. Regardless of the shape of input, it is t
 
 ### `mode`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def mode[dtype: DType](array: NDArray[dtype]) -> Scalar[dtype]
@@ -218,21 +218,21 @@ def mode[dtype: DType](array: NDArray[dtype]) -> Scalar[dtype]
 
 Mode of all items of an array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: An NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def mode[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
@@ -240,16 +240,16 @@ def mode[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
 
 Returns mode of the array elements along the given axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An NDArray.
 - `axis` (`Int`) `[imm]`: The axis along which the mode is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -262,7 +262,7 @@ Returns mode of the array elements along the given axis.
 
 ### `stddev`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
@@ -270,23 +270,23 @@ def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[d
 
 Compute the standard deviation.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: An array.
 - `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
@@ -294,18 +294,18 @@ def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[d
 
 Computes the standard deviation along the axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: An array.
 - `axis` (`Int`) `[imm]`: The axis along which the mean is performed.
 - `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[returned_dtype]`
 
@@ -320,7 +320,7 @@ NumojoError: If ddof is not smaller than the size of the axis.
 
 ### `variance`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
@@ -328,23 +328,23 @@ def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray
 
 Compute the variance.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: An array.
 - `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
@@ -352,18 +352,18 @@ def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray
 
 Computes the variance along the axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `returned_dtype` (`DType`): The returned data type, defaulting to float64.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: An array.
 - `axis` (`Int`) `[imm]`: The axis along which the mean is performed.
 - `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[returned_dtype]`
 

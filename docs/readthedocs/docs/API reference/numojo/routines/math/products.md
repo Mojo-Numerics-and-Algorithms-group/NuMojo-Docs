@@ -17,7 +17,7 @@ Exports
 
 ### `prod`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def prod[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
@@ -25,7 +25,7 @@ def prod[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
 
 Returns products of all items in the array.
 
-Example:
+<div class="prose-label">Examples</div>
 ```console
 > print(A)
 [[      0.1315377950668335      0.458650141954422       0.21895918250083923     ]
@@ -37,21 +37,21 @@ Example:
 6.1377261317829834e-07
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def prod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
@@ -59,16 +59,16 @@ def prod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
 
 Returns products of array elements over a given axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[var]`: The axis along which the product is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -81,7 +81,7 @@ Returns products of array elements over a given axis.
 
 ### `cumprod`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def cumprod[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
@@ -89,21 +89,21 @@ def cumprod[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
 
 Returns cumprod of all items of an array. The array is flattened before cumprod.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def cumprod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
@@ -111,16 +111,16 @@ def cumprod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
 
 Returns cumprod of array by axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[var]`: Axis.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

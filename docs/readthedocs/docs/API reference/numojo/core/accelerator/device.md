@@ -48,6 +48,10 @@ comptime mps
 
 ### `DeviceSpec`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct DeviceSpec
 ```
@@ -59,6 +63,8 @@ Device identity.
 
 `DeviceSpec` only describes where data should live: CPU or a GPU backend plus device index.
 
+</div>
+
 #### Fields
 
 - **`backend`** (`String`): Canonical backend: "cpu", "cuda", "rocm", or "mps".
@@ -69,9 +75,9 @@ Device identity.
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self)
@@ -79,15 +85,15 @@ def __init__(out self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, backend: String, id: Int)
@@ -95,13 +101,13 @@ def __init__(out self, backend: String, id: Int)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `backend` (`String`) `[imm]`
 - `id` (`Int`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -112,18 +118,18 @@ def __init__(out self, backend: String, id: Int)
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
 def __eq__(self, other: Self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -132,18 +138,18 @@ def __eq__(self, other: Self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
 def __ne__(self, other: Self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -152,17 +158,17 @@ def __ne__(self, other: Self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `is_cpu`
+#### `is_cpu`
 
 ```mojo
 def is_cpu(self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -171,17 +177,17 @@ def is_cpu(self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `is_gpu`
+#### `is_gpu`
 
 ```mojo
 def is_gpu(self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -190,17 +196,17 @@ def is_gpu(self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `backend_id`
+#### `backend_id`
 
 ```mojo
 def backend_id(self) -> Int
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -209,17 +215,17 @@ def backend_id(self) -> Int
 
 <div class="fn-card" markdown="1">
 
-##### `name`
+#### `name`
 
 ```mojo
 def name(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -228,17 +234,17 @@ def name(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -247,17 +253,17 @@ def __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
 def __repr__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -266,17 +272,17 @@ def __repr__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -284,6 +290,10 @@ def write_to[W: Writer](self, mut writer: W)
 
 </div>
 ### `DeviceHandle`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct DeviceHandle[device: Device]
@@ -296,9 +306,11 @@ GPU handle for a compile-time `Device`.
 
 This handle owns the runtime `DeviceContext` used by storage allocation and kernels.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `device` (`Device`)
+
+</div>
 
 #### Fields
 
@@ -309,9 +321,9 @@ This handle owns the runtime `DeviceContext` used by storage allocation and kern
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self)
@@ -319,17 +331,17 @@ def __init__(out self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, var context: DeviceContext)
@@ -337,16 +349,16 @@ def __init__(out self, var context: DeviceContext)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `context` (`DeviceContext`) `[var]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__(out self, *, copy: Self)
@@ -354,16 +366,16 @@ def __init__(out self, *, copy: Self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `copy` (`Self`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def __init__(out self, *, deinit move: Self)
@@ -371,12 +383,12 @@ def __init__(out self, *, deinit move: Self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `move` (`Self`) `[deinit]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -385,17 +397,17 @@ def __init__(out self, *, deinit move: Self)
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -404,17 +416,17 @@ def __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -424,17 +436,17 @@ def write_to[W: Writer](self, mut writer: W)
 
 <div class="fn-card" markdown="1">
 
-##### `is_cpu`
+#### `is_cpu`
 
 ```mojo
 def is_cpu(self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -443,17 +455,17 @@ def is_cpu(self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `is_gpu`
+#### `is_gpu`
 
 ```mojo
 def is_gpu(self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -462,17 +474,17 @@ def is_gpu(self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `device_context`
+#### `device_context`
 
 ```mojo
 def device_context(self) -> DeviceContext
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `DeviceContext`
 
@@ -481,13 +493,13 @@ def device_context(self) -> DeviceContext
 
 <div class="fn-card" markdown="1">
 
-##### `synchronize`
+#### `synchronize`
 
 ```mojo
 def synchronize(self)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
@@ -496,6 +508,10 @@ def synchronize(self)
 
 </div>
 ### `Device`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct Device
@@ -523,6 +539,8 @@ Devices can also be constructed from torch-style strings:
     var cpu = Device("cpu")
     ```
 
+</div>
+
 #### Fields
 
 - **`spec`** (`DeviceSpec`): Device identity.
@@ -532,7 +550,7 @@ Devices can also be constructed from torch-style strings:
 
 #### Aliases
 
-##### `CPU`
+#### `CPU`
 
 ```mojo
 comptime CPU
@@ -542,7 +560,7 @@ comptime CPU
 
 CPU device.
 
-##### `CUDA`
+#### `CUDA`
 
 ```mojo
 comptime CUDA
@@ -552,7 +570,7 @@ comptime CUDA
 
 NVIDIA CUDA GPU device.
 
-##### `ROCM`
+#### `ROCM`
 
 ```mojo
 comptime ROCM
@@ -562,7 +580,7 @@ comptime ROCM
 
 AMD ROCm GPU device.
 
-##### `MPS`
+#### `MPS`
 
 ```mojo
 comptime MPS
@@ -577,9 +595,9 @@ Apple Metal GPU device.
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self)
@@ -589,15 +607,15 @@ def __init__(out self)
 
 Initialize a default CPU device.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, text: String)
@@ -610,19 +628,19 @@ Initialize a device by parsing a torch-style device string.
 Supported formats: "cpu", "cuda", "cuda:0", "rocm", "rocm:1",
 "mps", "mps:0", "gpu".
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `text` (`String`) `[imm]`: A device string to parse.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
     Error on invalid device string format.
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__(out self, type: String, name: String, id: Int)
@@ -634,14 +652,14 @@ Initialize a device with explicit type, name, and index.
 
 Validates the arguments and raises on invalid or unavailable devices.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `type` (`String`) `[imm]`: Device type, must be "cpu" or "gpu".
 - `name` (`String`) `[imm]`: Backend name ("" for CPU; "cuda", "rocm", or "mps" for GPU).
 - `id` (`Int`) `[imm]`: Zero-based device index (must be 0 for CPU, >= 0 for GPU).
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -652,7 +670,7 @@ Validates the arguments and raises on invalid or unavailable devices.
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
 def __eq__(self, other: Self) -> Bool
@@ -660,12 +678,12 @@ def __eq__(self, other: Self) -> Bool
 
 Check equality with another device.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`: The device to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -674,7 +692,7 @@ Check equality with another device.
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
 def __ne__(self, other: Self) -> Bool
@@ -682,12 +700,12 @@ def __ne__(self, other: Self) -> Bool
 
 Check inequality with another device.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`: The device to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -696,7 +714,7 @@ Check inequality with another device.
 
 <div class="fn-card" markdown="1">
 
-##### `from_spec`
+#### `from_spec`
 
 ```mojo
 def from_spec(spec: DeviceSpec) -> Self
@@ -706,11 +724,11 @@ def from_spec(spec: DeviceSpec) -> Self
 
 Validate and construct a `Device` from a canonical spec.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `spec` (`DeviceSpec`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -721,7 +739,7 @@ Validate and construct a `Device` from a canonical spec.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
@@ -729,11 +747,11 @@ def __str__(self) -> String
 
 Return a human-readable string representation.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -742,7 +760,7 @@ Return a human-readable string representation.
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
 def __repr__(self) -> String
@@ -750,11 +768,11 @@ def __repr__(self) -> String
 
 Return the canonical string representation.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -763,7 +781,7 @@ Return the canonical string representation.
 
 <div class="fn-card" markdown="1">
 
-##### `write_repr_to`
+#### `write_repr_to`
 
 ```mojo
 def write_repr_to[W: Writer](self, mut writer: W)
@@ -771,11 +789,11 @@ def write_repr_to[W: Writer](self, mut writer: W)
 
 Write the string representation to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`): The writer type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: The writer to write to.
@@ -785,7 +803,7 @@ Write the string representation to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
@@ -793,11 +811,11 @@ def write_to[W: Writer](self, mut writer: W)
 
 Write the string representation to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`): The writer type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: The writer to write to.
@@ -807,7 +825,7 @@ Write the string representation to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `is_cpu`
+#### `is_cpu`
 
 ```mojo
 def is_cpu(self) -> Bool
@@ -815,11 +833,11 @@ def is_cpu(self) -> Bool
 
 Check if this is a CPU device.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -828,7 +846,7 @@ Check if this is a CPU device.
 
 <div class="fn-card" markdown="1">
 
-##### `is_gpu`
+#### `is_gpu`
 
 ```mojo
 def is_gpu(self) -> Bool
@@ -836,11 +854,11 @@ def is_gpu(self) -> Bool
 
 Check if this is a GPU device.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -849,7 +867,7 @@ Check if this is a GPU device.
 
 <div class="fn-card" markdown="1">
 
-##### `backend_id`
+#### `backend_id`
 
 ```mojo
 def backend_id(self) -> Int
@@ -857,11 +875,11 @@ def backend_id(self) -> Int
 
 Return a backend identifier.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -870,7 +888,7 @@ Return a backend identifier.
 
 <div class="fn-card" markdown="1">
 
-##### `device_name`
+#### `device_name`
 
 ```mojo
 def device_name(self) -> String
@@ -878,11 +896,11 @@ def device_name(self) -> String
 
 Return device string.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -891,7 +909,7 @@ Return device string.
 
 <div class="fn-card" markdown="1">
 
-##### `same_backend`
+#### `same_backend`
 
 ```mojo
 def same_backend(self, other: Self) -> Bool
@@ -899,12 +917,12 @@ def same_backend(self, other: Self) -> Bool
 
 Check if two devices use the same execution backend.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -913,7 +931,7 @@ Check if two devices use the same execution backend.
 
 <div class="fn-card" markdown="1">
 
-##### `is_default_index`
+#### `is_default_index`
 
 ```mojo
 def is_default_index(self) -> Bool
@@ -921,11 +939,11 @@ def is_default_index(self) -> Bool
 
 Check if this device uses index 0.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -934,7 +952,7 @@ Check if this device uses index 0.
 
 <div class="fn-card" markdown="1">
 
-##### `is_available`
+#### `is_available`
 
 ```mojo
 def is_available(self) -> Bool
@@ -942,11 +960,11 @@ def is_available(self) -> Bool
 
 Check if this device is available on the current system.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -955,7 +973,7 @@ Check if this device is available on the current system.
 
 <div class="fn-card" markdown="1">
 
-##### `default_device`
+#### `default_device`
 
 ```mojo
 def default_device() -> Self
@@ -965,7 +983,7 @@ def default_device() -> Self
 
 Return the best available device: GPU if present, otherwise CPU.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -976,7 +994,7 @@ Return the best available device: GPU if present, otherwise CPU.
 
 <div class="fn-card" markdown="1">
 
-##### `available_gpu`
+#### `available_gpu`
 
 ```mojo
 def available_gpu() -> String
@@ -988,7 +1006,7 @@ Return the name of the best available GPU backend.
 
 Checks in order: CUDA → ROCm → MPS.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -1000,7 +1018,7 @@ Checks in order: CUDA → ROCm → MPS.
 
 <div class="fn-card" markdown="1">
 
-##### `available_devices`
+#### `available_devices`
 
 ```mojo
 def available_devices() -> String
@@ -1010,7 +1028,7 @@ def available_devices() -> String
 
 List all available devices on the current system.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -1019,7 +1037,7 @@ List all available devices on the current system.
 
 <div class="fn-card" markdown="1">
 
-##### `parse_device_string`
+#### `parse_device_string`
 
 ```mojo
 def parse_device_string(text: String) -> Self
@@ -1036,11 +1054,11 @@ Supported formats:
     - "mps", "mps:0", "mps:1", ...
     - "gpu" (resolves to best available GPU backend)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `text` (`String`) `[imm]`: The device string to parse.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -1063,11 +1081,11 @@ def is_accelerator_available[device: Device]() -> Bool
 
 Check at compile time whether the given device's GPU accelerator exists.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `device` (`Device`): The device to check.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 

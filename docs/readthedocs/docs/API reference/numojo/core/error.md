@@ -39,6 +39,10 @@ comptime END_COLOR
 
 ### `NumojoError`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct NumojoError
 ```
@@ -53,9 +57,11 @@ Args:
     message: Main error description.
     location: Optional context about where error occurred.
 
-Notes:
+<div class="prose-label">Notes</div>
 All NumojoErrors use a single unified type with different categories for better organization.
 Error messages follow the format: "Category: Specific problem. Expected X but got Y."
+
+</div>
 
 #### Fields
 
@@ -65,7 +71,7 @@ Error messages follow the format: "Category: Specific problem. Expected X but go
 
 #### Aliases
 
-##### `ErrorDict`
+#### `ErrorDict`
 
 ```mojo
 comptime ErrorDict
@@ -78,9 +84,9 @@ comptime ErrorDict
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self, category: StringLiteral, message: StringLiteral, location: StringLiteral)
@@ -88,18 +94,18 @@ def __init__(out self, category: StringLiteral, message: StringLiteral, location
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `category` (`StringLiteral`) `[imm]`
 - `message` (`StringLiteral`) `[imm]`
 - `location` (`StringLiteral`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, category: StringLiteral, message: String, location: Optional[String] = None)
@@ -107,18 +113,18 @@ def __init__(out self, category: StringLiteral, message: String, location: Optio
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `category` (`StringLiteral`) `[imm]`
 - `message` (`String`) `[imm]`
 - `location` (`Optional[String]`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__(out self, category: StringLiteral, message: TString, location: StringLiteral)
@@ -126,14 +132,14 @@ def __init__(out self, category: StringLiteral, message: TString, location: Stri
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `category` (`StringLiteral`) `[imm]`
 - `message` (`TString`) `[imm]`
 - `location` (`StringLiteral`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -142,7 +148,7 @@ def __init__(out self, category: StringLiteral, message: TString, location: Stri
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
@@ -150,11 +156,11 @@ def __str__(self) -> String
 
 Return string representation of the error with formatting.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -163,7 +169,7 @@ Return string representation of the error with formatting.
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
@@ -171,11 +177,11 @@ def write_to[W: Writer](self, mut writer: W)
 
 Write error information to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -195,11 +201,11 @@ def terminate(message: String)
 
 Abort the program with the given error message.
 
-Notes:
+<div class="prose-label">Notes</div>
 This function is used for fatal, unrecoverable errors that require immediate termination.
 The message will be displayed in red color before the program exits.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `message` (`String`) `[imm]`: The error message to display before aborting.
 

@@ -24,17 +24,17 @@ def apply_along_axis_reduce_to_int[dtype: DType, func1d: def[dtype_func: DType](
 
 Applies a function to a NDArray by axis and reduce that dimension. The returned data type is DType.int. When the array is 1-d, the returned array will be a 0-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
 - `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Int`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
 - `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.int]`
 
@@ -53,17 +53,17 @@ def apply_along_axis_reduce[dtype: DType, func1d: def[dtype_func: DType](NDArray
 
 Applies a function to a NDArray by axis and reduce that dimension. When the array is 1-d, the returned array will be a 0-d array. The target data type of the returned NDArray is different from the input NDArray. This is a function ***overload***.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
 - `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Scalar[dtype_func]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
 - `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -83,18 +83,18 @@ def apply_along_axis_reduce_with_dtype[dtype: DType, returned_dtype: DType, func
 
 Applies a function to a NDArray by axis and reduce that dimension. When the array is 1-d, the returned array will be a 0-d array. The function returns a different dtype than the input NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
 - `returned_dtype` (`DType`): The data type of the returned NDArray elements.
 - `func1d` (`def[dtype_func: DType, returned_dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Scalar[returned_dtype_func]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
 - `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[returned_dtype]`
 
@@ -113,17 +113,17 @@ def apply_along_axis_preserve[dtype: DType, func1d: def[dtype_func: DType](NDArr
 
 Applies a function to a NDArray by axis without reducing that dimension. The resulting array will have the same shape as the input array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
 - `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[dtype_func]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
 - `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -142,12 +142,12 @@ def apply_along_axis_inplace[dtype: DType, func1d: def[dtype_func: DType](mut ND
 
 Applies a function to a NDArray by axis without reducing that dimension. The function is applied in-place to the input array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
 - `func1d` (`def[dtype_func: DType](mut NDArray[dtype_func]) raises capturing thin -> None`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[mut]`: The NDArray to apply the function to.
 - `axis` (`Int`) `[imm]`: The axis to apply the function to.
@@ -167,17 +167,17 @@ def apply_along_axis_indices[dtype: DType, func1d: def[dtype_func: DType](NDArra
 
 Applies a function to a NDArray by axis without reducing that dimension. The resulting array will have the same shape as the input array. The resulting array is an index array. It can be used for, e.g., argsort.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
 - `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[DType.int]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
 - `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.int]`
 

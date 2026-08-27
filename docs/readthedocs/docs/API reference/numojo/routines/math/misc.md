@@ -26,15 +26,15 @@ def cbrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise cube root of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -53,17 +53,17 @@ def clip[dtype: DType, //](a: NDArray[dtype], a_min: Scalar[dtype], a_max: Scala
 
 Limit values in an array to the range [a_min, a_max]. If a_min is greater than a_max, values are set to a_max.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `a_min` (`Scalar[dtype]`) `[imm]`: The minimum value.
 - `a_max` (`Scalar[dtype]`) `[imm]`: The maximum value.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -82,15 +82,15 @@ def rsqrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise reciprocal square root of NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -109,15 +109,15 @@ def sqrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Element-wise square root of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -139,16 +139,16 @@ Apply scalb element-wise to two arrays.
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

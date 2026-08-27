@@ -26,16 +26,16 @@ Compute the gradient of y over x using the trapezoidal rule.
 !!! info "Constraints"
     `fdtype` must be a floating-point type if `idtype` is not a floating-point type.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Input data type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `x` (`NDArray[dtype]`) `[imm]`: An array.
 - `spacing` (`Scalar[dtype]`) `[imm]`: An array of the same shape as x containing the spacing between adjacent elements.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -54,16 +54,16 @@ def diff[dtype: DType = DType.float64](array: NDArray[dtype], n: Int = Int(1)) -
 
 Compute the n-th order difference of the input array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A array.
 - `n` (`Int`) `[imm]`: The order of the difference.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

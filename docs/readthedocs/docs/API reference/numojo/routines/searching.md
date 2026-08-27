@@ -22,15 +22,15 @@ def argmax_1d[dtype: DType](a: NDArray[dtype]) -> Int
 
 Returns the index of the maximum value in the buffer. Regardless of the shape of input, it is treated as a 1-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -49,15 +49,15 @@ def argmin_1d[dtype: DType](a: NDArray[dtype]) -> Int
 
 Returns the index of the minimum value in the buffer. Regardless of the shape of input, it is treated as a 1-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -70,7 +70,7 @@ Returns the index of the minimum value in the buffer. Regardless of the shape of
 
 ### `argmax`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def argmax[dtype: DType, //](a: NDArray[dtype]) -> Int
@@ -78,26 +78,26 @@ def argmax[dtype: DType, //](a: NDArray[dtype]) -> Int
 
 Returns the indices of the maximum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the maximum values, the indices
 of the first occurrence are returned.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def argmax[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
@@ -105,12 +105,12 @@ def argmax[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
 
 Returns the indices of the maximum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the maximum values, the indices
 of the first occurrence are returned.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```mojo
 from numojo.prelude import *
@@ -137,16 +137,16 @@ def main() raises:
 ```
 End of examples.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 - `axis` (`Int`) `[imm]`: The axis along which to operate.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.int]`
 
@@ -159,7 +159,7 @@ End of examples.
 
 ### `argmin`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def argmin[dtype: DType, //](a: NDArray[dtype]) -> Int
@@ -167,26 +167,26 @@ def argmin[dtype: DType, //](a: NDArray[dtype]) -> Int
 
 Returns the indices of the minimum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the minimum values, the indices
 of the first occurrence are returned.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def argmin[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
@@ -194,21 +194,21 @@ def argmin[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
 
 Returns the indices of the minimum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the minimum values, the indices
 of the first occurrence are returned.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 - `axis` (`Int`) `[imm]`: The axis along which to operate.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.int]`
 

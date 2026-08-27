@@ -22,11 +22,11 @@ def load[dtype: DType = DType.float64](file: String, allow_pickle: Bool = False,
 
 Load arrays or pickled objects from .npy, .npz or pickled files.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `file` (`String`) `[imm]`: The file to read. File-like objects must support the seek() and read() methods.
 - `allow_pickle` (`Bool`) `[imm]`: Allow loading pickled object arrays stored in npy files.
@@ -34,7 +34,7 @@ Load arrays or pickled objects from .npy, .npz or pickled files.
 - `encoding` (`String`) `[imm]`: What encoding to use when reading Python 2 strings.
 - `max_header_size` (`Int`) `[imm]`: Maximum allowed size of the header.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -53,11 +53,11 @@ def save[dtype: DType = DType.float64](fname: String, array: NDArray[dtype], all
 
 Save an array to a binary file in NumPy .npy format.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `fname` (`String`) `[imm]`: File or filename to which the data is saved.
 - `array` (`NDArray[dtype]`) `[imm]`: Array data to be saved.
@@ -78,11 +78,11 @@ def loadtxt[dtype: DType = DType.float64](fname: String, comments: String = "#",
 
 Load data from a text file.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `fname` (`String`) `[imm]`: File, filename, list, or generator to read.
 - `comments` (`String`) `[imm]`: The characters or list of characters used to indicate the start of a comment.
@@ -90,7 +90,7 @@ Load data from a text file.
 - `skiprows` (`Int`) `[imm]`: Skip the first skiprows lines.
 - `ndmin` (`Int`) `[imm]`: The returned array will have at least ndmin dimensions.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -109,11 +109,11 @@ def savetxt[dtype: DType = DType.float64](fname: String, array: NDArray[dtype], 
 
 Save an array to a text file.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `fname` (`String`) `[imm]`: If the filename ends in .gz, the file is automatically saved in compressed gzip format.
 - `array` (`NDArray[dtype]`) `[imm]`: 1D or 2D array_like data to be saved to a text file.

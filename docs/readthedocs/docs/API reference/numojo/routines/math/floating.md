@@ -22,16 +22,16 @@ def copysign[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> ND
 
 Copy the sign of one array onto another.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

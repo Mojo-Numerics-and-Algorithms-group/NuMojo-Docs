@@ -24,12 +24,12 @@ GPU kernel: each block reduces its chunk of `a` to one partial sum.
 The host is responsible for summing the `partial_sums` buffer
 (one element per block) into the final scalar result.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `block_size` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `partial_sums` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
 - `a` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
@@ -48,17 +48,17 @@ def launch_sum_reduce[dtype: DType](context: DeviceContext, a: Pointer[Scalar[dt
 
 Launch the GPU sum-reduction kernel and combine partial sums.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `context` (`DeviceContext`) `[imm]`: The `DeviceContext` backing `a`'s device memory.
 - `a` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`: Device pointer to the first element to reduce.
 - `size` (`Int`) `[imm]`: Number of contiguous elements to reduce.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 

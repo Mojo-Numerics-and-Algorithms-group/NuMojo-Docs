@@ -144,12 +144,18 @@ comptime GLOBAL_PRINT_OPTIONS
 
 ### `PrintOptions`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct PrintOptions
 ```
 
 **Memory convention:** `memory_only`  
 **Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`
+
+</div>
 
 #### Fields
 
@@ -174,7 +180,7 @@ struct PrintOptions
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(out self, precision: Int = Int(4), suppress_small: Bool = False, separator: String = DEFAULT_SEPARATOR, padding: String = DEFAULT_PADDING, threshold: Int = Int(15), line_width: Int = Int(75), edge_items: Int = Int(2), sign: Bool = False, float_format: String = DEFAULT_FLOAT_FORMAT, complex_format: String = DEFAULT_COMPLEX_FORMAT, nan_string: String = DEFAULT_NAN_STRING, inf_string: String = DEFAULT_INF_STRING, formatted_width: Int = Int(6), exponent_threshold: Int = Int(4), suppress_scientific: Bool = False)
@@ -182,7 +188,7 @@ def __init__(out self, precision: Int = Int(4), suppress_small: Bool = False, se
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `precision` (`Int`) `[imm]`
 - `suppress_small` (`Bool`) `[imm]`
@@ -201,7 +207,7 @@ def __init__(out self, precision: Int = Int(4), suppress_small: Bool = False, se
 - `suppress_scientific` (`Bool`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -210,13 +216,13 @@ def __init__(out self, precision: Int = Int(4), suppress_small: Bool = False, se
 
 <div class="fn-card" markdown="1">
 
-##### `set_options`
+#### `set_options`
 
 ```mojo
 def set_options(mut self, precision: Int = Int(4), suppress_small: Bool = False, separator: String = DEFAULT_SEPARATOR, padding: String = DEFAULT_PADDING, threshold: Int = Int(15), line_width: Int = Int(75), edge_items: Int = Int(2), sign: Bool = False, float_format: String = DEFAULT_FLOAT_FORMAT, complex_format: String = DEFAULT_COMPLEX_FORMAT, nan_string: String = DEFAULT_NAN_STRING, inf_string: String = DEFAULT_INF_STRING, formatted_width: Int = Int(6), exponent_threshold: Int = Int(4), suppress_scientific: Bool = False)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `precision` (`Int`) `[imm]`
@@ -240,17 +246,17 @@ def set_options(mut self, precision: Int = Int(4), suppress_small: Bool = False,
 
 <div class="fn-card" markdown="1">
 
-##### `__enter__`
+#### `__enter__`
 
 ```mojo
 def __enter__(mut self) -> Self
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -259,13 +265,13 @@ def __enter__(mut self) -> Self
 
 <div class="fn-card" markdown="1">
 
-##### `__exit__`
+#### `__exit__`
 
 ```mojo
 def __exit__(mut self)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 
@@ -282,7 +288,7 @@ def __exit__(mut self)
 def set_printoptions(precision: Int = Int(4), suppress_small: Bool = False, separator: String = DEFAULT_SEPARATOR, padding: String = DEFAULT_PADDING, edge_items: Int = Int(2))
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `precision` (`Int`) `[imm]`
 - `suppress_small` (`Bool`) `[imm]`
@@ -306,11 +312,11 @@ Format a float in scientific notation.
 Notes: A scientific notation takes the form `-a.bbbbe+ii`. It will take
 `7 + precision` letters in total.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Datatype of the float.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `x` (`Scalar[dtype]`) `[imm]`: The float to format.
 - `precision` (`Int`) `[imm]`: The number of decimal places to include in the mantissa.
@@ -321,7 +327,7 @@ Notes: A scientific notation takes the form `-a.bbbbe+ii`. It will take
     Defaults to 4.
 - `formatted_width` (`Int`) `[imm]`: The width of the formatted string. Defaults to 8.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -335,7 +341,7 @@ Notes: A scientific notation takes the form `-a.bbbbe+ii`. It will take
 
 ### `format_floating_precision`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def format_floating_precision[dtype: DType](value: Scalar[dtype], precision: Int, sign: Bool = False, suppress_small: Bool = False) -> String
@@ -343,11 +349,11 @@ def format_floating_precision[dtype: DType](value: Scalar[dtype], precision: Int
 
 Format a floating-point value to the specified precision.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: The value to format.
 - `precision` (`Int`) `[imm]`: The number of decimal places to include.
@@ -355,14 +361,14 @@ Format a floating-point value to the specified precision.
     Defaults to False.
 - `suppress_small` (`Bool`) `[imm]`: Whether to suppress small numbers. Defaults to False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
 !!! failure "Raises"
     NumojoError: If precision is negative or if the value cannot be formatted.
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def format_floating_precision[cdtype: ComplexDType](value: ComplexSIMD[cdtype], precision: Int = Int(4), sign: Bool = False) -> String
@@ -370,18 +376,18 @@ def format_floating_precision[cdtype: ComplexDType](value: ComplexSIMD[cdtype], 
 
 Format a complex floating-point value to the specified precision.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `cdtype` (`ComplexDType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`ComplexSIMD[cdtype]`) `[imm]`: The complex value to format.
 - `precision` (`Int`) `[imm]`: The number of decimal places to include.
 - `sign` (`Bool`) `[imm]`: Whether to include the sign of the float in the result.
     Defaults to False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -395,7 +401,7 @@ Format a complex floating-point value to the specified precision.
 
 ### `format_value`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def format_value[dtype: DType](value: Scalar[dtype], print_options: PrintOptions) -> String
@@ -403,22 +409,22 @@ def format_value[dtype: DType](value: Scalar[dtype], print_options: PrintOptions
 
 Format a single value based on the print options.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`Scalar[dtype]`) `[imm]`: The value to format.
 - `print_options` (`PrintOptions`) `[imm]`: The print options.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def format_value[cdtype: ComplexDType](value: ComplexSIMD[cdtype], print_options: PrintOptions) -> String
@@ -426,16 +432,16 @@ def format_value[cdtype: ComplexDType](value: ComplexSIMD[cdtype], print_options
 
 Format a complex value based on the print options.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `cdtype` (`ComplexDType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `value` (`ComplexSIMD[cdtype]`) `[imm]`: The complex value to format.
 - `print_options` (`PrintOptions`) `[imm]`: The print options.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 

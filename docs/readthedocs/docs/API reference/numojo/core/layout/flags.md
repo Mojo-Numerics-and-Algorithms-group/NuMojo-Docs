@@ -10,6 +10,10 @@ Exports
 
 ### `Flags`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct Flags
 ```
@@ -18,6 +22,8 @@ struct Flags
 **Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`
 
 Information about the memory layout of the array. The Flags object can be accessed dictionary-like. or by using lowercased attribute names. Short names are available for convenience when using dictionary-like access.
+
+</div>
 
 #### Fields
 
@@ -32,9 +38,9 @@ Information about the memory layout of the array. The Flags object can be access
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(c_contiguous: Bool, f_contiguous: Bool, owndata: Bool, writeable: Bool) -> Self
@@ -44,7 +50,7 @@ def __init__(c_contiguous: Bool, f_contiguous: Bool, owndata: Bool, writeable: B
 
 Initializes the Flags object with provided information.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `c_contiguous` (`Bool`) `[imm]`: The data is in a C-style contiguous segment.
 - `f_contiguous` (`Bool`) `[imm]`: The data is in a Fortran-style contiguous segment.
@@ -52,11 +58,11 @@ Initializes the Flags object with provided information.
 - `writeable` (`Bool`) `[imm]`: The data area can be written to.
     If owndata is False, writeable is forced to be False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, shape: NDArrayShape, strides: NDArrayStrides, owndata: Bool, writeable: Bool)
@@ -66,7 +72,7 @@ def __init__(out self, shape: NDArrayShape, strides: NDArrayStrides, owndata: Bo
 
 Initializes the Flags object according to the shape and strides information.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`: The shape of the array.
 - `strides` (`NDArrayStrides`) `[imm]`: The strides of the array.
@@ -75,13 +81,13 @@ Initializes the Flags object according to the shape and strides information.
     If owndata is False, writeable is forced to be False.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__(shape: Tuple[Int, Int], strides: Tuple[Int, Int], owndata: Bool, writeable: Bool) -> Self
@@ -91,7 +97,7 @@ def __init__(shape: Tuple[Int, Int], strides: Tuple[Int, Int], owndata: Bool, wr
 
 Initializes the Flags object according the shape and strides information.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`Tuple[Int, Int]`) `[imm]`: The shape of the array.
 - `strides` (`Tuple[Int, Int]`) `[imm]`: The strides of the array.
@@ -99,11 +105,11 @@ Initializes the Flags object according the shape and strides information.
 - `writeable` (`Bool`) `[imm]`: The data area can be written to.
     If owndata is False, writeable is forced to be False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def __init__(*, copy: Self) -> Self
@@ -113,11 +119,11 @@ def __init__(*, copy: Self) -> Self
 
 Initializes the Flags object by copying the information from ancopy Flags object.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `copy` (`Self`) `[imm]`: The Flags object to copy information from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -126,7 +132,7 @@ Initializes the Flags object by copying the information from ancopy Flags object
 
 <div class="fn-card" markdown="1">
 
-##### `__getitem__`
+#### `__getitem__`
 
 ```mojo
 def __getitem__(self, key: String) -> Bool
@@ -134,12 +140,12 @@ def __getitem__(self, key: String) -> Bool
 
 Get the value of the fields with the given key. The Flags object can be accessed dictionary-like. Short names are available for convenience.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `key` (`String`) `[imm]`: The key of the field to get.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 

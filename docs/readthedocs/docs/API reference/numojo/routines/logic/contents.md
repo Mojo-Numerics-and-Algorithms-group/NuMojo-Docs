@@ -26,7 +26,7 @@ def isinf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 
 Checks if each element of the input array is infinite.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.contents import isinf
@@ -36,15 +36,15 @@ def main() raises:
     print(isinf(arr))  # Output: [False, False, False, False, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the input array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -63,7 +63,7 @@ def isfinite[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 
 Checks if each element of the input array is finite.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.contents import isfinite
@@ -73,15 +73,15 @@ def main() raises:
     print(isfinite(arr))  # Output: [True, True, True]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the input array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -100,7 +100,7 @@ def isnan[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 
 Checks if each element of the input array is NaN.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.contents import isnan
@@ -110,15 +110,15 @@ def main() raises:
     print(isnan(arr))  # Output: [False, False, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the input array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -137,7 +137,7 @@ def isneginf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 
 Checks if each element of the input array is negative infinity.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.contents import isneginf
@@ -147,15 +147,15 @@ def main() raises:
     print(isneginf(arr))  # Output: [False, False, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the input array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 
@@ -174,7 +174,7 @@ def isposinf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 
 Checks if each element of the input array is positive infinity.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.contents import isposinf
@@ -184,15 +184,15 @@ def main() raises:
     print(isposinf(arr))  # Output: [False, False, False]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the input array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[DType.bool]`
 

@@ -26,16 +26,16 @@ Find the max or min value in the buffer.
 The input is treated as a 1-D array regardless of shape. This is the
 backend routine for `max` and `min`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 - `is_max` (`Bool`): If True, find max value, otherwise find min value.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -48,7 +48,7 @@ backend routine for `max` and `min`.
 
 ### `max`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def max[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
@@ -56,7 +56,7 @@ def max[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
 
 Find the max value of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -65,21 +65,21 @@ var a = nm.arange[f32](0, 6).reshape(Shape(2, 3))
 var m = nm.max(a)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def max[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
@@ -87,7 +87,7 @@ def max[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
 
 Find the max value of an array along an axis.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -96,16 +96,16 @@ var a = nm.arange[f32](0, 6).reshape(Shape(2, 3))
 var m = nm.max(a, axis=0)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 - `axis` (`Int`) `[imm]`: The axis along which the max is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -124,15 +124,15 @@ def extrema_1d_max[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
 
 Find the max value in a 1-D array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -145,7 +145,7 @@ Find the max value in a 1-D array.
 
 ### `min`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def min[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
@@ -153,7 +153,7 @@ def min[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
 
 Find the min value of an array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -162,21 +162,21 @@ var a = nm.arange[f32](0, 6).reshape(Shape(2, 3))
 var m = nm.min(a)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def min[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
@@ -184,7 +184,7 @@ def min[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
 
 Find the min value of an array along an axis.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -193,16 +193,16 @@ var a = nm.arange[f32](0, 6).reshape(Shape(2, 3))
 var m = nm.min(a, axis=1)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An array.
 - `axis` (`Int`) `[imm]`: The axis along which the min is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -215,7 +215,7 @@ var m = nm.min(a, axis=1)
 
 ### `minimum`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def minimum[dtype: DType = DType.float64](s1: Scalar[dtype], s2: Scalar[dtype]) -> Scalar[dtype]
@@ -223,20 +223,20 @@ def minimum[dtype: DType = DType.float64](s1: Scalar[dtype], s2: Scalar[dtype]) 
 
 Minimum value of two SIMD values.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `s1` (`Scalar[dtype]`) `[imm]`: A SIMD Value.
 - `s2` (`Scalar[dtype]`) `[imm]`: A SIMD Value.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def minimum[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -244,7 +244,7 @@ def minimum[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArra
 
 Element-wise minimum of two arrays.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -254,16 +254,16 @@ var b = nm.array[f32]("[2, 1, 4]")
 var m = nm.minimum(a, b)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: An array.
 - `array2` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -276,7 +276,7 @@ var m = nm.minimum(a, b)
 
 ### `maximum`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def maximum[dtype: DType = DType.float64](s1: Scalar[dtype], s2: Scalar[dtype]) -> Scalar[dtype]
@@ -284,20 +284,20 @@ def maximum[dtype: DType = DType.float64](s1: Scalar[dtype], s2: Scalar[dtype]) 
 
 Maximum value of two SIMD values.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `s1` (`Scalar[dtype]`) `[imm]`: A SIMD Value.
 - `s2` (`Scalar[dtype]`) `[imm]`: A SIMD Value.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def maximum[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -305,7 +305,7 @@ def maximum[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArra
 
 Element-wise maximum of two arrays.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -315,16 +315,16 @@ var b = nm.array[f32]("[2, 1, 4]")
 var m = nm.maximum(a, b)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A array.
 - `array2` (`NDArray[dtype]`) `[imm]`: A array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

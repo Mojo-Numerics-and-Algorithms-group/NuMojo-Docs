@@ -30,16 +30,16 @@ Parameters
 !!! info "Constraints"
     `array1` and `array2` must be of shape (3,).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A array.
 - `array2` (`NDArray[dtype]`) `[imm]`: A array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -64,16 +64,16 @@ Parameters
 !!! info "Constraints"
     `array1` and `array2` must be 1 dimensional.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A array.
 - `array2` (`NDArray[dtype]`) `[imm]`: A array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -90,13 +90,13 @@ Parameters
 def tile[tiled_fn: def[tile_x: Int, tile_y: Int](Int, Int) capturing thin -> None, tile_x: Int, tile_y: Int](end_x: Int, end_y: Int)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `tiled_fn` (`def[tile_x: Int, tile_y: Int](Int, Int) capturing thin -> None`)
 - `tile_x` (`Int`)
 - `tile_y` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `end_x` (`Int`) `[imm]`
 - `end_y` (`Int`) `[imm]`
@@ -114,16 +114,16 @@ def matmul_tiled_unrolled_parallelized[dtype: DType](A: NDArray[dtype], B: NDArr
 
 Array multiplication vectorized, tiled, unrolled, and parallelized.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`
 - `B` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -142,16 +142,16 @@ def matmul_1darray[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArra
 
 Array multiplication for 1-d arrays (inner dot).
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`
 - `B` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -176,10 +176,10 @@ Parameter:
 Return:
     A multiplied by B.
 
-Notes:
+<div class="prose-label">Notes</div>
 The multiplication is vectorized and parallelized.
 
-References:
+<div class="prose-label">References</div>
     [1] https://docs.modular.com/mojo/notebooks/Matmul.
     resultompared to the reference, we increases the size of
     the SIMD vector from the default width to 16. The purpose is to
@@ -188,16 +188,16 @@ References:
     `matmul_parallelized` and `matmul_tiled_unrolled_parallelized` for large
     matrices.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: First array.
 - `B` (`NDArray[dtype]`) `[imm]`: Second array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -223,7 +223,7 @@ Parameter:
 Return:
     A multiplied by B.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 When A and B are 1darray, it is equal to dot of vectors:
 `(i) @ (i) -> (1)`.
@@ -235,16 +235,16 @@ When A and B are more than 2d, it is equal to a stack of 2darrays:
 `(i,j,k) @ (i,k,l) -> (i,j,l)` and
 `(i,j,k,l) @ (i,j,l,m) -> (i,j,k,m)`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: First array.
 - `B` (`NDArray[dtype]`) `[imm]`: Second array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -266,16 +266,16 @@ def matmul_naive[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[
 
 Array multiplication with three nested loops.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`
 - `B` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

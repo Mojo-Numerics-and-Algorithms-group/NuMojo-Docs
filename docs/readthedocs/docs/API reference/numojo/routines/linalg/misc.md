@@ -31,7 +31,7 @@ replaced by a new last axis holding the diagonal values. The result shape is
 `a.shape[axes not in {axis1, axis2}] + (diagonal_length,)`, where the
 surviving axes keep their original relative order.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 
@@ -41,11 +41,11 @@ print(nm.linalg.diagonal(a, axis1=0, axis2=1))
 ```
 .
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: An NDArray.
 - `offset` (`Int`) `[imm]`: Offset of the diagonal from the main diagonal.
@@ -54,7 +54,7 @@ print(nm.linalg.diagonal(a, axis1=0, axis2=1))
 - `axis2` (`Int`) `[imm]`: Second axis of the 2-D sub-arrays from which the diagonals
     should be taken. Defaults to 1.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

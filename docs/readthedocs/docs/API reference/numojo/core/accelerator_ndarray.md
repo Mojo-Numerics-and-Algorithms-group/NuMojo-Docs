@@ -13,6 +13,10 @@ Exports
 
 ### `AcceleratorNDArray`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct AcceleratorNDArray[dtype: DType = DType.float64, device: Device = Device.CPU]
 ```
@@ -22,11 +26,13 @@ struct AcceleratorNDArray[dtype: DType = DType.float64, device: Device = Device.
 
 Device-aware N-dimensional array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Element dtype.
 - `device` (`Device`): Target device (`Device.CPU`, `Device.CUDA`, `Device.ROCM`,
     `Device.MPS`).
+
+</div>
 
 #### Fields
 
@@ -42,9 +48,9 @@ Device-aware N-dimensional array.
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self)
@@ -52,15 +58,15 @@ def __init__(out self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, shape: NDArrayShape, order: String = "C")
@@ -68,19 +74,19 @@ def __init__(out self, shape: NDArrayShape, order: String = "C")
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`
 - `order` (`String`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__(out self, shape: List[Int], order: String = "C")
@@ -88,19 +94,19 @@ def __init__(out self, shape: List[Int], order: String = "C")
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `order` (`String`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def __init__(out self, *shape: Int, *, order: String = "C")
@@ -108,19 +114,19 @@ def __init__(out self, *shape: Int, *, order: String = "C")
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `order` (`String`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 5
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
 def __init__(out self, shape: NDArrayShape, strides: NDArrayStrides, offset: Int, flags: Flags)
@@ -128,7 +134,7 @@ def __init__(out self, shape: NDArrayShape, strides: NDArrayStrides, offset: Int
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`
 - `strides` (`NDArrayStrides`) `[imm]`
@@ -136,13 +142,13 @@ def __init__(out self, shape: NDArrayShape, strides: NDArrayStrides, offset: Int
 - `flags` (`Flags`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 6
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
 def __init__(out self, var data: AcceleratorDataContainer[dtype, device], *, is_view: Bool, shape: NDArrayShape, strides: NDArrayStrides, offset: Int, size: Int)
@@ -150,7 +156,7 @@ def __init__(out self, var data: AcceleratorDataContainer[dtype, device], *, is_
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `data` (`AcceleratorDataContainer[dtype, device]`) `[var]`
 - `is_view` (`Bool`) `[imm]`
@@ -160,13 +166,13 @@ def __init__(out self, var data: AcceleratorDataContainer[dtype, device], *, is_
 - `size` (`Int`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 7
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
 def __init__(out self, *, copy: Self)
@@ -174,16 +180,16 @@ def __init__(out self, *, copy: Self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `copy` (`Self`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 8
+<div class="overload-divider">Overload 8</div>
 
 ```mojo
 def __init__(out self, *, deinit move: Self)
@@ -191,12 +197,12 @@ def __init__(out self, *, deinit move: Self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `move` (`Self`) `[deinit]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -205,70 +211,70 @@ def __init__(out self, *, deinit move: Self)
 
 <div class="fn-card" markdown="1">
 
-##### `__getitem__`
+#### `__getitem__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __getitem__(self) -> Scalar[dtype]
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __getitem__(self, index: Item) -> Scalar[dtype]
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `index` (`Item`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __getitem__(self, idx: Int) -> Self
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def __getitem__(self, var *slices: Slice) -> Self
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `*slices` (`Slice`) `[var]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -279,13 +285,13 @@ def __getitem__(self, var *slices: Slice) -> Self
 
 <div class="fn-card" markdown="1">
 
-##### `__setitem__`
+#### `__setitem__`
 
 ```mojo
 def __setitem__(mut self, index: Item, value: Scalar[dtype])
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `index` (`Item`) `[imm]`
@@ -298,7 +304,7 @@ def __setitem__(mut self, index: Item, value: Scalar[dtype])
 
 <div class="fn-card" markdown="1">
 
-##### `__neg__`
+#### `__neg__`
 
 ```mojo
 def __neg__(self) -> Self
@@ -306,11 +312,11 @@ def __neg__(self) -> Self
 
 Elementwise negation. Requires a densely contiguous array (no broadcasting or strided views yet).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -322,7 +328,7 @@ Elementwise negation. Requires a densely contiguous array (no broadcasting or st
 
 <div class="fn-card" markdown="1">
 
-##### `__add__`
+#### `__add__`
 
 ```mojo
 def __add__(self, other: Self) -> Self
@@ -330,12 +336,12 @@ def __add__(self, other: Self) -> Self
 
 Elementwise addition. See `_binary_op` for constraints.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -346,7 +352,7 @@ Elementwise addition. See `_binary_op` for constraints.
 
 <div class="fn-card" markdown="1">
 
-##### `__sub__`
+#### `__sub__`
 
 ```mojo
 def __sub__(self, other: Self) -> Self
@@ -354,12 +360,12 @@ def __sub__(self, other: Self) -> Self
 
 Elementwise subtraction. See `_binary_op` for constraints.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -370,7 +376,7 @@ Elementwise subtraction. See `_binary_op` for constraints.
 
 <div class="fn-card" markdown="1">
 
-##### `__mul__`
+#### `__mul__`
 
 ```mojo
 def __mul__(self, other: Self) -> Self
@@ -378,12 +384,12 @@ def __mul__(self, other: Self) -> Self
 
 Elementwise multiplication. See `_binary_op` for constraints.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -394,7 +400,7 @@ Elementwise multiplication. See `_binary_op` for constraints.
 
 <div class="fn-card" markdown="1">
 
-##### `__truediv__`
+#### `__truediv__`
 
 ```mojo
 def __truediv__(self, other: Self) -> Self
@@ -402,12 +408,12 @@ def __truediv__(self, other: Self) -> Self
 
 Elementwise division. See `_binary_op` for constraints.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -418,7 +424,7 @@ Elementwise division. See `_binary_op` for constraints.
 
 <div class="fn-card" markdown="1">
 
-##### `view`
+#### `view`
 
 ```mojo
 def view(self) -> Self
@@ -426,11 +432,11 @@ def view(self) -> Self
 
 Create a metadata-only view sharing the same storage.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -441,17 +447,17 @@ Create a metadata-only view sharing the same storage.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -460,17 +466,17 @@ def __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
 def __repr__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -479,17 +485,17 @@ def __repr__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -499,17 +505,17 @@ def write_to[W: Writer](self, mut writer: W)
 
 <div class="fn-card" markdown="1">
 
-##### `__len__`
+#### `__len__`
 
 ```mojo
 def __len__(self) -> Int
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -518,17 +524,17 @@ def __len__(self) -> Int
 
 <div class="fn-card" markdown="1">
 
-##### `is_cpu`
+#### `is_cpu`
 
 ```mojo
 def is_cpu(self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -537,17 +543,17 @@ def is_cpu(self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `is_gpu`
+#### `is_gpu`
 
 ```mojo
 def is_gpu(self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -556,17 +562,17 @@ def is_gpu(self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_ptr`
+#### `unsafe_ptr`
 
 ```mojo
 def unsafe_ptr(ref self) -> Pointer[Scalar[dtype], MutAnyOrigin] where (device.type == String("cpu"))
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Pointer[Scalar[dtype], MutAnyOrigin]`
 
@@ -575,7 +581,7 @@ def unsafe_ptr(ref self) -> Pointer[Scalar[dtype], MutAnyOrigin] where (device.t
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_device_ptr`
+#### `unsafe_device_ptr`
 
 ```mojo
 def unsafe_device_ptr(ref self) -> Pointer[Scalar[dtype], MutAnyOrigin] where (device.type == String("gpu"))
@@ -583,11 +589,11 @@ def unsafe_device_ptr(ref self) -> Pointer[Scalar[dtype], MutAnyOrigin] where (d
 
 Return the raw device pointer to the buffer's data.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Pointer[Scalar[dtype], MutAnyOrigin]`
 
@@ -596,7 +602,7 @@ Return the raw device pointer to the buffer's data.
 
 <div class="fn-card" markdown="1">
 
-##### `device_context`
+#### `device_context`
 
 ```mojo
 def device_context(self) -> DeviceContext where (device.type == String("gpu"))
@@ -604,11 +610,11 @@ def device_context(self) -> DeviceContext where (device.type == String("gpu"))
 
 Return the `DeviceContext` backing this array's GPU storage.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `DeviceContext`
 
@@ -617,17 +623,17 @@ Return the `DeviceContext` backing this array's GPU storage.
 
 <div class="fn-card" markdown="1">
 
-##### `num_elements`
+#### `num_elements`
 
 ```mojo
 def num_elements(self) -> Int
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -636,19 +642,19 @@ def num_elements(self) -> Int
 
 <div class="fn-card" markdown="1">
 
-##### `normalize`
+#### `normalize`
 
 ```mojo
 def normalize(self, index: Int, dim: Int) -> Int
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `index` (`Int`) `[imm]`
 - `dim` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -657,37 +663,37 @@ def normalize(self, index: Int, dim: Int) -> Int
 
 <div class="fn-card" markdown="1">
 
-##### `item`
+#### `item`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def item(self, flat_index: Int) -> Scalar[dtype]
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `flat_index` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
 !!! failure "Raises"
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def item(self, *indices: Int) -> Scalar[dtype]
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `*indices` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -698,13 +704,13 @@ def item(self, *indices: Int) -> Scalar[dtype]
 
 <div class="fn-card" markdown="1">
 
-##### `itemset`
+#### `itemset`
 
 ```mojo
 def itemset(mut self, flat_index: Int, value: Scalar[dtype])
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `flat_index` (`Int`) `[imm]`
@@ -717,17 +723,17 @@ def itemset(mut self, flat_index: Int, value: Scalar[dtype])
 
 <div class="fn-card" markdown="1">
 
-##### `deep_copy`
+#### `deep_copy`
 
 ```mojo
 def deep_copy(self) -> Self
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -738,17 +744,17 @@ def deep_copy(self) -> Self
 
 <div class="fn-card" markdown="1">
 
-##### `to_host`
+#### `to_host`
 
 ```mojo
 def to_host(self) -> AcceleratorNDArray[dtype]
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype]`
 
@@ -759,21 +765,21 @@ def to_host(self) -> AcceleratorNDArray[dtype]
 
 <div class="fn-card" markdown="1">
 
-##### `to_device`
+#### `to_device`
 
 ```mojo
 def to_device[target: Device](self) -> AcceleratorNDArray[dtype, target]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `target` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, target]`
 
@@ -784,21 +790,21 @@ def to_device[target: Device](self) -> AcceleratorNDArray[dtype, target]
 
 <div class="fn-card" markdown="1">
 
-##### `to`
+#### `to`
 
 ```mojo
 def to[target: Device](self) -> AcceleratorNDArray[dtype, target]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `target` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, target]`
 
@@ -809,7 +815,7 @@ def to[target: Device](self) -> AcceleratorNDArray[dtype, target]
 
 <div class="fn-card" markdown="1">
 
-##### `sum`
+#### `sum`
 
 ```mojo
 def sum(self) -> Scalar[dtype]
@@ -817,11 +823,11 @@ def sum(self) -> Scalar[dtype]
 
 Sum of all elements in the array. Requires a densely contiguous array (no broadcasting or strided views yet).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[dtype]`
 
@@ -837,7 +843,7 @@ Sum of all elements in the array. Requires a densely contiguous array (no broadc
 
 ### `empty`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def empty[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -845,23 +851,23 @@ def empty[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDAr
 
 Create an uninitialized accelerator array on `device`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def empty[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -869,23 +875,23 @@ def empty[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List
 
 Create an uninitialized accelerator array on `device`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def empty[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -893,17 +899,17 @@ def empty[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int
 
 Create an uninitialized accelerator array on `device`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -916,7 +922,7 @@ Create an uninitialized accelerator array on `device`.
 
 ### `full`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def full[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, fill_value: Scalar[dtype], order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -924,24 +930,24 @@ def full[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArr
 
 Create an accelerator array filled with `fill_value`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`
 - `fill_value` (`Scalar[dtype]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def full[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], fill_value: Scalar[dtype], order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -949,18 +955,18 @@ def full[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[
 
 Create an accelerator array filled with `fill_value`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `fill_value` (`Scalar[dtype]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -973,7 +979,7 @@ Create an accelerator array filled with `fill_value`.
 
 ### `zeros`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -981,23 +987,23 @@ def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDAr
 
 Create an accelerator array filled with zeros.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -1005,23 +1011,23 @@ def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List
 
 Create an accelerator array filled with zeros.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -1029,17 +1035,17 @@ def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int
 
 Create an accelerator array filled with zeros.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -1052,7 +1058,7 @@ Create an accelerator array filled with zeros.
 
 ### `ones`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def ones[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -1060,23 +1066,23 @@ def ones[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArr
 
 Create an accelerator array filled with ones.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`NDArrayShape`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def ones[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -1084,23 +1090,23 @@ def ones[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[
 
 Create an accelerator array filled with ones.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def ones[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
@@ -1108,17 +1114,17 @@ def ones[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int,
 
 Create an accelerator array filled with ones.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -1137,17 +1143,17 @@ def empty_like[dtype: DType, device: Device](a: AcceleratorNDArray[dtype, device
 
 Create an uninitialized accelerator array with `a`'s shape and device.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`AcceleratorNDArray[dtype, device]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -1166,17 +1172,17 @@ def zeros_like[dtype: DType, device: Device](a: AcceleratorNDArray[dtype, device
 
 Create a zeros accelerator array with `a`'s shape and device.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`AcceleratorNDArray[dtype, device]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -1195,17 +1201,17 @@ def ones_like[dtype: DType, device: Device](a: AcceleratorNDArray[dtype, device]
 
 Create a ones accelerator array with `a`'s shape and device.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`AcceleratorNDArray[dtype, device]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -1224,18 +1230,18 @@ def full_like[dtype: DType, device: Device](a: AcceleratorNDArray[dtype, device]
 
 Create a filled accelerator array with `a`'s shape and device.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `a` (`AcceleratorNDArray[dtype, device]`) `[imm]`
 - `fill_value` (`Scalar[dtype]`) `[imm]`
 - `order` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
@@ -1248,7 +1254,7 @@ Create a filled accelerator array with `a`'s shape and device.
 
 ### `arange`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def arange[dtype: DType = DType.float64, device: Device = Device.CPU](start: Scalar[dtype], stop: Scalar[dtype], step: Scalar[dtype] = 1) -> AcceleratorNDArray[dtype, device]
@@ -1256,24 +1262,24 @@ def arange[dtype: DType = DType.float64, device: Device = Device.CPU](start: Sca
 
 Create an accelerator array with evenly spaced values.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `start` (`Scalar[dtype]`) `[imm]`
 - `stop` (`Scalar[dtype]`) `[imm]`
 - `step` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def arange[dtype: DType = DType.float64, device: Device = Device.CPU](stop: Scalar[dtype]) -> AcceleratorNDArray[dtype, device]
@@ -1281,16 +1287,16 @@ def arange[dtype: DType = DType.float64, device: Device = Device.CPU](stop: Scal
 
 Create an accelerator array with values from zero to `stop`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 - `device` (`Device`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `stop` (`Scalar[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `AcceleratorNDArray[dtype, device]`
 

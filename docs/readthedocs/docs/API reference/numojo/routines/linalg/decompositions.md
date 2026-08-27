@@ -25,7 +25,7 @@ Perform LU (lower-upper) decomposition for array.
 For efficiency, `dtype` of the output arrays will be the same as the input
 array. Thus, use `astype()` before passing the array to this function.
 
-Example:
+<div class="prose-label">Examples</div>
 ```
 import numojo as nm
 def main() raises:
@@ -52,21 +52,21 @@ def main() raises:
 2-D array  Shape: [3, 3]  DType: float64
 ```
 
-Further readings:
+<div class="prose-label">Further Reading</div>
 - Linear Algebra And Its Applications, fourth edition, Gilbert Strang
 - https://en.wikipedia.org/wiki/LU_decomposition
 - https://www.scicoding.com/how-to-calculate-lu-decomposition-in-python/
 - https://courses.physics.illinois.edu/cs357/sp2020/notes/ref-9-linsys.html.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the upper and upper triangular matrices.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[imm]`: Input matrix for decomposition. It should be a row-major matrix.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Tuple[NDArray[dtype], NDArray[dtype]]`
 
@@ -85,15 +85,15 @@ def partial_pivoting[dtype: DType](var A: NDArray[dtype]) -> Tuple[NDArray[dtype
 
 Perform partial pivoting for a square matrix.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `A` (`NDArray[dtype]`) `[var]`: 2-d square array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Tuple[NDArray[dtype], NDArray[dtype], Int]`
 

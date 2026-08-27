@@ -9,7 +9,7 @@ Exports
 -------
 - `NDArrayShape`: Shape container for N-dimensional arrays.
 
-Notes:
+<div class="prose-label">Notes</div>
     - The number of elements in the shape must be positive.
     - All elements of the shape must be non-negative.
     - Dimension values are validated upon creation.
@@ -17,6 +17,10 @@ Notes:
 ## Structs
 
 ### `NDArrayShape`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct NDArrayShape
@@ -30,7 +34,7 @@ Represents the shape (dimensions) of an NDArray.
 The data buffer is a series of `Int` values in memory. Dimensions and values are validated
 upon creation to ensure they are non-negative.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 
@@ -43,13 +47,15 @@ var shape2 = nm.Shape([5, 6, 7])
 print(shape2)  # Shape: (5, 6, 7)
 ```
 
+</div>
+
 #### Fields
 
 - **`ndim`** (`Int`): Number of dimensions of array. It must be larger than 0.
 
 #### Aliases
 
-##### `element_type`
+#### `element_type`
 
 ```mojo
 comptime element_type
@@ -64,9 +70,9 @@ The data type of the NDArrayShape elements.
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__() -> Self
@@ -76,11 +82,11 @@ def __init__() -> Self
 
 Initializes an empty NDArrayShape.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(var buf: IndexBuffer) -> Self
@@ -90,15 +96,15 @@ def __init__(var buf: IndexBuffer) -> Self
 
 Initializes the NDArrayShape from an IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `buf` (`IndexBuffer`) `[var]`: The IndexBuffer to initialize from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def __init__(out self, *shape: Int)
@@ -108,19 +114,19 @@ def __init__(out self, *shape: Int)
 
 Initializes the NDArrayShape with variable shape dimensions.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*shape` (`Int`) `[imm]`: Variable number of integers representing the shape dimensions.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
     NumojoError: If any shape dimension is negative.
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def __init__(out self, shape: List[Int])
@@ -130,12 +136,12 @@ def __init__(out self, shape: List[Int])
 
 Initializes the NDArrayShape with a list of shape dimensions.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`List[Int]`) `[imm]`: A list of integers representing the shape dimensions.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -143,7 +149,7 @@ Initializes the NDArrayShape with a list of shape dimensions.
     NumojoError: If the number of dimensions is not positive.
 NumojoError: If any shape dimension is negative.
 
-###### Overload 5
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
 def __init__(out self, shape: VariadicList[Int])
@@ -153,12 +159,12 @@ def __init__(out self, shape: VariadicList[Int])
 
 Initializes the NDArrayShape with a list of shape dimensions.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`VariadicList[Int]`) `[imm]`: A variadic list of integers representing the shape dimensions.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -166,7 +172,7 @@ Initializes the NDArrayShape with a list of shape dimensions.
     NumojoError: If the number of dimensions is not positive.
 NumojoError: If any shape dimension is negative.
 
-###### Overload 6
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
 def __init__(shape: Self) -> Self
@@ -176,15 +182,15 @@ def __init__(shape: Self) -> Self
 
 Initializes the NDArrayShape from another NDArrayShape. A deep copy of the data buffer is conducted.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`Self`) `[imm]`: Another NDArrayShape to initialize from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 7
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
 def __init__(out self, *, ndim: Int, initialized: Bool)
@@ -194,11 +200,11 @@ def __init__(out self, *, ndim: Int, initialized: Bool)
 
 Construct NDArrayShape with number of dimensions. This method is useful when you want to create a shape with given ndim without knowing the shape values. `ndim == 0` is allowed in this method for 0darray (numojo scalar).
 
-Note:
+<div class="prose-label">Notes</div>
 After creating the shape with uninitialized values,
 you must set the values before using it! Otherwise, it may lead to undefined behavior.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `ndim` (`Int`) `[imm]`: Number of dimensions.
 - `initialized` (`Bool`) `[imm]`: Whether the shape is initialized.
@@ -206,14 +212,14 @@ you must set the values before using it! Otherwise, it may lead to undefined beh
     If no, the values will be uninitialized.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
     NumojoError: If the number of dimensions is negative.
 
-###### Overload 8
+<div class="overload-divider">Overload 8</div>
 
 ```mojo
 def __init__(*, copy: Self) -> Self
@@ -223,11 +229,11 @@ def __init__(*, copy: Self) -> Self
 
 Initializes the NDArrayShape from ancopy NDArrayShape. A deep copy of the data buffer is conducted.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `copy` (`Self`) `[imm]`: Ancopy NDArrayShape to initialize from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -236,9 +242,9 @@ Initializes the NDArrayShape from ancopy NDArrayShape. A deep copy of the data b
 
 <div class="fn-card" markdown="1">
 
-##### `__getitem__`
+#### `__getitem__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __getitem__(self, index: Int) -> Int
@@ -246,18 +252,18 @@ def __getitem__(self, index: Int) -> Int
 
 Gets shape dimension at specified index.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `index` (`Int`) `[imm]`: Index to get the shape.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
 !!! failure "Raises"
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __getitem__(self, slice_index: Slice) -> Self
@@ -265,12 +271,12 @@ def __getitem__(self, slice_index: Slice) -> Self
 
 Return a sliced view of the dimension tuple as a new NDArrayShape.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `slice_index` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -281,7 +287,7 @@ Return a sliced view of the dimension tuple as a new NDArrayShape.
 
 <div class="fn-card" markdown="1">
 
-##### `__setitem__`
+#### `__setitem__`
 
 ```mojo
 def __setitem__(mut self, index: Int, val: Int)
@@ -289,7 +295,7 @@ def __setitem__(mut self, index: Int, val: Int)
 
 Sets shape at specified index.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `index` (`Int`) `[imm]`: Index to set the shape.
@@ -303,7 +309,7 @@ Sets shape at specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
 def __eq__(self, other: Self) -> Bool
@@ -311,12 +317,12 @@ def __eq__(self, other: Self) -> Bool
 
 Checks if two shapes have identical dimensions and values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`: The shape to compare with.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -325,7 +331,7 @@ Checks if two shapes have identical dimensions and values.
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
 def __ne__(self, other: Self) -> Bool
@@ -333,12 +339,12 @@ def __ne__(self, other: Self) -> Bool
 
 Checks if two shapes have identical dimensions and values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`: The shape to compare with.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -347,7 +353,7 @@ Checks if two shapes have identical dimensions and values.
 
 <div class="fn-card" markdown="1">
 
-##### `__contains__`
+#### `__contains__`
 
 ```mojo
 def __contains__(self, val: Int) -> Bool
@@ -355,12 +361,12 @@ def __contains__(self, val: Int) -> Bool
 
 Check if the NDArrayShape contains the given value.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `val` (`Int`) `[imm]`: Value to check for.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -369,7 +375,7 @@ Check if the NDArrayShape contains the given value.
 
 <div class="fn-card" markdown="1">
 
-##### `load`
+#### `load`
 
 ```mojo
 def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
@@ -377,16 +383,16 @@ def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 
 Load a SIMD vector from the Shape at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to load from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `SIMD[DType.int, width]`
 
@@ -398,7 +404,7 @@ Load a SIMD vector from the Shape at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `store`
+#### `store`
 
 ```mojo
 def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
@@ -406,11 +412,11 @@ def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 
 Store a SIMD vector into the Shape at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to store to.
@@ -424,7 +430,7 @@ Store a SIMD vector into the Shape at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_load`
+#### `unsafe_load`
 
 ```mojo
 def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
@@ -432,16 +438,16 @@ def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 
 Unsafely load a SIMD vector from the Shape at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to load from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `SIMD[DType.int, width]`
 
@@ -450,7 +456,7 @@ Unsafely load a SIMD vector from the Shape at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_store`
+#### `unsafe_store`
 
 ```mojo
 def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
@@ -458,11 +464,11 @@ def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, wid
 
 Unsafely store a SIMD vector into the Shape at the specified index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): The width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to store to.
@@ -473,18 +479,18 @@ Unsafely store a SIMD vector into the Shape at the specified index.
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_get`
+#### `unsafe_get`
 
 ```mojo
 def unsafe_get(self, idx: Int) -> Int
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -493,13 +499,13 @@ def unsafe_get(self, idx: Int) -> Int
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_set`
+#### `unsafe_set`
 
 ```mojo
 def unsafe_set(mut self, idx: Int, value: Int)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `idx` (`Int`) `[imm]`
@@ -510,7 +516,7 @@ def unsafe_set(mut self, idx: Int, value: Int)
 
 <div class="fn-card" markdown="1">
 
-##### `row_major`
+#### `row_major`
 
 ```mojo
 def row_major(self) -> NDArrayStrides
@@ -521,11 +527,11 @@ Create row-major (C-style) strides from a shape.
 Row-major means the last dimension has stride 1 and strides increase
 going backwards through dimensions.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArrayStrides`
 
@@ -536,7 +542,7 @@ going backwards through dimensions.
 
 <div class="fn-card" markdown="1">
 
-##### `col_major`
+#### `col_major`
 
 ```mojo
 def col_major(self) -> NDArrayStrides
@@ -547,11 +553,11 @@ Create column-major (Fortran-style) strides from a shape.
 Column-major means the first dimension has stride 1 and strides increase
 going forward through dimensions.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArrayStrides`
 
@@ -562,7 +568,7 @@ going forward through dimensions.
 
 <div class="fn-card" markdown="1">
 
-##### `reverse`
+#### `reverse`
 
 ```mojo
 def reverse(self) -> Self
@@ -570,11 +576,11 @@ def reverse(self) -> Self
 
 Return a new shape with dimensions reversed.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -583,7 +589,7 @@ Return a new shape with dimensions reversed.
 
 <div class="fn-card" markdown="1">
 
-##### `permute`
+#### `permute`
 
 ```mojo
 def permute(self, axes: List[Int]) -> Self
@@ -591,12 +597,12 @@ def permute(self, axes: List[Int]) -> Self
 
 Return a new shape with axes reordered.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `axes` (`List[Int]`) `[imm]`: New axis order. Must contain each axis exactly once.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -608,7 +614,7 @@ Return a new shape with axes reordered.
 
 <div class="fn-card" markdown="1">
 
-##### `broadcast`
+#### `broadcast`
 
 ```mojo
 def broadcast(self, other: Self) -> Self
@@ -620,12 +626,12 @@ Shapes are aligned from the trailing dimension. Two dimensions are
 compatible when they are equal, or when one of them is 1. Missing
 leading dimensions are treated as size 1.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`: The other shape to broadcast against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -637,7 +643,7 @@ leading dimensions are treated as size 1.
 
 <div class="fn-card" markdown="1">
 
-##### `join`
+#### `join`
 
 ```mojo
 def join(self, *shapes: Self) -> Self
@@ -645,12 +651,12 @@ def join(self, *shapes: Self) -> Self
 
 Join multiple shapes into a single shape.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `*shapes` (`Self`) `[imm]`: Variable number of NDArrayShape objects.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -659,7 +665,7 @@ Join multiple shapes into a single shape.
 
 <div class="fn-card" markdown="1">
 
-##### `swapaxes`
+#### `swapaxes`
 
 ```mojo
 def swapaxes(self, axis1: Int, axis2: Int) -> Self
@@ -667,13 +673,13 @@ def swapaxes(self, axis1: Int, axis2: Int) -> Self
 
 Returns a new shape with the given axes swapped.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `axis1` (`Int`) `[imm]`: The first axis to swap.
 - `axis2` (`Int`) `[imm]`: The second axis to swap.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -684,7 +690,7 @@ Returns a new shape with the given axes swapped.
 
 <div class="fn-card" markdown="1">
 
-##### `extend`
+#### `extend`
 
 ```mojo
 def extend(self, *values: Int) -> Self
@@ -692,12 +698,12 @@ def extend(self, *values: Int) -> Self
 
 Extend the shape by sizes of extended dimensions.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `*values` (`Int`) `[imm]`: Sizes of extended dimensions.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -706,7 +712,7 @@ Extend the shape by sizes of extended dimensions.
 
 <div class="fn-card" markdown="1">
 
-##### `flip`
+#### `flip`
 
 ```mojo
 def flip(mut self)
@@ -714,7 +720,7 @@ def flip(mut self)
 
 Flip the items in-place.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 
@@ -723,7 +729,7 @@ Flip the items in-place.
 
 <div class="fn-card" markdown="1">
 
-##### `flipped`
+#### `flipped`
 
 ```mojo
 def flipped(self) -> Self
@@ -731,11 +737,11 @@ def flipped(self) -> Self
 
 Returns a new shape by flipping the items.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -744,7 +750,7 @@ Returns a new shape by flipping the items.
 
 <div class="fn-card" markdown="1">
 
-##### `move_axis_to_end`
+#### `move_axis_to_end`
 
 ```mojo
 def move_axis_to_end(self, axis: Int) -> Self
@@ -752,12 +758,12 @@ def move_axis_to_end(self, axis: Int) -> Self
 
 Returns a new shape by moving the value of axis to the end.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `axis` (`Int`) `[imm]`: The axis (index) to move.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -766,7 +772,7 @@ Returns a new shape by moving the value of axis to the end.
 
 <div class="fn-card" markdown="1">
 
-##### `pop`
+#### `pop`
 
 ```mojo
 def pop(self, axis: Int) -> Self
@@ -774,12 +780,12 @@ def pop(self, axis: Int) -> Self
 
 Drops the item at the given axis (index).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `axis` (`Int`) `[imm]`: The axis (index) to drop.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -790,7 +796,7 @@ Drops the item at the given axis (index).
 
 <div class="fn-card" markdown="1">
 
-##### `rank`
+#### `rank`
 
 ```mojo
 def rank(self) -> Int
@@ -798,11 +804,11 @@ def rank(self) -> Int
 
 Returns the number of dimensions of the shape.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -811,7 +817,7 @@ Returns the number of dimensions of the shape.
 
 <div class="fn-card" markdown="1">
 
-##### `size`
+#### `size`
 
 ```mojo
 def size(self) -> Int
@@ -819,11 +825,11 @@ def size(self) -> Int
 
 Returns the total number of elements in the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -832,7 +838,7 @@ Returns the total number of elements in the array.
 
 <div class="fn-card" markdown="1">
 
-##### `sum`
+#### `sum`
 
 ```mojo
 def sum(self) -> Int
@@ -840,11 +846,11 @@ def sum(self) -> Int
 
 Compute the sum of all elements in NDArrayShape.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -853,7 +859,7 @@ Compute the sum of all elements in NDArrayShape.
 
 <div class="fn-card" markdown="1">
 
-##### `product`
+#### `product`
 
 ```mojo
 def product(self) -> Int
@@ -861,11 +867,11 @@ def product(self) -> Int
 
 Compute the product of all elements in the IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -874,7 +880,7 @@ Compute the product of all elements in the IndexBuffer.
 
 <div class="fn-card" markdown="1">
 
-##### `__len__`
+#### `__len__`
 
 ```mojo
 def __len__(self) -> Int
@@ -882,11 +888,11 @@ def __len__(self) -> Int
 
 Gets number of elements in the shape. It equals the number of dimensions of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -895,7 +901,7 @@ Gets number of elements in the shape. It equals the number of dimensions of the 
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
 def __repr__(self) -> String
@@ -903,11 +909,11 @@ def __repr__(self) -> String
 
 Returns a string of the shape of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -916,7 +922,7 @@ Returns a string of the shape of the array.
 
 <div class="fn-card" markdown="1">
 
-##### `write_repr_to`
+#### `write_repr_to`
 
 ```mojo
 def write_repr_to[W: Writer](self, mut writer: W)
@@ -924,11 +930,11 @@ def write_repr_to[W: Writer](self, mut writer: W)
 
 Write the string representation to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`): The writer type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -938,7 +944,7 @@ Write the string representation to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
@@ -946,11 +952,11 @@ def __str__(self) -> String
 
 Returns a string of the shape of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -959,7 +965,7 @@ Returns a string of the shape of the array.
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
@@ -967,11 +973,11 @@ def write_to[W: Writer](self, mut writer: W)
 
 Writes the shape representation to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
@@ -981,7 +987,7 @@ Writes the shape representation to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `tolist`
+#### `tolist`
 
 ```mojo
 def tolist(self) -> List[Int]
@@ -989,11 +995,11 @@ def tolist(self) -> List[Int]
 
 Convert the shape to a list of integers.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `List[Int]`
 
@@ -1002,7 +1008,7 @@ Convert the shape to a list of integers.
 
 <div class="fn-card" markdown="1">
 
-##### `normalize_index`
+#### `normalize_index`
 
 ```mojo
 def normalize_index(self, index: Int) -> Int
@@ -1010,12 +1016,12 @@ def normalize_index(self, index: Int) -> Int
 
 Normalizes the given index to be within the valid range [0, ndim).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `index` (`Int`) `[imm]`: The index to normalize.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -1024,7 +1030,7 @@ Normalizes the given index to be within the valid range [0, ndim).
 
 <div class="fn-card" markdown="1">
 
-##### `__iter__`
+#### `__iter__`
 
 ```mojo
 def __iter__(ref self) -> _ShapeIter[origin_of(self)]
@@ -1032,11 +1038,11 @@ def __iter__(ref self) -> _ShapeIter[origin_of(self)]
 
 Iterate over elements of the NDArrayShape, returning copied values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_ShapeIter[origin_of(self)]`
 
@@ -1045,7 +1051,7 @@ Iterate over elements of the NDArrayShape, returning copied values.
 
 <div class="fn-card" markdown="1">
 
-##### `__reversed__`
+#### `__reversed__`
 
 ```mojo
 def __reversed__(ref self) -> _ShapeIter[origin_of(self), False]
@@ -1053,11 +1059,11 @@ def __reversed__(ref self) -> _ShapeIter[origin_of(self), False]
 
 Iterate over elements of the NDArrayShape in reverse order, returning copied values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_ShapeIter[origin_of(self), False]`
 

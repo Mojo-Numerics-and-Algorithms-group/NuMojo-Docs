@@ -23,15 +23,15 @@ def acosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply inverse hyperbolic cosine.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -50,15 +50,15 @@ def arccosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply inverse hyperbolic cosine element-wise.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -77,15 +77,15 @@ def asinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply inverse hyperbolic sine.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -104,15 +104,15 @@ def arcsinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply inverse hyperbolic sine element-wise.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -131,15 +131,15 @@ def atanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply inverse hyperbolic tangent.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -158,15 +158,15 @@ def arctanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply inverse hyperbolic tangent element-wise.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -185,15 +185,15 @@ def cosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply hyperbolic cosine.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -212,15 +212,15 @@ def sinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply hyperbolic sine.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -239,15 +239,15 @@ def tanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 
 Apply hyperbolic tangent.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

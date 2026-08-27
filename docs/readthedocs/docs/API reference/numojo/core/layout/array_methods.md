@@ -10,7 +10,7 @@ Exports
 - `NewAxis`: Add singleton dimension.
 - `newaxis`: Default `NewAxis` instance.
 
-Examples:
+<div class="prose-label">Examples</div>
     ```mojo
     var a = NewAxis()      # Adds a single new axis
     var b = NewAxis(3)     # Adds three new axes
@@ -30,6 +30,10 @@ comptime newaxis
 
 ### `NewAxis`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct NewAxis
 ```
@@ -45,6 +49,8 @@ to arrays, facilitating broadcasting and reshaping operations.
 Attributes:
     num (Int): The number of new axes to add.
 
+</div>
+
 #### Fields
 
 - **`num`** (`Int`)
@@ -54,9 +60,9 @@ Attributes:
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self)
@@ -68,15 +74,15 @@ Initializes a `NewAxis` instance with a default of one new axis.
 
 Sets `num` to 0, which can be interpreted as a single new axis.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, num: Int)
@@ -86,12 +92,12 @@ def __init__(out self, num: Int)
 
 Initializes a `NewAxis` instance with a specified number of new axes.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `num` (`Int`) `[imm]`: The number of new axes to add.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -100,7 +106,7 @@ Initializes a `NewAxis` instance with a specified number of new axes.
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
 def __eq__(self, other: Self) -> Bool
@@ -108,12 +114,12 @@ def __eq__(self, other: Self) -> Bool
 
 Checks equality between two `NewAxis` instances.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -122,7 +128,7 @@ Checks equality between two `NewAxis` instances.
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
 def __ne__(self, other: Self) -> Bool
@@ -130,12 +136,12 @@ def __ne__(self, other: Self) -> Bool
 
 Checks inequality between two `NewAxis` instances.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -144,7 +150,7 @@ Checks inequality between two `NewAxis` instances.
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
 def __repr__(self) -> String
@@ -152,11 +158,11 @@ def __repr__(self) -> String
 
 Returns a string representation of the `NewAxis` instance.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -165,7 +171,7 @@ Returns a string representation of the `NewAxis` instance.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
@@ -173,11 +179,11 @@ def __str__(self) -> String
 
 Returns a string representation of the `NewAxis` instance.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 

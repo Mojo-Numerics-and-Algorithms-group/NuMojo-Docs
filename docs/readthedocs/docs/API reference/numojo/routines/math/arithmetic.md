@@ -23,7 +23,7 @@ Exports
 
 ### `add`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def add[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -34,22 +34,22 @@ Perform addition on two arrays.
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def add[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype]
@@ -57,22 +57,22 @@ def add[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[d
 
 Perform addition on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def add[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype]
@@ -80,22 +80,22 @@ def add[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[d
 
 Perform addition on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def add[dtype: DType](var *values: Variant[NDArray[dtype], Scalar[dtype]]) -> NDArray[dtype]
@@ -103,15 +103,15 @@ def add[dtype: DType](var *values: Variant[NDArray[dtype], Scalar[dtype]]) -> ND
 
 Perform addition on a list of arrays and a scalars.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*values` (`Variant[NDArray[dtype], Scalar[dtype]]`) `[var]`: A list of arrays or Scalars to be added.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -125,7 +125,7 @@ Perform addition on a list of arrays and a scalars.
 
 ### `sub`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def sub[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -133,22 +133,22 @@ def sub[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray
 
 Perform subtraction on two arrays.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def sub[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype]
@@ -156,22 +156,22 @@ def sub[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[d
 
 Perform subtraction on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def sub[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype]
@@ -179,16 +179,16 @@ def sub[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[d
 
 Perform subtraction on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -201,7 +201,7 @@ Perform subtraction on between an array and a scalar.
 
 ### `mod`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def mod[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -209,22 +209,22 @@ def mod[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray
 
 Element-wise modulo of array1 and array2.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def mod[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype]
@@ -232,22 +232,22 @@ def mod[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[d
 
 Element-wise modulo between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def mod[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype]
@@ -255,16 +255,16 @@ def mod[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[d
 
 Element-wise modulo between a scalar and an array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -277,7 +277,7 @@ Element-wise modulo between a scalar and an array.
 
 ### `mul`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def mul[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -288,22 +288,22 @@ Element-wise product of array1 and array2.
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def mul[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype]
@@ -311,22 +311,22 @@ def mul[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[d
 
 Perform multiplication on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def mul[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype]
@@ -334,22 +334,22 @@ def mul[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[d
 
 Perform multiplication on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
 def mul[dtype: DType](var *values: Variant[NDArray[dtype], Scalar[dtype]]) -> NDArray[dtype]
@@ -357,15 +357,15 @@ def mul[dtype: DType](var *values: Variant[NDArray[dtype], Scalar[dtype]]) -> ND
 
 Perform multiplication on a list of arrays an arrays and a scalars.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `*values` (`Variant[NDArray[dtype], Scalar[dtype]]`) `[var]`: A list of arrays or Scalars to be added.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -379,7 +379,7 @@ Perform multiplication on a list of arrays an arrays and a scalars.
 
 ### `div`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def div[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -390,22 +390,22 @@ Element-wise quotient of array1 and array2.
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def div[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype]
@@ -413,22 +413,22 @@ def div[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[d
 
 Perform true division on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def div[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype]
@@ -436,16 +436,16 @@ def div[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[d
 
 Perform true division between a scalar and an array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -458,7 +458,7 @@ Perform true division between a scalar and an array.
 
 ### `floor_div`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def floor_div[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -469,22 +469,22 @@ Element-wise quotient of array1 and array2.
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def floor_div[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype]
@@ -492,22 +492,22 @@ def floor_div[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDA
 
 Perform true division on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def floor_div[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype]
@@ -515,16 +515,16 @@ def floor_div[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDA
 
 Perform true division on between an array and a scalar.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `scalar` (`Scalar[dtype]`) `[imm]`: A Scalar.
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -537,7 +537,7 @@ Perform true division on between an array and a scalar.
 
 ### `fma`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def fma[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype], array3: NDArray[dtype]) -> NDArray[dtype]
@@ -548,23 +548,23 @@ Apply a SIMD level fuse multiply add function of three variables and one return 
 !!! info "Constraints"
     Both arrays must have the same shape.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array3` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def fma[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype], simd: Scalar[dtype]) -> NDArray[dtype]
@@ -575,17 +575,17 @@ Apply a SIMD level fuse multiply add function of three variables and one return 
 !!! info "Constraints"
     Both arrays must have the same shape
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `simd` (`Scalar[dtype]`) `[imm]`: A SIMD[dtype,1] value to be added.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -598,7 +598,7 @@ Apply a SIMD level fuse multiply add function of three variables and one return 
 
 ### `remainder`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def remainder[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
@@ -609,22 +609,22 @@ Element-wise remainders of NDArray.
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def remainder[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype]
@@ -632,22 +632,22 @@ def remainder[dtype: DType](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDA
 
 Element-wise remainders of NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A scalar.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
 !!! failure "Raises"
 
-#### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
 def remainder[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype]
@@ -655,16 +655,16 @@ def remainder[dtype: DType](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDA
 
 Element-wise remainders of NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `scalar` (`Scalar[dtype]`) `[imm]`: A scalar.
 - `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 

@@ -42,4 +42,4 @@ Available functions and objects by topics (also see imports within `__init__` fi
 - Statistics (`numojo.routines.statistics`)
   - Averages (`numojo.routines.statistics.averages`)
 
-For planned work and missing items, see the [Roadmap](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/roadmap.md).
+For planned work and missing items, see the [Roadmap](../user-guide/roadmap.md).

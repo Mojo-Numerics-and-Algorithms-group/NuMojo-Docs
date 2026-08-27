@@ -10,6 +10,10 @@ Exports
 
 ### `Validator`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct Validator
 ```
@@ -17,12 +21,14 @@ struct Validator
 **Memory convention:** `memory_only`  
 **Implements:** `AnyType`, `Deinitable`, `Movable`
 
+</div>
+
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `normalize`
+#### `normalize`
 
 ```mojo
 def normalize(index: Int, dim: Int) -> Int
@@ -32,12 +38,12 @@ def normalize(index: Int, dim: Int) -> Int
 
 Normalize a possibly negative index.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `index` (`Int`) `[imm]`: The index to normalize.
 - `dim` (`Int`) `[imm]`: The size of the dimension.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -46,7 +52,7 @@ Normalize a possibly negative index.
 
 <div class="fn-card" markdown="1">
 
-##### `check_bounds`
+#### `check_bounds`
 
 ```mojo
 def check_bounds(index: Int, dim: Int, axis: Int = Int(0))
@@ -56,7 +62,7 @@ def check_bounds(index: Int, dim: Int, axis: Int = Int(0))
 
 Check if an index is within bounds for a dimension.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `index` (`Int`) `[imm]`: The index to check.
 - `dim` (`Int`) `[imm]`: The size of the dimension.
@@ -70,7 +76,7 @@ Check if an index is within bounds for a dimension.
 
 <div class="fn-card" markdown="1">
 
-##### `validate_reshape`
+#### `validate_reshape`
 
 ```mojo
 def validate_reshape(current_size: Int, new_shape: NDArrayShape)
@@ -80,7 +86,7 @@ def validate_reshape(current_size: Int, new_shape: NDArrayShape)
 
 Validate if a reshape operation is valid.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `current_size` (`Int`) `[imm]`: Current total number of elements.
 - `new_shape` (`NDArrayShape`) `[imm]`: The target shape.
@@ -93,7 +99,7 @@ Validate if a reshape operation is valid.
 
 <div class="fn-card" markdown="1">
 
-##### `validate_and_normalize_axes`
+#### `validate_and_normalize_axes`
 
 ```mojo
 def validate_and_normalize_axes(rank: Int, axes: List[Int]) -> List[Int]
@@ -103,12 +109,12 @@ def validate_and_normalize_axes(rank: Int, axes: List[Int]) -> List[Int]
 
 Validate and normalize axes for reduction operations.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `rank` (`Int`) `[imm]`: The rank of the array.
 - `axes` (`List[Int]`) `[imm]`: The input axes.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `List[Int]`
 

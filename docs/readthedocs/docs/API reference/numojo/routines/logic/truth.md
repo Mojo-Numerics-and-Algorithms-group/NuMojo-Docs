@@ -22,7 +22,7 @@ def all(array: NDArray[DType.bool]) -> Scalar[DType.bool]
 
 Checks whether all elements of the array evaluate to True.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.truth import all
@@ -31,11 +31,11 @@ var a = arange[i32](24).reshape(Shape(2, 3, 4))
 var result = all(a > 5) # outputs False
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[DType.bool]`) `[imm]`: Input NDArray (DType.bool).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[DType.bool]`
 
@@ -54,7 +54,7 @@ def any(array: NDArray[DType.bool]) -> Scalar[DType.bool]
 
 Checks whether any element of the array evaluate to True.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.truth import any
@@ -63,11 +63,11 @@ var a = arange[i32](24).reshape(Shape(2, 3, 4))
 var result = any(a > 5) # outputs True
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`NDArray[DType.bool]`) `[imm]`: Input NDArray (DType.bool).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Scalar[DType.bool]`
 

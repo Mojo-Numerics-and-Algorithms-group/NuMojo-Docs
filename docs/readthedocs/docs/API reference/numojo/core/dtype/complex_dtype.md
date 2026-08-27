@@ -218,6 +218,10 @@ Data type comptime for ComplexDType.invalid.
 
 ### `ComplexDType`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct ComplexDType
 ```
@@ -231,13 +235,15 @@ Represents a complex data type specification and provides methods for working wi
 instantiate it, but instead use its compile-time constants (comptimees) to
 declare data types for complex SIMD vectors, tensors, and other data structures.
 
+</div>
+
 #### Fields
 
 - **`dtype`** (`DType`): The underlying storage for the ComplexDType value.
 
 #### Aliases
 
-##### `invalid`
+#### `invalid`
 
 ```mojo
 comptime invalid
@@ -245,7 +251,7 @@ comptime invalid
 
 **Value:** `ComplexDType(mlir_value=invalid)`
 
-##### `bool`
+#### `bool`
 
 ```mojo
 comptime bool
@@ -253,7 +259,7 @@ comptime bool
 
 **Value:** `ComplexDType(mlir_value=bool)`
 
-##### `int`
+#### `int`
 
 ```mojo
 comptime int
@@ -261,7 +267,7 @@ comptime int
 
 **Value:** `ComplexDType(mlir_value=int)`
 
-##### `uint`
+#### `uint`
 
 ```mojo
 comptime uint
@@ -269,7 +275,7 @@ comptime uint
 
 **Value:** `ComplexDType(mlir_value=uint)`
 
-##### `uint8`
+#### `uint8`
 
 ```mojo
 comptime uint8
@@ -277,7 +283,7 @@ comptime uint8
 
 **Value:** `ComplexDType(mlir_value=uint8)`
 
-##### `int8`
+#### `int8`
 
 ```mojo
 comptime int8
@@ -285,7 +291,7 @@ comptime int8
 
 **Value:** `ComplexDType(mlir_value=int8)`
 
-##### `uint16`
+#### `uint16`
 
 ```mojo
 comptime uint16
@@ -293,7 +299,7 @@ comptime uint16
 
 **Value:** `ComplexDType(mlir_value=uint16)`
 
-##### `int16`
+#### `int16`
 
 ```mojo
 comptime int16
@@ -301,7 +307,7 @@ comptime int16
 
 **Value:** `ComplexDType(mlir_value=int16)`
 
-##### `uint32`
+#### `uint32`
 
 ```mojo
 comptime uint32
@@ -309,7 +315,7 @@ comptime uint32
 
 **Value:** `ComplexDType(mlir_value=uint32)`
 
-##### `int32`
+#### `int32`
 
 ```mojo
 comptime int32
@@ -317,7 +323,7 @@ comptime int32
 
 **Value:** `ComplexDType(mlir_value=int32)`
 
-##### `uint64`
+#### `uint64`
 
 ```mojo
 comptime uint64
@@ -325,7 +331,7 @@ comptime uint64
 
 **Value:** `ComplexDType(mlir_value=uint64)`
 
-##### `int64`
+#### `int64`
 
 ```mojo
 comptime int64
@@ -333,7 +339,7 @@ comptime int64
 
 **Value:** `ComplexDType(mlir_value=int64)`
 
-##### `uint128`
+#### `uint128`
 
 ```mojo
 comptime uint128
@@ -341,7 +347,7 @@ comptime uint128
 
 **Value:** `ComplexDType(mlir_value=uint128)`
 
-##### `int128`
+#### `int128`
 
 ```mojo
 comptime int128
@@ -349,7 +355,7 @@ comptime int128
 
 **Value:** `ComplexDType(mlir_value=int128)`
 
-##### `uint256`
+#### `uint256`
 
 ```mojo
 comptime uint256
@@ -357,7 +363,7 @@ comptime uint256
 
 **Value:** `ComplexDType(mlir_value=uint256)`
 
-##### `int256`
+#### `int256`
 
 ```mojo
 comptime int256
@@ -365,7 +371,7 @@ comptime int256
 
 **Value:** `ComplexDType(mlir_value=int256)`
 
-##### `float8_e3m4`
+#### `float8_e3m4`
 
 ```mojo
 comptime float8_e3m4
@@ -373,7 +379,7 @@ comptime float8_e3m4
 
 **Value:** `ComplexDType(mlir_value=float8_e3m4)`
 
-##### `float8_e4m3fn`
+#### `float8_e4m3fn`
 
 ```mojo
 comptime float8_e4m3fn
@@ -381,7 +387,7 @@ comptime float8_e4m3fn
 
 **Value:** `ComplexDType(mlir_value=float8_e4m3fn)`
 
-##### `float8_e4m3fnuz`
+#### `float8_e4m3fnuz`
 
 ```mojo
 comptime float8_e4m3fnuz
@@ -389,7 +395,7 @@ comptime float8_e4m3fnuz
 
 **Value:** `ComplexDType(mlir_value=float8_e4m3fnuz)`
 
-##### `float8_e5m2`
+#### `float8_e5m2`
 
 ```mojo
 comptime float8_e5m2
@@ -397,7 +403,7 @@ comptime float8_e5m2
 
 **Value:** `ComplexDType(mlir_value=float8_e5m2)`
 
-##### `float8_e5m2fnuz`
+#### `float8_e5m2fnuz`
 
 ```mojo
 comptime float8_e5m2fnuz
@@ -405,7 +411,7 @@ comptime float8_e5m2fnuz
 
 **Value:** `ComplexDType(mlir_value=float8_e5m2fnuz)`
 
-##### `bfloat16`
+#### `bfloat16`
 
 ```mojo
 comptime bfloat16
@@ -413,7 +419,7 @@ comptime bfloat16
 
 **Value:** `ComplexDType(mlir_value=bfloat16)`
 
-##### `float16`
+#### `float16`
 
 ```mojo
 comptime float16
@@ -421,7 +427,7 @@ comptime float16
 
 **Value:** `ComplexDType(mlir_value=float16)`
 
-##### `float32`
+#### `float32`
 
 ```mojo
 comptime float32
@@ -429,7 +435,7 @@ comptime float32
 
 **Value:** `ComplexDType(mlir_value=float32)`
 
-##### `float64`
+#### `float64`
 
 ```mojo
 comptime float64
@@ -442,7 +448,7 @@ comptime float64
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(*, mlir_value: __mlir_type.`!kgen.dtype`) -> Self
@@ -452,11 +458,11 @@ def __init__(*, mlir_value: __mlir_type.`!kgen.dtype`) -> Self
 
 Construct a ComplexDType from MLIR ComplexDType.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `mlir_value` (`__mlir_type.`!kgen.dtype``) `[imm]`: The MLIR ComplexDType.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -465,7 +471,7 @@ Construct a ComplexDType from MLIR ComplexDType.
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
 def __eq__(self, rhs: Self) -> Bool
@@ -473,12 +479,12 @@ def __eq__(self, rhs: Self) -> Bool
 
 Compares one ComplexDType to another for equality.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `rhs` (`Self`) `[imm]`: The ComplexDType to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -487,7 +493,7 @@ Compares one ComplexDType to another for equality.
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
 def __ne__(self, rhs: Self) -> Bool
@@ -495,12 +501,12 @@ def __ne__(self, rhs: Self) -> Bool
 
 Compares one ComplexDType to another for inequality.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `rhs` (`Self`) `[imm]`: The ComplexDType to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -509,7 +515,7 @@ Compares one ComplexDType to another for inequality.
 
 <div class="fn-card" markdown="1">
 
-##### `__is__`
+#### `__is__`
 
 ```mojo
 def __is__(self, rhs: Self) -> Bool
@@ -517,12 +523,12 @@ def __is__(self, rhs: Self) -> Bool
 
 Compares one ComplexDType to another for equality.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `rhs` (`Self`) `[imm]`: The ComplexDType to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -531,7 +537,7 @@ Compares one ComplexDType to another for equality.
 
 <div class="fn-card" markdown="1">
 
-##### `__isnot__`
+#### `__isnot__`
 
 ```mojo
 def __isnot__(self, rhs: Self) -> Bool
@@ -539,12 +545,12 @@ def __isnot__(self, rhs: Self) -> Bool
 
 Compares one ComplexDType to another for equality.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `rhs` (`Self`) `[imm]`: The ComplexDType to compare against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -553,7 +559,7 @@ Compares one ComplexDType to another for equality.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
 def __str__(self) -> String
@@ -561,11 +567,11 @@ def __str__(self) -> String
 
 Gets the name of the ComplexDType.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -574,7 +580,7 @@ Gets the name of the ComplexDType.
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
 def write_to[W: Writer](self, mut writer: W)
@@ -582,11 +588,11 @@ def write_to[W: Writer](self, mut writer: W)
 
 Formats this ComplexDType to the provided Writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: The object to write to.
@@ -596,7 +602,7 @@ Formats this ComplexDType to the provided Writer.
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
 def __repr__(self) -> String
@@ -604,11 +610,11 @@ def __repr__(self) -> String
 
 Gets the representation of the ComplexDType e.g. `"ComplexDType.float32"`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -617,7 +623,7 @@ Gets the representation of the ComplexDType e.g. `"ComplexDType.float32"`.
 
 <div class="fn-card" markdown="1">
 
-##### `write_repr_to`
+#### `write_repr_to`
 
 ```mojo
 def write_repr_to[W: Writer](self, mut writer: W)
@@ -625,11 +631,11 @@ def write_repr_to[W: Writer](self, mut writer: W)
 
 Write the string representation to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`): The writer type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: The writer to write to.
@@ -639,7 +645,7 @@ Write the string representation to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `get_value`
+#### `get_value`
 
 ```mojo
 def get_value(self) -> __mlir_type.`!kgen.dtype`
@@ -647,11 +653,11 @@ def get_value(self) -> __mlir_type.`!kgen.dtype`
 
 Gets the associated internal kgen.ComplexDType value.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `__mlir_type.`!kgen.dtype``
 
@@ -660,7 +666,7 @@ Gets the associated internal kgen.ComplexDType value.
 
 <div class="fn-card" markdown="1">
 
-##### `__hash__`
+#### `__hash__`
 
 ```mojo
 def __hash__[H: Hasher](self, mut hasher: H)
@@ -668,11 +674,11 @@ def __hash__[H: Hasher](self, mut hasher: H)
 
 Updates hasher with this `ComplexDType` value.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `H` (`Hasher`): The hasher type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 - `hasher` (`H`) `[mut]`: The hasher instance.
@@ -682,7 +688,7 @@ Updates hasher with this `ComplexDType` value.
 
 <div class="fn-card" markdown="1">
 
-##### `is_unsigned`
+#### `is_unsigned`
 
 ```mojo
 def is_unsigned(self) -> Bool
@@ -690,11 +696,11 @@ def is_unsigned(self) -> Bool
 
 Returns True if the type parameter is unsigned and False otherwise.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -703,7 +709,7 @@ Returns True if the type parameter is unsigned and False otherwise.
 
 <div class="fn-card" markdown="1">
 
-##### `is_signed`
+#### `is_signed`
 
 ```mojo
 def is_signed(self) -> Bool
@@ -711,11 +717,11 @@ def is_signed(self) -> Bool
 
 Returns True if the type parameter is signed and False otherwise.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -724,7 +730,7 @@ Returns True if the type parameter is signed and False otherwise.
 
 <div class="fn-card" markdown="1">
 
-##### `is_integral`
+#### `is_integral`
 
 ```mojo
 def is_integral(self) -> Bool
@@ -732,11 +738,11 @@ def is_integral(self) -> Bool
 
 Returns True if the type parameter is an integer and False otherwise.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -745,7 +751,7 @@ Returns True if the type parameter is an integer and False otherwise.
 
 <div class="fn-card" markdown="1">
 
-##### `is_floating_point`
+#### `is_floating_point`
 
 ```mojo
 def is_floating_point(self) -> Bool
@@ -753,11 +759,11 @@ def is_floating_point(self) -> Bool
 
 Returns True if the type parameter is a floating-point and False otherwise.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -766,7 +772,7 @@ Returns True if the type parameter is a floating-point and False otherwise.
 
 <div class="fn-card" markdown="1">
 
-##### `is_float8`
+#### `is_float8`
 
 ```mojo
 def is_float8(self) -> Bool
@@ -774,11 +780,11 @@ def is_float8(self) -> Bool
 
 Returns True if the ComplexDType is a 8bit-precision floating point type, e.g. float8_e5m2, float8_e5m2fnuz, float8_e4m3fn and float8_e4m3fnuz.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -787,7 +793,7 @@ Returns True if the ComplexDType is a 8bit-precision floating point type, e.g. f
 
 <div class="fn-card" markdown="1">
 
-##### `is_half_float`
+#### `is_half_float`
 
 ```mojo
 def is_half_float(self) -> Bool
@@ -795,11 +801,11 @@ def is_half_float(self) -> Bool
 
 Returns True if the ComplexDType is a half-precision floating point type, e.g. either fp16 or bf16.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -808,7 +814,7 @@ Returns True if the ComplexDType is a half-precision floating point type, e.g. e
 
 <div class="fn-card" markdown="1">
 
-##### `is_numeric`
+#### `is_numeric`
 
 ```mojo
 def is_numeric(self) -> Bool
@@ -816,11 +822,11 @@ def is_numeric(self) -> Bool
 
 Returns True if the type parameter is numeric (i.e. you can perform arithmetic operations on).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -829,7 +835,7 @@ Returns True if the type parameter is numeric (i.e. you can perform arithmetic o
 
 <div class="fn-card" markdown="1">
 
-##### `size_of`
+#### `size_of`
 
 ```mojo
 def size_of(self) -> Int
@@ -837,11 +843,11 @@ def size_of(self) -> Int
 
 Returns the size in bytes of the current DType.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -850,7 +856,7 @@ Returns the size in bytes of the current DType.
 
 <div class="fn-card" markdown="1">
 
-##### `bitwidth`
+#### `bitwidth`
 
 ```mojo
 def bitwidth(self) -> Int
@@ -858,11 +864,11 @@ def bitwidth(self) -> Int
 
 Returns the size in bits of the current ComplexDType.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -871,7 +877,7 @@ Returns the size in bits of the current ComplexDType.
 
 <div class="fn-card" markdown="1">
 
-##### `component_bitwidth`
+#### `component_bitwidth`
 
 ```mojo
 def component_bitwidth(self) -> Int
@@ -879,11 +885,11 @@ def component_bitwidth(self) -> Int
 
 Returns the size in bits of the component type of the current ComplexDType.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -892,17 +898,17 @@ Returns the size in bits of the component type of the current ComplexDType.
 
 <div class="fn-card" markdown="1">
 
-##### `component_dtype`
+#### `component_dtype`
 
 ```mojo
 def component_dtype(self) -> DType
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `DType`
 

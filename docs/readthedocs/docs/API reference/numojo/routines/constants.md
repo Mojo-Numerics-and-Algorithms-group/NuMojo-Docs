@@ -15,6 +15,10 @@ Exports
 
 ### `Constants`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct Constants
 ```
@@ -33,9 +37,11 @@ def main():
     print("Literal:", nm.pi*nm.pi*nm.pi*nm.pi*nm.pi*nm.pi)
 ```
 
+</div>
+
 #### Aliases
 
-##### `c`
+#### `c`
 
 ```mojo
 comptime c
@@ -43,7 +49,7 @@ comptime c
 
 **Value:** `299792458`
 
-##### `pi`
+#### `pi`
 
 ```mojo
 comptime pi
@@ -51,7 +57,7 @@ comptime pi
 
 **Value:** `3.1415926535897931`
 
-##### `e`
+#### `e`
 
 ```mojo
 comptime e
@@ -59,7 +65,7 @@ comptime e
 
 **Value:** `2.7182818284590451`
 
-##### `hbar`
+#### `hbar`
 
 ```mojo
 comptime hbar
@@ -72,7 +78,7 @@ comptime hbar
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(out self)
@@ -82,11 +88,11 @@ def __init__(out self)
 
 Initializes the constants.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -95,7 +101,7 @@ Initializes the constants.
 
 <div class="fn-card" markdown="1">
 
-##### `__deinit__`
+#### `__deinit__`
 
 ```mojo
 def __deinit__(deinit self)
@@ -103,7 +109,7 @@ def __deinit__(deinit self)
 
 Deletes the constants.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[deinit]`
 

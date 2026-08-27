@@ -4,13 +4,17 @@ hide:
   - toc
 ---
 
-# NuMojo
+<div style="text-align:center; margin-top: 1em;">
+<img src="https://raw.githubusercontent.com/Mojo-Numerics-and-Algorithms-group/NuMojo/main/assets/numojo_logo_360x360.png" alt="NuMojo logo" width="160">
+
+<h1 style="border:none; margin:0.4em 0 0;">NuMojo</h1>
 
 <p style="font-size:1.2em">
-A library for numerical computing in <strong>Mojo 🔥</strong>. Inspired by NumPy.
+A library for numerical computing in <strong>Mojo 🔥</strong>, similar to NumPy in Python.
 </p>
+</div>
 
-<div style="margin: 1.5em 0; display:flex; gap:0.7em; flex-wrap:wrap;">
+<div style="margin: 1.5em 0; display:flex; gap:0.7em; flex-wrap:wrap; justify-content:center;">
 <a href="getting_started/quickstart/" class="md-button md-button--primary">Quickstart →</a>
 <a href="getting_started/install/" class="md-button">Installation</a>
 <a href="API reference/numojo/" class="md-button">API Reference</a>
@@ -22,11 +26,25 @@ A library for numerical computing in <strong>Mojo 🔥</strong>. Inspired by Num
 
 ## What is NuMojo?
 
-NuMojo provides fast, vectorized numerical routines for Mojo — the same role NumPy and SciPy play in
-the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD, parallelism, and
-(future) GPU acceleration.
+NuMojo aims to encompass the extensive numerics capabilities found in NumPy. We seek to harness the
+full potential of Mojo, including vectorization, parallelization, and GPU acceleration — currently,
+NuMojo extends most (if not all) standard library math functions to support array inputs.
 
-**NuMojo is not** a machine learning library and will never include back-propagation.
+Our vision for NuMojo is to serve as a familiar and essential building block for other Mojo libraries
+needing fast math operations, without the additional weight of a machine learning back-propagation
+system.
+
+---
+
+## Why NuMojo
+
+- **Native to Mojo.** NuMojo's `NDArray` is a Mojo-native SIMD-backed type, not a binding around
+  NumPy or MAX's tensor types, so it compiles into your program with no Python interop overhead.
+- **NumPy-familiar API.** Slicing, broadcasting, `@` for matrix multiplication, and function names
+  mirror NumPy where it makes sense, so existing intuition carries over.
+- **Built for Mojo's strengths.** Vectorization and parallelism are used throughout the routines,
+  with GPU and other accelerator support (`AcceleratorNDArray`) landing as Mojo's own device support
+  matures.
 
 ---
 
@@ -83,6 +101,8 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 - **Sorting & searching** — `sort`, `argsort`, `argmin`, `argmax`, …
 - **I/O** — file read/write, formatting, …
 
+See the [User Guide](user-guide/overview.md) for the full list linked to the [API Reference](API reference/numojo/index.md).
+
 ---
 
 ## Installation
@@ -94,7 +114,7 @@ The fastest way to get started, for a pinned stable release:
 channels = ["https://repo.prefix.dev/modular-community"]
 
 [dependencies]
-numojo = "=0.9.0"
+numojo = "=0.10.0"
 ```
 
 ```bash
@@ -115,6 +135,14 @@ including tracking the latest development branch.
 | v0.8.0 | ==25.7 |
 | v0.7.0 | ==25.3 |
 | v0.6.1 | ==25.2 |
+
+---
+
+## Learn more
+
+- [Roadmap](user-guide/roadmap.md) — planned work and long-term direction.
+- [Changelog](user-guide/changelog.md) — released changes by version.
+- [Contributing](developer-guide/contributing.md) — how to get involved.
 
 ---
 

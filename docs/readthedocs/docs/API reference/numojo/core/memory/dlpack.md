@@ -52,6 +52,10 @@ comptime DLManagedTensorDeleter
 
 ### `DLPackVersion`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct DLPackVersion
 ```
@@ -74,6 +78,8 @@ Constants:
     CURRENT_MINOR: Current minor version (8).
     LATEST: Latest version instance.
 
+</div>
+
 #### Fields
 
 - **`major`** (`UInt32`)
@@ -81,7 +87,7 @@ Constants:
 
 #### Aliases
 
-##### `CURRENT_MAJOR`
+#### `CURRENT_MAJOR`
 
 ```mojo
 comptime CURRENT_MAJOR
@@ -89,7 +95,7 @@ comptime CURRENT_MAJOR
 
 **Value:** `UInt32(0)`
 
-##### `CURRENT_MINOR`
+#### `CURRENT_MINOR`
 
 ```mojo
 comptime CURRENT_MINOR
@@ -97,7 +103,7 @@ comptime CURRENT_MINOR
 
 **Value:** `UInt32(8)`
 
-##### `LATEST`
+#### `LATEST`
 
 ```mojo
 comptime LATEST
@@ -110,7 +116,7 @@ comptime LATEST
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(major: UInt32, minor: UInt32) -> Self
@@ -118,18 +124,22 @@ def __init__(major: UInt32, minor: UInt32) -> Self
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `major` (`UInt32`) `[imm]`
 - `minor` (`UInt32`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 
 </div>
 ### `DLDevice`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct DLDevice
@@ -157,6 +167,8 @@ Constants:
     VPI: VPI device type code (9).
     ROCM: ROCm device type code (10).
 
+</div>
+
 #### Fields
 
 - **`device_type`** (`Int32`): Device type code.
@@ -164,7 +176,7 @@ Constants:
 
 #### Aliases
 
-##### `CPU`
+#### `CPU`
 
 ```mojo
 comptime CPU
@@ -172,7 +184,7 @@ comptime CPU
 
 **Value:** `1`
 
-##### `CUDA`
+#### `CUDA`
 
 ```mojo
 comptime CUDA
@@ -180,7 +192,7 @@ comptime CUDA
 
 **Value:** `2`
 
-##### `OPENCL`
+#### `OPENCL`
 
 ```mojo
 comptime OPENCL
@@ -188,7 +200,7 @@ comptime OPENCL
 
 **Value:** `4`
 
-##### `VULKAN`
+#### `VULKAN`
 
 ```mojo
 comptime VULKAN
@@ -196,7 +208,7 @@ comptime VULKAN
 
 **Value:** `7`
 
-##### `METAL`
+#### `METAL`
 
 ```mojo
 comptime METAL
@@ -204,7 +216,7 @@ comptime METAL
 
 **Value:** `8`
 
-##### `VPI`
+#### `VPI`
 
 ```mojo
 comptime VPI
@@ -212,7 +224,7 @@ comptime VPI
 
 **Value:** `9`
 
-##### `ROCM`
+#### `ROCM`
 
 ```mojo
 comptime ROCM
@@ -225,7 +237,7 @@ comptime ROCM
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(device_type: Int32 = Int32(1), device_id: Int32 = Int32(0)) -> Self
@@ -233,18 +245,22 @@ def __init__(device_type: Int32 = Int32(1), device_id: Int32 = Int32(0)) -> Self
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `device_type` (`Int32`) `[imm]`
 - `device_id` (`Int32`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 
 </div>
 ### `DLDataType`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct DLDataType
@@ -271,6 +287,8 @@ Constants:
     COMPLEX: Complex number type code (5).
     BOOL: Boolean type code (6).
 
+</div>
+
 #### Fields
 
 - **`code`** (`UInt8`): Type code (INT, UINT, FLOAT, etc.).
@@ -279,7 +297,7 @@ Constants:
 
 #### Aliases
 
-##### `INT`
+#### `INT`
 
 ```mojo
 comptime INT
@@ -287,7 +305,7 @@ comptime INT
 
 **Value:** `0`
 
-##### `UINT`
+#### `UINT`
 
 ```mojo
 comptime UINT
@@ -295,7 +313,7 @@ comptime UINT
 
 **Value:** `1`
 
-##### `FLOAT`
+#### `FLOAT`
 
 ```mojo
 comptime FLOAT
@@ -303,7 +321,7 @@ comptime FLOAT
 
 **Value:** `2`
 
-##### `BFLOAT`
+#### `BFLOAT`
 
 ```mojo
 comptime BFLOAT
@@ -311,7 +329,7 @@ comptime BFLOAT
 
 **Value:** `4`
 
-##### `COMPLEX`
+#### `COMPLEX`
 
 ```mojo
 comptime COMPLEX
@@ -319,7 +337,7 @@ comptime COMPLEX
 
 **Value:** `5`
 
-##### `BOOL`
+#### `BOOL`
 
 ```mojo
 comptime BOOL
@@ -332,7 +350,7 @@ comptime BOOL
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(code: UInt8, bits: UInt8, lanes: UInt16 = UInt16(1)) -> Self
@@ -340,13 +358,13 @@ def __init__(code: UInt8, bits: UInt8, lanes: UInt16 = UInt16(1)) -> Self
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `code` (`UInt8`) `[imm]`
 - `bits` (`UInt8`) `[imm]`
 - `lanes` (`UInt16`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -355,7 +373,7 @@ def __init__(code: UInt8, bits: UInt8, lanes: UInt16 = UInt16(1)) -> Self
 
 <div class="fn-card" markdown="1">
 
-##### `from_dtype`
+#### `from_dtype`
 
 ```mojo
 def from_dtype[dtype: DType]() -> Self
@@ -369,11 +387,11 @@ This static method maps Mojo's native data types to the DLPack type
 system, determining the appropriate type code (INT, UINT, FLOAT) and bit
 width based on the input DType.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Mojo data type to convert.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -382,7 +400,7 @@ width based on the input DType.
 
 <div class="fn-card" markdown="1">
 
-##### `to_dtype`
+#### `to_dtype`
 
 ```mojo
 def to_dtype(self) -> DType
@@ -394,11 +412,11 @@ This method maps DLPack type descriptors back to Mojo's native data types,
 supporting common floating-point (float16/32/64) and integer types
 (int8/16/32/64, uint8/16/32/64).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `DType`
 
@@ -411,6 +429,10 @@ supported).
 
 </div>
 ### `DLTensor`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct DLTensor
@@ -434,6 +456,8 @@ Attributes:
     strides: Pointer to strides array in elements (size = ndim).
     byte_offset: Byte offset from data pointer to first element.
 
+</div>
+
 #### Fields
 
 - **`data`** (`Pointer[NoneType, MutUntrackedOrigin]`): Opaque pointer to the tensor data.
@@ -449,7 +473,7 @@ Attributes:
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(out self, data: Pointer[NoneType, MutUntrackedOrigin], device: DLDevice, ndim: Int32, dtype: DLDataType, shape: Pointer[Int64, MutUntrackedOrigin], strides: Pointer[Int64, MutUntrackedOrigin], byte_offset: UInt64 = UInt64(0))
@@ -457,7 +481,7 @@ def __init__(out self, data: Pointer[NoneType, MutUntrackedOrigin], device: DLDe
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `data` (`Pointer[NoneType, MutUntrackedOrigin]`) `[imm]`
 - `device` (`DLDevice`) `[imm]`
@@ -468,13 +492,17 @@ def __init__(out self, data: Pointer[NoneType, MutUntrackedOrigin], device: DLDe
 - `byte_offset` (`UInt64`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 
 </div>
 ### `DLManagedTensor`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct DLManagedTensor
@@ -496,9 +524,11 @@ Attributes:
         etc.).
     deleter: Cleanup function called when consumer finishes using the tensor.
 
-Note:
+<div class="prose-label">Notes</div>
 This implements the older DLPack API. The current specification uses
 DLManagedTensorVersioned with a version field for forward compatibility.
+
+</div>
 
 #### Fields
 
@@ -511,7 +541,7 @@ DLManagedTensorVersioned with a version field for forward compatibility.
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
 def __init__(out self, dl_tensor: DLTensor, manager_ctx: Pointer[NoneType, MutUntrackedOrigin], deleter: def(Pointer[Self, MutUntrackedOrigin]) capturing thin -> None)
@@ -519,20 +549,24 @@ def __init__(out self, dl_tensor: DLTensor, manager_ctx: Pointer[NoneType, MutUn
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `dl_tensor` (`DLTensor`) `[imm]`
 - `manager_ctx` (`Pointer[NoneType, MutUntrackedOrigin]`) `[imm]`
 - `deleter` (`def(Pointer[Self, MutUntrackedOrigin]) capturing thin -> None`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 
 </div>
 ### `DLPackMetadata`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct DLPackMetadata[dtype: DType]
@@ -554,9 +588,11 @@ Attributes:
     ndim: Number of dimensions.
     data_container: Container managing the actual tensor data.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the tensor elements.
+
+</div>
 
 #### Fields
 
@@ -570,9 +606,9 @@ Attributes:
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
 def __init__(out self, shape: Pointer[Int64, MutUntrackedOrigin], strides: Pointer[Int64, MutUntrackedOrigin], ndim: Int, var data_container: DataContainer[dtype])
@@ -580,7 +616,7 @@ def __init__(out self, shape: Pointer[Int64, MutUntrackedOrigin], strides: Point
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `shape` (`Pointer[Int64, MutUntrackedOrigin]`) `[imm]`
 - `strides` (`Pointer[Int64, MutUntrackedOrigin]`) `[imm]`
@@ -588,11 +624,11 @@ def __init__(out self, shape: Pointer[Int64, MutUntrackedOrigin], strides: Point
 - `data_container` (`DataContainer[dtype]`) `[var]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
 def __init__(out self, *, copy: Self)
@@ -600,12 +636,12 @@ def __init__(out self, *, copy: Self)
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `copy` (`Self`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -614,13 +650,13 @@ def __init__(out self, *, copy: Self)
 
 <div class="fn-card" markdown="1">
 
-##### `__deinit__`
+#### `__deinit__`
 
 ```mojo
 def __deinit__(deinit self)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[deinit]`
 
@@ -645,20 +681,20 @@ etc.) without copying the underlying data. The function allocates shape and
 strides arrays, creates metadata for lifetime management, and returns a
 pointer to a DLManagedTensor.
 
-Notes:
+<div class="prose-label">Notes</div>
 - The consumer is responsible for calling the deleter when done.
 - Do not modify the original array while the DLPack tensor is in use.
 - The returned tensor shares memory with the original array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the array elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `arr` (`NDArray[dtype]`) `[imm]`: The NDArray to export.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Pointer[DLManagedTensor, MutUntrackedOrigin]`
 
@@ -678,24 +714,24 @@ def from_dlpack[dtype: DType](capsule: PythonObject) -> NDArray[dtype]
 
 Imports a tensor from any DLPack-compatible library into a NuMojo NDArray using zero-copy. This function accepts a Python object that implements the DLPack protocol (i.e., has a __dlpack__() method), such as NumPy, PyTorch, JAX, or CuPy tensors. It extracts the underlying memory and metadata through the PyCapsule interface, validates device and data type compatibility, and returns a NuMojo NDArray that shares memory with the original tensor.
 
-Notes:
+<div class="prose-label">Notes</div>
 - The returned NDArray shares memory with the source tensor. Changes to
     one will be reflected in the other.
 - Only CPU tensors are currently supported.
 - If strides are not provided in the DLPack tensor, C-contiguous strides
     are assumed.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The expected data type of the array elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `capsule` (`PythonObject`) `[imm]`: A PythonObject representing a DLPack-compatible tensor. The
     object must implement the __dlpack__() method, which returns a
     PyCapsule containing a pointer to a DLManagedTensor.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
@@ -723,21 +759,21 @@ This is a fast path specifically optimized for NumPy that uses the
 avoiding PyCapsule overhead entirely.
 This method is generally faster than using from_dlpack for NumPy arrays.
 
-Notes:
+<div class="prose-label">Notes</div>
 - The imported array shares memory with the source. Modifications to
   either will be visible in both.
 - This uses NumPy's `__array_interface__` instead of the DLPack protocol.
 - Strides are converted from bytes to elements automatically.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Expected data type of the array elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `array` (`PythonObject`) `[imm]`: A NumPy ndarray object.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArray[dtype]`
 
