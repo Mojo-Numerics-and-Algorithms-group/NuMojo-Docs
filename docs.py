@@ -73,6 +73,43 @@ def strip_todos(text: str) -> str:
     return result.strip()
 
 
+# Docstring prose sometimes writes its own "Examples:" / "Notes:" /
+# "References:" labels as plain text (mojo doc doesn't parse these into
+# structured fields the way it does Args/Returns/Raises). Recognize the
+# common spellings on their own line and turn them into a small styled
+# label so they read as a distinct subsection instead of blending into
+# the surrounding paragraph.
+PROSE_SECTION_RE = re.compile(
+    r"^(examples?|notes?|references?|further readings?)\s*:\s*$",
+    re.IGNORECASE,
+)
+PROSE_SECTION_CANONICAL = {
+    "example": "Examples",
+    "examples": "Examples",
+    "note": "Notes",
+    "notes": "Notes",
+    "reference": "References",
+    "references": "References",
+    "further reading": "Further Reading",
+    "further readings": "Further Reading",
+}
+
+
+def format_prose_sections(text: str) -> str:
+    if not text:
+        return text
+    lines = text.splitlines()
+    out = []
+    for line in lines:
+        m = PROSE_SECTION_RE.match(line.strip())
+        if m:
+            label = PROSE_SECTION_CANONICAL.get(m.group(1).lower(), m.group(1).title())
+            out.append(f'<div class="prose-label">{label}</div>')
+        else:
+            out.append(line)
+    return "\n".join(out)
+
+
 def render_deprecated(dep: str) -> str:
     if not dep:
         return ""
@@ -88,7 +125,7 @@ def render_constraints(constraints: str) -> str:
 def render_parameters(params: list) -> str:
     if not params:
         return ""
-    lines = ["**Parameters:**\n"]
+    lines = ['<div class="prose-label">Parameters</div>\n']
     for p in params:
         name = p.get("name", "")
         typ = p.get("type", "")
@@ -105,7 +142,7 @@ def render_parameters(params: list) -> str:
 def render_args(args: list) -> str:
     if not args:
         return ""
-    lines = ["**Args:**\n"]
+    lines = ['<div class="prose-label">Args</div>\n']
     for a in args:
         name = a.get("name", "")
         typ = a.get("type", "")
@@ -130,7 +167,7 @@ def render_returns(returns) -> str:
         desc = sanitize(returns.get("description", ""))
         if not typ and not desc:
             return ""
-        parts = ["**Returns:**\n"]
+        parts = ['<div class="prose-label">Returns</div>\n']
         entry = ""
         if typ:
             entry += f"`{typ}`"
@@ -156,7 +193,7 @@ def render_overload(overload: dict) -> str:
 
     sig = overload.get("signature", "")
     summary = sanitize(overload.get("summary", ""))
-    description = strip_todos(sanitize(overload.get("description", "")))
+    description = format_prose_sections(strip_todos(sanitize(overload.get("description", ""))))
     deprecated = overload.get("deprecated", "")
     constraints = overload.get("constraints", "")
     params = overload.get("parameters", [])
@@ -206,8 +243,8 @@ def render_overload(overload: dict) -> str:
     return "".join(parts)
 
 
-def render_function_group(fn: dict, level: int = 3) -> str:
-    hashes = "#" * level
+def render_function_group(fn: dict, nested: bool = False) -> str:
+    hashes = "####" if nested else "###"
     name = fn.get("name", "")
     overloads = fn.get("overloads", [])
 
@@ -217,7 +254,7 @@ def render_function_group(fn: dict, level: int = 3) -> str:
         inner.append(render_overload(overloads[0]))
     else:
         for i, ol in enumerate(overloads, 1):
-            inner.append(f"{'#' * (level + 1)} Overload {i}\n\n")
+            inner.append(f'<div class="overload-divider">Overload {i}</div>\n\n')
             inner.append(render_overload(ol))
 
     body = "".join(inner)
@@ -239,13 +276,13 @@ def render_field(field: dict) -> str:
     return entry
 
 
-def render_alias(alias: dict, level: int = 3) -> str:
-    hashes = "#" * level
+def render_alias(alias: dict, nested: bool = False) -> str:
+    hashes = "####" if nested else "###"
     name = alias.get("name", "")
     value = alias.get("value", "")
     sig = alias.get("signature", "")
     summary = sanitize(alias.get("summary", ""))
-    desc = strip_todos(sanitize(alias.get("description", "")))
+    desc = format_prose_sections(strip_todos(sanitize(alias.get("description", ""))))
     deprecated = alias.get("deprecated", "")
 
     parts = [f"{hashes} `{name}`\n\n"]
@@ -268,11 +305,10 @@ def render_alias(alias: dict, level: int = 3) -> str:
     return "".join(parts)
 
 
-def render_struct(struct: dict, level: int = 2) -> str:
-    hashes = "#" * level
+def render_struct(struct: dict) -> str:
     name = struct.get("name", "")
     summary = sanitize(struct.get("summary", ""))
-    description = strip_todos(sanitize(struct.get("description", "")))
+    description = format_prose_sections(strip_todos(sanitize(struct.get("description", ""))))
     sig = struct.get("signature", "")
     deprecated = struct.get("deprecated", "")
     constraints = struct.get("constraints", "")
@@ -283,13 +319,13 @@ def render_struct(struct: dict, level: int = 2) -> str:
     aliases = struct.get("aliases", [])
     functions = struct.get("functions", [])
 
-    parts = [f"{hashes} `{name}`\n\n"]
+    header = ['<span class="badge badge-kind">struct</span>\n\n']
 
     if deprecated:
-        parts.append(render_deprecated(deprecated))
+        header.append(render_deprecated(deprecated))
 
     if sig:
-        parts.append(f"```mojo\n{sig}\n```\n\n")
+        header.append(f"```mojo\n{sig}\n```\n\n")
 
     meta = []
     if convention:
@@ -298,87 +334,96 @@ def render_struct(struct: dict, level: int = 2) -> str:
         trait_names = [f"`{t.get('name', '')}`" for t in parent_traits]
         meta.append(f"**Implements:** {', '.join(trait_names)}")
     if meta:
-        parts.append("  \n".join(meta) + "\n\n")
+        header.append("  \n".join(meta) + "\n\n")
 
     if summary:
-        parts.append(f"{summary}\n\n")
+        header.append(f"{summary}\n\n")
 
     if description and description != summary:
-        parts.append(f"{description}\n\n")
+        header.append(f"{description}\n\n")
 
     if constraints:
-        parts.append(render_constraints(constraints))
+        header.append(render_constraints(constraints))
 
     if params:
-        parts.append(render_parameters(params))
+        header.append(render_parameters(params))
+
+    parts = [
+        f"### `{name}`\n\n",
+        '<div class="type-header" markdown="1">\n\n' + "".join(header) + "</div>\n\n",
+    ]
 
     if fields:
-        parts.append(f"{'#' * (level + 1)} Fields\n\n")
+        parts.append("#### Fields\n\n")
         for f in fields:
             parts.append(render_field(f) + "\n")
         parts.append("\n")
 
     if aliases:
-        parts.append(f"{'#' * (level + 1)} Aliases\n\n")
+        parts.append("#### Aliases\n\n")
         for a in aliases:
-            parts.append(render_alias(a, level + 2))
+            parts.append(render_alias(a, nested=True))
 
     if functions:
-        parts.append(f"{'#' * (level + 1)} Methods\n\n")
+        parts.append("#### Methods\n\n")
         for fn in functions:
-            parts.append(render_function_group(fn, level + 2))
+            parts.append(render_function_group(fn, nested=True))
 
     return "".join(parts)
 
 
-def render_trait(trait: dict, level: int = 2) -> str:
-    hashes = "#" * level
+def render_trait(trait: dict) -> str:
     name = trait.get("name", "")
     summary = sanitize(trait.get("summary", ""))
-    description = strip_todos(sanitize(trait.get("description", "")))
+    description = format_prose_sections(strip_todos(sanitize(trait.get("description", ""))))
     deprecated = trait.get("deprecated", "")
     parent_traits = trait.get("parentTraits", [])
     fields = trait.get("fields", [])
     aliases = trait.get("aliases", [])
     functions = trait.get("functions", [])
 
-    parts = [f"{hashes} `{name}`\n\n"]
+    header = ['<span class="badge badge-kind">trait</span>\n\n']
 
     if deprecated:
-        parts.append(render_deprecated(deprecated))
+        header.append(render_deprecated(deprecated))
 
     if parent_traits:
         trait_names = [f"`{t.get('name', '')}`" for t in parent_traits]
-        parts.append(f"**Extends:** {', '.join(trait_names)}\n\n")
+        header.append(f"**Extends:** {', '.join(trait_names)}\n\n")
 
     if summary:
-        parts.append(f"{summary}\n\n")
+        header.append(f"{summary}\n\n")
 
     if description and description != summary:
-        parts.append(f"{description}\n\n")
+        header.append(f"{description}\n\n")
+
+    parts = [
+        f"### `{name}`\n\n",
+        '<div class="type-header" markdown="1">\n\n' + "".join(header) + "</div>\n\n",
+    ]
 
     if fields:
-        parts.append(f"{'#' * (level + 1)} Fields\n\n")
+        parts.append("#### Fields\n\n")
         for f in fields:
             parts.append(render_field(f) + "\n")
         parts.append("\n")
 
     if aliases:
-        parts.append(f"{'#' * (level + 1)} Aliases\n\n")
+        parts.append("#### Aliases\n\n")
         for a in aliases:
-            parts.append(render_alias(a, level + 2))
+            parts.append(render_alias(a, nested=True))
 
     if functions:
-        parts.append(f"{'#' * (level + 1)} Methods\n\n")
+        parts.append("#### Methods\n\n")
         for fn in functions:
-            parts.append(render_function_group(fn, level + 2))
+            parts.append(render_function_group(fn, nested=True))
 
     return "".join(parts)
 
 
 def render_module(module: dict, module_path: str) -> str:
     summary = clean_module_summary(module.get("summary", ""))
-    description = strip_todos(sanitize(module.get("description", "")))
+    description = format_prose_sections(strip_todos(sanitize(module.get("description", ""))))
     aliases = module.get("aliases", [])
     traits = module.get("traits", [])
     structs = module.get("structs", [])
@@ -395,22 +440,22 @@ def render_module(module: dict, module_path: str) -> str:
     if aliases:
         parts.append("## Aliases\n\n")
         for a in aliases:
-            parts.append(render_alias(a, 3))
+            parts.append(render_alias(a))
 
     if traits:
         parts.append("## Traits\n\n")
         for t in traits:
-            parts.append(render_trait(t, 3))
+            parts.append(render_trait(t))
 
     if structs:
         parts.append("## Structs\n\n")
         for s in structs:
-            parts.append(render_struct(s, 3))
+            parts.append(render_struct(s))
 
     if functions:
         parts.append("## Functions\n\n")
         for fn in functions:
-            parts.append(render_function_group(fn, 3))
+            parts.append(render_function_group(fn))
 
     return "".join(parts)
 
@@ -438,7 +483,7 @@ def process_node(node: dict, pkg_path: str, out_dir: Path, docs_dir: Path) -> li
 
     index_parts = [f"# `{pkg_path}`\n\n"]
     node_summary = clean_module_summary(node.get("summary", ""))
-    node_desc = strip_todos(sanitize(node.get("description", "")))
+    node_desc = format_prose_sections(strip_todos(sanitize(node.get("description", ""))))
     if node_summary:
         index_parts.append(f"{node_summary}\n\n")
     if node_desc and node_desc != node_summary:
@@ -540,6 +585,8 @@ def build_nav(decl_nav: list) -> list:
         {
             "User Guide": [
                 {"Overview": "user-guide/overview.md"},
+                {"Roadmap": "user-guide/roadmap.md"},
+                {"Changelog": "user-guide/changelog.md"},
             ]
         },
         {
@@ -551,21 +598,15 @@ def build_nav(decl_nav: list) -> list:
                 {"Pre-PR Checks": "developer-guide/pre-pr-checks.md"},
             ]
         },
+        {"API Reference": api_ref_nav},
         {
             "Links": [
                 {
                     "GitHub": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo"
                 },
                 {"Discord": "https://discord.gg/NcnSH5n26F"},
-                {
-                    "Changelog": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/changelog.md"
-                },
-                {
-                    "Roadmap": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/roadmap.md"
-                },
             ]
         },
-        {"API Reference": api_ref_nav},
     ]
 
 
@@ -598,6 +639,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.tabs
     - navigation.sections
     - navigation.indexes
     - navigation.top
@@ -732,6 +774,10 @@ def write_extra_assets(readthedocs_dir: Path):
   background: var(--md-primary-fg-color--light);
   color: var(--md-primary-bg-color);
 }
+.badge-kind {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
 
 /* API reference headings & code */
 .md-typeset h3 code,
@@ -764,7 +810,23 @@ def write_extra_assets(readthedocs_dir: Path):
   font-size: 0.72rem;
 }
 
-/* Function card */
+/* Struct/trait header: sits under the ### name, no box (structs can have
+   dozens of methods, so a full enclosing card would grow huge). */
+.type-header {
+  border-left: 3px solid var(--md-primary-fg-color);
+  padding: 0.2em 0 0.2em 1em;
+  margin: 0.6em 0 1.4em;
+}
+
+.type-header > *:first-child {
+  margin-top: 0;
+}
+
+.type-header > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Function/method card */
 .fn-card {
   border: 1px solid var(--md-default-fg-color--lightest);
   border-left: 3px solid var(--md-primary-fg-color);
@@ -775,13 +837,38 @@ def write_extra_assets(readthedocs_dir: Path):
 }
 
 .fn-card > h3:first-child,
-.fn-card > h4:first-child,
-.fn-card > h5:first-child {
+.fn-card > h4:first-child {
   margin-top: 0;
 }
 
 .fn-card + .fn-card {
   margin-top: 1.6em;
+}
+
+/* Overload divider: a labeled break between overloads in one fn-card */
+.overload-divider {
+  display: block;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  padding-top: 0.8em;
+  margin-top: 1.2em;
+}
+
+/* Prose sub-section label (Examples/Notes/References inside a docstring
+   body that mojo doc leaves as plain text rather than a structured field) */
+.prose-label {
+  display: block;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-primary-fg-color);
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
 }
 
 /* Buttons */
@@ -801,6 +888,7 @@ def write_extra_assets(readthedocs_dir: Path):
   background: var(--md-default-fg-color--lightest);
   font-weight: 600;
 }
+
 """
     (css_dir / "extra.css").write_text(css, encoding="utf-8")
 
@@ -895,6 +983,12 @@ def copy_docs_pages(docs_dir: Path):
         DOCS_SRC / "user-guide" / "features.md": docs_dir
         / "user-guide"
         / "overview.md",
+        DOCS_SRC / "user-guide" / "roadmap.md": docs_dir
+        / "user-guide"
+        / "roadmap.md",
+        DOCS_SRC / "user-guide" / "changelog.md": docs_dir
+        / "user-guide"
+        / "changelog.md",
     }
     # Links in the source docs are relative to their location in the NuMojo
     # repo; rewrite the ones that don't resolve from the docs site.
@@ -908,8 +1002,7 @@ def copy_docs_pages(docs_dir: Path):
             ),
             (
                 "see `roadmap.md`",
-                "see the [Roadmap]"
-                "(https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/roadmap.md)",
+                "see the [Roadmap](../user-guide/roadmap.md)",
             ),
         ],
     }
@@ -933,13 +1026,17 @@ hide:
   - toc
 ---
 
-# NuMojo
+<div style="text-align:center; margin-top: 1em;">
+<img src="https://raw.githubusercontent.com/Mojo-Numerics-and-Algorithms-group/NuMojo/main/assets/numojo_logo_360x360.png" alt="NuMojo logo" width="160">
+
+<h1 style="border:none; margin:0.4em 0 0;">NuMojo</h1>
 
 <p style="font-size:1.2em">
-A library for numerical computing in <strong>Mojo 🔥</strong>. Inspired by NumPy.
+A library for numerical computing in <strong>Mojo 🔥</strong>, similar to NumPy in Python.
 </p>
+</div>
 
-<div style="margin: 1.5em 0; display:flex; gap:0.7em; flex-wrap:wrap;">
+<div style="margin: 1.5em 0; display:flex; gap:0.7em; flex-wrap:wrap; justify-content:center;">
 <a href="getting_started/quickstart/" class="md-button md-button--primary">Quickstart →</a>
 <a href="getting_started/install/" class="md-button">Installation</a>
 <a href="API reference/numojo/" class="md-button">API Reference</a>
@@ -951,11 +1048,25 @@ A library for numerical computing in <strong>Mojo 🔥</strong>. Inspired by Num
 
 ## What is NuMojo?
 
-NuMojo provides fast, vectorized numerical routines for Mojo — the same role NumPy and SciPy play in
-the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD, parallelism, and
-(future) GPU acceleration.
+NuMojo aims to encompass the extensive numerics capabilities found in NumPy. We seek to harness the
+full potential of Mojo, including vectorization, parallelization, and GPU acceleration — currently,
+NuMojo extends most (if not all) standard library math functions to support array inputs.
 
-**NuMojo is not** a machine learning library and will never include back-propagation.
+Our vision for NuMojo is to serve as a familiar and essential building block for other Mojo libraries
+needing fast math operations, without the additional weight of a machine learning back-propagation
+system.
+
+---
+
+## Why NuMojo
+
+- **Native to Mojo.** NuMojo's `NDArray` is a Mojo-native SIMD-backed type, not a binding around
+  NumPy or MAX's tensor types, so it compiles into your program with no Python interop overhead.
+- **NumPy-familiar API.** Slicing, broadcasting, `@` for matrix multiplication, and function names
+  mirror NumPy where it makes sense, so existing intuition carries over.
+- **Built for Mojo's strengths.** Vectorization and parallelism are used throughout the routines,
+  with GPU and other accelerator support (`AcceleratorNDArray`) landing as Mojo's own device support
+  matures.
 
 ---
 
@@ -1012,6 +1123,8 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 - **Sorting & searching** — `sort`, `argsort`, `argmin`, `argmax`, …
 - **I/O** — file read/write, formatting, …
 
+See the [User Guide](user-guide/overview.md) for the full list linked to the [API Reference](API reference/numojo/index.md).
+
 ---
 
 ## Installation
@@ -1023,7 +1136,7 @@ The fastest way to get started, for a pinned stable release:
 channels = ["https://repo.prefix.dev/modular-community"]
 
 [dependencies]
-numojo = "=0.9.0"
+numojo = "=0.10.0"
 ```
 
 ```bash
@@ -1044,6 +1157,14 @@ including tracking the latest development branch.
 | v0.8.0 | ==25.7 |
 | v0.7.0 | ==25.3 |
 | v0.6.1 | ==25.2 |
+
+---
+
+## Learn more
+
+- [Roadmap](user-guide/roadmap.md) — planned work and long-term direction.
+- [Changelog](user-guide/changelog.md) — released changes by version.
+- [Contributing](developer-guide/contributing.md) — how to get involved.
 
 ---
 
