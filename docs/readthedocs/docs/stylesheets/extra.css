@@ -44,6 +44,10 @@
   background: var(--md-primary-fg-color--light);
   color: var(--md-primary-bg-color);
 }
+.badge-kind {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
 
 /* API reference headings & code */
 .md-typeset h3 code,
@@ -76,7 +80,23 @@
   font-size: 0.72rem;
 }
 
-/* Function card */
+/* Struct/trait header: sits under the ### name, no box (structs can have
+   dozens of methods, so a full enclosing card would grow huge). */
+.type-header {
+  border-left: 3px solid var(--md-primary-fg-color);
+  padding: 0.2em 0 0.2em 1em;
+  margin: 0.6em 0 1.4em;
+}
+
+.type-header > *:first-child {
+  margin-top: 0;
+}
+
+.type-header > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Function/method card */
 .fn-card {
   border: 1px solid var(--md-default-fg-color--lightest);
   border-left: 3px solid var(--md-primary-fg-color);
@@ -87,13 +107,38 @@
 }
 
 .fn-card > h3:first-child,
-.fn-card > h4:first-child,
-.fn-card > h5:first-child {
+.fn-card > h4:first-child {
   margin-top: 0;
 }
 
 .fn-card + .fn-card {
   margin-top: 1.6em;
+}
+
+/* Overload divider: a labeled break between overloads in one fn-card */
+.overload-divider {
+  display: block;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  padding-top: 0.8em;
+  margin-top: 1.2em;
+}
+
+/* Prose sub-section label (Examples/Notes/References inside a docstring
+   body that mojo doc leaves as plain text rather than a structured field) */
+.prose-label {
+  display: block;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-primary-fg-color);
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
 }
 
 /* Buttons */
@@ -113,3 +158,4 @@
   background: var(--md-default-fg-color--lightest);
   font-weight: 600;
 }
+
