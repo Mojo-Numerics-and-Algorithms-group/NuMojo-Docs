@@ -7,13 +7,34 @@ DOCS_JSON = "docs.json"
 OUT_DIR = Path("docs/readthedocs/docs/API reference")
 MKDOCS_YML = Path("docs/readthedocs/mkdocs.yml")
 GETTING_STARTED = Path("docs/readthedocs/docs/getting_started/install.md")
-DOCS_SRC = Path("../docs")
+# NuMojo-Docs is checked out as a sibling of the NuMojo repo
+# (…/Codes/NuMojo and …/Codes/NuMojo-Docs), so the source repo is reached
+# via ../NuMojo, not ../.
+NUMOJO_REPO = Path("../NuMojo")
+DOCS_SRC = NUMOJO_REPO / "docs"
+README_SRC = NUMOJO_REPO / "README.MD"
 
 
 def sanitize(text: str) -> str:
     if not text:
         return ""
     return text.strip()
+
+
+# `mojo doc` derives a module's one-line `summary` by joining the first
+# "sentence" of its docstring, but our module docstrings start with a
+# `Title (dotted.path).` line underlined with `===`, all on separate
+# source lines. Joined with spaces, that produces "Title (path).
+# ===...=== First real sentence." on one line. Strip that title/underline
+# prefix so only the real summary sentence renders.
+MODULE_TITLE_PREFIX_RE = re.compile(r"^.{1,120}?\.\s+=+\s+")
+
+
+def clean_module_summary(summary: str) -> str:
+    summary = sanitize(summary)
+    if not summary:
+        return summary
+    return MODULE_TITLE_PREFIX_RE.sub("", summary, count=1).strip()
 
 
 def strip_todos(text: str) -> str:
@@ -356,7 +377,7 @@ def render_trait(trait: dict, level: int = 2) -> str:
 
 
 def render_module(module: dict, module_path: str) -> str:
-    summary = sanitize(module.get("summary", ""))
+    summary = clean_module_summary(module.get("summary", ""))
     description = strip_todos(sanitize(module.get("description", "")))
     aliases = module.get("aliases", [])
     traits = module.get("traits", [])
@@ -416,7 +437,7 @@ def process_node(node: dict, pkg_path: str, out_dir: Path, docs_dir: Path) -> li
     nav_entries = []
 
     index_parts = [f"# `{pkg_path}`\n\n"]
-    node_summary = sanitize(node.get("summary", ""))
+    node_summary = clean_module_summary(node.get("summary", ""))
     node_desc = strip_todos(sanitize(node.get("description", "")))
     if node_summary:
         index_parts.append(f"{node_summary}\n\n")
@@ -441,14 +462,14 @@ def process_node(node: dict, pkg_path: str, out_dir: Path, docs_dir: Path) -> li
                 (
                     mod_display,
                     "module",
-                    sanitize(mod.get("summary", "")),
+                    clean_module_summary(mod.get("summary", "")),
                     f"[`{mod_name}`](./{mod_name}.md)",
                 )
             )
 
     for pkg in packages:
         pkg_name = pkg.get("name", "")
-        pkg_summary = sanitize(pkg.get("summary", ""))
+        pkg_summary = clean_module_summary(pkg.get("summary", ""))
         sub_nav = process_node(pkg, f"{pkg_path}.{pkg_name}", node_dir, docs_dir)
         nav_entries.append({pkg_name: sub_nav})
         child_rows.append(
@@ -514,27 +535,20 @@ def build_nav(decl_nav: list) -> list:
             "Getting Started": [
                 {"Quickstart": "getting_started/quickstart.md"},
                 {"Installation": "getting_started/install.md"},
-                {"NDArray vs Matrix": "getting_started/ndarray-vs-matrix.md"},
             ]
         },
         {
             "User Guide": [
-                {
-                    "Array Creation & Manipulation": "user-guide/ndarray-creation-manipulation.md"
-                },
-                {"Indexing": "user-guide/indexing.md"},
-                {"Linear Algebra": "user-guide/linalg.md"},
-                {"I/O": "user-guide/io.md"},
+                {"Overview": "user-guide/overview.md"},
             ]
         },
         {
             "Developer Guide": [
                 {"Architecture": "developer-guide/architecture.md"},
-                {"Adding Functions": "developer-guide/adding-functions.md"},
-                {"Backend Dispatch": "developer-guide/backend-dispatch.md"},
                 {"NDArray Structure": "developer-guide/ndarray-basic-structure.md"},
                 {"Style Guide": "developer-guide/style-guide.md"},
-                {"Testing": "developer-guide/testing.md"},
+                {"Contributing": "developer-guide/contributing.md"},
+                {"Pre-PR Checks": "developer-guide/pre-pr-checks.md"},
             ]
         },
         {
@@ -544,13 +558,10 @@ def build_nav(decl_nav: list) -> list:
                 },
                 {"Discord": "https://discord.gg/NcnSH5n26F"},
                 {
-                    "Changelog": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/changelog.md"
+                    "Changelog": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/changelog.md"
                 },
                 {
-                    "Roadmap": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/roadmap.md"
-                },
-                {
-                    "Contributing": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/CONTRIBUTING.md"
+                    "Roadmap": "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/roadmap.md"
                 },
             ]
         },
@@ -570,31 +581,36 @@ theme:
   name: material
   logo: https://raw.githubusercontent.com/Mojo-Numerics-and-Algorithms-group/NuMojo/main/assets/numojo_logo.png
   favicon: https://raw.githubusercontent.com/Mojo-Numerics-and-Algorithms-group/NuMojo/main/assets/numojo_logo.png
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
     - scheme: default
-      primary: deep purple
-      accent: purple
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: deep purple
-      accent: purple
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
-    - navigation.path
+    - navigation.indexes
     - navigation.top
     - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
     - search.highlight
     - search.suggest
     - search.share
     - content.code.copy
     - content.code.annotate
+    - content.tooltips
     - toc.follow
 
 plugins:
@@ -670,49 +686,91 @@ def write_extra_assets(readthedocs_dir: Path):
     css_dir = readthedocs_dir / "docs" / "stylesheets"
     css_dir.mkdir(parents=True, exist_ok=True)
     css = """\
-/* Badge styles for static/async markers */
-.badge {
-  display: inline-block;
-  padding: 0.15em 0.5em;
-  border-radius: 4px;
-  font-size: 0.75em;
-  font-weight: 600;
-  vertical-align: middle;
-  margin-right: 0.3em;
-}
-.badge-static {
-  background: var(--md-primary-fg-color);
-  color: var(--md-primary-bg-color);
-}
-.badge-async {
-  background: #7c4dff;
-  color: #fff;
+/* Layout */
+.md-grid {
+  max-width: 68rem;
 }
 
-/* Tighten up API reference heading code */
+.md-typeset {
+  line-height: 1.65;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  margin-top: 1.8em;
+  padding-top: 0.4em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset h2:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.1em 0.55em;
+  border-radius: 4px;
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-right: 0.4em;
+}
+.badge-static {
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color--light);
+}
+.badge-async {
+  background: var(--md-primary-fg-color--light);
+  color: var(--md-primary-bg-color);
+}
+
+/* API reference headings & code */
 .md-typeset h3 code,
 .md-typeset h4 code,
 .md-typeset h5 code {
-  font-size: 1em;
+  font-size: 0.95em;
+  background: none;
+  padding: 0;
 }
 
-/* Make code blocks slightly more compact */
 .md-typeset pre > code {
-  font-size: 0.85em;
+  font-size: 0.82em;
+  line-height: 1.55;
 }
 
-/* Sidebar nav refinements */
+.md-typeset code {
+  border-radius: 4px;
+}
+
+/* Sidebar navigation */
 .md-nav__item .md-nav__link {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
-/* Function card: each function gets its own outlined card */
+.md-nav__title {
+  font-weight: 700;
+}
+
+.md-nav--secondary .md-nav__link {
+  font-size: 0.72rem;
+}
+
+/* Function card */
 .fn-card {
-  border: 1px solid var(--md-primary-fg-color--light);
-  border-left: 4px solid var(--md-primary-fg-color);
-  border-radius: 6px;
-  padding: 1.2em 1.4em 0.8em;
-  margin: 1.8em 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 3px solid var(--md-primary-fg-color);
+  border-radius: 8px;
+  padding: 1.1em 1.4em 0.9em;
+  margin: 1.6em 0;
   background: var(--md-code-bg-color);
 }
 
@@ -720,6 +778,28 @@ def write_extra_assets(readthedocs_dir: Path):
 .fn-card > h4:first-child,
 .fn-card > h5:first-child {
   margin-top: 0;
+}
+
+.fn-card + .fn-card {
+  margin-top: 1.6em;
+}
+
+/* Buttons */
+.md-typeset .md-button {
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-default-fg-color--lightest);
+  font-weight: 600;
 }
 """
     (css_dir / "extra.css").write_text(css, encoding="utf-8")
@@ -743,254 +823,104 @@ window.MathJax = {
     (js_dir / "mathjax.js").write_text(js, encoding="utf-8")
 
 
-# if possible fetch this from github docs or maybe add another file here in same directory.
-INSTALL_MD = """\
-# Installation
 
-NuMojo supports multiple installation paths depending on your workflow.
-
-## Prerequisites
-
-- A supported platform (`osx-arm64` or `linux-64`)
-- `pixi` installed
-- Compatible Mojo/Modular toolchain (managed through `pixi.toml`)
-
----
-
-## Method 1 — Install from source (recommended for contributors)
-
-Use this if you want to run tests, modify source, or contribute.
-
-### 1) Clone the repository
-
-```bash
-git clone https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo.git
-cd NuMojo
-```
-
-### 2) Create environment
-
-```bash
-pixi install
-```
-
-### 3) Run validation
-
-```bash
-pixi run final
-```
-
-This runs formatting + tests.
-
----
-
-## Method 2 — Use NuMojo in your own Pixi project (git dependency)
-
-Use this when you want NuMojo directly from GitHub in another project.
-
-Add the following to your project `pixi.toml` (adjust names as needed):
-
-```toml
-[workspace]
-preview = ["pixi-build"]
-
-[package]
-name = "your_project_name"
-version = "0.1.0"
-
-[package.build]
-backend = { name = "pixi-build-mojo", version = "0.*" }
-
-[package.build.config.pkg]
-name = "your_package_name"
-
-[package.host-dependencies]
-modular = ">=25.7.0,<26"
-
-[package.build-dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main" }
-
-[package.run-dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main" }
-
-[dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main" }
-```
-
-Then install:
-
-```bash
-pixi install
-```
-
-### Branch choice
-
-- `main`: stable branch
-- `pre-x.y`: active development branch (can include breaking changes)
-
----
-
-## Method 3 — Install stable package from prefix.dev
-
-Use this for reproducible, pinned setups in projects that don't need source edits.
-
-In your `pixi.toml`:
-
-```toml
-[workspace]
-channels = ["https://repo.prefix.dev/modular-community"]
-
-[dependencies]
-numojo = "=0.8.0"
-```
-
-Then:
-
-```bash
-pixi install
-```
-
-### Compatibility table
-
-| NuMojo Version | Required Mojo Version |
-| --- | --- |
-| v0.8.0 | ==25.7 |
-| v0.7.0 | ==25.3 |
-| v0.6.1 | ==25.2 |
-| v0.6.0 | ==25.2 |
-
----
-
-## Method 4 — Build standalone `numojo.mojopkg`
-
-Use this for offline or hermetic workflows.
-
-From the NuMojo repo root:
-
-```bash
-pixi run package
-```
-
-This generates `numojo.mojopkg`. Copy it to your target project directory (or add its parent path to include dirs).
-
----
-
-## Method 5 — Direct source include (no package build)
-
-Use this for fast local iteration while editing NuMojo source.
-
-```bash
-mojo run -I "/path/to/NuMojo" your_program.mojo
-```
-
-Example:
-
-```bash
-mojo run -I "/Users/yourname/Projects/NuMojo" app.mojo
-```
-
----
-
-## VSCode / LSP setup
-
-To enable autocompletion and symbol resolution for NuMojo:
-
-1. Open VSCode settings
-2. Go to `Mojo › Lsp: Include Dirs`
-3. Add the absolute path to your NuMojo folder
-4. Restart Mojo LSP
-
----
-
-## Verify installation
-
-Create a quick file like `check_numojo.mojo`:
-
-```mojo
-import numojo as nm
-from numojo.prelude import *
-
-fn main() raises:
-    var a = nm.arange[f32](10)
-    print(a)
-    print(nm.sum(a))
-```
-
-Run:
-
-```bash
-mojo run -I "/path/to/NuMojo" check_numojo.mojo
-```
-
-If this runs successfully, your installation is working.
-
----
-
-## Troubleshooting
-
-### Dependency resolution issues
-- Ensure your `modular` version is compatible with your selected NuMojo version.
-- Recreate environment:
-  ```bash
-  pixi install --locked
-  ```
-
-### Package not found in editor
-- Verify LSP include path points to the NuMojo root.
-- Restart VSCode and Mojo LSP.
-
-### Import works in terminal but not in editor
-- Editor often uses separate language-server include paths; configure `Mojo › Lsp: Include Dirs` explicitly.
-"""
+def extract_readme_section(readme_text: str, heading: str) -> str:
+    """Return the body of a top-level (##) section from README.MD, up to
+    (but not including) the next top-level heading. `heading` is matched
+    exactly against the text after '## '.
+    """
+    lines = readme_text.splitlines()
+    start = None
+    for i, line in enumerate(lines):
+        if line.strip() == f"## {heading}":
+            start = i + 1
+            break
+    if start is None:
+        raise ValueError(f"README.MD has no '## {heading}' section")
+    end = len(lines)
+    for i in range(start, len(lines)):
+        if lines[i].startswith("## "):
+            end = i
+            break
+    body = "\n".join(lines[start:end]).strip("\n")
+    # README examples use `def main() raises:`, matching current Mojo syntax
+    # already, so no rewriting needed there. Demote any `### ` headings by
+    # one level isn't necessary since README already starts sections at ###.
+    return body
 
 
 def write_getting_started():
     GETTING_STARTED.parent.mkdir(parents=True, exist_ok=True)
-    GETTING_STARTED.write_text(INSTALL_MD, encoding="utf-8")
+    readme_text = README_SRC.read_text(encoding="utf-8")
+
+    usage = extract_readme_section(readme_text, "Usage")
+    quickstart_md = (
+        "# Quickstart\n\n"
+        "This guide gets a first NuMojo program running in a couple of "
+        "minutes. See [Installation](install.md) for all the ways to add "
+        "NuMojo to a project.\n\n"
+        f"{usage}\n\n"
+        "## Next steps\n\n"
+        "- Browse available functions by topic in the "
+        "[User Guide](../user-guide/overview.md).\n"
+        "- Look up any function's full signature and docstring in the "
+        "[API Reference](../API reference/numojo/index.md).\n"
+    )
+    (GETTING_STARTED.parent / "quickstart.md").write_text(
+        quickstart_md, encoding="utf-8"
+    )
+
+    installation = extract_readme_section(readme_text, "Installation")
+    install_md = f"# Installation\n\n{installation}\n"
+    GETTING_STARTED.write_text(install_md, encoding="utf-8")
 
 
 def copy_docs_pages(docs_dir: Path):
     mapping = {
-        DOCS_SRC / "getting-started" / "quickstart.md": docs_dir
-        / "getting_started"
-        / "quickstart.md",
-        DOCS_SRC / "getting-started" / "ndarray-vs-matrix.md": docs_dir
-        / "getting_started"
-        / "ndarray-vs-matrix.md",
-        DOCS_SRC / "user-guide" / "ndarray-creation-manipulation.md": docs_dir
-        / "user-guide"
-        / "ndarray-creation-manipulation.md",
-        DOCS_SRC / "user-guide" / "indexing.md": docs_dir
-        / "user-guide"
-        / "indexing.md",
-        DOCS_SRC / "user-guide" / "linalg.md": docs_dir / "user-guide" / "linalg.md",
-        DOCS_SRC / "user-guide" / "io.md": docs_dir / "user-guide" / "io.md",
         DOCS_SRC / "developer-guide" / "architecture.md": docs_dir
         / "developer-guide"
         / "architecture.md",
-        DOCS_SRC / "developer-guide" / "adding-functions.md": docs_dir
-        / "developer-guide"
-        / "adding-functions.md",
-        DOCS_SRC / "developer-guide" / "backend-dispatch.md": docs_dir
-        / "developer-guide"
-        / "backend-dispatch.md",
         DOCS_SRC / "developer-guide" / "ndarray-basic-structure.md": docs_dir
         / "developer-guide"
         / "ndarray-basic-structure.md",
         DOCS_SRC / "developer-guide" / "style-guide.md": docs_dir
         / "developer-guide"
         / "style-guide.md",
-        DOCS_SRC / "developer-guide" / "testing.md": docs_dir
+        DOCS_SRC / "developer-guide" / "contributing.md": docs_dir
         / "developer-guide"
-        / "testing.md",
+        / "contributing.md",
+        DOCS_SRC / "developer-guide" / "pre-pr-checks.md": docs_dir
+        / "developer-guide"
+        / "pre-pr-checks.md",
+        DOCS_SRC / "user-guide" / "features.md": docs_dir
+        / "user-guide"
+        / "overview.md",
     }
+    # Links in the source docs are relative to their location in the NuMojo
+    # repo; rewrite the ones that don't resolve from the docs site.
+    link_rewrites = {
+        DOCS_SRC
+        / "user-guide"
+        / "features.md": [
+            (
+                "[here](../../numojo/__init__.mojo)",
+                "[here](https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/numojo/__init__.mojo)",
+            ),
+            (
+                "see `roadmap.md`",
+                "see the [Roadmap]"
+                "(https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo/blob/main/docs/user-guide/roadmap.md)",
+            ),
+        ],
+    }
+
     for src, dst in mapping.items():
         if src.exists():
             dst.parent.mkdir(parents=True, exist_ok=True)
-            dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+            text = src.read_text(encoding="utf-8")
+            for old, new in link_rewrites.get(src, []):
+                text = text.replace(old, new)
+            dst.write_text(text, encoding="utf-8")
             print(f"  copied {src.name} -> {dst}")
         else:
             print(f"  WARNING: source not found: {src}")
@@ -1034,7 +964,6 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 | Type | Description |
 |------|-------------|
 | `NDArray` | General-purpose N-dimensional array for tensors, grids, batches |
-| `Matrix` | Dedicated 2-D array optimized for linear-algebra workflows |
 | `ComplexNDArray` | N-dimensional array of complex numbers |
 
 ---
@@ -1047,26 +976,14 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
     import numojo as nm
     from numojo.prelude import *
 
-    fn main() raises:
+    def main() raises:
         var A = nm.random.randn(Shape(1000, 1000))
         var B = nm.random.randn(Shape(1000, 1000))
         var C = A @ B
         var I = nm.inv(A)
         var s = A[1:3, 4:19]
         print(nm.sum(A))
-    ```
-
-=== "Matrix"
-
-    ```mojo
-    from numojo import Matrix
-    import numojo as nm
-
-    fn main() raises:
-        var A = Matrix.rand(shape=(1000, 1000))
-        var B = Matrix.rand(shape=(1000, 1))
-        var x = nm.solve(A, B)
-        print(x)
+        print(nm.solve(A, B))
     ```
 
 === "ComplexNDArray"
@@ -1075,7 +992,7 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
     import numojo as nm
     from numojo.prelude import *
 
-    fn main() raises:
+    def main() raises:
         var z = CScalar[cf32](5)
         var A = nm.full[cf32](Shape(4, 4), fill_value=z)
         var B = nm.ones[cf32](Shape(4, 4))
@@ -1089,7 +1006,7 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 - **Creation** — `zeros`, `ones`, `arange`, `linspace`, `fromstring`, `random`, …
 - **Manipulation** — `reshape`, `transpose`, `flip`, `broadcast_to`, …
 - **Math** — `sin`, `cos`, `exp`, `log`, `sqrt`, arithmetic, rounding, …
-- **Linear algebra** — `matmul`, `inv`, `solve`, `lstsq`, `det`, `norm`, decompositions, …
+- **Linear algebra** — `matmul`, `inv`, `solve`, `det`, `trace`, `lu_decomposition`, …
 - **Logic** — `all`, `any`, comparison, logical ops, …
 - **Statistics** — `mean`, `std`, `var`, `sum`, `prod`, `min`, `max`, …
 - **Sorting & searching** — `sort`, `argsort`, `argmin`, `argmax`, …
@@ -1099,21 +1016,22 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 
 ## Installation
 
-The fastest way to get started:
+The fastest way to get started, for a pinned stable release:
 
 ```toml
 [workspace]
 channels = ["https://repo.prefix.dev/modular-community"]
 
 [dependencies]
-numojo = "=0.8.0"
+numojo = "=0.9.0"
 ```
 
 ```bash
 pixi install
 ```
 
-See the [full installation guide](getting_started/install.md) for all methods.
+See the [full installation guide](getting_started/install.md) for all methods,
+including tracking the latest development branch.
 
 ---
 
@@ -1121,6 +1039,8 @@ See the [full installation guide](getting_started/install.md) for all methods.
 
 | NuMojo | Mojo |
 |--------|------|
+| v0.10.0 | ==1.0.0 |
+| v0.9.0 | ==26.2 |
 | v0.8.0 | ==25.7 |
 | v0.7.0 | ==25.3 |
 | v0.6.1 | ==25.2 |
@@ -1149,6 +1069,14 @@ def generate():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     docs_dir = MKDOCS_YML.parent / "docs"
+
+    # Clear previously generated getting-started/user-guide/developer-guide
+    # pages so pages removed from the source docs don't linger as orphans.
+    for stale_dir in ("getting_started", "user-guide", "developer-guide"):
+        stale_path = docs_dir / stale_dir
+        if stale_path.exists():
+            shutil.rmtree(stale_path)
+
     print(f"Generating API reference into {OUT_DIR}/")
     decl_nav = process_node(decl, "numojo", OUT_DIR, docs_dir)
 
