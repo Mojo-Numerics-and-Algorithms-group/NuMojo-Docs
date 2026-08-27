@@ -1,6 +1,12 @@
 # `numojo.routines.linalg.__init__`
 
-Linear algebra routines (numojo.routines.linalg)
+Linear algebra operations including matrix decompositions, norms, products, and linear system solving.
 
-This module provides functions for linear algebra operations, including matrix decompositions, norms, products, and solving linear systems etc.
+Exports
+-------
+- Decompositions: `lu_decomposition`.
+- Norms: `det`, `trace`.
+- Products: `dot`, `matmul`, `cross`.
+- Solving: `solve`, `lstsq`, `inv`.
+- Miscellaneous: `diagonal`.
 

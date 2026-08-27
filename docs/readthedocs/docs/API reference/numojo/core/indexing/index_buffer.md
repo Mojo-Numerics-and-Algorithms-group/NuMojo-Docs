@@ -1,11 +1,13 @@
 # `numojo.core.indexing.index_buffer`
 
-IndexBuffer (numojo.core.indexing.index_buffer)
-
 Shared integer buffer backend for shape/strides/item.
 
-This type owns a contiguous heap buffer of Ints and provides
-small helpers for pointer access and SIMD load/store.
+Owns a contiguous heap buffer of Ints and provides small helpers for pointer
+access and SIMD load/store.
+
+Exports
+-------
+- `IndexBuffer`: Index storage.
 
 ## Structs
 
@@ -16,13 +18,13 @@ struct IndexBuffer
 ```
 
 **Memory convention:** `register_passable`  
-**Implements:** `AnyType`, `Copyable`, `Equatable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Equatable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `Sized`, `Writable`
 
 Shared integer buffer backend for shape/strides/item.
 
 #### Fields
 
-- **`ptr`** (`UnsafePointer[Scalar[DType.int], MutExternalOrigin]`): Pointer to the buffer.
+- **`ptr`** (`Pointer[Int, MutUntrackedOrigin]`): Pointer to the buffer.
 - **`ndim`** (`Int`): Number of elements in the buffer.
 
 #### Aliases
@@ -47,30 +49,6 @@ comptime simd_width
 
 SIMD width for the element type.
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
-
 #### Methods
 
 
@@ -81,7 +59,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__(*, size: Int) -> Self
+def __init__(*, size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -90,7 +68,7 @@ Initialize an IndexBuffer of given size.
 
 **Args:**
 
-- `size` (`Int`): Number of elements in the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
 **Returns:**
 
@@ -99,7 +77,7 @@ Initialize an IndexBuffer of given size.
 ###### Overload 2
 
 ```mojo
-__init__(ptr: UnsafePointer[Scalar[DType.int], MutExternalOrigin], size: Int) -> Self
+def __init__(ptr: Pointer[Int, MutUntrackedOrigin], size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -108,8 +86,8 @@ Initialize an IndexBuffer with an existing pointer and size.
 
 **Args:**
 
-- `ptr` (`UnsafePointer`): UnsafePointer to the buffer.
-- `size` (`Int`): Number of elements in the buffer.
+- `ptr` (`Pointer[Int, MutUntrackedOrigin]`) `[imm]`: UnsafePointer to the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
 **Returns:**
 
@@ -118,7 +96,7 @@ Initialize an IndexBuffer with an existing pointer and size.
 ###### Overload 3
 
 ```mojo
-__init__() -> Self
+def __init__() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -132,25 +110,7 @@ Initialize an empty IndexBuffer.
 ###### Overload 4
 
 ```mojo
-__init__(*values: Int) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Initialize an IndexBuffer with given Int values.
-
-**Args:**
-
-- `*values` (`Int`): Variadic list of integer values.
-
-**Returns:**
-
-- `Self`
-
-###### Overload 5
-
-```mojo
-__init__(*values: Scalar[DType.int]) -> Self
+def __init__(*values: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -159,16 +119,16 @@ Initialize an IndexBuffer with given values.
 
 **Args:**
 
-- `*values` (`Scalar`): Variadic list of integer values.
+- `*values` (`Int`) `[imm]`: Variadic list of integer values.
 
 **Returns:**
 
 - `Self`
 
-###### Overload 6
+###### Overload 5
 
 ```mojo
-__init__(values: List[Scalar[DType.int]]) -> Self
+def __init__(values: List[Int]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -177,7 +137,25 @@ Initialize an IndexBuffer with a list of values.
 
 **Args:**
 
-- `values` (`List`): List of integer values.
+- `values` (`List[Int]`) `[imm]`: List of integer values.
+
+**Returns:**
+
+- `Self`
+
+###### Overload 6
+
+```mojo
+def __init__(values: VariadicList[Int]) -> Self
+```
+
+<span class="badge badge-static">static</span>
+
+Initialize an IndexBuffer with a range of values.
+
+**Args:**
+
+- `values` (`VariadicList[Int]`) `[imm]`: Range of integer values.
 
 **Returns:**
 
@@ -186,61 +164,7 @@ Initialize an IndexBuffer with a list of values.
 ###### Overload 7
 
 ```mojo
-__init__(values: List[Int]) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Initialize an IndexBuffer with a list of Int values.
-
-**Args:**
-
-- `values` (`List`): List of integer values.
-
-**Returns:**
-
-- `Self`
-
-###### Overload 8
-
-```mojo
-__init__(values: VariadicList[Scalar[DType.int]]) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Initialize an IndexBuffer with a range of values.
-
-**Args:**
-
-- `values` (`VariadicList`): Range of integer values.
-
-**Returns:**
-
-- `Self`
-
-###### Overload 9
-
-```mojo
-__init__(values: VariadicList[Int]) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Initialize an IndexBuffer with a range of values.
-
-**Args:**
-
-- `values` (`VariadicList`): Range of integer values.
-
-**Returns:**
-
-- `Self`
-
-###### Overload 10
-
-```mojo
-__init__(*, copy: Self) -> Self
+def __init__(*, copy: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -249,7 +173,7 @@ Copy-initialize an IndexBuffer from ancopy IndexBuffer.
 
 **Args:**
 
-- `copy` (`Self`): The copy IndexBuffer to copy from.
+- `copy` (`Self`) `[imm]`: The copy IndexBuffer to copy from.
 
 **Returns:**
 
@@ -260,10 +184,10 @@ Copy-initialize an IndexBuffer from ancopy IndexBuffer.
 
 <div class="fn-card" markdown="1">
 
-##### `__del__`
+##### `__deinit__`
 
 ```mojo
-__del__(deinit self)
+def __deinit__(deinit self)
 ```
 
 Deinitialize the IndexBuffer and free resources.
@@ -282,15 +206,15 @@ Deinitialize the IndexBuffer and free resources.
 ###### Overload 1
 
 ```mojo
-__getitem__(self, idx: Int) -> Int
+def __getitem__(self, idx: Int) -> Int
 ```
 
 Get the element at the given index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): Index of the element.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Index of the element.
 
 **Returns:**
 
@@ -301,34 +225,15 @@ Get the element at the given index.
 ###### Overload 2
 
 ```mojo
-__getitem__(self, idx: Scalar[DType.int]) -> Scalar[DType.int]
-```
-
-Get the element at the given index.
-
-**Args:**
-
-- `self` (`Self`)
-- `idx` (`Scalar`): Index of the element.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-###### Overload 3
-
-```mojo
-__getitem__(self, slice: Slice) -> Self
+def __getitem__(self, slice: Slice) -> Self
 ```
 
 Get a sub-buffer using a slice.
 
 **Args:**
 
-- `self` (`Self`)
-- `slice` (`Slice`): Slice object defining the sub-buffer.
+- `self` (`Self`) `[imm]`
+- `slice` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 
 **Returns:**
 
@@ -346,7 +251,7 @@ Get a sub-buffer using a slice.
 ###### Overload 1
 
 ```mojo
-__setitem__(mut self, idx: Int, value: Int)
+def __setitem__(mut self, idx: Int, value: Int)
 ```
 
 Set the element at the given index.
@@ -354,31 +259,15 @@ Set the element at the given index.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Index of the element.
-- `value` (`Int`): Value to set.
+- `idx` (`Int`) `[imm]`: Index of the element.
+- `value` (`Int`) `[imm]`: Value to set.
 
 !!! failure "Raises"
 
 ###### Overload 2
 
 ```mojo
-__setitem__(mut self, idx: Scalar[DType.int], value: Scalar[DType.int])
-```
-
-Set the element at the given index.
-
-**Args:**
-
-- `self` (`Self`) `[mut]`
-- `idx` (`Scalar`): Index of the element.
-- `value` (`Scalar`): Value to set.
-
-!!! failure "Raises"
-
-###### Overload 3
-
-```mojo
-__setitem__(mut self, slice: Slice, value: Self)
+def __setitem__(mut self, slice: Slice, value: Self)
 ```
 
 Set a sub-buffer using a slice.
@@ -386,8 +275,8 @@ Set a sub-buffer using a slice.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `slice` (`Slice`): Slice object defining the sub-buffer.
-- `value` (`Self`): Buffer to set.
+- `slice` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
+- `value` (`Self`) `[imm]`: Buffer to set.
 
 !!! failure "Raises"
 
@@ -399,15 +288,15 @@ Set a sub-buffer using a slice.
 ##### `__eq__`
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
 Check if two IndexBuffers are equal.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The other IndexBuffer to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The other IndexBuffer to compare with.
 
 **Returns:**
 
@@ -421,15 +310,15 @@ Check if two IndexBuffers are equal.
 ##### `__ne__`
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
 Check if two IndexBuffers are not equal.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The other IndexBuffer to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The other IndexBuffer to compare with.
 
 **Returns:**
 
@@ -442,35 +331,16 @@ Check if two IndexBuffers are not equal.
 
 ##### `__contains__`
 
-###### Overload 1
-
 ```mojo
-__contains__(self, value: Scalar[DType.int]) -> Bool
+def __contains__(self, value: Int) -> Bool
 ```
 
 Check if the IndexBuffer contains the given value.
 
 **Args:**
 
-- `self` (`Self`)
-- `value` (`Scalar`): Value to check for.
-
-**Returns:**
-
-- `Bool`
-
-###### Overload 2
-
-```mojo
-__contains__(self, value: Int) -> Bool
-```
-
-Check if the IndexBuffer contains the given value.
-
-**Args:**
-
-- `self` (`Self`)
-- `value` (`Int`): Value to check for.
+- `self` (`Self`) `[imm]`
+- `value` (`Int`) `[imm]`: Value to check for.
 
 **Returns:**
 
@@ -484,7 +354,7 @@ Check if the IndexBuffer contains the given value.
 ##### `get_ptr`
 
 ```mojo
-get_ptr(ref self) -> ref[self.ptr] UnsafePointer[Scalar[DType.int], MutExternalOrigin]
+def get_ptr(ref self) -> ref[self.ptr] Pointer[Int, MutUntrackedOrigin]
 ```
 
 Get the underlying pointer of the buffer.
@@ -498,7 +368,7 @@ The returned pointer is a reference to the internal pointer.
 
 **Returns:**
 
-- `ref`
+- `ref[self.ptr] Pointer[Int, MutUntrackedOrigin]`
 
 
 </div>
@@ -508,7 +378,7 @@ The returned pointer is a reference to the internal pointer.
 ##### `offset`
 
 ```mojo
-offset(ref self, offset: Int) -> UnsafePointer[Scalar[DType.int], MutExternalOrigin]
+def offset(ref self, offset: Int) -> Pointer[Int, MutUntrackedOrigin]
 ```
 
 Get a pointer offset by the given amount.
@@ -516,11 +386,11 @@ Get a pointer offset by the given amount.
 **Args:**
 
 - `self` (`Self`) `[ref]`
-- `offset` (`Int`): Offset amount.
+- `offset` (`Int`) `[imm]`: Offset amount.
 
 **Returns:**
 
-- `UnsafePointer`
+- `Pointer[Int, MutUntrackedOrigin]`
 
 
 </div>
@@ -529,10 +399,8 @@ Get a pointer offset by the given amount.
 
 ##### `unsafe_load`
 
-###### Overload 1
-
 ```mojo
-unsafe_load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Unsafely load a SIMD vector from the buffer at the given index.
@@ -543,33 +411,12 @@ Unsafely load a SIMD vector from the buffer at the given index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): Index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Index to load from.
 
 **Returns:**
 
-- `SIMD`
-
-###### Overload 2
-
-```mojo
-unsafe_load[width: Int = 1](self, idx: Scalar[DType.int]) -> SIMD[DType.int, width]
-```
-
-Unsafely load a SIMD vector from the buffer at the given index.
-
-**Parameters:**
-
-- `width` (`Int`): Width of the SIMD vector.
-
-**Args:**
-
-- `self` (`Self`)
-- `idx` (`Scalar`): Index to load from.
-
-**Returns:**
-
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 
 </div>
@@ -578,10 +425,8 @@ Unsafely load a SIMD vector from the buffer at the given index.
 
 ##### `unsafe_store`
 
-###### Overload 1
-
 ```mojo
-unsafe_store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Unsafely store a SIMD vector to the buffer at the given index.
@@ -592,27 +437,9 @@ Unsafely store a SIMD vector to the buffer at the given index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): Index to store to.
-- `value` (`SIMD`): SIMD vector to store.
-
-###### Overload 2
-
-```mojo
-unsafe_store[width: Int = 1](self, idx: Scalar[DType.int], value: SIMD[DType.int, width])
-```
-
-Unsafely store a SIMD vector to the buffer at the given index.
-
-**Parameters:**
-
-- `width` (`Int`): Width of the SIMD vector.
-
-**Args:**
-
-- `self` (`Self`)
-- `idx` (`Scalar`): Index to store to.
-- `value` (`SIMD`): SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: SIMD vector to store.
 
 
 </div>
@@ -624,15 +451,15 @@ Unsafely store a SIMD vector to the buffer at the given index.
 ###### Overload 1
 
 ```mojo
-extend(self, *values: Int) -> Self
+def extend(self, *values: Int) -> Self
 ```
 
 Extend the buffer by appending additional integer values.
 
 **Args:**
 
-- `self` (`Self`)
-- `*values` (`Int`): Variadic list of sizes of extended dimensions.
+- `self` (`Self`) `[imm]`
+- `*values` (`Int`) `[imm]`: Variadic list of sizes of extended dimensions.
 
 **Returns:**
 
@@ -641,15 +468,15 @@ Extend the buffer by appending additional integer values.
 ###### Overload 2
 
 ```mojo
-extend(self, values: List[Int]) -> Self
+def extend(self, values: List[Int]) -> Self
 ```
 
 Extend the buffer by appending additional integer values from a List.
 
 **Args:**
 
-- `self` (`Self`)
-- `values` (`List`): List of sizes of extended dimensions.
+- `self` (`Self`) `[imm]`
+- `values` (`List[Int]`) `[imm]`: List of sizes of extended dimensions.
 
 **Returns:**
 
@@ -663,7 +490,7 @@ Extend the buffer by appending additional integer values from a List.
 ##### `flip`
 
 ```mojo
-flip(mut self)
+def flip(mut self)
 ```
 
 Flip the items in-place.
@@ -680,14 +507,14 @@ Flip the items in-place.
 ##### `flipped`
 
 ```mojo
-flipped(self) -> Self
+def flipped(self) -> Self
 ```
 
 Returns a new IndexBuffer by reversing the items.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -701,15 +528,15 @@ Returns a new IndexBuffer by reversing the items.
 ##### `move_axis_to_end`
 
 ```mojo
-move_axis_to_end(self, axis: Int) -> Self
+def move_axis_to_end(self, axis: Int) -> Self
 ```
 
 Returns a new IndexBuffer by moving the value at axis to the end.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to move. It should be in [-ndim, ndim).
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to move. It should be in [-ndim, ndim).
 
 **Returns:**
 
@@ -723,15 +550,15 @@ Returns a new IndexBuffer by moving the value at axis to the end.
 ##### `pop`
 
 ```mojo
-pop(self, axis: Int) -> Self
+def pop(self, axis: Int) -> Self
 ```
 
 Drops the item at the given axis (index).
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to drop. It should be in [0, ndim).
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to drop. It should be in [0, ndim).
 
 **Returns:**
 
@@ -747,16 +574,16 @@ Drops the item at the given axis (index).
 ##### `insert`
 
 ```mojo
-insert(self, axis: Int, value: Int) -> Self
+def insert(self, axis: Int, value: Int) -> Self
 ```
 
 Inserts a value at the given axis (index).
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to insert at. It should be in [0, ndim].
-- `value` (`Int`): The value to insert.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to insert at. It should be in [0, ndim].
+- `value` (`Int`) `[imm]`: The value to insert.
 
 **Returns:**
 
@@ -774,15 +601,15 @@ Inserts a value at the given axis (index).
 ###### Overload 1
 
 ```mojo
-join(self, *others: Self) -> Self
+def join(self, *others: Self) -> Self
 ```
 
 Join multiple IndexBuffers into a single IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
-- `*others` (`Self`): Variable number of IndexBuffer objects.
+- `self` (`Self`) `[imm]`
+- `*others` (`Self`) `[imm]`: Variable number of IndexBuffer objects.
 
 **Returns:**
 
@@ -791,15 +618,15 @@ Join multiple IndexBuffers into a single IndexBuffer.
 ###### Overload 2
 
 ```mojo
-join(self, others: List[IndexBuffer]) -> Self
+def join(self, others: List[Self]) -> Self
 ```
 
 Join multiple IndexBuffers into a single IndexBuffer from a List.
 
 **Args:**
 
-- `self` (`Self`)
-- `others` (`List`): List of IndexBuffer objects.
+- `self` (`Self`) `[imm]`
+- `others` (`List[Self]`) `[imm]`: List of IndexBuffer objects.
 
 **Returns:**
 
@@ -813,7 +640,7 @@ Join multiple IndexBuffers into a single IndexBuffer from a List.
 ##### `sort`
 
 ```mojo
-sort(mut self, order: Bool)
+def sort(mut self, order: Bool)
 ```
 
 Sort the IndexBuffer in-place.
@@ -821,7 +648,7 @@ Sort the IndexBuffer in-place.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `order` (`Bool`): If True, sort in ascending order; if False, sort in descending order.
+- `order` (`Bool`) `[imm]`: If True, sort in ascending order; if False, sort in descending order.
 
 
 </div>
@@ -831,15 +658,15 @@ Sort the IndexBuffer in-place.
 ##### `sorted`
 
 ```mojo
-sorted(self, order: Bool) -> Self
+def sorted(self, order: Bool) -> Self
 ```
 
 Returns a new IndexBuffer that is sorted.
 
 **Args:**
 
-- `self` (`Self`)
-- `order` (`Bool`): If True, sort in ascending order; if False, sort in descending order.
+- `self` (`Self`) `[imm]`
+- `order` (`Bool`) `[imm]`: If True, sort in ascending order; if False, sort in descending order.
 
 **Returns:**
 
@@ -853,7 +680,7 @@ Returns a new IndexBuffer that is sorted.
 ##### `arange`
 
 ```mojo
-arange(start: Int, end: Int, step: Int = 1) -> Self
+def arange(start: Int, end: Int, step: Int = Int(1)) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -862,9 +689,9 @@ Create a IndexBuffer with a range of values.
 
 **Args:**
 
-- `start` (`Int`): Start of the range.
-- `end` (`Int`): End of the range.
-- `step` (`Int`): Step size of the range.
+- `start` (`Int`) `[imm]`: Start of the range.
+- `end` (`Int`) `[imm]`: End of the range.
+- `step` (`Int`) `[imm]`: Step size of the range.
 
 **Returns:**
 
@@ -880,7 +707,7 @@ Create a IndexBuffer with a range of values.
 ##### `fill`
 
 ```mojo
-fill(size: Int, value: Int) -> Self
+def fill(size: Int, value: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -889,8 +716,8 @@ Create a IndexBuffer filled with the given value.
 
 **Args:**
 
-- `size` (`Int`): Number of elements in the buffer.
-- `value` (`Int`): Value to fill the buffer with.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
+- `value` (`Int`) `[imm]`: Value to fill the buffer with.
 
 **Returns:**
 
@@ -904,7 +731,7 @@ Create a IndexBuffer filled with the given value.
 ##### `zeros`
 
 ```mojo
-zeros(size: Int) -> Self
+def zeros(size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -913,7 +740,7 @@ Create a IndexBuffer filled with zeros.
 
 **Args:**
 
-- `size` (`Int`): Number of elements in the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
 **Returns:**
 
@@ -927,7 +754,7 @@ Create a IndexBuffer filled with zeros.
 ##### `ones`
 
 ```mojo
-ones(size: Int) -> Self
+def ones(size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -936,7 +763,7 @@ Create a IndexBuffer filled with ones.
 
 **Args:**
 
-- `size` (`Int`): Number of elements in the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
 **Returns:**
 
@@ -950,7 +777,7 @@ Create a IndexBuffer filled with ones.
 ##### `linspace`
 
 ```mojo
-linspace(start: Int, end: Int, num: Int) -> Self
+def linspace(start: Int, end: Int, num: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -959,9 +786,9 @@ Create a IndexBuffer with linearly spaced values.
 
 **Args:**
 
-- `start` (`Int`): Start of the range.
-- `end` (`Int`): End of the range.
-- `num` (`Int`): Number of elements in the buffer.
+- `start` (`Int`) `[imm]`: Start of the range.
+- `end` (`Int`) `[imm]`: End of the range.
+- `num` (`Int`) `[imm]`: Number of elements in the buffer.
 
 **Returns:**
 
@@ -977,7 +804,7 @@ Create a IndexBuffer with linearly spaced values.
 ##### `invert_permutation`
 
 ```mojo
-invert_permutation(perm) -> Self
+def invert_permutation(perm) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -986,7 +813,7 @@ Invert a permutation.
 
 **Args:**
 
-- `perm` (`Self`): IndexBuffer representing a permutation.
+- `perm` (`Self`) `[imm]`: IndexBuffer representing a permutation.
 
 **Returns:**
 
@@ -1000,14 +827,14 @@ Invert a permutation.
 ##### `rank`
 
 ```mojo
-rank(self) -> Int
+def rank(self) -> Int
 ```
 
 Get the number of elements in the IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1021,14 +848,14 @@ Get the number of elements in the IndexBuffer.
 ##### `is_empty`
 
 ```mojo
-is_empty(self) -> Bool
+def is_empty(self) -> Bool
 ```
 
 Check if the IndexBuffer is empty.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1042,18 +869,18 @@ Check if the IndexBuffer is empty.
 ##### `sum`
 
 ```mojo
-sum(self) -> Scalar[DType.int]
+def sum(self) -> Int
 ```
 
 Compute the sum of all elements in the IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `Scalar`
+- `Int`
 
 
 </div>
@@ -1063,18 +890,18 @@ Compute the sum of all elements in the IndexBuffer.
 ##### `product`
 
 ```mojo
-product(self) -> Scalar[DType.int]
+def product(self) -> Int
 ```
 
 Compute the product of all elements in the IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `Scalar`
+- `Int`
 
 
 </div>
@@ -1084,14 +911,14 @@ Compute the product of all elements in the IndexBuffer.
 ##### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Get the number of elements in the IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1105,14 +932,14 @@ Get the number of elements in the IndexBuffer.
 ##### `__repr__`
 
 ```mojo
-__repr__(self) -> String
+def __repr__(self) -> String
 ```
 
 Get the official string representation of the IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1126,14 +953,14 @@ Get the official string representation of the IndexBuffer.
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Get the string representation of the IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1147,7 +974,7 @@ Get the string representation of the IndexBuffer.
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Write the IndexBuffer to a writer.
@@ -1158,7 +985,7 @@ Write the IndexBuffer to a writer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -1169,7 +996,7 @@ Write the IndexBuffer to a writer.
 ##### `init_value`
 
 ```mojo
-init_value(mut self, idx: Int, value: Scalar[DType.int])
+def init_value(mut self, idx: Int, value: Int)
 ```
 
 Initialize the element at the given index. No bounds checking.
@@ -1177,8 +1004,8 @@ Initialize the element at the given index. No bounds checking.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Index of the element.
-- `value` (`Scalar`): Value to set.
+- `idx` (`Int`) `[imm]`: Index of the element.
+- `value` (`Int`) `[imm]`: Value to set.
 
 
 </div>
@@ -1188,18 +1015,18 @@ Initialize the element at the given index. No bounds checking.
 ##### `tolist`
 
 ```mojo
-tolist(self) -> List[Scalar[DType.int]]
+def tolist(self) -> List[Int]
 ```
 
 Convert the buffer to a list.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `List`
+- `List[Int]`
 
 
 </div>
@@ -1209,7 +1036,7 @@ Convert the buffer to a list.
 ##### `__iter__`
 
 ```mojo
-__iter__(ref self) -> _IndexBufferIter[DType.int, origin_of(self)]
+def __iter__(ref self) -> _IndexBufferIter[DType.int, origin_of(self)]
 ```
 
 Get a forward iterator for the IndexBuffer.
@@ -1220,7 +1047,7 @@ Get a forward iterator for the IndexBuffer.
 
 **Returns:**
 
-- `_IndexBufferIter`
+- `_IndexBufferIter[DType.int, origin_of(self)]`
 
 
 </div>
@@ -1230,7 +1057,7 @@ Get a forward iterator for the IndexBuffer.
 ##### `__reversed__`
 
 ```mojo
-__reversed__(ref self) -> _IndexBufferIter[DType.int, origin_of(self), False]
+def __reversed__(ref self) -> _IndexBufferIter[DType.int, origin_of(self), False]
 ```
 
 Get a backward iterator for the IndexBuffer.
@@ -1241,7 +1068,7 @@ Get a backward iterator for the IndexBuffer.
 
 **Returns:**
 
-- `_IndexBufferIter`
+- `_IndexBufferIter[DType.int, origin_of(self), False]`
 
 
 </div>

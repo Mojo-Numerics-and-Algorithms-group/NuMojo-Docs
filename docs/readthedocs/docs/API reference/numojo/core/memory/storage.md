@@ -1,15 +1,15 @@
 # `numojo.core.memory.storage`
 
-Storage (numojo.core.memory.storage)
-
 Backend storage containers for accelerator-aware data management.
 
-This module provides three storage structs:
+Provides reference-counted and device-aware memory storage with unified
+container selection based on device type at compile time.
 
+Exports
+-------
 - `HostStorage`: Reference-counted host (CPU) memory container.
-- `DeviceStorage`: Device (GPU) memory container wrapping a `DeviceBuffer`.
-- `AcceleratorDataContainer`: Unified container that selects between
-  `HostStorage` and `DeviceStorage` at compile time based on a `Device` parameter.
+- `DeviceStorage`: Device (GPU) memory container.
+- `AcceleratorDataContainer`: Unified container selecting storage by device.
 
 ## Structs
 
@@ -20,7 +20,7 @@ struct HostStorage[dtype: DType]
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyDestructible`, `Movable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Movable`, `Sized`, `Writable`
 
 Reference-counted host (CPU) memory container.
 
@@ -39,7 +39,7 @@ modes controlled by `Ownership`:
 
 #### Fields
 
-- **`ptr`** (`UnsafePointer[Scalar[dtype], HostStorage[dtype].origin]`): Pointer to the data array.
+- **`ptr`** (`Pointer[Scalar[dtype], HostStorage[dtype].origin]`): Pointer to the data array.
 - **`ownership`** (`Ownership`): Ownership status of the container (Managed or External).
 - **`size`** (`Int`): Number of elements in the data array.
 
@@ -51,33 +51,9 @@ modes controlled by `Ownership`:
 comptime origin
 ```
 
-**Value:** `MutExternalOrigin`
+**Value:** `MutUntrackedOrigin`
 
 Memory origin for the allocation.
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `False`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
 
 #### Methods
 
@@ -89,7 +65,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__(out self)
+def __init__(out self)
 ```
 
 <span class="badge badge-static">static</span>
@@ -107,7 +83,7 @@ Create an empty managed container with size 0 and refcount 1.
 ###### Overload 2
 
 ```mojo
-__init__(out self, size: Int)
+def __init__(out self, size: Int)
 ```
 
 <span class="badge badge-static">static</span>
@@ -119,7 +95,7 @@ starts at 1.
 
 **Args:**
 
-- `size` (`Int`): Number of elements to allocate (must be non-negative).
+- `size` (`Int`) `[imm]`: Number of elements to allocate (must be non-negative).
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -129,7 +105,7 @@ starts at 1.
 ###### Overload 3
 
 ```mojo
-__init__(out self, ptr: UnsafePointer[Scalar[dtype], HostStorage[dtype].origin], size: Int, copy: Bool = False)
+def __init__(out self, ptr: Pointer[Scalar[dtype], Self.origin], size: Int, copy: Bool = False)
 ```
 
 <span class="badge badge-static">static</span>
@@ -142,9 +118,9 @@ is deep-copied into a new **managed** allocation.
 
 **Args:**
 
-- `ptr` (`UnsafePointer`): Pointer to an existing data buffer (must be non-null).
-- `size` (`Int`): Number of elements in the buffer (must be non-negative).
-- `copy` (`Bool`): If True, deep-copy into owned storage; otherwise create
+- `ptr` (`Pointer[Scalar[dtype], Self.origin]`) `[imm]`: Pointer to an existing data buffer (must be non-null).
+- `size` (`Int`) `[imm]`: Number of elements in the buffer (must be non-negative).
+- `copy` (`Bool`) `[imm]`: If True, deep-copy into owned storage; otherwise create
       a non-owning external view.
 - `self` (`Self`) `[out]`
 
@@ -155,7 +131,7 @@ is deep-copied into a new **managed** allocation.
 ###### Overload 4
 
 ```mojo
-__init__(out self, *, ptr: UnsafePointer[Scalar[dtype], HostStorage[dtype].origin], size: Int, refcount: UnsafePointer[Atomic[DType.uint64], HostStorage[dtype].origin], ownership: Ownership)
+def __init__(out self, *, ptr: Pointer[Scalar[dtype], Self.origin], size: Int, refcount: Pointer[Atomic[DType.uint64], Self.origin], ownership: Ownership)
 ```
 
 <span class="badge badge-static">static</span>
@@ -168,10 +144,10 @@ the caller must ensure all arguments are valid.
 
 **Args:**
 
-- `ptr` (`UnsafePointer`): Pointer to the shared data buffer.
-- `size` (`Int`): Number of elements in the buffer.
-- `refcount` (`UnsafePointer`): Pointer to the shared atomic reference count.
-- `ownership` (`Ownership`): Ownership mode (should be Managed for shared handles).
+- `ptr` (`Pointer[Scalar[dtype], Self.origin]`) `[imm]`: Pointer to the shared data buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
+- `refcount` (`Pointer[Atomic[DType.uint64], Self.origin]`) `[imm]`: Pointer to the shared atomic reference count.
+- `ownership` (`Ownership`) `[imm]`: Ownership mode (should be Managed for shared handles).
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -181,19 +157,19 @@ the caller must ensure all arguments are valid.
 ###### Overload 5
 
 ```mojo
-__init__(out self, *, copy: Self)
+def __init__(out self, *, copy: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
-Shallow-copy constructor.
+Deep-copy constructor.
 
-Copies the pointer and refcount, then atomically increments the
-reference count for managed containers.
+Matches `DataContainer`: allocate owned storage and copy the data.
+Use `share()` for a shallow shared handle.
 
 **Args:**
 
-- `copy` (`Self`): The source container.
+- `copy` (`Self`) `[imm]`: The source container.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -203,7 +179,7 @@ reference count for managed containers.
 ###### Overload 6
 
 ```mojo
-__init__(out self, *, deinit take: Self)
+def __init__(out self, *, deinit move: Self)
 ```
 
 <span class="badge badge-static">static</span>
@@ -214,7 +190,7 @@ Transfers all fields without touching the reference count.
 
 **Args:**
 
-- `take` (`Self`) `[deinit]`: The source container (consumed).
+- `move` (`Self`) `[deinit]`: The source container (consumed).
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -226,10 +202,10 @@ Transfers all fields without touching the reference count.
 
 <div class="fn-card" markdown="1">
 
-##### `__del__`
+##### `__deinit__`
 
 ```mojo
-__del__(deinit self)
+def __deinit__(deinit self)
 ```
 
 Destructor.
@@ -251,7 +227,7 @@ untouched.
 ##### `__getitem__`
 
 ```mojo
-__getitem__(self, idx: Int) -> Scalar[dtype]
+def __getitem__(self, idx: Int) -> Scalar[dtype]
 ```
 
 Return the element at index `idx`.
@@ -260,14 +236,12 @@ No bounds checking is performed.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): Element index.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Element index.
 
 **Returns:**
 
-- `Scalar`
-
-!!! failure "Raises"
+- `Scalar[dtype]`
 
 
 </div>
@@ -277,7 +251,7 @@ No bounds checking is performed.
 ##### `__setitem__`
 
 ```mojo
-__setitem__(mut self, idx: Int, val: Scalar[dtype])
+def __setitem__(mut self, idx: Int, val: Scalar[dtype])
 ```
 
 Set the element at index `idx` to `val`.
@@ -287,10 +261,8 @@ No bounds checking is performed.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Element index.
-- `val` (`Scalar`): Value to store.
-
-!!! failure "Raises"
+- `idx` (`Int`) `[imm]`: Element index.
+- `val` (`Scalar[dtype]`) `[imm]`: Value to store.
 
 
 </div>
@@ -300,7 +272,7 @@ No bounds checking is performed.
 ##### `unsafe_ptr`
 
 ```mojo
-unsafe_ptr(ref self) -> ref[self_is_mut.ptr] UnsafePointer[Scalar[dtype], HostStorage[dtype].origin]
+def unsafe_ptr(ref self) -> ref[self_is_mut.ptr] Pointer[Scalar[dtype], Self.origin]
 ```
 
 Return a reference to the raw data pointer.
@@ -311,7 +283,30 @@ Return a reference to the raw data pointer.
 
 **Returns:**
 
-- `ref`
+- `ref[self_is_mut.ptr] Pointer[Scalar[dtype], Self.origin]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `get_ptr`
+
+```mojo
+def get_ptr(ref self) -> ref[self_is_mut.ptr] Pointer[Scalar[dtype], Self.origin]
+```
+
+Return a reference to the raw data pointer.
+
+This mirrors `DataContainer.get_ptr()`.
+
+**Args:**
+
+- `self` (`Self`) `[ref]`
+
+**Returns:**
+
+- `ref[self_is_mut.ptr] Pointer[Scalar[dtype], Self.origin]`
 
 
 </div>
@@ -321,19 +316,19 @@ Return a reference to the raw data pointer.
 ##### `offset`
 
 ```mojo
-offset(self, offset: Int) -> UnsafePointer[Scalar[dtype], HostStorage[dtype].origin]
+def offset(self, offset: Int) -> Pointer[Scalar[dtype], Self.origin]
 ```
 
 Return a pointer advanced by `offset` elements.
 
 **Args:**
 
-- `self` (`Self`)
-- `offset` (`Int`): Number of elements to advance.
+- `self` (`Self`) `[imm]`
+- `offset` (`Int`) `[imm]`: Number of elements to advance.
 
 **Returns:**
 
-- `UnsafePointer`
+- `Pointer[Scalar[dtype], Self.origin]`
 
 
 </div>
@@ -343,7 +338,7 @@ Return a pointer advanced by `offset` elements.
 ##### `load`
 
 ```mojo
-load[width: Int](self, offset: Int) -> SIMD[dtype, width]
+def load[width: Int](self, offset: Int) -> SIMD[dtype, width]
 ```
 
 Load a SIMD vector of `width` elements starting at `offset`.
@@ -356,12 +351,12 @@ No bounds checking is performed.
 
 **Args:**
 
-- `self` (`Self`)
-- `offset` (`Int`): Element index of the first lane.
+- `self` (`Self`) `[imm]`
+- `offset` (`Int`) `[imm]`: Element index of the first lane.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[dtype, width]`
 
 
 </div>
@@ -371,7 +366,7 @@ No bounds checking is performed.
 ##### `store`
 
 ```mojo
-store[width: Int](mut self, offset: Int, value: SIMD[dtype, width])
+def store[width: Int = Int(1)](mut self, offset: Int, value: SIMD[dtype, width])
 ```
 
 Store a SIMD vector of `width` elements starting at `offset`.
@@ -385,8 +380,8 @@ No bounds checking is performed.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `offset` (`Int`): Element index of the first lane.
-- `value` (`SIMD`): The SIMD vector to write.
+- `offset` (`Int`) `[imm]`: Element index of the first lane.
+- `value` (`SIMD[dtype, width]`) `[imm]`: The SIMD vector to write.
 
 
 </div>
@@ -396,14 +391,14 @@ No bounds checking is performed.
 ##### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Return the number of elements.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -417,14 +412,14 @@ Return the number of elements.
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Return a human-readable summary of the container.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -438,7 +433,7 @@ Return a human-readable summary of the container.
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Write a human-readable summary to `writer`.
@@ -449,7 +444,7 @@ Write a human-readable summary to `writer`.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: Destination writer.
 
 
@@ -460,7 +455,7 @@ Write a human-readable summary to `writer`.
 ##### `is_refcounted`
 
 ```mojo
-is_refcounted(ref self) -> Bool
+def is_refcounted(ref self) -> Bool
 ```
 
 Return True if this container tracks a reference count.
@@ -484,7 +479,7 @@ return False.
 ##### `ref_count`
 
 ```mojo
-ref_count(ref self) -> UInt64
+def ref_count(ref self) -> UInt64
 ```
 
 Return the current reference count, or 0 if not tracked.
@@ -502,34 +497,10 @@ Return the current reference count, or 0 if not tracked.
 
 <div class="fn-card" markdown="1">
 
-##### `deep_copy`
-
-```mojo
-deep_copy(self) -> Self
-```
-
-Create an independent managed copy of this container.
-
-The returned container has its own allocation and a refcount of 1,
-regardless of the source ownership mode.
-
-**Args:**
-
-- `self` (`Self`)
-
-**Returns:**
-
-- `Self`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
 ##### `share`
 
 ```mojo
-share(mut self) -> Self
+def share(self) -> Self
 ```
 
 Create a new handle that shares this container's data and refcount.
@@ -539,14 +510,14 @@ and the returned container keep the allocation alive.
 
 **Args:**
 
-- `self` (`Self`) `[mut]`
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the container is externally managed (no refcount).
+    NumojoError: If the container is externally managed (no refcount).
 
 
 </div>
@@ -557,7 +528,7 @@ struct DeviceStorage[dtype: DType, device: Device]
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Movable`
 
 Device (GPU) backing storage for `AcceleratorDataContainer`.
 
@@ -574,33 +545,8 @@ the GPU backend).
 #### Fields
 
 - **`buffer`** (`DeviceBuffer[dtype]`): The GPU-side data buffer.
+- **`handle`** (`DeviceHandle[device]`): Runtime handle that owns the device context used for this storage.
 - **`size`** (`Int`): Number of elements in the buffer.
-
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `False`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
 
 #### Methods
 
@@ -612,7 +558,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__(out self, size: Int)
+def __init__(out self, size: Int)
 ```
 
 <span class="badge badge-static">static</span>
@@ -621,7 +567,7 @@ Allocate a new GPU buffer for `size` elements.
 
 **Args:**
 
-- `size` (`Int`): Number of elements to allocate.
+- `size` (`Int`) `[imm]`: Number of elements to allocate.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -629,12 +575,12 @@ Allocate a new GPU buffer for `size` elements.
 - `Self`
 
 !!! failure "Raises"
-    Error: If no GPU accelerator is available.
+    NumojoError: If no GPU accelerator is available.
 
 ###### Overload 2
 
 ```mojo
-__init__(out self, buffer: DeviceBuffer[dtype], size: Int)
+def __init__(out self, buffer: DeviceBuffer[dtype], size: Int)
 ```
 
 <span class="badge badge-static">static</span>
@@ -643,30 +589,32 @@ Wrap an existing `DeviceBuffer`.
 
 **Args:**
 
-- `buffer` (`DeviceBuffer`): An already-allocated device buffer.
-- `size` (`Int`): Number of elements accessible in `buffer`.
+- `buffer` (`DeviceBuffer[dtype]`) `[imm]`: An already-allocated device buffer.
+- `size` (`Int`) `[imm]`: Number of elements accessible in `buffer`.
 - `self` (`Self`) `[out]`
 
 **Returns:**
 
 - `Self`
 
+!!! failure "Raises"
+
 ###### Overload 3
 
 ```mojo
-__init__(out self, *, copy: Self)
+def __init__(out self, *, copy: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
-Shallow-copy constructor.
+Deep-copy constructor.
 
-Copies the `DeviceBuffer` handle.  The GPU runtime determines
-whether the underlying memory is shared or duplicated.
+Allocates a new buffer on the same device context and copies all data.
+Use `share()` for a shallow shared handle.
 
 **Args:**
 
-- `copy` (`Self`): The source storage.
+- `copy` (`Self`) `[imm]`: The source storage.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -676,7 +624,7 @@ whether the underlying memory is shared or duplicated.
 ###### Overload 4
 
 ```mojo
-__init__(out self, *, deinit take: Self)
+def __init__(out self, *, deinit move: Self)
 ```
 
 <span class="badge badge-static">static</span>
@@ -687,7 +635,7 @@ Transfers the buffer handle without copying.
 
 **Args:**
 
-- `take` (`Self`) `[deinit]`: The source storage (consumed).
+- `move` (`Self`) `[deinit]`: The source storage (consumed).
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -702,14 +650,14 @@ Transfers the buffer handle without copying.
 ##### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Return the number of elements.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -723,14 +671,14 @@ Return the number of elements.
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Return a human-readable summary of the container.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -744,7 +692,7 @@ Return a human-readable summary of the container.
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Write a human-readable summary to `writer`.
@@ -755,7 +703,7 @@ Write a human-readable summary to `writer`.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: Destination writer.
 
 
@@ -766,7 +714,7 @@ Write a human-readable summary to `writer`.
 ##### `get_buffer`
 
 ```mojo
-get_buffer(ref self) -> ref[device.buffer] DeviceBuffer[dtype]
+def get_buffer(ref self) -> ref[device.buffer] DeviceBuffer[dtype]
 ```
 
 Return a reference to the underlying `DeviceBuffer`.
@@ -777,7 +725,7 @@ Return a reference to the underlying `DeviceBuffer`.
 
 **Returns:**
 
-- `ref`
+- `ref[device.buffer] DeviceBuffer[dtype]`
 
 
 </div>
@@ -787,7 +735,7 @@ Return a reference to the underlying `DeviceBuffer`.
 ##### `unsafe_ptr`
 
 ```mojo
-unsafe_ptr(ref self) -> UnsafePointer[Scalar[dtype], MutAnyOrigin]
+def unsafe_ptr(ref self) -> Pointer[Scalar[dtype], MutAnyOrigin]
 ```
 
 Return the raw device pointer to the buffer's data.
@@ -798,7 +746,30 @@ Return the raw device pointer to the buffer's data.
 
 **Returns:**
 
-- `UnsafePointer`
+- `Pointer[Scalar[dtype], MutAnyOrigin]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `share`
+
+```mojo
+def share(self) -> Self
+```
+
+Create a shallow handle sharing this device buffer.
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+
+**Returns:**
+
+- `Self`
+
+!!! failure "Raises"
 
 
 </div>
@@ -809,7 +780,7 @@ struct AcceleratorDataContainer[dtype: DType, device: Device = Device.CPU]
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyDestructible`, `Movable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Movable`, `Sized`, `Writable`
 
 Unified, reference-counted storage for Host (CPU) or Device (GPU) data.
 
@@ -822,8 +793,7 @@ Only the field corresponding to the active backend is populated;
 the other remains `None`.
 
 Shallow copies (via `__copyinit__`) share the underlying allocation
-and increment the reference count.  Use `deep_copy()` for an
-independent owned copy.
+and increment the reference count.  Use `.share()` for an explicit shared handle.
 
 **Parameters:**
 
@@ -844,33 +814,9 @@ independent owned copy.
 comptime origin
 ```
 
-**Value:** `MutExternalOrigin`
+**Value:** `MutUntrackedOrigin`
 
 Memory origin for the container.
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `(_all_trivial_del[_NoneType, HostStorage[dtype]]() & _all_trivial_del[_NoneType, DeviceStorage[dtype, device]]())`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `False`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
 
 #### Methods
 
@@ -882,7 +828,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__(out self, size: Int)
+def __init__(out self, size: Int)
 ```
 
 <span class="badge badge-static">static</span>
@@ -891,7 +837,7 @@ Allocate storage for `size` elements on the target device.
 
 **Args:**
 
-- `size` (`Int`): Number of elements to allocate (must be non-negative).
+- `size` (`Int`) `[imm]`: Number of elements to allocate (must be non-negative).
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -899,13 +845,13 @@ Allocate storage for `size` elements on the target device.
 - `Self`
 
 !!! failure "Raises"
-    Error: If the requested GPU backend is unavailable, or the
+    NumojoError: If the requested GPU backend is unavailable, or the
 device type is unrecognised.
 
 ###### Overload 2
 
 ```mojo
-__init__(out self)
+def __init__(out self)
 ```
 
 <span class="badge badge-static">static</span>
@@ -923,7 +869,7 @@ Create an empty container with no storage allocated.
 ###### Overload 3
 
 ```mojo
-__init__(out self, ptr: UnsafePointer[Scalar[dtype], MutAnyOrigin], size: Int, copy: Bool = False)
+def __init__(out self, ptr: Pointer[Scalar[dtype], MutAnyOrigin], size: Int, copy: Bool = False)
 ```
 
 <span class="badge badge-static">static</span>
@@ -939,9 +885,9 @@ a new managed allocation.
 
 **Args:**
 
-- `ptr` (`UnsafePointer`): Pointer to an existing data buffer (must be non-null).
-- `size` (`Int`): Number of elements in the buffer (must be non-negative).
-- `copy` (`Bool`): If True, deep-copy into owned storage.
+- `ptr` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`: Pointer to an existing data buffer (must be non-null).
+- `size` (`Int`) `[imm]`: Number of elements in the buffer (must be non-negative).
+- `copy` (`Bool`) `[imm]`: If True, deep-copy into owned storage.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -953,20 +899,16 @@ a new managed allocation.
 ###### Overload 4
 
 ```mojo
-__init__(out self, *, copy: Self)
+def __init__(out self, var host_storage: HostStorage[dtype]) where (device.type == String("cpu"))
 ```
 
 <span class="badge badge-static">static</span>
 
-Shallow-copy constructor.
-
-Shares the underlying storage.  For CPU containers this increments
-the `HostStorage` atomic refcount; for GPU containers this copies
-the `DeviceStorage` handle (automatic reference counting).
+Create a CPU container from an existing `HostStorage` handle.
 
 **Args:**
 
-- `copy` (`Self`): The source container.
+- `host_storage` (`HostStorage[dtype]`) `[var]`
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -976,7 +918,48 @@ the `DeviceStorage` handle (automatic reference counting).
 ###### Overload 5
 
 ```mojo
-__init__(out self, *, deinit take: Self)
+def __init__(out self, var device_storage: DeviceStorage[dtype, device]) where (device.type == String("gpu"))
+```
+
+<span class="badge badge-static">static</span>
+
+Create a GPU container from an existing `DeviceStorage` handle.
+
+**Args:**
+
+- `device_storage` (`DeviceStorage[dtype, device]`) `[var]`
+- `self` (`Self`) `[out]`
+
+**Returns:**
+
+- `Self`
+
+###### Overload 6
+
+```mojo
+def __init__(out self, *, copy: Self)
+```
+
+<span class="badge badge-static">static</span>
+
+Deep-copy constructor.
+
+Copies the active backend container. Use `share()` for a shallow
+shared handle.
+
+**Args:**
+
+- `copy` (`Self`) `[imm]`: The source container.
+- `self` (`Self`) `[out]`
+
+**Returns:**
+
+- `Self`
+
+###### Overload 7
+
+```mojo
+def __init__(out self, *, deinit move: Self)
 ```
 
 <span class="badge badge-static">static</span>
@@ -987,7 +970,7 @@ Transfers all fields without touching reference counts.
 
 **Args:**
 
-- `take` (`Self`) `[deinit]`: The source container (consumed).
+- `move` (`Self`) `[deinit]`: The source container (consumed).
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -1002,7 +985,7 @@ Transfers all fields without touching reference counts.
 ##### `__getitem__`
 
 ```mojo
-__getitem__(self, idx: Int) -> Scalar[dtype] where (device.type == "cpu")
+def __getitem__(self, idx: Int) -> Scalar[dtype] where (device.type == String("cpu"))
 ```
 
 Return the element at index `idx`.
@@ -1014,12 +997,12 @@ No bounds checking is performed.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): Element index.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Element index.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[dtype]`
 
 
 </div>
@@ -1029,7 +1012,7 @@ No bounds checking is performed.
 ##### `__setitem__`
 
 ```mojo
-__setitem__(mut self, idx: Int, val: Scalar[dtype]) where (device.type == "cpu")
+def __setitem__(mut self, idx: Int, val: Scalar[dtype]) where (device.type == String("cpu"))
 ```
 
 Set the element at index `idx` to `val`.
@@ -1042,8 +1025,8 @@ No bounds checking is performed.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Element index.
-- `val` (`Scalar`): Value to store.
+- `idx` (`Int`) `[imm]`: Element index.
+- `val` (`Scalar[dtype]`) `[imm]`: Value to store.
 
 
 </div>
@@ -1053,7 +1036,7 @@ No bounds checking is performed.
 ##### `offset`
 
 ```mojo
-offset(self, offset: Int) -> UnsafePointer[Scalar[dtype], MutExternalOrigin] where (device.type == "cpu")
+def offset(self, offset: Int) -> Pointer[Scalar[dtype], MutUntrackedOrigin] where (device.type == String("cpu"))
 ```
 
 Return a pointer advanced by `offset` elements.
@@ -1063,12 +1046,12 @@ Return a pointer advanced by `offset` elements.
 
 **Args:**
 
-- `self` (`Self`)
-- `offset` (`Int`): Number of elements to advance.
+- `self` (`Self`) `[imm]`
+- `offset` (`Int`) `[imm]`: Number of elements to advance.
 
 **Returns:**
 
-- `UnsafePointer`
+- `Pointer[Scalar[dtype], MutUntrackedOrigin]`
 
 
 </div>
@@ -1078,7 +1061,7 @@ Return a pointer advanced by `offset` elements.
 ##### `load`
 
 ```mojo
-load[width: Int](self, offset: Int) -> SIMD[dtype, width] where (device.type == "cpu")
+def load[width: Int](self, offset: Int) -> SIMD[dtype, width] where (device.type == String("cpu"))
 ```
 
 Load a SIMD vector of `width` elements starting at `offset`.
@@ -1094,12 +1077,12 @@ No bounds checking is performed.
 
 **Args:**
 
-- `self` (`Self`)
-- `offset` (`Int`): Element index of the first lane.
+- `self` (`Self`) `[imm]`
+- `offset` (`Int`) `[imm]`: Element index of the first lane.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[dtype, width]`
 
 
 </div>
@@ -1109,7 +1092,7 @@ No bounds checking is performed.
 ##### `store`
 
 ```mojo
-store[width: Int](mut self, offset: Int, value: SIMD[dtype, width]) where (device.type == "cpu")
+def store[width: Int = Int(1)](mut self, offset: Int, value: SIMD[dtype, width]) where (device.type == String("cpu"))
 ```
 
 Store a SIMD vector of `width` elements starting at `offset`.
@@ -1126,8 +1109,8 @@ No bounds checking is performed.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `offset` (`Int`): Element index of the first lane.
-- `value` (`SIMD`): The SIMD vector to write.
+- `offset` (`Int`) `[imm]`: Element index of the first lane.
+- `value` (`SIMD[dtype, width]`) `[imm]`: The SIMD vector to write.
 
 
 </div>
@@ -1137,14 +1120,14 @@ No bounds checking is performed.
 ##### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Return the number of elements.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1158,14 +1141,14 @@ Return the number of elements.
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Return a human-readable summary of the container.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1179,7 +1162,7 @@ Return a human-readable summary of the container.
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Write a human-readable summary to `writer`.
@@ -1190,34 +1173,8 @@ Write a human-readable summary to `writer`.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: Destination writer.
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `deep_copy`
-
-```mojo
-deep_copy(self) -> Self
-```
-
-Create an independent managed copy of this container.
-
-For CPU containers the data is copied via `memcpy`.  For GPU
-containers the copy is enqueued on the device context.
-
-**Args:**
-
-- `self` (`Self`)
-
-**Returns:**
-
-- `Self`
-
-!!! failure "Raises"
 
 
 </div>
@@ -1227,7 +1184,7 @@ containers the copy is enqueued on the device context.
 ##### `share`
 
 ```mojo
-share(mut self) -> Self
+def share(self) -> Self
 ```
 
 Create a new handle that shares this container's storage.
@@ -1238,14 +1195,14 @@ copied (the runtime manages device-side sharing).
 
 **Args:**
 
-- `self` (`Self`) `[mut]`
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the active storage is missing or cannot be shared.
+    NumojoError: If the active storage is missing or cannot be shared.
 
 
 </div>
@@ -1255,14 +1212,14 @@ copied (the runtime manages device-side sharing).
 ##### `is_cpu`
 
 ```mojo
-is_cpu(self) -> Bool
+def is_cpu(self) -> Bool
 ```
 
 Return True if this container targets a CPU device.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1276,14 +1233,14 @@ Return True if this container targets a CPU device.
 ##### `is_gpu`
 
 ```mojo
-is_gpu(self) -> Bool
+def is_gpu(self) -> Bool
 ```
 
 Return True if this container targets a GPU device.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1297,14 +1254,14 @@ Return True if this container targets a GPU device.
 ##### `is_cuda`
 
 ```mojo
-is_cuda(self) -> Bool
+def is_cuda(self) -> Bool
 ```
 
 Return True if this container targets an NVIDIA CUDA device.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1318,14 +1275,14 @@ Return True if this container targets an NVIDIA CUDA device.
 ##### `is_rocm`
 
 ```mojo
-is_rocm(self) -> Bool
+def is_rocm(self) -> Bool
 ```
 
 Return True if this container targets an AMD ROCm device.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1339,14 +1296,14 @@ Return True if this container targets an AMD ROCm device.
 ##### `is_mps`
 
 ```mojo
-is_mps(self) -> Bool
+def is_mps(self) -> Bool
 ```
 
 Return True if this container targets an Apple Metal device.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1360,7 +1317,7 @@ Return True if this container targets an Apple Metal device.
 ##### `host_ptr`
 
 ```mojo
-host_ptr(self) -> UnsafePointer[Scalar[dtype], MutAnyOrigin] where (device == Device.CPU)
+def host_ptr(self) -> Pointer[Scalar[dtype], MutAnyOrigin] where (device == Device.CPU)
 ```
 
 Return the raw host pointer to the CPU allocation.
@@ -1370,11 +1327,11 @@ Return the raw host pointer to the CPU allocation.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `UnsafePointer`
+- `Pointer[Scalar[dtype], MutAnyOrigin]`
 
 
 </div>
@@ -1384,7 +1341,7 @@ Return the raw host pointer to the CPU allocation.
 ##### `device_ptr`
 
 ```mojo
-device_ptr(self) -> UnsafePointer[Scalar[dtype], MutAnyOrigin] where (device == Device.CUDA) if (device == Device.CUDA) else (device == Device.ROCM) if (device == Device.CUDA) if (device == Device.CUDA) else (device == Device.ROCM) else (device == Device.MPS)
+def device_ptr(self) -> Pointer[Scalar[dtype], MutAnyOrigin] where (device == Device.CUDA) or (device == Device.ROCM) or (device == Device.MPS)
 ```
 
 Return the raw device pointer to the GPU allocation.
@@ -1394,11 +1351,11 @@ Return the raw device pointer to the GPU allocation.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `UnsafePointer`
+- `Pointer[Scalar[dtype], MutAnyOrigin]`
 
 
 </div>
@@ -1408,7 +1365,7 @@ Return the raw device pointer to the GPU allocation.
 ##### `host_buffer`
 
 ```mojo
-host_buffer(self) -> HostStorage[dtype] where (device == Device.CPU)
+def host_buffer(self) -> HostStorage[dtype] where (device == Device.CPU)
 ```
 
 Return a shallow copy of the underlying `HostStorage`.
@@ -1421,11 +1378,11 @@ The returned copy shares the same data pointer and refcount
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `HostStorage`
+- `HostStorage[dtype]`
 
 
 </div>
@@ -1435,7 +1392,7 @@ The returned copy shares the same data pointer and refcount
 ##### `device_buffer`
 
 ```mojo
-device_buffer(self) -> DeviceStorage[dtype, device] where (device == Device.CUDA) if (device == Device.CUDA) else (device == Device.ROCM) if (device == Device.CUDA) if (device == Device.CUDA) else (device == Device.ROCM) else (device == Device.MPS)
+def device_buffer(self) -> DeviceStorage[dtype, device] where (device == Device.CUDA) or (device == Device.ROCM) or (device == Device.MPS)
 ```
 
 Return a shallow copy of the underlying `DeviceStorage`.
@@ -1445,11 +1402,11 @@ Return a shallow copy of the underlying `DeviceStorage`.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `DeviceStorage`
+- `DeviceStorage[dtype, device]`
 
 
 </div>

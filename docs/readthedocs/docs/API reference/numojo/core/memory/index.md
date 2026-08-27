@@ -1,15 +1,21 @@
 # `numojo.core.memory`
 
-Memory (numojo.core.memory)
+Low-level memory and storage utilities used by NuMojo core containers.
 
-Low-level memory/storage utilities used by NuMojo core containers.
+Exports
+-------
+- `DataContainer`: Abstract data container interface.
+- `HostStorage`: Host (CPU) memory storage.
+- `DeviceStorage`: Device (GPU) memory storage.
+- `AcceleratorDataContainer`: Accelerator-aware data container.
+- `from_dlpack`: DLPack interoperability function.
 
 ## Contents
 
 | Name | Kind | Description |
 |------|------|-------------|
-| [`data_container`](./data_container.md) | module | DataContainer (numojo.core.memory.data_container) |
-| [`dlpack`](./dlpack.md) | module | DLPack (numojo.core.memory.dlpack) |
-| [`__init__`](./__init__.md) | module | Memory (numojo.core.memory) |
-| [`storage`](./storage.md) | module | Storage (numojo.core.memory.storage) |
+| [`data_container`](./data_container.md) | module | Reference-counted memory container for array data. |
+| [`dlpack`](./dlpack.md) | module | Zero-copy tensor exchange via DLPack protocol. |
+| [`__init__`](./__init__.md) | module | Low-level memory and storage utilities used by NuMojo core containers. |
+| [`storage`](./storage.md) | module | Backend storage containers for accelerator-aware data management. |
 

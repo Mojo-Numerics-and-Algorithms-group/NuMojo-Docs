@@ -1,8 +1,17 @@
 # `numojo.routines.math.misc`
 
-Miscellaneous math routines for NuMojo (numojo.routines.math.misc).
+Miscellaneous mathematical operations for NDArrays.
 
-Offers utilities such as cube root, clipping, reciprocal square root, square root, and scalb for NDArrays.
+Element-wise mathematical operations including cube root, clipping, reciprocal
+square root, square root, and scaling functions.
+
+Exports
+-------
+- `cbrt`: Cube root.
+- `clip`: Clip values to range.
+- `rsqrt`: Reciprocal square root.
+- `sqrt`: Square root.
+- `scalb`: Scaling by exponent.
 
 ## Functions
 
@@ -12,26 +21,22 @@ Offers utilities such as cube root, clipping, reciprocal square root, square roo
 ### `cbrt`
 
 ```mojo
-cbrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def cbrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise cuberoot of NDArray.
-
-!!! info "Constraints"
-    Both arrays must have the same shapes.
+Element-wise cube root of a NDArray.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -43,24 +48,24 @@ Element-wise cuberoot of NDArray.
 ### `clip`
 
 ```mojo
-clip[dtype: DType, //](a: NDArray[dtype], a_min: Scalar[dtype], a_max: Scalar[dtype]) -> NDArray[dtype]
+def clip[dtype: DType, //](a: NDArray[dtype], a_min: Scalar[dtype], a_max: Scalar[dtype]) -> NDArray[dtype]
 ```
 
-Limit the values in an array between [a_min, a_max]. If a_min is greater than a_max, the value is equal to a_max.
+Limit values in an array to the range [a_min, a_max]. If a_min is greater than a_max, values are set to a_max.
 
 **Parameters:**
 
-- `dtype` (`DType`): The data type.
+- `dtype` (`DType`): The element type.
 
 **Args:**
 
-- `a` (`NDArray`): A array.
-- `a_min` (`Scalar`): The minimum value.
-- `a_max` (`Scalar`): The maximum value.
+- `a` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `a_min` (`Scalar[dtype]`) `[imm]`: The minimum value.
+- `a_max` (`Scalar[dtype]`) `[imm]`: The maximum value.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -72,23 +77,22 @@ Limit the values in an array between [a_min, a_max]. If a_min is greater than a_
 ### `rsqrt`
 
 ```mojo
-rsqrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def rsqrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise reciprocal squareroot of NDArray.
+Element-wise reciprocal square root of NDArray.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -100,23 +104,22 @@ Element-wise reciprocal squareroot of NDArray.
 ### `sqrt`
 
 ```mojo
-sqrt[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def sqrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise square root of NDArray.
+Element-wise square root of a NDArray.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -128,24 +131,26 @@ Element-wise square root of NDArray.
 ### `scalb`
 
 ```mojo
-scalb[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def scalb[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Calculate the scalb of array1 and array2.
+Apply scalb element-wise to two arrays.
+
+!!! info "Constraints"
+    Both arrays must have the same shapes.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array1` (`NDArray`): A NDArray.
-- `array2` (`NDArray`): A NDArray.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 

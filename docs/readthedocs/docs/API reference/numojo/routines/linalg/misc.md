@@ -1,8 +1,14 @@
 # `numojo.routines.linalg.misc`
 
-Miscellaneous Linear Algebra Routines (numojo.routines.linalg.misc)
+Miscellaneous linear algebra operations.
 
-This module provides miscellaneous linear algebra routines, such as extracting diagonals and checking for symmetry.
+Additional linear algebra utilities (diagonals, symmetry checks).
+
+Exports
+-------
+- `det`: Determinant.
+- `inv`: Matrix inverse.
+- `trace`: Matrix trace.
 
 ## Functions
 
@@ -12,10 +18,28 @@ This module provides miscellaneous linear algebra routines, such as extracting d
 ### `diagonal`
 
 ```mojo
-diagonal[dtype: DType](a: NDArray[dtype], offset: Int = 0) -> NDArray[dtype]
+def diagonal[dtype: DType](a: NDArray[dtype], offset: Int = Int(0), axis1: Int = Int(0), axis2: Int = Int(1)) -> NDArray[dtype]
 ```
 
-Returns specific diagonals. Currently supports only 2D arrays.
+Returns specific diagonals.
+
+For 2-D arrays (the default `axis1=0, axis2=1` case), returns the 1-D
+diagonal at the given `offset`. For N-D arrays, `axis1` and `axis2` are
+treated as the two axes that define the 2-D sub-arrays whose diagonals
+are extracted; the result has the two diagonalized axes removed and
+replaced by a new last axis holding the diagonal values. The result shape is
+`a.shape[axes not in {axis1, axis2}] + (diagonal_length,)`, where the
+surviving axes keep their original relative order.
+
+Examples:
+```mojo
+import numojo as nm
+
+var a = nm.arange[nm.i32](60).reshape(nm.Shape(3, 4, 5))
+# axis1=0, axis2=1 (default): result shape (5, 3) -- min(3,4)=3
+print(nm.linalg.diagonal(a, axis1=0, axis2=1))
+```
+.
 
 **Parameters:**
 
@@ -23,43 +47,21 @@ Returns specific diagonals. Currently supports only 2D arrays.
 
 **Args:**
 
-- `a` (`NDArray`): An NDArray.
-- `offset` (`Int`): Offset of the diagonal from the main diagonal.
+- `a` (`NDArray[dtype]`) `[imm]`: An NDArray.
+- `offset` (`Int`) `[imm]`: Offset of the diagonal from the main diagonal.
+- `axis1` (`Int`) `[imm]`: First axis of the 2-D sub-arrays from which the diagonals
+    should be taken. Defaults to 0.
+- `axis2` (`Int`) `[imm]`: Second axis of the 2-D sub-arrays from which the diagonals
+    should be taken. Defaults to 1.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-    Error: If the array is not 2D.
-Error: If the offset is beyond the shape of the array.
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-### `issymmetric`
-
-```mojo
-issymmetric[dtype: DType](A: Matrix[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8) -> Bool
-```
-
-Returns True if A is symmetric, False otherwise.
-
-**Parameters:**
-
-- `dtype` (`DType`): Data type of the Matrix Elements.
-
-**Args:**
-
-- `A` (`Matrix`): A Matrix.
-- `rtol` (`Scalar`): Relative tolerance for comparison.
-- `atol` (`Scalar`): Absolute tolerance for comparison.
-
-**Returns:**
-
-- `Bool`
+    NumojoError: If the array has fewer than 2 dimensions.
+NumojoError: If `axis1` or `axis2` is out of bounds, or `axis1 == axis2`.
+NumojoError: If the offset is beyond the shape of the array.
 
 
 </div>

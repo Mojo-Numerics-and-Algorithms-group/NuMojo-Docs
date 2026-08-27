@@ -1,8 +1,15 @@
 # `numojo.core.dtype.utility`
 
-Data type utility functions (numojo.core.dtype.utility)
+Type checking utilities for DType inspection.
 
-This module provides utility functions for checking properties of data types (DType) at both compile time and run time.
+Functions for checking properties of data types (DType) at both compile time
+and runtime.
+
+Exports
+-------
+- `is_inttype`: Check if DType is integer.
+- `is_floattype`: Check if DType is floating-point.
+- `is_complextype`: Check if DType is complex.
 
 ## Functions
 
@@ -14,7 +21,7 @@ This module provides utility functions for checking properties of data types (DT
 #### Overload 1
 
 ```mojo
-is_inttype[dtype: DType]() -> Bool
+def is_inttype[dtype: DType]() -> Bool
 ```
 
 Check if the given dtype is an integer type at compile time.
@@ -30,14 +37,14 @@ Check if the given dtype is an integer type at compile time.
 #### Overload 2
 
 ```mojo
-is_inttype(dtype: DType) -> Bool
+def is_inttype(dtype: DType) -> Bool
 ```
 
 Check if the given dtype is an integer type at run time.
 
 **Args:**
 
-- `dtype` (`DType`): DType.
+- `dtype` (`DType`) `[imm]`: DType.
 
 **Returns:**
 
@@ -53,7 +60,7 @@ Check if the given dtype is an integer type at run time.
 #### Overload 1
 
 ```mojo
-is_floattype[dtype: DType]() -> Bool
+def is_floattype[dtype: DType]() -> Bool
 ```
 
 Check if the given dtype is a floating point type at compile time.
@@ -69,14 +76,14 @@ Check if the given dtype is a floating point type at compile time.
 #### Overload 2
 
 ```mojo
-is_floattype(dtype: DType) -> Bool
+def is_floattype(dtype: DType) -> Bool
 ```
 
 Check if the given dtype is a floating point type at run time.
 
 **Args:**
 
-- `dtype` (`DType`): DType.
+- `dtype` (`DType`) `[imm]`: DType.
 
 **Returns:**
 
@@ -92,7 +99,7 @@ Check if the given dtype is a floating point type at run time.
 #### Overload 1
 
 ```mojo
-is_booltype[dtype: DType]() -> Bool
+def is_booltype[dtype: DType]() -> Bool
 ```
 
 Check if the given dtype is a boolean type at compile time.
@@ -108,14 +115,14 @@ Check if the given dtype is a boolean type at compile time.
 #### Overload 2
 
 ```mojo
-is_booltype(dtype: DType) -> Bool
+def is_booltype(dtype: DType) -> Bool
 ```
 
 Check if the given dtype is a boolean type at run time.
 
 **Args:**
 
-- `dtype` (`DType`): DType.
+- `dtype` (`DType`) `[imm]`: DType.
 
 **Returns:**
 

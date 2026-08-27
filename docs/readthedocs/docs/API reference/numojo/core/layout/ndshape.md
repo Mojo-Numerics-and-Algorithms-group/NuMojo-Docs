@@ -1,11 +1,18 @@
 # `numojo.core.layout.ndshape`
 
-NDArrayShape (numojo.core.layout.ndshape)
+Array shape representation and operations.
 
-Implements NDArrayShape type representing the shape of an NDArray.
-The shape is stored as a contiguous buffer of integers, with the number of dimensions (ndim) tracked separately.
-The NDArrayShape provides methods for element access, shape transformations (e.g., permute, reverse),
-and properties like size and rank.
+Represents array dimensions with efficient storage, shape transformations
+(permute, reverse), and dimension access.
+
+Exports
+-------
+- `NDArrayShape`: Shape container for N-dimensional arrays.
+
+Notes:
+    - The number of elements in the shape must be positive.
+    - All elements of the shape must be non-negative.
+    - Dimension values are validated upon creation.
 
 ## Structs
 
@@ -16,21 +23,22 @@ struct NDArrayShape
 ```
 
 **Memory convention:** `register_passable`  
-**Implements:** `AnyType`, `Copyable`, `Equatable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `Representable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Equatable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `Sized`, `Writable`
 
-Presents the shape of `NDArray` type.
+Represents the shape (dimensions) of an NDArray.
 
-The data buffer of the NDArrayShape is a series of `Int` on memory.
-The number of elements in the shape must be positive.
-The elements of the shape must be positive.
-The number of dimension and values of elements are checked upon
-creation of the shape.
+The data buffer is a series of `Int` values in memory. Dimensions and values are validated
+upon creation to ensure they are non-negative.
 
-Example:
+Examples:
 ```mojo
 import numojo as nm
+
+# Create shape with variadic arguments
 var shape1 = nm.Shape(2, 3, 4)
 print(shape1)  # Shape: (2, 3, 4)
+
+# Create shape from list
 var shape2 = nm.Shape([5, 6, 7])
 print(shape2)  # Shape: (5, 6, 7)
 ```
@@ -51,30 +59,6 @@ comptime element_type
 
 The data type of the NDArrayShape elements.
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
-
 #### Methods
 
 
@@ -85,7 +69,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__() -> Self
+def __init__() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -99,7 +83,7 @@ Initializes an empty NDArrayShape.
 ###### Overload 2
 
 ```mojo
-__init__(var buf: IndexBuffer) -> Self
+def __init__(var buf: IndexBuffer) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -117,7 +101,7 @@ Initializes the NDArrayShape from an IndexBuffer.
 ###### Overload 3
 
 ```mojo
-__init__(out self, *shape: Int)
+def __init__(out self, *shape: Int)
 ```
 
 <span class="badge badge-static">static</span>
@@ -126,7 +110,7 @@ Initializes the NDArrayShape with variable shape dimensions.
 
 **Args:**
 
-- `*shape` (`Int`): Variable number of integers representing the shape dimensions.
+- `*shape` (`Int`) `[imm]`: Variable number of integers representing the shape dimensions.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -134,12 +118,12 @@ Initializes the NDArrayShape with variable shape dimensions.
 - `Self`
 
 !!! failure "Raises"
-    Error: If any shape dimension is not positive.
+    NumojoError: If any shape dimension is negative.
 
 ###### Overload 4
 
 ```mojo
-__init__(out self, shape: List[Int])
+def __init__(out self, shape: List[Int])
 ```
 
 <span class="badge badge-static">static</span>
@@ -148,7 +132,7 @@ Initializes the NDArrayShape with a list of shape dimensions.
 
 **Args:**
 
-- `shape` (`List`): A list of integers representing the shape dimensions.
+- `shape` (`List[Int]`) `[imm]`: A list of integers representing the shape dimensions.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -156,13 +140,13 @@ Initializes the NDArrayShape with a list of shape dimensions.
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of dimensions is not positive.
-Error: If any shape dimension is not positive.
+    NumojoError: If the number of dimensions is not positive.
+NumojoError: If any shape dimension is negative.
 
 ###### Overload 5
 
 ```mojo
-__init__(out self, shape: VariadicList[Int])
+def __init__(out self, shape: VariadicList[Int])
 ```
 
 <span class="badge badge-static">static</span>
@@ -171,7 +155,7 @@ Initializes the NDArrayShape with a list of shape dimensions.
 
 **Args:**
 
-- `shape` (`VariadicList`): A variadic list of integers representing the shape dimensions.
+- `shape` (`VariadicList[Int]`) `[imm]`: A variadic list of integers representing the shape dimensions.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -179,13 +163,13 @@ Initializes the NDArrayShape with a list of shape dimensions.
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of dimensions is not positive.
-Error: If any shape dimension is not positive.
+    NumojoError: If the number of dimensions is not positive.
+NumojoError: If any shape dimension is negative.
 
 ###### Overload 6
 
 ```mojo
-__init__(shape: Self) -> Self
+def __init__(shape: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -194,7 +178,7 @@ Initializes the NDArrayShape from another NDArrayShape. A deep copy of the data 
 
 **Args:**
 
-- `shape` (`Self`): Another NDArrayShape to initialize from.
+- `shape` (`Self`) `[imm]`: Another NDArrayShape to initialize from.
 
 **Returns:**
 
@@ -203,7 +187,7 @@ Initializes the NDArrayShape from another NDArrayShape. A deep copy of the data 
 ###### Overload 7
 
 ```mojo
-__init__(out self, *, ndim: Int, initialized: Bool)
+def __init__(out self, *, ndim: Int, initialized: Bool)
 ```
 
 <span class="badge badge-static">static</span>
@@ -216,8 +200,8 @@ you must set the values before using it! Otherwise, it may lead to undefined beh
 
 **Args:**
 
-- `ndim` (`Int`): Number of dimensions.
-- `initialized` (`Bool`): Whether the shape is initialized.
+- `ndim` (`Int`) `[imm]`: Number of dimensions.
+- `initialized` (`Bool`) `[imm]`: Whether the shape is initialized.
     If yes, the values will be set to 1.
     If no, the values will be uninitialized.
 - `self` (`Self`) `[out]`
@@ -227,12 +211,12 @@ you must set the values before using it! Otherwise, it may lead to undefined beh
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of dimensions is negative.
+    NumojoError: If the number of dimensions is negative.
 
 ###### Overload 8
 
 ```mojo
-__init__(*, copy: Self) -> Self
+def __init__(*, copy: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -241,7 +225,7 @@ Initializes the NDArrayShape from ancopy NDArrayShape. A deep copy of the data b
 
 **Args:**
 
-- `copy` (`Self`): Ancopy NDArrayShape to initialize from.
+- `copy` (`Self`) `[imm]`: Ancopy NDArrayShape to initialize from.
 
 **Returns:**
 
@@ -257,54 +241,34 @@ Initializes the NDArrayShape from ancopy NDArrayShape. A deep copy of the data b
 ###### Overload 1
 
 ```mojo
-__getitem__(self, index: Int) -> Int
+def __getitem__(self, index: Int) -> Int
 ```
 
 Gets shape dimension at specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `index` (`Int`): Index to get the shape.
+- `self` (`Self`) `[imm]`
+- `index` (`Int`) `[imm]`: Index to get the shape.
 
 **Returns:**
 
 - `Int`
 
 !!! failure "Raises"
-    Error: Index out of bound.
 
 ###### Overload 2
 
 ```mojo
-__getitem__(self, index: Scalar[DType.int]) -> Scalar[DType.int]
-```
-
-Gets shape dimension at specified index.
-
-**Args:**
-
-- `self` (`Self`)
-- `index` (`Scalar`): Index to get the shape.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-###### Overload 3
-
-```mojo
-__getitem__(self, slice_index: Slice) -> Self
+def __getitem__(self, slice_index: Slice) -> Self
 ```
 
 Return a sliced view of the dimension tuple as a new NDArrayShape.
 
 **Args:**
 
-- `self` (`Self`)
-- `slice_index` (`Slice`): Slice object defining the sub-buffer.
+- `self` (`Self`) `[imm]`
+- `slice_index` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 
 **Returns:**
 
@@ -319,10 +283,8 @@ Return a sliced view of the dimension tuple as a new NDArrayShape.
 
 ##### `__setitem__`
 
-###### Overload 1
-
 ```mojo
-__setitem__(mut self, index: Scalar[DType.int], val: Scalar[DType.int])
+def __setitem__(mut self, index: Int, val: Int)
 ```
 
 Sets shape at specified index.
@@ -330,28 +292,11 @@ Sets shape at specified index.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `index` (`Scalar`): Index to set the shape.
-- `val` (`Scalar`): Value to set at the given index.
+- `index` (`Int`) `[imm]`: Index to set the shape.
+- `val` (`Int`) `[imm]`: Value to set at the given index.
 
 !!! failure "Raises"
-    Error: Index out of bound.
-
-###### Overload 2
-
-```mojo
-__setitem__(mut self, index: Int, val: Int)
-```
-
-Sets shape at specified index.
-
-**Args:**
-
-- `self` (`Self`) `[mut]`
-- `index` (`Int`): Index to set the shape.
-- `val` (`Int`): Value to set at the given index.
-
-!!! failure "Raises"
-    Error: Index out of bound.
+    NumojoError: Index out of bound.
 
 
 </div>
@@ -361,15 +306,15 @@ Sets shape at specified index.
 ##### `__eq__`
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
 Checks if two shapes have identical dimensions and values.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The shape to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The shape to compare with.
 
 **Returns:**
 
@@ -383,15 +328,15 @@ Checks if two shapes have identical dimensions and values.
 ##### `__ne__`
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
 Checks if two shapes have identical dimensions and values.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The shape to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The shape to compare with.
 
 **Returns:**
 
@@ -404,35 +349,16 @@ Checks if two shapes have identical dimensions and values.
 
 ##### `__contains__`
 
-###### Overload 1
-
 ```mojo
-__contains__(self, val: Int) -> Bool
-```
-
-Checks if the given value is present in the shape dimensions.
-
-**Args:**
-
-- `self` (`Self`)
-- `val` (`Int`): The value to search for.
-
-**Returns:**
-
-- `Bool`
-
-###### Overload 2
-
-```mojo
-__contains__(self, val: Scalar[DType.int]) -> Bool
+def __contains__(self, val: Int) -> Bool
 ```
 
 Check if the NDArrayShape contains the given value.
 
 **Args:**
 
-- `self` (`Self`)
-- `val` (`Scalar`): Value to check for.
+- `self` (`Self`) `[imm]`
+- `val` (`Int`) `[imm]`: Value to check for.
 
 **Returns:**
 
@@ -446,7 +372,7 @@ Check if the NDArrayShape contains the given value.
 ##### `load`
 
 ```mojo
-load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Load a SIMD vector from the Shape at the specified index.
@@ -457,15 +383,15 @@ Load a SIMD vector from the Shape at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to load from.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 !!! failure "Raises"
-    Error: If the load exceeds the bounds of the Shape.
+    NumojoError: If the load exceeds the bounds of the Shape.
 
 
 </div>
@@ -475,7 +401,7 @@ Load a SIMD vector from the Shape at the specified index.
 ##### `store`
 
 ```mojo
-store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Store a SIMD vector into the Shape at the specified index.
@@ -486,12 +412,12 @@ Store a SIMD vector into the Shape at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to store to.
-- `value` (`SIMD`): The SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
 
 !!! failure "Raises"
-    Error: If the store exceeds the bounds of the Shape.
+    NumojoError: If the store exceeds the bounds of the Shape.
 
 
 </div>
@@ -501,7 +427,7 @@ Store a SIMD vector into the Shape at the specified index.
 ##### `unsafe_load`
 
 ```mojo
-unsafe_load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Unsafely load a SIMD vector from the Shape at the specified index.
@@ -512,12 +438,12 @@ Unsafely load a SIMD vector from the Shape at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to load from.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 
 </div>
@@ -527,7 +453,7 @@ Unsafely load a SIMD vector from the Shape at the specified index.
 ##### `unsafe_store`
 
 ```mojo
-unsafe_store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Unsafely store a SIMD vector into the Shape at the specified index.
@@ -538,9 +464,46 @@ Unsafely store a SIMD vector into the Shape at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to store to.
-- `value` (`SIMD`): The SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `unsafe_get`
+
+```mojo
+def unsafe_get(self, idx: Int) -> Int
+```
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`
+
+**Returns:**
+
+- `Int`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `unsafe_set`
+
+```mojo
+def unsafe_set(mut self, idx: Int, value: Int)
+```
+
+**Args:**
+
+- `self` (`Self`) `[mut]`
+- `idx` (`Int`) `[imm]`
+- `value` (`Int`) `[imm]`
 
 
 </div>
@@ -550,7 +513,7 @@ Unsafely store a SIMD vector into the Shape at the specified index.
 ##### `row_major`
 
 ```mojo
-row_major(self) -> NDArrayStrides
+def row_major(self) -> NDArrayStrides
 ```
 
 Create row-major (C-style) strides from a shape.
@@ -560,7 +523,7 @@ going backwards through dimensions.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -576,7 +539,7 @@ going backwards through dimensions.
 ##### `col_major`
 
 ```mojo
-col_major(self) -> NDArrayStrides
+def col_major(self) -> NDArrayStrides
 ```
 
 Create column-major (Fortran-style) strides from a shape.
@@ -586,7 +549,7 @@ going forward through dimensions.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -602,14 +565,14 @@ going forward through dimensions.
 ##### `reverse`
 
 ```mojo
-reverse(self) -> Self
+def reverse(self) -> Self
 ```
 
 Return a new shape with dimensions reversed.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -623,22 +586,51 @@ Return a new shape with dimensions reversed.
 ##### `permute`
 
 ```mojo
-permute(self, axes: List[Int]) -> Self
+def permute(self, axes: List[Int]) -> Self
 ```
 
 Return a new shape with axes reordered.
 
 **Args:**
 
-- `self` (`Self`)
-- `axes` (`List`): New axis order. Must contain each axis exactly once.
+- `self` (`Self`) `[imm]`
+- `axes` (`List[Int]`) `[imm]`: New axis order. Must contain each axis exactly once.
 
 **Returns:**
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If axes length doesn't match ndim or contains invalid/duplicate axes.
+    NumojoError: If axes length doesn't match ndim or contains invalid/duplicate axes.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `broadcast`
+
+```mojo
+def broadcast(self, other: Self) -> Self
+```
+
+Compute the broadcast result shape of `self` and `other`, following NumPy broadcasting rules.
+
+Shapes are aligned from the trailing dimension. Two dimensions are
+compatible when they are equal, or when one of them is 1. Missing
+leading dimensions are treated as size 1.
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The other shape to broadcast against.
+
+**Returns:**
+
+- `Self`
+
+!!! failure "Raises"
+    NumojoError: If the shapes are not broadcast-compatible.
 
 
 </div>
@@ -648,15 +640,15 @@ Return a new shape with axes reordered.
 ##### `join`
 
 ```mojo
-join(self, *shapes: Self) -> Self
+def join(self, *shapes: Self) -> Self
 ```
 
 Join multiple shapes into a single shape.
 
 **Args:**
 
-- `self` (`Self`)
-- `*shapes` (`Self`): Variable number of NDArrayShape objects.
+- `self` (`Self`) `[imm]`
+- `*shapes` (`Self`) `[imm]`: Variable number of NDArrayShape objects.
 
 **Returns:**
 
@@ -670,16 +662,16 @@ Join multiple shapes into a single shape.
 ##### `swapaxes`
 
 ```mojo
-swapaxes(self, axis1: Int, axis2: Int) -> Self
+def swapaxes(self, axis1: Int, axis2: Int) -> Self
 ```
 
 Returns a new shape with the given axes swapped.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis1` (`Int`): The first axis to swap.
-- `axis2` (`Int`): The second axis to swap.
+- `self` (`Self`) `[imm]`
+- `axis1` (`Int`) `[imm]`: The first axis to swap.
+- `axis2` (`Int`) `[imm]`: The second axis to swap.
 
 **Returns:**
 
@@ -695,15 +687,15 @@ Returns a new shape with the given axes swapped.
 ##### `extend`
 
 ```mojo
-extend(self, *values: Int) -> Self
+def extend(self, *values: Int) -> Self
 ```
 
 Extend the shape by sizes of extended dimensions.
 
 **Args:**
 
-- `self` (`Self`)
-- `*values` (`Int`): Sizes of extended dimensions.
+- `self` (`Self`) `[imm]`
+- `*values` (`Int`) `[imm]`: Sizes of extended dimensions.
 
 **Returns:**
 
@@ -717,7 +709,7 @@ Extend the shape by sizes of extended dimensions.
 ##### `flip`
 
 ```mojo
-flip(mut self)
+def flip(mut self)
 ```
 
 Flip the items in-place.
@@ -734,14 +726,14 @@ Flip the items in-place.
 ##### `flipped`
 
 ```mojo
-flipped(self) -> Self
+def flipped(self) -> Self
 ```
 
 Returns a new shape by flipping the items.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -755,15 +747,15 @@ Returns a new shape by flipping the items.
 ##### `move_axis_to_end`
 
 ```mojo
-move_axis_to_end(self, axis: Int) -> Self
+def move_axis_to_end(self, axis: Int) -> Self
 ```
 
 Returns a new shape by moving the value of axis to the end.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to move.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to move.
 
 **Returns:**
 
@@ -777,15 +769,15 @@ Returns a new shape by moving the value of axis to the end.
 ##### `pop`
 
 ```mojo
-pop(self, axis: Int) -> Self
+def pop(self, axis: Int) -> Self
 ```
 
 Drops the item at the given axis (index).
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to drop.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to drop.
 
 **Returns:**
 
@@ -801,14 +793,14 @@ Drops the item at the given axis (index).
 ##### `rank`
 
 ```mojo
-rank(self) -> Int
+def rank(self) -> Int
 ```
 
 Returns the number of dimensions of the shape.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -822,14 +814,14 @@ Returns the number of dimensions of the shape.
 ##### `size`
 
 ```mojo
-size(self) -> Int
+def size(self) -> Int
 ```
 
 Returns the total number of elements in the array.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -843,18 +835,18 @@ Returns the total number of elements in the array.
 ##### `sum`
 
 ```mojo
-sum(self) -> Scalar[DType.int]
+def sum(self) -> Int
 ```
 
 Compute the sum of all elements in NDArrayShape.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `Scalar`
+- `Int`
 
 
 </div>
@@ -864,18 +856,18 @@ Compute the sum of all elements in NDArrayShape.
 ##### `product`
 
 ```mojo
-product(self) -> Scalar[DType.int]
+def product(self) -> Int
 ```
 
 Compute the product of all elements in the IndexBuffer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `Scalar`
+- `Int`
 
 
 </div>
@@ -885,14 +877,14 @@ Compute the product of all elements in the IndexBuffer.
 ##### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Gets number of elements in the shape. It equals the number of dimensions of the array.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -906,14 +898,14 @@ Gets number of elements in the shape. It equals the number of dimensions of the 
 ##### `__repr__`
 
 ```mojo
-__repr__(self) -> String
+def __repr__(self) -> String
 ```
 
 Returns a string of the shape of the array.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -924,17 +916,39 @@ Returns a string of the shape of the array.
 
 <div class="fn-card" markdown="1">
 
+##### `write_repr_to`
+
+```mojo
+def write_repr_to[W: Writer](self, mut writer: W)
+```
+
+Write the string representation to a writer.
+
+**Parameters:**
+
+- `W` (`Writer`): The writer type.
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+- `writer` (`W`) `[mut]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Returns a string of the shape of the array.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -948,7 +962,7 @@ Returns a string of the shape of the array.
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Writes the shape representation to a writer.
@@ -959,7 +973,7 @@ Writes the shape representation to a writer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -970,18 +984,18 @@ Writes the shape representation to a writer.
 ##### `tolist`
 
 ```mojo
-tolist(self) -> List[Int]
+def tolist(self) -> List[Int]
 ```
 
 Convert the shape to a list of integers.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `List`
+- `List[Int]`
 
 
 </div>
@@ -991,15 +1005,15 @@ Convert the shape to a list of integers.
 ##### `normalize_index`
 
 ```mojo
-normalize_index(self, index: Int) -> Int
+def normalize_index(self, index: Int) -> Int
 ```
 
 Normalizes the given index to be within the valid range [0, ndim).
 
 **Args:**
 
-- `self` (`Self`)
-- `index` (`Int`): The index to normalize.
+- `self` (`Self`) `[imm]`
+- `index` (`Int`) `[imm]`: The index to normalize.
 
 **Returns:**
 
@@ -1013,7 +1027,7 @@ Normalizes the given index to be within the valid range [0, ndim).
 ##### `__iter__`
 
 ```mojo
-__iter__(ref self) -> _ShapeIter[origin_of(self)]
+def __iter__(ref self) -> _ShapeIter[origin_of(self)]
 ```
 
 Iterate over elements of the NDArrayShape, returning copied values.
@@ -1024,7 +1038,7 @@ Iterate over elements of the NDArrayShape, returning copied values.
 
 **Returns:**
 
-- `_ShapeIter`
+- `_ShapeIter[origin_of(self)]`
 
 
 </div>
@@ -1034,7 +1048,7 @@ Iterate over elements of the NDArrayShape, returning copied values.
 ##### `__reversed__`
 
 ```mojo
-__reversed__(ref self) -> _ShapeIter[origin_of(self), False]
+def __reversed__(ref self) -> _ShapeIter[origin_of(self), False]
 ```
 
 Iterate over elements of the NDArrayShape in reverse order, returning copied values.
@@ -1045,7 +1059,7 @@ Iterate over elements of the NDArrayShape in reverse order, returning copied val
 
 **Returns:**
 
-- `_ShapeIter`
+- `_ShapeIter[origin_of(self), False]`
 
 
 </div>

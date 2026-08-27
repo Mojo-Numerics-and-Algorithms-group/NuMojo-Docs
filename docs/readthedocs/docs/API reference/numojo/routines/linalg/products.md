@@ -1,8 +1,15 @@
 # `numojo.routines.linalg.products`
 
-Matrix and vector products (numojo.routines.linalg.products)
+Array and vector product operations.
 
-This module provides functions for computing products of vectors and matrices, such as cross product, dot product, and matrix multiplication.
+Functions for computing products of vectors and arrays (dot product, matrix
+multiplication, cross product).
+
+Exports
+-------
+- `dot`: Dot product of vectors.
+- `matmul`: Matrix multiplication.
+- `cross`: Cross product.
 
 ## Functions
 
@@ -12,7 +19,7 @@ This module provides functions for computing products of vectors and matrices, s
 ### `cross`
 
 ```mojo
-cross[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def cross[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Compute the cross product of two arrays.
@@ -29,12 +36,12 @@ Parameters
 
 **Args:**
 
-- `array1` (`NDArray`): A array.
-- `array2` (`NDArray`): A array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A array.
+- `array2` (`NDArray[dtype]`) `[imm]`: A array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -46,7 +53,7 @@ Parameters
 ### `dot`
 
 ```mojo
-dot[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def dot[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Compute the dot product of two arrays.
@@ -63,12 +70,12 @@ Parameters
 
 **Args:**
 
-- `array1` (`NDArray`): A array.
-- `array2` (`NDArray`): A array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A array.
+- `array2` (`NDArray[dtype]`) `[imm]`: A array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -80,19 +87,19 @@ Parameters
 ### `tile`
 
 ```mojo
-tile[tiled_fn: Static2DTileUnitFunc, tile_x: Int, tile_y: Int](end_x: Int, end_y: Int)
+def tile[tiled_fn: def[tile_x: Int, tile_y: Int](Int, Int) capturing thin -> None, tile_x: Int, tile_y: Int](end_x: Int, end_y: Int)
 ```
 
 **Parameters:**
 
-- `tiled_fn` (`Static2DTileUnitFunc`)
+- `tiled_fn` (`def[tile_x: Int, tile_y: Int](Int, Int) capturing thin -> None`)
 - `tile_x` (`Int`)
 - `tile_y` (`Int`)
 
 **Args:**
 
-- `end_x` (`Int`)
-- `end_y` (`Int`)
+- `end_x` (`Int`) `[imm]`
+- `end_y` (`Int`) `[imm]`
 
 
 </div>
@@ -102,10 +109,10 @@ tile[tiled_fn: Static2DTileUnitFunc, tile_x: Int, tile_y: Int](end_x: Int, end_y
 ### `matmul_tiled_unrolled_parallelized`
 
 ```mojo
-matmul_tiled_unrolled_parallelized[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+def matmul_tiled_unrolled_parallelized[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Matrix multiplication vectorized, tiled, unrolled, and parallelized.
+Array multiplication vectorized, tiled, unrolled, and parallelized.
 
 **Parameters:**
 
@@ -113,12 +120,12 @@ Matrix multiplication vectorized, tiled, unrolled, and parallelized.
 
 **Args:**
 
-- `A` (`NDArray`)
-- `B` (`NDArray`)
+- `A` (`NDArray[dtype]`) `[imm]`
+- `B` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -130,7 +137,7 @@ Matrix multiplication vectorized, tiled, unrolled, and parallelized.
 ### `matmul_1darray`
 
 ```mojo
-matmul_1darray[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+def matmul_1darray[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Array multiplication for 1-d arrays (inner dot).
@@ -141,12 +148,12 @@ Array multiplication for 1-d arrays (inner dot).
 
 **Args:**
 
-- `A` (`NDArray`)
-- `B` (`NDArray`)
+- `A` (`NDArray[dtype]`) `[imm]`
+- `B` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -158,7 +165,7 @@ Array multiplication for 1-d arrays (inner dot).
 ### `matmul_2darray`
 
 ```mojo
-matmul_2darray[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+def matmul_2darray[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Array multiplication for 2-d arrays (inner dot).
@@ -187,12 +194,12 @@ References:
 
 **Args:**
 
-- `A` (`NDArray`): First array.
-- `B` (`NDArray`): Second array.
+- `A` (`NDArray[dtype]`) `[imm]`: First array.
+- `B` (`NDArray[dtype]`) `[imm]`: Second array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
     When the shape does not match.
@@ -204,10 +211,8 @@ References:
 
 ### `matmul`
 
-#### Overload 1
-
 ```mojo
-matmul[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+def matmul[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Array multiplication for any dimensions.
@@ -236,49 +241,17 @@ When A and B are more than 2d, it is equal to a stack of 2darrays:
 
 **Args:**
 
-- `A` (`NDArray`): First array.
-- `B` (`NDArray`): Second array.
+- `A` (`NDArray[dtype]`) `[imm]`: First array.
+- `B` (`NDArray[dtype]`) `[imm]`: Second array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
     (1) The shapes of first n-2 dimensions do not match.
 (2) The shape of -2 dimension of first array does not match
 the shape of -1 dimension of the second array.
-
-#### Overload 2
-
-```mojo
-matmul[dtype: DType](A: Matrix[dtype], B: Matrix[dtype]) -> Matrix[dtype]
-```
-
-Matrix multiplication.
-
-Example:
-```mojo
-from numojo import Matrix
-from numojo.routines.linalg import matmul
-var A = Matrix.rand(shape=(1000, 1000))
-var B = Matrix.rand(shape=(1000, 1000))
-var result = matmul(A, B)
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `B` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
 
 
 </div>
@@ -288,10 +261,10 @@ var result = matmul(A, B)
 ### `matmul_naive`
 
 ```mojo
-matmul_naive[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+def matmul_naive[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Matrix multiplication with three nested loops.
+Array multiplication with three nested loops.
 
 **Parameters:**
 
@@ -299,12 +272,12 @@ Matrix multiplication with three nested loops.
 
 **Args:**
 
-- `A` (`NDArray`)
-- `B` (`NDArray`)
+- `A` (`NDArray[dtype]`) `[imm]`
+- `B` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 

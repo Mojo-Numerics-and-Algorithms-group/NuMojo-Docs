@@ -1,67 +1,55 @@
 # `numojo.routines.math.trig`
 
-Trigonometric routines for NuMojo (numojo.routines.math.trig).
+Trigonometric and inverse trigonometric functions for arrays.
 
-Implements trigonometric and inverse trigonometric functions over NDArrays and Matrices.
+Element-wise trigonometric functions (sin, cos, tan) and their inverse/hyperbolic
+variants (arcsin, arccos, arctan, atan2, sinh, cosh, tanh, etc.) for NDArrays.
+
+Exports
+-------
+- Circular: `sin`, `cos`, `tan`, `arcsin`, `arccos`, `arctan`, `atan2`.
+- Hyperbolic: `sinh`, `cosh`, `tanh`, `arcsinh`, `arccosh`, `arctanh`.
+- Utilities: `hypot`, `hypot_fma`.
 
 ## Functions
 
 
 <div class="fn-card" markdown="1">
 
-### `arccos`
+### `acos`
 
 ```mojo
-arccos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def acos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
+
+Apply inverse cosine.
 
 **Parameters:**
 
-- `dtype` (`DType`)
+- `dtype` (`DType`): The element type.
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `Matrix`
+- `NDArray[dtype]`
+
+!!! failure "Raises"
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-### `acos`
-
-#### Overload 1
+### `arccos`
 
 ```mojo
-acos[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def arccos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply acos also known as inverse cosine .
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
-
-**Args:**
-
-- `array` (`NDArray`): An Array.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-acos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
+Apply inverse cosine element-wise.
 
 **Parameters:**
 
@@ -69,11 +57,40 @@ acos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `Matrix`
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `asin`
+
+```mojo
+def asin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Apply inverse sine.
+
+**Parameters:**
+
+- `dtype` (`DType`): The element type.
+
+**Args:**
+
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
+
+**Returns:**
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
 
 
 </div>
@@ -83,8 +100,10 @@ acos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `arcsin`
 
 ```mojo
-arcsin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def arcsin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
+
+Apply inverse sine element-wise.
 
 **Parameters:**
 
@@ -92,59 +111,40 @@ arcsin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `Matrix`
+- `NDArray[dtype]`
+
+!!! failure "Raises"
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-### `asin`
-
-#### Overload 1
+### `atan`
 
 ```mojo
-asin[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def atan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply asin also known as inverse sine .
+Apply inverse tangent.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-asin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -154,8 +154,10 @@ asin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `arctan`
 
 ```mojo
-arctan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def arctan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
+
+Apply inverse tangent element-wise.
 
 **Parameters:**
 
@@ -163,59 +165,13 @@ arctan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `Matrix`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-### `atan`
-
-#### Overload 1
-
-```mojo
-atan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
-```
-
-Apply atan also known as inverse tangent .
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
-
-**Args:**
-
-- `array` (`NDArray`): An Array.
-
-**Returns:**
-
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-atan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -225,10 +181,13 @@ atan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `atan2`
 
 ```mojo
-atan2[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def atan2[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply atan2 also known as inverse tangent. [atan2 wikipedia](https://en.wikipedia.org/wiki/Atan2).
+Apply inverse tangent with two arrays.
+
+References:
+    https://en.wikipedia.org/wiki/Atan2.
 
 !!! info "Constraints"
     Both arrays must have the same shapes.
@@ -236,16 +195,15 @@ Apply atan2 also known as inverse tangent. [atan2 wikipedia](https://en.wikipedi
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): An Array.
-- `array2` (`NDArray`): An Array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -256,46 +214,25 @@ Apply atan2 also known as inverse tangent. [atan2 wikipedia](https://en.wikipedi
 
 ### `cos`
 
-#### Overload 1
-
 ```mojo
-cos[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def cos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply cos also known as cosine.
+Apply cosine.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-cos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -304,46 +241,25 @@ cos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 ### `sin`
 
-#### Overload 1
-
 ```mojo
-sin[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def sin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply sin also known as sine .
+Apply sine.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-sin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -352,46 +268,25 @@ sin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 ### `tan`
 
-#### Overload 1
-
 ```mojo
-tan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply tan also known as tangent .
+Apply tangent.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-tan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -401,10 +296,10 @@ tan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `hypot`
 
 ```mojo
-hypot[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def hypot[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply hypot also known as hypotenuse which finds the longest section of a right triangle given the other two sides.
+Apply hypotenuse calculation to two arrays.
 
 !!! info "Constraints"
     Both arrays must have the same shapes.
@@ -412,16 +307,15 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): An Array.
-- `array2` (`NDArray`): An Array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -433,10 +327,10 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
 ### `hypot_fma`
 
 ```mojo
-hypot_fma[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def hypot_fma[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply hypot also known as hypotenuse which finds the longest section of a right triangle given the other two sides.
+Apply hypotenuse calculation using fused multiply-add.
 
 !!! info "Constraints"
     Both arrays must have the same shapes.
@@ -444,16 +338,15 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): An Array.
-- `array2` (`NDArray`): An Array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 

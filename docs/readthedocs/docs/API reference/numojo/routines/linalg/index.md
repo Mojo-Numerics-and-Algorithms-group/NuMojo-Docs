@@ -1,17 +1,23 @@
 # `numojo.routines.linalg`
 
-Linear algebra routines (numojo.routines.linalg)
+Linear algebra operations including matrix decompositions, norms, products, and linear system solving.
 
-This module provides functions for linear algebra operations, including matrix decompositions, norms, products, and solving linear systems etc.
+Exports
+-------
+- Decompositions: `lu_decomposition`.
+- Norms: `det`, `trace`.
+- Products: `dot`, `matmul`, `cross`.
+- Solving: `solve`, `lstsq`, `inv`.
+- Miscellaneous: `diagonal`.
 
 ## Contents
 
 | Name | Kind | Description |
 |------|------|-------------|
-| [`decompositions`](./decompositions.md) | module | Decompositions (numojo.routines.linalg.decompositions) |
-| [`__init__`](./__init__.md) | module | Linear algebra routines (numojo.routines.linalg) |
-| [`misc`](./misc.md) | module | Miscellaneous Linear Algebra Routines (numojo.routines.linalg.misc) |
-| [`norms`](./norms.md) | module | Norms and other numbers (numojo.routines.linalg.norms) |
-| [`products`](./products.md) | module | Matrix and vector products (numojo.routines.linalg.products) |
-| [`solving`](./solving.md) | module | Linear Algebra Solver (numojo.routines.linalg.solving) |
+| [`decompositions`](./decompositions.md) | module | Matrix decomposition operations. |
+| [`__init__`](./__init__.md) | module | Linear algebra operations including matrix decompositions, norms, products, and linear system solving. |
+| [`misc`](./misc.md) | module | Miscellaneous linear algebra operations. |
+| [`norms`](./norms.md) | module | Determinant and trace computation for 2-D arrays. |
+| [`products`](./products.md) | module | Array and vector product operations. |
+| [`solving`](./solving.md) | module | Linear equation solvers. |
 

@@ -1,8 +1,13 @@
 # `numojo.routines.math.floating`
 
-Floating-point routines for NuMojo (numojo.routines.math.floating).
+Floating-point specific operations for NDArrays.
 
-Offers floating-point specific utilities such as `copysign` on NDArrays.
+Implements floating-point helper functions such as `copysign` for element-wise
+sign manipulation.
+
+Exports
+-------
+- `copysign`: Copy sign from one array to another.
 
 ## Functions
 
@@ -12,29 +17,26 @@ Offers floating-point specific utilities such as `copysign` on NDArrays.
 ### `copysign`
 
 ```mojo
-copysign[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def copysign[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Copy the sign of the first NDArray and apply it to the second NDArray.
-
-!!! info "Constraints"
-    Both arrays must have the same shapes.
+Copy the sign of one array onto another.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array1` (`NDArray`): A NDArray.
-- `array2` (`NDArray`): A NDArray.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
+    Error if shape of `array1` and `array2` do not match.
 
 
 </div>

@@ -1,11 +1,14 @@
 # `numojo.core.indexing.offset`
 
-Offset computation (numojo.core.indexing.offset)
+Indexing offset calculation functions.
 
-Indexing offset calculation functions. These functions compute the flat index (offset)
-in memory for a given set of multi-dimensional indices and strides.
-They are used to translate multi-dimensional indexing into flat memory access,
-which is essential for efficient array operations in NuMojo.
+Computes the flat index (offset) in memory for a given set of
+multi-dimensional indices and strides, translating multi-dimensional
+indexing into flat memory access.
+
+Exports
+-------
+- `IndexMethods`: Offset calculation utilities.
 
 ## Structs
 
@@ -16,17 +19,7 @@ struct IndexMethods
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `ImplicitlyDestructible`
-
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
+**Implements:** `AnyType`, `Deinitable`, `Movable`
 
 #### Methods
 
@@ -38,7 +31,7 @@ comptime __del__is_trivial
 ###### Overload 1
 
 ```mojo
-get_1d_index(indices: List[Int], strides: NDArrayStrides) -> Int
+def get_1d_index(indices: List[Int], strides: NDArrayStrides) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -47,8 +40,8 @@ Get the flat index from a list of indices and NDArrayStrides.
 
 **Args:**
 
-- `indices` (`List`): The list of indices.
-- `strides` (`NDArrayStrides`): The strides of the array.
+- `indices` (`List[Int]`) `[imm]`: The list of indices.
+- `strides` (`NDArrayStrides`) `[imm]`: The strides of the array.
 
 **Returns:**
 
@@ -57,7 +50,7 @@ Get the flat index from a list of indices and NDArrayStrides.
 ###### Overload 2
 
 ```mojo
-get_1d_index(indices: Item, strides: NDArrayStrides) -> Int
+def get_1d_index(indices: Item, strides: NDArrayStrides) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -66,8 +59,8 @@ Get the flat index from an Item and NDArrayStrides.
 
 **Args:**
 
-- `indices` (`Item`): The Item containing indices.
-- `strides` (`NDArrayStrides`): The strides of the array.
+- `indices` (`Item`) `[imm]`: The Item containing indices.
+- `strides` (`NDArrayStrides`) `[imm]`: The strides of the array.
 
 **Returns:**
 
@@ -76,7 +69,7 @@ Get the flat index from an Item and NDArrayStrides.
 ###### Overload 3
 
 ```mojo
-get_1d_index(indices: VariadicList[Int], strides: NDArrayStrides) -> Int
+def get_1d_index(indices: VariadicList[Int], strides: NDArrayStrides) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -85,8 +78,8 @@ Get the flat index from a variadic list of indices and NDArrayStrides.
 
 **Args:**
 
-- `indices` (`VariadicList`): The variadic list of indices.
-- `strides` (`NDArrayStrides`): The strides of the array.
+- `indices` (`VariadicList[Int]`) `[imm]`: The variadic list of indices.
+- `strides` (`NDArrayStrides`) `[imm]`: The strides of the array.
 
 **Returns:**
 
@@ -95,7 +88,7 @@ Get the flat index from a variadic list of indices and NDArrayStrides.
 ###### Overload 4
 
 ```mojo
-get_1d_index(indices: List[Int], strides: List[Int]) -> Int
+def get_1d_index(indices: List[Int], strides: List[Int]) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -104,8 +97,8 @@ Get the flat index from a list of indices and a list of strides.
 
 **Args:**
 
-- `indices` (`List`): The list of indices.
-- `strides` (`List`): The list of strides.
+- `indices` (`List[Int]`) `[imm]`: The list of indices.
+- `strides` (`List[Int]`) `[imm]`: The list of strides.
 
 **Returns:**
 
@@ -114,7 +107,7 @@ Get the flat index from a list of indices and a list of strides.
 ###### Overload 5
 
 ```mojo
-get_1d_index(indices: VariadicList[Int], strides: VariadicList[Int]) -> Int
+def get_1d_index(indices: VariadicList[Int], strides: VariadicList[Int]) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -123,8 +116,8 @@ Get the flat index from variadic lists of indices and strides.
 
 **Args:**
 
-- `indices` (`VariadicList`): The variadic list of indices.
-- `strides` (`VariadicList`): The variadic list of strides.
+- `indices` (`VariadicList[Int]`) `[imm]`: The variadic list of indices.
+- `strides` (`VariadicList[Int]`) `[imm]`: The variadic list of strides.
 
 **Returns:**
 
@@ -133,7 +126,7 @@ Get the flat index from variadic lists of indices and strides.
 ###### Overload 6
 
 ```mojo
-get_1d_index(indices: Tuple[Int, Int], strides: Tuple[Int, Int]) -> Int
+def get_1d_index(indices: Tuple[Int, Int], strides: Tuple[Int, Int]) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -142,8 +135,8 @@ Get the flat index for a 2D matrix from tuples of indices and strides.
 
 **Args:**
 
-- `indices` (`Tuple`): The tuple of indices (row, col).
-- `strides` (`Tuple`): The tuple of strides.
+- `indices` (`Tuple[Int, Int]`) `[imm]`: The tuple of indices (row, col).
+- `strides` (`Tuple[Int, Int]`) `[imm]`: The tuple of strides.
 
 **Returns:**
 
@@ -157,7 +150,7 @@ Get the flat index for a 2D matrix from tuples of indices and strides.
 ##### `transfer_offset`
 
 ```mojo
-transfer_offset(offset: Int, strides: NDArrayStrides) -> Int
+def transfer_offset(offset: Int, strides: NDArrayStrides) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -166,8 +159,8 @@ Transfers the offset by flipping the strides information. Used to transfer betwe
 
 **Args:**
 
-- `offset` (`Int`): The offset in memory of an element.
-- `strides` (`NDArrayStrides`): The strides of the array.
+- `offset` (`Int`) `[imm]`: The offset in memory of an element.
+- `strides` (`NDArrayStrides`) `[imm]`: The strides of the array.
 
 **Returns:**
 

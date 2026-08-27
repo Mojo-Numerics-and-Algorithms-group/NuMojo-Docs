@@ -1,23 +1,27 @@
 # `numojo.core.memory.dlpack`
 
-DLPack (numojo.core.memory.dlpack)
+Zero-copy tensor exchange via DLPack protocol.
 
-This module implements the DLPack protocol for zero-copy tensor exchange
-between NuMojo and other array libraries (NumPy, PyTorch, JAX, etc.).
+Implements the DLPack protocol for zero-copy data exchange between NuMojo
+and other array libraries (NumPy, PyTorch, JAX, etc.).
 
-DLPack is an open standard for in-memory tensor structures that enables
-zero-copy data sharing between different frameworks.
+Exports
+-------
+- `from_dlpack`: Create NDArray from DLPack tensor.
+- `to_dlpack`: Export NDArray as DLPack tensor.
 
-References:
-    - DLPack Specification: https://dmlc.github.io/dlpack/latest/
+References
+----------
+- DLPack Specification: https://dmlc.github.io/dlpack/latest/
 
-Example:
+Examples
+--------
     ```mojo
     from numojo.prelude import *
     from numojo.core.memory.dlpack import from_dlpack
     from python import Python
 
-    fn main() raises:
+    def main() raises:
         # Create a NuMojo array
         var arr = nm.linspace[f32](0, 5, 6)
 
@@ -42,7 +46,7 @@ Example:
 comptime DLManagedTensorDeleter
 ```
 
-**Value:** `fn(UnsafePointer[DLManagedTensor, MutAnyOrigin]) -> None`
+**Value:** `def(Pointer[DLManagedTensor, MutUntrackedOrigin]) capturing thin -> None`
 
 ## Structs
 
@@ -53,7 +57,7 @@ struct DLPackVersion
 ```
 
 **Memory convention:** `register_passable_trivial`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`
 
 Represents a DLPack version structure for compatibility checking.
 
@@ -83,7 +87,7 @@ Constants:
 comptime CURRENT_MAJOR
 ```
 
-**Value:** `0`
+**Value:** `UInt32(0)`
 
 ##### `CURRENT_MINOR`
 
@@ -91,7 +95,7 @@ comptime CURRENT_MAJOR
 comptime CURRENT_MINOR
 ```
 
-**Value:** `8`
+**Value:** `UInt32(8)`
 
 ##### `LATEST`
 
@@ -99,31 +103,7 @@ comptime CURRENT_MINOR
 comptime LATEST
 ```
 
-**Value:** `DLPackVersion(0, 8)`
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
+**Value:** `DLPackVersion(UInt32(0), UInt32(8))`
 
 #### Methods
 
@@ -133,15 +113,15 @@ comptime __copy_ctor_is_trivial
 ##### `__init__`
 
 ```mojo
-__init__(major: UInt32, minor: UInt32) -> Self
+def __init__(major: UInt32, minor: UInt32) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 **Args:**
 
-- `major` (`UInt32`)
-- `minor` (`UInt32`)
+- `major` (`UInt32`) `[imm]`
+- `minor` (`UInt32`) `[imm]`
 
 **Returns:**
 
@@ -156,7 +136,7 @@ struct DLDevice
 ```
 
 **Memory convention:** `register_passable_trivial`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`
 
 Represents a device context for tensor data.
 
@@ -240,30 +220,6 @@ comptime ROCM
 
 **Value:** `10`
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
@@ -272,15 +228,15 @@ comptime __copy_ctor_is_trivial
 ##### `__init__`
 
 ```mojo
-__init__(device_type: Int32 = DLDevice.CPU, device_id: Int32 = 0) -> Self
+def __init__(device_type: Int32 = Int32(1), device_id: Int32 = Int32(0)) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 **Args:**
 
-- `device_type` (`Int32`)
-- `device_id` (`Int32`)
+- `device_type` (`Int32`) `[imm]`
+- `device_id` (`Int32`) `[imm]`
 
 **Returns:**
 
@@ -295,7 +251,7 @@ struct DLDataType
 ```
 
 **Memory convention:** `register_passable_trivial`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`
 
 Represents a data type descriptor for tensor elements.
 
@@ -371,30 +327,6 @@ comptime BOOL
 
 **Value:** `6`
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
@@ -403,16 +335,16 @@ comptime __copy_ctor_is_trivial
 ##### `__init__`
 
 ```mojo
-__init__(code: UInt8, bits: UInt8, lanes: UInt16 = 1) -> Self
+def __init__(code: UInt8, bits: UInt8, lanes: UInt16 = UInt16(1)) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 **Args:**
 
-- `code` (`UInt8`)
-- `bits` (`UInt8`)
-- `lanes` (`UInt16`)
+- `code` (`UInt8`) `[imm]`
+- `bits` (`UInt8`) `[imm]`
+- `lanes` (`UInt16`) `[imm]`
 
 **Returns:**
 
@@ -426,7 +358,7 @@ __init__(code: UInt8, bits: UInt8, lanes: UInt16 = 1) -> Self
 ##### `from_dtype`
 
 ```mojo
-from_dtype[dtype: DType]() -> Self
+def from_dtype[dtype: DType]() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -453,7 +385,7 @@ width based on the input DType.
 ##### `to_dtype`
 
 ```mojo
-to_dtype(self) -> DType
+def to_dtype(self) -> DType
 ```
 
 Converts a DLDataType descriptor to a Mojo DType.
@@ -464,16 +396,16 @@ supporting common floating-point (float16/32/64) and integer types
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
 - `DType`
 
 !!! failure "Raises"
-    Error: If the type code is not supported.
-Error: If the bit width is not supported for the given type code.
-Error: If vector types (lanes > 1) are encountered (not yet
+    NumojoError: If the type code is not supported.
+NumojoError: If the bit width is not supported for the given type code.
+NumojoError: If vector types (lanes > 1) are encountered (not yet
 supported).
 
 
@@ -485,7 +417,7 @@ struct DLTensor
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`
 
 Represents the core tensor structure containing data pointer and metadata.
 
@@ -504,39 +436,13 @@ Attributes:
 
 #### Fields
 
-- **`data`** (`UnsafePointer[NoneType, MutAnyOrigin]`): Opaque pointer to the tensor data.
+- **`data`** (`Pointer[NoneType, MutUntrackedOrigin]`): Opaque pointer to the tensor data.
 - **`device`** (`DLDevice`): Device where the data resides.
 - **`ndim`** (`Int32`): Number of dimensions.
 - **`dtype`** (`DLDataType`): Element data type.
-- **`shape`** (`UnsafePointer[Int64, MutAnyOrigin]`): Shape array.
-- **`strides`** (`UnsafePointer[Int64, MutAnyOrigin]`): Strides in elements.
+- **`shape`** (`Pointer[Int64, MutUntrackedOrigin]`): Shape array.
+- **`strides`** (`Pointer[Int64, MutUntrackedOrigin]`): Strides in elements.
 - **`byte_offset`** (`UInt64`): Byte offset from data pointer to first element.
-
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
 
 #### Methods
 
@@ -546,20 +452,20 @@ comptime __copy_ctor_is_trivial
 ##### `__init__`
 
 ```mojo
-__init__(out self, data: UnsafePointer[NoneType, MutAnyOrigin], device: DLDevice, ndim: Int32, dtype: DLDataType, shape: UnsafePointer[Int64, MutAnyOrigin], strides: UnsafePointer[Int64, MutAnyOrigin], byte_offset: UInt64 = 0)
+def __init__(out self, data: Pointer[NoneType, MutUntrackedOrigin], device: DLDevice, ndim: Int32, dtype: DLDataType, shape: Pointer[Int64, MutUntrackedOrigin], strides: Pointer[Int64, MutUntrackedOrigin], byte_offset: UInt64 = UInt64(0))
 ```
 
 <span class="badge badge-static">static</span>
 
 **Args:**
 
-- `data` (`UnsafePointer`)
-- `device` (`DLDevice`)
-- `ndim` (`Int32`)
-- `dtype` (`DLDataType`)
-- `shape` (`UnsafePointer`)
-- `strides` (`UnsafePointer`)
-- `byte_offset` (`UInt64`)
+- `data` (`Pointer[NoneType, MutUntrackedOrigin]`) `[imm]`
+- `device` (`DLDevice`) `[imm]`
+- `ndim` (`Int32`) `[imm]`
+- `dtype` (`DLDataType`) `[imm]`
+- `shape` (`Pointer[Int64, MutUntrackedOrigin]`) `[imm]`
+- `strides` (`Pointer[Int64, MutUntrackedOrigin]`) `[imm]`
+- `byte_offset` (`UInt64`) `[imm]`
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -575,7 +481,7 @@ struct DLManagedTensor
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`
 
 Represents a managed tensor structure that includes a deleter callback for lifetime management.
 
@@ -597,34 +503,8 @@ DLManagedTensorVersioned with a version field for forward compatibility.
 #### Fields
 
 - **`dl_tensor`** (`DLTensor`): The underlying tensor.
-- **`manager_ctx`** (`UnsafePointer[NoneType, MutAnyOrigin]`): Context pointer for the deleter (stores metadata, refcount, etc.).
-- **`deleter`** (`DLManagedTensorDeleter`): Cleanup function called when consumer is done.
-
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
+- **`manager_ctx`** (`Pointer[NoneType, MutUntrackedOrigin]`): Context pointer for the deleter (stores metadata, refcount, etc.).
+- **`deleter`** (`def(Pointer[DLManagedTensor, MutUntrackedOrigin]) capturing thin -> None`): Cleanup function called when consumer is done.
 
 #### Methods
 
@@ -634,16 +514,16 @@ comptime __copy_ctor_is_trivial
 ##### `__init__`
 
 ```mojo
-__init__(out self, dl_tensor: DLTensor, manager_ctx: UnsafePointer[NoneType, MutAnyOrigin], deleter: DLManagedTensorDeleter)
+def __init__(out self, dl_tensor: DLTensor, manager_ctx: Pointer[NoneType, MutUntrackedOrigin], deleter: def(Pointer[Self, MutUntrackedOrigin]) capturing thin -> None)
 ```
 
 <span class="badge badge-static">static</span>
 
 **Args:**
 
-- `dl_tensor` (`DLTensor`)
-- `manager_ctx` (`UnsafePointer`)
-- `deleter` (`DLManagedTensorDeleter`)
+- `dl_tensor` (`DLTensor`) `[imm]`
+- `manager_ctx` (`Pointer[NoneType, MutUntrackedOrigin]`) `[imm]`
+- `deleter` (`def(Pointer[Self, MutUntrackedOrigin]) capturing thin -> None`) `[imm]`
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -659,7 +539,7 @@ struct DLPackMetadata[dtype: DType]
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`
 
 Represents a metadata container for DLPack tensor lifetime management.
 
@@ -680,36 +560,10 @@ Attributes:
 
 #### Fields
 
-- **`shape`** (`UnsafePointer[Int64, MutAnyOrigin]`)
-- **`strides`** (`UnsafePointer[Int64, MutAnyOrigin]`)
+- **`shape`** (`Pointer[Int64, MutUntrackedOrigin]`)
+- **`strides`** (`Pointer[Int64, MutUntrackedOrigin]`)
 - **`ndim`** (`Int`)
 - **`data_container`** (`DataContainer[dtype]`)
-
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `False`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
 
 #### Methods
 
@@ -721,17 +575,17 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__(out self, shape: UnsafePointer[Int64, MutAnyOrigin], strides: UnsafePointer[Int64, MutAnyOrigin], ndim: Int, var data_container: DataContainer[dtype])
+def __init__(out self, shape: Pointer[Int64, MutUntrackedOrigin], strides: Pointer[Int64, MutUntrackedOrigin], ndim: Int, var data_container: DataContainer[dtype])
 ```
 
 <span class="badge badge-static">static</span>
 
 **Args:**
 
-- `shape` (`UnsafePointer`)
-- `strides` (`UnsafePointer`)
-- `ndim` (`Int`)
-- `data_container` (`DataContainer`) `[var]`
+- `shape` (`Pointer[Int64, MutUntrackedOrigin]`) `[imm]`
+- `strides` (`Pointer[Int64, MutUntrackedOrigin]`) `[imm]`
+- `ndim` (`Int`) `[imm]`
+- `data_container` (`DataContainer[dtype]`) `[var]`
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -741,14 +595,14 @@ __init__(out self, shape: UnsafePointer[Int64, MutAnyOrigin], strides: UnsafePoi
 ###### Overload 2
 
 ```mojo
-__init__(out self, *, copy: Self)
+def __init__(out self, *, copy: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
 **Args:**
 
-- `copy` (`Self`)
+- `copy` (`Self`) `[imm]`
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -760,10 +614,10 @@ __init__(out self, *, copy: Self)
 
 <div class="fn-card" markdown="1">
 
-##### `__del__`
+##### `__deinit__`
 
 ```mojo
-__del__(deinit self)
+def __deinit__(deinit self)
 ```
 
 **Args:**
@@ -780,7 +634,7 @@ __del__(deinit self)
 ### `to_dlpack`
 
 ```mojo
-to_dlpack[dtype: DType](arr: NDArray[dtype]) -> UnsafePointer[DLManagedTensor, MutAnyOrigin]
+def to_dlpack[dtype: DType](arr: NDArray[dtype]) -> Pointer[DLManagedTensor, MutUntrackedOrigin]
 ```
 
 Exports a NuMojo NDArray to a DLPack managed tensor for zero-copy sharing.
@@ -802,14 +656,14 @@ Notes:
 
 **Args:**
 
-- `arr` (`NDArray`): The NDArray to export.
+- `arr` (`NDArray[dtype]`) `[imm]`: The NDArray to export.
 
 **Returns:**
 
-- `UnsafePointer`
+- `Pointer[DLManagedTensor, MutUntrackedOrigin]`
 
 !!! failure "Raises"
-    Error: If enabling views on the data container fails.
+    NumojoError: If enabling views on the data container fails.
 
 
 </div>
@@ -819,7 +673,7 @@ Notes:
 ### `from_dlpack`
 
 ```mojo
-from_dlpack[dtype: DType](capsule: PythonObject) -> NDArray[dtype]
+def from_dlpack[dtype: DType](capsule: PythonObject) -> NDArray[dtype]
 ```
 
 Imports a tensor from any DLPack-compatible library into a NuMojo NDArray using zero-copy. This function accepts a Python object that implements the DLPack protocol (i.e., has a __dlpack__() method), such as NumPy, PyTorch, JAX, or CuPy tensors. It extracts the underlying memory and metadata through the PyCapsule interface, validates device and data type compatibility, and returns a NuMojo NDArray that shares memory with the original tensor.
@@ -837,19 +691,19 @@ Notes:
 
 **Args:**
 
-- `capsule` (`PythonObject`): A PythonObject representing a DLPack-compatible tensor. The
+- `capsule` (`PythonObject`) `[imm]`: A PythonObject representing a DLPack-compatible tensor. The
     object must implement the __dlpack__() method, which returns a
     PyCapsule containing a pointer to a DLManagedTensor.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-    Error: If the received DLManagedTensor pointer is null.
-Error: If the tensor is not on CPU (only CPU tensors are currently
+    NumojoError: If the received DLManagedTensor pointer is null.
+NumojoError: If the tensor is not on CPU (only CPU tensors are currently
 supported).
-Error: If the data type does not match the expected dtype parameter.
+NumojoError: If the data type does not match the expected dtype parameter.
 
 
 </div>
@@ -859,7 +713,7 @@ Error: If the data type does not match the expected dtype parameter.
 ### `from_numpy`
 
 ```mojo
-from_numpy[dtype: DType](array: PythonObject) -> NDArray[dtype]
+def from_numpy[dtype: DType](array: PythonObject) -> NDArray[dtype]
 ```
 
 Imports a NumPy array into a NuMojo NDArray via zero-copy.
@@ -881,14 +735,14 @@ Notes:
 
 **Args:**
 
-- `array` (`PythonObject`): A NumPy ndarray object.
+- `array` (`PythonObject`) `[imm]`: A NumPy ndarray object.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-    Error: If the array is not on CPU (only CPU tensors are supported).
+    NumojoError: If the array is not on CPU (only CPU tensors are supported).
 
 
 </div>

@@ -1,16 +1,21 @@
 # `numojo.routines.creation`
 
-Creation routines (numojo.routines.creation)
+Functions for creating and initializing NDArray and ComplexNDArray objects.
 
-Use more uniformed way of calling functions, i.e., using one specific
-overload for each function. This makes maintenance easier. Example:
+This module provides convenient factory functions for creating arrays with various
+initialization strategies (zeros, ones, empty, full, linspace, etc.) and helper
+functions for array generation from Python objects and mathematical sequences.
 
-- `NDArray.__init__` takes in `ShapeLike` and initialize an `NDArray` container.
-- `full` calls `NDArray.__init__`.
-- `zeros`, `ones` calls `full`.
-- Other functions calls `zeros`, `ones`, `full`.
-
-If overloads are needed, it is better to call the default signature in other overloads. Example: `zeros(shape: NDArrayShape)`. All other overloads call this function. So it is easy for modification.
+Exports
+-------
+- `arange`: Evenly spaced values in interval.
+- `linspace`: Values spaced linearly in interval.
+- `logspace`: Values spaced logarithmically in interval.
+- `zeros`: Array filled with zeros.
+- `ones`: Array filled with ones.
+- `full`: Array filled with constant value.
+- `empty`: Uninitialized array.
+- `array`: Create from Python object or scalar.
 
 ## Functions
 
@@ -22,7 +27,7 @@ If overloads are needed, it is better to call the default signature in other ove
 #### Overload 1
 
 ```mojo
-arange[dtype: DType = DType.float64](start: Scalar[dtype], stop: Scalar[dtype], step: Scalar[dtype] = 1) -> NDArray[dtype]
+def arange[dtype: DType = DType.float64](start: Scalar[dtype], stop: Scalar[dtype], step: Scalar[dtype] = 1) -> NDArray[dtype]
 ```
 
 Generate evenly spaced values within a given interval.
@@ -46,20 +51,20 @@ print(arr2)  # [10.0, 8.0, 6.0, 4.0, 2.0]
 
 **Args:**
 
-- `start` (`Scalar`): Start value (inclusive).
-- `stop` (`Scalar`): End value (exclusive).
-- `step` (`Scalar`): Step size between consecutive elements (default 1).
+- `start` (`Scalar[dtype]`) `[imm]`: Start value (inclusive).
+- `stop` (`Scalar[dtype]`) `[imm]`: End value (exclusive).
+- `step` (`Scalar[dtype]`) `[imm]`: Step size between consecutive elements (default 1).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-arange[dtype: DType = DType.float64](stop: Scalar[dtype]) -> NDArray[dtype]
+def arange[dtype: DType = DType.float64](stop: Scalar[dtype]) -> NDArray[dtype]
 ```
 
 Generate evenly spaced values from 0 to stop.
@@ -80,18 +85,18 @@ print(arr)  # [0.0, 1.0, 2.0, 3.0, 4.0]
 
 **Args:**
 
-- `stop` (`Scalar`): End value (exclusive).
+- `stop` (`Scalar[dtype]`) `[imm]`: End value (exclusive).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 3
 
 ```mojo
-arange[cdtype: ComplexDType = ComplexDType.float64](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], step: ComplexSIMD[cdtype] = ComplexSIMD(1, 1)) -> ComplexNDArray[cdtype]
+def arange[cdtype: ComplexDType = ComplexDType.float64](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], step: ComplexSIMD[cdtype] = ComplexSIMD(SIMD(1), SIMD(1))) -> ComplexNDArray[cdtype]
 ```
 
 Generate evenly spaced complex values within a given interval.
@@ -112,20 +117,20 @@ var arr = nm.arange[nm.cf64](start, stop, step)
 
 **Args:**
 
-- `start` (`ComplexSIMD`): Start value (inclusive).
-- `stop` (`ComplexSIMD`): End value (exclusive).
-- `step` (`ComplexSIMD`): Step size between consecutive elements (default 1+1j).
+- `start` (`ComplexSIMD[cdtype]`) `[imm]`: Start value (inclusive).
+- `stop` (`ComplexSIMD[cdtype]`) `[imm]`: End value (exclusive).
+- `step` (`ComplexSIMD[cdtype]`) `[imm]`: Step size between consecutive elements (default 1+1j).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 4
 
 ```mojo
-arange[cdtype: ComplexDType = ComplexDType.float64](stop: ComplexSIMD[cdtype]) -> ComplexNDArray[cdtype]
+def arange[cdtype: ComplexDType = ComplexDType.float64](stop: ComplexSIMD[cdtype]) -> ComplexNDArray[cdtype]
 ```
 
 Generate evenly spaced complex values from 0 to stop.
@@ -138,11 +143,11 @@ Overload with start=0+0j and step=1+1j for convenience.
 
 **Args:**
 
-- `stop` (`ComplexSIMD`): End value (exclusive).
+- `stop` (`ComplexSIMD[cdtype]`) `[imm]`: End value (exclusive).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -156,7 +161,7 @@ Overload with start=0+0j and step=1+1j for convenience.
 #### Overload 1
 
 ```mojo
-linspace[dtype: DType = DType.float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int = 50, endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
+def linspace[dtype: DType = DType.float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int = Int(50), endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Generate evenly spaced numbers over a specified interval.
@@ -184,21 +189,21 @@ var large = nm.linspace[nm.f64, parallel=True](0.0, 1000.0, 10000)
 
 **Args:**
 
-- `start` (`Scalar`): Starting value of the sequence.
-- `stop` (`Scalar`): End value of the sequence.
-- `num` (`Int`): Number of samples to generate (default 50).
-- `endpoint` (`Bool`): Whether to include `stop` in the result (default True).
+- `start` (`Scalar[dtype]`) `[imm]`: Starting value of the sequence.
+- `stop` (`Scalar[dtype]`) `[imm]`: End value of the sequence.
+- `num` (`Int`) `[imm]`: Number of samples to generate (default 50).
+- `endpoint` (`Bool`) `[imm]`: Whether to include `stop` in the result (default True).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-linspace[cdtype: ComplexDType = ComplexDType.float64, parallel: Bool = False](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], num: Int = 50, endpoint: Bool = True) -> ComplexNDArray[cdtype]
+def linspace[cdtype: ComplexDType = ComplexDType.float64, parallel: Bool = False](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], num: Int = Int(50), endpoint: Bool = True) -> ComplexNDArray[cdtype]
 ```
 
 Generate evenly spaced complex numbers over a specified interval.
@@ -219,14 +224,14 @@ var arr = nm.linspace[nm.cf64](start, stop, 5)
 
 **Args:**
 
-- `start` (`ComplexSIMD`): Starting complex value of the sequence.
-- `stop` (`ComplexSIMD`): End complex value of the sequence.
-- `num` (`Int`): Number of samples to generate (default 50).
-- `endpoint` (`Bool`): Whether to include `stop` in the result (default True).
+- `start` (`ComplexSIMD[cdtype]`) `[imm]`: Starting complex value of the sequence.
+- `stop` (`ComplexSIMD[cdtype]`) `[imm]`: End complex value of the sequence.
+- `num` (`Int`) `[imm]`: Number of samples to generate (default 50).
+- `endpoint` (`Bool`) `[imm]`: Whether to include `stop` in the result (default True).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -240,7 +245,7 @@ var arr = nm.linspace[nm.cf64](start, stop, 5)
 #### Overload 1
 
 ```mojo
-logspace[dtype: DType = DType.float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True, base: Scalar[dtype] = 10) -> NDArray[dtype] where dtype.is_floating_point()
+def logspace[dtype: DType = DType.float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True, base: Scalar[dtype] = 10) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Generate logarithmically spaced numbers over a specified interval.
@@ -267,22 +272,22 @@ print(arr2)  # [1.0, 2.0, 4.0, 8.0, 16.0]
 
 **Args:**
 
-- `start` (`Scalar`): Base^start is the starting value of the sequence.
-- `stop` (`Scalar`): Base^stop is the final value of the sequence.
-- `num` (`Int`): Number of samples to generate.
-- `endpoint` (`Bool`): Whether to include base^stop in the result (default True).
-- `base` (`Scalar`): The base of the logarithm (default 10.0).
+- `start` (`Scalar[dtype]`) `[imm]`: Base^start is the starting value of the sequence.
+- `stop` (`Scalar[dtype]`) `[imm]`: Base^stop is the final value of the sequence.
+- `num` (`Int`) `[imm]`: Number of samples to generate.
+- `endpoint` (`Bool`) `[imm]`: Whether to include base^stop in the result (default True).
+- `base` (`Scalar[dtype]`) `[imm]`: The base of the logarithm (default 10.0).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-logspace[cdtype: ComplexDType = ComplexDType.float64, parallel: Bool = False](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], num: Int, endpoint: Bool = True, base: ComplexSIMD[cdtype] = ComplexSIMD(10, 10)) -> ComplexNDArray[cdtype] where cdtype.is_floating_point()
+def logspace[cdtype: ComplexDType = ComplexDType.float64, parallel: Bool = False](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], num: Int, endpoint: Bool = True, base: ComplexSIMD[cdtype] = ComplexSIMD(SIMD(10), SIMD(10))) -> ComplexNDArray[cdtype] where cdtype.is_floating_point()
 ```
 
 Generate logarithmically spaced complex numbers over a specified interval.
@@ -296,15 +301,15 @@ The sequence starts at base^start and ends at base^stop.
 
 **Args:**
 
-- `start` (`ComplexSIMD`): Base^start is the starting complex value of the sequence.
-- `stop` (`ComplexSIMD`): Base^stop is the final complex value of the sequence.
-- `num` (`Int`): Number of samples to generate.
-- `endpoint` (`Bool`): Whether to include base^stop in the result (default True).
-- `base` (`ComplexSIMD`): The complex base of the logarithm (default 10+10j).
+- `start` (`ComplexSIMD[cdtype]`) `[imm]`: Base^start is the starting complex value of the sequence.
+- `stop` (`ComplexSIMD[cdtype]`) `[imm]`: Base^stop is the final complex value of the sequence.
+- `num` (`Int`) `[imm]`: Number of samples to generate.
+- `endpoint` (`Bool`) `[imm]`: Whether to include base^stop in the result (default True).
+- `base` (`ComplexSIMD[cdtype]`) `[imm]`: The complex base of the logarithm (default 10+10j).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -318,7 +323,7 @@ The sequence starts at base^start and ends at base^stop.
 #### Overload 1
 
 ```mojo
-geomspace[dtype: DType = DType.float64](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
+def geomspace[dtype: DType = DType.float64](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Generate numbers spaced evenly on a log scale (geometric progression).
@@ -341,21 +346,21 @@ This is similar to logspace, but with endpoints specified directly.
 
 **Args:**
 
-- `start` (`Scalar`): The starting value of the sequence.
-- `stop` (`Scalar`): The final value of the sequence.
-- `num` (`Int`): Number of samples to generate.
-- `endpoint` (`Bool`): Whether to include `stop` in the result (default True).
+- `start` (`Scalar[dtype]`) `[imm]`: The starting value of the sequence.
+- `stop` (`Scalar[dtype]`) `[imm]`: The final value of the sequence.
+- `num` (`Int`) `[imm]`: Number of samples to generate.
+- `endpoint` (`Bool`) `[imm]`: Whether to include `stop` in the result (default True).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-geomspace[cdtype: ComplexDType = ComplexDType.float64](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], num: Int, endpoint: Bool = True) -> ComplexNDArray[cdtype] where cdtype.is_floating_point()
+def geomspace[cdtype: ComplexDType = ComplexDType.float64](start: ComplexSIMD[cdtype], stop: ComplexSIMD[cdtype], num: Int, endpoint: Bool = True) -> ComplexNDArray[cdtype] where cdtype.is_floating_point()
 ```
 
 Generate complex numbers spaced evenly on a log scale (geometric progression).
@@ -369,14 +374,14 @@ This is similar to logspace, but with endpoints specified directly.
 
 **Args:**
 
-- `start` (`ComplexSIMD`): The starting complex value of the sequence.
-- `stop` (`ComplexSIMD`): The final complex value of the sequence.
-- `num` (`Int`): Number of samples to generate.
-- `endpoint` (`Bool`): Whether to include `stop` in the result (default True).
+- `start` (`ComplexSIMD[cdtype]`) `[imm]`: The starting complex value of the sequence.
+- `stop` (`ComplexSIMD[cdtype]`) `[imm]`: The final complex value of the sequence.
+- `num` (`Int`) `[imm]`: Number of samples to generate.
+- `endpoint` (`Bool`) `[imm]`: Whether to include `stop` in the result (default True).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -390,7 +395,7 @@ This is similar to logspace, but with endpoints specified directly.
 #### Overload 1
 
 ```mojo
-empty[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
+def empty[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray of given shape with arbitrary values.
@@ -401,18 +406,18 @@ Generate an empty NDArray of given shape with arbitrary values.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the NDArray.
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-empty[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
+def empty[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray from a list of integers.
@@ -425,18 +430,18 @@ Overload of `empty` that accepts a list of integers for the shape.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 3
 
 ```mojo
-empty[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
+def empty[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray from variadic integer arguments.
@@ -449,18 +454,18 @@ Overload of `empty` that accepts variadic integers for the shape.
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 4
 
 ```mojo
-empty[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape) -> ComplexNDArray[cdtype]
+def empty[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape) -> ComplexNDArray[cdtype]
 ```
 
 Generate an empty ComplexNDArray of given shape with arbitrary values.
@@ -471,18 +476,18 @@ Generate an empty ComplexNDArray of given shape with arbitrary values.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the ComplexNDArray.
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the ComplexNDArray.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 5
 
 ```mojo
-empty[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int]) -> ComplexNDArray[cdtype]
+def empty[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int]) -> ComplexNDArray[cdtype]
 ```
 
 Generate an empty ComplexNDArray from a list of integers.
@@ -495,18 +500,18 @@ Overload of `empty` that accepts a list of integers for the shape.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 6
 
 ```mojo
-empty[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int]) -> ComplexNDArray[cdtype]
+def empty[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int]) -> ComplexNDArray[cdtype]
 ```
 
 Generate an empty ComplexNDArray from variadic integer arguments.
@@ -519,11 +524,11 @@ Overload of `empty` that accepts variadic integers for the shape.
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -537,7 +542,7 @@ Overload of `empty` that accepts variadic integers for the shape.
 #### Overload 1
 
 ```mojo
-empty_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
+def empty_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray of the same shape as `array`.
@@ -548,18 +553,18 @@ Generate an empty NDArray of the same shape as `array`.
 
 **Args:**
 
-- `array` (`NDArray`): NDArray to be used as a reference for the shape.
+- `array` (`NDArray[dtype]`) `[imm]`: NDArray to be used as a reference for the shape.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-empty_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype]
+def empty_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype]
 ```
 
 Generate an empty ComplexNDArray of the same shape as `array`.
@@ -570,11 +575,11 @@ Generate an empty ComplexNDArray of the same shape as `array`.
 
 **Args:**
 
-- `array` (`ComplexNDArray`): ComplexNDArray to be used as a reference for the shape.
+- `array` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be used as a reference for the shape.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -588,7 +593,7 @@ Generate an empty ComplexNDArray of the same shape as `array`.
 #### Overload 1
 
 ```mojo
-eye[dtype: DType = DType.float64](N: Int, M: Int) -> NDArray[dtype]
+def eye[dtype: DType = DType.float64](N: Int, M: Int) -> NDArray[dtype]
 ```
 
 Return a 2-D NDArray with ones on the diagonal and zeros elsewhere.
@@ -609,19 +614,19 @@ var arr = nm.eye[nm.f64](3, 4)
 
 **Args:**
 
-- `N` (`Int`): Number of rows in the matrix.
-- `M` (`Int`): Number of columns in the matrix.
+- `N` (`Int`) `[imm]`: Number of rows in the matrix.
+- `M` (`Int`) `[imm]`: Number of columns in the matrix.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-eye[cdtype: ComplexDType = ComplexDType.float64](N: Int, M: Int) -> ComplexNDArray[cdtype]
+def eye[cdtype: ComplexDType = ComplexDType.float64](N: Int, M: Int) -> ComplexNDArray[cdtype]
 ```
 
 Return a 2-D ComplexNDArray with ones on the diagonal and zeros elsewhere.
@@ -632,12 +637,12 @@ Return a 2-D ComplexNDArray with ones on the diagonal and zeros elsewhere.
 
 **Args:**
 
-- `N` (`Int`): Number of rows in the matrix.
-- `M` (`Int`): Number of columns in the matrix.
+- `N` (`Int`) `[imm]`: Number of rows in the matrix.
+- `M` (`Int`) `[imm]`: Number of columns in the matrix.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -651,7 +656,7 @@ Return a 2-D ComplexNDArray with ones on the diagonal and zeros elsewhere.
 #### Overload 1
 
 ```mojo
-identity[dtype: DType = DType.float64](N: Int) -> NDArray[dtype]
+def identity[dtype: DType = DType.float64](N: Int) -> NDArray[dtype]
 ```
 
 Generate an identity matrix of size N x N.
@@ -672,18 +677,18 @@ var I = nm.identity[nm.f64](3)
 
 **Args:**
 
-- `N` (`Int`): Size of the square matrix.
+- `N` (`Int`) `[imm]`: Size of the square matrix.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-identity[cdtype: ComplexDType = ComplexDType.float64](N: Int) -> ComplexNDArray[cdtype]
+def identity[cdtype: ComplexDType = ComplexDType.float64](N: Int) -> ComplexNDArray[cdtype]
 ```
 
 Generate a complex identity matrix of size N x N.
@@ -694,11 +699,11 @@ Generate a complex identity matrix of size N x N.
 
 **Args:**
 
-- `N` (`Int`): Size of the square matrix.
+- `N` (`Int`) `[imm]`: Size of the square matrix.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -712,7 +717,7 @@ Generate a complex identity matrix of size N x N.
 #### Overload 1
 
 ```mojo
-ones[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
+def ones[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with ones.
@@ -732,18 +737,18 @@ var arr = nm.ones[nm.f64](nm.Shape(2, 3))
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the NDArray.
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-ones[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
+def ones[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with ones from a list of integers.
@@ -754,18 +759,18 @@ Generate a NDArray filled with ones from a list of integers.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 3
 
 ```mojo
-ones[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
+def ones[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with ones from variadic integer arguments.
@@ -776,18 +781,18 @@ Generate a NDArray filled with ones from variadic integer arguments.
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 4
 
 ```mojo
-ones[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape) -> ComplexNDArray[cdtype]
+def ones[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray filled with ones.
@@ -798,18 +803,18 @@ Generate a ComplexNDArray filled with ones.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the ComplexNDArray.
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the ComplexNDArray.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 5
 
 ```mojo
-ones[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int]) -> ComplexNDArray[cdtype]
+def ones[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int]) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray filled with ones from a list of integers.
@@ -820,18 +825,18 @@ Generate a ComplexNDArray filled with ones from a list of integers.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 6
 
 ```mojo
-ones[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int]) -> ComplexNDArray[cdtype]
+def ones[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int]) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray filled with ones from variadic integer arguments.
@@ -842,11 +847,11 @@ Generate a ComplexNDArray filled with ones from variadic integer arguments.
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -860,7 +865,7 @@ Generate a ComplexNDArray filled with ones from variadic integer arguments.
 #### Overload 1
 
 ```mojo
-ones_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
+def ones_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Generate a NDArray of the same shape as `a` filled with ones.
@@ -871,18 +876,18 @@ Generate a NDArray of the same shape as `a` filled with ones.
 
 **Args:**
 
-- `array` (`NDArray`): NDArray to be used as a reference for the shape.
+- `array` (`NDArray[dtype]`) `[imm]`: NDArray to be used as a reference for the shape.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-ones_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype]
+def ones_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray of the same shape as `array` filled with ones.
@@ -893,11 +898,11 @@ Generate a ComplexNDArray of the same shape as `array` filled with ones.
 
 **Args:**
 
-- `array` (`ComplexNDArray`): ComplexNDArray to be used as a reference for the shape.
+- `array` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be used as a reference for the shape.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -911,7 +916,7 @@ Generate a ComplexNDArray of the same shape as `array` filled with ones.
 #### Overload 1
 
 ```mojo
-zeros[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
+def zeros[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with zeros.
@@ -931,18 +936,18 @@ var arr = nm.zeros[nm.f64](nm.Shape(2, 3))
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the NDArray.
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-zeros[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
+def zeros[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with zeros from a list of integers.
@@ -953,18 +958,18 @@ Generate a NDArray filled with zeros from a list of integers.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 3
 
 ```mojo
-zeros[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
+def zeros[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with zeros from variadic integer arguments.
@@ -975,18 +980,18 @@ Generate a NDArray filled with zeros from variadic integer arguments.
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 4
 
 ```mojo
-zeros[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape) -> ComplexNDArray[cdtype]
+def zeros[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray filled with zeros.
@@ -997,18 +1002,18 @@ Generate a ComplexNDArray filled with zeros.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the ComplexNDArray.
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the ComplexNDArray.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 5
 
 ```mojo
-zeros[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int]) -> ComplexNDArray[cdtype]
+def zeros[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int]) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray filled with zeros from a list of integers.
@@ -1019,18 +1024,18 @@ Generate a ComplexNDArray filled with zeros from a list of integers.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 6
 
 ```mojo
-zeros[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int]) -> ComplexNDArray[cdtype]
+def zeros[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int]) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray filled with zeros from variadic integer arguments.
@@ -1041,11 +1046,11 @@ Generate a ComplexNDArray filled with zeros from variadic integer arguments.
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1059,7 +1064,7 @@ Generate a ComplexNDArray filled with zeros from variadic integer arguments.
 #### Overload 1
 
 ```mojo
-zeros_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
+def zeros_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Generate a NDArray of the same shape as `array` filled with zeros.
@@ -1070,18 +1075,18 @@ Generate a NDArray of the same shape as `array` filled with zeros.
 
 **Args:**
 
-- `array` (`NDArray`): NDArray to be used as a reference for the shape.
+- `array` (`NDArray[dtype]`) `[imm]`: NDArray to be used as a reference for the shape.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-zeros_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype]
+def zeros_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray of the same shape as `array` filled with zeros.
@@ -1092,11 +1097,11 @@ Generate a ComplexNDArray of the same shape as `array` filled with zeros.
 
 **Args:**
 
-- `array` (`ComplexNDArray`): ComplexNDArray to be used as a reference for the shape.
+- `array` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be used as a reference for the shape.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1110,7 +1115,7 @@ Generate a ComplexNDArray of the same shape as `array` filled with zeros.
 #### Overload 1
 
 ```mojo
-full[dtype: DType = DType.float64](shape: NDArrayShape, fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full[dtype: DType = DType.float64](shape: NDArrayShape, fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Create a NDArray filled with a specified value.
@@ -1130,20 +1135,20 @@ var arr = nm.full[nm.f64](nm.Shape(2, 3), fill_value=7.0)
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the array.
-- `fill_value` (`Scalar`): Value to fill all elements with.
-- `order` (`String`): Memory layout order ('C' for row-major or 'F' for column-major).
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the array.
+- `fill_value` (`Scalar[dtype]`) `[imm]`: Value to fill all elements with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' for row-major or 'F' for column-major).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-full[dtype: DType = DType.float64](shape: List[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full[dtype: DType = DType.float64](shape: List[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Create a NDArray filled with a specified value from a list of integers.
@@ -1154,20 +1159,20 @@ Create a NDArray filled with a specified value from a list of integers.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
-- `fill_value` (`Scalar`): Value to fill all elements with.
-- `order` (`String`): Memory layout order ('C' or 'F').
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
+- `fill_value` (`Scalar[dtype]`) `[imm]`: Value to fill all elements with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' or 'F').
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 3
 
 ```mojo
-full[dtype: DType = DType.float64](shape: VariadicList[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full[dtype: DType = DType.float64](shape: VariadicList[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Create a NDArray filled with a specified value from variadic integer arguments.
@@ -1178,20 +1183,20 @@ Create a NDArray filled with a specified value from variadic integer arguments.
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
-- `fill_value` (`Scalar`): Value to fill all elements with.
-- `order` (`String`): Memory layout order ('C' or 'F').
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
+- `fill_value` (`Scalar[dtype]`) `[imm]`: Value to fill all elements with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' or 'F').
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 4
 
 ```mojo
-full[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape, fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
+def full[cdtype: ComplexDType = ComplexDType.float64](shape: NDArrayShape, fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
 ```
 
 Create a ComplexNDArray filled with a specified complex value.
@@ -1210,20 +1215,20 @@ var arr = nm.full[nm.cf64](nm.Shape(2, 2), fill_value=val)
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the ComplexNDArray.
-- `fill_value` (`ComplexSIMD`): Complex value to fill all elements with.
-- `order` (`String`): Memory layout order ('C' for row-major or 'F' for column-major).
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the ComplexNDArray.
+- `fill_value` (`ComplexSIMD[cdtype]`) `[imm]`: Complex value to fill all elements with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' for row-major or 'F' for column-major).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 5
 
 ```mojo
-full[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int], fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
+def full[cdtype: ComplexDType = ComplexDType.float64](shape: List[Int], fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
 ```
 
 Create a ComplexNDArray filled with a specified value from a list of integers.
@@ -1234,20 +1239,20 @@ Create a ComplexNDArray filled with a specified value from a list of integers.
 
 **Args:**
 
-- `shape` (`List`): Shape as a list of integers.
-- `fill_value` (`ComplexSIMD`): Complex value to fill all elements with.
-- `order` (`String`): Memory layout order ('C' or 'F').
+- `shape` (`List[Int]`) `[imm]`: Shape as a list of integers.
+- `fill_value` (`ComplexSIMD[cdtype]`) `[imm]`: Complex value to fill all elements with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' or 'F').
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 6
 
 ```mojo
-full[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int], fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
+def full[cdtype: ComplexDType = ComplexDType.float64](shape: VariadicList[Int], fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
 ```
 
 Create a ComplexNDArray filled with a specified value from variadic integer arguments.
@@ -1258,13 +1263,13 @@ Create a ComplexNDArray filled with a specified value from variadic integer argu
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape as variadic integers.
-- `fill_value` (`ComplexSIMD`): Complex value to fill all elements with.
-- `order` (`String`): Memory layout order ('C' or 'F').
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape as variadic integers.
+- `fill_value` (`ComplexSIMD[cdtype]`) `[imm]`: Complex value to fill all elements with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' or 'F').
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1278,7 +1283,7 @@ Create a ComplexNDArray filled with a specified value from variadic integer argu
 #### Overload 1
 
 ```mojo
-full_like[dtype: DType = DType.float64](array: NDArray[dtype], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full_like[dtype: DType = DType.float64](array: NDArray[dtype], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Generate a NDArray of the same shape as `array` filled with `fill_value`.
@@ -1289,20 +1294,20 @@ Generate a NDArray of the same shape as `array` filled with `fill_value`.
 
 **Args:**
 
-- `array` (`NDArray`): NDArray to be used as a reference for the shape.
-- `fill_value` (`Scalar`): Value to fill the NDArray with.
-- `order` (`String`): Memory layout order ('C' or 'F').
+- `array` (`NDArray[dtype]`) `[imm]`: NDArray to be used as a reference for the shape.
+- `fill_value` (`Scalar[dtype]`) `[imm]`: Value to fill the NDArray with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' or 'F').
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-full_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype], fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
+def full_like[cdtype: ComplexDType = ComplexDType.float64](array: ComplexNDArray[cdtype], fill_value: ComplexSIMD[cdtype], order: String = "C") -> ComplexNDArray[cdtype]
 ```
 
 Generate a ComplexNDArray of the same shape as `array` filled with `fill_value`.
@@ -1313,13 +1318,13 @@ Generate a ComplexNDArray of the same shape as `array` filled with `fill_value`.
 
 **Args:**
 
-- `array` (`ComplexNDArray`): ComplexNDArray to be used as a reference for the shape.
-- `fill_value` (`ComplexSIMD`): Complex value to fill the ComplexNDArray with.
-- `order` (`String`): Memory layout order ('C' or 'F').
+- `array` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be used as a reference for the shape.
+- `fill_value` (`ComplexSIMD[cdtype]`) `[imm]`: Complex value to fill the ComplexNDArray with.
+- `order` (`String`) `[imm]`: Memory layout order ('C' or 'F').
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1333,7 +1338,7 @@ Generate a ComplexNDArray of the same shape as `array` filled with `fill_value`.
 #### Overload 1
 
 ```mojo
-diag[dtype: DType = DType.float64](v: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
+def diag[dtype: DType = DType.float64](v: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Extract a diagonal or construct a diagonal NDArray.
@@ -1361,19 +1366,19 @@ var d = nm.diag[nm.f64](mat)
 
 **Args:**
 
-- `v` (`NDArray`): If 1-D, creates a 2-D array with v on the diagonal. If 2-D, extracts the diagonal.
-- `k` (`Int`): Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
+- `v` (`NDArray[dtype]`) `[imm]`: If 1-D, creates a 2-D array with v on the diagonal. If 2-D, extracts the diagonal.
+- `k` (`Int`) `[imm]`: Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-diag[cdtype: ComplexDType = ComplexDType.float64](v: ComplexNDArray[cdtype], k: Int = 0) -> ComplexNDArray[cdtype]
+def diag[cdtype: ComplexDType = ComplexDType.float64](v: ComplexNDArray[cdtype], k: Int = Int(0)) -> ComplexNDArray[cdtype]
 ```
 
 Extract a diagonal or construct a diagonal ComplexNDArray.
@@ -1384,12 +1389,12 @@ Extract a diagonal or construct a diagonal ComplexNDArray.
 
 **Args:**
 
-- `v` (`ComplexNDArray`): If 1-D, creates a 2-D array with v on the diagonal. If 2-D, extracts the diagonal.
-- `k` (`Int`): Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
+- `v` (`ComplexNDArray[cdtype]`) `[imm]`: If 1-D, creates a 2-D array with v on the diagonal. If 2-D, extracts the diagonal.
+- `k` (`Int`) `[imm]`: Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1403,7 +1408,7 @@ Extract a diagonal or construct a diagonal ComplexNDArray.
 #### Overload 1
 
 ```mojo
-diagflat[dtype: DType = DType.float64](v: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
+def diagflat[dtype: DType = DType.float64](v: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Create a 2-D array with the flattened input as the diagonal.
@@ -1426,19 +1431,19 @@ var d = nm.diagflat[nm.f64](v)  # Flattens to [0,1,2,3] then creates diagonal
 
 **Args:**
 
-- `v` (`NDArray`): NDArray to be flattened and used as the diagonal (any shape).
-- `k` (`Int`): Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
+- `v` (`NDArray[dtype]`) `[imm]`: NDArray to be flattened and used as the diagonal (any shape).
+- `k` (`Int`) `[imm]`: Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-diagflat[cdtype: ComplexDType = ComplexDType.float64](v: ComplexNDArray[cdtype], k: Int = 0) -> ComplexNDArray[cdtype]
+def diagflat[cdtype: ComplexDType = ComplexDType.float64](v: ComplexNDArray[cdtype], k: Int = Int(0)) -> ComplexNDArray[cdtype]
 ```
 
 Create a 2-D complex array with the flattened input as the diagonal.
@@ -1449,12 +1454,12 @@ Create a 2-D complex array with the flattened input as the diagonal.
 
 **Args:**
 
-- `v` (`ComplexNDArray`): ComplexNDArray to be flattened and used as the diagonal (any shape).
-- `k` (`Int`): Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
+- `v` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be flattened and used as the diagonal (any shape).
+- `k` (`Int`) `[imm]`: Diagonal offset (0 for main diagonal, positive for upper, negative for lower).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1468,7 +1473,7 @@ Create a 2-D complex array with the flattened input as the diagonal.
 #### Overload 1
 
 ```mojo
-tri[dtype: DType = DType.float64](N: Int, M: Int, k: Int = 0) -> NDArray[dtype]
+def tri[dtype: DType = DType.float64](N: Int, M: Int, k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Generate a lower triangular matrix.
@@ -1498,20 +1503,20 @@ var L2 = nm.tri[nm.f64](3, 3, k=1)
 
 **Args:**
 
-- `N` (`Int`): Number of rows in the matrix.
-- `M` (`Int`): Number of columns in the matrix.
-- `k` (`Int`): Diagonal offset (0 for main diagonal, positive shifts right, negative shifts left).
+- `N` (`Int`) `[imm]`: Number of rows in the matrix.
+- `M` (`Int`) `[imm]`: Number of columns in the matrix.
+- `k` (`Int`) `[imm]`: Diagonal offset (0 for main diagonal, positive shifts right, negative shifts left).
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-tri[cdtype: ComplexDType = ComplexDType.float64](N: Int, M: Int, k: Int = 0) -> ComplexNDArray[cdtype]
+def tri[cdtype: ComplexDType = ComplexDType.float64](N: Int, M: Int, k: Int = Int(0)) -> ComplexNDArray[cdtype]
 ```
 
 Generate a lower triangular complex matrix.
@@ -1524,13 +1529,13 @@ Creates a complex array with ones on and below the k-th diagonal, zeros elsewher
 
 **Args:**
 
-- `N` (`Int`): Number of rows in the matrix.
-- `M` (`Int`): Number of columns in the matrix.
-- `k` (`Int`): Diagonal offset (0 for main diagonal, positive shifts right, negative shifts left).
+- `N` (`Int`) `[imm]`: Number of rows in the matrix.
+- `M` (`Int`) `[imm]`: Number of columns in the matrix.
+- `k` (`Int`) `[imm]`: Diagonal offset (0 for main diagonal, positive shifts right, negative shifts left).
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1544,7 +1549,7 @@ Creates a complex array with ones on and below the k-th diagonal, zeros elsewher
 #### Overload 1
 
 ```mojo
-tril[dtype: DType = DType.float64](m: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
+def tril[dtype: DType = DType.float64](m: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Zero out elements above the k-th diagonal.
@@ -1555,19 +1560,19 @@ Zero out elements above the k-th diagonal.
 
 **Args:**
 
-- `m` (`NDArray`): NDArray to be zeroed out.
-- `k` (`Int`): Diagonal offset.
+- `m` (`NDArray[dtype]`) `[imm]`: NDArray to be zeroed out.
+- `k` (`Int`) `[imm]`: Diagonal offset.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-tril[cdtype: ComplexDType = ComplexDType.float64](m: ComplexNDArray[cdtype], k: Int = 0) -> ComplexNDArray[cdtype]
+def tril[cdtype: ComplexDType = ComplexDType.float64](m: ComplexNDArray[cdtype], k: Int = Int(0)) -> ComplexNDArray[cdtype]
 ```
 
 Zero out elements above the k-th diagonal.
@@ -1578,12 +1583,12 @@ Zero out elements above the k-th diagonal.
 
 **Args:**
 
-- `m` (`ComplexNDArray`): ComplexNDArray to be zeroed out.
-- `k` (`Int`): Diagonal offset.
+- `m` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be zeroed out.
+- `k` (`Int`) `[imm]`: Diagonal offset.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1597,7 +1602,7 @@ Zero out elements above the k-th diagonal.
 #### Overload 1
 
 ```mojo
-triu[dtype: DType = DType.float64](m: NDArray[dtype], k: Int = 0) -> NDArray[dtype]
+def triu[dtype: DType = DType.float64](m: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Zero out elements below the k-th diagonal.
@@ -1608,19 +1613,19 @@ Zero out elements below the k-th diagonal.
 
 **Args:**
 
-- `m` (`NDArray`): NDArray to be zeroed out.
-- `k` (`Int`): Diagonal offset.
+- `m` (`NDArray[dtype]`) `[imm]`: NDArray to be zeroed out.
+- `k` (`Int`) `[imm]`: Diagonal offset.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-triu[cdtype: ComplexDType = ComplexDType.float64](m: ComplexNDArray[cdtype], k: Int = 0) -> ComplexNDArray[cdtype]
+def triu[cdtype: ComplexDType = ComplexDType.float64](m: ComplexNDArray[cdtype], k: Int = Int(0)) -> ComplexNDArray[cdtype]
 ```
 
 Zero out elements below the k-th diagonal.
@@ -1631,12 +1636,12 @@ Zero out elements below the k-th diagonal.
 
 **Args:**
 
-- `m` (`ComplexNDArray`): ComplexNDArray to be zeroed out.
-- `k` (`Int`): Diagonal offset.
+- `m` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be zeroed out.
+- `k` (`Int`) `[imm]`: Diagonal offset.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1650,7 +1655,7 @@ Zero out elements below the k-th diagonal.
 #### Overload 1
 
 ```mojo
-vander[dtype: DType = DType.float64](x: NDArray[dtype], N: Optional[Int] = None, increasing: Bool = False) -> NDArray[dtype]
+def vander[dtype: DType = DType.float64](x: NDArray[dtype], N: Optional[Int] = None, increasing: Bool = False) -> NDArray[dtype]
 ```
 
 Generate a Vandermonde matrix.
@@ -1661,20 +1666,20 @@ Generate a Vandermonde matrix.
 
 **Args:**
 
-- `x` (`NDArray`): 1-D input array.
-- `N` (`Optional`): Number of columns in the output. If N is not specified, a square array is returned.
-- `increasing` (`Bool`): Order of the powers of the columns. If True, the powers increase from left to right, if False (the default) they are reversed.
+- `x` (`NDArray[dtype]`) `[imm]`: 1-D input array.
+- `N` (`Optional[Int]`) `[imm]`: Number of columns in the output. If N is not specified, a square array is returned.
+- `increasing` (`Bool`) `[imm]`: Order of the powers of the columns. If True, the powers increase from left to right, if False (the default) they are reversed.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-vander[cdtype: ComplexDType = ComplexDType.float64](x: ComplexNDArray[cdtype], N: Optional[Int] = None, increasing: Bool = False) -> ComplexNDArray[cdtype]
+def vander[cdtype: ComplexDType = ComplexDType.float64](x: ComplexNDArray[cdtype], N: Optional[Int] = None, increasing: Bool = False) -> ComplexNDArray[cdtype]
 ```
 
 Generate a Complex Vandermonde matrix.
@@ -1685,13 +1690,13 @@ Generate a Complex Vandermonde matrix.
 
 **Args:**
 
-- `x` (`ComplexNDArray`): 1-D input array.
-- `N` (`Optional`): Number of columns in the output. If N is not specified, a square array is returned.
-- `increasing` (`Bool`): Order of the powers of the columns. If True, the powers increase from left to right, if False (the default) they are reversed.
+- `x` (`ComplexNDArray[cdtype]`) `[imm]`: 1-D input array.
+- `N` (`Optional[Int]`) `[imm]`: Number of columns in the output. If N is not specified, a square array is returned.
+- `increasing` (`Bool`) `[imm]`: Order of the powers of the columns. If True, the powers increase from left to right, if False (the default) they are reversed.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1705,7 +1710,7 @@ Generate a Complex Vandermonde matrix.
 #### Overload 1
 
 ```mojo
-astype[dtype: DType, //, target: DType](a: NDArray[dtype]) -> NDArray[target]
+def astype[dtype: DType, //, target: DType](a: NDArray[dtype]) -> NDArray[target]
 ```
 
 Cast an NDArray to a different dtype.
@@ -1717,18 +1722,18 @@ Cast an NDArray to a different dtype.
 
 **Args:**
 
-- `a` (`NDArray`): NDArray to be casted.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray to be casted.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[target]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-astype[cdtype: ComplexDType, //, target: ComplexDType](a: ComplexNDArray[cdtype]) -> ComplexNDArray[target]
+def astype[cdtype: ComplexDType, //, target: ComplexDType](a: ComplexNDArray[cdtype]) -> ComplexNDArray[target]
 ```
 
 Cast a ComplexNDArray to a different dtype.
@@ -1740,11 +1745,11 @@ Cast a ComplexNDArray to a different dtype.
 
 **Args:**
 
-- `a` (`ComplexNDArray`): ComplexNDArray to be casted.
+- `a` (`ComplexNDArray[cdtype]`) `[imm]`: ComplexNDArray to be casted.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[target]`
 
 !!! failure "Raises"
 
@@ -1756,7 +1761,7 @@ Cast a ComplexNDArray to a different dtype.
 ### `fromstring`
 
 ```mojo
-fromstring[dtype: DType = DType.float64](text: String, order: String = "C") -> NDArray[dtype]
+def fromstring[dtype: DType = DType.float64](text: String, order: String = "C") -> NDArray[dtype]
 ```
 
 NDArray initialization from string representation of an ndarray. The shape can be inferred from the string representation. The literals will be casted to the dtype of the NDArray.
@@ -1769,7 +1774,7 @@ Example:
 ```
 import numojo as nm
 
-fn main() raises:
+def main() raises:
     var A = nm.fromstring[DType.int8]("[[[1,2],[3,4]],[[5,6],[7,8]]]")
     var B = nm.fromstring[DType.float16]("[[1,2,3,4],[5,6,7,8]]")
     var C = nm.fromstring[DType.float32]("[0.1, -2.3, 41.5, 19.29145, -199]")
@@ -1808,12 +1813,12 @@ casted to the dtype of the NDArray.
 
 **Args:**
 
-- `text` (`String`): String representation of an ndarray.
-- `order` (`String`): Memory order C or F.
+- `text` (`String`) `[imm]`: String representation of an ndarray.
+- `order` (`String`) `[imm]`: Memory order C or F.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -1827,7 +1832,7 @@ casted to the dtype of the NDArray.
 #### Overload 1
 
 ```mojo
-array[dtype: DType = DType.float64](text: String, order: String = "C") -> NDArray[dtype]
+def array[dtype: DType = DType.float64](text: String, order: String = "C") -> NDArray[dtype]
 ```
 
 This reload is an comptime of `fromstring`.
@@ -1838,19 +1843,19 @@ This reload is an comptime of `fromstring`.
 
 **Args:**
 
-- `text` (`String`)
-- `order` (`String`)
+- `text` (`String`) `[imm]`
+- `order` (`String`) `[imm]`
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-array[dtype: DType = DType.float64](data: List[Scalar[dtype]], shape: List[Int], order: String = "C") -> NDArray[dtype]
+def array[dtype: DType = DType.float64](data: List[Scalar[dtype]], shape: List[Int], order: String = "C") -> NDArray[dtype]
 ```
 
 Array creation with given data, shape and order.
@@ -1868,20 +1873,20 @@ var arr = nm.array[f16](data=[Scalar[f16](1), 2, 3, 4], shape=[2, 2])
 
 **Args:**
 
-- `data` (`List`): List of data.
-- `shape` (`List`): List of shape.
-- `order` (`String`): Memory order C or F.
+- `data` (`List[Scalar[dtype]]`) `[imm]`: List of data.
+- `shape` (`List[Int]`) `[imm]`: List of shape.
+- `order` (`String`) `[imm]`: Memory order C or F.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 3
 
 ```mojo
-array[cdtype: ComplexDType = ComplexDType.float64](data: List[ComplexSIMD[cdtype]], shape: List[Int], order: String = "C") -> ComplexNDArray[cdtype]
+def array[cdtype: ComplexDType = ComplexDType.float64](data: List[ComplexSIMD[cdtype]], shape: List[Int], order: String = "C") -> ComplexNDArray[cdtype]
 ```
 
 Array creation with given data, shape and order.
@@ -1905,20 +1910,20 @@ var array = nm.array[cf64](
 
 **Args:**
 
-- `data` (`List`): List of complex data.
-- `shape` (`List`): List of shape.
-- `order` (`String`): Memory order C or F.
+- `data` (`List[ComplexSIMD[cdtype]]`) `[imm]`: List of complex data.
+- `shape` (`List[Int]`) `[imm]`: List of shape.
+- `order` (`String`) `[imm]`: Memory order C or F.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
 #### Overload 4
 
 ```mojo
-array[dtype: DType = DType.float64](data: PythonObject, order: String = "C") -> NDArray[dtype]
+def array[dtype: DType = DType.float64](data: PythonObject, order: String = "C") -> NDArray[dtype]
 ```
 
 Array creation with given data, shape and order.
@@ -1939,19 +1944,19 @@ A = nm.array[f16](data=np_arr, order="C")
 
 **Args:**
 
-- `data` (`PythonObject`): A Numpy array (PythonObject).
-- `order` (`String`): Memory order C or F.
+- `data` (`PythonObject`) `[imm]`: A Numpy array (PythonObject).
+- `order` (`String`) `[imm]`: Memory order C or F.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 5
 
 ```mojo
-array[cdtype: ComplexDType = ComplexDType.float64](real: PythonObject, imag: PythonObject, order: String = "C") -> ComplexNDArray[cdtype]
+def array[cdtype: ComplexDType = ComplexDType.float64](real: PythonObject, imag: PythonObject, order: String = "C") -> ComplexNDArray[cdtype]
 ```
 
 Array creation with given real and imaginary data, shape and order.
@@ -1973,13 +1978,13 @@ A = nm.array[cf32](real=np_arr, imag=np_arr, order="C")
 
 **Args:**
 
-- `real` (`PythonObject`): A Numpy array (PythonObject).
-- `imag` (`PythonObject`): A Numpy array (PythonObject).
-- `order` (`String`): Memory order C or F.
+- `real` (`PythonObject`) `[imm]`: A Numpy array (PythonObject).
+- `imag` (`PythonObject`) `[imm]`: A Numpy array (PythonObject).
+- `order` (`String`) `[imm]`: Memory order C or F.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
 
@@ -1991,7 +1996,7 @@ A = nm.array[cf32](real=np_arr, imag=np_arr, order="C")
 ### `meshgrid`
 
 ```mojo
-meshgrid[dtype: DType = DType.float64, indexing: String = "xy"](*arrays: NDArray[dtype]) -> List[NDArray[dtype]]
+def meshgrid[dtype: DType = DType.float64, indexing: String = "xy"](*arrays: NDArray[dtype]) -> List[NDArray[dtype]]
 ```
 
 Generate coordinate matrices from coordinate vectors.
@@ -2017,11 +2022,11 @@ var grids = meshgrid[f64, indexing="xy"](x, y)
 
 **Args:**
 
-- `*arrays` (`NDArray`): 1-D input arrays representing the coordinates of a grid.
+- `*arrays` (`NDArray[dtype]`) `[imm]`: 1-D input arrays representing the coordinates of a grid.
 
 **Returns:**
 
-- `List`
+- `List[NDArray[dtype]]`
 
 !!! failure "Raises"
 

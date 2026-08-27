@@ -1,8 +1,16 @@
 # `numojo.routines.statistics.averages`
 
-Averages and dispersion routines for NuMojo (numojo.routines.statistics.averages).
+Statistical averages and dispersion measures for arrays.
 
-Implements mean, median, mode, variance, and standard deviation helpers for NDArrays and Matrices.
+Implements mean, median, mode, variance, and standard deviation for NDArrays.
+
+Exports
+-------
+- `mean`: Arithmetic mean.
+- `median`: Median value.
+- `mode`: Most frequent value.
+- `var`: Variance.
+- `std`: Standard deviation.
 
 ## Functions
 
@@ -12,7 +20,7 @@ Implements mean, median, mode, variance, and standard deviation helpers for NDAr
 ### `mean_1d`
 
 ```mojo
-mean_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def mean_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Calculate the arithmetic average of all items in an array. Regardless of the shape of input, it is treated as a 1-d array. It is the backend function for `mean`, with or without `axis`.
@@ -24,11 +32,11 @@ Calculate the arithmetic average of all items in an array. Regardless of the sha
 
 **Args:**
 
-- `a` (`NDArray`): A 1-d array.
+- `a` (`NDArray[dtype]`) `[imm]`: A 1-d array.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
@@ -42,7 +50,7 @@ Calculate the arithmetic average of all items in an array. Regardless of the sha
 #### Overload 1
 
 ```mojo
-mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Calculate the arithmetic average of all items in the array.
@@ -54,18 +62,18 @@ Calculate the arithmetic average of all items in the array.
 
 **Args:**
 
-- `a` (`NDArray`): NDArray.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
+def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
 ```
 
 Mean of array elements over a given axis.
@@ -77,57 +85,12 @@ Mean of array elements over a given axis.
 
 **Args:**
 
-- `a` (`NDArray`): NDArray.
-- `axis` (`Int`): The axis along which the mean is performed.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray.
+- `axis` (`Int`) `[imm]`: The axis along which the mean is performed.
 
 **Returns:**
 
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 3
-
-```mojo
-mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: Matrix[dtype]) -> Scalar[returned_dtype]
-```
-
-Calculate the arithmetic average of all items in the Matrix.
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `returned_dtype` (`DType`): The returned data type, defaulting to float64.
-
-**Args:**
-
-- `a` (`Matrix`): A matrix.
-
-**Returns:**
-
-- `Scalar`
-
-#### Overload 4
-
-```mojo
-mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: Matrix[dtype], axis: Int) -> Matrix[returned_dtype]
-```
-
-Calculate the arithmetic average of a Matrix along the axis.
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `returned_dtype` (`DType`): The returned data type, defaulting to float64.
-
-**Args:**
-
-- `a` (`Matrix`): A matrix.
-- `axis` (`Int`): The axis along which the mean is performed.
-
-**Returns:**
-
-- `Matrix`
+- `NDArray[returned_dtype]`
 
 !!! failure "Raises"
 
@@ -139,7 +102,7 @@ Calculate the arithmetic average of a Matrix along the axis.
 ### `median_1d`
 
 ```mojo
-median_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def median_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Median value of all items an array. Regardless of the shape of input, it is treated as a 1-d array.
@@ -151,11 +114,11 @@ Median value of all items an array. Regardless of the shape of input, it is trea
 
 **Args:**
 
-- `a` (`NDArray`): A 1-d array.
+- `a` (`NDArray[dtype]`) `[imm]`: A 1-d array.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
@@ -169,7 +132,7 @@ Median value of all items an array. Regardless of the shape of input, it is trea
 #### Overload 1
 
 ```mojo
-median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Median value of all items of an array.
@@ -181,18 +144,18 @@ Median value of all items of an array.
 
 **Args:**
 
-- `a` (`NDArray`): A 1-d array.
+- `a` (`NDArray[dtype]`) `[imm]`: A 1-d array.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
+def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
 ```
 
 Returns median of the array elements along the given axis.
@@ -204,12 +167,12 @@ Returns median of the array elements along the given axis.
 
 **Args:**
 
-- `a` (`NDArray`): An array.
-- `axis` (`Int`): The axis along which the median is performed.
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
+- `axis` (`Int`) `[imm]`: The axis along which the median is performed.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[returned_dtype]`
 
 !!! failure "Raises"
 
@@ -221,7 +184,7 @@ Returns median of the array elements along the given axis.
 ### `mode_1d`
 
 ```mojo
-mode_1d[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
+def mode_1d[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
 ```
 
 Returns mode of all items of an array. Regardless of the shape of input, it is treated as a 1-d array.
@@ -232,11 +195,11 @@ Returns mode of all items of an array. Regardless of the shape of input, it is t
 
 **Args:**
 
-- `a` (`NDArray`): An NDArray.
+- `a` (`NDArray[dtype]`) `[imm]`: An NDArray.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[dtype]`
 
 !!! failure "Raises"
 
@@ -250,7 +213,7 @@ Returns mode of all items of an array. Regardless of the shape of input, it is t
 #### Overload 1
 
 ```mojo
-mode[dtype: DType](array: NDArray[dtype]) -> Scalar[dtype]
+def mode[dtype: DType](array: NDArray[dtype]) -> Scalar[dtype]
 ```
 
 Mode of all items of an array.
@@ -261,18 +224,18 @@ Mode of all items of an array.
 
 **Args:**
 
-- `array` (`NDArray`): An NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: An NDArray.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-mode[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+def mode[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
 ```
 
 Returns mode of the array elements along the given axis.
@@ -283,12 +246,12 @@ Returns mode of the array elements along the given axis.
 
 **Args:**
 
-- `a` (`NDArray`): An NDArray.
-- `axis` (`Int`): The axis along which the mode is performed.
+- `a` (`NDArray[dtype]`) `[imm]`: An NDArray.
+- `axis` (`Int`) `[imm]`: The axis along which the mode is performed.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -297,12 +260,12 @@ Returns mode of the array elements along the given axis.
 
 <div class="fn-card" markdown="1">
 
-### `std`
+### `stddev`
 
 #### Overload 1
 
 ```mojo
-std[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = 0) -> Scalar[returned_dtype]
+def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
 ```
 
 Compute the standard deviation.
@@ -314,19 +277,19 @@ Compute the standard deviation.
 
 **Args:**
 
-- `A` (`NDArray`): An array.
-- `ddof` (`Int`): Delta degree of freedom.
+- `A` (`NDArray[dtype]`) `[imm]`: An array.
+- `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-std[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = 0) -> NDArray[returned_dtype]
+def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
 ```
 
 Computes the standard deviation along the axis.
@@ -338,66 +301,17 @@ Computes the standard deviation along the axis.
 
 **Args:**
 
-- `A` (`NDArray`): An array.
-- `axis` (`Int`): The axis along which the mean is performed.
-- `ddof` (`Int`): Delta degree of freedom.
+- `A` (`NDArray[dtype]`) `[imm]`: An array.
+- `axis` (`Int`) `[imm]`: The axis along which the mean is performed.
+- `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[returned_dtype]`
 
 !!! failure "Raises"
-    Error: If the axis is out of bounds.
-Error: If ddof is not smaller than the size of the axis.
-
-#### Overload 3
-
-```mojo
-std[dtype: DType, //, returned_dtype: DType = DType.float64](A: Matrix[dtype], ddof: Int = 0) -> Scalar[returned_dtype]
-```
-
-Compute the standard deviation.
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `returned_dtype` (`DType`): The returned data type, defaulting to float64.
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `ddof` (`Int`): Delta degree of freedom.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-std[dtype: DType, //, returned_dtype: DType = DType.float64](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[returned_dtype]
-```
-
-Compute the standard deviation along axis.
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `returned_dtype` (`DType`): The returned data type, defaulting to float64.
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `axis` (`Int`): 0 or 1.
-- `ddof` (`Int`): Delta degree of freedom.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+    NumojoError: If the axis is out of bounds.
+NumojoError: If ddof is not smaller than the size of the axis.
 
 
 </div>
@@ -409,7 +323,7 @@ Compute the standard deviation along axis.
 #### Overload 1
 
 ```mojo
-variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = 0) -> Scalar[returned_dtype]
+def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
 ```
 
 Compute the variance.
@@ -421,19 +335,19 @@ Compute the variance.
 
 **Args:**
 
-- `A` (`NDArray`): An array.
-- `ddof` (`Int`): Delta degree of freedom.
+- `A` (`NDArray[dtype]`) `[imm]`: An array.
+- `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[returned_dtype]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = 0) -> NDArray[returned_dtype]
+def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
 ```
 
 Computes the variance along the axis.
@@ -445,66 +359,17 @@ Computes the variance along the axis.
 
 **Args:**
 
-- `A` (`NDArray`): An array.
-- `axis` (`Int`): The axis along which the mean is performed.
-- `ddof` (`Int`): Delta degree of freedom.
+- `A` (`NDArray[dtype]`) `[imm]`: An array.
+- `axis` (`Int`) `[imm]`: The axis along which the mean is performed.
+- `ddof` (`Int`) `[imm]`: Delta degree of freedom.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[returned_dtype]`
 
 !!! failure "Raises"
-    Error: If the axis is out of bounds.
-Error: If ddof is not smaller than the size of the axis.
-
-#### Overload 3
-
-```mojo
-variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: Matrix[dtype], ddof: Int = 0) -> Scalar[returned_dtype]
-```
-
-Compute the variance.
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `returned_dtype` (`DType`): The returned data type, defaulting to float64.
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `ddof` (`Int`): Delta degree of freedom.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: Matrix[dtype], axis: Int, ddof: Int = 0) -> Matrix[returned_dtype]
-```
-
-Compute the variance along axis.
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `returned_dtype` (`DType`): The returned data type, defaulting to float64.
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `axis` (`Int`): 0 or 1.
-- `ddof` (`Int`): Delta degree of freedom.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+    NumojoError: If the axis is out of bounds.
+NumojoError: If ddof is not smaller than the size of the axis.
 
 
 </div>

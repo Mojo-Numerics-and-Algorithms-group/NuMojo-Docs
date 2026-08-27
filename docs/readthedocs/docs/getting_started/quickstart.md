@@ -1,146 +1,85 @@
 # Quickstart
 
-This guide helps you run NuMojo in minutes.
+This guide gets a first NuMojo program running in a couple of minutes. See [Installation](install.md) for all the ways to add NuMojo to a project.
 
-## Prerequisites
+Runnable examples are available in `examples/` (e.g., `examples/quickstart.mojo`).
 
-- Mojo toolchain installed
-- `pixi` installed
-- A working terminal
-
-## Install NuMojo (recommended via Pixi)
-
-Add this to your `pixi.toml`:
-
-```toml
-[workspace]
-preview = ["pixi-build"]
-
-[package]
-name = "your_project_name"
-version = "0.1.0"
-
-[package.build]
-backend = {name = "pixi-build-mojo", version = "0.*"}
-
-[package.build.config.pkg]
-name = "your_package_name"
-
-[package.host-dependencies]
-modular = ">=25.7.0,<26"
-
-[package.build-dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
-
-[package.run-dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
-
-[dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
-```
-
-Then install dependencies:
-
-```console
-pixi install
-```
-
-## Your first NuMojo program
-
-Create `main.mojo`:
+An example of n-dimensional array (`NDArray` type) goes as follows.
 
 ```mojo
 import numojo as nm
 from numojo.prelude import *
 
 
-fn main() raises:
-    # Create arrays
-    var a = nm.arange[f32](12).reshape(Shape(3, 4))
-    var b = nm.ones[f32](Shape(3, 4))
+def main() raises:
+    # Generate two 1000x1000 matrices with random float64 values
+    var A = nm.random.randn(Shape(1000, 1000)) # Shape is used for all shape related operations in numojo. 
+    var B = nm.random.randn(Shape(1000, 1000))
 
-    # Element-wise math
-    var c = nm.add(a, b)
+    # Generate a 3x2 matrix from string representation
+    var X = nm.fromstring[f32]("[[1.1, -0.32, 1], [0.1, -3, 2.124]]")
 
-    # Reductions
-    var total = nm.sum(c)
-    var col_sum = nm.sum(c, axis=0)
-
-    # Indexing and slicing
-    var first_row = c[0, :]
-    var block = c[0:2, 1:3]
-    var item = c[Item(1, 2)]
-
-    print("a:")
-    print(a)
-    print("c = a + 1:")
-    print(c)
-    print("sum(c):", total)
-    print("sum(c, axis=0):")
-    print(col_sum)
-    print("first_row:", first_row)
-    print("block:")
-    print(block)
-    print("item at (1, 2):", item)
-```
-
-Run it:
-
-```console
-pixi run mojo run main.mojo
-```
-
-## Matrix example
-
-```mojo
-from numojo import Matrix
-import numojo as nm
-
-
-fn main() raises:
-    var A = Matrix.rand(shape=(4, 4))
-    var B = Matrix.rand(shape=(4, 4))
-
-    var C = A @ B
-    var s = nm.sum(C)
-    var m = nm.max(C)
-
-    print("A:")
+    # Print array
     print(A)
-    print("B:")
-    print(B)
-    print("C = A @ B:")
-    print(C)
-    print("sum(C):", s, "max(C):", m)
+
+    # Array multiplication
+    var C = A @ B
+
+    # Array inversion
+    var I = nm.inv(A)
+
+    # Array slicing
+    var A_slice = A[1:3, 4:19]
+
+    # Get scalar from array
+    var A_item = A[Item(291, 141)] # Item() is used to define coordinates of an ndarray in numojo. 
+    var A_item_2 = A.item(291, 141)
+
+    # Sort and argsort along axis
+    print(nm.sort(A, axis=1))
+    print(nm.argsort(A, axis=0))
+
+    # Sum along axis
+    print(nm.sum(A))
+    print(nm.sum(A, axis=1))
+
+    # Solve a linear system
+    print(nm.solve(A, B))
 ```
 
-## Complex numbers example
+An example of `ComplexNDArray` is as follows:
 
 ```mojo
 import numojo as nm
 from numojo.prelude import *
 
 
-fn main() raises:
-    var z = 3 + 4 * `1j`
-    var arr = nm.full[cf32](Shape(2, 2), fill_value=CScalar[cf32](z))
+def main() raises:
+    # Create a complex scalar 5 + 5j
+    # cf32 is the complex version of f32 (DType.float32) used to identify complex types in numojo.
+    var complexscalar = CScalar[cf32](5) # Equivalently ComplexSIMD[cf32](5, 5)
+    # Also can be define as simple as  5 + 5*`1j`!
+  
+    # Create complex arrays
+    var A = nm.full[cf32](Shape(1000, 1000), fill_value=complexscalar)  # filled with (5+5j)
+    var B = nm.ones[cf32](Shape(1000, 1000))                            # filled with (1+1j)
 
-    print("z:", z)
-    print("arr:")
-    print(arr)
+    # Print array
+    print(A)
 
-    var arr2 = nm.ones[cf32](Shape(2, 2))
-    print("arr * arr2:")
-    print(arr * arr2)
+    # Array slicing
+    var A_slice = A[1:3, 4:19]
+
+    # Array multiplication
+    var C = A * B
+
+    # Get scalar from array
+    var A_item = A[Item(291, 141)]
+    # Set an element of the array
+    A[item(291, 141)] = complexscalar
 ```
 
-## What to read next
+## Next steps
 
-- `docs/getting-started/installation.md`
-- `docs/user-guide/ndarray-creation-manipulation.md`
-- `docs/user-guide/indexing.md`
-- `docs/user-guide/linalg.md`
-- `docs/developer-guide/architecture.md`
+- Browse available functions by topic in the [User Guide](../user-guide/overview.md).
+- Look up any function's full signature and docstring in the [API Reference](../API reference/numojo/index.md).

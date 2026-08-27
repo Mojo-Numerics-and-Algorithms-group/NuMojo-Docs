@@ -1,6 +1,12 @@
 # `numojo.routines.io.__init__`
 
-I/O routines (numojo.routines.io)
+File I/O operations and array formatting for NuMojo.
 
-This module provides functions for reading and writing arrays to and from files, as well as formatting options for printing arrays.
+Exports
+-------
+- `load`, `loadtxt`: Functions for reading arrays from files.
+- `save`, `savetxt`: Functions for writing arrays to files.
+- `set_printoptions`: Configure array printing options.
+- `PrintOptions`: Array printing configuration.
+- `format_floating_scientific`: Scientific notation formatting.
 

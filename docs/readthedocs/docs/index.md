@@ -35,7 +35,6 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 | Type | Description |
 |------|-------------|
 | `NDArray` | General-purpose N-dimensional array for tensors, grids, batches |
-| `Matrix` | Dedicated 2-D array optimized for linear-algebra workflows |
 | `ComplexNDArray` | N-dimensional array of complex numbers |
 
 ---
@@ -48,26 +47,14 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
     import numojo as nm
     from numojo.prelude import *
 
-    fn main() raises:
+    def main() raises:
         var A = nm.random.randn(Shape(1000, 1000))
         var B = nm.random.randn(Shape(1000, 1000))
         var C = A @ B
         var I = nm.inv(A)
         var s = A[1:3, 4:19]
         print(nm.sum(A))
-    ```
-
-=== "Matrix"
-
-    ```mojo
-    from numojo import Matrix
-    import numojo as nm
-
-    fn main() raises:
-        var A = Matrix.rand(shape=(1000, 1000))
-        var B = Matrix.rand(shape=(1000, 1))
-        var x = nm.solve(A, B)
-        print(x)
+        print(nm.solve(A, B))
     ```
 
 === "ComplexNDArray"
@@ -76,7 +63,7 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
     import numojo as nm
     from numojo.prelude import *
 
-    fn main() raises:
+    def main() raises:
         var z = CScalar[cf32](5)
         var A = nm.full[cf32](Shape(4, 4), fill_value=z)
         var B = nm.ones[cf32](Shape(4, 4))
@@ -90,7 +77,7 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 - **Creation** — `zeros`, `ones`, `arange`, `linspace`, `fromstring`, `random`, …
 - **Manipulation** — `reshape`, `transpose`, `flip`, `broadcast_to`, …
 - **Math** — `sin`, `cos`, `exp`, `log`, `sqrt`, arithmetic, rounding, …
-- **Linear algebra** — `matmul`, `inv`, `solve`, `lstsq`, `det`, `norm`, decompositions, …
+- **Linear algebra** — `matmul`, `inv`, `solve`, `det`, `trace`, `lu_decomposition`, …
 - **Logic** — `all`, `any`, comparison, logical ops, …
 - **Statistics** — `mean`, `std`, `var`, `sum`, `prod`, `min`, `max`, …
 - **Sorting & searching** — `sort`, `argsort`, `argmin`, `argmax`, …
@@ -100,21 +87,22 @@ the Python ecosystem, but built from the ground up to exploit Mojo's native SIMD
 
 ## Installation
 
-The fastest way to get started:
+The fastest way to get started, for a pinned stable release:
 
 ```toml
 [workspace]
 channels = ["https://repo.prefix.dev/modular-community"]
 
 [dependencies]
-numojo = "=0.8.0"
+numojo = "=0.9.0"
 ```
 
 ```bash
 pixi install
 ```
 
-See the [full installation guide](getting_started/install.md) for all methods.
+See the [full installation guide](getting_started/install.md) for all methods,
+including tracking the latest development branch.
 
 ---
 
@@ -122,6 +110,8 @@ See the [full installation guide](getting_started/install.md) for all methods.
 
 | NuMojo | Mojo |
 |--------|------|
+| v0.10.0 | ==1.0.0 |
+| v0.9.0 | ==26.2 |
 | v0.8.0 | ==25.7 |
 | v0.7.0 | ==25.3 |
 | v0.6.1 | ==25.2 |

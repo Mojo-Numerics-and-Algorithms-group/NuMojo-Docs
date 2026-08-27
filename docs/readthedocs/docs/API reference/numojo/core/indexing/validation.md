@@ -1,8 +1,10 @@
 # `numojo.core.indexing.validation`
 
-Validation (numojo.core.indexing.validation)
+Utilities for validating indices, shapes, and axes for various indexing and reduction operations.
 
-Contains utilities for validating indices, shapes, and axes for various indexing and reduction operations.
+Exports
+-------
+- `Validator`: Index validation utilities.
 
 ## Structs
 
@@ -13,17 +15,7 @@ struct Validator
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `ImplicitlyDestructible`
-
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
+**Implements:** `AnyType`, `Deinitable`, `Movable`
 
 #### Methods
 
@@ -33,7 +25,7 @@ comptime __del__is_trivial
 ##### `normalize`
 
 ```mojo
-normalize(index: Int, dim: Int) -> Int
+def normalize(index: Int, dim: Int) -> Int
 ```
 
 <span class="badge badge-static">static</span>
@@ -42,8 +34,8 @@ Normalize a possibly negative index.
 
 **Args:**
 
-- `index` (`Int`): The index to normalize.
-- `dim` (`Int`): The size of the dimension.
+- `index` (`Int`) `[imm]`: The index to normalize.
+- `dim` (`Int`) `[imm]`: The size of the dimension.
 
 **Returns:**
 
@@ -57,7 +49,7 @@ Normalize a possibly negative index.
 ##### `check_bounds`
 
 ```mojo
-check_bounds(index: Int, dim: Int, axis: Int = 0)
+def check_bounds(index: Int, dim: Int, axis: Int = Int(0))
 ```
 
 <span class="badge badge-static">static</span>
@@ -66,12 +58,12 @@ Check if an index is within bounds for a dimension.
 
 **Args:**
 
-- `index` (`Int`): The index to check.
-- `dim` (`Int`): The size of the dimension.
-- `axis` (`Int`): The axis index (for error reporting).
+- `index` (`Int`) `[imm]`: The index to check.
+- `dim` (`Int`) `[imm]`: The size of the dimension.
+- `axis` (`Int`) `[imm]`: The axis index (for error reporting).
 
 !!! failure "Raises"
-    Error: If the index is out of bounds.
+    NumojoError: If the index is out of bounds.
 
 
 </div>
@@ -81,7 +73,7 @@ Check if an index is within bounds for a dimension.
 ##### `validate_reshape`
 
 ```mojo
-validate_reshape(current_size: Int, new_shape: NDArrayShape)
+def validate_reshape(current_size: Int, new_shape: NDArrayShape)
 ```
 
 <span class="badge badge-static">static</span>
@@ -90,11 +82,11 @@ Validate if a reshape operation is valid.
 
 **Args:**
 
-- `current_size` (`Int`): Current total number of elements.
-- `new_shape` (`NDArrayShape`): The target shape.
+- `current_size` (`Int`) `[imm]`: Current total number of elements.
+- `new_shape` (`NDArrayShape`) `[imm]`: The target shape.
 
 !!! failure "Raises"
-    Error: If the reshape is invalid.
+    NumojoError: If the reshape is invalid.
 
 
 </div>
@@ -104,7 +96,7 @@ Validate if a reshape operation is valid.
 ##### `validate_and_normalize_axes`
 
 ```mojo
-validate_and_normalize_axes(rank: Int, axes: List[Int]) -> List[Int]
+def validate_and_normalize_axes(rank: Int, axes: List[Int]) -> List[Int]
 ```
 
 <span class="badge badge-static">static</span>
@@ -113,15 +105,15 @@ Validate and normalize axes for reduction operations.
 
 **Args:**
 
-- `rank` (`Int`): The rank of the array.
-- `axes` (`List`): The input axes.
+- `rank` (`Int`) `[imm]`: The rank of the array.
+- `axes` (`List[Int]`) `[imm]`: The input axes.
 
 **Returns:**
 
-- `List`
+- `List[Int]`
 
 !!! failure "Raises"
-    Error: If any axis is invalid or duplicated.
+    NumojoError: If any axis is invalid or duplicated.
 
 
 </div>

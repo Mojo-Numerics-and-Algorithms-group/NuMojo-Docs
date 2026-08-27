@@ -1,24 +1,31 @@
 # `numojo.core.complex.complex_simd`
 
-ComplexSIMD (numojo.core.complex.complex_simd)
+SIMD-optimized complex number representation and operations.
 
-Implement the ComplexSIMD type and its operations.
+This module provides the ComplexSIMD type for representing complex numbers
+using SIMD operations for efficient vectorized computation. Supports arithmetic
+operations (addition, subtraction, multiplication, division), conjugation,
+absolute value, and other complex number functions.
 
-This module provides a ComplexSIMD type that represents complex numbers using SIMD
-operations for efficient computation. It supports basic arithmetic operations
-like addition, subtraction, multiplication, and division, as well as other
-complex number operations like conjugation and absolute value.
+Exports
+-------
+- `ComplexSIMD`: SIMD-based complex number type.
+
+Notes:
+    - ComplexSIMD uses SoA (Struct of Arrays) layout for SIMD efficiency.
+    - Parameter `cdtype` determines component precision (e.g., cf32, cf64).
+    - Parameter `width` is SIMD lane count; width=1 acts as scalar complex.
 
 ## Structs
 
 ### `ComplexSIMD`
 
 ```mojo
-struct ComplexSIMD[cdtype: ComplexDType = ComplexDType.float64, width: Int = 1]
+struct ComplexSIMD[cdtype: ComplexDType = ComplexDType.float64, width: Int = Int(1)]
 ```
 
 **Memory convention:** `register_passable_trivial`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `Stringable`, `TrivialRegisterPassable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`, `Writable`
 
 A SIMD-enabled complex number container (SoA layout).
 
@@ -71,30 +78,6 @@ comptime dtype
 
 Component dtype (underlying real/imag dtype).
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
@@ -105,7 +88,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__(other: Self) -> Self
+def __init__(other: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -116,7 +99,7 @@ Initializes a new ComplexSIMD instance by copying the values from another instan
 
 **Args:**
 
-- `other` (`Self`)
+- `other` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -125,7 +108,7 @@ Initializes a new ComplexSIMD instance by copying the values from another instan
 ###### Overload 2
 
 ```mojo
-__init__(re: SIMD[ComplexSIMD[cdtype, width].dtype, width], im: SIMD[ComplexSIMD[cdtype, width].dtype, width]) -> Self
+def __init__(re: SIMD[Self.dtype, width], im: SIMD[Self.dtype, width]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -134,8 +117,8 @@ Constructs a ComplexSIMD from SIMD vectors of real and imaginary parts.
 
 **Args:**
 
-- `re` (`SIMD`): SIMD vector containing the real components.
-- `im` (`SIMD`): SIMD vector containing the imaginary components.
+- `re` (`SIMD[Self.dtype, width]`) `[imm]`: SIMD vector containing the real components.
+- `im` (`SIMD[Self.dtype, width]`) `[imm]`: SIMD vector containing the imaginary components.
 
 **Returns:**
 
@@ -144,7 +127,7 @@ Constructs a ComplexSIMD from SIMD vectors of real and imaginary parts.
 ###### Overload 3
 
 ```mojo
-__init__(val: SIMD[ComplexSIMD[cdtype, width].dtype, width]) -> Self
+def __init__(val: SIMD[Self.dtype, width]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -153,44 +136,7 @@ Constructs a ComplexSIMD where both real and imaginary parts are set to the same
 
 **Args:**
 
-- `val` (`SIMD`): SIMD vector to broadcast to both real and imaginary components.
-
-**Returns:**
-
-- `Self`
-
-###### Overload 4
-
-```mojo
-__init__(re: Int, im: Int) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Constructs a ComplexSIMD from scalar integer real and imaginary values, broadcasted to SIMD lanes.
-
-**Args:**
-
-- `re` (`Int`): Integer value for the real component.
-- `im` (`Int`): Integer value for the imaginary component.
-
-**Returns:**
-
-- `Self`
-
-###### Overload 5
-
-```mojo
-__init__(val: Int) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Constructs a ComplexSIMD where both real and imaginary parts are set to the same integer value broadcasted to SIMD lanes.
-
-**Args:**
-
-- `val` (`Int`): Integer value to broadcast to both real and imaginary components.
+- `val` (`SIMD[Self.dtype, width]`) `[imm]`: SIMD vector to broadcast to both real and imaginary components.
 
 **Returns:**
 
@@ -204,7 +150,7 @@ Constructs a ComplexSIMD where both real and imaginary parts are set to the same
 ##### `__getitem__`
 
 ```mojo
-__getitem__(self, idx: Int) -> ComplexSIMD[cdtype]
+def __getitem__(self, idx: Int) -> ComplexSIMD[cdtype]
 ```
 
 Returns the complex number at the specified lane index.
@@ -219,12 +165,12 @@ var c1 = c_simd[1]  # 2 + 4j
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): SIMD lane index (0 to width-1).
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: SIMD lane index (0 to width-1).
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
 !!! failure "Raises"
     Error if lane index is out of range for the SIMD width.
@@ -237,7 +183,7 @@ var c1 = c_simd[1]  # 2 + 4j
 ##### `__setitem__`
 
 ```mojo
-__setitem__(mut self, idx: Int, value: ComplexSIMD[cdtype])
+def __setitem__(mut self, idx: Int, value: ComplexSIMD[cdtype])
 ```
 
 Sets the complex scalar at the specified lane index.
@@ -253,8 +199,8 @@ print(c_simd) # [(1 + 3j), (2 + 4j)] becomes [(5 + 6j), (2 + 4j)]
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): SIMD lane index (0 to width-1).
-- `value` (`ComplexSIMD`): ComplexScalar whose values will be assigned.
+- `idx` (`Int`) `[imm]`: SIMD lane index (0 to width-1).
+- `value` (`ComplexSIMD[cdtype]`) `[imm]`: ComplexScalar whose values will be assigned.
 
 !!! failure "Raises"
     Error if lane index is out of range for the SIMD width.
@@ -267,14 +213,14 @@ print(c_simd) # [(1 + 3j), (2 + 4j)] becomes [(5 + 6j), (2 + 4j)]
 ##### `__neg__`
 
 ```mojo
-__neg__(self) -> Self
+def __neg__(self) -> Self
 ```
 
 Returns the negation of this ComplexSIMD.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -288,14 +234,14 @@ Returns the negation of this ComplexSIMD.
 ##### `__pos__`
 
 ```mojo
-__pos__(self) -> Self
+def __pos__(self) -> Self
 ```
 
 Returns the positive value of this ComplexSIMD (identity operation).
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -309,14 +255,14 @@ Returns the positive value of this ComplexSIMD (identity operation).
 ##### `__invert__`
 
 ```mojo
-__invert__(self) -> Self where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def __invert__(self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical NOT operation on this ComplexSIMD instance.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -332,15 +278,15 @@ Element-wise logical NOT operation on this ComplexSIMD instance.
 ###### Overload 1
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
 Checks if two ComplexSIMD instances are exactly equal.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -349,7 +295,7 @@ Checks if two ComplexSIMD instances are exactly equal.
 ###### Overload 2
 
 ```mojo
-__eq__(self, other: ImaginaryUnit) -> Bool
+def __eq__(self, other: ImaginaryUnit) -> Bool
 ```
 
 Checks if this ComplexSIMD instance is equal to the imaginary unit 1j.
@@ -366,8 +312,8 @@ print(z2 == `1j`)  # False
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to compare with this ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to compare with this ComplexSIMD instance.
 
 **Returns:**
 
@@ -383,15 +329,15 @@ print(z2 == `1j`)  # False
 ###### Overload 1
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
 Checks if two ComplexSIMD instances are not equal.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -400,7 +346,7 @@ Checks if two ComplexSIMD instances are not equal.
 ###### Overload 2
 
 ```mojo
-__ne__(self, other: ImaginaryUnit) -> Bool
+def __ne__(self, other: ImaginaryUnit) -> Bool
 ```
 
 Checks if this ComplexSIMD instance is not equal to the imaginary unit 1j.
@@ -417,8 +363,8 @@ print(z2 != `1j`)  # True
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to compare with this ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to compare with this ComplexSIMD instance.
 
 **Returns:**
 
@@ -434,15 +380,15 @@ print(z2 != `1j`)  # True
 ###### Overload 1
 
 ```mojo
-__add__(self, other: Self) -> Self
+def __add__(self, other: Self) -> Self
 ```
 
 Returns the element-wise sum of two ComplexSIMD instances.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 **Returns:**
 
@@ -451,15 +397,15 @@ Returns the element-wise sum of two ComplexSIMD instances.
 ###### Overload 2
 
 ```mojo
-__add__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __add__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Returns the sum of this ComplexSIMD instance and a scalar added to the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to add to the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to add to the real component.
 
 **Returns:**
 
@@ -468,15 +414,15 @@ Returns the sum of this ComplexSIMD instance and a scalar added to the real part
 ###### Overload 3
 
 ```mojo
-__add__(self, other: SIMD[other.dtype, width]) -> Self
+def __add__(self, other: SIMD[width]) -> Self
 ```
 
 Returns the sum of this ComplexSIMD instance and a SIMD vector added to the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to add to the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to add to the real component.
 
 **Returns:**
 
@@ -485,7 +431,7 @@ Returns the sum of this ComplexSIMD instance and a SIMD vector added to the real
 ###### Overload 4
 
 ```mojo
-__add__(self, other: ImaginaryUnit) -> Self
+def __add__(self, other: ImaginaryUnit) -> Self
 ```
 
 Returns the sum of this ComplexSIMD instance and the imaginary unit 1j.
@@ -501,8 +447,8 @@ print(result)  # (3 + 3j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to add to this complex number.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to add to this complex number.
 
 **Returns:**
 
@@ -518,15 +464,15 @@ print(result)  # (3 + 3j)
 ###### Overload 1
 
 ```mojo
-__sub__(self, other: Self) -> Self
+def __sub__(self, other: Self) -> Self
 ```
 
 Returns the element-wise difference of two ComplexSIMD instances.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 **Returns:**
 
@@ -535,15 +481,15 @@ Returns the element-wise difference of two ComplexSIMD instances.
 ###### Overload 2
 
 ```mojo
-__sub__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __sub__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Returns the difference of this ComplexSIMD instance and a scalar subtracted from the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to subtract from the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to subtract from the real component.
 
 **Returns:**
 
@@ -552,15 +498,15 @@ Returns the difference of this ComplexSIMD instance and a scalar subtracted from
 ###### Overload 3
 
 ```mojo
-__sub__(self, other: SIMD[other.dtype, width]) -> Self
+def __sub__(self, other: SIMD[width]) -> Self
 ```
 
 Returns the difference of this ComplexSIMD instance and a SIMD vector subtracted from the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to subtract from the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to subtract from the real component.
 
 **Returns:**
 
@@ -569,7 +515,7 @@ Returns the difference of this ComplexSIMD instance and a SIMD vector subtracted
 ###### Overload 4
 
 ```mojo
-__sub__(self, other: ImaginaryUnit) -> Self
+def __sub__(self, other: ImaginaryUnit) -> Self
 ```
 
 Subtracts the imaginary unit 1j from this ComplexSIMD instance.
@@ -585,8 +531,8 @@ print(result)  # (3 + 1j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to subtract from this complex number.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to subtract from this complex number.
 
 **Returns:**
 
@@ -602,15 +548,15 @@ print(result)  # (3 + 1j)
 ###### Overload 1
 
 ```mojo
-__mul__(self, other: Self) -> Self
+def __mul__(self, other: Self) -> Self
 ```
 
 Returns the element-wise product of two ComplexSIMD instances.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 **Returns:**
 
@@ -619,15 +565,15 @@ Returns the element-wise product of two ComplexSIMD instances.
 ###### Overload 2
 
 ```mojo
-__mul__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __mul__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Returns the product of this ComplexSIMD instance and a scalar.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to multiply with both real and imaginary parts.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to multiply with both real and imaginary parts.
 
 **Returns:**
 
@@ -636,15 +582,15 @@ Returns the product of this ComplexSIMD instance and a scalar.
 ###### Overload 3
 
 ```mojo
-__mul__(self, other: SIMD[other.dtype, width]) -> Self
+def __mul__(self, other: SIMD[width]) -> Self
 ```
 
 Returns the product of this ComplexSIMD instance and a SIMD vector.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to multiply with both real and imaginary parts.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to multiply with both real and imaginary parts.
 
 **Returns:**
 
@@ -653,7 +599,7 @@ Returns the product of this ComplexSIMD instance and a SIMD vector.
 ###### Overload 4
 
 ```mojo
-__mul__(self, other: ImaginaryUnit) -> Self
+def __mul__(self, other: ImaginaryUnit) -> Self
 ```
 
 Returns the product of this ComplexSIMD instance and the imaginary unit 1j.
@@ -669,8 +615,8 @@ print(result)  # (-2 + 3j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to multiply with this complex number.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to multiply with this complex number.
 
 **Returns:**
 
@@ -686,15 +632,15 @@ print(result)  # (-2 + 3j)
 ###### Overload 1
 
 ```mojo
-__truediv__(self, other: Self) -> Self
+def __truediv__(self, other: Self) -> Self
 ```
 
 Performs element-wise complex division of two ComplexSIMD instances.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance to divide by.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance to divide by.
 
 **Returns:**
 
@@ -703,15 +649,15 @@ Performs element-wise complex division of two ComplexSIMD instances.
 ###### Overload 2
 
 ```mojo
-__truediv__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __truediv__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Performs element-wise division of this ComplexSIMD instance by a scalar.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to divide both real and imaginary parts by.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to divide both real and imaginary parts by.
 
 **Returns:**
 
@@ -720,15 +666,15 @@ Performs element-wise division of this ComplexSIMD instance by a scalar.
 ###### Overload 3
 
 ```mojo
-__truediv__(self, other: SIMD[other.dtype, width]) -> Self
+def __truediv__(self, other: SIMD[width]) -> Self
 ```
 
 Performs element-wise division of this ComplexSIMD instance by a SIMD vector.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to divide both real and imaginary parts by.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to divide both real and imaginary parts by.
 
 **Returns:**
 
@@ -737,7 +683,7 @@ Performs element-wise division of this ComplexSIMD instance by a SIMD vector.
 ###### Overload 4
 
 ```mojo
-__truediv__(self, other: ImaginaryUnit) -> Self
+def __truediv__(self, other: ImaginaryUnit) -> Self
 ```
 
 Performs division of this ComplexSIMD instance by the imaginary unit 1j.
@@ -753,8 +699,8 @@ print(result)  # (2 - 3j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to divide this complex number by.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to divide this complex number by.
 
 **Returns:**
 
@@ -768,15 +714,15 @@ print(result)  # (2 - 3j)
 ##### `__pow__`
 
 ```mojo
-__pow__(self, n: Int) -> Self
+def __pow__(self, n: Int) -> Self
 ```
 
 Raises this ComplexSIMD to an integer.
 
 **Args:**
 
-- `self` (`Self`)
-- `n` (`Int`): Integer exponent.
+- `self` (`Self`) `[imm]`
+- `n` (`Int`) `[imm]`: Integer exponent.
 
 **Returns:**
 
@@ -790,15 +736,15 @@ Raises this ComplexSIMD to an integer.
 ##### `__and__`
 
 ```mojo
-__and__(self, other: Self) -> Self where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def __and__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical AND operation between two ComplexSIMD instances.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 **Returns:**
 
@@ -812,15 +758,15 @@ Element-wise logical AND operation between two ComplexSIMD instances.
 ##### `__or__`
 
 ```mojo
-__or__(self, other: Self) -> Self where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def __or__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical OR operation between two ComplexSIMD instances.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 **Returns:**
 
@@ -834,15 +780,15 @@ Element-wise logical OR operation between two ComplexSIMD instances.
 ##### `__xor__`
 
 ```mojo
-__xor__(self, other: Self) -> Self where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def __xor__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical XOR operation between two ComplexSIMD instances.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 **Returns:**
 
@@ -858,15 +804,15 @@ Element-wise logical XOR operation between two ComplexSIMD instances.
 ###### Overload 1
 
 ```mojo
-__radd__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __radd__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Returns the sum of a scalar and this ComplexSIMD instance, adding to the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to add to the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to add to the real component.
 
 **Returns:**
 
@@ -875,15 +821,15 @@ Returns the sum of a scalar and this ComplexSIMD instance, adding to the real pa
 ###### Overload 2
 
 ```mojo
-__radd__(self, other: SIMD[other.dtype, width]) -> Self
+def __radd__(self, other: SIMD[width]) -> Self
 ```
 
 Returns the sum of a SIMD vector and this ComplexSIMD instance, adding to the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to add to the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to add to the real component.
 
 **Returns:**
 
@@ -892,7 +838,7 @@ Returns the sum of a SIMD vector and this ComplexSIMD instance, adding to the re
 ###### Overload 3
 
 ```mojo
-__radd__(self, other: ImaginaryUnit) -> Self
+def __radd__(self, other: ImaginaryUnit) -> Self
 ```
 
 Returns the sum of the imaginary unit 1j and this ComplexSIMD instance.
@@ -908,8 +854,8 @@ print(result)  # (3 + 3j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to add to this complex number.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to add to this complex number.
 
 **Returns:**
 
@@ -925,15 +871,15 @@ print(result)  # (3 + 3j)
 ###### Overload 1
 
 ```mojo
-__rsub__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __rsub__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Returns the difference of a scalar and this ComplexSIMD instance, subtracting from the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to subtract from the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to subtract from the real component.
 
 **Returns:**
 
@@ -942,15 +888,15 @@ Returns the difference of a scalar and this ComplexSIMD instance, subtracting fr
 ###### Overload 2
 
 ```mojo
-__rsub__(self, other: SIMD[other.dtype, width]) -> Self
+def __rsub__(self, other: SIMD[width]) -> Self
 ```
 
 Returns the difference of a SIMD vector and this ComplexSIMD instance, subtracting from the real part.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to subtract from the real component.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to subtract from the real component.
 
 **Returns:**
 
@@ -959,7 +905,7 @@ Returns the difference of a SIMD vector and this ComplexSIMD instance, subtracti
 ###### Overload 3
 
 ```mojo
-__rsub__(self, other: ImaginaryUnit) -> Self
+def __rsub__(self, other: ImaginaryUnit) -> Self
 ```
 
 Returns the difference of the imaginary unit 1j and this ComplexSIMD instance.
@@ -975,8 +921,8 @@ print(result)  # (-3 - 1j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) from which this complex number is subtracted.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) from which this complex number is subtracted.
 
 **Returns:**
 
@@ -992,15 +938,15 @@ print(result)  # (-3 - 1j)
 ###### Overload 1
 
 ```mojo
-__rmul__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __rmul__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Returns the product of a scalar and this ComplexSIMD instance.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to multiply with both real and imaginary parts.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to multiply with both real and imaginary parts.
 
 **Returns:**
 
@@ -1009,15 +955,15 @@ Returns the product of a scalar and this ComplexSIMD instance.
 ###### Overload 2
 
 ```mojo
-__rmul__(self, other: SIMD[other.dtype, width]) -> Self
+def __rmul__(self, other: SIMD[width]) -> Self
 ```
 
 Returns the product of a SIMD vector and this ComplexSIMD instance.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to multiply with both real and imaginary parts.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to multiply with both real and imaginary parts.
 
 **Returns:**
 
@@ -1026,7 +972,7 @@ Returns the product of a SIMD vector and this ComplexSIMD instance.
 ###### Overload 3
 
 ```mojo
-__rmul__(self, other: ImaginaryUnit) -> Self
+def __rmul__(self, other: ImaginaryUnit) -> Self
 ```
 
 Returns the product of the imaginary unit 1j and this ComplexSIMD instance.
@@ -1042,8 +988,8 @@ print(result)  # (-2 + 3j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to multiply with this complex number.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to multiply with this complex number.
 
 **Returns:**
 
@@ -1059,15 +1005,15 @@ print(result)  # (-2 + 3j)
 ###### Overload 1
 
 ```mojo
-__rtruediv__(self, other: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def __rtruediv__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Performs element-wise division of a scalar by this ComplexSIMD instance.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar value to be divided by this ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to be divided by this ComplexSIMD instance.
 
 **Returns:**
 
@@ -1076,15 +1022,15 @@ Performs element-wise division of a scalar by this ComplexSIMD instance.
 ###### Overload 2
 
 ```mojo
-__rtruediv__(self, other: SIMD[other.dtype, width]) -> Self
+def __rtruediv__(self, other: SIMD[width]) -> Self
 ```
 
 Performs element-wise division of a SIMD vector by this ComplexSIMD instance.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to be divided by this ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to be divided by this ComplexSIMD instance.
 
 **Returns:**
 
@@ -1093,7 +1039,7 @@ Performs element-wise division of a SIMD vector by this ComplexSIMD instance.
 ###### Overload 3
 
 ```mojo
-__rtruediv__(self, other: ImaginaryUnit) -> Self
+def __rtruediv__(self, other: ImaginaryUnit) -> Self
 ```
 
 Performs division of the imaginary unit 1j by this ComplexSIMD instance.
@@ -1109,8 +1055,8 @@ print(result)  # (0.16 - 0.12j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to be divided by this ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to be divided by this ComplexSIMD instance.
 
 **Returns:**
 
@@ -1126,7 +1072,7 @@ print(result)  # (0.16 - 0.12j)
 ###### Overload 1
 
 ```mojo
-__iadd__(mut self, other: Self)
+def __iadd__(mut self, other: Self)
 ```
 
 In-place addition of another ComplexSIMD instance.
@@ -1134,12 +1080,12 @@ In-place addition of another ComplexSIMD instance.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`): Another ComplexSIMD instance.
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 ###### Overload 2
 
 ```mojo
-__iadd__(mut self, other: Scalar[ComplexSIMD[cdtype, width].dtype])
+def __iadd__(mut self, other: Scalar[Self.dtype])
 ```
 
 In-place addition of a scalar to the real part of this ComplexSIMD instance.
@@ -1147,12 +1093,12 @@ In-place addition of a scalar to the real part of this ComplexSIMD instance.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`): Scalar value to add to the real component.
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to add to the real component.
 
 ###### Overload 3
 
 ```mojo
-__iadd__(mut self, other: SIMD[other.dtype, width])
+def __iadd__(mut self, other: SIMD[width])
 ```
 
 In-place addition of a SIMD vector to the real part of this ComplexSIMD instance.
@@ -1160,12 +1106,12 @@ In-place addition of a SIMD vector to the real part of this ComplexSIMD instance
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`SIMD`): SIMD vector to add to the real component.
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to add to the real component.
 
 ###### Overload 4
 
 ```mojo
-__iadd__(mut self, other: ImaginaryUnit)
+def __iadd__(mut self, other: ImaginaryUnit)
 ```
 
 In-place addition of the imaginary unit 1j to this ComplexSIMD instance.
@@ -1182,7 +1128,7 @@ print(z)  # (3 + 3j)
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to add to this complex number.
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to add to this complex number.
 
 
 </div>
@@ -1194,7 +1140,7 @@ print(z)  # (3 + 3j)
 ###### Overload 1
 
 ```mojo
-__isub__(mut self, other: Self)
+def __isub__(mut self, other: Self)
 ```
 
 In-place subtraction of another ComplexSIMD instance.
@@ -1202,12 +1148,12 @@ In-place subtraction of another ComplexSIMD instance.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`): Another ComplexSIMD instance.
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 ###### Overload 2
 
 ```mojo
-__isub__(mut self, other: Scalar[ComplexSIMD[cdtype, width].dtype])
+def __isub__(mut self, other: Scalar[Self.dtype])
 ```
 
 In-place subtraction of a scalar from the real part of this ComplexSIMD instance.
@@ -1215,12 +1161,12 @@ In-place subtraction of a scalar from the real part of this ComplexSIMD instance
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`): Scalar value to subtract from the real component.
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to subtract from the real component.
 
 ###### Overload 3
 
 ```mojo
-__isub__(mut self, other: SIMD[other.dtype, width])
+def __isub__(mut self, other: SIMD[width])
 ```
 
 In-place subtraction of a SIMD vector from the real part of this ComplexSIMD instance.
@@ -1228,12 +1174,12 @@ In-place subtraction of a SIMD vector from the real part of this ComplexSIMD ins
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`SIMD`): SIMD vector to subtract from the real component.
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to subtract from the real component.
 
 ###### Overload 4
 
 ```mojo
-__isub__(mut self, other: ImaginaryUnit)
+def __isub__(mut self, other: ImaginaryUnit)
 ```
 
 In-place subtraction of the imaginary unit 1j from this ComplexSIMD instance.
@@ -1250,7 +1196,7 @@ print(z)  # (3 + 1j)
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to subtract from this complex number.
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to subtract from this complex number.
 
 
 </div>
@@ -1262,7 +1208,7 @@ print(z)  # (3 + 1j)
 ###### Overload 1
 
 ```mojo
-__imul__(mut self, other: Self)
+def __imul__(mut self, other: Self)
 ```
 
 In-place complex multiplication with another ComplexSIMD instance.
@@ -1270,12 +1216,12 @@ In-place complex multiplication with another ComplexSIMD instance.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`): Another ComplexSIMD instance.
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 ###### Overload 2
 
 ```mojo
-__imul__(mut self, other: Scalar[ComplexSIMD[cdtype, width].dtype])
+def __imul__(mut self, other: Scalar[Self.dtype])
 ```
 
 In-place multiplication of this ComplexSIMD instance by a scalar.
@@ -1283,12 +1229,12 @@ In-place multiplication of this ComplexSIMD instance by a scalar.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`): Scalar value to multiply with both real and imaginary parts.
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to multiply with both real and imaginary parts.
 
 ###### Overload 3
 
 ```mojo
-__imul__(mut self, other: SIMD[other.dtype, width])
+def __imul__(mut self, other: SIMD[width])
 ```
 
 In-place multiplication of this ComplexSIMD instance by a SIMD vector.
@@ -1296,12 +1242,12 @@ In-place multiplication of this ComplexSIMD instance by a SIMD vector.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`SIMD`): SIMD vector to multiply with both real and imaginary parts.
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to multiply with both real and imaginary parts.
 
 ###### Overload 4
 
 ```mojo
-__imul__(mut self, other: ImaginaryUnit)
+def __imul__(mut self, other: ImaginaryUnit)
 ```
 
 In-place multiplication of this ComplexSIMD instance by the imaginary unit 1j.
@@ -1318,7 +1264,7 @@ print(z)  # (-2 + 3j)
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to multiply with this complex number.
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to multiply with this complex number.
 
 
 </div>
@@ -1330,7 +1276,7 @@ print(z)  # (-2 + 3j)
 ###### Overload 1
 
 ```mojo
-__itruediv__(mut self, other: Self)
+def __itruediv__(mut self, other: Self)
 ```
 
 Performs in-place element-wise complex division of self by another ComplexSIMD instance.
@@ -1338,12 +1284,12 @@ Performs in-place element-wise complex division of self by another ComplexSIMD i
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`): Another ComplexSIMD instance to divide by.
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance to divide by.
 
 ###### Overload 2
 
 ```mojo
-__itruediv__(mut self, other: Scalar[ComplexSIMD[cdtype, width].dtype])
+def __itruediv__(mut self, other: Scalar[Self.dtype])
 ```
 
 Performs in-place element-wise division of this ComplexSIMD instance by a scalar.
@@ -1351,12 +1297,12 @@ Performs in-place element-wise division of this ComplexSIMD instance by a scalar
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`): Scalar value to divide both real and imaginary parts by.
+- `other` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to divide both real and imaginary parts by.
 
 ###### Overload 3
 
 ```mojo
-__itruediv__(mut self, other: SIMD[other.dtype, width])
+def __itruediv__(mut self, other: SIMD[width])
 ```
 
 Performs in-place element-wise division of this ComplexSIMD instance by a SIMD vector.
@@ -1364,12 +1310,12 @@ Performs in-place element-wise division of this ComplexSIMD instance by a SIMD v
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`SIMD`): SIMD vector to divide both real and imaginary parts by.
+- `other` (`SIMD[width]`) `[imm]`: SIMD vector to divide both real and imaginary parts by.
 
 ###### Overload 4
 
 ```mojo
-__itruediv__(mut self, other: ImaginaryUnit)
+def __itruediv__(mut self, other: ImaginaryUnit)
 ```
 
 Performs in-place division of this ComplexSIMD instance by the imaginary unit 1j.
@@ -1386,7 +1332,7 @@ print(z)  # (2 - 3j)
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `other` (`ImaginaryUnit`): Imaginary unit (1j) to divide this complex number by.
+- `other` (`ImaginaryUnit`) `[imm]`: Imaginary unit (1j) to divide this complex number by.
 
 
 </div>
@@ -1396,7 +1342,7 @@ print(z)  # (2 - 3j)
 ##### `zero`
 
 ```mojo
-zero() -> Self
+def zero() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -1421,7 +1367,7 @@ var comp = ComplexSIMD[cf64].zero()  # (0 + 0j)
 ##### `one`
 
 ```mojo
-one() -> Self
+def one() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -1446,7 +1392,7 @@ var comp = ComplexSIMD[cf64].one()  # (1 + 0j)
 ##### `i`
 
 ```mojo
-i() -> Self
+def i() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -1478,7 +1424,7 @@ var z = 3.0 + 4.0 * ComplexSIMD[cf64].i()  # 3 + 4j
 ##### `from_real_imag`
 
 ```mojo
-from_real_imag(re: Scalar[ComplexSIMD[cdtype, width].dtype], im: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def from_real_imag(re: Scalar[Self.dtype], im: Scalar[Self.dtype]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -1493,8 +1439,8 @@ var comp = ComplexSIMD[cf64].from_real_imag(2.0, 3.0)  # (2.0 + 3.0j)
 
 **Args:**
 
-- `re` (`Scalar`): Scalar value for the real component.
-- `im` (`Scalar`): Scalar value for the imaginary component.
+- `re` (`Scalar[Self.dtype]`) `[imm]`: Scalar value for the real component.
+- `im` (`Scalar[Self.dtype]`) `[imm]`: Scalar value for the imaginary component.
 
 **Returns:**
 
@@ -1508,7 +1454,7 @@ var comp = ComplexSIMD[cf64].from_real_imag(2.0, 3.0)  # (2.0 + 3.0j)
 ##### `from_polar`
 
 ```mojo
-from_polar(r: Scalar[ComplexSIMD[cdtype, width].dtype], theta: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self where ComplexSIMD[cdtype, width].dtype.is_floating_point()
+def from_polar(r: Scalar[Self.dtype], theta: Scalar[Self.dtype]) -> Self where ComplexSIMD[cdtype, width].dtype.is_floating_point()
 ```
 
 <span class="badge badge-static">static</span>
@@ -1523,8 +1469,8 @@ var comp = ComplexSIMD[cf64].from_polar(2.0, 0.5)
 
 **Args:**
 
-- `r` (`Scalar`): Magnitude (radius).
-- `theta` (`Scalar`): Angle (in radians).
+- `r` (`Scalar[Self.dtype]`) `[imm]`: Magnitude (radius).
+- `theta` (`Scalar[Self.dtype]`) `[imm]`: Angle (in radians).
 
 **Returns:**
 
@@ -1538,14 +1484,14 @@ var comp = ComplexSIMD[cf64].from_polar(2.0, 0.5)
 ##### `reciprocal`
 
 ```mojo
-reciprocal(self) -> Self
+def reciprocal(self) -> Self
 ```
 
 Returns the element-wise reciprocal (1 / self) of the ComplexSIMD instance.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1563,15 +1509,15 @@ Returns the element-wise reciprocal (1 / self) of the ComplexSIMD instance.
 ###### Overload 1
 
 ```mojo
-elem_pow(self, other: Self) -> Self
+def elem_pow(self, other: Self) -> Self
 ```
 
 Raises each component of this ComplexSIMD to the power of the corresponding component in another ComplexSIMD.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance.
 
 **Returns:**
 
@@ -1580,15 +1526,15 @@ Raises each component of this ComplexSIMD to the power of the corresponding comp
 ###### Overload 2
 
 ```mojo
-elem_pow(self, exponent: Scalar[ComplexSIMD[cdtype, width].dtype]) -> Self
+def elem_pow(self, exponent: Scalar[Self.dtype]) -> Self
 ```
 
 Raises each component of this ComplexSIMD to a scalar exponent.
 
 **Args:**
 
-- `self` (`Self`)
-- `exponent` (`Scalar`): Scalar exponent to apply to both real and imaginary parts.
+- `self` (`Self`) `[imm]`
+- `exponent` (`Scalar[Self.dtype]`) `[imm]`: Scalar exponent to apply to both real and imaginary parts.
 
 **Returns:**
 
@@ -1602,7 +1548,7 @@ Raises each component of this ComplexSIMD to a scalar exponent.
 ##### `allclose`
 
 ```mojo
-allclose(self, other: Self, *, rtol: Scalar[ComplexSIMD[cdtype, width].dtype] = 1.0000000000000001E-5, atol: Scalar[ComplexSIMD[cdtype, width].dtype] = 1.0E-8) -> Bool
+def allclose(self, other: Self, *, rtol: Scalar[Self.dtype] = 1.0000000000000001E-5, atol: Scalar[Self.dtype] = 1.0E-8) -> Bool
 ```
 
 Checks if two ComplexSIMD instances are approximately equal within given tolerances.
@@ -1616,10 +1562,10 @@ For SIMD width > 1, all lanes must satisfy the tolerance criteria.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another ComplexSIMD instance to compare against.
-- `rtol` (`Scalar`): Relative tolerance.
-- `atol` (`Scalar`): Absolute tolerance.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another ComplexSIMD instance to compare against.
+- `rtol` (`Scalar[Self.dtype]`) `[imm]`: Relative tolerance.
+- `atol` (`Scalar[Self.dtype]`) `[imm]`: Absolute tolerance.
 
 **Returns:**
 
@@ -1633,12 +1579,12 @@ For SIMD width > 1, all lanes must satisfy the tolerance criteria.
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1652,7 +1598,7 @@ __str__(self) -> String
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Returns a string representation of the ComplexSIMD instance.
@@ -1666,7 +1612,7 @@ For width > 1, the format is: [(re0 + im0 j), (re1 + im1 j), ...].
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -1677,14 +1623,14 @@ For width > 1, the format is: [(re0 + im0 j), (re1 + im1 j), ...].
 ##### `__repr__`
 
 ```mojo
-__repr__(self) -> String
+def __repr__(self) -> String
 ```
 
 Returns a string representation of the ComplexSIMD instance for debugging. `ComplexSIMD[dtype](re=<real SIMD>, im=<imag SIMD>)`.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1700,7 +1646,7 @@ Returns a string representation of the ComplexSIMD instance for debugging. `Comp
 ##### `item`
 
 ```mojo
-item[name: String](self, idx: Int) -> Scalar[ComplexSIMD[cdtype, width].dtype]
+def item[name: String](self, idx: Int) -> Scalar[Self.dtype]
 ```
 
 Returns the scalar value for the specified lane index and component.
@@ -1719,12 +1665,12 @@ var im1 = c_simd.item["im"](1)  # 4.0
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): Lane index to retrieve.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Lane index to retrieve.
 
 **Returns:**
 
-- `Scalar`
+- `Scalar[Self.dtype]`
 
 !!! failure "Raises"
     - Error if the component name is invalid.
@@ -1738,7 +1684,7 @@ var im1 = c_simd.item["im"](1)  # 4.0
 ##### `itemset`
 
 ```mojo
-itemset[name: String](mut self, idx: Int, val: Scalar[ComplexSIMD[cdtype, width].dtype])
+def itemset[name: String](mut self, idx: Int, val: Scalar[Self.dtype])
 ```
 
 Sets the scalar value for the specified lane index and component.
@@ -1758,8 +1704,8 @@ c_simd.itemset["im"](1, 6.0)  # Now second complex number is (2 + 6j)
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Lane index to set.
-- `val` (`Scalar`): Scalar value to assign to the specified component.
+- `idx` (`Int`) `[imm]`: Lane index to set.
+- `val` (`Scalar[Self.dtype]`) `[imm]`: Scalar value to assign to the specified component.
 
 !!! failure "Raises"
     - Error if the component name is invalid.
@@ -1773,18 +1719,18 @@ c_simd.itemset["im"](1, 6.0)  # Now second complex number is (2 + 6j)
 ##### `real`
 
 ```mojo
-real(self) -> SIMD[ComplexSIMD[cdtype, width].dtype, width]
+def real(self) -> SIMD[Self.dtype, width]
 ```
 
 Returns the real part(s) of the complex number(s).
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[Self.dtype, width]`
 
 
 </div>
@@ -1794,18 +1740,18 @@ Returns the real part(s) of the complex number(s).
 ##### `imag`
 
 ```mojo
-imag(self) -> SIMD[ComplexSIMD[cdtype, width].dtype, width]
+def imag(self) -> SIMD[Self.dtype, width]
 ```
 
 Returns the imaginary part(s) of the complex number(s).
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[Self.dtype, width]`
 
 
 </div>
@@ -1815,18 +1761,18 @@ Returns the imaginary part(s) of the complex number(s).
 ##### `__abs__`
 
 ```mojo
-__abs__(self) -> SIMD[ComplexSIMD[cdtype, width].dtype, width]
+def __abs__(self) -> SIMD[Self.dtype, width]
 ```
 
 Returns the magnitude (absolute value) of the complex number(s).
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[Self.dtype, width]`
 
 
 </div>
@@ -1836,18 +1782,18 @@ Returns the magnitude (absolute value) of the complex number(s).
 ##### `norm`
 
 ```mojo
-norm(self) -> SIMD[ComplexSIMD[cdtype, width].dtype, width]
+def norm(self) -> SIMD[Self.dtype, width]
 ```
 
 Returns the squared magnitude (norm) of the complex number(s).
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[Self.dtype, width]`
 
 
 </div>
@@ -1857,14 +1803,14 @@ Returns the squared magnitude (norm) of the complex number(s).
 ##### `conj`
 
 ```mojo
-conj(self) -> Self
+def conj(self) -> Self
 ```
 
 Returns the complex conjugate of the ComplexSIMD instance.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1879,7 +1825,7 @@ struct ImaginaryUnit
 ```
 
 **Memory convention:** `register_passable_trivial`  
-**Implements:** `AnyType`, `Boolable`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `Stringable`, `TrivialRegisterPassable`, `Writable`
+**Implements:** `AnyType`, `Boolable`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `TrivialRegisterPassable`, `Writable`
 
 Constant representing the imaginary unit complex number 0 + 1j.
 
@@ -1913,32 +1859,6 @@ var c7 = `1j` ** 3                       # (0 - 1j) (ComplexScalar[cf64])
 var c8 = (1 + `1j`) / `1j`               # (1 - 1j) (ComplexScalar[cf64])
 ```
 
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
@@ -1947,7 +1867,7 @@ comptime __copy_ctor_is_trivial
 ##### `__init__`
 
 ```mojo
-__init__() -> Self
+def __init__() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -1968,7 +1888,7 @@ Creates an instance representing the imaginary unit 1j.
 ##### `__bool__`
 
 ```mojo
-__bool__(self) -> Bool
+def __bool__(self) -> Bool
 ```
 
 Returns the boolean value of the imaginary unit.
@@ -1983,7 +1903,7 @@ if `1j`:
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -1997,7 +1917,7 @@ if `1j`:
 ##### `__neg__`
 
 ```mojo
-__neg__(self) -> ComplexSIMD
+def __neg__(self) -> ComplexSIMD
 ```
 
 Returns the negation of the imaginary unit: -1j.
@@ -2012,7 +1932,7 @@ print(result)  # (0 - 1j)
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -2028,7 +1948,7 @@ print(result)  # (0 - 1j)
 ###### Overload 1
 
 ```mojo
-__add__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __add__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 Returns the sum of the imaginary unit 1j and a SIMD vector.
@@ -2048,17 +1968,17 @@ var result = `1j` + vec  # [1+1j, 2+1j, 3+1j, 4+1j]
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to add to the imaginary unit.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`: SIMD vector to add to the imaginary unit.
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__add__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __add__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 Returns the sum of the imaginary unit 1j and a scalar.
@@ -2076,17 +1996,17 @@ var result = `1j` + 3.5  # 3.5 + 1j
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar to add to the imaginary unit.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`: Scalar to add to the imaginary unit.
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__add__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
+def __add__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ```
 
 Returns the sum of the imaginary unit 1j and an integer.
@@ -2100,17 +2020,17 @@ var result = `1j` + 5  # 5 + 1j
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Int`): Integer to add to the imaginary unit.
+- `self` (`Self`) `[imm]`
+- `other` (`Int`) `[imm]`: Integer to add to the imaginary unit.
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType.int]`
 
 ###### Overload 4
 
 ```mojo
-__add__(self, other: Self) -> ComplexSIMD
+def __add__(self, other: Self) -> ComplexSIMD
 ```
 
 Returns the sum of the imaginary unit with itself: 1j + 1j = 2j.
@@ -2125,8 +2045,8 @@ print(result)  # (0 + 2j)
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another imaginary unit to add.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another imaginary unit to add.
 
 **Returns:**
 
@@ -2142,7 +2062,7 @@ print(result)  # (0 + 2j)
 ###### Overload 1
 
 ```mojo
-__sub__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __sub__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 Returns the difference of the imaginary unit and a SIMD vector.
@@ -2154,17 +2074,17 @@ Returns the difference of the imaginary unit and a SIMD vector.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__sub__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __sub__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 Returns the difference of the imaginary unit and a scalar.
@@ -2175,34 +2095,34 @@ Returns the difference of the imaginary unit and a scalar.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__sub__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
+def __sub__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ```
 
 Returns the difference of the imaginary unit and an integer.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Int`)
+- `self` (`Self`) `[imm]`
+- `other` (`Int`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType.int]`
 
 ###### Overload 4
 
 ```mojo
-__sub__(self, other: Self) -> Float64
+def __sub__(self, other: Self) -> Float64
 ```
 
 Returns the difference of the imaginary unit with itself: 1j - 1j = 0.
@@ -2217,8 +2137,8 @@ print(result)  # 0
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another imaginary unit to subtract.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another imaginary unit to subtract.
 
 **Returns:**
 
@@ -2234,7 +2154,7 @@ print(result)  # 0
 ###### Overload 1
 
 ```mojo
-__mul__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __mul__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 **Parameters:**
@@ -2244,17 +2164,17 @@ __mul__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIM
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__mul__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __mul__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 **Parameters:**
@@ -2263,32 +2183,32 @@ __mul__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dt
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__mul__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
+def __mul__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ```
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Int`)
+- `self` (`Self`) `[imm]`
+- `other` (`Int`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType.int]`
 
 ###### Overload 4
 
 ```mojo
-__mul__(self, other: Self) -> Float64
+def __mul__(self, other: Self) -> Float64
 ```
 
 Returns the product of the imaginary unit with itself: 1j * 1j = -1.
@@ -2303,8 +2223,8 @@ print(result)  # -1
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another imaginary unit to multiply with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another imaginary unit to multiply with.
 
 **Returns:**
 
@@ -2320,7 +2240,7 @@ print(result)  # -1
 ###### Overload 1
 
 ```mojo
-__truediv__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __truediv__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 Returns the division of the imaginary unit by a SIMD vector.
@@ -2332,17 +2252,17 @@ Returns the division of the imaginary unit by a SIMD vector.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__truediv__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __truediv__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 Returns the division of the imaginary unit by a scalar.
@@ -2353,17 +2273,17 @@ Returns the division of the imaginary unit by a scalar.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__truediv__(self, other: Self) -> Float64
+def __truediv__(self, other: Self) -> Float64
 ```
 
 Returns the division of the imaginary unit by itself: 1j / 1j = 1.
@@ -2378,8 +2298,8 @@ print(result)  # 1
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): Another imaginary unit to divide by.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: Another imaginary unit to divide by.
 
 **Returns:**
 
@@ -2393,7 +2313,7 @@ print(result)  # 1
 ##### `__pow__`
 
 ```mojo
-__pow__(self, exponent: Int) -> ComplexSIMD
+def __pow__(self, exponent: Int) -> ComplexSIMD
 ```
 
 Returns the imaginary unit raised to an integer power.
@@ -2418,8 +2338,8 @@ print(`1j` ** 4)  # (1 + 0j)
 
 **Args:**
 
-- `self` (`Self`)
-- `exponent` (`Int`): Integer exponent.
+- `self` (`Self`) `[imm]`
+- `exponent` (`Int`) `[imm]`: Integer exponent.
 
 **Returns:**
 
@@ -2435,7 +2355,7 @@ print(`1j` ** 4)  # (1 + 0j)
 ###### Overload 1
 
 ```mojo
-__radd__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __radd__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 Returns the sum of a SIMD vector and the imaginary unit.
@@ -2447,17 +2367,17 @@ Returns the sum of a SIMD vector and the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__radd__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __radd__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 Returns the sum of a scalar and the imaginary unit.
@@ -2468,29 +2388,29 @@ Returns the sum of a scalar and the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__radd__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
+def __radd__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ```
 
 Returns the sum of an integer and the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Int`)
+- `self` (`Self`) `[imm]`
+- `other` (`Int`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType.int]`
 
 
 </div>
@@ -2502,7 +2422,7 @@ Returns the sum of an integer and the imaginary unit.
 ###### Overload 1
 
 ```mojo
-__rsub__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __rsub__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 Returns the difference of a SIMD vector and the imaginary unit.
@@ -2514,17 +2434,17 @@ Returns the difference of a SIMD vector and the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__rsub__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __rsub__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 Returns the difference of a scalar and the imaginary unit.
@@ -2535,29 +2455,29 @@ Returns the difference of a scalar and the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__rsub__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
+def __rsub__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ```
 
 Returns the difference of an integer and the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Int`)
+- `self` (`Self`) `[imm]`
+- `other` (`Int`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType.int]`
 
 
 </div>
@@ -2569,7 +2489,7 @@ Returns the difference of an integer and the imaginary unit.
 ###### Overload 1
 
 ```mojo
-__rmul__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __rmul__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 **Parameters:**
@@ -2579,17 +2499,17 @@ __rmul__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSI
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__rmul__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __rmul__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 **Parameters:**
@@ -2598,27 +2518,27 @@ __rmul__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(d
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__rmul__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
+def __rmul__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ```
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Int`)
+- `self` (`Self`) `[imm]`
+- `other` (`Int`) `[imm]`
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType.int]`
 
 
 </div>
@@ -2630,7 +2550,7 @@ __rmul__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ###### Overload 1
 
 ```mojo
-__rtruediv__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(dtype), width]
+def __rtruediv__[dtype: DType, width: Int](self, other: SIMD[dtype, width]) -> ComplexSIMD[ComplexDType(mlir_value=dtype), width]
 ```
 
 Returns the division of a SIMD vector by the imaginary unit.
@@ -2642,17 +2562,17 @@ Returns the division of a SIMD vector by the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`SIMD`): SIMD vector to be divided by the imaginary unit.
+- `self` (`Self`) `[imm]`
+- `other` (`SIMD[dtype, width]`) `[imm]`: SIMD vector to be divided by the imaginary unit.
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype), width]`
 
 ###### Overload 2
 
 ```mojo
-__rtruediv__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(dtype)]
+def __rtruediv__[dtype: DType](self, other: Scalar[dtype]) -> ComplexSIMD[ComplexDType(mlir_value=dtype)]
 ```
 
 Returns the division of a scalar by the imaginary unit.
@@ -2663,29 +2583,29 @@ Returns the division of a scalar by the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Scalar`): Scalar to be divided by the imaginary unit.
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[dtype]`) `[imm]`: Scalar to be divided by the imaginary unit.
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType(mlir_value=dtype)]`
 
 ###### Overload 3
 
 ```mojo
-__rtruediv__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
+def __rtruediv__(self, other: Int) -> ComplexSIMD[ComplexDType.int]
 ```
 
 Returns the division of an integer by the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Int`): Integer to be divided by the imaginary unit.
+- `self` (`Self`) `[imm]`
+- `other` (`Int`) `[imm]`: Integer to be divided by the imaginary unit.
 
 **Returns:**
 
-- `ComplexSIMD`
+- `ComplexSIMD[ComplexDType.int]`
 
 
 </div>
@@ -2695,7 +2615,7 @@ Returns the division of an integer by the imaginary unit.
 ##### `conj`
 
 ```mojo
-conj(self) -> ComplexSIMD
+def conj(self) -> ComplexSIMD
 ```
 
 Returns the complex conjugate of the imaginary unit.
@@ -2710,7 +2630,7 @@ print(conj_i)  # (0 - 1j)
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -2724,14 +2644,14 @@ print(conj_i)  # (0 - 1j)
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Returns the string representation of the imaginary unit.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -2745,7 +2665,7 @@ Returns the string representation of the imaginary unit.
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Writes the string representation of the imaginary unit to a writer.
@@ -2756,7 +2676,7 @@ Writes the string representation of the imaginary unit to a writer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: Writer instance to write the string representation to.
 
 

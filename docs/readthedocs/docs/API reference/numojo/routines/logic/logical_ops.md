@@ -1,8 +1,16 @@
 # `numojo.routines.logic.logical_ops`
 
-Logical Operations Module (numojo.routines.logic.logical_ops)
+Element-wise logical operations for arrays.
 
-This module implements element-wise logical operations for NDArray, ComplexNDArray, and Matrix types in the NuMojo library.
+Implements logical AND, OR, XOR, and NOT operations for NDArray and
+ComplexNDArray types.
+
+Exports
+-------
+- `logical_and`: Logical AND operation.
+- `logical_or`: Logical OR operation.
+- `logical_xor`: Logical XOR operation.
+- `logical_not`: Logical NOT operation.
 
 ## Functions
 
@@ -14,15 +22,12 @@ This module implements element-wise logical operations for NDArray, ComplexNDArr
 #### Overload 1
 
 ```mojo
-logical_and[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
+def logical_and[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
 ```
 
 Element-wise logical AND operation between two arrays.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_and
@@ -31,6 +36,9 @@ var a = nm.arange(0, 10)
 var b = nm.arange(5, 15)
 var result = logical_and(a > 3, b < 10)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral data types.
 
 **Parameters:**
 
@@ -38,36 +46,36 @@ var result = logical_and(a > 3, b < 10)
 
 **Args:**
 
-- `a` (`NDArray`): First input array.
-- `b` (`NDArray`): Second input array.
+- `a` (`NDArray[dtype]`) `[imm]`: First input array.
+- `b` (`NDArray[dtype]`) `[imm]`: Second input array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
-    - ShapeError: If the input arrays do not have the same shape.
+    - NumojoError: If the input arrays do not have the same shape.
 
 #### Overload 2
 
 ```mojo
-logical_and[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def logical_and[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
 ```
 
-Element-wise logical AND operation between two arrays.
+Element-wise logical AND operation between two complex arrays.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_and
 
-var a = nm.arange(0, 10)
-var b = nm.arange(5, 15)
-var result = logical_and(a > 3, b < 10)
+var a = nm.arange[ci32](CScalar[ci32](0), CScalar[ci32](10))
+var b = nm.arange[ci32](CScalar[ci32](5), CScalar[ci32](15))
+var result = logical_and[ci32](a, b)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral complex data types.
 
 **Parameters:**
 
@@ -75,52 +83,15 @@ var result = logical_and(a > 3, b < 10)
 
 **Args:**
 
-- `a` (`ComplexNDArray`): First input array.
-- `b` (`ComplexNDArray`): Second input array.
+- `a` (`ComplexNDArray[cdtype]`) `[imm]`: First input complex array.
+- `b` (`ComplexNDArray[cdtype]`) `[imm]`: Second input complex array.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
-    - ShapeError: If the input arrays do not have the same shape.
-
-#### Overload 3
-
-```mojo
-logical_and[dtype: DType](a: Matrix[dtype], b: Matrix[dtype]) -> Matrix[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
-```
-
-Element-wise logical AND operation between two matrices.
-
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
-```mojo
-from numojo.prelude import *
-from numojo.routines.logic.logical_ops import logical_and
-
-var a = Matrix.rand[i32]((2, 5))
-var b = Matrix.rand[i32]((2, 5))
-var result = logical_and(a > 3, b < 10)
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `a` (`Matrix`): First input matrix.
-- `b` (`Matrix`): Second input matrix.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-    - ShapeError: If the input matrices do not have the same shape.
+    - NumojoError: If the input arrays do not have the same shape.
 
 
 </div>
@@ -132,15 +103,12 @@ var result = logical_and(a > 3, b < 10)
 #### Overload 1
 
 ```mojo
-logical_or[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
+def logical_or[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
 ```
 
 Element-wise logical OR operation between two arrays.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_or
@@ -149,6 +117,9 @@ var a = nm.arange(0, 10)
 var b = nm.arange(5, 15)
 var result = logical_or(a < 3, b > 10)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral data types.
 
 **Parameters:**
 
@@ -156,36 +127,36 @@ var result = logical_or(a < 3, b > 10)
 
 **Args:**
 
-- `a` (`NDArray`): First input array.
-- `b` (`NDArray`): Second input array.
+- `a` (`NDArray[dtype]`) `[imm]`: First input array.
+- `b` (`NDArray[dtype]`) `[imm]`: Second input array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
-    - ShapeError: If the input arrays do not have the same shape.
+    - NumojoError: If the input arrays do not have the same shape.
 
 #### Overload 2
 
 ```mojo
-logical_or[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def logical_or[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
 ```
 
-Element-wise logical OR operation between two arrays.
+Element-wise logical OR operation between two complex arrays.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_or
 
-var a = nm.arange(0, 10)
-var b = nm.arange(5, 15)
-var result = logical_or(a < 3, b > 10)
+var a = nm.arange[ci32](CScalar[ci32](0), CScalar[ci32](10))
+var b = nm.arange[ci32](CScalar[ci32](5), CScalar[ci32](15))
+var result = logical_or[ci32](a, b)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral complex data types.
 
 **Parameters:**
 
@@ -193,51 +164,15 @@ var result = logical_or(a < 3, b > 10)
 
 **Args:**
 
-- `a` (`ComplexNDArray`): First input array.
-- `b` (`ComplexNDArray`): Second input array.
+- `a` (`ComplexNDArray[cdtype]`) `[imm]`: First input complex array.
+- `b` (`ComplexNDArray[cdtype]`) `[imm]`: Second input complex array.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
-    - ShapeError: If the input arrays do not have the same shape.
-
-#### Overload 3
-
-```mojo
-logical_or[dtype: DType](a: Matrix[dtype], b: Matrix[dtype]) -> Matrix[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
-```
-
-Element-wise logical OR operation between two matrices.
-
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
-```mojo
-from numojo.prelude import *
-from numojo.routines.logic.logical_ops import logical_or
-var a = Matrix.rand[i32]((2, 5))
-var b = Matrix.rand[i32]((2, 5))
-var result = logical_or(a < 3, b > 10)
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `a` (`Matrix`): First input matrix.
-- `b` (`Matrix`): Second input matrix.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-    - ShapeError: If the input matrices do not have the same shape.
+    - NumojoError: If the input arrays do not have the same shape.
 
 
 </div>
@@ -249,15 +184,12 @@ var result = logical_or(a < 3, b > 10)
 #### Overload 1
 
 ```mojo
-logical_not[dtype: DType](a: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
+def logical_not[dtype: DType](a: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
 ```
 
 Element-wise logical NOT operation on an array.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_not
@@ -265,6 +197,9 @@ from numojo.routines.logic.logical_ops import logical_not
 var a = nm.arange(0, 10)
 var result = logical_not(a < 5)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral data types.
 
 **Parameters:**
 
@@ -272,34 +207,34 @@ var result = logical_not(a < 5)
 
 **Args:**
 
-- `a` (`NDArray`): Input array.
+- `a` (`NDArray[dtype]`) `[imm]`: Input array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
-    - ShapeError: If the input array is not of a supported data type.
+    - NumojoError: If the input array is not of a supported data type.
 
 #### Overload 2
 
 ```mojo
-logical_not[cdtype: ComplexDType](a: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def logical_not[cdtype: ComplexDType](a: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
 ```
 
-Element-wise logical NOT operation on an array.
+Element-wise logical NOT operation on a complex array.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_not
 
-var a = nm.arange(0, 10)
-var result = logical_not(a < 5)
+var a = nm.arange[ci32](CScalar[ci32](0), CScalar[ci32](10))
+var result = logical_not[ci32](a)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral complex data types.
 
 **Parameters:**
 
@@ -307,48 +242,14 @@ var result = logical_not(a < 5)
 
 **Args:**
 
-- `a` (`ComplexNDArray`): Input array.
+- `a` (`ComplexNDArray[cdtype]`) `[imm]`: Input complex array.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
-    - ShapeError: If the input array is not of a supported data type.
-
-#### Overload 3
-
-```mojo
-logical_not[dtype: DType](a: Matrix[dtype]) -> Matrix[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
-```
-
-Element-wise logical NOT operation on a matrix.
-
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
-```mojo
-from numojo.prelude import *
-from numojo.routines.logic.logical_ops import logical_not
-var a = Matrix.rand[i32]((2, 5))
-var result = logical_not(a < 5)
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `a` (`Matrix`): Input matrix.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-    - ShapeError: If the input matrix is not of a supported data type.
+    - NumojoError: If the input array is not of a supported data type.
 
 
 </div>
@@ -360,15 +261,12 @@ var result = logical_not(a < 5)
 #### Overload 1
 
 ```mojo
-logical_xor[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
+def logical_xor[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
 ```
 
 Element-wise logical XOR operation between two arrays.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_xor
@@ -377,6 +275,9 @@ var a = nm.arange(0, 10)
 var b = nm.arange(5, 15)
 var result = logical_xor(a > 3, b < 10)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral data types.
 
 **Parameters:**
 
@@ -384,36 +285,36 @@ var result = logical_xor(a > 3, b < 10)
 
 **Args:**
 
-- `a` (`NDArray`): First input array.
-- `b` (`NDArray`): Second input array.
+- `a` (`NDArray[dtype]`) `[imm]`: First input array.
+- `b` (`NDArray[dtype]`) `[imm]`: Second input array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
-    - ShapeError: If the input arrays do not have the same shape.
+    - NumojoError: If the input arrays do not have the same shape.
 
 #### Overload 2
 
 ```mojo
-logical_xor[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == ComplexDType.bool) if (cdtype == ComplexDType.bool) else cdtype.is_integral()
+def logical_xor[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
 ```
 
-Element-wise logical XOR operation between two arrays.
+Element-wise logical XOR operation between two complex arrays.
 
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
+Examples:
 ```mojo
 from numojo.prelude import *
 from numojo.routines.logic.logical_ops import logical_xor
 
-var a = nm.arange(0, 10)
-var b = nm.arange(5, 15)
-var result = logical_xor(a > 3, b < 10)
+var a = nm.arange[ci32](CScalar[ci32](0), CScalar[ci32](10))
+var b = nm.arange[ci32](CScalar[ci32](5), CScalar[ci32](15))
+var result = logical_xor[ci32](a, b)
 ```
+
+!!! info "Constraints"
+    - Supports only boolean and integral complex data types.
 
 **Parameters:**
 
@@ -421,51 +322,15 @@ var result = logical_xor(a > 3, b < 10)
 
 **Args:**
 
-- `a` (`ComplexNDArray`): First input array.
-- `b` (`ComplexNDArray`): Second input array.
+- `a` (`ComplexNDArray[cdtype]`) `[imm]`: First input complex array.
+- `b` (`ComplexNDArray[cdtype]`) `[imm]`: Second input complex array.
 
 **Returns:**
 
-- `ComplexNDArray`
+- `ComplexNDArray[cdtype]`
 
 !!! failure "Raises"
-    - ShapeError: If the input arrays do not have the same shape.
-
-#### Overload 3
-
-```mojo
-logical_xor[dtype: DType](a: Matrix[dtype], b: Matrix[dtype]) -> Matrix[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool)._mlir_value else dtype.is_integral()
-```
-
-Element-wise logical XOR operation between two matrices.
-
-Notes:
-- Supports only boolean and integral data types.
-
-Example:
-```mojo
-from numojo.prelude import *
-from numojo.routines.logic.logical_ops import logical_xor
-var a = Matrix.rand[i32]((2, 5))
-var b = Matrix.rand[i32]((2, 5))
-var result = logical_xor(a > 3, b < 10)
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `a` (`Matrix`): First input matrix.
-- `b` (`Matrix`): Second input matrix.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-    - ShapeError: If the input matrices do not have the same shape.
+    - NumojoError: If the input arrays do not have the same shape.
 
 
 </div>

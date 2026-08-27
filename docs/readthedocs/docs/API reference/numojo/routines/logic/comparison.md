@@ -1,8 +1,19 @@
 # `numojo.routines.logic.comparison`
 
-Comparison routines (numojo.routines.logic.comparison)
+Comparison operations for NDArrays.
 
-Implements comparison math routines for NDArrays and Matrices.
+Element-wise comparison operators (greater, less, equal, etc.) returning
+boolean arrays for NDArrays.
+
+Exports
+-------
+- `greater`: Greater than comparison.
+- `less`: Less than comparison.
+- `equal`: Equality comparison.
+- `greater_equal`: Greater than or equal comparison.
+- `less_equal`: Less than or equal comparison.
+- `not_equal`: Not equal comparison.
+- `allclose`: All close comparison.
 
 ## Functions
 
@@ -14,56 +25,67 @@ Implements comparison math routines for NDArrays and Matrices.
 #### Overload 1
 
 ```mojo
-greater[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def greater[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are greater than values in y.
+Performs element-wise comparison to check if values in `array1` are greater than values in `array2`.
 
-A NDArray containing True if the corresponding element in x is greater than the corresponding element in y, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import greater
 
-An element of the result NDArray will be True if the corresponding element in x is greater than the corresponding element in y, and False otherwise.
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([0.5, 2.5, 2.0], shape=[3])
+print(greater[nm.f64](arr1, arr2))  # Output: [True, False, True]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `array2` (`NDArray`): Second NDArray to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
+- `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-greater[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def greater[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are greater than a scalar.
+Performs element-wise comparison to check if values in `array1` are greater than a scalar value.
 
-A NDArray containing True if the element in x is greater than the scalar, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import greater
 
-An element of the result NDArray will be True if the element in x is greater than the scalar, and False otherwise.
+var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+print(greater[nm.f64](arr, 2.0))  # Output: [False, False, True]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `scalar` (`Scalar`): Scalar to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
+- `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
@@ -77,56 +99,67 @@ An element of the result NDArray will be True if the element in x is greater tha
 #### Overload 1
 
 ```mojo
-greater_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def greater_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are greater than or equal to values in y.
+Performs element-wise comparison to check if values in `array1` are greater than or equal to values in `array2`.
 
-A NDArray containing True if the corresponding element in x is greater than or equal to the corresponding element in y, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import greater_equal
 
-An element of the result NDArray will be True if the corresponding element in x is greater than or equal to the corresponding element in y, and False otherwise.
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([0.5, 2.0, 4.0], shape=[3])
+print(greater_equal[nm.f64](arr1, arr2))  # Output: [True, True, False]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `array2` (`NDArray`): Second NDArray to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
+- `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-greater_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def greater_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are greater than or equal to a scalar.
+Performs element-wise comparison to check if values in `array1` are greater than or equal to a scalar value.
 
-A NDArray containing True if the element in x is greater than or equal to the scalar, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import greater_equal
 
-An element of the result NDArray will be True if the element in x is greater than or equal to the scalar, and False otherwise.
+var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+print(greater_equal[nm.f64](arr, 2.0))  # Output: [False, True, True]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `scalar` (`Scalar`): Scalar to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
+- `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
@@ -140,56 +173,67 @@ An element of the result NDArray will be True if the element in x is greater tha
 #### Overload 1
 
 ```mojo
-less[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def less[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are to values in y.
+Performs element-wise comparison to check if values in `array1` are less than values in `array2`.
 
-A NDArray containing True if the corresponding element in x is or equal to the corresponding element in y, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import less
 
-An element of the result NDArray will be True if the corresponding element in x is or equal to the corresponding element in y, and False otherwise.
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([0.5, 2.5, 2.0], shape=[3])
+print(less[nm.f64](arr1, arr2))  # Output: [False, True, False]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `array2` (`NDArray`): Second NDArray to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
+- `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-less[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def less[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are to a scalar.
+Performs element-wise comparison to check if values in `array1` are less than a scalar value.
 
-A NDArray containing True if the element in x is or equal to the scalar, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import less
 
-An element of the result NDArray will be True if the element in x is or equal to the scalar, and False otherwise.
+var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+print(less[nm.f64](arr, 2.0))  # Output: [True, False, False]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `scalar` (`Scalar`): Scalar to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
+- `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
@@ -203,56 +247,67 @@ An element of the result NDArray will be True if the element in x is or equal to
 #### Overload 1
 
 ```mojo
-less_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def less_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are less than or equal to values in y.
+Performs element-wise comparison to check if values in `array1` are less than or equal to values in `array2`.
 
-A NDArray containing True if the corresponding element in x is less than or equal to the corresponding element in y, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import less_equal
 
-An element of the result NDArray will be True if the corresponding element in x is less than or equal to the corresponding element in y, and False otherwise.
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([0.5, 2.0, 4.0], shape=[3])
+print(less_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `array2` (`NDArray`): Second NDArray to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
+- `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-less_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def less_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are less than or equal to a scalar.
+Performs element-wise comparison to check if values in `array1` are less than or equal to a scalar value.
 
-A NDArray containing True if the element in x is less than or equal to the scalar, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import less_equal
 
-An element of the result NDArray will be True if the element in x is less than or equal to the scalar, and False otherwise.
+var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+print(less_equal[nm.f64](arr, 2.0))  # Output: [True, True, False]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `scalar` (`Scalar`): Scalar to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
+- `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
@@ -266,56 +321,67 @@ An element of the result NDArray will be True if the element in x is less than o
 #### Overload 1
 
 ```mojo
-equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are equal to values in y.
+Performs element-wise comparison to check if values in `array1` are equal to values in `array2`.
 
-A NDArray containing True if the corresponding element in x is equal to the corresponding element in y, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import equal
 
-An element of the result NDArray will be True if the corresponding element in x is equal to the corresponding element in y, and False otherwise.
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([1.0, 2.5, 3.0], shape=[3])
+print(equal[nm.f64](arr1, arr2))  # Output: [True, False, True]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `array2` (`NDArray`): Second NDArray to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
+- `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are equal to a scalar.
+Performs element-wise comparison to check if values in `array1` are equal to a scalar value.
 
-A NDArray containing True if the element in x is equal to the scalar, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import equal
 
-An element of the result NDArray will be True if the element in x is equal to the scalar, and False otherwise.
+var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+print(equal[nm.f64](arr, 2.0))  # Output: [False, True, False]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `scalar` (`Scalar`): Scalar to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
+- `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
@@ -329,56 +395,67 @@ An element of the result NDArray will be True if the element in x is equal to th
 #### Overload 1
 
 ```mojo
-not_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def not_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are not equal to values in y.
+Performs element-wise comparison to check if values in `array1` are not equal to values in `array2`.
 
-A NDArray containing True if the corresponding element in x is not equal to the corresponding element in y, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import not_equal
 
-An element of the result NDArray will be True if the corresponding element in x is not equal to the corresponding element in y, and False otherwise.
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([1.0, 2.5, 2.0], shape=[3])
+print(not_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `array2` (`NDArray`): Second NDArray to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
+- `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
 #### Overload 2
 
 ```mojo
-not_equal[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def not_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
 ```
 
-Performs element-wise check of whether values in x are not equal to values in y.
+Performs element-wise comparison to check if values in `array1` are not equal to a scalar value.
 
-A NDArray containing True if the element in x is not equal to the scalar, otherwise False.
+Examples:
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.logic.comparison import not_equal
 
-An element of the result NDArray will be True if the element in x is not equal to the scalar, and False otherwise.
+var arr = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+print(not_equal[nm.f64](arr, 2.0))  # Output: [True, False, True]
+```
 
 **Parameters:**
 
 - `dtype` (`DType`): The dtype of the input NDArray.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `scalar` (`Scalar`): Scalar to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: NDArray to compare.
+- `scalar` (`Scalar[dtype]`) `[imm]`: Scalar value to compare against.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
 
@@ -389,83 +466,43 @@ An element of the result NDArray will be True if the element in x is not equal t
 
 ### `allclose`
 
-#### Overload 1
-
 ```mojo
-allclose[dtype: DType](a: NDArray[dtype], b: NDArray[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> Bool
+def allclose[dtype: DType](a: NDArray[dtype], b: NDArray[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> Bool
 ```
 
-Determines whether two NDArrays are element-wise equal within a specified tolerance.
+Check if all elements of two NDArrays are equal within a given tolerance.
 
-This function compares each element of `a` and `b` and returns True if all corresponding elements satisfy the condition:
+For each element pair (a_i, b_i), this function returns True if:
     abs(a_i - b_i) <= atol + rtol * abs(b_i)
-Optionally, if `equal_nan` is True, NaN values at the same positions are considered equal.
+for all elements. If `equal_nan` is True, NaN values at the same position are considered equal.
 
-Example:
+Examples:
 ```mojo
 import numojo as nm
 from numojo.routines.logic.comparison import allclose
-var arr1 = nm.array[nm.f32]([1.0, 2.0, 3.0])
-var arr2 = nm.array[nm.f32]([1.0, 2.00001, 2.99999])
-print(allclose[nm.f32](arr1, arr2))  # Output: True
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([1.0, 2.00001, 2.99999], shape=[3])
+print(allclose[nm.f64](arr1, arr2))  # Output: True.
 ```
 
 **Parameters:**
 
-- `dtype` (`DType`): The data type of the input NDArray.
+- `dtype` (`DType`): Data type of the array.
 
 **Args:**
 
-- `a` (`NDArray`): First NDArray to compare.
-- `b` (`NDArray`): Second NDArray to compare.
-- `rtol` (`Scalar`): Relative tolerance (default: 1e-5). The maximum allowed difference, relative to the magnitude of `b`.
-- `atol` (`Scalar`): Absolute tolerance (default: 1e-8). The minimum absolute difference allowed.
-- `equal_nan` (`Bool`): If True, NaNs in the same position are considered equal (default: False).
+- `a` (`NDArray[dtype]`) `[imm]`: First array to compare.
+- `b` (`NDArray[dtype]`) `[imm]`: Second array to compare.
+- `rtol` (`Scalar[dtype]`) `[imm]`: Relative tolerance. Default is 1e-5.
+- `atol` (`Scalar[dtype]`) `[imm]`: Absolute tolerance. Default is 1e-8.
+- `equal_nan` (`Bool`) `[imm]`: If True, NaNs at the same position are considered equal. Default is False.
 
 **Returns:**
 
 - `Bool`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-allclose[dtype: DType](a: Matrix[dtype], b: Matrix[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> Bool
-```
-
-Determines whether two Matrix are element-wise equal within a specified tolerance.
-
-This function compares each element of `a` and `b` and returns True if all corresponding elements satisfy the condition:
-    abs(a_i - b_i) <= atol + rtol * abs(b_i)
-Optionally, if `equal_nan` is True, NaN values at the same positions are considered equal.
-
-Example:
-```mojo
-from numojo.prelude import *
-from numojo.routines.logic.comparison import allclose
-var mat1 = Matrix.rand[f32]((2, 2))
-var mat2 = Matrix.rand[f32]((2, 2))
-print(allclose[f32](mat1, mat2))  # Output: True
-```
-
-**Parameters:**
-
-- `dtype` (`DType`): The data type of the input Matrix.
-
-**Args:**
-
-- `a` (`Matrix`): First Matrix to compare.
-- `b` (`Matrix`): Second Matrix to compare.
-- `rtol` (`Scalar`): Relative tolerance (default: 1e-5). The maximum allowed difference, relative to the magnitude of `b`.
-- `atol` (`Scalar`): Absolute tolerance (default: 1e-8). The minimum absolute difference allowed.
-- `equal_nan` (`Bool`): If True, NaNs in the same position are considered equal (default: False).
-
-**Returns:**
-
-- `Bool`
-
-!!! failure "Raises"
+    NumojoError: If the shapes of `a` and `b` do not match.
 
 
 </div>
@@ -474,83 +511,43 @@ print(allclose[f32](mat1, mat2))  # Output: True
 
 ### `isclose`
 
-#### Overload 1
-
 ```mojo
-isclose[dtype: DType](a: NDArray[dtype], b: NDArray[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> NDArray[DType.bool]
+def isclose[dtype: DType](a: NDArray[dtype], b: NDArray[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> NDArray[DType.bool]
 ```
 
-Performs element-wise comparison of two NDArrays to determine if their values are equal within a specified tolerance.
+Perform element-wise comparison of two NDArrays to check if their values are equal within a given tolerance.
 
 For each element pair (a_i, b_i), the result is True if:
     abs(a_i - b_i) <= atol + rtol * abs(b_i)
-Optionally, if `equal_nan` is True, NaN values at the same positions are considered equal.
+If `equal_nan` is True, NaN values at the same position are considered equal.
 
-Example:
+Examples:
 ```mojo
 import numojo as nm
 from numojo.routines.logic.comparison import isclose
-var arr1 = nm.array[nm.f32]([1.0, 2.0, 3.0])
-var arr2 = nm.array[nm.f32]([1.0, 2.00001, 2.99999])
-print(isclose[nm.f32](arr1, arr2))  # Output: [True, True, True]
+var arr1 = nm.array[nm.f64]([1.0, 2.0, 3.0], shape=[3])
+var arr2 = nm.array[nm.f64]([1.0, 2.00001, 2.99999], shape=[3])
+print(isclose[nm.f64](arr1, arr2))  # Output: [True, True, True]
 ```
 
 **Parameters:**
 
-- `dtype` (`DType`): The data type of the input NDArray.
+- `dtype` (`DType`): Data type of the array.
 
 **Args:**
 
-- `a` (`NDArray`): First NDArray to compare.
-- `b` (`NDArray`): Second NDArray to compare.
-- `rtol` (`Scalar`): Relative tolerance (default: 1e-5). The maximum allowed difference, relative to the magnitude of `b`.
-- `atol` (`Scalar`): Absolute tolerance (default: 1e-8). The minimum absolute difference allowed.
-- `equal_nan` (`Bool`): If True, NaNs in the same position are considered equal (default: False).
+- `a` (`NDArray[dtype]`) `[imm]`: First array to compare.
+- `b` (`NDArray[dtype]`) `[imm]`: Second array to compare.
+- `rtol` (`Scalar[dtype]`) `[imm]`: Relative tolerance. Default is 1e-5.
+- `atol` (`Scalar[dtype]`) `[imm]`: Absolute tolerance. Default is 1e-8.
+- `equal_nan` (`Bool`) `[imm]`: If True, NaNs at the same position are considered equal. Default is False.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-isclose[dtype: DType](a: Matrix[dtype], b: Matrix[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> Matrix[DType.bool]
-```
-
-Performs element-wise comparison of two Matrix to determine if their values are equal within a specified tolerance.
-
-For each element pair (a_i, b_i), the result is True if:
-    abs(a_i - b_i) <= atol + rtol * abs(b_i)
-Optionally, if `equal_nan` is True, NaN values at the same positions are considered equal.
-
-Example:
-```mojo
-from numojo.prelude import *
-from numojo.routines.logic.comparison import isclose
-var mat1 = Matrix.rand[f32]((2, 2))
-var mat2 = Matrix.rand[f32]((2, 2))
-print(isclose[f32](mat1, mat2))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`): The data type of the input Matrix.
-
-**Args:**
-
-- `a` (`Matrix`): First Matrix to compare.
-- `b` (`Matrix`): Second Matrix to compare.
-- `rtol` (`Scalar`): Relative tolerance (default: 1e-5). The maximum allowed difference, relative to the magnitude of `b`.
-- `atol` (`Scalar`): Absolute tolerance (default: 1e-8). The minimum absolute difference allowed.
-- `equal_nan` (`Bool`): If True, NaNs in the same position are considered equal (default: False).
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+    NumojoError: If the shapes of `a` and `b` do not match.
 
 
 </div>
@@ -560,10 +557,13 @@ print(isclose[f32](mat1, mat2))
 ### `array_equal`
 
 ```mojo
-array_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> Bool
+def array_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> Bool
 ```
 
-Checks if two NDArrays are equal element-wise and shape-wise.
+Determine whether two NDArrays are exactly equal in both shape and element values.
+
+This function compares the shapes of `array1` and `array2`, and then checks each element for equality.
+The arrays are considered equal only if their shapes match and all corresponding elements are equal.
 
 Examples:
 ```mojo
@@ -578,12 +578,12 @@ print(array_equal[i32](arr, arr2))  # Output: True
 
 **Parameters:**
 
-- `dtype` (`DType`): The dtype of the input NDArray.
+- `dtype` (`DType`): Data type of the array.
 
 **Args:**
 
-- `array1` (`NDArray`): First NDArray to compare.
-- `array2` (`NDArray`): Second NDArray to compare.
+- `array1` (`NDArray[dtype]`) `[imm]`: First NDArray to compare.
+- `array2` (`NDArray[dtype]`) `[imm]`: Second NDArray to compare.
 
 **Returns:**
 

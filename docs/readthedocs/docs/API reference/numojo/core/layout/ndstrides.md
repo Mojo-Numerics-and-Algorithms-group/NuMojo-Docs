@@ -1,9 +1,18 @@
 # `numojo.core.layout.ndstrides`
 
-NDArrayStrides (numojo.core.layout.ndstrides)
+Memory layout and indexing strides.
 
-Implements NDArrayStrides type. NDArrayStrides represents the strides of an NDArray,
-which is used to calculate the memory offset for each dimension when indexing into the array.
+Represents memory strides for calculating offsets when indexing into arrays.
+For example, strides [12, 4] mean each element in dimension 1 is 12 bytes apart,
+and each element in dimension 2 is 4 bytes apart.
+
+Exports
+-------
+- `NDArrayStrides`: Stride container for memory layout.
+
+Notes:
+    - The number of elements in the strides must match the number of dimensions.
+    - Strides are validated upon creation to ensure correctness.
 
 ## Structs
 
@@ -14,13 +23,12 @@ struct NDArrayStrides
 ```
 
 **Memory convention:** `register_passable`  
-**Implements:** `AnyType`, `Copyable`, `Equatable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `Representable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Equatable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `Sized`, `Writable`
 
-Presents the strides of `NDArray` type.
+Represents the strides (memory layout) of an NDArray.
 
-The data buffer of the NDArrayStrides is a series of `Int` on memory.
-The number of elements in the strides must be positive.
-The number of dimension is checked upon creation of the strides.
+Strides are stored as a series of `Int` values in memory and define how to traverse
+array elements in memory for efficient indexing and iteration.
 
 #### Fields
 
@@ -38,30 +46,6 @@ comptime element_type
 
 The data type of the NDArrayStrides elements.
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
-
 #### Methods
 
 
@@ -72,7 +56,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__() -> Self
+def __init__() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -86,7 +70,7 @@ Initializes an empty NDArrayStrides.
 ###### Overload 2
 
 ```mojo
-__init__(buf: IndexBuffer) -> Self
+def __init__(buf: IndexBuffer) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -95,7 +79,7 @@ Initializes the NDArrayStrides from an IndexBuffer.
 
 **Args:**
 
-- `buf` (`IndexBuffer`): The IndexBuffer to initialize from.
+- `buf` (`IndexBuffer`) `[imm]`: The IndexBuffer to initialize from.
 
 **Returns:**
 
@@ -104,7 +88,7 @@ Initializes the NDArrayStrides from an IndexBuffer.
 ###### Overload 3
 
 ```mojo
-__init__(out self, *strides: Int)
+def __init__(out self, *strides: Int)
 ```
 
 <span class="badge badge-static">static</span>
@@ -113,7 +97,7 @@ Initializes the NDArrayStrides from strides.
 
 **Args:**
 
-- `*strides` (`Int`): Strides of the array.
+- `*strides` (`Int`) `[imm]`: Strides of the array.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -121,12 +105,12 @@ Initializes the NDArrayStrides from strides.
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of dimensions is not positive.
+    NumojoError: If the number of dimensions is not positive.
 
 ###### Overload 4
 
 ```mojo
-__init__(out self, strides: List[Int])
+def __init__(out self, strides: List[Int])
 ```
 
 <span class="badge badge-static">static</span>
@@ -135,7 +119,7 @@ Initializes the NDArrayStrides from a list of strides.
 
 **Args:**
 
-- `strides` (`List`): Strides of the array.
+- `strides` (`List[Int]`) `[imm]`: Strides of the array.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -143,12 +127,12 @@ Initializes the NDArrayStrides from a list of strides.
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of dimensions is not positive.
+    NumojoError: If the number of dimensions is not positive.
 
 ###### Overload 5
 
 ```mojo
-__init__(out self, strides: VariadicList[Int])
+def __init__(out self, strides: VariadicList[Int])
 ```
 
 <span class="badge badge-static">static</span>
@@ -157,7 +141,7 @@ Initializes the NDArrayStrides from a variadic list of strides.
 
 **Args:**
 
-- `strides` (`VariadicList`): Strides of the array.
+- `strides` (`VariadicList[Int]`) `[imm]`: Strides of the array.
 - `self` (`Self`) `[out]`
 
 **Returns:**
@@ -165,12 +149,12 @@ Initializes the NDArrayStrides from a variadic list of strides.
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of dimensions is not positive.
+    NumojoError: If the number of dimensions is not positive.
 
 ###### Overload 6
 
 ```mojo
-__init__(strides: Self) -> Self
+def __init__(strides: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -179,7 +163,7 @@ Initializes the NDArrayStrides from another strides. A deep-copy of the elements
 
 **Args:**
 
-- `strides` (`Self`): Strides of the array.
+- `strides` (`Self`) `[imm]`: Strides of the array.
 
 **Returns:**
 
@@ -188,7 +172,7 @@ Initializes the NDArrayStrides from another strides. A deep-copy of the elements
 ###### Overload 7
 
 ```mojo
-__init__(out self, shape: NDArrayShape, order: String = "C")
+def __init__(out self, shape: NDArrayShape, order: String = "C")
 ```
 
 <span class="badge badge-static">static</span>
@@ -197,8 +181,8 @@ Initializes the NDArrayStrides from a shape and an order.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): Shape of the array.
-- `order` (`String`): Order of the memory layout
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the array.
+- `order` (`String`) `[imm]`: Order of the memory layout
     (row-major "C" or column-major "F").
     Default is "C".
 - `self` (`Self`) `[out]`
@@ -208,12 +192,12 @@ Initializes the NDArrayStrides from a shape and an order.
 - `Self`
 
 !!! failure "Raises"
-    ValueError: If the order argument is not `C` or `F`.
+    NumojoError: If the order argument is not `C` or `F`.
 
 ###### Overload 8
 
 ```mojo
-__init__(out self, *shape: Int, *, order: String)
+def __init__(out self, *shape: Int, *, order: String)
 ```
 
 <span class="badge badge-static">static</span>
@@ -222,8 +206,8 @@ Overloads the function `__init__(shape: NDArrayStrides, order: String)`. Initial
 
 **Args:**
 
-- `*shape` (`Int`): Shape of the array.
-- `order` (`String`): Order of the memory layout
+- `*shape` (`Int`) `[imm]`: Shape of the array.
+- `order` (`String`) `[imm]`: Order of the memory layout
     (row-major "C" or column-major "F").
 - `self` (`Self`) `[out]`
 
@@ -232,12 +216,12 @@ Overloads the function `__init__(shape: NDArrayStrides, order: String)`. Initial
 - `Self`
 
 !!! failure "Raises"
-    ValueError: If the order argument is not `C` or `F`.
+    NumojoError: If the order argument is not `C` or `F`.
 
 ###### Overload 9
 
 ```mojo
-__init__(out self, shape: List[Int], order: String = "C")
+def __init__(out self, shape: List[Int], order: String = "C")
 ```
 
 <span class="badge badge-static">static</span>
@@ -246,8 +230,8 @@ Overloads the function `__init__(shape: NDArrayStrides, order: String)`. Initial
 
 **Args:**
 
-- `shape` (`List`): Shape of the array.
-- `order` (`String`): Order of the memory layout
+- `shape` (`List[Int]`) `[imm]`: Shape of the array.
+- `order` (`String`) `[imm]`: Order of the memory layout
     (row-major "C" or column-major "F").
 - `self` (`Self`) `[out]`
 
@@ -256,12 +240,12 @@ Overloads the function `__init__(shape: NDArrayStrides, order: String)`. Initial
 - `Self`
 
 !!! failure "Raises"
-    ValueError: If the order argument is not `C` or `F`.
+    NumojoError: If the order argument is not `C` or `F`.
 
 ###### Overload 10
 
 ```mojo
-__init__(out self, shape: VariadicList[Int], order: String = "C")
+def __init__(out self, shape: VariadicList[Int], order: String = "C")
 ```
 
 <span class="badge badge-static">static</span>
@@ -270,8 +254,8 @@ Overloads the function `__init__(shape: NDArrayStrides, order: String)`. Initial
 
 **Args:**
 
-- `shape` (`VariadicList`): Shape of the array.
-- `order` (`String`): Order of the memory layout
+- `shape` (`VariadicList[Int]`) `[imm]`: Shape of the array.
+- `order` (`String`) `[imm]`: Order of the memory layout
     (row-major "C" or column-major "F").
 - `self` (`Self`) `[out]`
 
@@ -280,12 +264,12 @@ Overloads the function `__init__(shape: NDArrayStrides, order: String)`. Initial
 - `Self`
 
 !!! failure "Raises"
-    ValueError: If the order argument is not `C` or `F`.
+    NumojoError: If the order argument is not `C` or `F`.
 
 ###### Overload 11
 
 ```mojo
-__init__(out self, *, ndim: Int, initialized: Bool)
+def __init__(out self, *, ndim: Int, initialized: Bool)
 ```
 
 <span class="badge badge-static">static</span>
@@ -294,8 +278,8 @@ Construct NDArrayStrides with number of dimensions. This method is useful when y
 
 **Args:**
 
-- `ndim` (`Int`): Number of dimensions.
-- `initialized` (`Bool`): Whether the strides is initialized.
+- `ndim` (`Int`) `[imm]`: Number of dimensions.
+- `initialized` (`Bool`) `[imm]`: Whether the strides is initialized.
     If yes, the values will be set to 0.
     If no, the values will be uninitialized.
 - `self` (`Self`) `[out]`
@@ -305,12 +289,12 @@ Construct NDArrayStrides with number of dimensions. This method is useful when y
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of dimensions is negative.
+    NumojoError: If the number of dimensions is negative.
 
 ###### Overload 12
 
 ```mojo
-__init__(*, copy: Self) -> Self
+def __init__(*, copy: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -319,7 +303,7 @@ Initializes the NDArrayStrides from ancopy strides. A deep-copy of the elements 
 
 **Args:**
 
-- `copy` (`Self`): Strides of the array.
+- `copy` (`Self`) `[imm]`: Strides of the array.
 
 **Returns:**
 
@@ -335,15 +319,15 @@ Initializes the NDArrayStrides from ancopy strides. A deep-copy of the elements 
 ###### Overload 1
 
 ```mojo
-__getitem__(self, index: Int) -> Int
+def __getitem__(self, index: Int) -> Int
 ```
 
 Gets stride at specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `index` (`Int`): Index to get the stride.
+- `self` (`Self`) `[imm]`
+- `index` (`Int`) `[imm]`: Index to get the shape.
 
 **Returns:**
 
@@ -354,34 +338,15 @@ Gets stride at specified index.
 ###### Overload 2
 
 ```mojo
-__getitem__(self, index: Scalar[DType.int]) -> Scalar[DType.int]
-```
-
-Gets stride at specified index.
-
-**Args:**
-
-- `self` (`Self`)
-- `index` (`Scalar`): Index to get the shape.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-###### Overload 3
-
-```mojo
-__getitem__(self, slice_index: Slice) -> Self
+def __getitem__(self, slice_index: Slice) -> Self
 ```
 
 Return a sliced view of the strides as a new NDArrayStrides.
 
 **Args:**
 
-- `self` (`Self`)
-- `slice_index` (`Slice`): Slice object defining the sub-buffer.
+- `self` (`Self`) `[imm]`
+- `slice_index` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 
 **Returns:**
 
@@ -396,10 +361,8 @@ Return a sliced view of the strides as a new NDArrayStrides.
 
 ##### `__setitem__`
 
-###### Overload 1
-
 ```mojo
-__setitem__(mut self, index: Scalar[DType.int], val: Scalar[DType.int])
+def __setitem__(mut self, index: Int, val: Int)
 ```
 
 Sets stride at specified index.
@@ -407,28 +370,11 @@ Sets stride at specified index.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `index` (`Scalar`): Index to set the stride.
-- `val` (`Scalar`): Value to set at the given index.
+- `index` (`Int`) `[imm]`: Index to set the stride.
+- `val` (`Int`) `[imm]`: Value to set at the given index.
 
 !!! failure "Raises"
-    Error: Index out of bound.
-
-###### Overload 2
-
-```mojo
-__setitem__(mut self, index: Int, val: Int)
-```
-
-Sets stride at specified index.
-
-**Args:**
-
-- `self` (`Self`) `[mut]`
-- `index` (`Int`): Index to set the shape.
-- `val` (`Int`): Value to set at the given index.
-
-!!! failure "Raises"
-    Error: Index out of bound.
+    NumojoError: Index out of bound.
 
 
 </div>
@@ -438,15 +384,15 @@ Sets stride at specified index.
 ##### `__eq__`
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
 Checks if two strides have identical dimensions and values.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The strides to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The strides to compare with.
 
 **Returns:**
 
@@ -460,15 +406,15 @@ Checks if two strides have identical dimensions and values.
 ##### `__ne__`
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
 Checks if two strides have identical dimensions and values.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The strides to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The strides to compare with.
 
 **Returns:**
 
@@ -481,35 +427,16 @@ Checks if two strides have identical dimensions and values.
 
 ##### `__contains__`
 
-###### Overload 1
-
 ```mojo
-__contains__(self, val: Int) -> Bool
-```
-
-Checks if the given value is present in the strides.
-
-**Args:**
-
-- `self` (`Self`)
-- `val` (`Int`): The value to search for.
-
-**Returns:**
-
-- `Bool`
-
-###### Overload 2
-
-```mojo
-__contains__(self, val: Scalar[DType.int]) -> Bool
+def __contains__(self, val: Int) -> Bool
 ```
 
 Check if the NDArrayStrides contains the given value.
 
 **Args:**
 
-- `self` (`Self`)
-- `val` (`Scalar`): Value to check for.
+- `self` (`Self`) `[imm]`
+- `val` (`Int`) `[imm]`: Value to check for.
 
 **Returns:**
 
@@ -523,7 +450,7 @@ Check if the NDArrayStrides contains the given value.
 ##### `load`
 
 ```mojo
-load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Load a SIMD vector from the Strides at the specified index.
@@ -534,15 +461,15 @@ Load a SIMD vector from the Strides at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to load from.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 !!! failure "Raises"
-    Error: If the load exceeds the bounds of the Strides.
+    NumojoError: If the load exceeds the bounds of the Strides.
 
 
 </div>
@@ -552,7 +479,7 @@ Load a SIMD vector from the Strides at the specified index.
 ##### `store`
 
 ```mojo
-store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Store a SIMD vector into the Strides at the specified index.
@@ -563,12 +490,12 @@ Store a SIMD vector into the Strides at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to store to.
-- `value` (`SIMD`): The SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
 
 !!! failure "Raises"
-    Error: If the store exceeds the bounds of the Strides.
+    NumojoError: If the store exceeds the bounds of the Strides.
 
 
 </div>
@@ -578,7 +505,7 @@ Store a SIMD vector into the Strides at the specified index.
 ##### `unsafe_load`
 
 ```mojo
-unsafe_load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Unsafely load a SIMD vector from the Strides at the specified index.
@@ -589,12 +516,12 @@ Unsafely load a SIMD vector from the Strides at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to load from.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 
 </div>
@@ -604,7 +531,7 @@ Unsafely load a SIMD vector from the Strides at the specified index.
 ##### `unsafe_store`
 
 ```mojo
-unsafe_store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Unsafely store a SIMD vector into the Strides at the specified index.
@@ -615,9 +542,46 @@ Unsafely store a SIMD vector into the Strides at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to store to.
-- `value` (`SIMD`): The SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `unsafe_get`
+
+```mojo
+def unsafe_get(self, idx: Int) -> Int
+```
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`
+
+**Returns:**
+
+- `Int`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `unsafe_set`
+
+```mojo
+def unsafe_set(mut self, idx: Int, value: Int)
+```
+
+**Args:**
+
+- `self` (`Self`) `[mut]`
+- `idx` (`Int`) `[imm]`
+- `value` (`Int`) `[imm]`
 
 
 </div>
@@ -627,22 +591,22 @@ Unsafely store a SIMD vector into the Strides at the specified index.
 ##### `permute`
 
 ```mojo
-permute(self, axes: List[Int]) -> Self
+def permute(self, axes: List[Int]) -> Self
 ```
 
 Return new strides with axes reordered.
 
 **Args:**
 
-- `self` (`Self`)
-- `axes` (`List`): New axis order. Must contain each axis exactly once.
+- `self` (`Self`) `[imm]`
+- `axes` (`List[Int]`) `[imm]`: New axis order. Must contain each axis exactly once.
 
 **Returns:**
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If axes length doesn't match ndim or contains invalid/duplicate axes.
+    NumojoError: If axes length doesn't match ndim or contains invalid/duplicate axes.
 
 
 </div>
@@ -652,16 +616,16 @@ Return new strides with axes reordered.
 ##### `swapaxes`
 
 ```mojo
-swapaxes(self, axis1: Int, axis2: Int) -> Self
+def swapaxes(self, axis1: Int, axis2: Int) -> Self
 ```
 
 Returns a new strides with the given axes swapped.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis1` (`Int`): The first axis to swap.
-- `axis2` (`Int`): The second axis to swap.
+- `self` (`Self`) `[imm]`
+- `axis1` (`Int`) `[imm]`: The first axis to swap.
+- `axis2` (`Int`) `[imm]`: The second axis to swap.
 
 **Returns:**
 
@@ -677,15 +641,15 @@ Returns a new strides with the given axes swapped.
 ##### `join`
 
 ```mojo
-join(self, *strides: Self) -> Self
+def join(self, *strides: Self) -> Self
 ```
 
 Join multiple strides into a single strides.
 
 **Args:**
 
-- `self` (`Self`)
-- `*strides` (`Self`): Variable number of NDArrayStrides objects.
+- `self` (`Self`) `[imm]`
+- `*strides` (`Self`) `[imm]`: Variable number of NDArrayStrides objects.
 
 **Returns:**
 
@@ -699,15 +663,15 @@ Join multiple strides into a single strides.
 ##### `extend`
 
 ```mojo
-extend(self, *values: Int) -> Self
+def extend(self, *values: Int) -> Self
 ```
 
 Extend the shape by sizes of extended dimensions.
 
 **Args:**
 
-- `self` (`Self`)
-- `*values` (`Int`): Sizes of extended dimensions.
+- `self` (`Self`) `[imm]`
+- `*values` (`Int`) `[imm]`: Sizes of extended dimensions.
 
 **Returns:**
 
@@ -721,7 +685,7 @@ Extend the shape by sizes of extended dimensions.
 ##### `flip`
 
 ```mojo
-flip(mut self)
+def flip(mut self)
 ```
 
 Flip the items in-place.
@@ -738,14 +702,14 @@ Flip the items in-place.
 ##### `flipped`
 
 ```mojo
-flipped(self) -> Self
+def flipped(self) -> Self
 ```
 
 Returns a new strides by flipping the items.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -759,15 +723,15 @@ Returns a new strides by flipping the items.
 ##### `move_axis_to_end`
 
 ```mojo
-move_axis_to_end(self, axis: Int) -> Self
+def move_axis_to_end(self, axis: Int) -> Self
 ```
 
 Returns a new strides by moving the value of axis to the end.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to move.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to move.
 
 **Returns:**
 
@@ -781,15 +745,15 @@ Returns a new strides by moving the value of axis to the end.
 ##### `pop`
 
 ```mojo
-pop(self, axis: Int) -> Self
+def pop(self, axis: Int) -> Self
 ```
 
 Drops information of certain axis.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to drop.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to drop.
 
 **Returns:**
 
@@ -805,15 +769,15 @@ Drops information of certain axis.
 ##### `is_contiguous`
 
 ```mojo
-is_contiguous(self, shape: NDArrayShape) -> Bool
+def is_contiguous(self, shape: NDArrayShape) -> Bool
 ```
 
 Check if strides represent a contiguous layout for the shape.
 
 **Args:**
 
-- `self` (`Self`)
-- `shape` (`NDArrayShape`): The shape of the array.
+- `self` (`Self`) `[imm]`
+- `shape` (`NDArrayShape`) `[imm]`: The shape of the array.
 
 **Returns:**
 
@@ -829,14 +793,14 @@ Check if strides represent a contiguous layout for the shape.
 ##### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Gets number of elements in the strides. It equals to the number of dimensions of the array.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -850,14 +814,14 @@ Gets number of elements in the strides. It equals to the number of dimensions of
 ##### `__repr__`
 
 ```mojo
-__repr__(self) -> String
+def __repr__(self) -> String
 ```
 
 Returns a string of the strides of the array.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -871,14 +835,14 @@ Returns a string of the strides of the array.
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Returns a string of the strides of the array.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -889,10 +853,32 @@ Returns a string of the strides of the array.
 
 <div class="fn-card" markdown="1">
 
+##### `write_repr_to`
+
+```mojo
+def write_repr_to[W: Writer](self, mut writer: W)
+```
+
+Write the string representation to a writer.
+
+**Parameters:**
+
+- `W` (`Writer`): The writer type.
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+- `writer` (`W`) `[mut]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Writes the strides representation to a writer.
@@ -903,7 +889,7 @@ Writes the strides representation to a writer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -914,7 +900,7 @@ Writes the strides representation to a writer.
 ##### `row_major`
 
 ```mojo
-row_major(shape: NDArrayShape) -> Self
+def row_major(shape: NDArrayShape) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -923,7 +909,7 @@ Create row-major (C-style) strides from a shape.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): The shape of the array.
+- `shape` (`NDArrayShape`) `[imm]`: The shape of the array.
 
 **Returns:**
 
@@ -939,7 +925,7 @@ Create row-major (C-style) strides from a shape.
 ##### `col_major`
 
 ```mojo
-col_major(shape: NDArrayShape) -> Self
+def col_major(shape: NDArrayShape) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -948,7 +934,7 @@ Create column-major (Fortran-style) strides from a shape.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): The shape of the array.
+- `shape` (`NDArrayShape`) `[imm]`: The shape of the array.
 
 **Returns:**
 
@@ -964,7 +950,7 @@ Create column-major (Fortran-style) strides from a shape.
 ##### `default`
 
 ```mojo
-default(shape: NDArrayShape) -> Self
+def default(shape: NDArrayShape) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -973,7 +959,7 @@ Create default (row-major) strides from a shape.
 
 **Args:**
 
-- `shape` (`NDArrayShape`): The shape of the array.
+- `shape` (`NDArrayShape`) `[imm]`: The shape of the array.
 
 **Returns:**
 
@@ -989,18 +975,18 @@ Create default (row-major) strides from a shape.
 ##### `tolist`
 
 ```mojo
-tolist(self) -> List[Int]
+def tolist(self) -> List[Int]
 ```
 
 Convert the strides to a list of integers.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `List`
+- `List[Int]`
 
 
 </div>
@@ -1010,15 +996,15 @@ Convert the strides to a list of integers.
 ##### `normalize_index`
 
 ```mojo
-normalize_index(self, index: Int) -> Int
+def normalize_index(self, index: Int) -> Int
 ```
 
 Normalizes the given index to be within the valid range [0, ndim).
 
 **Args:**
 
-- `self` (`Self`)
-- `index` (`Int`): The index to normalize.
+- `self` (`Self`) `[imm]`
+- `index` (`Int`) `[imm]`: The index to normalize.
 
 **Returns:**
 
@@ -1032,7 +1018,7 @@ Normalizes the given index to be within the valid range [0, ndim).
 ##### `__iter__`
 
 ```mojo
-__iter__(ref self) -> _StrideIter[origin_of(self)]
+def __iter__(ref self) -> _StrideIter[origin_of(self)]
 ```
 
 Iterate over elements of the NDArrayStrides, returning copied values.
@@ -1043,7 +1029,7 @@ Iterate over elements of the NDArrayStrides, returning copied values.
 
 **Returns:**
 
-- `_StrideIter`
+- `_StrideIter[origin_of(self)]`
 
 
 </div>
@@ -1053,7 +1039,7 @@ Iterate over elements of the NDArrayStrides, returning copied values.
 ##### `__reversed__`
 
 ```mojo
-__reversed__(ref self) -> _StrideIter[origin_of(self), False]
+def __reversed__(ref self) -> _StrideIter[origin_of(self), False]
 ```
 
 Iterate over elements of the NDArrayStrides, returning copied values.
@@ -1064,7 +1050,7 @@ Iterate over elements of the NDArrayStrides, returning copied values.
 
 **Returns:**
 
-- `_StrideIter`
+- `_StrideIter[origin_of(self), False]`
 
 
 </div>

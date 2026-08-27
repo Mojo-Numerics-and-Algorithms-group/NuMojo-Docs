@@ -1,67 +1,54 @@
 # `numojo.routines.math.hyper`
 
-Hyperbolic routines for NuMojo (numojo.routines.math.hyper).
+Hyperbolic and inverse hyperbolic trigonometric functions.
 
-Implements hyperbolic and inverse hyperbolic trigonometric functions operating on NDArrays and Matrices.
+Element-wise hyperbolic functions (sinh, cosh, tanh) and their inverses
+(asinh, acosh, atanh) for NDArrays.
+
+Exports
+-------
+- `sinh`, `cosh`, `tanh`: Hyperbolic functions.
+- `asinh`, `acosh`, `atanh`: Inverse hyperbolic functions.
 
 ## Functions
 
 
 <div class="fn-card" markdown="1">
 
-### `arccosh`
+### `acosh`
 
 ```mojo
-arccosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def acosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
+
+Apply inverse hyperbolic cosine.
 
 **Parameters:**
 
-- `dtype` (`DType`)
+- `dtype` (`DType`): The element type.
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `Matrix`
+- `NDArray[dtype]`
+
+!!! failure "Raises"
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-### `acosh`
-
-#### Overload 1
+### `arccosh`
 
 ```mojo
-acosh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def arccosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply acosh also known as inverse hyperbolic cosine .
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
-
-**Args:**
-
-- `array` (`NDArray`): An Array.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-acosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
+Apply inverse hyperbolic cosine element-wise.
 
 **Parameters:**
 
@@ -69,11 +56,40 @@ acosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `Matrix`
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `asinh`
+
+```mojo
+def asinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Apply inverse hyperbolic sine.
+
+**Parameters:**
+
+- `dtype` (`DType`): The element type.
+
+**Args:**
+
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
+
+**Returns:**
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
 
 
 </div>
@@ -83,8 +99,10 @@ acosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `arcsinh`
 
 ```mojo
-arcsinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def arcsinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
+
+Apply inverse hyperbolic sine element-wise.
 
 **Parameters:**
 
@@ -92,59 +110,40 @@ arcsinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `Matrix`
+- `NDArray[dtype]`
+
+!!! failure "Raises"
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-### `asinh`
-
-#### Overload 1
+### `atanh`
 
 ```mojo
-asinh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def atanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply asinh also known as inverse hyperbolic sine .
+Apply inverse hyperbolic tangent.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-asinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -154,8 +153,10 @@ asinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `arctanh`
 
 ```mojo
-arctanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def arctanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
+
+Apply inverse hyperbolic tangent element-wise.
 
 **Parameters:**
 
@@ -163,59 +164,13 @@ arctanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 **Args:**
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
 **Returns:**
 
-- `Matrix`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-### `atanh`
-
-#### Overload 1
-
-```mojo
-atanh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
-```
-
-Apply atanh also known as inverse hyperbolic tangent .
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
-
-**Args:**
-
-- `array` (`NDArray`): An Array.
-
-**Returns:**
-
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-atanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -224,46 +179,25 @@ atanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 ### `cosh`
 
-#### Overload 1
-
 ```mojo
-cosh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def cosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply cosh also known as hyperbolic cosine .
+Apply hyperbolic cosine.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-cosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -272,46 +206,25 @@ cosh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 ### `sinh`
 
-#### Overload 1
-
 ```mojo
-sinh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def sinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply sin also known as hyperbolic sine .
+Apply hyperbolic sine.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-sinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>
@@ -320,46 +233,25 @@ sinh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 ### `tanh`
 
-#### Overload 1
-
 ```mojo
-tanh[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply tan also known as hyperbolic tangent .
+Apply hyperbolic tangent.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
 **Args:**
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-tanh[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
 
 
 </div>

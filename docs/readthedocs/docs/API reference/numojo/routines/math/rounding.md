@@ -1,58 +1,44 @@
 # `numojo.routines.math.rounding`
 
-Rounding routines for NuMojo (numojo.routines.math.rounding).
+Rounding, truncation, and floating-point operations.
 
-Offers rounding, truncation, absolute value, and next-after helpers for NDArrays.
+Element-wise rounding (floor, ceiling, truncation), absolute value, banker's
+rounding, and next-after floating-point operations for NDArrays.
+
+Exports
+-------
+- `tabs`: Absolute value.
+- `tfloor`: Floor.
+- `tceil`: Ceiling.
+- `ttrunc`: Truncation.
+- `tround`: Rounding.
+- `roundeven`: Banker's rounding.
+- `nextafter`: Next representable value.
 
 ## Functions
 
 
 <div class="fn-card" markdown="1">
 
-### `round`
-
-```mojo
-round[dtype: DType](A: Matrix[dtype], decimals: Int = 0) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `decimals` (`Int`)
-
-**Returns:**
-
-- `Matrix`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
 ### `tabs`
 
 ```mojo
-tabs[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tabs[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise absolute value of NDArray.
+Element-wise absolute value of a NDArray.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -64,23 +50,22 @@ Element-wise absolute value of NDArray.
 ### `tfloor`
 
 ```mojo
-tfloor[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tfloor[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise round down to nearest whole number of NDArray.
+Element-wise floor of a NDArray.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -92,23 +77,22 @@ Element-wise round down to nearest whole number of NDArray.
 ### `tceil`
 
 ```mojo
-tceil[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tceil[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise round up to nearest whole number of NDArray.
+Element-wise ceiling of a NDArray.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -120,23 +104,22 @@ Element-wise round up to nearest whole number of NDArray.
 ### `ttrunc`
 
 ```mojo
-ttrunc[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def ttrunc[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise remove decimal value from float whole number of NDArray.
+Element-wise truncation of a NDArray.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -148,23 +131,22 @@ Element-wise remove decimal value from float whole number of NDArray.
 ### `tround`
 
 ```mojo
-tround[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tround[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise round NDArray to whole number.
+Element-wise rounding of a NDArray to a whole number.
 
 **Parameters:**
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
 **Args:**
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -176,27 +158,22 @@ Element-wise round NDArray to whole number.
 ### `roundeven`
 
 ```mojo
-roundeven[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def roundeven[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Performs element-wise banker's rounding on the elements of a NDArray.
-
-The element-wise banker's rounding of NDArray.
-
-This rounding goes to the nearest integer with ties toward the nearest even integer.
+Element-wise banker's rounding of a NDArray.
 
 **Parameters:**
 
-- `dtype` (`DType`): The dtype of the input and output array.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
+- `dtype` (`DType`): The element type.
 
 **Args:**
 
-- `array` (`NDArray`): Array to perform rounding on.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 
@@ -208,24 +185,26 @@ This rounding goes to the nearest integer with ties toward the nearest even inte
 ### `nextafter`
 
 ```mojo
-nextafter[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def nextafter[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
-Computes the nextafter of the inputs.
+Compute the next representable value after one array toward another.
+
+!!! info "Constraints"
+    Datatype `dtype` must be a floating-point type.
 
 **Parameters:**
 
-- `dtype` (`DType`): The dtype of the input and output array. Constraints: must be a floating-point type.
-- `backend` (`Backend`): Sets utility function origin, default to `Vectorized`.
+- `dtype` (`DType`): The element type.
 
 **Args:**
 
-- `array1` (`NDArray`): The first input argument.
-- `array2` (`NDArray`): The second input argument.
+- `array1` (`NDArray[dtype]`) `[imm]`: The first input array.
+- `array2` (`NDArray[dtype]`) `[imm]`: The second input array.
 
 **Returns:**
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
 

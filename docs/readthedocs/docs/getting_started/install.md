@@ -1,47 +1,12 @@
 # Installation
 
-NuMojo supports multiple installation paths depending on your workflow.
+NuMojo offers several installation methods to suit different development needs. Choose the method that best fits your workflow:
 
-## Prerequisites
+### Method 1: Git Installation with pixi-build-mojo  (Recommended)
 
-- A supported platform (`osx-arm64` or `linux-64`)
-- `pixi` installed
-- Compatible Mojo/Modular toolchain (managed through `pixi.toml`)
+Install NuMojo directly from the GitHub repository to access both stable releases and cutting-edge features. This method is perfect for developers who want the latest functionality or need to work with the most recent stable version.
 
----
-
-## Method 1 — Install from source (recommended for contributors)
-
-Use this if you want to run tests, modify source, or contribute.
-
-### 1) Clone the repository
-
-```bash
-git clone https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo.git
-cd NuMojo
-```
-
-### 2) Create environment
-
-```bash
-pixi install
-```
-
-### 3) Run validation
-
-```bash
-pixi run final
-```
-
-This runs formatting + tests.
-
----
-
-## Method 2 — Use NuMojo in your own Pixi project (git dependency)
-
-Use this when you want NuMojo directly from GitHub in another project.
-
-Add the following to your project `pixi.toml` (adjust names as needed):
+Add the following to your existing `pixi.toml`:
 
 ```toml
 [workspace]
@@ -52,148 +17,107 @@ name = "your_project_name"
 version = "0.1.0"
 
 [package.build]
-backend = { name = "pixi-build-mojo", version = "0.*" }
+backend = {name = "pixi-build-mojo", version = "0.*"}
 
 [package.build.config.pkg]
 name = "your_package_name"
 
 [package.host-dependencies]
-modular = ">=25.7.0,<26"
+mojo = "==1.0.0"
+max-core = "==26.5.0"
 
 [package.build-dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main" }
+mojo = "==1.0.0"
+max-core = "==26.5.0"
+numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
 
 [package.run-dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main" }
+mojo = "==1.0.0"
+max-core = "==26.5.0"
+numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
 
 [dependencies]
-modular = ">=25.7.0,<26"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main" }
+mojo = ">=1.0.0, <1.1.0"
+max-core = ">=26.5.0,<27"
+numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
 ```
 
-Then install:
-
+Then run:
 ```bash
 pixi install
 ```
 
-### Branch choice
+**Branch Selection:**
+- **`main` branch**: Provides stable release. Currently supports NuMojo v0.9.0, compatible with Mojo 26.2. For earlier NuMojo versions, use Method 2.
+- **`pre-x.y` branches**: Active development branch supporting the latest Mojo version (currently NuMojo v0.10.0, requiring Mojo >=1.0.0, <1.1.0). Note that this branch receives frequent updates and may have breaking changes in features and syntax.
 
-- `main`: stable branch
-- `pre-x.y`: active development branch (can include breaking changes)
+The package will be automatically available in your Pixi environment, and VSCode LSP will provide intelligent code hints.
 
----
+### Method 2: Stable Release via Pixi (prefix.dev)
 
-## Method 3 — Install stable package from prefix.dev
+For most users, we recommend installing a stable release through Pixi for guaranteed compatibility and reproducibility.
 
-Use this for reproducible, pinned setups in projects that don't need source edits.
-
-In your `pixi.toml`:
+Add the following to your `pixi.toml` file:
 
 ```toml
 [workspace]
 channels = ["https://repo.prefix.dev/modular-community"]
 
 [dependencies]
-numojo = "=0.8.0"
+numojo = "=0.10.0"
 ```
 
-Then:
-
+Then run:
 ```bash
 pixi install
 ```
 
-### Compatibility table
+**Version Compatibility:**
 
 | NuMojo Version | Required Mojo Version |
-| --- | --- |
-| v0.8.0 | ==25.7 |
-| v0.7.0 | ==25.3 |
-| v0.6.1 | ==25.2 |
-| v0.6.0 | ==25.2 |
+| -------------- | --------------------- |
+| v0.10.0        | ==1.0.0               |
+| v0.9.0         | ==26.2                |
+| v0.8.0         | ==25.7                |
+| v0.7.0         | ==25.3                |
+| v0.6.1         | ==25.2                |
+| v0.6.0         | ==25.2                |
 
----
+### Method 3: Build Standalone Package
 
-## Method 4 — Build standalone `numojo.mojopkg`
+This method creates a portable `numojo.mojopkg` file that you can use across multiple projects, perfect for offline development or hermetic builds.
 
-Use this for offline or hermetic workflows.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo.git
+   cd NuMojo
+   ```
 
-From the NuMojo repo root:
+2. Build the package:
+   ```bash
+   pixi run package
+   ```
 
-```bash
-pixi run package
-```
+3. Copy `numojo.mojopkg` to your project directory or add its parent directory to your include paths.
 
-This generates `numojo.mojopkg`. Copy it to your target project directory (or add its parent path to include dirs).
+### Method 4: Direct Source Integration
 
----
+For maximum flexibility and the ability to modify NuMojo source code during development:
 
-## Method 5 — Direct source include (no package build)
+1. Clone the repository to your desired location:
+   ```bash
+   git clone https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo.git
+   ```
 
-Use this for fast local iteration while editing NuMojo source.
+2. When compiling your code, include the NuMojo source path:
+   ```bash
+   mojo run -I "/path/to/NuMojo" your_program.mojo
+   ```
 
-```bash
-mojo run -I "/path/to/NuMojo" your_program.mojo
-```
+3. **VSCode LSP Setup** (for code hints and autocompletion):
+   - Open VSCode preferences
+   - Navigate to `Mojo › Lsp: Include Dirs`
+   - Click `Add Item` and enter the full path to your NuMojo directory (e.g., `/Users/YourName/Projects/NuMojo`)
+   - Restart the Mojo LSP server
 
-Example:
-
-```bash
-mojo run -I "/Users/yourname/Projects/NuMojo" app.mojo
-```
-
----
-
-## VSCode / LSP setup
-
-To enable autocompletion and symbol resolution for NuMojo:
-
-1. Open VSCode settings
-2. Go to `Mojo › Lsp: Include Dirs`
-3. Add the absolute path to your NuMojo folder
-4. Restart Mojo LSP
-
----
-
-## Verify installation
-
-Create a quick file like `check_numojo.mojo`:
-
-```mojo
-import numojo as nm
-from numojo.prelude import *
-
-fn main() raises:
-    var a = nm.arange[f32](10)
-    print(a)
-    print(nm.sum(a))
-```
-
-Run:
-
-```bash
-mojo run -I "/path/to/NuMojo" check_numojo.mojo
-```
-
-If this runs successfully, your installation is working.
-
----
-
-## Troubleshooting
-
-### Dependency resolution issues
-- Ensure your `modular` version is compatible with your selected NuMojo version.
-- Recreate environment:
-  ```bash
-  pixi install --locked
-  ```
-
-### Package not found in editor
-- Verify LSP include path points to the NuMojo root.
-- Restart VSCode and Mojo LSP.
-
-### Import works in terminal but not in editor
-- Editor often uses separate language-server include paths; configure `Mojo › Lsp: Include Dirs` explicitly.
+After setup, VSCode will provide intelligent code completion and hints for NuMojo functions!

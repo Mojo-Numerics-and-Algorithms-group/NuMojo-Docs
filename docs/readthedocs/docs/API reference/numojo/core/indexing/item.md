@@ -1,11 +1,19 @@
 # `numojo.core.indexing.item`
 
-Item (numojo.core.indexing.item)
+Multi-dimensional index representation for N-dimensional array access.
 
-Implements Item type.
+The `Item` struct holds a sequence of integer indices (one per dimension) used to specify
+coordinates within an N-dimensional array. For example, `arr[Item(1, 2, 3)]` accesses
+element at position (1, 2, 3) in a 3D array.
 
-`Item` is a series of `Int` on the heap used to index into N-dimensional arrays.
-It is used for multi-dimensional indexing, such as `arr[Item(1, 2, 3)]` to access `arr[1, 2, 3]`.
+Notes:
+    - Each Item instance is backed by a heap-allocated IndexBuffer.
+    - Indices are stored as a series of Int values.
+    - Item can be used for arbitrary-dimensional array indexing.
+
+Exports
+-------
+- `Item`: Array item indexing.
 
 ## Structs
 
@@ -16,7 +24,7 @@ struct Item
 ```
 
 **Memory convention:** `register_passable`  
-**Implements:** `AnyType`, `Copyable`, `Equatable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `Representable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Equatable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `Sized`, `Writable`
 
 Represents a multi-dimensional index for array access.
 
@@ -50,30 +58,6 @@ comptime element_type
 
 The data type of the Item elements.
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
-
 #### Methods
 
 
@@ -84,7 +68,7 @@ comptime __copy_ctor_is_trivial
 ###### Overload 1
 
 ```mojo
-__init__() -> Self
+def __init__() -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -98,7 +82,7 @@ Initializes an empty Item.
 ###### Overload 2
 
 ```mojo
-__init__(buf: IndexBuffer) -> Self
+def __init__(buf: IndexBuffer) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -107,7 +91,7 @@ Initializes the Item from an IndexBuffer.
 
 **Args:**
 
-- `buf` (`IndexBuffer`): The IndexBuffer to initialize from.
+- `buf` (`IndexBuffer`) `[imm]`: The IndexBuffer to initialize from.
 
 **Returns:**
 
@@ -116,7 +100,7 @@ Initializes the Item from an IndexBuffer.
 ###### Overload 3
 
 ```mojo
-__init__[T: Indexer](*args: T) -> Self
+def __init__[T: Indexer](*args: T) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -129,7 +113,7 @@ Construct the Item with variable arguments.
 
 **Args:**
 
-- `*args` (`T`): Initial values.
+- `*args` (`T`) `[imm]`: Initial values.
 
 **Returns:**
 
@@ -138,7 +122,7 @@ Construct the Item with variable arguments.
 ###### Overload 4
 
 ```mojo
-__init__[T: IndexerCollectionElement](args: List[T]) -> Self
+def __init__[T: IndexerCollectionElement](args: List[T]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -151,7 +135,7 @@ Construct the Item from a list.
 
 **Args:**
 
-- `args` (`List`): Initial values.
+- `args` (`List[T]`) `[imm]`: Initial values.
 
 **Returns:**
 
@@ -160,7 +144,7 @@ Construct the Item from a list.
 ###### Overload 5
 
 ```mojo
-__init__(args: List[Int]) -> Self
+def __init__(args: List[Int]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -169,7 +153,7 @@ Construct the Item from a list.
 
 **Args:**
 
-- `args` (`List`): Initial values.
+- `args` (`List[Int]`) `[imm]`: Initial values.
 
 **Returns:**
 
@@ -178,7 +162,7 @@ Construct the Item from a list.
 ###### Overload 6
 
 ```mojo
-__init__(args: VariadicList[Int]) -> Self
+def __init__(args: VariadicList[Int]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -187,7 +171,7 @@ Construct the Item from a variadic list.
 
 **Args:**
 
-- `args` (`VariadicList`): Initial values.
+- `args` (`VariadicList[Int]`) `[imm]`: Initial values.
 
 **Returns:**
 
@@ -196,7 +180,7 @@ Construct the Item from a variadic list.
 ###### Overload 7
 
 ```mojo
-__init__(*, ndim: Int) -> Self
+def __init__(*, ndim: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -205,7 +189,7 @@ Construct the Item with given length and initialize to zero.
 
 **Args:**
 
-- `ndim` (`Int`): The length of the Item.
+- `ndim` (`Int`) `[imm]`: The length of the Item.
 
 **Returns:**
 
@@ -214,7 +198,7 @@ Construct the Item with given length and initialize to zero.
 ###### Overload 8
 
 ```mojo
-__init__(*, copy: Self) -> Self
+def __init__(*, copy: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
@@ -223,7 +207,7 @@ Copy construct the Item.
 
 **Args:**
 
-- `copy` (`Self`): The Item to copy.
+- `copy` (`Self`) `[imm]`: The Item to copy.
 
 **Returns:**
 
@@ -239,35 +223,35 @@ Copy construct the Item.
 ###### Overload 1
 
 ```mojo
-__getitem__(self, idx: Int) -> Int
+def __getitem__(self, idx: Int) -> Int
 ```
 
 Gets the value at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The index of the value to get.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The index of the value to get.
 
 **Returns:**
 
 - `Int`
 
 !!! failure "Raises"
-    Error: If index is out of range.
+    NumojoError: If index is out of range.
 
 ###### Overload 2
 
 ```mojo
-__getitem__(self, slice_index: Slice) -> Self
+def __getitem__(self, slice_index: Slice) -> Self
 ```
 
 Return a sliced view of the item as a new Item.
 
 **Args:**
 
-- `self` (`Self`)
-- `slice_index` (`Slice`): Slice object defining the sub-buffer.
+- `self` (`Self`) `[imm]`
+- `slice_index` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 
 **Returns:**
 
@@ -283,7 +267,7 @@ Return a sliced view of the item as a new Item.
 ##### `__setitem__`
 
 ```mojo
-__setitem__(mut self, idx: Int, val: Int)
+def __setitem__(mut self, idx: Int, val: Int)
 ```
 
 Set the value at the specified index.
@@ -291,11 +275,11 @@ Set the value at the specified index.
 **Args:**
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): The index of the value to set.
-- `val` (`Int`): The value to set.
+- `idx` (`Int`) `[imm]`: The index of the value to set.
+- `val` (`Int`) `[imm]`: The value to set.
 
 !!! failure "Raises"
-    Error: If index is out of range.
+    NumojoError: If index is out of range.
 
 
 </div>
@@ -305,15 +289,15 @@ Set the value at the specified index.
 ##### `__eq__`
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
 Checks if two items have identical dimensions and values.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The item to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The item to compare with.
 
 **Returns:**
 
@@ -327,15 +311,15 @@ Checks if two items have identical dimensions and values.
 ##### `__ne__`
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
 Checks if two items have different dimensions or values.
 
 **Args:**
 
-- `self` (`Self`)
-- `other` (`Self`): The item to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The item to compare with.
 
 **Returns:**
 
@@ -348,35 +332,16 @@ Checks if two items have different dimensions or values.
 
 ##### `__contains__`
 
-###### Overload 1
-
 ```mojo
-__contains__(self, val: Scalar[DType.int]) -> Bool
+def __contains__(self, val: Int) -> Bool
 ```
 
 Check if the Item contains the given value.
 
 **Args:**
 
-- `self` (`Self`)
-- `val` (`Scalar`): Value to check for.
-
-**Returns:**
-
-- `Bool`
-
-###### Overload 2
-
-```mojo
-__contains__(self, val: Int) -> Bool
-```
-
-Checks if the given value is present in the item.
-
-**Args:**
-
-- `self` (`Self`)
-- `val` (`Int`): The value to search for.
+- `self` (`Self`) `[imm]`
+- `val` (`Int`) `[imm]`: Value to check for.
 
 **Returns:**
 
@@ -390,7 +355,7 @@ Checks if the given value is present in the item.
 ##### `load`
 
 ```mojo
-load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Load a SIMD vector from the Item at the specified index.
@@ -401,15 +366,15 @@ Load a SIMD vector from the Item at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to load from.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 !!! failure "Raises"
-    Error: If the load exceeds the bounds of the Item.
+    NumojoError: If the load exceeds the bounds of the Item.
 
 
 </div>
@@ -419,7 +384,7 @@ Load a SIMD vector from the Item at the specified index.
 ##### `store`
 
 ```mojo
-store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Store a SIMD vector into the Item at the specified index.
@@ -430,12 +395,12 @@ Store a SIMD vector into the Item at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to store to.
-- `value` (`SIMD`): The SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
 
 !!! failure "Raises"
-    Error: If the store exceeds the bounds of the Item.
+    NumojoError: If the store exceeds the bounds of the Item.
 
 
 </div>
@@ -445,7 +410,7 @@ Store a SIMD vector into the Item at the specified index.
 ##### `unsafe_load`
 
 ```mojo
-unsafe_load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Unsafely load a SIMD vector from the Item at the specified index.
@@ -456,12 +421,12 @@ Unsafely load a SIMD vector from the Item at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to load from.
 
 **Returns:**
 
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 
 </div>
@@ -471,7 +436,7 @@ Unsafely load a SIMD vector from the Item at the specified index.
 ##### `unsafe_store`
 
 ```mojo
-unsafe_store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Unsafely store a SIMD vector into the Item at the specified index.
@@ -482,9 +447,46 @@ Unsafely store a SIMD vector into the Item at the specified index.
 
 **Args:**
 
-- `self` (`Self`)
-- `idx` (`Int`): The starting index to store to.
-- `value` (`SIMD`): The SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The starting index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `unsafe_get`
+
+```mojo
+def unsafe_get(self, idx: Int) -> Int
+```
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`
+
+**Returns:**
+
+- `Int`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+##### `unsafe_set`
+
+```mojo
+def unsafe_set(mut self, idx: Int, value: Int)
+```
+
+**Args:**
+
+- `self` (`Self`) `[mut]`
+- `idx` (`Int`) `[imm]`
+- `value` (`Int`) `[imm]`
 
 
 </div>
@@ -494,16 +496,16 @@ Unsafely store a SIMD vector into the Item at the specified index.
 ##### `swapaxes`
 
 ```mojo
-swapaxes(self, axis1: Int, axis2: Int) -> Self
+def swapaxes(self, axis1: Int, axis2: Int) -> Self
 ```
 
 Returns a new item with the given axes swapped.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis1` (`Int`): The first axis to swap.
-- `axis2` (`Int`): The second axis to swap.
+- `self` (`Self`) `[imm]`
+- `axis1` (`Int`) `[imm]`: The first axis to swap.
+- `axis2` (`Int`) `[imm]`: The second axis to swap.
 
 **Returns:**
 
@@ -519,15 +521,15 @@ Returns a new item with the given axes swapped.
 ##### `join`
 
 ```mojo
-join(self, *others: Self) -> Self
+def join(self, *others: Self) -> Self
 ```
 
 Join multiple items into a single item.
 
 **Args:**
 
-- `self` (`Self`)
-- `*others` (`Self`): Variable number of Item objects.
+- `self` (`Self`) `[imm]`
+- `*others` (`Self`) `[imm]`: Variable number of Item objects.
 
 **Returns:**
 
@@ -541,15 +543,15 @@ Join multiple items into a single item.
 ##### `extend`
 
 ```mojo
-extend(self, *values: Int) -> Self
+def extend(self, *values: Int) -> Self
 ```
 
 Extend the shape by sizes of extended dimensions.
 
 **Args:**
 
-- `self` (`Self`)
-- `*values` (`Int`): Sizes of extended dimensions.
+- `self` (`Self`) `[imm]`
+- `*values` (`Int`) `[imm]`: Sizes of extended dimensions.
 
 **Returns:**
 
@@ -563,7 +565,7 @@ Extend the shape by sizes of extended dimensions.
 ##### `flip`
 
 ```mojo
-flip(mut self)
+def flip(mut self)
 ```
 
 Flip the items in-place.
@@ -580,14 +582,14 @@ Flip the items in-place.
 ##### `flipped`
 
 ```mojo
-flipped(self) -> Self
+def flipped(self) -> Self
 ```
 
 Returns a new item by flipping the items.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -601,15 +603,15 @@ Returns a new item by flipping the items.
 ##### `move_axis_to_end`
 
 ```mojo
-move_axis_to_end(self, axis: Int) -> Self
+def move_axis_to_end(self, axis: Int) -> Self
 ```
 
 Returns a new item by moving the value of axis to the end.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to move.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to move.
 
 **Returns:**
 
@@ -623,15 +625,15 @@ Returns a new item by moving the value of axis to the end.
 ##### `pop`
 
 ```mojo
-pop(self, axis: Int) -> Self
+def pop(self, axis: Int) -> Self
 ```
 
 Drops information of certain axis.
 
 **Args:**
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to drop.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to drop.
 
 **Returns:**
 
@@ -647,14 +649,14 @@ Drops information of certain axis.
 ##### `rank`
 
 ```mojo
-rank(self) -> Int
+def rank(self) -> Int
 ```
 
 Returns the number of dimensions of the Item.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -668,18 +670,18 @@ Returns the number of dimensions of the Item.
 ##### `sum`
 
 ```mojo
-sum(self) -> Scalar[DType.int]
+def sum(self) -> Int
 ```
 
 Compute the sum of all elements in Item.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `Scalar`
+- `Int`
 
 
 </div>
@@ -689,18 +691,18 @@ Compute the sum of all elements in Item.
 ##### `product`
 
 ```mojo
-product(self) -> Scalar[DType.int]
+def product(self) -> Int
 ```
 
 Compute the product of all elements in the Item.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `Scalar`
+- `Int`
 
 
 </div>
@@ -710,14 +712,14 @@ Compute the product of all elements in the Item.
 ##### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Get the length of the Item.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -731,14 +733,14 @@ Get the length of the Item.
 ##### `__repr__`
 
 ```mojo
-__repr__(self) -> String
+def __repr__(self) -> String
 ```
 
 Returns a string representation of the Item.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -749,17 +751,39 @@ Returns a string representation of the Item.
 
 <div class="fn-card" markdown="1">
 
+##### `write_repr_to`
+
+```mojo
+def write_repr_to[W: Writer](self, mut writer: W)
+```
+
+Write the string representation to a writer.
+
+**Parameters:**
+
+- `W` (`Writer`): The writer type.
+
+**Args:**
+
+- `self` (`Self`) `[imm]`
+- `writer` (`W`) `[mut]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
 ##### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Returns a string representation of the Item.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
@@ -773,7 +797,7 @@ Returns a string representation of the Item.
 ##### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Writes the Item representation to a writer.
@@ -784,7 +808,7 @@ Writes the Item representation to a writer.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -795,18 +819,18 @@ Writes the Item representation to a writer.
 ##### `tolist`
 
 ```mojo
-tolist(self) -> List[Int]
+def tolist(self) -> List[Int]
 ```
 
 Convert the Item to a list of integers.
 
 **Args:**
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
 **Returns:**
 
-- `List`
+- `List[Int]`
 
 
 </div>
@@ -816,15 +840,15 @@ Convert the Item to a list of integers.
 ##### `normalize_index`
 
 ```mojo
-normalize_index(self, index: Int) -> Int
+def normalize_index(self, index: Int) -> Int
 ```
 
 Normalizes the given index to be within the valid range [0, ndim).
 
 **Args:**
 
-- `self` (`Self`)
-- `index` (`Int`): The index to normalize.
+- `self` (`Self`) `[imm]`
+- `index` (`Int`) `[imm]`: The index to normalize.
 
 **Returns:**
 
@@ -838,7 +862,7 @@ Normalizes the given index to be within the valid range [0, ndim).
 ##### `__iter__`
 
 ```mojo
-__iter__(ref self) -> _ItemIter[origin_of(self)]
+def __iter__(ref self) -> _ItemIter[origin_of(self)]
 ```
 
 Iterate over elements of the Item.
@@ -849,7 +873,7 @@ Iterate over elements of the Item.
 
 **Returns:**
 
-- `_ItemIter`
+- `_ItemIter[origin_of(self)]`
 
 
 </div>
@@ -859,7 +883,7 @@ Iterate over elements of the Item.
 ##### `__reversed__`
 
 ```mojo
-__reversed__(ref self) -> _ItemIter[origin_of(self), False]
+def __reversed__(ref self) -> _ItemIter[origin_of(self), False]
 ```
 
 Iterate over elements of the Item in reverse.
@@ -870,7 +894,7 @@ Iterate over elements of the Item in reverse.
 
 **Returns:**
 
-- `_ItemIter`
+- `_ItemIter[origin_of(self), False]`
 
 
 </div>

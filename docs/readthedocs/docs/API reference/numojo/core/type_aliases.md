@@ -1,9 +1,16 @@
 # `numojo.core.type_aliases`
 
-Type aliases for commonly used data types in NuMojo.
+Type aliases and symbolic constants for commonly used data types in NuMojo.
 
 This module provides convenient, user-friendly aliases for core types such as shapes,
 strides, and complex scalars, as well as a symbolic constant for the imaginary unit.
+
+Exports
+-------
+- `Shape`: Alias for NDArrayShape.
+- `Strides`: Alias for NDArrayStrides.
+- `ComplexScalar`, `CScalar`: Aliases for scalar complex numbers.
+- `1j`: Imaginary unit constant (0 + 1j).
 
 ## Aliases
 
@@ -33,7 +40,7 @@ Alias for NDArrayStrides, representing the memory strides of an n-dimensional ar
 comptime ComplexScalar
 ```
 
-**Value:** `ComplexSIMD[?]`
+**Value:** `ComplexSIMD[_]`
 
 Alias for a scalar (width=1) complex SIMD value.
 
@@ -43,7 +50,7 @@ Alias for a scalar (width=1) complex SIMD value.
 comptime CScalar
 ```
 
-**Value:** `ComplexSIMD[?]`
+**Value:** `ComplexSIMD[_]`
 
 Alias for a scalar complex number, equivalent to ComplexScalar.
 
