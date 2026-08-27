@@ -55,3 +55,36 @@ NuMojo is a library for numerical computing in Mojo, similar to NumPy in Python.
     [:octicons-arrow-right-24: Contributing](developer-guide/contributing.md)
 
 </div>
+
+## What is NuMojo?
+
+NuMojo aims to encompass the extensive numerics capabilities found in NumPy. It seeks to harness
+the full potential of Mojo, including vectorization, parallelization, and GPU acceleration, and
+currently extends most (if not all) standard library math functions to support array inputs.
+
+Its `NDArray` is a Mojo-native, SIMD-backed array type rather than a binding around NumPy or MAX's
+tensor types, so it compiles directly into a Mojo program with no Python interop overhead. The API
+follows NumPy conventions where they make sense — slicing, broadcasting, `@` for matrix
+multiplication — so existing intuition carries over.
+
+NuMojo is meant to serve as a building block for other Mojo libraries and programs that need fast
+math operations, without the additional weight of a machine learning back-propagation system.
+
+## Installing NuMojo
+
+For a pinned stable release:
+
+```toml
+[workspace]
+channels = ["https://repo.prefix.dev/modular-community"]
+
+[dependencies]
+numojo = "=0.10.0"
+```
+
+```bash
+pixi install
+```
+
+See [Installation](getting_started/install.md) for all methods, including tracking the latest
+development branch.
