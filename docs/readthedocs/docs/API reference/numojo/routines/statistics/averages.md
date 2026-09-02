@@ -38,7 +38,9 @@ Calculate the arithmetic average of all items in an array. Regardless of the sha
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -68,7 +70,9 @@ Calculate the arithmetic average of all items in the array.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -92,7 +96,9 @@ Mean of array elements over a given axis.
 
 - `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -120,7 +126,9 @@ Median value of all items an array. Regardless of the shape of input, it is trea
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -150,7 +158,9 @@ Median value of all items of an array.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -174,7 +184,9 @@ Returns median of the array elements along the given axis.
 
 - `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -201,7 +213,9 @@ Returns mode of all items of an array. Regardless of the shape of input, it is t
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -230,7 +244,9 @@ Mode of all items of an array.
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -253,7 +269,9 @@ Returns mode of the array elements along the given axis.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -284,7 +302,9 @@ Compute the standard deviation.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -342,7 +362,9 @@ Compute the variance.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 

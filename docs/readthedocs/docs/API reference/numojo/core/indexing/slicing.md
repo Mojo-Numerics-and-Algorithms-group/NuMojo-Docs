@@ -320,7 +320,9 @@ def check_bounds(self, dim: Int)
 - `self` (`Self`) `[imm]`
 - `dim` (`Int`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

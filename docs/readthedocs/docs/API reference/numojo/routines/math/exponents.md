@@ -46,7 +46,9 @@ var result = nm.exp(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -77,7 +79,9 @@ var result = nm.exp(value)
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -115,7 +119,9 @@ var result = nm.exp2(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -146,7 +152,9 @@ var result = nm.exp2(value)
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -183,7 +191,9 @@ var result = nm.expm1(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -213,7 +223,9 @@ var result = nm.expm1(value)
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -250,7 +262,9 @@ var result = nm.log(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -280,7 +294,9 @@ var result = nm.log(10.0)
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -318,7 +334,9 @@ var result = nm.log2(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -347,7 +365,9 @@ var result = nm.log2(10.0)
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -384,7 +404,9 @@ var result = nm.log10(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -414,7 +436,9 @@ var result = nm.log10(10.0)
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -452,7 +476,9 @@ var result = nm.log1p(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -481,7 +507,9 @@ var result = nm.log1p(1.0)
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

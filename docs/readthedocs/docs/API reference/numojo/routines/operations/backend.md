@@ -117,7 +117,9 @@ Applies a SIMD-compatible unary function to an NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -175,7 +177,9 @@ Applies a SIMD-compatible binary function to two NDArrays.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -201,7 +205,9 @@ Applies a SIMD-compatible binary function to an NDArray and a scalar.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -227,7 +233,9 @@ Applies a SIMD-compatible binary function to a scalar and an NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -253,7 +261,9 @@ Applies a SIMD-compatible binary function to an NDArray and an Int scalar.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -309,7 +319,9 @@ Applies a SIMD-compatible unary predicate to an NDArray, returning a boolean NDA
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -367,7 +379,9 @@ Applies a SIMD-compatible binary predicate to two NDArrays, returning a boolean 
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -393,7 +407,9 @@ Applies a SIMD-compatible binary predicate to an NDArray and a scalar, returning
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -427,7 +443,9 @@ Applies a SIMD-compatible ternary function to three NDArrays.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -454,7 +472,9 @@ Applies a SIMD-compatible ternary function to two NDArrays and a scalar.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

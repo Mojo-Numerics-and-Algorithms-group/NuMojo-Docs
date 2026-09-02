@@ -49,7 +49,9 @@ var result2 = invert(arr2) # result2 is [false, true, false
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

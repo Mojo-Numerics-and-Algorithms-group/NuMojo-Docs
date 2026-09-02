@@ -39,7 +39,9 @@ Compute the gradient of y over x using the trapezoidal rule.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -67,7 +69,9 @@ Compute the n-th order difference of the input array.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

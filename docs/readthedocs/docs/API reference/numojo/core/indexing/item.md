@@ -263,7 +263,9 @@ Return a sliced view of the item as a new Item.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -517,7 +519,9 @@ Returns a new item with the given axes swapped.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -645,7 +649,9 @@ Drops information of certain axis.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

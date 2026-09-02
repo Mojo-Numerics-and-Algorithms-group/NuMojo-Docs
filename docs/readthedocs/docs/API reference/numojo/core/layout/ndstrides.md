@@ -339,7 +339,9 @@ Gets stride at specified index.
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -358,7 +360,9 @@ Return a sliced view of the strides as a new NDArrayStrides.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -637,7 +641,9 @@ Returns a new strides with the given axes swapped.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -765,7 +771,9 @@ Drops information of certain axis.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -789,7 +797,9 @@ Check if strides represent a contiguous layout for the shape.
 
 - `Bool`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -921,7 +931,9 @@ Create row-major (C-style) strides from a shape.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -946,7 +958,9 @@ Create column-major (Fortran-style) strides from a shape.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -971,7 +985,9 @@ Create default (row-major) strides from a shape.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

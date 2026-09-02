@@ -261,7 +261,9 @@ Gets shape dimension at specified index.
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -280,7 +282,9 @@ Return a sliced view of the dimension tuple as a new NDArrayShape.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -535,7 +539,9 @@ going backwards through dimensions.
 
 - `NDArrayStrides`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -561,7 +567,9 @@ going forward through dimensions.
 
 - `NDArrayStrides`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -683,7 +691,9 @@ Returns a new shape with the given axes swapped.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -789,7 +799,9 @@ Drops the item at the given axis (index).
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

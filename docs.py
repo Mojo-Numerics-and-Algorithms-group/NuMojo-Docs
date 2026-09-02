@@ -185,7 +185,13 @@ def render_raises(raises: bool, raises_doc: str) -> str:
     doc = sanitize(raises_doc)
     if doc:
         return f'!!! failure "Raises"\n    {doc}\n\n'
-    return '!!! failure "Raises"\n\n'
+    # `raises: True` with no message means the source docstring never
+    # wrote a Raises: section — there's no hidden reason to recover here.
+    # Say so plainly instead of asserting a made-up-sounding explanation.
+    return (
+        '<div class="prose-label">Raises</div>\n\n'
+        "*Not documented in source.*\n\n"
+    )
 
 
 def render_overload(overload: dict) -> str:
@@ -731,71 +737,174 @@ def write_extra_assets(readthedocs_dir: Path):
     css_dir = readthedocs_dir / "docs" / "stylesheets"
     css_dir.mkdir(parents=True, exist_ok=True)
     css = """\
-/* Layout */
+/* ==========================================================================
+   NuMojo docs theme
+   A reading-focused reskin of MkDocs Material, inspired by the layout
+   rhythm of VitePress (mojo-lang.com/miji) and Docusaurus (mojolang.org):
+   a narrower measure for prose, soft neutral surfaces instead of boxed
+   panels, and a plainer, denser API reference modeled on numpy/scipy.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   Brand palette — indigo/blue accent, tuned lighter than Material's
+   default indigo so it sits closer to the references' brand color.
+   ------------------------------------------------------------------------- */
+:root {
+  --md-primary-fg-color: #3a5ccc;
+  --md-primary-fg-color--light: #5672cd;
+  --md-primary-fg-color--dark: #2f4fb8;
+  --md-accent-fg-color: #3a5ccc;
+
+  --nm-surface-soft: #f6f7fa;
+  --nm-border: #e2e2e6;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #7f93e8;
+  --md-accent-fg-color: #a8b1ff;
+  --md-default-bg-color: #17181c;
+  --md-default-fg-color--lightest: hsla(0, 0%, 100%, 0.06);
+
+  --nm-surface-soft: #1c1d22;
+  --nm-border: #2d2e34;
+}
+
+/* -------------------------------------------------------------------------
+   Layout — a narrower reading column (VitePress prose sits ~688-784px)
+   reads far better than Material's default full-bleed 61rem measure.
+   ------------------------------------------------------------------------- */
 .md-grid {
-  max-width: 68rem;
+  max-width: 70rem;
 }
 
 .md-typeset {
-  line-height: 1.65;
+  font-size: 0.72rem;
+  line-height: 1.7;
 }
 
+.md-content__inner {
+  max-width: 46rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* The homepage's card grid and hero need more room than a prose column;
+   its frontmatter hides the sidebars, so give it the full grid width. */
+.md-content:has(.grid.cards) .md-content__inner {
+  max-width: 56rem;
+}
+
+/* -------------------------------------------------------------------------
+   Typography
+   ------------------------------------------------------------------------- */
 .md-typeset h1 {
   font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 1em;
 }
 
 .md-typeset h2 {
   font-weight: 600;
-  margin-top: 2em;
+  letter-spacing: -0.005em;
+  margin-top: 2.2em;
+  padding-top: 0;
+  border-top: none;
 }
 
-/* Badges */
+.md-typeset h3 {
+  font-weight: 600;
+  margin-top: 1.8em;
+}
+
+.md-typeset p,
+.md-typeset li {
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.md-typeset a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* -------------------------------------------------------------------------
+   Badges — small kind/modifier tags used in the API reference
+   (struct, trait, static, async).
+   ------------------------------------------------------------------------- */
 .badge {
   display: inline-block;
-  padding: 0.1em 0.55em;
-  border-radius: 4px;
-  font-size: 0.7em;
+  padding: 0.15em 0.6em;
+  border-radius: 999px;
+  font-size: 0.66em;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   vertical-align: middle;
   margin-right: 0.4em;
 }
 .badge-static {
-  background: var(--md-default-fg-color--lightest);
+  background: var(--nm-surface-soft);
   color: var(--md-default-fg-color--light);
+  border: 1px solid var(--nm-border);
 }
 .badge-async {
-  background: var(--md-primary-fg-color--light);
-  color: var(--md-primary-bg-color);
+  background: color-mix(in srgb, var(--md-primary-fg-color) 12%, transparent);
+  color: var(--md-primary-fg-color);
 }
 .badge-kind {
-  color: var(--md-default-fg-color--light);
+  display: inline-block;
+  background: color-mix(in srgb, var(--md-primary-fg-color) 10%, transparent);
+  color: var(--md-primary-fg-color);
+  padding: 0.15em 0.6em;
+  border-radius: 999px;
+  font-size: 0.66em;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-/* API reference headings & code */
+/* -------------------------------------------------------------------------
+   API reference — headings & inline code
+   ------------------------------------------------------------------------- */
 .md-typeset h3 code,
 .md-typeset h4 code,
 .md-typeset h5 code {
   font-size: 0.95em;
   background: none;
   padding: 0;
-}
-
-.md-typeset pre > code {
-  font-size: 0.82em;
-  line-height: 1.55;
+  color: var(--md-default-fg-color);
 }
 
 .md-typeset code {
   border-radius: 4px;
+  font-size: 0.85em;
+  background: var(--nm-surface-soft);
 }
 
-/* Sidebar navigation */
+.md-typeset pre > code {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  background: none;
+}
+
+.md-typeset .highlight {
+  border-radius: 8px;
+  border: 1px solid var(--nm-border);
+}
+
+.md-typeset pre {
+  border-radius: 8px;
+}
+
+/* -------------------------------------------------------------------------
+   Sidebar navigation
+   ------------------------------------------------------------------------- */
 .md-nav__item .md-nav__link {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
 }
 
 .md-nav__title {
@@ -803,20 +912,26 @@ def write_extra_assets(readthedocs_dir: Path):
 }
 
 .md-nav--secondary .md-nav__link {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
 }
 
-/* API reference: structs/traits and functions/methods are separated by
-   heading level and a plain rule, not boxes - matches how numpy/scipy lay
-   out their reference pages. */
+.md-nav__link--active {
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+   API reference: structs/traits and functions/methods are separated by
+   heading level and a plain rule, not boxes — matches how numpy/scipy lay
+   out their reference pages, and avoids nested-card fatigue.
+   ------------------------------------------------------------------------- */
 .type-header {
-  margin: 0.4em 0 1.2em;
+  margin: 0.4em 0 1.4em;
 }
 
 .fn-card {
-  margin: 1.8em 0;
-  padding-top: 1.6em;
-  border-top: 1px solid var(--md-default-fg-color--lightest);
+  margin: 2em 0;
+  padding-top: 1.8em;
+  border-top: 1px solid var(--nm-border);
 }
 
 .fn-card:first-of-type {
@@ -829,31 +944,121 @@ def write_extra_assets(readthedocs_dir: Path):
 .overload-divider {
   display: block;
   font-weight: 700;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--md-default-fg-color--light);
-  margin-top: 1.4em;
-  margin-bottom: 0.4em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
 }
 
 /* Prose sub-section label (Parameters/Args/Returns/Examples/Notes/etc.) */
 .prose-label {
   display: block;
   font-weight: 700;
-  margin-top: 1.2em;
-  margin-bottom: 0.3em;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--md-default-fg-color--light);
+  margin-top: 1.3em;
+  margin-bottom: 0.5em;
 }
 
-/* Tables */
-.md-typeset table:not([class]) {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 6px;
-  overflow: hidden;
+/* Parameters/Args/Returns lists read as compact definition lists, not
+   loose bullet lists — tightens the rhythm the reference sites have. */
+.md-typeset .fn-card ul,
+.md-typeset .type-header ul {
+  margin: 0;
+  padding-left: 1.1em;
 }
 
-.md-typeset table:not([class]) th {
-  background: var(--md-default-fg-color--lightest);
+.md-typeset .fn-card li,
+.md-typeset .type-header li {
+  margin: 0.35em 0;
+}
+
+/* -------------------------------------------------------------------------
+   Admonitions — soften Material's heavy colored-box default so notes
+   read like the references' quiet inline callouts rather than alerts.
+   Failure/danger stays visually distinct since it flags a real raise.
+   ------------------------------------------------------------------------- */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+  border-width: 1px;
+  box-shadow: none;
+  font-size: 0.85em;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
   font-weight: 600;
 }
 
+/* -------------------------------------------------------------------------
+   Tables
+   ------------------------------------------------------------------------- */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--nm-border);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.82em;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--nm-surface-soft);
+  font-weight: 600;
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background: var(--nm-surface-soft);
+}
+
+/* -------------------------------------------------------------------------
+   Homepage cards — quieter surface, subtle lift on hover instead of a
+   heavy shadow, so the grid reads calm like the references' hub pages.
+   Fixed 2-column grid (Material's default is auto-fit, which can land
+   anywhere from 1 to 4 columns depending on width) so the four entries
+   read as a deliberate 2x2 block.
+   ------------------------------------------------------------------------- */
+.md-typeset .grid.cards > ul,
+.md-typeset .grid.cards > ol {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 44rem) {
+  .md-typeset .grid.cards > ul,
+  .md-typeset .grid.cards > ol {
+    grid-template-columns: 1fr;
+  }
+}
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid.cards > ol > li {
+  border-radius: 10px;
+  border: 1px solid var(--nm-border);
+  background: var(--nm-surface-soft);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  box-shadow: none;
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid.cards > ol > li:hover {
+  border-color: var(--md-primary-fg-color);
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+/* -------------------------------------------------------------------------
+   Code copy button & footer — small polish pass
+   ------------------------------------------------------------------------- */
+.md-footer {
+  background: transparent;
+}
+
+.md-footer-meta {
+  background: var(--nm-surface-soft);
+}
 """
     (css_dir / "extra.css").write_text(css, encoding="utf-8")
 

@@ -70,7 +70,9 @@ def main() raises:
 
 - `Tuple[NDArray[dtype], NDArray[dtype]]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -97,7 +99,9 @@ Perform partial pivoting for a square matrix.
 
 - `Tuple[NDArray[dtype], NDArray[dtype], Int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

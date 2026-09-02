@@ -116,7 +116,9 @@ Launch the GPU binary-op kernel over `size` contiguous elements.
 - `size` (`Int`) `[imm]`
 - `sync` (`Bool`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

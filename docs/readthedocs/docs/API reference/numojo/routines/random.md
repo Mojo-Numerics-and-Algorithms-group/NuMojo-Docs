@@ -50,7 +50,9 @@ print(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -72,7 +74,9 @@ Overloads the function `rand(shape: NDArrayShape)`. Creates an array of the give
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -94,7 +98,9 @@ Overloads the function `rand(shape: NDArrayShape)`. Creates an array of the give
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -116,7 +122,9 @@ Overloads the function `rand(shape: NDArrayShape)` Creates an array of the given
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -172,7 +180,9 @@ Overloads the function `rand(shape: NDArrayShape, min, max)`. Creates an array o
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 7</div>
 
@@ -196,7 +206,9 @@ Overloads the function `rand(shape: NDArrayShape, min, max)`. Creates an array o
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -253,7 +265,9 @@ Overloads the function `randint(shape: NDArrayShape, low, high)`. Return an arra
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -301,7 +315,9 @@ Overloads the function `randint(shape: NDArrayShape, high)`. Return an array of 
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -330,7 +346,9 @@ Creates an array of the given shape and populate it with random samples from a s
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -352,7 +370,9 @@ Overloads the function `randn(shape: NDArrayShape)`. Creates an array of the giv
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -376,7 +396,9 @@ Creates an array of the given shape and populate it with random samples from a n
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -400,7 +422,9 @@ Overloads the function `randn(shape: NDArrayShape, mean, variance)`. Creates an 
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -424,7 +448,9 @@ Overloads the function `randn(shape: NDArrayShape, mean, variance)`. Creates an 
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -460,7 +486,9 @@ print(arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -483,7 +511,9 @@ Overloads the function `exponential(shape: NDArrayShape, rate)`. Creates an arra
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -506,7 +536,9 @@ Overloads the function `exponential(shape: NDArrayShape, rate)`. Creates an arra
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -559,7 +591,9 @@ Overloads the function `randbool(shape: NDArrayShape, p)`. Creates an array of t
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -578,7 +612,9 @@ Overloads the function `randbool(shape: NDArrayShape, p)`. Creates an array of t
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

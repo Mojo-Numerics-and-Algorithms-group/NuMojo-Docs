@@ -85,7 +85,9 @@ Initializes the Flags object according to the shape and strides information.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -149,7 +151,9 @@ Get the value of the fields with the given key. The Flags object can be accessed
 
 - `Bool`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

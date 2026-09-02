@@ -62,7 +62,9 @@ Launch the GPU sum-reduction kernel and combine partial sums.
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

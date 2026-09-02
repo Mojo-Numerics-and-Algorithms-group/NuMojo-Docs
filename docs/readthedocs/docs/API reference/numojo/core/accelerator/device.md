@@ -111,7 +111,9 @@ def __init__(out self, backend: String, id: Int)
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -339,7 +341,9 @@ def __init__(out self)
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -503,7 +507,9 @@ def synchronize(self)
 
 - `self` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -663,7 +669,9 @@ Validates the arguments and raises on invalid or unavailable devices.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -732,7 +740,9 @@ Validate and construct a `Device` from a canonical spec.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -987,7 +997,9 @@ Return the best available device: GPU if present, otherwise CPU.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

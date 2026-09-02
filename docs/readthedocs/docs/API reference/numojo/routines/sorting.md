@@ -42,7 +42,9 @@ Sort NDArray using quick sort method. It is not guaranteed to be unstable. When 
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -66,7 +68,9 @@ Sort NDArray along the given axis using quick sort method. It is not guaranteed 
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -91,7 +95,9 @@ Sort NDArray in-place along the given axis using quick sort method. It is not gu
 - `axis` (`Int`) `[imm]`: The axis along which the array is sorted.
 - `stable` (`Bool`) `[imm]`: If True, the sorting is stable. Default is False.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -120,7 +126,9 @@ Returns the indices that would sort an array. It is not guaranteed to be unstabl
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -169,7 +177,9 @@ def binary_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -203,7 +213,9 @@ print(sorted_arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -237,7 +249,9 @@ print(sorted_arr)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -264,7 +278,9 @@ Sort array using quick sort method. Regardless of the shape of input, it is trea
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -291,7 +307,9 @@ Sort array using quick sort method. Regardless of the shape of input, it is trea
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -314,7 +332,9 @@ Sort array in-place using quick sort method. Regardless of the shape of input, i
 
 - `a` (`NDArray[dtype]`) `[mut]`: An 1-d array.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -337,7 +357,9 @@ Sort array in-place using quick sort method. Regardless of the shape of input, i
 
 - `a` (`NDArray[dtype]`) `[mut]`: An 1-d array.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -364,7 +386,9 @@ Returns the indices that would sort the buffer of an array. Regardless of the sh
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

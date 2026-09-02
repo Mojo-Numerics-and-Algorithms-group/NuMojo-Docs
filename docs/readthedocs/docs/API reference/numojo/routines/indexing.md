@@ -39,7 +39,9 @@ Replaces elements in `x` with `scalar` where `mask` is True.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A SIMD value.
 - `mask` (`NDArray[DType.bool]`) `[imm]`: A NDArray.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -84,7 +86,9 @@ Returns one 1-D integer index array per dimension of `condition`.
 
 - `List[NDArray[DType.int]]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -658,7 +662,9 @@ Overload of `unravel_index` accepting a shape list.
 
 - `List[Int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -678,7 +684,9 @@ Overload of `unravel_index` accepting a shape list.
 
 - `List[NDArray[DType.int]]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -732,7 +740,9 @@ Overload of `ravel_multi_index` accepting a shape list.
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -762,7 +772,9 @@ Indices are reported in C-order over the flattened array.
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -807,7 +819,9 @@ print(idx2[1])  # [0, 1]  (col indices)
 
 - `List[NDArray[DType.int]]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

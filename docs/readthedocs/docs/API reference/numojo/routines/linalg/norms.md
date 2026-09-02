@@ -32,7 +32,9 @@ Find the determinant of A using LUP decomposition.
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -62,7 +64,9 @@ Computes the trace of a ndarray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

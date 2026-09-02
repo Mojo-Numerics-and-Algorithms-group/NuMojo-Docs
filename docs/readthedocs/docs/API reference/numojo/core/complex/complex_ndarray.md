@@ -114,7 +114,9 @@ Initialize a ComplexNDArray with given real and imaginary parts.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -145,7 +147,9 @@ This constructor should not be used by users directly. Use factory functions in 
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -176,7 +180,9 @@ This constructor should not be used by users directly. Use factory functions in 
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -207,7 +213,9 @@ This constructor should not be used by users directly. Use factory functions in 
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -244,7 +252,9 @@ var arr = ComplexNDArray[cf32](shape, offset, strides)
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 6</div>
 
@@ -720,7 +730,9 @@ Set the value of the array at the indices where the mask is true.
 - `mask` (`NDArray[DType.bool]`) `[imm]`
 - `value` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -739,7 +751,9 @@ Retreive slices of an ComplexNDArray from variadic slices.
 - `*slices` (`Slice`) `[var]`
 - `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -758,7 +772,9 @@ Sets the slices of an ComplexNDArray from list of slices and ComplexNDArray.
 - `slices` (`List[Slice]`) `[imm]`
 - `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 6</div>
 
@@ -774,7 +790,9 @@ Get items by a series of either slices or integers.
 - `*slices` (`Variant[Slice, Int]`) `[var]`
 - `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 7</div>
 
@@ -792,7 +810,9 @@ Refer to `__getitem__(self, index: List[Int])`.
 - `index` (`NDArray[DType.int]`) `[imm]`
 - `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 8</div>
 
@@ -808,7 +828,9 @@ Set the value of the ComplexNDArray at the indices where the mask is true.
 - `mask` (`NDArray[DType.bool]`) `[imm]`
 - `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -833,7 +855,9 @@ For bolean use `__invert__`(~)
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -856,7 +880,9 @@ Unary positive returns self unless boolean type.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -882,7 +908,9 @@ NumPy-style lexicographic ordering: compare real part first, then imaginary part
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -899,7 +927,9 @@ def __lt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -916,7 +946,9 @@ def __lt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -940,7 +972,9 @@ def __le__(self, other: Self) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -957,7 +991,9 @@ def __le__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -974,7 +1010,9 @@ def __le__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1000,7 +1038,9 @@ Itemwise equivalence.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1019,7 +1059,9 @@ Itemwise equivalence between scalar and ComplexNDArray.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1045,7 +1087,9 @@ Itemwise non-equivalence.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1064,7 +1108,9 @@ Itemwise non-equivalence between scalar and ComplexNDArray.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1088,7 +1134,9 @@ def __gt__(self, other: Self) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1105,7 +1153,9 @@ def __gt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1122,7 +1172,9 @@ def __gt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1146,7 +1198,9 @@ def __ge__(self, other: Self) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1163,7 +1217,9 @@ def __ge__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1180,7 +1236,9 @@ def __ge__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1206,7 +1264,9 @@ Enables `ComplexNDArray + ComplexSIMD`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1225,7 +1285,9 @@ Enables `ComplexNDArray + Scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1244,7 +1306,9 @@ Enables `ComplexNDArray + ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1263,7 +1327,9 @@ Enables `ComplexNDArray + NDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1289,7 +1355,9 @@ Enables `ComplexNDArray - ComplexSIMD`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1308,7 +1376,9 @@ Enables `ComplexNDArray - Scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1327,7 +1397,9 @@ Enables `ComplexNDArray - ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1346,7 +1418,9 @@ Enables `ComplexNDArray - NDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1372,7 +1446,9 @@ Enables `ComplexNDArray * ComplexSIMD`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1391,7 +1467,9 @@ Enables `ComplexNDArray * Scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1410,7 +1488,9 @@ Enables `ComplexNDArray * ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1429,7 +1509,9 @@ Enables `ComplexNDArray * NDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1451,7 +1533,9 @@ def __matmul__(self, other: Self) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1477,7 +1561,9 @@ Enables `ComplexNDArray / ComplexSIMD`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1496,7 +1582,9 @@ Enables `ComplexNDArray / ComplexSIMD`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1515,7 +1603,9 @@ Enables `ComplexNDArray / ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1534,7 +1624,9 @@ Enables `ComplexNDArray / NDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1570,7 +1662,9 @@ var B = A ** 3  # Cube each element
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1596,7 +1690,9 @@ var B = A ** 2.5  # Raise to power 2.5
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1650,7 +1746,9 @@ Enables `ComplexSIMD + ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1669,7 +1767,9 @@ Enables `Scalar + ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1688,7 +1788,9 @@ Enables `NDArray + ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1714,7 +1816,9 @@ Enables `ComplexSIMD - ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1733,7 +1837,9 @@ Enables `Scalar - ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1752,7 +1858,9 @@ Enables `NDArray - ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1778,7 +1886,9 @@ Enables `ComplexSIMD * ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1797,7 +1907,9 @@ Enables `Scalar * ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1816,7 +1928,9 @@ Enables `NDArray * ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1842,7 +1956,9 @@ Enables `ComplexSIMD / ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1861,7 +1977,9 @@ Enables `Scalar / ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1880,7 +1998,9 @@ Enables `NDArray / ComplexNDArray`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1902,7 +2022,9 @@ Enables `ComplexNDArray += ComplexSIMD`.
 - `self` (`Self`) `[mut]`
 - `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1917,7 +2039,9 @@ Enables `ComplexNDArray += Scalar`.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1932,7 +2056,9 @@ Enables `ComplexNDArray += ComplexNDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1947,7 +2073,9 @@ Enables `ComplexNDArray += NDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1969,7 +2097,9 @@ Enables `ComplexNDArray -= ComplexSIMD`.
 - `self` (`Self`) `[mut]`
 - `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1984,7 +2114,9 @@ Enables `ComplexNDArray -= Scalar`.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1999,7 +2131,9 @@ Enables `ComplexNDArray -= ComplexNDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -2014,7 +2148,9 @@ Enables `ComplexNDArray -= NDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2036,7 +2172,9 @@ Enables `ComplexNDArray *= ComplexSIMD`.
 - `self` (`Self`) `[mut]`
 - `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2051,7 +2189,9 @@ Enables `ComplexNDArray *= Scalar`.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -2066,7 +2206,9 @@ Enables `ComplexNDArray *= ComplexNDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -2081,7 +2223,9 @@ Enables `ComplexNDArray *= NDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2103,7 +2247,9 @@ Enables `ComplexNDArray /= ComplexSIMD`.
 - `self` (`Self`) `[mut]`
 - `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2118,7 +2264,9 @@ Enables `ComplexNDArray /= Scalar`.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -2133,7 +2281,9 @@ Enables `ComplexNDArray /= ComplexNDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -2148,7 +2298,9 @@ Enables `ComplexNDArray /= NDArray`.
 - `self` (`Self`) `[mut]`
 - `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2175,7 +2327,9 @@ A **= 3  # Cube in place
 - `self` (`Self`) `[mut]`
 - `p` (`Int`) `[imm]`: Integer exponent.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2205,7 +2359,9 @@ var v = arr.view()  # Create a view into arr.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2498,7 +2654,9 @@ var mag = A.__abs__()  # Returns NDArray[f64] with magnitudes
 
 - `NDArray[Self.dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2681,7 +2839,9 @@ Returns an array of the same data with a new shape.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2795,7 +2955,9 @@ Return the complex conjugate of the ComplexNDArray.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2817,7 +2979,9 @@ def to_ndarray(self, type: String = "re") -> NDArray[Self.dtype]
 
 - `NDArray[Self.dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2873,7 +3037,9 @@ var result = A.all()  # True if all non-zero
 
 - `Bool`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2907,7 +3073,9 @@ var result = A.any()  # True if any non-zero
 
 - `Bool`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2939,7 +3107,9 @@ var total = A.sum()  # Sum of all elements
 
 - `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2956,7 +3126,9 @@ def sum(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2988,7 +3160,9 @@ var product = A.prod()  # Product of all elements
 
 - `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3005,7 +3179,9 @@ def prod(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3037,7 +3213,9 @@ var average = A.mean()  # Mean of all elements
 
 - `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3054,7 +3232,9 @@ def mean(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3089,7 +3269,9 @@ Returns the element with maximum |z| = sqrt(re^2 + im^2).
 
 - `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3106,7 +3288,9 @@ def max(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3141,7 +3325,9 @@ Returns the element with minimum |z| = sqrt(re^2 + im^2).
 
 - `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3158,7 +3344,9 @@ def min(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3193,7 +3381,9 @@ Compares by magnitude: |z| = sqrt(re^2 + im^2).
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3210,7 +3400,9 @@ def argmax(self, axis: Int) -> NDArray[DType.int]
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3245,7 +3437,9 @@ Compares by magnitude: |z| = sqrt(re^2 + im^2).
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3262,7 +3456,9 @@ def argmin(self, axis: Int) -> NDArray[DType.int]
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3297,7 +3493,9 @@ For array [a, b, c, d], returns [a, a+b, a+b+c, a+b+c+d].
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3314,7 +3512,9 @@ def cumsum(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3349,7 +3549,9 @@ For array [a, b, c, d], returns [a, a*b, a*b*c, a*b*c*d].
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3366,7 +3568,9 @@ def cumprod(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3397,7 +3601,9 @@ var flat = A.flatten()  # Shape(12)
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3525,7 +3731,9 @@ Clips by magnitude while preserving phase angle.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3556,7 +3764,9 @@ var rounded = A.round()  # Returns 2.0+2.0i
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3588,7 +3798,9 @@ var A_T = A.T()  # Shape(4, 3)
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3614,7 +3826,9 @@ var A_T = A.T([2, 0, 1])  # Shape(4, 2, 3)
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3733,7 +3947,9 @@ Casts this complex array to another complex dtype.
 
 - `ComplexNDArray[target]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3758,7 +3974,9 @@ def compress(self, condition: NDArray[DType.bool], axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3775,7 +3993,9 @@ def compress(self, condition: NDArray[DType.bool]) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3796,7 +4016,9 @@ def contiguous(self) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3938,7 +4160,9 @@ def to_numpy(self) -> PythonObject
 
 - `PythonObject`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3961,7 +4185,9 @@ def argsort(self) -> NDArray[DType.int]
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3978,7 +4204,9 @@ def argsort(self, axis: Int) -> NDArray[DType.int]
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3997,7 +4225,9 @@ def sort(mut self, axis: Int = Int(-1), stable: Bool = False)
 - `axis` (`Int`) `[imm]`
 - `stable` (`Bool`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4020,7 +4250,9 @@ def median(self) -> ComplexSIMD[cdtype]
 
 - `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4037,7 +4269,9 @@ def median(self, axis: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4098,7 +4332,9 @@ This modifies the array in-place. To get a reshaped copy, use reshape().
 - `self` (`Self`) `[mut]`
 - `shape` (`NDArrayShape`) `[imm]`: The new shape for the array.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

@@ -59,7 +59,9 @@ print(arr2)  # [10.0, 8.0, 6.0, 4.0, 2.0]
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -91,7 +93,9 @@ print(arr)  # [0.0, 1.0, 2.0, 3.0, 4.0]
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -125,7 +129,9 @@ var arr = nm.arange[nm.cf64](start, stop, step)
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -149,7 +155,9 @@ Overload with start=0+0j and step=1+1j for convenience.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -198,7 +206,9 @@ var large = nm.linspace[nm.f64, parallel=True](0.0, 1000.0, 10000)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -233,7 +243,9 @@ var arr = nm.linspace[nm.cf64](start, stop, 5)
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -282,7 +294,9 @@ print(arr2)  # [1.0, 2.0, 4.0, 8.0, 16.0]
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -311,7 +325,9 @@ The sequence starts at base^start and ends at base^stop.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -355,7 +371,9 @@ This is similar to logspace, but with endpoints specified directly.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -383,7 +401,9 @@ This is similar to logspace, but with endpoints specified directly.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -412,7 +432,9 @@ Generate an empty NDArray of given shape with arbitrary values.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -436,7 +458,9 @@ Overload of `empty` that accepts a list of integers for the shape.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -460,7 +484,9 @@ Overload of `empty` that accepts variadic integers for the shape.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -482,7 +508,9 @@ Generate an empty ComplexNDArray of given shape with arbitrary values.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -506,7 +534,9 @@ Overload of `empty` that accepts a list of integers for the shape.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 6</div>
 
@@ -530,7 +560,9 @@ Overload of `empty` that accepts variadic integers for the shape.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -559,7 +591,9 @@ Generate an empty NDArray of the same shape as `array`.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -581,7 +615,9 @@ Generate an empty ComplexNDArray of the same shape as `array`.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -621,7 +657,9 @@ var arr = nm.eye[nm.f64](3, 4)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -644,7 +682,9 @@ Return a 2-D ComplexNDArray with ones on the diagonal and zeros elsewhere.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -683,7 +723,9 @@ var I = nm.identity[nm.f64](3)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -705,7 +747,9 @@ Generate a complex identity matrix of size N x N.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -743,7 +787,9 @@ var arr = nm.ones[nm.f64](nm.Shape(2, 3))
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -765,7 +811,9 @@ Generate a NDArray filled with ones from a list of integers.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -787,7 +835,9 @@ Generate a NDArray filled with ones from variadic integer arguments.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -809,7 +859,9 @@ Generate a ComplexNDArray filled with ones.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -831,7 +883,9 @@ Generate a ComplexNDArray filled with ones from a list of integers.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 6</div>
 
@@ -853,7 +907,9 @@ Generate a ComplexNDArray filled with ones from variadic integer arguments.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -882,7 +938,9 @@ Generate a NDArray of the same shape as `a` filled with ones.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -904,7 +962,9 @@ Generate a ComplexNDArray of the same shape as `array` filled with ones.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -942,7 +1002,9 @@ var arr = nm.zeros[nm.f64](nm.Shape(2, 3))
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -964,7 +1026,9 @@ Generate a NDArray filled with zeros from a list of integers.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -986,7 +1050,9 @@ Generate a NDArray filled with zeros from variadic integer arguments.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1008,7 +1074,9 @@ Generate a ComplexNDArray filled with zeros.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -1030,7 +1098,9 @@ Generate a ComplexNDArray filled with zeros from a list of integers.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 6</div>
 
@@ -1052,7 +1122,9 @@ Generate a ComplexNDArray filled with zeros from variadic integer arguments.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1081,7 +1153,9 @@ Generate a NDArray of the same shape as `array` filled with zeros.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1103,7 +1177,9 @@ Generate a ComplexNDArray of the same shape as `array` filled with zeros.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1143,7 +1219,9 @@ var arr = nm.full[nm.f64](nm.Shape(2, 3), fill_value=7.0)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1167,7 +1245,9 @@ Create a NDArray filled with a specified value from a list of integers.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1191,7 +1271,9 @@ Create a NDArray filled with a specified value from variadic integer arguments.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1223,7 +1305,9 @@ var arr = nm.full[nm.cf64](nm.Shape(2, 2), fill_value=val)
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -1247,7 +1331,9 @@ Create a ComplexNDArray filled with a specified value from a list of integers.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 6</div>
 
@@ -1271,7 +1357,9 @@ Create a ComplexNDArray filled with a specified value from variadic integer argu
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1302,7 +1390,9 @@ Generate a NDArray of the same shape as `array` filled with `fill_value`.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1326,7 +1416,9 @@ Generate a ComplexNDArray of the same shape as `array` filled with `fill_value`.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1373,7 +1465,9 @@ var d = nm.diag[nm.f64](mat)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1396,7 +1490,9 @@ Extract a diagonal or construct a diagonal ComplexNDArray.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1438,7 +1534,9 @@ var d = nm.diagflat[nm.f64](v)  # Flattens to [0,1,2,3] then creates diagonal
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1461,7 +1559,9 @@ Create a 2-D complex array with the flattened input as the diagonal.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1511,7 +1611,9 @@ var L2 = nm.tri[nm.f64](3, 3, k=1)
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1537,7 +1639,9 @@ Creates a complex array with ones on and below the k-th diagonal, zeros elsewher
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1567,7 +1671,9 @@ Zero out elements above the k-th diagonal.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1590,7 +1696,9 @@ Zero out elements above the k-th diagonal.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1620,7 +1728,9 @@ Zero out elements below the k-th diagonal.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1643,7 +1753,9 @@ Zero out elements below the k-th diagonal.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1674,7 +1786,9 @@ Generate a Vandermonde matrix.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1698,7 +1812,9 @@ Generate a Complex Vandermonde matrix.
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1728,7 +1844,9 @@ Cast an NDArray to a different dtype.
 
 - `NDArray[target]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1751,7 +1869,9 @@ Cast a ComplexNDArray to a different dtype.
 
 - `ComplexNDArray[target]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1820,7 +1940,9 @@ casted to the dtype of the NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1850,7 +1972,9 @@ This reload is an comptime of `fromstring`.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1881,7 +2005,9 @@ var arr = nm.array[f16](data=[Scalar[f16](1), 2, 3, 4], shape=[2, 2])
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1918,7 +2044,9 @@ var array = nm.array[cf64](
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -1951,7 +2079,9 @@ A = nm.array[f16](data=np_arr, order="C")
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -1986,7 +2116,9 @@ A = nm.array[cf32](real=np_arr, imag=np_arr, order="C")
 
 - `ComplexNDArray[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2028,7 +2160,9 @@ var grids = meshgrid[f64, indexing="xy"](x, y)
 
 - `List[NDArray[dtype]]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

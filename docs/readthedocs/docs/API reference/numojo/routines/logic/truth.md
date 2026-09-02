@@ -39,7 +39,9 @@ var result = all(a > 5) # outputs False
 
 - `Scalar[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -71,7 +73,9 @@ var result = any(a > 5) # outputs True
 
 - `Scalar[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

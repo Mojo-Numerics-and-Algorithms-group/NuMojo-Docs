@@ -131,7 +131,9 @@ functions in `numojo.routines.creation` module instead.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -172,7 +174,9 @@ var arr = NDArray[f32](
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -239,7 +243,9 @@ Ownership is determined by `is_view` and the DataContainer's reference count:
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -1050,7 +1056,9 @@ Sets the items of the array from an array of indices.
 - `index` (`NDArray[DType.int]`) `[imm]`: The array of indices.
 - `val` (`Self`) `[imm]`: The value to set.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1075,7 +1083,9 @@ For boolean arrays, use `__invert__` (`~`).
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1100,7 +1110,9 @@ Does not accept boolean type arrays.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1125,7 +1137,9 @@ Only works for boolean and integral types.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1151,7 +1165,9 @@ Computes itemwise less-than with a scalar.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1170,7 +1186,9 @@ Computes itemwise less-than with an array.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1196,7 +1214,9 @@ Computes itemwise less-than-or-equal-to with a scalar.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1215,7 +1235,9 @@ Computes itemwise less-than-or-equal-to with an array.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1241,7 +1263,9 @@ Computes itemwise equality.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1260,7 +1284,9 @@ Computes itemwise equality with a scalar.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1286,7 +1312,9 @@ Computes itemwise inequality with a scalar.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1305,7 +1333,9 @@ Computes itemwise inequality with an array.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1331,7 +1361,9 @@ Computes itemwise greater-than with a scalar.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1350,7 +1382,9 @@ Computes itemwise greater-than with an array.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1376,7 +1410,9 @@ Computes itemwise greater-than-or-equal-to with a scalar.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1395,7 +1431,9 @@ Computes itemwise greater-than-or-equal-to with an array.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1421,7 +1459,9 @@ Enables `array + scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1440,7 +1480,9 @@ Enables `array + array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1466,7 +1508,9 @@ Enables `array - scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1485,7 +1529,9 @@ Enables `array - array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1511,7 +1557,9 @@ Enables `array * scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1530,7 +1578,9 @@ Enables `array * array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1552,7 +1602,9 @@ def __matmul__(self, other: Self) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1578,7 +1630,9 @@ Enables `array / scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1597,7 +1651,9 @@ Enables `array / array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1623,7 +1679,9 @@ Enables `array // scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1642,7 +1700,9 @@ Enables `array // array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1668,7 +1728,9 @@ Enables `array % scalar`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1687,7 +1749,9 @@ Enables `array % array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1711,7 +1775,9 @@ def __pow__(self, p: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1730,7 +1796,9 @@ Computes element-wise power of items.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1747,7 +1815,9 @@ def __pow__(self, p: Self) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1771,7 +1841,9 @@ Enables `scalar + array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1795,7 +1867,9 @@ Enables `scalar - array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1819,7 +1893,9 @@ Enables `scalar * array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1843,7 +1919,9 @@ Enables `scalar / array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1867,7 +1945,9 @@ Enables `scalar // array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1891,7 +1971,9 @@ Enables `scalar % array`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1913,7 +1995,9 @@ Enables `array += scalar`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1928,7 +2012,9 @@ Enables `array += array`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1950,7 +2036,9 @@ Enables `array -= scalar`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1965,7 +2053,9 @@ Enables `array -= array`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1987,7 +2077,9 @@ Enables `array *= scalar`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2002,7 +2094,9 @@ Enables `array *= array`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2024,7 +2118,9 @@ Enables `array /= scalar`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `s` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2039,7 +2135,9 @@ Enables `array /= array`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2061,7 +2159,9 @@ Enables `array //= scalar`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `s` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2076,7 +2176,9 @@ Enables `array //= array`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2098,7 +2200,9 @@ Enables `array %= scalar`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2113,7 +2217,9 @@ Enables `array %= array`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2133,7 +2239,9 @@ Enables `array **= int`. View-safe: modifies buffer in-place.
 - `self` (`Self`) `[mut]`
 - `p` (`Int`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2163,7 +2271,9 @@ var v = arr.view()  # Create a view into arr
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2189,7 +2299,9 @@ Create a non-owning view with explicit logical layout metadata.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -2533,7 +2645,9 @@ A.set(mask, val=Float32(0.0))
 - `mask` (`NDArray[DType.bool]`) `[imm]`: Boolean mask array.
 - `val` (`Scalar[dtype]`) `[imm]`: The scalar value to write at every True position.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -2567,7 +2681,9 @@ a.set(1, Slice(1, 3), val=patch)  # row 1, cols 1-2
 - `*slices` (`Variant[Slice, Int]`) `[imm]`: Variadic mix of `Slice` and `Int` index entries.
 - `val` (`Self`) `[imm]`: The NDArray value to write into the selected region.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -2597,7 +2713,9 @@ a.set(Slice(1, 3), Slice(1, 3), val=99)
     default to the full range.
 - `val` (`Scalar[dtype]`) `[imm]`: The scalar value to broadcast into every selected position.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -2632,7 +2750,9 @@ a.set(Slice(1, 3), Slice(2, 4), val=7)  # sub-matrix
 - `*slices` (`Variant[Slice, Int]`) `[imm]`: Variadic mix of `Slice` and `Int` index entries.
 - `val` (`Scalar[dtype]`) `[imm]`: The scalar value to write.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -2667,7 +2787,9 @@ A.set(mask, val=vals)
 - `mask` (`NDArray[DType.bool]`) `[imm]`: Boolean mask array.
 - `val` (`Self`) `[imm]`: The NDArray value(s) to write.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3130,7 +3252,9 @@ Iterates over elements of the NDArray and returns sub-arrays as views.
 
 - `_NDArrayIter[origin_of(self), dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3153,7 +3277,9 @@ Iterates backwards over elements of the NDArray, returning copied values.
 
 - `_NDArrayIter[origin_of(self), dtype, False]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3230,7 +3356,9 @@ Returns the indices of the maximum values along an axis. When no axis is specifi
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3249,7 +3377,9 @@ Returns the indices of the maximum values along an axis. See `numojo.argmax()` f
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3274,7 +3404,9 @@ Returns the indices of the minimum values along an axis. When no axis is specifi
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3293,7 +3425,9 @@ Returns the indices of the minimum values along an axis. See `numojo.argmin()` f
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3318,7 +3452,9 @@ Sorts the NDArray and returns the sorted indices. See `numojo.argsort()` for mor
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3337,7 +3473,9 @@ Sorts the NDArray and returns the sorted indices. See `numojo.argsort()` for mor
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3364,7 +3502,9 @@ Converts the type of the array.
 
 - `NDArray[target]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3392,7 +3532,9 @@ If `a_min` is greater than `a_max`, the value is equal to `a_max`. See
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3493,7 +3635,9 @@ print(idx2[1])  # [0, 1]
 
 - `List[NDArray[DType.int]]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3516,7 +3660,9 @@ Returns flat indices of non-zero elements.
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3555,7 +3701,9 @@ var c = v.contiguous()    # new C-contiguous owned copy
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3579,7 +3727,9 @@ Gets the i-th column of the matrix.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3604,7 +3754,9 @@ Returns the cumulative product of all items of an array. The array is flattened 
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3623,7 +3775,9 @@ Returns the cumulative product of the array along the given axis.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3648,7 +3802,9 @@ Returns the cumulative sum of all items of an array. The array is flattened befo
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3667,7 +3823,9 @@ Returns the cumulative sum of the array along the given axis.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -3889,7 +4047,9 @@ Returns elements chosen from `x` or `y` depending on this mask.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -3909,7 +4069,9 @@ Returns elements from `x` or scalar `y` depending on this mask.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -3929,7 +4091,9 @@ Returns scalar `x` or elements from `y` depending on this mask.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4118,7 +4282,9 @@ Returns a copy of the array collapsed into one dimension.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4413,7 +4579,9 @@ When no axis is given, the array is flattened before sorting.
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4434,7 +4602,9 @@ When no axis is given, the array is flattened before sorting.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4463,7 +4633,9 @@ Computes the mean of the array.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4486,7 +4658,9 @@ Computes the mean of array elements over a given axis.
 
 - `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4515,7 +4689,9 @@ Computes the median of the array.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4538,7 +4714,9 @@ Computes the median of array elements over a given axis.
 
 - `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4565,7 +4743,9 @@ When no axis is given, the array is flattened before sorting.
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4586,7 +4766,9 @@ When no axis is given, the array is flattened before sorting.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4626,7 +4808,9 @@ Returns an iterator yielding the array elements according to the memory layout o
 
 - `_NDIter[DataContainer[dtype].origin, dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4658,7 +4842,9 @@ Returns an iterator yielding the array elements according to the specified order
 
 - `_NDIter[DataContainer[dtype].origin, dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4683,7 +4869,9 @@ Computes the product of all array elements.
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4702,7 +4890,9 @@ Computes the product of array elements over a given axis.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4727,7 +4917,9 @@ Returns an array of the same data with a new shape.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4750,7 +4942,9 @@ To return a new array, use `reshape`.
 - `self` (`Self`) `[mut]`
 - `shape` (`NDArrayShape`) `[imm]`: The shape after resize.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4773,7 +4967,9 @@ Rounds the elements of the array to a whole number.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4850,7 +5046,9 @@ Computes the standard deviation. See `numojo.std`.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4874,7 +5072,9 @@ Computes the standard deviation along the axis. See `numojo.std`.
 
 - `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4899,7 +5099,9 @@ Returns the sum of all array elements.
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4918,7 +5120,9 @@ Computes the sum of array elements over a given axis.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -4948,7 +5152,9 @@ Defined in `manipulation.transpose`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -4971,7 +5177,9 @@ Defined in `manipulation.transpose`.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -5018,7 +5226,9 @@ Converts the array to a NumPy array.
 
 - `PythonObject`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -5044,7 +5254,9 @@ Computes the trace of the ndarray.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -5104,7 +5316,9 @@ Returns the variance of the array.
 
 - `Scalar[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -5128,7 +5342,9 @@ Returns the variance of the array along the axis. See `numojo.variance`.
 
 - `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

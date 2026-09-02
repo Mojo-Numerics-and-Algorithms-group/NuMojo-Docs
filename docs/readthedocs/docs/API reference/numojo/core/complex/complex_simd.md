@@ -1503,7 +1503,9 @@ Returns the element-wise reciprocal (1 / self) of the ComplexSIMD instance.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1642,7 +1644,9 @@ Returns a string representation of the ComplexSIMD instance for debugging. `Comp
 
 - `String`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

@@ -38,7 +38,9 @@ Load arrays or pickled objects from .npy, .npz or pickled files.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -63,7 +65,9 @@ Save an array to a binary file in NumPy .npy format.
 - `array` (`NDArray[dtype]`) `[imm]`: Array data to be saved.
 - `allow_pickle` (`Bool`) `[imm]`: Allow saving object arrays using Python pickles.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -94,7 +98,9 @@ Load data from a text file.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -124,7 +130,9 @@ Save an array to a text file.
 - `footer` (`String`) `[imm]`: String that will be written at the end of the file.
 - `comments` (`String`) `[imm]`: String that will be prepended to the header and footer strings.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

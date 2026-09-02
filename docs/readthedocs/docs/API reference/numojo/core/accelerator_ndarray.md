@@ -84,7 +84,9 @@ def __init__(out self, shape: NDArrayShape, order: String = "C")
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -104,7 +106,9 @@ def __init__(out self, shape: List[Int], order: String = "C")
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -124,7 +128,9 @@ def __init__(out self, *shape: Int, *, order: String = "C")
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 5</div>
 
@@ -146,7 +152,9 @@ def __init__(out self, shape: NDArrayShape, strides: NDArrayStrides, offset: Int
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 6</div>
 
@@ -170,7 +178,9 @@ def __init__(out self, var data: AcceleratorDataContainer[dtype, device], *, is_
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 7</div>
 
@@ -227,7 +237,9 @@ def __getitem__(self) -> Scalar[dtype]
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -244,7 +256,9 @@ def __getitem__(self, index: Item) -> Scalar[dtype]
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -261,7 +275,9 @@ def __getitem__(self, idx: Int) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 4</div>
 
@@ -278,7 +294,9 @@ def __getitem__(self, var *slices: Slice) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -297,7 +315,9 @@ def __setitem__(mut self, index: Item, value: Scalar[dtype])
 - `index` (`Item`) `[imm]`
 - `value` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -345,7 +365,9 @@ Elementwise addition. See `_binary_op` for constraints.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -369,7 +391,9 @@ Elementwise subtraction. See `_binary_op` for constraints.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -393,7 +417,9 @@ Elementwise multiplication. See `_binary_op` for constraints.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -417,7 +443,9 @@ Elementwise division. See `_binary_op` for constraints.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -440,7 +468,9 @@ Create a metadata-only view sharing the same storage.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -680,7 +710,9 @@ def item(self, flat_index: Int) -> Scalar[dtype]
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -697,7 +729,9 @@ def item(self, *indices: Int) -> Scalar[dtype]
 
 - `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -716,7 +750,9 @@ def itemset(mut self, flat_index: Int, value: Scalar[dtype])
 - `flat_index` (`Int`) `[imm]`
 - `value` (`Scalar[dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -737,7 +773,9 @@ def deep_copy(self) -> Self
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -758,7 +796,9 @@ def to_host(self) -> AcceleratorNDArray[dtype]
 
 - `AcceleratorNDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -783,7 +823,9 @@ def to_device[target: Device](self) -> AcceleratorNDArray[dtype, target]
 
 - `AcceleratorNDArray[dtype, target]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -808,7 +850,9 @@ def to[target: Device](self) -> AcceleratorNDArray[dtype, target]
 
 - `AcceleratorNDArray[dtype, target]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -865,7 +909,9 @@ Create an uninitialized accelerator array on `device`.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -889,7 +935,9 @@ Create an uninitialized accelerator array on `device`.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -913,7 +961,9 @@ Create an uninitialized accelerator array on `device`.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -945,7 +995,9 @@ Create an accelerator array filled with `fill_value`.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -970,7 +1022,9 @@ Create an accelerator array filled with `fill_value`.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1001,7 +1055,9 @@ Create an accelerator array filled with zeros.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1025,7 +1081,9 @@ Create an accelerator array filled with zeros.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1049,7 +1107,9 @@ Create an accelerator array filled with zeros.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1080,7 +1140,9 @@ Create an accelerator array filled with ones.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1104,7 +1166,9 @@ Create an accelerator array filled with ones.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 3</div>
 
@@ -1128,7 +1192,9 @@ Create an accelerator array filled with ones.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1157,7 +1223,9 @@ Create an uninitialized accelerator array with `a`'s shape and device.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1186,7 +1254,9 @@ Create a zeros accelerator array with `a`'s shape and device.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1215,7 +1285,9 @@ Create a ones accelerator array with `a`'s shape and device.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1245,7 +1317,9 @@ Create a filled accelerator array with `a`'s shape and device.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -1277,7 +1351,9 @@ Create an accelerator array with evenly spaced values.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -1300,7 +1376,9 @@ Create an accelerator array with values from zero to `stop`.
 
 - `AcceleratorNDArray[dtype, device]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

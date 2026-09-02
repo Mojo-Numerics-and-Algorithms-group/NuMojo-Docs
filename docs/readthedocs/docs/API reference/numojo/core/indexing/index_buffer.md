@@ -226,7 +226,9 @@ Get the element at the given index.
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -245,7 +247,9 @@ Get a sub-buffer using a slice.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -268,7 +272,9 @@ Set the element at the given index.
 - `idx` (`Int`) `[imm]`: Index of the element.
 - `value` (`Int`) `[imm]`: Value to set.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -284,7 +290,9 @@ Set a sub-buffer using a slice.
 - `slice` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 - `value` (`Self`) `[imm]`: Buffer to set.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -570,7 +578,9 @@ Drops the item at the given axis (index).
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -595,7 +605,9 @@ Inserts a value at the given axis (index).
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -703,7 +715,9 @@ Create a IndexBuffer with a range of values.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -800,7 +814,9 @@ Create a IndexBuffer with linearly spaced values.
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

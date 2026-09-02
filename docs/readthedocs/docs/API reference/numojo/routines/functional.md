@@ -38,7 +38,9 @@ Applies a function to a NDArray by axis and reduce that dimension. The returned 
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -98,7 +100,9 @@ Applies a function to a NDArray by axis and reduce that dimension. When the arra
 
 - `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -127,7 +131,9 @@ Applies a function to a NDArray by axis without reducing that dimension. The res
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -152,7 +158,9 @@ Applies a function to a NDArray by axis without reducing that dimension. The fun
 - `a` (`NDArray[dtype]`) `[mut]`: The NDArray to apply the function to.
 - `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -181,7 +189,9 @@ Applies a function to a NDArray by axis without reducing that dimension. The res
 
 - `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

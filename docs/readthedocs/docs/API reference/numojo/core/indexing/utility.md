@@ -32,7 +32,9 @@ Convert a boolean NDArray to a numeric NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -66,7 +68,9 @@ var np_arr1 = arr.to_numpy()
 
 - `PythonObject`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

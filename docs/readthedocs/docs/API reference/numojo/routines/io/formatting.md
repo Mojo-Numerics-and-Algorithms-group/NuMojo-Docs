@@ -422,7 +422,9 @@ Format a single value based on the print options.
 
 - `String`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -445,7 +447,9 @@ Format a complex value based on the print options.
 
 - `String`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

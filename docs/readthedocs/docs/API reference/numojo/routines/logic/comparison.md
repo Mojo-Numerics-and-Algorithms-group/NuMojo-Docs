@@ -54,7 +54,9 @@ print(greater[nm.f64](arr1, arr2))  # Output: [True, False, True]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -87,7 +89,9 @@ print(greater[nm.f64](arr, 2.0))  # Output: [False, False, True]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -128,7 +132,9 @@ print(greater_equal[nm.f64](arr1, arr2))  # Output: [True, True, False]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -161,7 +167,9 @@ print(greater_equal[nm.f64](arr, 2.0))  # Output: [False, True, True]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -202,7 +210,9 @@ print(less[nm.f64](arr1, arr2))  # Output: [False, True, False]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -235,7 +245,9 @@ print(less[nm.f64](arr, 2.0))  # Output: [True, False, False]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -276,7 +288,9 @@ print(less_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -309,7 +323,9 @@ print(less_equal[nm.f64](arr, 2.0))  # Output: [True, True, False]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -350,7 +366,9 @@ print(equal[nm.f64](arr1, arr2))  # Output: [True, False, True]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -383,7 +401,9 @@ print(equal[nm.f64](arr, 2.0))  # Output: [False, True, False]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -424,7 +444,9 @@ print(not_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 <div class="overload-divider">Overload 2</div>
 
@@ -457,7 +479,9 @@ print(not_equal[nm.f64](arr, 2.0))  # Output: [True, False, True]
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -589,7 +613,9 @@ print(array_equal[i32](arr, arr2))  # Output: True
 
 - `Bool`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

@@ -108,7 +108,9 @@ Apply a SIMD level fuse multipy add function of three variables and one return t
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -137,7 +139,9 @@ Apply a SIMD function of one variable and one return to a NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -170,7 +174,9 @@ Apply a SIMD function of two variable and one return to a NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -203,7 +209,9 @@ Apply a SIMD function of two variable and one return to a NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -236,7 +244,9 @@ Apply a SIMD function of two variable and one return to a NDArray.
 
 - `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -269,7 +279,9 @@ Apply a SIMD comparision function of two variable.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -302,7 +314,9 @@ Apply a SIMD comparision function of two variable.
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -329,7 +343,9 @@ def math_func_is[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, si
 
 - `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

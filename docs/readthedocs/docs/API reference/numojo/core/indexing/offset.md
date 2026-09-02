@@ -172,7 +172,9 @@ Transfers the offset by flipping the strides information. Used to transfer betwe
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

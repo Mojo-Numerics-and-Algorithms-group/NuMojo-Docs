@@ -55,7 +55,9 @@ UNSAFE: Raw pointer is used!
 - `current_dim` (`Int`) `[imm]`: Temporarily save the current dimension.
 - `previous_sum` (`Int`) `[imm]`: Temporarily save the previous summed index.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -87,7 +89,9 @@ Traverse a multi-dimensional array in an iterative manner.
 - `index` (`List[Int]`) `[mut]`: The list of indices.
 - `depth` (`Int`) `[imm]`: The depth of the indices.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -121,7 +125,9 @@ Traverse a multi-dimensional array in an iterative manner for setter.
 - `offset` (`Int`) `[imm]`: The buffer offset of the first destination element in narr.
 - `index` (`List[Int]`) `[mut]`: The list of indices (mutated in place as a counter).
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
