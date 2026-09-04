@@ -1,39 +1,47 @@
 # `numojo.routines.constants`
 
-Constants (numojo.routines.constants)
+Mathematical and physical constants.
 
-This module defines physical and mathematical constants for use in numerical computations.
-The constants are defined as class attributes of the `Constants` class, which is designed to be immutable and efficient for compile-time evaluation.
+Physical and mathematical constants (pi, e, c) defined for compile-time
+evaluation with indefinite precision.
+
+Exports
+-------
+- `pi`: Mathematical constant π.
+- `e`: Euler's number.
+- `c`: Speed of light.
 
 ## Structs
 
 ### `Constants`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct Constants
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Movable`
 
 Define constants.
 
 Use comptime for compile time evaluation of indefinite precision.
 ```mojo
 import numojo as nm
-fn main():
+def main():
     var pi: Float64 = nm.pi
     print("Float64:", pi*pi*pi*pi*pi*pi)
     print("Literal:", nm.pi*nm.pi*nm.pi*nm.pi*nm.pi*nm.pi)
 ```
-```console
-Float64: 961.38919357530415
-Literal: 961.38919357530449
-```
+
+</div>
 
 #### Aliases
 
-##### `c`
+#### `c`
 
 ```mojo
 comptime c
@@ -41,7 +49,7 @@ comptime c
 
 **Value:** `299792458`
 
-##### `pi`
+#### `pi`
 
 ```mojo
 comptime pi
@@ -49,7 +57,7 @@ comptime pi
 
 **Value:** `3.1415926535897931`
 
-##### `e`
+#### `e`
 
 ```mojo
 comptime e
@@ -57,7 +65,7 @@ comptime e
 
 **Value:** `2.7182818284590451`
 
-##### `hbar`
+#### `hbar`
 
 ```mojo
 comptime hbar
@@ -65,50 +73,26 @@ comptime hbar
 
 **Value:** `1.0545718176461565E-34`
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
-__init__(out self)
+def __init__(out self)
 ```
 
 <span class="badge badge-static">static</span>
 
 Initializes the constants.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -117,15 +101,15 @@ Initializes the constants.
 
 <div class="fn-card" markdown="1">
 
-##### `__del__`
+#### `__deinit__`
 
 ```mojo
-__del__(deinit self)
+def __deinit__(deinit self)
 ```
 
 Deletes the constants.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[deinit]`
 

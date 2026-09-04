@@ -1,8 +1,13 @@
 # `numojo.routines.logic.truth`
 
-Truth value testing (numojo.routines.logic.truth)
+Truth value testing for arrays.
 
-This module implements the truth value testing functions, such as `all` and `any`, for both `NDArray` and `Matrix`.
+Functions for testing truth values (`all` and `any`) for NDArray types.
+
+Exports
+-------
+- `all`: Test if all elements are truthy.
+- `any`: Test if any element is truthy.
 
 ## Functions
 
@@ -11,66 +16,32 @@ This module implements the truth value testing functions, such as `all` and `any
 
 ### `all`
 
-#### Overload 1
-
 ```mojo
-all[dtype: DType](A: Matrix[dtype]) -> Scalar[dtype]
+def all(array: NDArray[DType.bool]) -> Scalar[DType.bool]
 ```
 
-Test whether all array elements evaluate to True.
+Checks whether all elements of the array evaluate to True.
 
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-
-**Returns:**
-
-- `Scalar`
-
-#### Overload 2
-
+<div class="prose-label">Examples</div>
 ```mojo
-all[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
+from numojo.prelude import *
+from numojo.routines.logic.truth import all
+
+var a = arange[i32](24).reshape(Shape(2, 3, 4))
+var result = all(a > 5) # outputs False
 ```
 
-Test whether all array elements evaluate to True along axis.
+<div class="prose-label">Args</div>
 
-**Parameters:**
+- `array` (`NDArray[DType.bool]`) `[imm]`: Input NDArray (DType.bool).
 
-- `dtype` (`DType`)
+<div class="prose-label">Returns</div>
 
-**Args:**
+- `Scalar[DType.bool]`
 
-- `A` (`Matrix`)
-- `axis` (`Int`)
+<div class="prose-label">Raises</div>
 
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-
-#### Overload 3
-
-```mojo
-all(array: NDArray[DType.bool]) -> Scalar[DType.bool]
-```
-
-If all True.
-
-**Args:**
-
-- `array` (`NDArray`): A NDArray.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -79,66 +50,32 @@ If all True.
 
 ### `any`
 
-#### Overload 1
-
 ```mojo
-any(array: NDArray[DType.bool]) -> Scalar[DType.bool]
+def any(array: NDArray[DType.bool]) -> Scalar[DType.bool]
 ```
 
-If any True.
+Checks whether any element of the array evaluate to True.
 
-**Args:**
-
-- `array` (`NDArray`): A NDArray.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-#### Overload 2
-
+<div class="prose-label">Examples</div>
 ```mojo
-any[dtype: DType](A: Matrix[dtype]) -> Scalar[dtype]
+from numojo.prelude import *
+from numojo.routines.logic.truth import any
+
+var a = arange[i32](24).reshape(Shape(2, 3, 4))
+var result = any(a > 5) # outputs True
 ```
 
-Test whether any array elements evaluate to True.
+<div class="prose-label">Args</div>
 
-**Parameters:**
+- `array` (`NDArray[DType.bool]`) `[imm]`: Input NDArray (DType.bool).
 
-- `dtype` (`DType`)
+<div class="prose-label">Returns</div>
 
-**Args:**
+- `Scalar[DType.bool]`
 
-- `A` (`Matrix`): Matrix.
+<div class="prose-label">Raises</div>
 
-**Returns:**
-
-- `Scalar`
-
-#### Overload 3
-
-```mojo
-any[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
-```
-
-Test whether any array elements evaluate to True along axis.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `axis` (`Int`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>

@@ -1,60 +1,48 @@
 # `numojo.routines.math.rounding`
 
-Rounding routines for NuMojo (numojo.routines.math.rounding).
+Rounding, truncation, and floating-point operations.
 
-Offers rounding, truncation, absolute value, and next-after helpers for NDArrays.
+Element-wise rounding (floor, ceiling, truncation), absolute value, banker's
+rounding, and next-after floating-point operations for NDArrays.
+
+Exports
+-------
+- `tabs`: Absolute value.
+- `tfloor`: Floor.
+- `tceil`: Ceiling.
+- `ttrunc`: Truncation.
+- `tround`: Rounding.
+- `roundeven`: Banker's rounding.
+- `nextafter`: Next representable value.
 
 ## Functions
 
 
 <div class="fn-card" markdown="1">
 
-### `round`
-
-```mojo
-round[dtype: DType](A: Matrix[dtype], decimals: Int = 0) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `decimals` (`Int`)
-
-**Returns:**
-
-- `Matrix`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
 ### `tabs`
 
 ```mojo
-tabs[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tabs[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise absolute value of NDArray.
+Element-wise absolute value of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -64,25 +52,26 @@ Element-wise absolute value of NDArray.
 ### `tfloor`
 
 ```mojo
-tfloor[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tfloor[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise round down to nearest whole number of NDArray.
+Element-wise floor of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -92,25 +81,26 @@ Element-wise round down to nearest whole number of NDArray.
 ### `tceil`
 
 ```mojo
-tceil[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tceil[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise round up to nearest whole number of NDArray.
+Element-wise ceiling of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -120,25 +110,26 @@ Element-wise round up to nearest whole number of NDArray.
 ### `ttrunc`
 
 ```mojo
-ttrunc[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def ttrunc[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise remove decimal value from float whole number of NDArray.
+Element-wise truncation of a NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -148,25 +139,26 @@ Element-wise remove decimal value from float whole number of NDArray.
 ### `tround`
 
 ```mojo
-tround[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tround[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Element-wise round NDArray to whole number.
+Element-wise rounding of a NDArray to a whole number.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -176,29 +168,26 @@ Element-wise round NDArray to whole number.
 ### `roundeven`
 
 ```mojo
-roundeven[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def roundeven[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Performs element-wise banker's rounding on the elements of a NDArray.
+Element-wise banker's rounding of a NDArray.
 
-The element-wise banker's rounding of NDArray.
+<div class="prose-label">Parameters</div>
 
-This rounding goes to the nearest integer with ties toward the nearest even integer.
+- `dtype` (`DType`): The element type.
 
-**Parameters:**
+<div class="prose-label">Args</div>
 
-- `dtype` (`DType`): The dtype of the input and output array.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Args:**
+<div class="prose-label">Returns</div>
 
-- `array` (`NDArray`): Array to perform rounding on.
+- `NDArray[dtype]`
 
-**Returns:**
+<div class="prose-label">Raises</div>
 
-- `NDArray`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -208,26 +197,30 @@ This rounding goes to the nearest integer with ties toward the nearest even inte
 ### `nextafter`
 
 ```mojo
-nextafter[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def nextafter[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
-Computes the nextafter of the inputs.
+Compute the next representable value after one array toward another.
 
-**Parameters:**
+!!! info "Constraints"
+    Datatype `dtype` must be a floating-point type.
 
-- `dtype` (`DType`): The dtype of the input and output array. Constraints: must be a floating-point type.
-- `backend` (`Backend`): Sets utility function origin, default to `Vectorized`.
+<div class="prose-label">Parameters</div>
 
-**Args:**
+- `dtype` (`DType`): The element type.
 
-- `array1` (`NDArray`): The first input argument.
-- `array2` (`NDArray`): The second input argument.
+<div class="prose-label">Args</div>
 
-**Returns:**
+- `array1` (`NDArray[dtype]`) `[imm]`: The first input array.
+- `array2` (`NDArray[dtype]`) `[imm]`: The second input array.
 
-- `NDArray`
+<div class="prose-label">Returns</div>
 
-!!! failure "Raises"
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

@@ -1,8 +1,17 @@
 # `numojo.routines.logic.contents`
 
-Contents routines (numojo.routines.logic.contents)
+Element properties and content checking for arrays.
 
-Implements Checking routines: currently not SIMD due to bool bit packing issue
+Functions for checking element properties (NaN, infinite, finite) and array
+contents (not SIMD due to bool bit packing issue).
+
+Exports
+-------
+- `isinf`: Check for infinite elements.
+- `isfinite`: Check for finite elements.
+- `isnan`: Check for NaN elements.
+- `isneginf`: Check for negative infinity.
+- `isposinf`: Check for positive infinity.
 
 ## Functions
 
@@ -12,25 +21,36 @@ Implements Checking routines: currently not SIMD due to bool bit packing issue
 ### `isinf`
 
 ```mojo
-isinf[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isinf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
 Checks if each element of the input array is infinite.
 
-**Parameters:**
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isinf
 
-- `dtype` (`DType`): DType - Data type of the input array.
-- `backend` (`Backend`): _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+def main() raises:
+    var arr = linspace(0, 10, 5)  # Example array: [0.0, 2.5, 5.0, 7.5, 10.0]
+    print(isinf(arr))  # Output: [False, False, False, False, False]
+```
 
-**Args:**
+<div class="prose-label">Parameters</div>
 
-- `array` (`NDArray`): NDArray[dtype] - Input array to check.
+- `dtype` (`DType`): Data type of the input array.
 
-**Returns:**
+<div class="prose-label">Args</div>
 
-- `NDArray`
+- `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-!!! failure "Raises"
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -40,25 +60,36 @@ Checks if each element of the input array is infinite.
 ### `isfinite`
 
 ```mojo
-isfinite[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isfinite[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
 Checks if each element of the input array is finite.
 
-**Parameters:**
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isfinite
 
-- `dtype` (`DType`): DType - Data type of the input array.
-- `backend` (`Backend`): _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+def main() raises:
+    var arr = nm.array[nm.f64]([1.0, Float64.MAX, Float64.MIN], shape=[3])
+    print(isfinite(arr))  # Output: [True, True, True]
+```
 
-**Args:**
+<div class="prose-label">Parameters</div>
 
-- `array` (`NDArray`): NDArray[dtype] - Input array to check.
+- `dtype` (`DType`): Data type of the input array.
 
-**Returns:**
+<div class="prose-label">Args</div>
 
-- `NDArray`
+- `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-!!! failure "Raises"
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -68,25 +99,36 @@ Checks if each element of the input array is finite.
 ### `isnan`
 
 ```mojo
-isnan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isnan[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
 Checks if each element of the input array is NaN.
 
-**Parameters:**
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isnan
 
-- `dtype` (`DType`): DType - Data type of the input array.
-- `backend` (`Backend`): _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+def main() raises:
+    var arr = nm.array[nm.f64]([1.0, 0.0, Float64.MAX], shape=[3])
+    print(isnan(arr))  # Output: [False, False, False]
+```
 
-**Args:**
+<div class="prose-label">Parameters</div>
 
-- `array` (`NDArray`): NDArray[dtype] - Input array to check.
+- `dtype` (`DType`): Data type of the input array.
 
-**Returns:**
+<div class="prose-label">Args</div>
 
-- `NDArray`
+- `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-!!! failure "Raises"
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -95,51 +137,37 @@ Checks if each element of the input array is NaN.
 
 ### `isneginf`
 
-#### Overload 1
-
 ```mojo
-isneginf[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isneginf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
 Checks if each element of the input array is negative infinity.
 
-**Parameters:**
-
-- `dtype` (`DType`): DType - Data type of the input array.
-- `backend` (`Backend`): _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
-
-**Args:**
-
-- `array` (`NDArray`): NDArray[dtype] - Input array to check.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 2
-
+<div class="prose-label">Examples</div>
 ```mojo
-isneginf[dtype: DType, backend: Backend = Vectorized](matrix: Matrix[dtype]) -> Matrix[DType.bool]
+from numojo.prelude import *
+from numojo.routines.logic.contents import isneginf
+
+def main() raises:
+    var arr = nm.array[nm.f64]([1.0, 0.0, -1.0], shape=[3])
+    print(isneginf(arr))  # Output: [False, False, False]
 ```
 
-Checks if each element of the input Matrix is negative infinity.
+<div class="prose-label">Parameters</div>
 
-**Parameters:**
+- `dtype` (`DType`): Data type of the input array.
 
-- `dtype` (`DType`): DType - Data type of the input Matrix.
-- `backend` (`Backend`): _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+<div class="prose-label">Args</div>
 
-**Args:**
+- `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-- `matrix` (`Matrix`): Matrix[dtype] - Input Matrix to check.
+<div class="prose-label">Returns</div>
 
-**Returns:**
+- `NDArray[DType.bool]`
 
-- `Matrix`
+<div class="prose-label">Raises</div>
 
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -148,51 +176,37 @@ Checks if each element of the input Matrix is negative infinity.
 
 ### `isposinf`
 
-#### Overload 1
-
 ```mojo
-isposinf[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isposinf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
 ```
 
-Checks if each element of the input array is positive infinity. Parameters:     dtype: DType - Data type of the input array.     backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+Checks if each element of the input array is positive infinity.
 
-**Parameters:**
-
-- `dtype` (`DType`)
-- `backend` (`Backend`)
-
-**Args:**
-
-- `array` (`NDArray`): NDArray[dtype] - Input array to check.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 2
-
+<div class="prose-label">Examples</div>
 ```mojo
-isposinf[dtype: DType, backend: Backend = Vectorized](matrix: Matrix[dtype]) -> Matrix[DType.bool]
+from numojo.prelude import *
+from numojo.routines.logic.contents import isposinf
+
+def main() raises:
+    var arr = nm.array[nm.f64]([1.0, 0.0, -1.0], shape=[3])
+    print(isposinf(arr))  # Output: [False, False, False]
 ```
 
-Checks if each element of the input Matrix is positive infinity. Parameters:     dtype: DType - Data type of the input Matrix.     backend: _mf.Backend - Backend to use for the operation. Defaults to _mf.Vectorized.
+<div class="prose-label">Parameters</div>
 
-**Parameters:**
+- `dtype` (`DType`): Data type of the input array.
 
-- `dtype` (`DType`)
-- `backend` (`Backend`)
+<div class="prose-label">Args</div>
 
-**Args:**
+- `array` (`NDArray[dtype]`) `[imm]`: Input array to check.
 
-- `matrix` (`Matrix`): Matrix[dtype] - Input Matrix to check.
+<div class="prose-label">Returns</div>
 
-**Returns:**
+- `NDArray[DType.bool]`
 
-- `Matrix`
+<div class="prose-label">Raises</div>
 
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>

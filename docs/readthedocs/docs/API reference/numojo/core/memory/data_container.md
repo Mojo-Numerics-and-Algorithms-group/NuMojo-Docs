@@ -1,34 +1,44 @@
 # `numojo.core.memory.data_container`
 
-DataContainer (numojo.core.memory.data_container)
+Reference-counted memory container for array data.
 
-A reference-counted container for contiguous data buffers, used for NDArray and Matrix.
+Manages memory ownership and reference counting for contiguous data buffers
+used by NDArray types.
 
-DataContainer manages memory ownership and reference counting for shared or external data.
+Exports
+-------
+- `DataContainer`: Reference-counted container for array data.
+- `Ownership`: Enum for managed vs external data ownership.
 
 ## Structs
 
 ### `Ownership`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct Ownership
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`
 
 Enum indicating whether a DataContainer owns its data or views external data.
 
 - Managed: Container owns its data and uses reference counting.
 - External: Container views externally managed data and does not deallocate or refcount.
 
+</div>
+
 #### Fields
 
-- **`value`** (`__mlir_type.i1`): Ownership status as a boolean.
+- **`value`** (`Bool`): Ownership status as a boolean.
 
 #### Aliases
 
-##### `Managed`
+#### `Managed`
 
 ```mojo
 comptime Managed
@@ -38,7 +48,7 @@ comptime Managed
 
 Container owns and manages its data.
 
-##### `External`
+#### `External`
 
 ```mojo
 comptime External
@@ -48,51 +58,27 @@ comptime External
 
 Container views externally managed data.
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
-__init__(out self, value: __mlir_type.i1)
+def __init__(out self, value: Bool)
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize Ownership with the given status.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `value` (`__mlir_type.i1`)
+- `value` (`Bool`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -101,20 +87,20 @@ Initialize Ownership with the given status.
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
 Return True if both Ownership instances have the same status.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -123,20 +109,20 @@ Return True if both Ownership instances have the same status.
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
 Return True if Ownership instances have different statuses.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -145,20 +131,20 @@ Return True if Ownership instances have different statuses.
 
 <div class="fn-card" markdown="1">
 
-##### `__xor__`
+#### `__xor__`
 
 ```mojo
-__xor__(self, other: Self) -> Bool
+def __xor__(self, other: Self) -> Bool
 ```
 
 Return True if Ownership statuses differ.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -167,19 +153,19 @@ Return True if Ownership statuses differ.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Return "Managed" or "External" based on ownership status.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -188,42 +174,45 @@ Return "Managed" or "External" based on ownership status.
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Write the ownership status as a string to the writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
 </div>
 ### `DataContainer`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct DataContainer[dtype: DType]
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyDestructible`, `Movable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Movable`, `Sized`, `Writable`
 
 Reference-counted container for a contiguous buffer of elements.
 
 DataContainer can either own its memory (managed) or provide a view into external data (external).
 Managed containers use reference counting for shared ownership. External containers do not manage or free memory.
 
-Copying a managed DataContainer with `.copy()` increments the reference count that still points to the same data.
-Copying an external container creates another non-owning view.
-Use `deep_copy()` to create an owned instance.
+Copying a DataContainer with `.copy()` creates an independent owned copy with its own allocation.
+Use `.share()` to create a shared view that increments the reference count.
 
 Fields:
     ptr: Pointer to the data array.
@@ -231,100 +220,78 @@ Fields:
     ownership: Ownership status (Managed or External).
     size: Number of elements in the data array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
+</div>
+
 #### Fields
 
-- **`ptr`** (`UnsafePointer[Scalar[dtype], DataContainer[dtype].origin]`): Pointer to the data array.
+- **`ptr`** (`Pointer[Scalar[dtype], DataContainer[dtype].origin]`): Pointer to the data array.
 - **`ownership`** (`Ownership`): Ownership status of the container.
 - **`size`** (`Int`): Number of elements in the data array.
 
 #### Aliases
 
-##### `origin`
+#### `origin`
 
 ```mojo
 comptime origin
 ```
 
-**Value:** `MutExternalOrigin`
+**Value:** `MutUntrackedOrigin`
 
 Memory origin for the allocation.
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `False`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
 
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__init__(out self)
+def __init__(out self)
 ```
 
 <span class="badge badge-static">static</span>
 
 Create an empty, managed DataContainer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__init__(out self, size: Int)
+def __init__(out self, size: Int)
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a managed DataContainer with a buffer of `size` elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `size` (`Int`): Number of elements to allocate (must be non-negative).
+- `size` (`Int`) `[imm]`: Number of elements to allocate (must be non-negative).
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__init__(out self, ptr: UnsafePointer[Scalar[dtype], DataContainer[dtype].origin], size: Int, copy: Bool = False)
+def __init__(out self, ptr: Pointer[Scalar[dtype], Self.origin], size: Int, copy: Bool = False)
 ```
 
 <span class="badge badge-static">static</span>
@@ -335,21 +302,21 @@ If `copy` is True, the data is deep-copied into managed storage.
 If `copy` is False, the container is external and does not manage or
 free the memory.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `ptr` (`UnsafePointer`): Pointer to an existing data buffer (must be non-null).
-- `size` (`Int`): Number of elements in the buffer (must be non-negative).
-- `copy` (`Bool`): If True, deep-copy into owned storage.
+- `ptr` (`Pointer[Scalar[dtype], Self.origin]`) `[imm]`: Pointer to an existing data buffer (must be non-null).
+- `size` (`Int`) `[imm]`: Number of elements in the buffer (must be non-negative).
+- `copy` (`Bool`) `[imm]`: If True, deep-copy into owned storage.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__init__(out self, *, ptr: UnsafePointer[Scalar[dtype], DataContainer[dtype].origin], size: Int, refcount: UnsafePointer[Atomic[DType.uint64], DataContainer[dtype].origin], ownership: Ownership)
+def __init__(out self, *, ptr: Pointer[Scalar[dtype], Self.origin], size: Int, refcount: Pointer[Atomic[DType.uint64], Self.origin], ownership: Ownership)
 ```
 
 <span class="badge badge-static">static</span>
@@ -360,43 +327,41 @@ This constructor is used internally by `share()` to create a shared
 handle without allocating a new refcount. No validation is performed;
 the caller must ensure all arguments are valid.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `ptr` (`UnsafePointer`): Pointer to the shared data buffer.
-- `size` (`Int`): Number of elements in the buffer.
-- `refcount` (`UnsafePointer`): Pointer to the shared atomic reference count.
-- `ownership` (`Ownership`): Ownership mode (should be Managed for shared handles).
+- `ptr` (`Pointer[Scalar[dtype], Self.origin]`) `[imm]`: Pointer to the shared data buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
+- `refcount` (`Pointer[Atomic[DType.uint64], Self.origin]`) `[imm]`: Pointer to the shared atomic reference count.
+- `ownership` (`Ownership`) `[imm]`: Ownership mode (should be Managed for shared handles).
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 5
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
-__init__(out self, *, copy: Self)
+def __init__(out self, *, copy: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
-Copy constructor.
+Deep copy constructor. Allocates new storage and copies all data.
 
-Increments the reference count for managed containers.
+<div class="prose-label">Args</div>
 
-**Args:**
-
-- `copy` (`Self`): DataContainer to copy from.
+- `copy` (`Self`) `[imm]`: DataContainer to copy from.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 6
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
-__init__(out self, *, deinit take: Self)
+def __init__(out self, *, deinit move: Self)
 ```
 
 <span class="badge badge-static">static</span>
@@ -405,12 +370,12 @@ Move constructor.
 
 Transfers ownership without changing the reference count.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `take` (`Self`) `[deinit]`: DataContainer to move from.
+- `move` (`Self`) `[deinit]`: DataContainer to move from.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -419,17 +384,17 @@ Transfers ownership without changing the reference count.
 
 <div class="fn-card" markdown="1">
 
-##### `__del__`
+#### `__deinit__`
 
 ```mojo
-__del__(deinit self)
+def __deinit__(deinit self)
 ```
 
 Destructor.
 
 Decrements the reference count and frees memory if this is the last reference.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[deinit]`
 
@@ -438,189 +403,164 @@ Decrements the reference count and frees memory if this is the last reference.
 
 <div class="fn-card" markdown="1">
 
-##### `__getitem__`
+#### `__getitem__`
 
 ```mojo
-__getitem__(self, idx: Int) -> Scalar[dtype]
+def __getitem__(self, idx: Int) -> Scalar[dtype]
 ```
 
 Return the element at the specified index.
 
-Notes:
+<div class="prose-label">Notes</div>
 No bounds checking is performed. Caller must ensure index is valid.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `idx` (`Int`): Index of the element to retrieve.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Index of the element to retrieve.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
-
-!!! failure "Raises"
+- `Scalar[dtype]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__setitem__`
+#### `__setitem__`
 
 ```mojo
-__setitem__(mut self, idx: Int, val: Scalar[dtype])
+def __setitem__(mut self, idx: Int, val: Scalar[dtype])
 ```
 
 Set the element at the specified index to the given value.
 
-Notes:
+<div class="prose-label">Notes</div>
 No bounds checking is performed. Caller must ensure index is valid.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Index of the element to set.
-- `val` (`Scalar`): Value to assign.
-
-!!! failure "Raises"
+- `idx` (`Int`) `[imm]`: Index of the element to set.
+- `val` (`Scalar[dtype]`) `[imm]`: Value to assign.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `deep_copy`
+#### `get_ptr`
 
 ```mojo
-deep_copy(self) -> Self
-```
-
-Create a deep copy of the DataContainer.
-
-**Args:**
-
-- `self` (`Self`)
-
-**Returns:**
-
-- `Self`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `get_ptr`
-
-```mojo
-get_ptr(ref self) -> ref[self_is_mut.ptr] UnsafePointer[Scalar[dtype], DataContainer[dtype].origin]
+def get_ptr(ref self) -> ref[self_is_mut.ptr] Pointer[Scalar[dtype], Self.origin]
 ```
 
 Return a reference to the data pointer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ref`
+- `ref[self_is_mut.ptr] Pointer[Scalar[dtype], Self.origin]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `offset`
+#### `offset`
 
 ```mojo
-offset(self, offset: Int) -> UnsafePointer[Scalar[dtype], DataContainer[dtype].origin]
+def offset(self, offset: Int) -> Pointer[Scalar[dtype], Self.origin]
 ```
 
 Return a pointer offset by the specified number of elements.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `offset` (`Int`): Number of elements to offset from the start.
+- `self` (`Self`) `[imm]`
+- `offset` (`Int`) `[imm]`: Number of elements to offset from the start.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `UnsafePointer`
+- `Pointer[Scalar[dtype], Self.origin]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `load`
+#### `load`
 
 ```mojo
-load[width: Int](self, offset: Int) -> SIMD[dtype, width]
+def load[width: Int](self, offset: Int) -> SIMD[dtype, width]
 ```
 
 Load a SIMD vector of the specified width from the given offset.
 
-Notes:
+<div class="prose-label">Notes</div>
 No bounds checking is performed. Caller must ensure there are enough elements from `offset`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): Number of elements in the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `offset` (`Int`): Index of the first element to load.
+- `self` (`Self`) `[imm]`
+- `offset` (`Int`) `[imm]`: Index of the first element to load.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `SIMD`
+- `SIMD[dtype, width]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `store`
+#### `store`
 
 ```mojo
-store[width: Int](mut self, offset: Int, value: SIMD[dtype, width])
+def store[width: Int = Int(1)](mut self, offset: Int, value: SIMD[dtype, width])
 ```
 
 Store a SIMD vector of the specified width at the given offset.
 
-Notes:
+<div class="prose-label">Notes</div>
 No bounds checking is performed. Caller must ensure there are enough elements from `offset`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): Number of elements in the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `offset` (`Int`): Index at which to store the SIMD vector.
-- `value` (`SIMD`): SIMD vector to store.
+- `offset` (`Int`) `[imm]`: Index at which to store the SIMD vector.
+- `value` (`SIMD[dtype, width]`) `[imm]`: SIMD vector to store.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__len__`
+#### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
 Return the size of the container.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -629,17 +569,17 @@ Return the size of the container.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -648,19 +588,19 @@ __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -668,19 +608,19 @@ write_to[W: Writer](self, mut writer: W)
 
 <div class="fn-card" markdown="1">
 
-##### `is_refcounted`
+#### `is_refcounted`
 
 ```mojo
-is_refcounted(ref self) -> Bool
+def is_refcounted(ref self) -> Bool
 ```
 
 Check if this container has refcounting enabled.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -689,19 +629,19 @@ Check if this container has refcounting enabled.
 
 <div class="fn-card" markdown="1">
 
-##### `ref_count`
+#### `ref_count`
 
 ```mojo
-ref_count(ref self) -> UInt64
+def ref_count(ref self) -> UInt64
 ```
 
 Get the current reference count.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `UInt64`
 
@@ -710,24 +650,24 @@ Get the current reference count.
 
 <div class="fn-card" markdown="1">
 
-##### `share`
+#### `share`
 
 ```mojo
-share(mut self) -> Self
+def share(self) -> Self
 ```
 
 Create a shared view into this container. Increments the existing refcount for managed containers.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`) `[mut]`
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the container is externally managed.
+    NumojoError: If the container is externally managed.
 
 
 </div>

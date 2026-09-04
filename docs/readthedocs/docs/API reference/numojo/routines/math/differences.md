@@ -1,8 +1,14 @@
 # `numojo.routines.math.differences`
 
-Difference routines for NuMojo (numojo.routines.math.differences).
+Numerical differentiation and integration helpers.
 
-Implements gradient and trapezoidal integration helpers for numerical differentiation and integration tasks.
+Implements gradient computation and finite differences for numerical differentiation
+and integration tasks.
+
+Exports
+-------
+- `gradient`: Compute gradients using the trapezoidal rule.
+- `diff`: Compute n-th order finite differences.
 
 ## Functions
 
@@ -12,7 +18,7 @@ Implements gradient and trapezoidal integration helpers for numerical differenti
 ### `gradient`
 
 ```mojo
-gradient[dtype: DType = DType.float64](x: NDArray[dtype], spacing: Scalar[dtype]) -> NDArray[dtype]
+def gradient[dtype: DType = DType.float64](x: NDArray[dtype], spacing: Scalar[dtype]) -> NDArray[dtype]
 ```
 
 Compute the gradient of y over x using the trapezoidal rule.
@@ -20,52 +26,52 @@ Compute the gradient of y over x using the trapezoidal rule.
 !!! info "Constraints"
     `fdtype` must be a floating-point type if `idtype` is not a floating-point type.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Input data type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `x` (`NDArray`): An array.
-- `spacing` (`Scalar`): An array of the same shape as x containing the spacing between adjacent elements.
+- `x` (`NDArray[dtype]`) `[imm]`: An array.
+- `spacing` (`Scalar[dtype]`) `[imm]`: An array of the same shape as x containing the spacing between adjacent elements.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-### `trapz`
+### `diff`
 
 ```mojo
-trapz[dtype: DType = DType.float64](y: NDArray[dtype], x: NDArray[dtype]) -> Scalar[dtype] where dtype.is_floating_point()
+def diff[dtype: DType = DType.float64](array: NDArray[dtype], n: Int = Int(1)) -> NDArray[dtype]
 ```
 
-Compute the integral of y over x using the trapezoidal rule.
+Compute the n-th order difference of the input array.
 
-!!! info "Constraints"
-    `x` and `y` must have the same shape.
-`dtype` must be a floating-point type.
-
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `y` (`NDArray`): An array.
-- `x` (`NDArray`): An array.
+- `array` (`NDArray[dtype]`) `[imm]`: A array.
+- `n` (`Int`) `[imm]`: The order of the difference.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

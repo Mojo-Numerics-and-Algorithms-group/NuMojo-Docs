@@ -1,6 +1,11 @@
 # `numojo.routines.logic.__init__`
 
-Logic routines for NuMojo (numojo.routines.logic).
+Comparison operations, logical operators, and truth value evaluations for arrays.
 
-This module provides a collection of logic routines for numerical computations, including comparison operations, content checks, and truth evaluations.
+Exports
+-------
+- Comparison: `equal`, `not_equal`, `greater`, `greater_equal`, `less`, `less_equal`, `allclose`, `array_equal`, `isclose`.
+- Contents: `isnan`, `isinf`, `isfinite`, `isposinf`, `isneginf`.
+- Logical: `logical_and`, `logical_or`, `logical_xor`, `logical_not`.
+- Truth: `any`, `all`.
 

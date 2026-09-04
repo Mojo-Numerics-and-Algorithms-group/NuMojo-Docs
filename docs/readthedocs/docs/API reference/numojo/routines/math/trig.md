@@ -1,79 +1,102 @@
 # `numojo.routines.math.trig`
 
-Trigonometric routines for NuMojo (numojo.routines.math.trig).
+Trigonometric and inverse trigonometric functions for arrays.
 
-Implements trigonometric and inverse trigonometric functions over NDArrays and Matrices.
+Element-wise trigonometric functions (sin, cos, tan) and their inverse/hyperbolic
+variants (arcsin, arccos, arctan, atan2, sinh, cosh, tanh, etc.) for NDArrays.
+
+Exports
+-------
+- Circular: `sin`, `cos`, `tan`, `arcsin`, `arccos`, `arctan`, `atan2`.
+- Hyperbolic: `sinh`, `cosh`, `tanh`, `arcsinh`, `arccosh`, `arctanh`.
+- Utilities: `hypot`, `hypot_fma`.
 
 ## Functions
 
 
 <div class="fn-card" markdown="1">
 
-### `arccos`
+### `acos`
 
 ```mojo
-arccos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def acos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-**Parameters:**
+Apply inverse cosine.
 
-- `dtype` (`DType`)
+<div class="prose-label">Parameters</div>
 
-**Args:**
+- `dtype` (`DType`): The element type.
 
-- `A` (`Matrix`)
+<div class="prose-label">Args</div>
 
-**Returns:**
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-- `Matrix`
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-### `acos`
-
-#### Overload 1
+### `arccos`
 
 ```mojo
-acos[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def arccos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply acos also known as inverse cosine .
+Apply inverse cosine element-wise.
 
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
-
-**Args:**
-
-- `array` (`NDArray`): An Array.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-acos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Matrix`
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `asin`
+
+```mojo
+def asin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Apply inverse sine.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+
+<div class="prose-label">Args</div>
+
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -83,68 +106,55 @@ acos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `arcsin`
 
 ```mojo
-arcsin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def arcsin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-**Parameters:**
+Apply inverse sine element-wise.
+
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Matrix`
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-### `asin`
-
-#### Overload 1
+### `atan`
 
 ```mojo
-asin[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def atan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply asin also known as inverse sine .
+Apply inverse tangent.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): An Array.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
-
-```mojo
-asin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
+*Not documented in source.*
 
 
 </div>
@@ -154,68 +164,26 @@ asin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `arctan`
 
 ```mojo
-arctan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
+def arctan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-**Parameters:**
+Apply inverse tangent element-wise.
+
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`Matrix`)
+- `array` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Matrix`
+- `NDArray[dtype]`
 
+<div class="prose-label">Raises</div>
 
-</div>
-
-<div class="fn-card" markdown="1">
-
-### `atan`
-
-#### Overload 1
-
-```mojo
-atan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
-```
-
-Apply atan also known as inverse tangent .
-
-**Parameters:**
-
-- `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
-
-**Args:**
-
-- `array` (`NDArray`): An Array.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-atan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
+*Not documented in source.*
 
 
 </div>
@@ -225,29 +193,33 @@ atan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `atan2`
 
 ```mojo
-atan2[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def atan2[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply atan2 also known as inverse tangent. [atan2 wikipedia](https://en.wikipedia.org/wiki/Atan2).
+Apply inverse tangent with two arrays.
+
+<div class="prose-label">References</div>
+    https://en.wikipedia.org/wiki/Atan2.
 
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array1` (`NDArray`): An Array.
-- `array2` (`NDArray`): An Array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -256,46 +228,27 @@ Apply atan2 also known as inverse tangent. [atan2 wikipedia](https://en.wikipedi
 
 ### `cos`
 
-#### Overload 1
-
 ```mojo
-cos[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def cos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply cos also known as cosine.
+Apply cosine.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
-
-```mojo
-cos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
+*Not documented in source.*
 
 
 </div>
@@ -304,46 +257,27 @@ cos[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 ### `sin`
 
-#### Overload 1
-
 ```mojo
-sin[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def sin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply sin also known as sine .
+Apply sine.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
-
-```mojo
-sin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
+*Not documented in source.*
 
 
 </div>
@@ -352,46 +286,27 @@ sin[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 
 ### `tan`
 
-#### Overload 1
-
 ```mojo
-tan[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype]
+def tan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply tan also known as tangent .
+Apply tangent.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): An Array assumed to be in radian.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
-
-```mojo
-tan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
+*Not documented in source.*
 
 
 </div>
@@ -401,29 +316,30 @@ tan[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
 ### `hypot`
 
 ```mojo
-hypot[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def hypot[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply hypot also known as hypotenuse which finds the longest section of a right triangle given the other two sides.
+Apply hypotenuse calculation to two arrays.
 
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array1` (`NDArray`): An Array.
-- `array2` (`NDArray`): An Array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -433,29 +349,30 @@ Apply hypot also known as hypotenuse which finds the longest section of a right 
 ### `hypot_fma`
 
 ```mojo
-hypot_fma[dtype: DType, backend: Backend = Vectorized](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def hypot_fma[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-Apply hypot also known as hypotenuse which finds the longest section of a right triangle given the other two sides.
+Apply hypotenuse calculation using fused multiply-add.
 
 !!! info "Constraints"
     Both arrays must have the same shapes.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array1` (`NDArray`): An Array.
-- `array2` (`NDArray`): An Array.
+- `array1` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

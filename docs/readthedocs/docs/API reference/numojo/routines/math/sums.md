@@ -1,8 +1,14 @@
 # `numojo.routines.math.sums`
 
-Summation routines for NuMojo (numojo.routines.math.sums).
+Sum reductions and cumulative sums for arrays.
 
-Provides sum reductions along axes for NDArrays and Matrices, covering both flattened and axis-aware workflows.
+Computes sum reductions along axes and cumulative sums for NDArrays, with
+both flattened and axis-aware variants.
+
+Exports
+-------
+- `sum`: Sum of all elements or along an axis.
+- `cumsum`: Cumulative sum along an axis or flattened.
 
 ## Functions
 
@@ -11,15 +17,15 @@ Provides sum reductions along axes for NDArrays and Matrices, covering both flat
 
 ### `sum`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-sum[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
+def sum[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
 ```
 
 Returns sum of all items in the array.
 
-Example:
+<div class="prose-label">Examples</div>
 ```console
 > print(A)
 [[      0.1315377950668335      0.458650141954422       0.21895918250083923     ]
@@ -30,109 +36,53 @@ Example:
 3.5140917301177979
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-sum[dtype: DType](A: NDArray[dtype], axis: Int) -> NDArray[dtype]
+def sum[dtype: DType](A: NDArray[dtype], axis: Int) -> NDArray[dtype]
 ```
 
 Returns sums of array elements over a given axis.
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.random.randn(100, 100)
 print(nm.sum(A, axis=0))
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
-- `axis` (`Int`): The axis along which the sum is performed.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
+- `axis` (`Int`) `[imm]`: The axis along which the sum is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-    Error: If the axis is out of bound.
-Error: If the number of dimensions is 1.
-
-#### Overload 3
-
-```mojo
-sum[dtype: DType](A: Matrix[dtype]) -> Scalar[dtype]
-```
-
-Sum up all items in the Matrix.
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(mat.sum(A))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-
-**Returns:**
-
-- `Scalar`
-
-#### Overload 4
-
-```mojo
-sum[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
-```
-
-Sum up the items in a Matrix along the axis.
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(mat.sum(A, axis=0))
-print(mat.sum(A, axis=1))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `axis` (`Int`): 0 or 1.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+    NumojoError: If the axis is out of bound.
+NumojoError: If the number of dimensions is 1.
 
 
 </div>
@@ -141,110 +91,54 @@ print(mat.sum(A, axis=1))
 
 ### `cumsum`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-cumsum[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
+def cumsum[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Returns cumsum of all items of an array. The array is flattened before cumsum.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-cumsum[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
+def cumsum[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
 ```
 
 Returns cumsum of array by axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[var]`: Axis.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 3
-
-```mojo
-cumsum[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-Cumsum of flattened matrix.
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(mat.cumsum(A))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-cumsum[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
-```
-
-Cumsum of Matrix along the axis.
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(mat.cumsum(A, axis=0))
-print(mat.cumsum(A, axis=1))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `axis` (`Int`): 0 or 1.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>

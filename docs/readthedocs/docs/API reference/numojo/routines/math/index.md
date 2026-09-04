@@ -1,23 +1,41 @@
 # `numojo.routines.math`
 
-Math routines for NuMojo (numojo.routines.math).
+Arithmetic, trigonometric, hyperbolic, exponential, and utility mathematical operations for arrays.
 
-Aggregates arithmetic, trigonometric, hyperbolic, and utility routines for NDArrays and Matrices.
+Exports
+-------
+Arithmetic: `add`, `sub`, `mul`, `div`, `floor_div`, `mod`, `remainder`, `fma`.
+
+Trigonometric: `sin`, `cos`, `tan`, `arcsin`, `arccos`, `arctan`, `atan2`, `hypot`, `hypot_fma`.
+
+Hyperbolic: `sinh`, `cosh`, `tanh`, `arcsinh`, `arccosh`, `arctanh`.
+
+Exponential: `exp`, `exp2`, `expm1`, `log`, `log2`, `log10`, `log1p`.
+
+Extrema: `max`, `min`, `maximum`, `minimum`.
+
+Floating point: `copysign`, `nextafter`, `scalb`, `cbrt`, `sqrt`, `rsqrt`, `clip`.
+
+Rounding: `round`, `roundeven`, `trunc`, `ceil`, `floor`.
+
+Absolute value: `abs`.
+
+Differences and aggregation: `diff`, `gradient`, `sum`, `cumsum`, `prod`, `cumprod`.
 
 ## Contents
 
 | Name | Kind | Description |
 |------|------|-------------|
-| [`arithmetic`](./arithmetic.md) | module | Arithmetic routines for NuMojo (numojo.routines.math.arithmetic). |
-| [`differences`](./differences.md) | module | Difference routines for NuMojo (numojo.routines.math.differences). |
-| [`exponents`](./exponents.md) | module | Exponential routines for NuMojo (numojo.routines.math.exponents). |
-| [`extrema`](./extrema.md) | module | Extrema routines for NuMojo (numojo.routines.math.extrema). |
-| [`floating`](./floating.md) | module | Floating-point routines for NuMojo (numojo.routines.math.floating). |
-| [`hyper`](./hyper.md) | module | Hyperbolic routines for NuMojo (numojo.routines.math.hyper). |
-| [`__init__`](./__init__.md) | module | Math routines for NuMojo (numojo.routines.math). |
-| [`misc`](./misc.md) | module | Miscellaneous math routines for NuMojo (numojo.routines.math.misc). |
-| [`products`](./products.md) | module | Product routines for NuMojo (numojo.routines.math.products). |
-| [`rounding`](./rounding.md) | module | Rounding routines for NuMojo (numojo.routines.math.rounding). |
-| [`sums`](./sums.md) | module | Summation routines for NuMojo (numojo.routines.math.sums). |
-| [`trig`](./trig.md) | module | Trigonometric routines for NuMojo (numojo.routines.math.trig). |
+| [`arithmetic`](./arithmetic.md) | module | Basic arithmetic operations: addition, subtraction, multiplication, division, and related functions. |
+| [`differences`](./differences.md) | module | Numerical differentiation and integration helpers. |
+| [`exponents`](./exponents.md) | module | Exponential and logarithmic functions for arrays. |
+| [`extrema`](./extrema.md) | module | Minimum and maximum operations for arrays. |
+| [`floating`](./floating.md) | module | Floating-point specific operations for NDArrays. |
+| [`hyper`](./hyper.md) | module | Hyperbolic and inverse hyperbolic trigonometric functions. |
+| [`__init__`](./__init__.md) | module | Arithmetic, trigonometric, hyperbolic, exponential, and utility mathematical operations for arrays. |
+| [`misc`](./misc.md) | module | Miscellaneous mathematical operations for NDArrays. |
+| [`products`](./products.md) | module | Product reductions and cumulative products for arrays. |
+| [`rounding`](./rounding.md) | module | Rounding, truncation, and floating-point operations. |
+| [`sums`](./sums.md) | module | Sum reductions and cumulative sums for arrays. |
+| [`trig`](./trig.md) | module | Trigonometric and inverse trigonometric functions for arrays. |
 

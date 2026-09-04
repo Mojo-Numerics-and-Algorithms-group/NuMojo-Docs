@@ -1,23 +1,36 @@
 # `numojo.core.complex.complex_ndarray`
 
-"ComplexNDArray (numojo.core.complex.complex_ndarray)
+Multi-dimensional arrays of complex numbers.
 
-Complex NDArray support for NuMojo.
+N-dimensional arrays of complex numbers with full indexing, slicing, and
+operations. Includes lifecycle methods, operators, I/O, and iterators.
 
-This module provides the `ComplexNDArray` type, which represents N-dimensional arrays
-of complex numbers. It includes lifecycle methods, indexing and slicing, operator
-overloads, IO, trait, and iterator methods, as well as other utility functions.
+Exports
+-------
+- `ComplexNDArray`: Complex-valued N-dimensional array type.
+
+<div class="prose-label">Notes</div>
+    Structure of the ComplexNDArray implementation:
+    - Lifecycle methods (construction, initialization)
+    - Indexing and slicing (getters, setters, dunder methods)
+    - Operator overloads (arithmetic, comparison, etc.)
+    - I/O, trait, and iterator dunders
+    - Other methods (sorted alphabetically)
 
 ## Structs
 
 ### `ComplexNDArray`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct ComplexNDArray[cdtype: ComplexDType = ComplexDType.float64]
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `FloatableRaising`, `ImplicitlyDestructible`, `IntableRaising`, `Movable`, `Representable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `FloatableRaising`, `IntableRaising`, `Movable`, `Sized`, `Writable`
 
 N-dimensional Complex array.
 
@@ -41,15 +54,17 @@ Attributes:
     - print_options: PrintOptions
         Formatting options for display.
 
-Notes:
+<div class="prose-label">Notes</div>
 - The array is uniquely defined by its data buffers, shape, strides, and element datatype.
 - Supports both row-major (C) and column-major (F) memory order.
 - Provides rich indexing, slicing, and broadcasting semantics.
 - ComplexNDArray should be created using factory functions in `nomojo.routines.creation` module for convenience.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `cdtype` (`ComplexDType`): The complex data type of the array elements (default: ComplexDType.float64).
+
+</div>
 
 #### Fields
 
@@ -62,7 +77,7 @@ Notes:
 
 #### Aliases
 
-##### `dtype`
+#### `dtype`
 
 ```mojo
 comptime dtype
@@ -72,163 +87,147 @@ comptime dtype
 
 Corresponding real data type.
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `False`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
-
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__init__(out self, var re: NDArray[ComplexNDArray[cdtype].dtype], var im: NDArray[ComplexNDArray[cdtype].dtype])
+def __init__(out self, var re: NDArray[Self.dtype], var im: NDArray[Self.dtype])
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize a ComplexNDArray with given real and imaginary parts.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `re` (`NDArray`) `[var]`: Real part of the complex array.
-- `im` (`NDArray`) `[var]`: Imaginary part of the complex array.
+- `re` (`NDArray[Self.dtype]`) `[var]`: Real part of the complex array.
+- `im` (`NDArray[Self.dtype]`) `[var]`: Imaginary part of the complex array.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__init__(out self, shape: NDArrayShape, order: String = "C")
+def __init__(out self, shape: NDArrayShape, order: String = "C")
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize a ComplexNDArray with given shape. The memory is not filled with values.
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 var A = nm.ComplexNDArray[cf32](Shape(2,3,4))
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 This constructor should not be used by users directly. Use factory functions in `numojo.routines.creation` module instead.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `shape` (`NDArrayShape`): Variadic shape.
-- `order` (`String`): Memory order C or F.
+- `shape` (`NDArrayShape`) `[imm]`: Variadic shape.
+- `order` (`String`) `[imm]`: Memory order C or F.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__init__(out self, shape: List[Int], order: String = "C")
+def __init__(out self, shape: List[Int], order: String = "C")
 ```
 
 <span class="badge badge-static">static</span>
 
 (Overload) Initialize a ComplexNDArray with given shape (list of integers).
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 var A = nm.ComplexNDArray[cf32]([2,3,4])
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 This constructor should not be used by users directly. Use factory functions in `numojo.routines.creation` module instead.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `shape` (`List`): List of shape.
-- `order` (`String`): Memory order C or F.
+- `shape` (`List[Int]`) `[imm]`: List of shape.
+- `order` (`String`) `[imm]`: Memory order C or F.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__init__(out self, shape: VariadicList[Int], order: String = "C")
+def __init__(out self, shape: VariadicList[Int], order: String = "C")
 ```
 
 <span class="badge badge-static">static</span>
 
 (Overload) Initialize a ComplexNDArray with given shape (variadic list of integers).
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
-var A = nm.ComplexNDArray[cf32](VariadicList(2,3,4))
+var A = nm.ComplexNDArray[cf32](2,3,4)
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 This constructor should not be used by users directly. Use factory functions in `numojo.routines.creation` module instead.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `shape` (`VariadicList`): Variadic List of shape.
-- `order` (`String`): Memory order C or F.
+- `shape` (`VariadicList[Int]`) `[imm]`: Variadic List of shape.
+- `order` (`String`) `[imm]`: Memory order C or F.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 5
+*Not documented in source.*
+
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
-__init__(out self, shape: List[Int], offset: Int, strides: List[Int])
+def __init__(out self, shape: List[Int], offset: Int, strides: List[Int])
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize a ComplexNDArray with a specific shape, offset, and strides.
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 from numojo.prelude import *
 var shape = [2, 3]
@@ -237,87 +236,89 @@ var strides = [3, 1]
 var arr = ComplexNDArray[cf32](shape, offset, strides)
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 - This constructor is intended for advanced use cases requiring precise control over memory layout.
 - The resulting array is uninitialized and should be filled before use.
 - Both real and imaginary buffers are created with the same shape, offset, and strides.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `shape` (`List`): List of integers specifying the shape of the array.
-- `offset` (`Int`): Integer offset into the underlying buffer.
-- `strides` (`List`): List of integers specifying the stride for each dimension.
+- `shape` (`List[Int]`) `[imm]`: List of integers specifying the shape of the array.
+- `offset` (`Int`) `[imm]`: Integer offset into the underlying buffer.
+- `strides` (`List[Int]`) `[imm]`: List of integers specifying the stride for each dimension.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 6
+*Not documented in source.*
+
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
-__init__(out self, shape: NDArrayShape, strides: NDArrayStrides, ndim: Int, size: Int, flags: Flags)
+def __init__(out self, shape: NDArrayShape, strides: NDArrayStrides, ndim: Int, size: Int, flags: Flags)
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize a ComplexNDArray with explicit shape, strides, number of dimensions, size, and flags. This constructor creates an uninitialized ComplexNDArray with the provided properties. No compatibility checks are performed between shape, strides, ndim, size, or flags. This allows construction of arrays with arbitrary metadata, including 0-D arrays (scalars).
 
-Notes:
+<div class="prose-label">Notes</div>
 - This constructor is intended for advanced or internal use cases requiring manual control.
 - The resulting array is uninitialized; values must be set before use.
 - No validation is performed on the consistency of the provided arguments.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `shape` (`NDArrayShape`): Shape of the array.
-- `strides` (`NDArrayStrides`): Strides for each dimension.
-- `ndim` (`Int`): Number of dimensions.
-- `size` (`Int`): Total number of elements.
-- `flags` (`Flags`): Memory layout flags.
+- `shape` (`NDArrayShape`) `[imm]`: Shape of the array.
+- `strides` (`NDArrayStrides`) `[imm]`: Strides for each dimension.
+- `ndim` (`Int`) `[imm]`: Number of dimensions.
+- `size` (`Int`) `[imm]`: Total number of elements.
+- `flags` (`Flags`) `[imm]`: Memory layout flags.
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 7
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
-__init__(out self, *, copy: Self)
+def __init__(out self, *, copy: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
 Copy copy into self.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `copy` (`Self`)
+- `copy` (`Self`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 8
+<div class="overload-divider">Overload 8</div>
 
 ```mojo
-__init__(out self, *, deinit take: Self)
+def __init__(out self, *, deinit move: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
 Move other into self.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `take` (`Self`) `[deinit]`
+- `move` (`Self`) `[deinit]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -326,10 +327,27 @@ Move other into self.
 
 <div class="fn-card" markdown="1">
 
-##### `__bool__`
+#### `__deinit__`
 
 ```mojo
-__bool__(self) -> Bool
+def __deinit__(deinit self)
+```
+
+Destroys array buffers.
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[deinit]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `__bool__`
+
+```mojo
+def __bool__(self) -> Bool
 ```
 
 Check if the complex array is non-zero.
@@ -337,42 +355,42 @@ Check if the complex array is non-zero.
 For a 0-D or length-1 complex array, returns True if the complex number
 is non-zero (i.e., either real or imaginary part is non-zero).
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape())  # 0-D array
-A._re._buf.ptr[] = 1.0
-A._im._buf.ptr[] = 0.0
+A._re.unsafe_set(0, 1.0)
+A._im.unsafe_set(0, 0.0)
 var result = A.__bool__()  # True
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
 !!! failure "Raises"
-    Error: If the array is not 0-D or length-1.
+    NumojoError: If the array is not 0-D or length-1.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__getitem__`
+#### `__getitem__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__getitem__(self) -> ComplexSIMD[cdtype]
+def __getitem__(self) -> ComplexSIMD[cdtype]
 ```
 
 Gets the value of the 0-D Complex array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -380,26 +398,26 @@ var a = nm.arange[cf32](CScalar[cf32](1))[0]
 print(a[]) # gets values of the 0-D complex array.
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
 !!! failure "Raises"
-    Error: If the array is not 0-d.
+    NumojoError: If the array is not 0-d.
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__getitem__(self, index: Item) -> ComplexSIMD[cdtype]
+def __getitem__(self, index: Item) -> ComplexSIMD[cdtype]
 ```
 
 Get the value at the index list.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```console
 >>>import numojo as nm
@@ -407,35 +425,35 @@ Examples:
 >>>print(A[Item(1, 2)]) # gets values of the element at (1, 2).
 ```.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `index` (`Item`): Index list.
+- `self` (`Self`) `[imm]`
+- `index` (`Item`) `[imm]`: Index list.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
 !!! failure "Raises"
-    Error: If the length of `index` does not match the number of dimensions.
-Error: If any of the index elements exceeds the size of the dimension of the array.
+    NumojoError: If the length of `index` does not match the number of dimensions.
+NumojoError: If any of the index elements exceeds the size of the dimension of the array.
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__getitem__(self, idx: Int) -> Self
+def __getitem__(self, idx: Int) -> Self
 ```
 
 Single-axis integer slice (first dimension). Returns a slice of the complex array taken at axis 0 position `idx`. Dimensionality is reduced by exactly one; a 1-D source produces a 0-D ComplexNDArray (scalar wrapper). Negative indices are supported and normalized. The result preserves the source memory order (C/F).
 
-Notes:
+<div class="prose-label">Notes</div>
 Performance fast path: For C-contiguous arrays the slice for both
 real and imaginary parts is copied with single `memcpy` calls.
 For F-contiguous or arbitrary stride layouts, a generic
 stride-based copier is used for both components. (Future: return
 a non-owning view).
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -447,36 +465,37 @@ var b = nm.arange[cf32](CScalar[cf32](6)).reshape(nm.Shape(6))
 print(b[2])           # 0-D array (scalar wrapper)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `idx` (`Int`): Integer index along the first (axis 0) dimension. Supports
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Integer index along the first (axis 0) dimension. Supports
     negative indices in [-shape[0], shape[0]).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    IndexError: If the array is 0-D.
-IndexError: If `idx` (after normalization) is out of bounds.
+    NumojoError: If the array is 0-D.
+NumojoError: If `idx` (after normalization) is out of bounds.
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__getitem__(self, var *slices: Slice) -> Self
+def __getitem__(self, var *slices: Slice) -> Self
 ```
 
 Retrieves a slice or sub-array from the current array using variadic slice arguments.
 
-NOTES:
+<div class="prose-label">Notes</div>
     - This method creates a new array; Views are not currently supported.
     - Negative indices and step sizes are supported as per standard slicing semantics.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
-var a = numojo.arange(10).reshape(nm.Shape(2, 5))
+
+var a = nm.arange(10).reshape(nm.Shape(2, 5))
 var b = a[:, 2:4]
 print(b) # Output: 2x2 sliced array corresponding to columns 2 and 3 of each row.
 ```
@@ -485,32 +504,32 @@ print(b) # Output: 2x2 sliced array corresponding to columns 2 and 3 of each row
     - The number of slices provided must not exceed the number of array dimensions.
 - Each slice must be valid for its corresponding dimension.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `*slices` (`Slice`) `[var]`: Variadic list of `Slice` objects, one for each dimension to be sliced.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    IndexError: If any slice is out of bounds for its corresponding dimension.
-ValueError: If the number of slices does not match the array's dimensions.
+    NumojoError: If any slice is out of bounds for its corresponding dimension.
+NumojoError: If the number of slices does not match the array's dimensions.
 
-###### Overload 5
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
-__getitem__(self, var slice_list: List[Slice]) -> Self
+def __getitem__(self, var slice_list: List[Slice]) -> Self
 ```
 
 Retrieves a sub-array from the current array using a list of slice objects, enabling advanced slicing operations across multiple dimensions.
 
-NOTES:
+<div class="prose-label">Notes</div>
     - This method supports advanced slicing similar to NumPy's multi-dimensional slicing.
     - The returned array shares data with the original array if possible.
 
-Example:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 from numojo.prelude import *
@@ -523,27 +542,27 @@ print(b)
     - The length of slice_list must not exceed the number of dimensions in the array.
 - Each Slice in slice_list must be valid for its respective dimension.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `slice_list` (`List`) `[var]`: List of Slice objects, where each Slice defines the start, stop, and step for the corresponding dimension.
+- `self` (`Self`) `[imm]`
+- `slice_list` (`List[Slice]`) `[var]`: List of Slice objects, where each Slice defines the start, stop, and step for the corresponding dimension.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If slice_list is empty or contains invalid slices.
+    NumojoError: If slice_list is empty or contains invalid slices.
 
-###### Overload 6
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
-__getitem__(self, var *slices: Variant[Slice, Int]) -> Self
+def __getitem__(self, var *slices: Variant[Slice, Int]) -> Self
 ```
 
 Get items of ComplexNDArray with a series of either slices or integers.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```mojo
     import numojo as nm
@@ -553,132 +572,132 @@ Examples:
     print(b)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `*slices` (`Variant`) `[var]`: A series of either Slice or Int.
+- `self` (`Self`) `[imm]`
+- `*slices` (`Variant[Slice, Int]`) `[var]`: A series of either Slice or Int.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the number of slices is greater than the number of dimensions of the array.
+    NumojoError: If the number of slices is greater than the number of dimensions of the array.
 
-###### Overload 7
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
-__getitem__(self, indices: NDArray[DType.int]) -> Self
+def __getitem__(self, indices: NDArray[DType.int]) -> Self
 ```
 
 Get items from 0-th dimension of a ComplexNDArray of indices. If the original array is of shape (i,j,k) and the indices array is of shape (l, m, n), then the output array will be of shape (l,m,n,j,k).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `indices` (`NDArray`): Array of indices.
+- `self` (`Self`) `[imm]`
+- `indices` (`NDArray[DType.int]`) `[imm]`: Array of indices.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the elements of indices are greater than size of the corresponding dimension of the array.
+    NumojoError: If the elements of indices are greater than size of the corresponding dimension of the array.
 
-###### Overload 8
+<div class="overload-divider">Overload 8</div>
 
 ```mojo
-__getitem__(self, indices: List[Int]) -> Self
+def __getitem__(self, indices: List[Int]) -> Self
 ```
 
 Get items from 0-th dimension of a ComplexNDArray of indices. It is an overload of `__getitem__(self, indices: NDArray[DType.int]) raises -> Self`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `indices` (`List`): A list of Int.
+- `self` (`Self`) `[imm]`
+- `indices` (`List[Int]`) `[imm]`: A list of Int.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the elements of indices are greater than size of the corresponding dimension of the array.
+    NumojoError: If the elements of indices are greater than size of the corresponding dimension of the array.
 
-###### Overload 9
+<div class="overload-divider">Overload 9</div>
 
 ```mojo
-__getitem__(self, mask: NDArray[DType.bool]) -> Self
+def __getitem__(self, mask: NDArray[DType.bool]) -> Self
 ```
 
 Get item from a ComplexNDArray according to a mask array. If array shape is equal to mask shape, it returns a flattened array of the values where mask is True. If array shape is not equal to mask shape, it returns items from the 0-th dimension of the array where mask is True.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `mask` (`NDArray`): NDArray with Dtype.bool.
+- `self` (`Self`) `[imm]`
+- `mask` (`NDArray[DType.bool]`) `[imm]`: NDArray with Dtype.bool.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the mask is not a 1-D array (Currently we only support 1-d mask array).
+    NumojoError: If the mask is not a 1-D array (Currently we only support 1-d mask array).
 
-###### Overload 10
+<div class="overload-divider">Overload 10</div>
 
 ```mojo
-__getitem__(self, mask: List[Bool]) -> Self
+def __getitem__(self, mask: List[Bool]) -> Self
 ```
 
 Get items from 0-th dimension of a ComplexNDArray according to mask.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `mask` (`List`): A list of boolean values.
+- `self` (`Self`) `[imm]`
+- `mask` (`List[Bool]`) `[imm]`: A list of boolean values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If the mask is not a 1-D array (Currently we only support 1-d mask array).
+    NumojoError: If the mask is not a 1-D array (Currently we only support 1-d mask array).
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__setitem__`
+#### `__setitem__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__setitem__(mut self, idx: Int, val: Self)
+def __setitem__(mut self, idx: Int, val: Self)
 ```
 
 Assign a single first-axis slice. Replaces the sub-array at axis 0 position `idx` with `val`. The shape of `val` must exactly match `self.shape[1:]` and its dimensionality must be `self.ndim - 1` (or be a 0-D complex scalar when assigning into a 1-D array). Negative indices are supported. Fast path: contiguous memcpy for C-order; otherwise a stride-based generic copy is performed for both real and imaginary parts.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Integer index along first dimension (supports negatives).
-- `val` (`Self`): ComplexNDArray slice data to assign.
+- `idx` (`Int`) `[imm]`: Integer index along first dimension (supports negatives).
+- `val` (`Self`) `[imm]`: ComplexNDArray slice data to assign.
 
 !!! failure "Raises"
-    IndexError: If array is 0-D or idx out of bounds.
-ShapeError: If `val` shape/dim mismatch with target slice.
+    NumojoError: If array is 0-D or idx out of bounds.
+NumojoError: If `val` shape/dim mismatch with target slice.
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__setitem__(mut self, var index: Item, val: ComplexSIMD[cdtype])
+def __setitem__(mut self, var index: Item, val: ComplexSIMD[cdtype])
 ```
 
 Sets the value at the index list.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```mojo
 import numojo as nm
@@ -687,928 +706,939 @@ var A = nm.full[cf32](Shape(2, 2), CScalar[cf32](1.0))
 A[Item(0, 1)] = CScalar[cf32](3.0, 4.0)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `index` (`Item`) `[var]`: Index list.
-- `val` (`ComplexSIMD`): Value to set.
+- `val` (`ComplexSIMD[cdtype]`) `[imm]`: Value to set.
 
 !!! failure "Raises"
-    Error: If the length of index does not match the number of dimensions.
-Error: If any of the indices is out of bound.
+    NumojoError: If the length of index does not match the number of dimensions.
+NumojoError: If any of the indices is out of bound.
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__setitem__(mut self, mask: Self, value: ComplexSIMD[cdtype])
+def __setitem__(mut self, mask: NDArray[DType.bool], value: ComplexSIMD[cdtype])
 ```
 
 Set the value of the array at the indices where the mask is true.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `mask` (`Self`)
-- `value` (`ComplexSIMD`)
+- `mask` (`NDArray[DType.bool]`) `[imm]`
+- `value` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__setitem__(mut self, var *slices: Slice, *, val: Self)
+def __setitem__(mut self, var *slices: Slice, *, val: Self)
 ```
 
 Retreive slices of an ComplexNDArray from variadic slices.
 
-Example:
+<div class="prose-label">Examples</div>
 `arr[1:3, 2:4]` returns the corresponding sliced ComplexNDArray (2 x 2).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 - `*slices` (`Slice`) `[var]`
-- `val` (`Self`)
+- `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 5
+*Not documented in source.*
+
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
-__setitem__(mut self, slices: List[Slice], val: Self)
+def __setitem__(mut self, slices: List[Slice], val: Self)
 ```
 
 Sets the slices of an ComplexNDArray from list of slices and ComplexNDArray.
 
-Example:
+<div class="prose-label">Examples</div>
 `arr[1:3, 2:4]` returns the corresponding sliced ComplexNDArray (2 x 2).
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `slices` (`List`)
-- `val` (`Self`)
+- `slices` (`List[Slice]`) `[imm]`
+- `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 6
+*Not documented in source.*
+
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
-__setitem__(self, var *slices: Variant[Slice, Int], *, val: Self)
+def __setitem__(mut self, var *slices: Variant[Slice, Int], *, val: Self)
 ```
 
 Get items by a series of either slices or integers.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `*slices` (`Variant`) `[var]`
-- `val` (`Self`)
+- `self` (`Self`) `[mut]`
+- `*slices` (`Variant[Slice, Int]`) `[var]`
+- `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 7
+*Not documented in source.*
+
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
-__setitem__(self, index: NDArray[DType.int], val: Self)
+def __setitem__(mut self, index: NDArray[DType.int], val: Self)
 ```
 
 Returns the items of the ComplexNDArray from an array of indices.
 
 Refer to `__getitem__(self, index: List[Int])`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `index` (`NDArray`)
-- `val` (`Self`)
+- `self` (`Self`) `[mut]`
+- `index` (`NDArray[DType.int]`) `[imm]`
+- `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 8
+*Not documented in source.*
+
+<div class="overload-divider">Overload 8</div>
 
 ```mojo
-__setitem__(mut self, mask: Self, val: Self)
+def __setitem__(mut self, mask: NDArray[DType.bool], val: Self)
 ```
 
 Set the value of the ComplexNDArray at the indices where the mask is true.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `mask` (`Self`)
-- `val` (`Self`)
+- `mask` (`NDArray[DType.bool]`) `[imm]`
+- `val` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__neg__`
+#### `__neg__`
 
 ```mojo
-__neg__(self) -> Self
+def __neg__(self) -> Self
 ```
 
 Unary negative returns self unless boolean type.
 
 For bolean use `__invert__`(~)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__pos__`
+#### `__pos__`
 
 ```mojo
-__pos__(self) -> Self
+def __pos__(self) -> Self
 ```
 
 Unary positive returns self unless boolean type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__lt__`
+#### `__lt__`
 
-###### Overload 1
-
-```mojo
-__lt__(self, other: Self) -> NDArray[DType.bool]
-```
-
-Itemwise less than comparison by magnitude.
-
-For complex numbers, compares the magnitudes: |self| < |other|.
-This provides a natural ordering for complex numbers.
-
-Examples:
-```mojo
-import numojo as nm
-var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var B = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var result = A < B  # Compare by magnitude
-```
-
-Notes:
-Complex number ordering is not naturally defined. This implementation
-compares by magnitude (absolute value) to provide a consistent ordering.
-
-**Args:**
-
-- `self` (`Self`)
-- `other` (`Self`): The other ComplexNDArray to compare with.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-###### Overload 2
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__lt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __lt__(self, other: Self) -> NDArray[DType.bool]
 ```
 
-Itemwise less than comparison with scalar by magnitude.
+NumPy-style lexicographic ordering: compare real part first, then imaginary part.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`): The ComplexSIMD scalar to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__lt__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> NDArray[DType.bool]
+def __lt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 ```
 
-Itemwise less than comparison with real scalar by magnitude.
+<div class="prose-label">Args</div>
 
-**Args:**
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-- `self` (`Self`)
-- `other` (`Scalar`): The real scalar to compare with.
+<div class="prose-label">Returns</div>
 
-**Returns:**
+- `NDArray[DType.bool]`
 
-- `NDArray`
+<div class="prose-label">Raises</div>
 
-!!! failure "Raises"
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
+
+```mojo
+def __lt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__le__`
+#### `__le__`
 
-###### Overload 1
-
-```mojo
-__le__(self, other: Self) -> NDArray[DType.bool]
-```
-
-Itemwise less than or equal comparison by magnitude.
-
-For complex numbers, compares the magnitudes: |self| <= |other|.
-
-Examples:
-```mojo
-import numojo as nm
-var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var B = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var result = A <= B  # Compare by magnitude
-```
-
-**Args:**
-
-- `self` (`Self`)
-- `other` (`Self`): The other ComplexNDArray to compare with.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-###### Overload 2
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__le__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __le__(self, other: Self) -> NDArray[DType.bool]
 ```
 
-Itemwise less than or equal comparison with scalar by magnitude.
+<div class="prose-label">Args</div>
 
-**Args:**
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`): The ComplexSIMD scalar to compare with.
+<div class="prose-label">Returns</div>
 
-**Returns:**
+- `NDArray[DType.bool]`
 
-- `NDArray`
+<div class="prose-label">Raises</div>
 
-!!! failure "Raises"
+*Not documented in source.*
 
-###### Overload 3
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__le__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> NDArray[DType.bool]
+def __le__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 ```
 
-Itemwise less than or equal comparison with real scalar by magnitude.
+<div class="prose-label">Args</div>
 
-**Args:**
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-- `self` (`Self`)
-- `other` (`Scalar`): The real scalar to compare with.
+<div class="prose-label">Returns</div>
 
-**Returns:**
+- `NDArray[DType.bool]`
 
-- `NDArray`
+<div class="prose-label">Raises</div>
 
-!!! failure "Raises"
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
+
+```mojo
+def __le__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__eq__(self, other: Self) -> NDArray[DType.bool]
+def __eq__(self, other: Self) -> NDArray[DType.bool]
 ```
 
 Itemwise equivalence.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__eq__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __eq__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 ```
 
 Itemwise equivalence between scalar and ComplexNDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__ne__(self, other: Self) -> NDArray[DType.bool]
+def __ne__(self, other: Self) -> NDArray[DType.bool]
 ```
 
 Itemwise non-equivalence.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__ne__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __ne__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 ```
 
 Itemwise non-equivalence between scalar and ComplexNDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.bool]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `__gt__`
-
-###### Overload 1
-
-```mojo
-__gt__(self, other: Self) -> NDArray[DType.bool]
-```
-
-Itemwise greater than comparison by magnitude.
-
-For complex numbers, compares the magnitudes: |self| > |other|.
-
-Examples:
-```mojo
-import numojo as nm
-var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var B = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var result = A > B  # Compare by magnitude
-```
-
-Notes:
-Complex number ordering is not naturally defined. This implementation
-compares by magnitude (absolute value) to provide a consistent ordering.
-
-**Args:**
-
-- `self` (`Self`)
-- `other` (`Self`): The other ComplexNDArray to compare with.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-###### Overload 2
-
-```mojo
-__gt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
-```
-
-Itemwise greater than comparison with scalar by magnitude.
-
-**Args:**
-
-- `self` (`Self`)
-- `other` (`ComplexSIMD`): The ComplexSIMD scalar to compare with.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-###### Overload 3
-
-```mojo
-__gt__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> NDArray[DType.bool]
-```
-
-Itemwise greater than comparison with real scalar by magnitude.
-
-**Args:**
-
-- `self` (`Self`)
-- `other` (`Scalar`): The real scalar to compare with.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__ge__`
+#### `__gt__`
 
-###### Overload 1
-
-```mojo
-__ge__(self, other: Self) -> NDArray[DType.bool]
-```
-
-Itemwise greater than or equal comparison by magnitude.
-
-For complex numbers, compares the magnitudes: |self| >= |other|.
-
-Examples:
-```mojo
-import numojo as nm
-var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var B = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
-var result = A >= B  # Compare by magnitude
-```
-
-**Args:**
-
-- `self` (`Self`)
-- `other` (`Self`): The other ComplexNDArray to compare with.
-
-**Returns:**
-
-- `NDArray`
-
-!!! failure "Raises"
-
-###### Overload 2
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__ge__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __gt__(self, other: Self) -> NDArray[DType.bool]
 ```
 
-Itemwise greater than or equal comparison with scalar by magnitude.
+<div class="prose-label">Args</div>
 
-**Args:**
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`): The ComplexSIMD scalar to compare with.
+<div class="prose-label">Returns</div>
 
-**Returns:**
+- `NDArray[DType.bool]`
 
-- `NDArray`
+<div class="prose-label">Raises</div>
 
-!!! failure "Raises"
+*Not documented in source.*
 
-###### Overload 3
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__ge__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> NDArray[DType.bool]
+def __gt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 ```
 
-Itemwise greater than or equal comparison with real scalar by magnitude.
+<div class="prose-label">Args</div>
 
-**Args:**
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-- `self` (`Self`)
-- `other` (`Scalar`): The real scalar to compare with.
+<div class="prose-label">Returns</div>
 
-**Returns:**
+- `NDArray[DType.bool]`
 
-- `NDArray`
+<div class="prose-label">Raises</div>
 
-!!! failure "Raises"
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
+
+```mojo
+def __gt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__add__`
+#### `__ge__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__add__(self, other: ComplexSIMD[cdtype]) -> Self
+def __ge__(self, other: Self) -> NDArray[DType.bool]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def __ge__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
+
+```mojo
+def __ge__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `__add__`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def __add__(self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexNDArray + ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__add__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __add__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray + Scalar`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__add__(self, other: Self) -> Self
+def __add__(self, other: Self) -> Self
 ```
 
 Enables `ComplexNDArray + ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__add__(self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __add__(self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray + NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`NDArray`)
+- `self` (`Self`) `[imm]`
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__sub__`
+#### `__sub__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__sub__(self, other: ComplexSIMD[cdtype]) -> Self
+def __sub__(self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexNDArray - ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__sub__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __sub__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray - Scalar`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__sub__(self, other: Self) -> Self
+def __sub__(self, other: Self) -> Self
 ```
 
 Enables `ComplexNDArray - ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__sub__(self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __sub__(self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray - NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`NDArray`)
+- `self` (`Self`) `[imm]`
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__mul__`
+#### `__mul__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__mul__(self, other: ComplexSIMD[cdtype]) -> Self
+def __mul__(self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexNDArray * ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__mul__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __mul__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray * Scalar`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__mul__(self, other: Self) -> Self
+def __mul__(self, other: Self) -> Self
 ```
 
 Enables `ComplexNDArray * ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__mul__(self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __mul__(self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray * NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`NDArray`)
+- `self` (`Self`) `[imm]`
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__matmul__`
+#### `__matmul__`
 
 ```mojo
-__matmul__(self, other: Self) -> Self
+def __matmul__(self, other: Self) -> Self
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__truediv__`
+#### `__truediv__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__truediv__(self, other: ComplexSIMD[cdtype]) -> Self
+def __truediv__(self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexNDArray / ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__truediv__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __truediv__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray / ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__truediv__(self, other: Self) -> Self
+def __truediv__(self, other: Self) -> Self
 ```
 
 Enables `ComplexNDArray / ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__truediv__(self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __truediv__(self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `ComplexNDArray / NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`NDArray`)
+- `self` (`Self`) `[imm]`
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__pow__`
+#### `__pow__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__pow__(self, p: Int) -> Self
+def __pow__(self, p: Int) -> Self
 ```
 
 Raise complex array to integer power element-wise.
@@ -1616,59 +1646,63 @@ Raise complex array to integer power element-wise.
 Uses De Moivre's formula for complex exponentiation:
 (r * e^(i*theta))^n = r^n * e^(i*n*theta)
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
 var B = A ** 3  # Cube each element
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `p` (`Int`): Integer exponent.
+- `self` (`Self`) `[imm]`
+- `p` (`Int`) `[imm]`: Integer exponent.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__pow__(self, rhs: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __pow__(self, rhs: Scalar[Self.dtype]) -> Self
 ```
 
 Raise complex array to real scalar power element-wise.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
 var B = A ** 2.5  # Raise to power 2.5
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `rhs` (`Scalar`): Real scalar exponent.
+- `self` (`Self`) `[imm]`
+- `rhs` (`Scalar[Self.dtype]`) `[imm]`: Real scalar exponent.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__pow__(self, p: Self) -> Self
+def __pow__(self, p: Self) -> Self where ComplexNDArray[cdtype].dtype.is_floating_point()
 ```
 
 Raise complex array to complex array power element-wise.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
@@ -1676,590 +1710,680 @@ var B = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
 var C = A ** B  # Element-wise complex power
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `p` (`Self`): ComplexNDArray exponent.
+- `self` (`Self`) `[imm]`
+- `p` (`Self`) `[imm]`: ComplexNDArray exponent.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If arrays have different sizes.
+    NumojoError: If arrays have different sizes.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__radd__`
+#### `__radd__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__radd__(mut self, other: ComplexSIMD[cdtype]) -> Self
+def __radd__(mut self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexSIMD + ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`ComplexSIMD`)
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__radd__(mut self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __radd__(mut self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `Scalar + ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`)
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__radd__(mut self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __radd__(mut self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `NDArray + ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`NDArray`)
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__rsub__`
+#### `__rsub__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__rsub__(mut self, other: ComplexSIMD[cdtype]) -> Self
+def __rsub__(mut self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexSIMD - ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`ComplexSIMD`)
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__rsub__(mut self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __rsub__(mut self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `Scalar - ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`)
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__rsub__(mut self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __rsub__(mut self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `NDArray - ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`NDArray`)
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__rmul__`
+#### `__rmul__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__rmul__(self, other: ComplexSIMD[cdtype]) -> Self
+def __rmul__(self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexSIMD * ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`ComplexSIMD`)
+- `self` (`Self`) `[imm]`
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__rmul__(self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __rmul__(self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `Scalar * ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Scalar`)
+- `self` (`Self`) `[imm]`
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__rmul__(self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __rmul__(self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `NDArray * ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`NDArray`)
+- `self` (`Self`) `[imm]`
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__rtruediv__`
+#### `__rtruediv__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__rtruediv__(mut self, other: ComplexSIMD[cdtype]) -> Self
+def __rtruediv__(mut self, other: ComplexSIMD[cdtype]) -> Self
 ```
 
 Enables `ComplexSIMD / ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`ComplexSIMD`)
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__rtruediv__(mut self, other: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def __rtruediv__(mut self, other: Scalar[Self.dtype]) -> Self
 ```
 
 Enables `Scalar / ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`)
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__rtruediv__(mut self, other: NDArray[ComplexNDArray[cdtype].dtype]) -> Self
+def __rtruediv__(mut self, other: NDArray[Self.dtype]) -> Self
 ```
 
 Enables `NDArray / ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`NDArray`)
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__iadd__`
+#### `__iadd__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__iadd__(mut self, other: ComplexSIMD[cdtype])
+def __iadd__(mut self, other: ComplexSIMD[cdtype])
 ```
 
 Enables `ComplexNDArray += ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`ComplexSIMD`)
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__iadd__(mut self, other: Scalar[ComplexNDArray[cdtype].dtype])
+def __iadd__(mut self, other: Scalar[Self.dtype])
 ```
 
 Enables `ComplexNDArray += Scalar`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`)
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__iadd__(mut self, other: Self)
+def __iadd__(mut self, other: Self)
 ```
 
 Enables `ComplexNDArray += ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`)
+- `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__iadd__(mut self, other: NDArray[ComplexNDArray[cdtype].dtype])
+def __iadd__(mut self, other: NDArray[Self.dtype])
 ```
 
 Enables `ComplexNDArray += NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`NDArray`)
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__isub__`
+#### `__isub__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__isub__(mut self, other: ComplexSIMD[cdtype])
+def __isub__(mut self, other: ComplexSIMD[cdtype])
 ```
 
 Enables `ComplexNDArray -= ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`ComplexSIMD`)
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__isub__(mut self, other: Scalar[ComplexNDArray[cdtype].dtype])
+def __isub__(mut self, other: Scalar[Self.dtype])
 ```
 
 Enables `ComplexNDArray -= Scalar`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`)
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__isub__(mut self, other: Self)
+def __isub__(mut self, other: Self)
 ```
 
 Enables `ComplexNDArray -= ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`)
+- `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__isub__(mut self, other: NDArray[ComplexNDArray[cdtype].dtype])
+def __isub__(mut self, other: NDArray[Self.dtype])
 ```
 
 Enables `ComplexNDArray -= NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`NDArray`)
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__imul__`
+#### `__imul__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__imul__(mut self, other: ComplexSIMD[cdtype])
+def __imul__(mut self, other: ComplexSIMD[cdtype])
 ```
 
 Enables `ComplexNDArray *= ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`ComplexSIMD`)
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__imul__(mut self, other: Scalar[ComplexNDArray[cdtype].dtype])
+def __imul__(mut self, other: Scalar[Self.dtype])
 ```
 
 Enables `ComplexNDArray *= Scalar`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`)
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__imul__(mut self, other: Self)
+def __imul__(mut self, other: Self)
 ```
 
 Enables `ComplexNDArray *= ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`)
+- `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__imul__(mut self, other: NDArray[ComplexNDArray[cdtype].dtype])
+def __imul__(mut self, other: NDArray[Self.dtype])
 ```
 
 Enables `ComplexNDArray *= NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`NDArray`)
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__itruediv__`
+#### `__itruediv__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__itruediv__(mut self, other: ComplexSIMD[cdtype])
+def __itruediv__(mut self, other: ComplexSIMD[cdtype])
 ```
 
 Enables `ComplexNDArray /= ComplexSIMD`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`ComplexSIMD`)
+- `other` (`ComplexSIMD[cdtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__itruediv__(mut self, other: Scalar[ComplexNDArray[cdtype].dtype])
+def __itruediv__(mut self, other: Scalar[Self.dtype])
 ```
 
 Enables `ComplexNDArray /= Scalar`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Scalar`)
+- `other` (`Scalar[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 3
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__itruediv__(mut self, other: Self)
+def __itruediv__(mut self, other: Self)
 ```
 
 Enables `ComplexNDArray /= ComplexNDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`Self`)
+- `other` (`Self`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 4
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__itruediv__(mut self, other: NDArray[ComplexNDArray[cdtype].dtype])
+def __itruediv__(mut self, other: NDArray[Self.dtype])
 ```
 
 Enables `ComplexNDArray /= NDArray`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `other` (`NDArray`)
+- `other` (`NDArray[Self.dtype]`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__ipow__`
+#### `__ipow__`
 
 ```mojo
-__ipow__(mut self, p: Int)
+def __ipow__(mut self, p: Int)
 ```
 
 In-place raise to integer power.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
 A **= 3  # Cube in place
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `p` (`Int`): Integer exponent.
+- `p` (`Int`) `[imm]`: Integer exponent.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `normalize`
+#### `view`
 
 ```mojo
-normalize(self, idx: Int, dim: Int) -> Int
+def view(mut self) -> Self
+```
+
+Create a non-owning view of the current ComplexNDArray.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var arr = nm.ComplexNDArray[nm.cf32](nm.Shape(3, 4))
+var v = arr.view()  # Create a view into arr.
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[mut]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `normalize`
+
+```mojo
+def normalize(self, idx: Int, dim: Int) -> Int
 ```
 
 Normalize a potentially negative index to its positive equivalent within the bounds of the given dimension.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `idx` (`Int`): The index to normalize. Can be negative to indicate indexing
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: The index to normalize. Can be negative to indicate indexing
      from the end (e.g., -1 refers to the last element).
-- `dim` (`Int`): The size of the dimension to normalize against.
+- `dim` (`Int`) `[imm]`: The size of the dimension to normalize against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -2268,17 +2392,17 @@ Normalize a potentially negative index to its positive equivalent within the bou
 
 <div class="fn-card" markdown="1">
 
-##### `item`
+#### `item`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-item(self, var index: Int) -> ComplexSIMD[cdtype]
+def item(self, var index: Int) -> ComplexSIMD[cdtype]
 ```
 
 Return the scalar at the coordinates. If one index is given, get the i-th item of the complex array (not buffer). It first scans over the first row, even it is a column-major array. If more than one index is given, the length of the indices must match the number of dimensions of the array. If the ndim is 0 (0-D array), get the value as a mojo scalar.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```console
 >>> import numojo as nm
@@ -2286,28 +2410,28 @@ Examples:
 >>> print(A.item(10)) # returns the 10-th item of the complex array.
 ```.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `index` (`Int`) `[var]`: Index of item, counted in row-major way.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
 !!! failure "Raises"
     Error if array is 0-D array (numojo scalar).
 Error if index is equal or larger than array size.
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-item(self, *index: Int) -> ComplexSIMD[cdtype]
+def item(self, *index: Int) -> ComplexSIMD[cdtype]
 ```
 
 Return the scalar at the coordinates. If one index is given, get the i-th item of the complex array (not buffer). It first scans over the first row, even it is a colume-major array. If more than one index is given, the length of the indices must match the number of dimensions of the array. For 0-D complex array (numojo scalar), return the scalar value.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```console
 >>> import numojo as nm
@@ -2315,37 +2439,37 @@ Examples:
 >>> print(A.item(1, 1, 1)) # returns the 10-th item of the complex array.
 ```.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `*index` (`Int`): The coordinates of the item.
+- `self` (`Self`) `[imm]`
+- `*index` (`Int`) `[imm]`: The coordinates of the item.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
 !!! failure "Raises"
-    Error: If the number of indices is not equal to the number of dimensions of the array.
-Error: If the index is equal or larger than size of dimension.
+    NumojoError: If the number of indices is not equal to the number of dimensions of the array.
+NumojoError: If the index is equal or larger than size of dimension.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `load`
+#### `load`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-load(self, var index: Int) -> ComplexSIMD[cdtype]
+def load(self, var index: Int) -> ComplexSIMD[cdtype]
 ```
 
 Safely retrieve i-th item from the underlying buffer.
 
 `A.load(i)` differs from `A._buf.ptr[i]` due to boundary check.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```console
 >>> import numojo as nm
@@ -2353,55 +2477,55 @@ Examples:
 >>> print(A.load(10)) # returns the 10-th item of the complex array.
 ```.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `index` (`Int`) `[var]`: Index of the item.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
 !!! failure "Raises"
     Index out of bounds.
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-load[width: Int = 1](self, index: Int) -> ComplexSIMD[cdtype, width]
+def load[width: Int = Int(1)](self, index: Int) -> ComplexSIMD[cdtype, width]
 ```
 
 Safely loads a ComplexSIMD element of size `width` at `index` from the underlying buffer.
 
 To bypass boundary checks, use `self._buf.ptr.load` directly.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `index` (`Int`): Index of the item.
+- `self` (`Self`) `[imm]`
+- `index` (`Int`) `[imm]`: Index of the item.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype, width]`
 
 !!! failure "Raises"
     Index out of boundary.
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-load[width: Int = 1](self, *indices: Int) -> ComplexSIMD[cdtype, width]
+def load[width: Int = Int(1)](self, *indices: Int) -> ComplexSIMD[cdtype, width]
 ```
 
 Safely loads a ComplexSIMD element of size `width` at given variadic indices from the underlying buffer.
 
 To bypass boundary checks, use `self._buf.ptr.load` directly.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```console
 >>> import numojo as nm
@@ -2409,32 +2533,32 @@ Examples:
 >>> print(A.load(0, 1, 1))
 ```.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `*indices` (`Int`): Variadic indices.
+- `self` (`Self`) `[imm]`
+- `*indices` (`Int`) `[imm]`: Variadic indices.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype, width]`
 
 !!! failure "Raises"
-    Error: If the length of indices does not match the number of dimensions.
-Error: If any of the indices is out of bound.
+    NumojoError: If the length of indices does not match the number of dimensions.
+NumojoError: If any of the indices is out of bound.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__int__`
+#### `__int__`
 
 ```mojo
-__int__(self) -> Int
+def __int__(self) -> Int
 ```
 
 Gets `Int` representation of the complex array's real part.
@@ -2442,35 +2566,35 @@ Gets `Int` representation of the complex array's real part.
 Only 0-D arrays or length-1 arrays can be converted to scalars.
 The imaginary part is discarded.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape())  # 0-D array
-A._re._buf.ptr[] = 42.7
-A._im._buf.ptr[] = 3.14
+A._re.unsafe_set(0, 42.7)
+A._im.unsafe_set(0, 3.14)
 print(A.__int__())  # 42 (only real part)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
 !!! failure "Raises"
-    Error: If the array is not 0-D or length-1.
+    NumojoError: If the array is not 0-D or length-1.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__float__`
+#### `__float__`
 
 ```mojo
-__float__(self) -> Float64
+def __float__(self) -> Float64
 ```
 
 Gets `Float64` representation of the complex array's magnitude.
@@ -2478,35 +2602,35 @@ Gets `Float64` representation of the complex array's magnitude.
 Only 0-D arrays or length-1 arrays can be converted to scalars.
 Returns the magnitude (absolute value) of the complex number.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape())  # 0-D array
-A._re._buf.ptr[] = 3.0
-A._im._buf.ptr[] = 4.0
+A._re.unsafe_set(0, 3.0)
+A._im.unsafe_set(0, 4.0)
 print(A.__float__())  # 5.0 (magnitude)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Float64`
 
 !!! failure "Raises"
-    Error: If the array is not 0-D or length-1.
+    NumojoError: If the array is not 0-D or length-1.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__abs__`
+#### `__abs__`
 
 ```mojo
-__abs__(self) -> NDArray[ComplexNDArray[cdtype].dtype]
+def __abs__(self) -> NDArray[Self.dtype]
 ```
 
 Compute the magnitude (absolute value) of each complex element.
@@ -2514,7 +2638,7 @@ Compute the magnitude (absolute value) of each complex element.
 Returns an NDArray of real values containing the magnitude of each
 complex number: sqrt(re^2 + im^2).
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
@@ -2522,34 +2646,36 @@ var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 2))
 var mag = A.__abs__()  # Returns NDArray[f64] with magnitudes
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[Self.dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Enables String(array).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -2558,21 +2684,21 @@ Enables String(array).
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Writes the array to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`: The writer to write the array to.
 
 
@@ -2580,19 +2706,41 @@ Writes the array to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `write_repr_to`
 
 ```mojo
-__repr__(self) -> String
+def write_repr_to[W: Writer](self, mut writer: W)
 ```
 
-Compute the "official" string representation of ComplexNDArray. An example is: ``` fn main() raises:     var A = ComplexNDArray[f32](List[ComplexSIMD[f32]](14,97,-59,-4,112,), shape=List[Int](5,))     print(repr(A)) ``` It prints what can be used to construct the array itself: ```console     ComplexNDArray[f32](List[ComplexSIMD[f32]](14,97,-59,-4,112,), shape=List[Int](5,)) ```.
+Write the string representation to a writer.
 
-**Args:**
+<div class="prose-label">Parameters</div>
 
-- `self` (`Self`)
+- `W` (`Writer`): The writer type.
 
-**Returns:**
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `writer` (`W`) `[mut]`: The writer to write to.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `__repr__`
+
+```mojo
+def __repr__(self) -> String
+```
+
+Compute the "official" string representation of ComplexNDArray. An example is: ``` def main() raises:     var A = ComplexNDArray[f32](List[ComplexSIMD[f32]](14,97,-59,-4,112,), shape=List[Int](5,))     print(repr(A)) ``` It prints what can be used to construct the array itself: ```console     ComplexNDArray[f32](List[ComplexSIMD[f32]](14,97,-59,-4,112,), shape=List[Int](5,)) ```.
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -2601,17 +2749,17 @@ Compute the "official" string representation of ComplexNDArray. An example is: `
 
 <div class="fn-card" markdown="1">
 
-##### `__len__`
+#### `__len__`
 
 ```mojo
-__len__(self) -> Int
+def __len__(self) -> Int
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -2620,50 +2768,50 @@ __len__(self) -> Int
 
 <div class="fn-card" markdown="1">
 
-##### `store`
+#### `store`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-store[width: Int = 1](mut self, index: Int, val: ComplexSIMD[cdtype])
+def store[width: Int = Int(1)](mut self, index: Int, val: ComplexSIMD[cdtype])
 ```
 
 Safely stores SIMD element of size `width` at `index` of the underlying buffer.
 
 To bypass boundary checks, use `self._buf.ptr.store` directly.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `index` (`Int`)
-- `val` (`ComplexSIMD`)
+- `index` (`Int`) `[imm]`
+- `val` (`ComplexSIMD[cdtype]`) `[imm]`
 
 !!! failure "Raises"
     Index out of boundary.
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-store[width: Int = 1](mut self, *indices: Int, *, val: ComplexSIMD[cdtype])
+def store[width: Int = Int(1)](mut self, *indices: Int, *, val: ComplexSIMD[cdtype])
 ```
 
 Safely stores SIMD element of size `width` at given variadic indices of the underlying buffer.
 
 To bypass boundary checks, use `self._buf.ptr.store` directly.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `*indices` (`Int`)
-- `val` (`ComplexSIMD`)
+- `*indices` (`Int`) `[imm]`
+- `val` (`ComplexSIMD[cdtype]`) `[imm]`
 
 !!! failure "Raises"
     Index out of boundary.
@@ -2673,172 +2821,199 @@ To bypass boundary checks, use `self._buf.ptr.store` directly.
 
 <div class="fn-card" markdown="1">
 
-##### `reshape`
+#### `reshape`
 
 ```mojo
-reshape(self, shape: NDArrayShape, order: String = "C") -> Self
+def reshape(self, shape: NDArrayShape, order: String = "C") -> Self
 ```
 
 Returns an array of the same data with a new shape.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `shape` (`NDArrayShape`): Shape of returned array.
-- `order` (`String`): Order of the array - Row major `C` or Column major `F`.
+- `self` (`Self`) `[imm]`
+- `shape` (`NDArrayShape`) `[imm]`: Shape of returned array.
+- `order` (`String`) `[imm]`: Order of the array - Row major `C` or Column major `F`.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__iter__`
+#### `itemset`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__iter__(mut self) -> _ComplexNDArrayIter[origin_of(self), cdtype]
+def itemset(mut self, index: Int, item: ComplexSIMD[cdtype])
 ```
 
-Iterates over elements of the ComplexNDArray and return sub-arrays as view.
+Sets the scalar at the given coordinate.
 
-**Args:**
+<div class="prose-label">Examples</div>
+
+```
+import numojo as nm
+def main() raises:
+    var A = nm.zeros[nm.cf16](nm.Shape(3, 3))
+    print(A)
+    A.itemset(5, nm.ComplexSIMD[nm.f16](1.0, 2.0))
+    print(A)
+```
+```console
+[[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]
+[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]
+[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]]
+2-D array  Shape: [3, 3]  DType: complex16
+[[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]
+[      (0.0, 0.0)    (0.0, 0.0)    (1.0, 2.0)    ]
+[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]]
+2-D array  Shape: [3, 3]  DType: complex16
+```.
+
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-
-**Returns:**
-
-- `_ComplexNDArrayIter`
+- `index` (`Int`) `[imm]`: The linear index of the i-th item of the whole array.
+- `item` (`ComplexSIMD[cdtype]`) `[imm]`: The complex scalar to be set.
 
 !!! failure "Raises"
+    NumojoError: If the index is out of bounds.
+NumojoError: If the length of index does not match the number of
+dimensions.
 
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `__reversed__`
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__reversed__(mut self) -> _ComplexNDArrayIter[origin_of(self), cdtype, False]
+def itemset(mut self, var indices: List[Int], item: ComplexSIMD[cdtype])
 ```
 
-Iterates backwards over elements of the ComplexNDArray, returning copied value.
+Sets the scalar at the given coordinates.
 
-**Args:**
+<div class="prose-label">Notes</div>
+This is similar to `numpy.ndarray.itemset`. The difference is that
+we take `List[Int]`, but NumPy takes a tuple.
 
-- `self` (`Self`) `[mut]`
+<div class="prose-label">Examples</div>
 
-**Returns:**
-
-- `_ComplexNDArrayIter`
-
-!!! failure "Raises"
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `itemset`
-
-```mojo
-itemset(mut self, index: Variant[Int, List[Int]], item: ComplexSIMD[cdtype])
 ```
+import numojo as nm
+def main() raises:
+    var A = nm.zeros[nm.cf16](nm.Shape(3, 3))
+    print(A)
+    A.itemset(nm.List(1, 1), nm.ComplexSIMD[nm.f16](1.0, 2.0))
+    print(A)
+```
+```console
+[[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]
+[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]
+[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]]
+2-D array  Shape: [3, 3]  DType: complex16
+[[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]
+[      (0.0, 0.0)    (1.0, 2.0)    (0.0, 0.0)    ]
+[      (0.0, 0.0)    (0.0, 0.0)    (0.0, 0.0)    ]]
+2-D array  Shape: [3, 3]  DType: complex16
+```.
 
-Set the scalar at the coordinates.
-
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `index` (`Variant`): The coordinates of the item.
-    Can either be `Int` or `List[Int]`.
-    If `Int` is passed, it is the index of i-th item of the whole array.
-    If `List[Int]` is passed, it is the coordinate of the item.
-- `item` (`ComplexSIMD`): The scalar to be set.
+- `indices` (`List[Int]`) `[var]`: The coordinates of the item.
+- `item` (`ComplexSIMD[cdtype]`) `[imm]`: The complex scalar to be set.
 
 !!! failure "Raises"
+    NumojoError: If the index is out of bounds.
+NumojoError: If the length of index does not match the number of
+dimensions.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `conj`
+#### `conj`
 
 ```mojo
-conj(self) -> Self
+def conj(self) -> Self
 ```
 
 Return the complex conjugate of the ComplexNDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `to_ndarray`
+#### `to_ndarray`
 
 ```mojo
-to_ndarray(self, type: String = "re") -> NDArray[ComplexNDArray[cdtype].dtype]
+def to_ndarray(self, type: String = "re") -> NDArray[Self.dtype]
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `type` (`String`)
+- `self` (`Self`) `[imm]`
+- `type` (`String`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[Self.dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `squeeze`
+#### `squeeze`
 
 ```mojo
-squeeze(mut self, axis: Int)
+def squeeze(mut self, axis: Int)
 ```
 
 Remove (squeeze) a single dimension of size 1 from the array shape.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `axis` (`Int`): The axis to squeeze. Supports negative indices.
+- `axis` (`Int`) `[imm]`: The axis to squeeze. Supports negative indices.
 
 !!! failure "Raises"
-    IndexError: If the axis is out of range.
-ShapeError: If the dimension at the given axis is not of size 1.
+    NumojoError: If the axis is out of range.
+NumojoError: If the dimension at the given axis is not of size 1.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `all`
+#### `all`
 
 ```mojo
-all(self) -> Bool
+def all(self) -> Bool
 ```
 
 Check if all complex elements are non-zero.
@@ -2846,7 +3021,7 @@ Check if all complex elements are non-zero.
 A complex number is considered "true" if either its real or imaginary
 part is non-zero.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
@@ -2854,25 +3029,27 @@ var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var result = A.all()  # True if all non-zero
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `any`
+#### `any`
 
 ```mojo
-any(self) -> Bool
+def any(self) -> Bool
 ```
 
 Check if any complex element is non-zero.
@@ -2880,7 +3057,7 @@ Check if any complex element is non-zero.
 A complex number is considered "true" if either its real or imaginary
 part is non-zero.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
@@ -2888,433 +3065,644 @@ var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var result = A.any()  # True if any non-zero
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `sum`
+#### `sum`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-sum(self) -> ComplexSIMD[cdtype]
+def sum(self) -> ComplexSIMD[cdtype]
 ```
 
 Sum of all complex array elements.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var total = A.sum()  # Sum of all elements
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def sum(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `prod`
+#### `prod`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-prod(self) -> ComplexSIMD[cdtype]
+def prod(self) -> ComplexSIMD[cdtype]
 ```
 
 Product of all complex array elements.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var product = A.prod()  # Product of all elements
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def prod(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `mean`
+#### `mean`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-mean(self) -> ComplexSIMD[cdtype]
+def mean(self) -> ComplexSIMD[cdtype]
 ```
 
 Mean (average) of all complex array elements.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var average = A.mean()  # Mean of all elements
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def mean(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `max`
+#### `max`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-max(self) -> ComplexSIMD[cdtype]
+def max(self) -> ComplexSIMD[cdtype]
 ```
 
 Find the complex element with maximum magnitude.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var max_elem = A.max()  # Element with largest magnitude
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 Returns the element with maximum |z| = sqrt(re^2 + im^2).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def max(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `min`
+#### `min`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-min(self) -> ComplexSIMD[cdtype]
+def min(self) -> ComplexSIMD[cdtype]
 ```
 
 Find the complex element with minimum magnitude.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var min_elem = A.min()  # Element with smallest magnitude
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 Returns the element with minimum |z| = sqrt(re^2 + im^2).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def min(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `argmax`
+#### `argmax`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-argmax(self) -> Int
+def argmax(self) -> Int
 ```
 
 Return the index of the element with maximum magnitude.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var idx = A.argmax()  # Index of element with largest magnitude
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 Compares by magnitude: |z| = sqrt(re^2 + im^2).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def argmax(self, axis: Int) -> NDArray[DType.int]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.int]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `argmin`
+#### `argmin`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-argmin(self) -> Int
+def argmin(self) -> Int
 ```
 
 Return the index of the element with minimum magnitude.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var idx = A.argmin()  # Index of element with smallest magnitude
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 Compares by magnitude: |z| = sqrt(re^2 + im^2).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def argmin(self, axis: Int) -> NDArray[DType.int]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.int]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `cumsum`
+#### `cumsum`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-cumsum(self) -> Self
+def cumsum(self) -> Self
 ```
 
 Cumulative sum of complex array elements.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(5))
 var cumulative = A.cumsum()
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 For array [a, b, c, d], returns [a, a+b, a+b+c, a+b+c+d].
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def cumsum(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `cumprod`
+#### `cumprod`
+
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-cumprod(self) -> Self
+def cumprod(self) -> Self
 ```
 
 Cumulative product of complex array elements.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(5))
 var cumulative = A.cumprod()
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 For array [a, b, c, d], returns [a, a*b, a*b*c, a*b*c*d].
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def cumprod(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `flatten`
+#### `flatten`
 
 ```mojo
-flatten(self, order: String = "C") -> Self
+def flatten(self, order: String = "C") -> Self
 ```
 
 Return a copy of the array collapsed into one dimension.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 4))
 var flat = A.flatten()  # Shape(12)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `order` (`String`): Order of flattening - 'C' for row-major or 'F' for column-major.
+- `self` (`Self`) `[imm]`
+- `order` (`String`) `[imm]`: Order of flattening - 'C' for row-major or 'F' for column-major.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `fill`
+#### `fill`
 
 ```mojo
-fill(mut self, val: ComplexSIMD[cdtype])
+def fill(mut self, val: ComplexSIMD[cdtype])
 ```
 
 Fill all items of array with a complex value.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 A.fill(nm.ComplexSIMD[nm.cf64](1.0, 2.0))  # Fill with 1+2i
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `val` (`ComplexSIMD`): Complex value to fill the array with.
+- `val` (`ComplexSIMD[cdtype]`) `[imm]`: Complex value to fill the array with.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `row`
+#### `row`
 
 ```mojo
-row(self, id: Int) -> Self
+def row(self, id: Int) -> Self
 ```
 
 Get the ith row of the matrix.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 4))
 var first_row = A.row(0)  # Get first row
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `id` (`Int`): The row index.
+- `self` (`Self`) `[imm]`
+- `id` (`Int`) `[imm]`: The row index.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If ndim is greater than 2.
+    NumojoError: If ndim is greater than 2.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `col`
+#### `col`
 
 ```mojo
-col(self, id: Int) -> Self
+def col(self, id: Int) -> Self
 ```
 
 Get the ith column of the matrix.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 4))
 var first_col = A.col(0)  # Get first column
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `id` (`Int`): The column index.
+- `self` (`Self`) `[imm]`
+- `id` (`Int`) `[imm]`: The column index.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If ndim is greater than 2.
+    NumojoError: If ndim is greater than 2.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `clip`
+#### `clip`
 
 ```mojo
-clip(self, a_min: Scalar[ComplexNDArray[cdtype].dtype], a_max: Scalar[ComplexNDArray[cdtype].dtype]) -> Self
+def clip(self, a_min: Scalar[Self.dtype], a_max: Scalar[Self.dtype]) -> Self
 ```
 
 Limit the magnitudes of complex values between [a_min, a_max].
@@ -3323,42 +3711,44 @@ Elements with magnitude less than a_min are scaled to have magnitude a_min.
 Elements with magnitude greater than a_max are scaled to have magnitude a_max.
 The phase (angle) of each complex number is preserved.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(10))
 var clipped = A.clip(1.0, 5.0)  # Clip magnitudes to [1, 5]
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 Clips by magnitude while preserving phase angle.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `a_min` (`Scalar`): The minimum magnitude.
-- `a_max` (`Scalar`): The maximum magnitude.
+- `self` (`Self`) `[imm]`
+- `a_min` (`Scalar[Self.dtype]`) `[imm]`: The minimum magnitude.
+- `a_max` (`Scalar[Self.dtype]`) `[imm]`: The maximum magnitude.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `round`
+#### `round`
 
 ```mojo
-round(self) -> Self
+def round(self) -> Self
 ```
 
 Round the real and imaginary parts of each element to the nearest integer.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(10))
@@ -3366,88 +3756,94 @@ var A = nm.ComplexNDArray[nm.cf64](nm.Shape(10))
 var rounded = A.round()  # Returns 2.0+2.0i
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `T`
+#### `T`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-T(self) -> Self
+def T(self) -> Self
 ```
 
 Transpose the complex array (reverse all axes).
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 4))
 var A_T = A.T()  # Shape(4, 3)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-T(self, axes: List[Int]) -> Self
+def T(self, axes: List[Int]) -> Self
 ```
 
 Transpose the complex array according to the given axes permutation.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 3, 4))
 var A_T = A.T([2, 0, 1])  # Shape(4, 2, 3)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `axes` (`List`): Permutation of axes (e.g., [1, 0, 2]).
+- `self` (`Self`) `[imm]`
+- `axes` (`List[Int]`) `[imm]`: Permutation of axes (e.g., [1, 0, 2]).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `diagonal`
+#### `diagonal`
 
 ```mojo
-diagonal(self, offset: Int = 0) -> Self
+def diagonal(self, offset: Int = Int(0)) -> Self
 ```
 
 Extract the diagonal from a 2D complex array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(4, 4))
@@ -3455,102 +3851,453 @@ var diag = A.diagonal()      # Main diagonal
 var upper = A.diagonal(1)    # First upper diagonal
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `offset` (`Int`): Offset from the main diagonal (0 for main diagonal).
+- `self` (`Self`) `[imm]`
+- `offset` (`Int`) `[imm]`: Offset from the main diagonal (0 for main diagonal).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
 !!! failure "Raises"
-    Error: If array is not 2D.
+    NumojoError: If array is not 2D.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `trace`
+#### `trace`
 
 ```mojo
-trace(self) -> ComplexSIMD[cdtype]
+def trace(self) -> ComplexSIMD[cdtype]
 ```
 
 Return the sum of the diagonal elements (trace of the matrix).
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 3))
 var tr = A.trace()  # Sum of diagonal elements
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ComplexSIMD`
+- `ComplexSIMD[cdtype]`
 
 !!! failure "Raises"
-    Error: If array is not 2D.
+    NumojoError: If array is not 2D.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `tolist`
+#### `tolist`
 
 ```mojo
-tolist(self) -> List[ComplexSIMD[cdtype]]
+def tolist(self) -> List[ComplexSIMD[cdtype]]
 ```
 
 Convert the complex array to a List of complex scalars.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 3))
 var elements = A.tolist()  # List of 6 complex numbers
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `List`
+- `List[ComplexSIMD[cdtype]]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `num_elements`
+#### `astype`
 
 ```mojo
-num_elements(self) -> Int
+def astype[target: ComplexDType](self) -> ComplexNDArray[target]
+```
+
+Casts this complex array to another complex dtype.
+
+<div class="prose-label">Parameters</div>
+
+- `target` (`ComplexDType`)
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `ComplexNDArray[target]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `compress`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def compress(self, condition: NDArray[DType.bool], axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `condition` (`NDArray[DType.bool]`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def compress(self, condition: NDArray[DType.bool]) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `condition` (`NDArray[DType.bool]`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `contiguous`
+
+```mojo
+def contiguous(self) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `is_c_contiguous`
+
+```mojo
+def is_c_contiguous(self) -> Bool
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Bool`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `is_f_contiguous`
+
+```mojo
+def is_f_contiguous(self) -> Bool
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Bool`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `is_row_contiguous`
+
+```mojo
+def is_row_contiguous(self) -> Bool
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Bool`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `is_col_contiguous`
+
+```mojo
+def is_col_contiguous(self) -> Bool
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Bool`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `unsafe_load`
+
+```mojo
+def unsafe_load[width: Int = Int(1)](self, index: Int) -> ComplexSIMD[cdtype, width]
+```
+
+<div class="prose-label">Parameters</div>
+
+- `width` (`Int`)
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `index` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `ComplexSIMD[cdtype, width]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `unsafe_store`
+
+```mojo
+def unsafe_store[width: Int = Int(1)](mut self, index: Int, val: ComplexSIMD[cdtype, width])
+```
+
+<div class="prose-label">Parameters</div>
+
+- `width` (`Int`)
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[mut]`
+- `index` (`Int`) `[imm]`
+- `val` (`ComplexSIMD[cdtype, width]`) `[imm]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `to_numpy`
+
+```mojo
+def to_numpy(self) -> PythonObject
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `PythonObject`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `argsort`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def argsort(self) -> NDArray[DType.int]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.int]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def argsort(self, axis: Int) -> NDArray[DType.int]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[DType.int]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `sort`
+
+```mojo
+def sort(mut self, axis: Int = Int(-1), stable: Bool = False)
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[mut]`
+- `axis` (`Int`) `[imm]`
+- `stable` (`Bool`) `[imm]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `median`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def median(self) -> ComplexSIMD[cdtype]
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `ComplexSIMD[cdtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def median(self, axis: Int) -> Self
+```
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `num_elements`
+
+```mojo
+def num_elements(self) -> Int
 ```
 
 Return the total number of elements in the array.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(3, 4, 5))
 print(A.num_elements())  # 60
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -3559,10 +4306,10 @@ print(A.num_elements())  # 60
 
 <div class="fn-card" markdown="1">
 
-##### `resize`
+#### `resize`
 
 ```mojo
-resize(mut self, shape: NDArrayShape)
+def resize(mut self, shape: NDArrayShape)
 ```
 
 Change shape and size of array in-place.
@@ -3570,22 +4317,24 @@ Change shape and size of array in-place.
 If the new shape requires more elements, they are filled with zero.
 If the new shape requires fewer elements, the array is truncated.
 
-Examples:
+<div class="prose-label">Examples</div>
 ```mojo
 import numojo as nm
 var A = nm.ComplexNDArray[nm.cf64](nm.Shape(2, 3))
 A.resize(nm.Shape(3, 4))  # Now 3x4, filled with zeros as needed
 ```
 
-Notes:
+<div class="prose-label">Notes</div>
 This modifies the array in-place. To get a reshaped copy, use reshape().
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `shape` (`NDArrayShape`): The new shape for the array.
+- `shape` (`NDArrayShape`) `[imm]`: The new shape for the array.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

@@ -1,10 +1,23 @@
 # `numojo.core.traits.buffered`
 
+Trait for buffer ownership semantics.
+
+Trait to denote whether a data buffer is owned or referenced. Implementations
+distinguish between owned data (OwnData) and referenced data (RefData).
+
+Exports
+-------
+- `Buffered`: Trait for buffer ownership.
+
 ## Traits
 
 ### `Buffered`
 
-**Extends:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">trait</span>
+
+**Extends:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `Movable`
 
 A trait to denote whether the data buffer is owned or not.
 
@@ -14,110 +27,66 @@ There will be two implementations:
 
 The `RefData` type will record the origin of the data to ensure safety.
 
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-A flag (often compiler generated) to indicate whether the implementation of `__del__` is trivial.
-
-The implementation of `__del__` is considered to be trivial if:
-- The struct has a compiler-generated trivial destructor and all its fields
-  have a trivial `__del__` method.
-
-In practice, it means that the `__del__` can be considered as no-op.
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-A flag (often compiler generated) to indicate whether the implementation of the copy constructor is trivial.
-
-A copy constructor is considered to be trivial if:
-- The struct has a compiler-generated trivial copy constructor because all
-  its fields have trivial copy constructors.
-
-In practice, it means the value can be copied by copying the bits from
-one location to another without side effects.
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-A flag (often compiler generated) to indicate whether the implementation of move constructor is trivial.
-
-The implementation of a move constructor is considered to be trivial if:
-- The struct has a compiler-generated trivial move constructor because all
-  its fields have trivial move constructors.
-
-In practice, it means the value can be moved by moving the bits from
-one location to another without side effects.
+</div>
 
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__init__(out self: _Self)
+def __init__(out self)
 ```
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`_Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__init__(out self: _Self, *, copy: _Self)
+def __init__(out self, *, copy: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a new instance of the value by copying an existing one.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `copy` (`_Self`): The value to copy.
+- `copy` (`_Self`) `[imm]`: The value to copy.
 - `self` (`_Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__init__(out self: _Self, *, deinit take: _Self)
+def __init__(out self, *, deinit move: Self)
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a new instance of the value by moving the value of another.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `take` (`_Self`) `[deinit]`: The value to move.
+- `move` (`_Self`) `[deinit]`: The value to move.
 - `self` (`_Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `_Self`
 
@@ -126,15 +95,15 @@ Create a new instance of the value by moving the value of another.
 
 <div class="fn-card" markdown="1">
 
-##### `is_own_data`
+#### `is_own_data`
 
 ```mojo
-is_own_data() -> Bool
+def is_own_data() -> Bool
 ```
 
 <span class="badge badge-static">static</span>
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -143,15 +112,15 @@ is_own_data() -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `is_ref_data`
+#### `is_ref_data`
 
 ```mojo
-is_ref_data() -> Bool
+def is_ref_data() -> Bool
 ```
 
 <span class="badge badge-static">static</span>
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -160,17 +129,17 @@ is_ref_data() -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self: _Self) -> String
+def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`_Self`)
+- `self` (`_Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -179,19 +148,21 @@ __str__(self: _Self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `copy`
+#### `copy`
 
 ```mojo
-copy(self: _Self) -> _Self
+def copy(self) -> Self
 ```
 
 Explicitly construct a copy of self, a convenience method for `Self(copy=self)` when the type is inconvenient to write out.
 
-**Args:**
+Overriding this method is not allowed.
 
-- `self` (`_Self`)
+<div class="prose-label">Args</div>
 
-**Returns:**
+- `self` (`_Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
 
 - `_Self`
 

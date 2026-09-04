@@ -1,8 +1,13 @@
 # `numojo.routines.searching`
 
-"Searching routines (numojo.routines.searching)
+Search operations for finding array extrema indices.
 
-This module implements searching routines for finding indices of extrema (argmax and argmin) in NDArrays and Matrices.
+Functions for finding indices of maximum and minimum values in arrays.
+
+Exports
+-------
+- `argmax`: Index of maximum value.
+- `argmin`: Index of minimum value.
 
 ## Functions
 
@@ -12,24 +17,26 @@ This module implements searching routines for finding indices of extrema (argmax
 ### `argmax_1d`
 
 ```mojo
-argmax_1d[dtype: DType](a: NDArray[dtype]) -> Scalar[DType.int]
+def argmax_1d[dtype: DType](a: NDArray[dtype]) -> Int
 ```
 
 Returns the index of the maximum value in the buffer. Regardless of the shape of input, it is treated as a 1-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An array.
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -39,24 +46,26 @@ Returns the index of the maximum value in the buffer. Regardless of the shape of
 ### `argmin_1d`
 
 ```mojo
-argmin_1d[dtype: DType](a: NDArray[dtype]) -> Scalar[DType.int]
+def argmin_1d[dtype: DType](a: NDArray[dtype]) -> Int
 ```
 
 Returns the index of the minimum value in the buffer. Regardless of the shape of input, it is treated as a 1-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An array.
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -65,53 +74,55 @@ Returns the index of the minimum value in the buffer. Regardless of the shape of
 
 ### `argmax`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-argmax[dtype: DType, //](a: NDArray[dtype]) -> Scalar[DType.int]
+def argmax[dtype: DType, //](a: NDArray[dtype]) -> Int
 ```
 
 Returns the indices of the maximum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the maximum values, the indices
 of the first occurrence are returned.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An array.
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-argmax[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def argmax[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
 ```
 
 Returns the indices of the maximum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the maximum values, the indices
 of the first occurrence are returned.
 
-Examples:
+<div class="prose-label">Examples</div>
 
 ```mojo
 from numojo.prelude import *
 from python import Python
 
-fn main() raises:
+def main() raises:
     var np = Python.import_module("numpy")
     # Test with argmax to get maximum values
     var a = nm.random.randint(5, 4, low=0, high=10)
@@ -132,119 +143,22 @@ fn main() raises:
 ```
 End of examples.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An array.
-- `axis` (`Int`): The axis along which to operate.
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
+- `axis` (`Int`) `[imm]`: The axis along which to operate.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 3
-
-```mojo
-argmax[dtype: DType](A: Matrix[dtype]) -> Scalar[DType.int]
-```
-
-Find index of max value in a flattened matrix.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-argmax[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[DType.int]
-```
-
-Find indices of max values along the given axis.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `axis` (`Int`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-### `find_extrema_index`
-
-#### Overload 1
-
-```mojo
-find_extrema_index[dtype: DType, find_max: Bool](A: Matrix[dtype]) -> Scalar[DType.int]
-```
-
-Find index of min/max value, either in whole matrix or along an axis.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-- `find_max` (`Bool`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-find_extrema_index[dtype: DType, find_max: Bool](A: Matrix[dtype], axis: Optional[Int]) -> Matrix[DType.int]
-```
-
-Find index of min/max value, either in whole matrix or along an axis.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-- `find_max` (`Bool`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `axis` (`Optional`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -253,105 +167,64 @@ Find index of min/max value, either in whole matrix or along an axis.
 
 ### `argmin`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-argmin[dtype: DType, //](a: NDArray[dtype]) -> Scalar[DType.int]
+def argmin[dtype: DType, //](a: NDArray[dtype]) -> Int
 ```
 
 Returns the indices of the minimum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the minimum values, the indices
 of the first occurrence are returned.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An array.
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-argmin[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def argmin[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
 ```
 
 Returns the indices of the minimum values of the array along an axis. When no axis is specified, the array is flattened.
 
-Notes:
+<div class="prose-label">Notes</div>
 
 If there are multiple occurrences of the minimum values, the indices
 of the first occurrence are returned.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An array.
-- `axis` (`Int`): The axis along which to operate.
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
+- `axis` (`Int`) `[imm]`: The axis along which to operate.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 3
-
-```mojo
-argmin[dtype: DType](A: Matrix[dtype]) -> Scalar[DType.int]
-```
-
-Index of the min. It is first flattened before sorting.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-argmin[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[DType.int]
-```
-
-Index of the min along the given axis.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `axis` (`Int`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>

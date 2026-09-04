@@ -1,8 +1,11 @@
 # `numojo.routines.linalg.norms`
 
-Norms and other numbers (numojo.routines.linalg.norms)
+Determinant and trace computation for 2-D arrays.
 
-This module provides functions for computing quantities related to linear algebra, such as determinants and traces.
+Exports
+-------
+- `det`: Determinant via LUP decomposition.
+- `trace`: Sum of the diagonal elements.
 
 ## Functions
 
@@ -11,49 +14,27 @@ This module provides functions for computing quantities related to linear algebr
 
 ### `det`
 
-#### Overload 1
-
 ```mojo
-det[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
+def det[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
 ```
 
 Find the determinant of A using LUP decomposition.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`)
+- `A` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
-
-```mojo
-det[dtype: DType](A: Matrix[dtype]) -> Scalar[dtype]
-```
-
-Find the determinant of A using LUP decomposition.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -62,55 +43,30 @@ Find the determinant of A using LUP decomposition.
 
 ### `trace`
 
-#### Overload 1
-
 ```mojo
-trace[dtype: DType](array: NDArray[dtype], offset: Int = 0, axis1: Int = 0, axis2: Int = 1) -> NDArray[dtype]
+def trace[dtype: DType](array: NDArray[dtype], offset: Int = Int(0), axis1: Int = Int(0), axis2: Int = Int(1)) -> NDArray[dtype]
 ```
 
 Computes the trace of a ndarray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): Data type of the array.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
-- `offset` (`Int`): Offset of the diagonal from the main diagonal.
-- `axis1` (`Int`): First axis.
-- `axis2` (`Int`): Second axis.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `offset` (`Int`) `[imm]`: Offset of the diagonal from the main diagonal.
+- `axis1` (`Int`) `[imm]`: First axis.
+- `axis2` (`Int`) `[imm]`: Second axis.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
-
-```mojo
-trace[dtype: DType](A: Matrix[dtype], offset: Int = 0) -> Scalar[dtype]
-```
-
-Return the sum along diagonals of the array.
-
-Similar to `numpy.trace`.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `offset` (`Int`)
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>

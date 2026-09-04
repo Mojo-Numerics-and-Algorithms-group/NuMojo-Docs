@@ -1,15 +1,18 @@
 # `numojo.routines.sorting`
 
-Sorting routines (numojo.routines.sorting)
+Array sorting and indexing operations.
 
-This module implements sorting routines for NDArrays and Matrices, including `sort` and `argsort` functions.
+Sorting routines for NDArrays including sort and argsort functions
+using multiple backend algorithms (binary sort, bubble sort, quick sort).
 
-SECTIONS OF THIS FILE:
-1. `sort` and `argsort` functions exposed to users.
-2. Backend multiple sorting methods that can be used in `sort`.
-    - Binary sort.
-    - Bubble sort.
-    - Quick sort (instable).
+Exports
+-------
+- `sort`: Sort array elements in-place.
+- `argsort`: Return indices that would sort array.
+
+<div class="prose-label">Notes</div>
+    - Multiple sorting methods available: binary sort, bubble sort, quick sort.
+    - Quick sort is unstable but efficient.
 
 ## Functions
 
@@ -18,97 +21,56 @@ SECTIONS OF THIS FILE:
 
 ### `sort`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-sort[dtype: DType](a: NDArray[dtype], stable: Bool = False) -> NDArray[dtype]
+def sort[dtype: DType](a: NDArray[dtype], stable: Bool = False) -> NDArray[dtype]
 ```
 
 Sort NDArray using quick sort method. It is not guaranteed to be unstable. When no axis is given, the output array is flattened to 1d.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): NDArray.
-- `stable` (`Bool`): If True, the sorting is stable. Default is False.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray.
+- `stable` (`Bool`) `[imm]`: If True, the sorting is stable. Default is False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-sort[dtype: DType](a: NDArray[dtype], axis: Int, stable: Bool = False) -> NDArray[dtype]
+def sort[dtype: DType](a: NDArray[dtype], axis: Int, stable: Bool = False) -> NDArray[dtype]
 ```
 
 Sort NDArray along the given axis using quick sort method. It is not guaranteed to be unstable. When no axis is given, the array is flattened before sorting.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): NDArray to sort.
-- `axis` (`Int`): The axis along which the array is sorted.
-- `stable` (`Bool`): If True, the sorting is stable. Default is False.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray to sort.
+- `axis` (`Int`) `[imm]`: The axis along which the array is sorted.
+- `stable` (`Bool`) `[imm]`: If True, the sorting is stable. Default is False.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 3
-
-```mojo
-sort[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-Sort the Matrix. It is first flattened before sorting.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-sort[dtype: DType](var A: Matrix[dtype], axis: Int) -> Matrix[dtype]
-```
-
-Sort the Matrix along the given axis.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`) `[var]`
-- `axis` (`Int`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -118,22 +80,24 @@ Sort the Matrix along the given axis.
 ### `sort_inplace`
 
 ```mojo
-sort_inplace[dtype: DType](mut a: NDArray[dtype], axis: Int, stable: Bool = False)
+def sort_inplace[dtype: DType](mut a: NDArray[dtype], axis: Int, stable: Bool = False)
 ```
 
 Sort NDArray in-place along the given axis using quick sort method. It is not guaranteed to be unstable.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`) `[mut]`: NDArray to sort.
-- `axis` (`Int`): The axis along which the array is sorted.
-- `stable` (`Bool`): If True, the sorting is stable. Default is False.
+- `a` (`NDArray[dtype]`) `[mut]`: NDArray to sort.
+- `axis` (`Int`) `[imm]`: The axis along which the array is sorted.
+- `stable` (`Bool`) `[imm]`: If True, the sorting is stable. Default is False.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -142,96 +106,53 @@ Sort NDArray in-place along the given axis using quick sort method. It is not gu
 
 ### `argsort`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-argsort[dtype: DType](a: NDArray[dtype]) -> NDArray[DType.int]
+def argsort[dtype: DType](a: NDArray[dtype]) -> NDArray[DType.int]
 ```
 
 Returns the indices that would sort an array. It is not guaranteed to be unstable. When no axis is given, the array is flattened before sorting.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): NDArray.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-argsort[dtype: DType](mut a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def argsort[dtype: DType](mut a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
 ```
 
 Returns the indices that would sort an array. It is not guaranteed to be unstable. When no axis is given, the array is flattened before sorting.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`) `[mut]`: NDArray to sort.
-- `axis` (`Int`): The axis along which the array is sorted.
+- `a` (`NDArray[dtype]`) `[mut]`: NDArray to sort.
+- `axis` (`Int`) `[imm]`: The axis along which the array is sorted.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
-
-!!! failure "Raises"
-    Error: If the axis is out of bound.
-
-#### Overload 3
-
-```mojo
-argsort[dtype: DType](A: Matrix[dtype]) -> Matrix[DType.int]
-```
-
-Argsort the Matrix. It is first flattened before sorting.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
+- `NDArray[DType.int]`
 
 !!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-argsort[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[DType.int]
-```
-
-Argsort the Matrix along the given axis.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `axis` (`Int`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+    NumojoError: If the axis is out of bound.
 
 
 </div>
@@ -241,22 +162,24 @@ Argsort the Matrix along the given axis.
 ### `binary_sort_1d`
 
 ```mojo
-binary_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
+def binary_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`)
+- `a` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -266,31 +189,33 @@ binary_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
 ### `binary_sort`
 
 ```mojo
-binary_sort[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
+def binary_sort[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Binary sorting of NDArray.
 
-Example:
+<div class="prose-label">Examples</div>
 ```py
 var arr = numojo.core.random.rand[numojo.i16](100)
 var sorted_arr = numojo.core.sort.binary_sort(arr)
 print(sorted_arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -300,31 +225,33 @@ print(sorted_arr)
 ### `bubble_sort`
 
 ```mojo
-bubble_sort[dtype: DType](ndarray: NDArray[dtype]) -> NDArray[dtype]
+def bubble_sort[dtype: DType](ndarray: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Bubble sort the NDArray. Average complexity: O(n^2) comparisons, O(n^2) swaps. Worst-case complexity: O(n^2) comparisons, O(n^2) swaps. Worst-case space complexity: O(n).
 
-Example:
+<div class="prose-label">Examples</div>
 ```py
 var arr = numojo.core.random.rand[numojo.i16](100)
 var sorted_arr = numojo.core.sort.bubble_sort(arr)
 print(sorted_arr)
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `ndarray` (`NDArray`): An NDArray.
+- `ndarray` (`NDArray[dtype]`) `[imm]`: An NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -334,24 +261,26 @@ print(sorted_arr)
 ### `quick_sort_1d`
 
 ```mojo
-quick_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
+def quick_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Sort array using quick sort method. Regardless of the shape of input, it is treated as a 1-d array. It is not guaranteed to be unstable.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An 1-d array.
+- `a` (`NDArray[dtype]`) `[imm]`: An 1-d array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -361,24 +290,26 @@ Sort array using quick sort method. Regardless of the shape of input, it is trea
 ### `quick_sort_stable_1d`
 
 ```mojo
-quick_sort_stable_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
+def quick_sort_stable_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Sort array using quick sort method. Regardless of the shape of input, it is treated as a 1-d array. The sorting is stable.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): An 1-d array.
+- `a` (`NDArray[dtype]`) `[imm]`: An 1-d array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -388,20 +319,22 @@ Sort array using quick sort method. Regardless of the shape of input, it is trea
 ### `quick_sort_inplace_1d`
 
 ```mojo
-quick_sort_inplace_1d[dtype: DType](mut a: NDArray[dtype])
+def quick_sort_inplace_1d[dtype: DType](mut a: NDArray[dtype])
 ```
 
 Sort array in-place using quick sort method. Regardless of the shape of input, it is treated as a 1-d array. It is not guaranteed to be unstable.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`) `[mut]`: An 1-d array.
+- `a` (`NDArray[dtype]`) `[mut]`: An 1-d array.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -411,20 +344,22 @@ Sort array in-place using quick sort method. Regardless of the shape of input, i
 ### `quick_sort_stable_inplace_1d`
 
 ```mojo
-quick_sort_stable_inplace_1d[dtype: DType](mut a: NDArray[dtype])
+def quick_sort_stable_inplace_1d[dtype: DType](mut a: NDArray[dtype])
 ```
 
 Sort array in-place using quick sort method. Regardless of the shape of input, it is treated as a 1-d array. The sorting is stable.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`) `[mut]`: An 1-d array.
+- `a` (`NDArray[dtype]`) `[mut]`: An 1-d array.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -434,24 +369,26 @@ Sort array in-place using quick sort method. Regardless of the shape of input, i
 ### `argsort_quick_sort_1d`
 
 ```mojo
-argsort_quick_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[DType.int]
+def argsort_quick_sort_1d[dtype: DType](a: NDArray[dtype]) -> NDArray[DType.int]
 ```
 
 Returns the indices that would sort the buffer of an array. Regardless of the shape of input, it is treated as a 1-d array. It is not guaranteed to be unstable.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The input element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): NDArray.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

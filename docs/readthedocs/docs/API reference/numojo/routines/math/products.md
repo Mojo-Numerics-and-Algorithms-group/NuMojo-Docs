@@ -1,8 +1,14 @@
 # `numojo.routines.math.products`
 
-Product routines for NuMojo (numojo.routines.math.products).
+Product reductions and cumulative products for arrays.
 
-Implements product and cumulative product reductions for NDArrays and Matrices.
+Computes products along axes and cumulative products for NDArrays, with
+both flattened and axis-aware variants.
+
+Exports
+-------
+- `prod`: Product of all elements or along an axis.
+- `cumprod`: Cumulative product along an axis or flattened.
 
 ## Functions
 
@@ -11,15 +17,15 @@ Implements product and cumulative product reductions for NDArrays and Matrices.
 
 ### `prod`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-prod[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
+def prod[dtype: DType](A: NDArray[dtype]) -> Scalar[dtype]
 ```
 
 Returns products of all items in the array.
 
-Example:
+<div class="prose-label">Examples</div>
 ```console
 > print(A)
 [[      0.1315377950668335      0.458650141954422       0.21895918250083923     ]
@@ -31,93 +37,46 @@ Example:
 6.1377261317829834e-07
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Scalar`
+- `Scalar[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-prod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
+def prod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
 ```
 
 Returns products of array elements over a given axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[var]`: The axis along which the product is performed.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 3
-
-```mojo
-prod[dtype: DType](A: Matrix[dtype]) -> Scalar[dtype]
-```
-
-Product of all items in the Matrix.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-
-**Returns:**
-
-- `Scalar`
-
-#### Overload 4
-
-```mojo
-prod[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
-```
-
-Product of items in a Matrix along the axis.
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(mat.prod(A, axis=0))
-print(mat.prod(A, axis=1))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `axis` (`Int`): 0 or 1.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -126,110 +85,54 @@ print(mat.prod(A, axis=1))
 
 ### `cumprod`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-cumprod[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
+def cumprod[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Returns cumprod of all items of an array. The array is flattened before cumprod.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-cumprod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
+def cumprod[dtype: DType](A: NDArray[dtype], var axis: Int) -> NDArray[dtype]
 ```
 
 Returns cumprod of array by axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): NDArray.
+- `A` (`NDArray[dtype]`) `[imm]`: NDArray.
 - `axis` (`Int`) `[var]`: Axis.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 3
-
-```mojo
-cumprod[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-Cumprod of flattened matrix.
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(mat.cumprod(A))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
-
-#### Overload 4
-
-```mojo
-cumprod[dtype: DType](A: Matrix[dtype], axis: Int) -> Matrix[dtype]
-```
-
-Cumprod of Matrix along the axis.
-
-Example:
-```mojo
-from numojo import Matrix
-var A = Matrix.rand(shape=(100, 100))
-print(mat.cumprod(A, axis=0))
-print(mat.cumprod(A, axis=1))
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`): Matrix.
-- `axis` (`Int`): 0 or 1.
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>

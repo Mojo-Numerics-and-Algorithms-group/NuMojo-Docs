@@ -1,16 +1,21 @@
 # `numojo.routines.logic`
 
-Logic routines for NuMojo (numojo.routines.logic).
+Comparison operations, logical operators, and truth value evaluations for arrays.
 
-This module provides a collection of logic routines for numerical computations, including comparison operations, content checks, and truth evaluations.
+Exports
+-------
+- Comparison: `equal`, `not_equal`, `greater`, `greater_equal`, `less`, `less_equal`, `allclose`, `array_equal`, `isclose`.
+- Contents: `isnan`, `isinf`, `isfinite`, `isposinf`, `isneginf`.
+- Logical: `logical_and`, `logical_or`, `logical_xor`, `logical_not`.
+- Truth: `any`, `all`.
 
 ## Contents
 
 | Name | Kind | Description |
 |------|------|-------------|
-| [`comparison`](./comparison.md) | module | Comparison routines (numojo.routines.logic.comparison) |
-| [`contents`](./contents.md) | module | Contents routines (numojo.routines.logic.contents) |
-| [`__init__`](./__init__.md) | module | Logic routines for NuMojo (numojo.routines.logic). |
-| [`logical_ops`](./logical_ops.md) | module | Logical Operations Module (numojo.routines.logic.logical_ops) |
-| [`truth`](./truth.md) | module | Truth value testing (numojo.routines.logic.truth) |
+| [`comparison`](./comparison.md) | module | Comparison operations for NDArrays. |
+| [`contents`](./contents.md) | module | Element properties and content checking for arrays. |
+| [`__init__`](./__init__.md) | module | Comparison operations, logical operators, and truth value evaluations for arrays. |
+| [`logical_ops`](./logical_ops.md) | module | Element-wise logical operations for arrays. |
+| [`truth`](./truth.md) | module | Truth value testing for arrays. |
 

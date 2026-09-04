@@ -1,19 +1,34 @@
 # `numojo.core.indexing.slicing`
 
-Slicing (numojo.core.indexing.slicing)
+Internal data structures and utilities for handling array slicing operations.
 
-This module defines internal data structures and utilities for handling slicing operations in NuMojo.
+This module provides the internal infrastructure for slicing arrays, including
+type information tracking for different index types (integer, slice, ellipsis, newaxis).
+
+<div class="prose-label">Notes</div>
+    - This module is internal to NuMojo and not part of the public API.
+    - Used internally for slice parsing and validation.
+
+Exports
+-------
+- `Slice`: Slice representation.
 
 ## Structs
 
 ### `IndexTypeInfo`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct IndexTypeInfo
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`
+
+</div>
 
 #### Fields
 
@@ -22,54 +37,28 @@ struct IndexTypeInfo
 - **`is_ellipsis`** (`Bool`)
 - **`is_newaxis`** (`Bool`)
 
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
-__init__(out self, is_integer: Bool = False, is_slice: Bool = False, is_ellipsis: Bool = False, is_newaxis: Bool = False)
+def __init__(out self, is_integer: Bool = False, is_slice: Bool = False, is_ellipsis: Bool = False, is_newaxis: Bool = False)
 ```
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `is_integer` (`Bool`)
-- `is_slice` (`Bool`)
-- `is_ellipsis` (`Bool`)
-- `is_newaxis` (`Bool`)
+- `is_integer` (`Bool`) `[imm]`
+- `is_slice` (`Bool`) `[imm]`
+- `is_ellipsis` (`Bool`) `[imm]`
+- `is_newaxis` (`Bool`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -78,17 +67,17 @@ __init__(out self, is_integer: Bool = False, is_slice: Bool = False, is_ellipsis
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
-__repr__(self) -> String
+def __repr__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -97,17 +86,17 @@ __repr__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -116,19 +105,19 @@ __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `size`
+#### `size`
 
 ```mojo
-size(self) -> Int
+def size(self) -> Int
 ```
 
 Returns the number of active index types in this IndexTypeInfo.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -136,12 +125,18 @@ Returns the number of active index types in this IndexTypeInfo.
 </div>
 ### `InternalSlice`
 
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
+
 ```mojo
 struct InternalSlice
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `Copyable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `ImplicitlyCopyable`, `Movable`
+
+</div>
 
 #### Fields
 
@@ -149,53 +144,27 @@ struct InternalSlice
 - **`end`** (`Int`)
 - **`step`** (`Int`)
 
-#### Aliases
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `True`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `True`
-
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
 ```mojo
-__init__(out self, start: Int, end: Int, step: Int)
+def __init__(out self, start: Int, end: Int, step: Int)
 ```
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `start` (`Int`)
-- `end` (`Int`)
-- `step` (`Int`)
+- `start` (`Int`) `[imm]`
+- `end` (`Int`) `[imm]`
+- `step` (`Int`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -204,18 +173,18 @@ __init__(out self, start: Int, end: Int, step: Int)
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -224,18 +193,18 @@ __eq__(self, other: Self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`)
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -244,17 +213,17 @@ __ne__(self, other: Self) -> Bool
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `__repr__`
 
 ```mojo
-__repr__(self) -> String
+def __repr__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -263,17 +232,17 @@ __repr__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -282,36 +251,36 @@ __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `to_tuple`
+#### `to_tuple`
 
 ```mojo
-to_tuple(self) -> Tuple[Int, Int, Int]
+def to_tuple(self) -> Tuple[Int, Int, Int]
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Tuple`
+- `Tuple[Int, Int, Int]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `to_slice`
+#### `to_slice`
 
 ```mojo
-to_slice(self) -> Slice
+def to_slice(self) -> Slice
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Slice`
 
@@ -320,18 +289,18 @@ to_slice(self) -> Slice
 
 <div class="fn-card" markdown="1">
 
-##### `normalize`
+#### `normalize`
 
 ```mojo
-normalize(self, dim: Int) -> Self
+def normalize(self, dim: Int) -> Self
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `dim` (`Int`)
+- `self` (`Self`) `[imm]`
+- `dim` (`Int`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -340,64 +309,98 @@ normalize(self, dim: Int) -> Self
 
 <div class="fn-card" markdown="1">
 
-##### `check_bounds`
+#### `check_bounds`
 
 ```mojo
-check_bounds(self, dim: Int)
+def check_bounds(self, dim: Int)
 ```
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `dim` (`Int`)
+- `self` (`Self`) `[imm]`
+- `dim` (`Int`) `[imm]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `get_slice_info`
+#### `get_slice_info`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-get_slice_info(s: Slice, dim: Int) -> Tuple[Int, Int, Int, Int]
+def get_slice_info(s: Slice, dim: Int) -> Tuple[Int, Int, Int, Int]
 ```
 
 <span class="badge badge-static">static</span>
 
 Get complete slice information for a given dimension.
 
-Notes:
+<div class="prose-label">Notes</div>
 For cases with step = 0, error handling should be done prior to calling this function.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `s` (`Slice`): The slice to process.
-- `dim` (`Int`): The dimension size to process against.
+- `s` (`Slice`) `[imm]`: The slice to process.
+- `dim` (`Int`) `[imm]`: The dimension size to process against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Tuple`
+- `Tuple[Int, Int, Int, Int]`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-get_slice_info(self, dim: Int) -> Tuple[Int, Int, Int, Int]
+def get_slice_info(self, dim: Int) -> Tuple[Int, Int, Int, Int]
 ```
 
 Get complete slice information for a given dimension.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `dim` (`Int`): The dimension size to process against.
+- `self` (`Self`) `[imm]`
+- `dim` (`Int`) `[imm]`: The dimension size to process against.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `Tuple`
+- `Tuple[Int, Int, Int, Int]`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `adjust_list`
+
+```mojo
+def adjust_list(shape: NDArrayShape, slice_list: List[Slice]) -> List[Self]
+```
+
+<span class="badge badge-static">static</span>
+
+Normalises a list of `Slice` objects against the given array shape.
+
+For each slice, resolves defaults, wraps negative indices, clamps
+out-of-bounds values, and validates that the step is non-zero.
+Returns one `InternalSlice` per input slice with concrete start, end,
+and step values ready for use in traversal.
+
+<div class="prose-label">Args</div>
+
+- `shape` (`NDArrayShape`) `[imm]`: The array shape; `shape[i]` is the size of dimension `i`.
+- `slice_list` (`List[Slice]`) `[imm]`: Raw slices to normalise (one per dimension to process).
+
+<div class="prose-label">Returns</div>
+
+- `List[Self]`
+
+!!! failure "Raises"
+    NumojoError: If any slice has a step of zero.
 
 
 </div>

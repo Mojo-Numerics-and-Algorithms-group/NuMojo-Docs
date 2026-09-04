@@ -1,14 +1,11 @@
 # `numojo`
 
-NuMojo Top-Level Package (`numojo`) ==================================
-
-Central public surface for NuMojo that exposes the primary containers, dtype helpers, common errors,
-and a curated set of NumPy-inspired routines.
+Central public surface for NuMojo that exposes the primary containers, dtype helpers, common errors, and a curated set of NumPy-inspired routines.
 
 Exports
 -------
 Core container types:
-- `Matrix` and `NDArray`
+- `NDArray`
 - `Shape` / `NDArrayShape`, `Strides` / `NDArrayStrides`
 
 Core utilities:
@@ -24,7 +21,7 @@ Notes
 -----
 - This module is intended to provide a stable import surface for users.
 - Internal code should prefer importing directly from the canonical submodules/packages
-  (`numojo.core.matrix`, `numojo.core.layout`, `numojo.routines.math`, etc.) rather than relying on
+  (`numojo.core.ndarray`, `numojo.core.layout`, `numojo.routines.math`, etc.) rather than relying on
   extensive top-level re-exports.
 - Public APIs in this module adhere to the Mojo docstring style guide to keep documentation precise
   and predictable for users.
@@ -33,22 +30,20 @@ FORMAT FOR DOCSTRING (See "Mojo docstring style guide" for more information)
 1. Description *
 2. Parameters *
 3. Args *
-4. Constraints *
-5. Returns *
-6. Raises *
-7. SEE ALSO
-8. NOTES
-9. REFERENCES
+4. Raises *
+5. Constraints *
+6. Returns *
+7. Notes
+9. References
 10. Examples *
-(Items marked with * are defined by the Mojo docstring style guide.)
+(Items marked with * are defined by the Mojo docstring style guide).
 
 ## Contents
 
 | Name | Kind | Description |
 |------|------|-------------|
-| [`core`](./core/index.md) | package | Core (numojo.core) |
-| [`__init__`](./__init__.md) | module | NuMojo Top-Level Package (`numojo`) ================================== |
-| [`prelude`](./prelude.md) | module | NuMojo Prelude (`numojo.prelude`) ================================ |
-| [`routines`](./routines/index.md) | package | Routines module (numojo.routines) |
-| [`science`](./science/index.md) | package | NuMojo Science Package (numojo.science) |
+| [`core`](./core/index.md) | package | Foundational data structures and utilities for NuMojo: arrays, memory layouts, dtype aliases, error handling, and complex number support. |
+| [`__init__`](./__init__.md) | module | Central public surface for NuMojo that exposes the primary containers, dtype helpers, common errors, and a curated set of NumPy-inspired routines. |
+| [`prelude`](./prelude.md) | module | Core types and common utilities for day-to-day NuMojo usage. |
+| [`routines`](./routines/index.md) | package | NumPy-like functionality grouped by topic (math, linalg, statistics, creation, manipulation, etc.). |
 

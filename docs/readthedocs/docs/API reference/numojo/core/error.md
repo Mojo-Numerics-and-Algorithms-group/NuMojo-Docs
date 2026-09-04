@@ -1,21 +1,21 @@
 # `numojo.core.error`
 
-Error handling for Numojo library operations.
+Unified error system for NuMojo operations.
 
-This module provides a simple, unified error system for the Numojo library.
-All errors use a single NumojoError type with different categories for
-better organization while keeping the implementation simple. This provides a better user experience by
-providing clear error message and suggestions for fixing the error.
+Provides a simple, categorized error type for all NuMojo operations with
+clear, actionable error messages.
 
-Currently we have a few common error categories like
-- IndexError
-- ShapeError
-- BroadcastError
-- MemoryError
-- ValueError
-- ArithmeticError
+Exports
+-------
+- `NumojoError`: Unified error type with categories.
 
-We can expand this list in the future as needed.
+Categories:
+    - index: Indexing errors
+    - shape: Shape mismatch errors
+    - broadcast: Broadcasting errors
+    - memory: Memory allocation errors
+    - value: Value errors
+    - arithmetic: Arithmetic operation errors
 
 ## Aliases
 
@@ -25,7 +25,7 @@ We can expand this list in the future as needed.
 comptime RED_COLOR
 ```
 
-**Value:** `"\1B[31m"`
+**Value:** `String("\1B[31m")`
 
 ### `END_COLOR`
 
@@ -33,25 +33,35 @@ comptime RED_COLOR
 comptime END_COLOR
 ```
 
-**Value:** `"\1B[0m"`
+**Value:** `String("\1B[0m")`
 
 ## Structs
 
 ### `NumojoError`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct NumojoError
 ```
 
 **Memory convention:** `memory_only`  
-**Implements:** `AnyType`, `ImplicitlyDestructible`, `Writable`
+**Implements:** `AnyType`, `Deinitable`, `Movable`, `Writable`
 
 Unified error type for all Numojo operations.
 
 Args:
     category: Type of error (e.g., "ShapeError", "IndexError").
-    message: Main error description and suggestion.
+    message: Main error description.
     location: Optional context about where error occurred.
+
+<div class="prose-label">Notes</div>
+All NumojoErrors use a single unified type with different categories for better organization.
+Error messages follow the format: "Category: Specific problem. Expected X but got Y."
+
+</div>
 
 #### Fields
 
@@ -61,64 +71,75 @@ Args:
 
 #### Aliases
 
-##### `ErrorDict`
+#### `ErrorDict`
 
 ```mojo
 comptime ErrorDict
 ```
 
-**Value:** `Dict(List("index", "shape", "broadcast", "memory", "value", "arithmetic", Tuple()), List("IndexError", "ShapeError", "BroadcastError", "MemoryError", "ValueError", "ArithmeticError", Tuple()), Tuple())`
-
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
+**Value:** `Dict(List(String("index"), String("shape"), String("broadcast"), String("memory"), String("value"), String("arithmetic"), __list_literal__=NoneType(None)), List(String("IndexError"), String("ShapeError"), String("BroadcastError"), String("MemoryError"), String("ValueError"), String("ArithmeticError"), __list_literal__=NoneType(None)), NoneType(None))`
 
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__init__(out self, category: StringLiteral[category.value], message: StringLiteral[message.value], location: StringLiteral[location.value])
+def __init__(out self, category: StringLiteral, message: StringLiteral, location: StringLiteral)
 ```
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `category` (`StringLiteral`)
-- `message` (`StringLiteral`)
-- `location` (`StringLiteral`)
+- `category` (`StringLiteral`) `[imm]`
+- `message` (`StringLiteral`) `[imm]`
+- `location` (`StringLiteral`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__init__(out self, category: StringLiteral[category.value], message: String, location: Optional[String] = None)
+def __init__(out self, category: StringLiteral, message: String, location: Optional[String] = None)
 ```
 
 <span class="badge badge-static">static</span>
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `category` (`StringLiteral`)
-- `message` (`String`)
-- `location` (`Optional`)
+- `category` (`StringLiteral`) `[imm]`
+- `message` (`String`) `[imm]`
+- `location` (`Optional[String]`) `[imm]`
 - `self` (`Self`) `[out]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
+
+- `Self`
+
+<div class="overload-divider">Overload 3</div>
+
+```mojo
+def __init__(out self, category: StringLiteral, message: TString, location: StringLiteral)
+```
+
+<span class="badge badge-static">static</span>
+
+<div class="prose-label">Args</div>
+
+- `category` (`StringLiteral`) `[imm]`
+- `message` (`TString`) `[imm]`
+- `location` (`StringLiteral`) `[imm]`
+- `self` (`Self`) `[out]`
+
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -127,17 +148,19 @@ __init__(out self, category: StringLiteral[category.value], message: String, loc
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
-**Args:**
+Return string representation of the error with formatting.
 
-- `self` (`Self`)
+<div class="prose-label">Args</div>
 
-**Returns:**
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -146,21 +169,21 @@ __str__(self) -> String
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Write error information to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -173,14 +196,18 @@ Write error information to a writer.
 ### `terminate`
 
 ```mojo
-terminate(message: String)
+def terminate(message: String)
 ```
 
 Abort the program with the given error message.
 
-**Args:**
+<div class="prose-label">Notes</div>
+This function is used for fatal, unrecoverable errors that require immediate termination.
+The message will be displayed in red color before the program exits.
 
-- `message` (`String`)
+<div class="prose-label">Args</div>
+
+- `message` (`String`) `[imm]`: The error message to display before aborting.
 
 
 </div>

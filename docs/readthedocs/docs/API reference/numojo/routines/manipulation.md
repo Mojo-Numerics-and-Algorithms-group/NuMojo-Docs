@@ -1,19 +1,43 @@
 # `numojo.routines.manipulation`
 
-Manipulation routines (numojo.routines.manipulation)
+Array shape and layout manipulation operations.
 
-This module implements routines that manipulate the shape and layout of arrays, such as reshaping, transposing, broadcasting, and flipping.
+Routines for reshaping, transposing, broadcasting, flipping, concatenating,
+and other shape-changing operations on arrays.
+
+Exports
+-------
+- `reshape`, `ravel`: Shape changes.
+- `transpose`, `flip`: Layout changes.
+- `broadcast_to`: Broadcasting.
+- `concatenate`, `hstack`, `vstack`, `row_stack`, `column_stack`: Joining.
+- `ndim`, `shape`, `size`: Array properties.
 
 ## Functions
 
 
 <div class="fn-card" markdown="1">
 
-### `copyto`
+### `copy_to`
 
 ```mojo
-copyto()
+def copy_to[dtype: DType](mut dst: NDArray[dtype], src: NDArray[dtype])
 ```
+
+Copies the array from src to dst.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`)
+
+<div class="prose-label">Args</div>
+
+- `dst` (`NDArray[dtype]`) `[mut]`: The destination array.
+- `src` (`NDArray[dtype]`) `[imm]`: The source array.
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -22,43 +46,43 @@ copyto()
 
 ### `ndim`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-ndim[dtype: DType](array: NDArray[dtype]) -> Int
+def ndim[dtype: DType](array: NDArray[dtype]) -> Int
 ```
 
 Returns the number of dimensions of the NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-ndim[cdtype: ComplexDType](array: ComplexNDArray[cdtype]) -> Int
+def ndim[cdtype: ComplexDType](array: ComplexNDArray[cdtype]) -> Int
 ```
 
 Returns the number of dimensions of the NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `cdtype` (`ComplexDType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`ComplexNDArray`): A NDArray.
+- `array` (`ComplexNDArray[cdtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -69,45 +93,45 @@ Returns the number of dimensions of the NDArray.
 
 ### `shape`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-shape[dtype: DType](array: NDArray[dtype]) -> NDArrayShape
+def shape[dtype: DType](array: NDArray[dtype]) -> NDArrayShape
 ```
 
 Returns the shape of the NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArrayShape`
 
-#### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-shape[cdtype: ComplexDType](array: ComplexNDArray[cdtype]) -> NDArrayShape
+def shape[cdtype: ComplexDType](array: ComplexNDArray[cdtype]) -> NDArrayShape
 ```
 
 Returns the shape of the NDArray.
 
 Returns: The shape of the NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `cdtype` (`ComplexDType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`ComplexNDArray`): A NDArray.
+- `array` (`ComplexNDArray[cdtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `NDArrayShape`
 
@@ -118,51 +142,55 @@ Returns: The shape of the NDArray.
 
 ### `size`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-size[dtype: DType](array: NDArray[dtype], axis: Int) -> Int
+def size[dtype: DType](array: NDArray[dtype], axis: Int) -> Int
 ```
 
 Returns the size of the NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
-- `axis` (`Int`): The axis to get the size of.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `axis` (`Int`) `[imm]`: The axis to get the size of.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-size[cdtype: ComplexDType](array: ComplexNDArray[cdtype], axis: Int) -> Int
+def size[cdtype: ComplexDType](array: ComplexNDArray[cdtype], axis: Int) -> Int
 ```
 
 Returns the size of the NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `cdtype` (`ComplexDType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`ComplexNDArray`): A NDArray.
-- `axis` (`Int`): The axis to get the size of.
+- `array` (`ComplexNDArray[cdtype]`) `[imm]`: A NDArray.
+- `axis` (`Int`) `[imm]`: The axis to get the size of.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -172,28 +200,28 @@ Returns the size of the NDArray.
 ### `reshape`
 
 ```mojo
-reshape[dtype: DType](A: NDArray[dtype], shape: NDArrayShape, order: String = "C") -> NDArray[dtype]
+def reshape[dtype: DType](A: NDArray[dtype], shape: NDArrayShape, order: String = "C") -> NDArray[dtype]
 ```
 
 Returns an array of the same data with a new shape.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`): A NDArray.
-- `shape` (`NDArrayShape`): New shape.
-- `order` (`String`): "C" or "F". Read in this order from the original array and
+- `A` (`NDArray[dtype]`) `[imm]`: A NDArray.
+- `shape` (`NDArrayShape`) `[imm]`: New shape.
+- `order` (`String`) `[imm]`: "C" or "F". Read in this order from the original array and
     write in this order into the new array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-    Error: If the number of elements do not match.
+    NumojoError: If the number of elements do not match.
 
 
 </div>
@@ -203,7 +231,7 @@ Returns an array of the same data with a new shape.
 ### `ravel`
 
 ```mojo
-ravel[dtype: DType](a: NDArray[dtype], order: String = "C") -> NDArray[dtype]
+def ravel[dtype: DType](a: NDArray[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Returns the raveled version of the NDArray.
@@ -211,20 +239,22 @@ Returns the raveled version of the NDArray.
 Return:
     A contiguous flattened array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): NDArray.
-- `order` (`String`): The order to flatten the array.
+- `a` (`NDArray[dtype]`) `[imm]`: NDArray.
+- `order` (`String`) `[imm]`: The order to flatten the array.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -233,10 +263,10 @@ Return:
 
 ### `transpose`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-transpose[dtype: DType](A: NDArray[dtype], axes: List[Int]) -> NDArray[dtype]
+def transpose[dtype: DType](A: NDArray[dtype], axes: List[Int]) -> NDArray[dtype]
 ```
 
 Transpose array of any number of dimensions according to arbitrary permutation of the axes.
@@ -258,91 +288,46 @@ var arr3d = nm.random.rand(2,3,4)
 print(nm.transpose(arr3d, axes=[2, 1, 0]))  # transpose 0-th and 2-th dimensions
 ```
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`)
-- `axes` (`List`)
+- `A` (`NDArray[dtype]`) `[imm]`
+- `axes` (`List[Int]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-transpose[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
+def transpose[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 (overload) Transpose the array when `axes` is not given. If `axes` is not given, it is equal to flipping the axes. See docstring of `transpose`.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `A` (`NDArray`)
+- `A` (`NDArray[dtype]`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 3
-
-```mojo
-transpose[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-Transpose of matrix.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-### `reorder_layout`
-
-```mojo
-reorder_layout[dtype: DType](A: Matrix[dtype]) -> Matrix[dtype]
-```
-
-Create a new Matrix with the opposite layout from A: if A is C-contiguous, then create a new F-contiguous matrix of the same shape. If A is F-contiguous, create a new C-contiguous matrix.
-
-Copy data into the new layout.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+*Not documented in source.*
 
 
 </div>
@@ -351,101 +336,34 @@ Copy data into the new layout.
 
 ### `broadcast_to`
 
-#### Overload 1
-
 ```mojo
-broadcast_to[dtype: DType](a: NDArray[dtype], shape: NDArrayShape) -> NDArray[dtype]
+def broadcast_to[dtype: DType](a: NDArray[dtype], shape: NDArrayShape) -> NDArray[dtype]
 ```
 
-**Parameters:**
+Returns a non-owning view of `a` broadcast to `shape`, following NumPy broadcasting rules (trailing-dimension alignment, size-1 dims stretch).
+
+<div class="prose-label">Notes</div>
+The returned array shares the underlying buffer with `a` (refcounted,
+zero-copy): broadcast dimensions get stride 0, so no new memory is
+allocated. Because stride-0 dimensions are never C-contiguous, any
+operation that needs a flat contiguous buffer (e.g. SIMD elementwise
+kernels) will materialize the view via `.contiguous()` on demand.
+
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`)
-- `shape` (`NDArrayShape`)
+- `a` (`NDArray[dtype]`) `[imm]`: The array to broadcast.
+- `shape` (`NDArrayShape`) `[imm]`: The target shape.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
-
-!!! failure "Raises"
-
-#### Overload 2
-
-```mojo
-broadcast_to[dtype: DType](A: Matrix[dtype], shape: Tuple[Int, Int], override_order: String = "") -> Matrix[dtype]
-```
-
-Broadcasts the vector to the given shape.
-
-Example:
-
-```console
-> from numojo import Matrix
-> a = Matrix.fromstring("1 2 3", shape=(1, 3))
-> print(mat.broadcast_to(a, (3, 3)))
-[[1.0   2.0     3.0]
- [1.0   2.0     3.0]
- [1.0   2.0     3.0]]
-> a = Matrix.fromstring("1 2 3", shape=(3, 1))
-> print(mat.broadcast_to(a, (3, 3)))
-[[1.0   1.0     1.0]
- [2.0   2.0     2.0]
- [3.0   3.0     3.0]]
-> a = Matrix.fromstring("1", shape=(1, 1))
-> print(mat.broadcast_to(a, (3, 3)))
-[[1.0   1.0     1.0]
- [1.0   1.0     1.0]
- [1.0   1.0     1.0]]
-> a = Matrix.fromstring("1 2", shape=(1, 2))
-> print(mat.broadcast_to(a, (1, 2)))
-[[1.0   2.0]]
-> a = Matrix.fromstring("1 2 3 4", shape=(2, 2))
-> print(mat.broadcast_to(a, (4, 2)))
-Unhandled exception caught during execution: Cannot broadcast shape 2x2 to shape 4x2!
-```
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Matrix`)
-- `shape` (`Tuple`)
-- `override_order` (`String`)
-
-**Returns:**
-
-- `Matrix`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
-
-#### Overload 3
-
-```mojo
-broadcast_to[dtype: DType](A: Scalar[dtype], shape: Tuple[Int, Int], order: String) -> Matrix[dtype]
-```
-
-Broadcasts the scalar to the given shape.
-
-**Parameters:**
-
-- `dtype` (`DType`)
-
-**Args:**
-
-- `A` (`Scalar`)
-- `shape` (`Tuple`)
-- `order` (`String`)
-
-**Returns:**
-
-- `Matrix`
-
-!!! failure "Raises"
+    NumojoError: If `a.shape` cannot be broadcast to `shape`.
 
 
 </div>
@@ -454,50 +372,250 @@ Broadcasts the scalar to the given shape.
 
 ### `flip`
 
-#### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-flip[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def flip[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Returns flipped array and keep the shape.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): DType.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-#### Overload 2
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-flip[dtype: DType](array: NDArray[dtype], var axis: Int) -> NDArray[dtype]
+def flip[dtype: DType](array: NDArray[dtype], var axis: Int) -> NDArray[dtype]
 ```
 
 Returns flipped array along the given axis.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): DType.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 - `axis` (`Int`) `[var]`: Axis along which to flip.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `concatenate`
+
+```mojo
+def concatenate[dtype: DType](*arrays: NDArray[dtype], *, axis: Int = Int(0)) -> NDArray[dtype]
+```
+
+Join a sequence of arrays along an existing axis.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](0, 6, 1)
+var a2d = nm.reshape(a, nm.Shape(2, 3))
+var b = nm.arange[nm.f64](6, 12, 1)
+var b2d = nm.reshape(b, nm.Shape(2, 3))
+var c = nm.concatenate(a2d, b2d, axis=0)  # Shape (4, 3)
+var d = nm.concatenate(a2d, b2d, axis=1)  # Shape (2, 6)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The data type of the arrays.
+
+<div class="prose-label">Args</div>
+
+- `*arrays` (`NDArray[dtype]`) `[imm]`: The arrays to concatenate. All arrays must have the same
+    shape except in the dimension corresponding to `axis`.
+- `axis` (`Int`) `[imm]`: The axis along which the arrays will be joined. Default is 0.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
 
 !!! failure "Raises"
+    NumojoError: If the list of arrays is empty.
+NumojoError: If the arrays do not have the same number of dimensions.
+NumojoError: If the array shapes are incompatible along non-concatenation axes.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `column_stack`
+
+```mojo
+def column_stack[dtype: DType](*arrays: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Stack 1-D arrays as columns into a 2-D array, or concatenate 2-D+ arrays along the second axis (like `numpy.column_stack`).
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](0, 3, 1)   # Shape (3,)
+var b = nm.arange[nm.f64](3, 6, 1)   # Shape (3,)
+var c = nm.column_stack(a, b)         # Shape (3, 2)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The data type of the arrays.
+
+<div class="prose-label">Args</div>
+
+- `*arrays` (`NDArray[dtype]`) `[imm]`: The arrays to stack. 1-D arrays are treated as column
+    vectors. All arrays must have the same number of rows
+    (first dimension).
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+    NumojoError: If the list of arrays is empty.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `row_stack`
+
+```mojo
+def row_stack[dtype: DType](*arrays: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Stack arrays vertically (row-wise), equivalent to `numpy.row_stack` / `numpy.vstack`.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](0, 3, 1)  # Shape (3,)
+var b = nm.arange[nm.f64](3, 6, 1)  # Shape (3,)
+var c = nm.row_stack(a, b)           # Shape (2, 3)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The data type of the arrays.
+
+<div class="prose-label">Args</div>
+
+- `*arrays` (`NDArray[dtype]`) `[imm]`: The arrays to stack. 1-D arrays of shape `(N,)` are
+    reshaped to `(1, N)` before concatenation.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+    NumojoError: If the list of arrays is empty.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `hstack`
+
+```mojo
+def hstack[dtype: DType](*arrays: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Stack arrays in sequence horizontally (column-wise), equivalent to `numpy.hstack`.
+
+For 1-D arrays, this concatenates along axis 0.
+For 2-D+ arrays, this concatenates along axis 1.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](0, 3, 1)  # Shape (3,)
+var b = nm.arange[nm.f64](3, 6, 1)  # Shape (3,)
+var c = nm.hstack(a, b)              # Shape (6,)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The data type of the arrays.
+
+<div class="prose-label">Args</div>
+
+- `*arrays` (`NDArray[dtype]`) `[imm]`: The arrays to stack.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+    NumojoError: If the list of arrays is empty.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `vstack`
+
+```mojo
+def vstack[dtype: DType](*arrays: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Stack arrays in sequence vertically (row-wise), equivalent to `numpy.vstack`.
+
+For 1-D arrays of shape `(N,)`, they are reshaped to `(1, N)` first.
+Then concatenated along axis 0.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](0, 3, 1)  # Shape (3,)
+var b = nm.arange[nm.f64](3, 6, 1)  # Shape (3,)
+var c = nm.vstack(a, b)              # Shape (2, 3)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The data type of the arrays.
+
+<div class="prose-label">Args</div>
+
+- `*arrays` (`NDArray[dtype]`) `[imm]`: The arrays to stack.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+    NumojoError: If the list of arrays is empty.
 
 
 </div>

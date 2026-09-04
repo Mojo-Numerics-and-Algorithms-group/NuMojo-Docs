@@ -1,8 +1,12 @@
 # `numojo.routines.bitwise`
 
-Bit-wise operations module (`numojo.routines.bitwise`)
+Bitwise operations for integer arrays.
 
-This module implements bit-wise operations on NDArrays, such as bitwise AND, OR, XOR, and NOT (invert).
+Element-wise bitwise operations (AND, OR, XOR, NOT/invert) for integer NDArrays.
+
+Exports
+-------
+- `invert`: Bitwise NOT operation.
 
 ## Functions
 
@@ -12,28 +16,42 @@ This module implements bit-wise operations on NDArrays, such as bitwise AND, OR,
 ### `invert`
 
 ```mojo
-invert[dtype: DType, backend: Backend = Vectorized](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_integral() if dtype.is_integral() else (dtype == DType.bool)
+def invert[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_integral() or (dtype == DType.bool)
 ```
 
 Element-wise invert of an array.
 
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+import numojo as nm
+from numojo.routines.bitwise import invert
+
+var arr1 = nm.array[nm.i8]([1, 2, 3], shape=[3])
+var result1 = invert(arr1) # result1 is [-2, -3, -4]
+
+var arr2 = nm.array[nm.boolean]([True, False, True], shape=[3])
+var result2 = invert(arr2) # result2 is [false, true, false
+```
+
 !!! info "Constraints"
     The array must be either a boolean or integral array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `backend` (`Backend`): Sets utility function origin, defaults to `Vectorized`.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `array` (`NDArray`): A NDArray.
+- `array` (`NDArray[dtype]`) `[imm]`: A NDArray.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

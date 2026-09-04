@@ -1,8 +1,15 @@
 # `numojo.routines.functional`
 
-Functional programming (numojo.routines.functional)
+Functional programming utilities for array operations.
 
-This module implements functional programming utilities for NDArray operations, such as `apply_along_axis`.
+Implements functional utilities for NDArray operations such as `apply_along_axis`,
+allowing application of functions along array axes.
+
+Exports
+-------
+- `apply_along_axis_reduce`: Apply a reducing function along an axis.
+- `apply_along_axis_reduce_with_dtype`: Apply a reducing function with explicit return dtype.
+- `apply_along_axis_reduce_to_int`: Apply a reducing function returning integers.
 
 ## Functions
 
@@ -12,26 +19,28 @@ This module implements functional programming utilities for NDArray operations, 
 ### `apply_along_axis_reduce_to_int`
 
 ```mojo
-apply_along_axis_reduce_to_int[dtype: DType, func1d: fn[dtype_func: DType](NDArray[dtype_func]) raises -> Scalar[DType.int]](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def apply_along_axis_reduce_to_int[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Int](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
 ```
 
 Applies a function to a NDArray by axis and reduce that dimension. The returned data type is DType.int. When the array is 1-d, the returned array will be a 0-d array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
-- `func1d` (`fn[dtype_func: DType](NDArray[dtype_func]) raises -> Scalar[DType.int]`): The function to apply to the NDArray.
+- `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Int`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): The NDArray to apply the function to.
-- `axis` (`Int`): The axis to apply the function to.
+- `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
+- `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -41,24 +50,24 @@ Applies a function to a NDArray by axis and reduce that dimension. The returned 
 ### `apply_along_axis_reduce`
 
 ```mojo
-apply_along_axis_reduce[dtype: DType, func1d: fn[dtype_func: DType](NDArray[dtype_func]) raises -> Scalar[dtype_func]](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+def apply_along_axis_reduce[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Scalar[dtype_func]](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
 ```
 
 Applies a function to a NDArray by axis and reduce that dimension. When the array is 1-d, the returned array will be a 0-d array. The target data type of the returned NDArray is different from the input NDArray. This is a function ***overload***.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
-- `func1d` (`fn[dtype_func: DType](NDArray[dtype_func]) raises -> Scalar[dtype_func]`): The function to apply to the NDArray.
+- `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Scalar[dtype_func]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): The NDArray to apply the function to.
-- `axis` (`Int`): The axis to apply the function to.
+- `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
+- `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
 !!! failure "Raises"
     Error when the array is 1-d.
@@ -71,27 +80,29 @@ Applies a function to a NDArray by axis and reduce that dimension. When the arra
 ### `apply_along_axis_reduce_with_dtype`
 
 ```mojo
-apply_along_axis_reduce_with_dtype[dtype: DType, returned_dtype: DType, func1d: fn[dtype_func: DType, returned_dtype_func: DType](NDArray[dtype_func]) raises -> Scalar[returned_dtype_func]](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
+def apply_along_axis_reduce_with_dtype[dtype: DType, returned_dtype: DType, func1d: def[dtype_func: DType, returned_dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Scalar[returned_dtype_func]](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
 ```
 
 Applies a function to a NDArray by axis and reduce that dimension. When the array is 1-d, the returned array will be a 0-d array. The function returns a different dtype than the input NDArray.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
 - `returned_dtype` (`DType`): The data type of the returned NDArray elements.
-- `func1d` (`fn[dtype_func: DType, returned_dtype_func: DType](NDArray[dtype_func]) raises -> Scalar[returned_dtype_func]`): The function to apply to the NDArray.
+- `func1d` (`def[dtype_func: DType, returned_dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Scalar[returned_dtype_func]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): The NDArray to apply the function to.
-- `axis` (`Int`): The axis to apply the function to.
+- `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
+- `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[returned_dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -101,26 +112,28 @@ Applies a function to a NDArray by axis and reduce that dimension. When the arra
 ### `apply_along_axis_preserve`
 
 ```mojo
-apply_along_axis_preserve[dtype: DType, func1d: fn[dtype_func: DType](NDArray[dtype_func]) raises -> NDArray[dtype_func]](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+def apply_along_axis_preserve[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[dtype_func]](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
 ```
 
 Applies a function to a NDArray by axis without reducing that dimension. The resulting array will have the same shape as the input array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
-- `func1d` (`fn[dtype_func: DType](NDArray[dtype_func]) raises -> NDArray[dtype_func]`): The function to apply to the NDArray.
+- `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[dtype_func]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): The NDArray to apply the function to.
-- `axis` (`Int`): The axis to apply the function to.
+- `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
+- `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[dtype]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -130,22 +143,24 @@ Applies a function to a NDArray by axis without reducing that dimension. The res
 ### `apply_along_axis_inplace`
 
 ```mojo
-apply_along_axis_inplace[dtype: DType, func1d: fn[dtype_func: DType](mut NDArray[dtype_func]) raises -> None](mut a: NDArray[dtype], axis: Int)
+def apply_along_axis_inplace[dtype: DType, func1d: def[dtype_func: DType](mut NDArray[dtype_func]) raises capturing thin -> None](mut a: NDArray[dtype], axis: Int)
 ```
 
 Applies a function to a NDArray by axis without reducing that dimension. The function is applied in-place to the input array.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
-- `func1d` (`fn[dtype_func: DType](mut NDArray[dtype_func]) raises -> None`): The function to apply to the NDArray.
+- `func1d` (`def[dtype_func: DType](mut NDArray[dtype_func]) raises capturing thin -> None`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`) `[mut]`: The NDArray to apply the function to.
-- `axis` (`Int`): The axis to apply the function to.
+- `a` (`NDArray[dtype]`) `[mut]`: The NDArray to apply the function to.
+- `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
@@ -155,26 +170,28 @@ Applies a function to a NDArray by axis without reducing that dimension. The fun
 ### `apply_along_axis_indices`
 
 ```mojo
-apply_along_axis_indices[dtype: DType, func1d: fn[dtype_func: DType](NDArray[dtype_func]) raises -> NDArray[DType.int]](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def apply_along_axis_indices[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[DType.int]](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
 ```
 
 Applies a function to a NDArray by axis without reducing that dimension. The resulting array will have the same shape as the input array. The resulting array is an index array. It can be used for, e.g., argsort.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
-- `func1d` (`fn[dtype_func: DType](NDArray[dtype_func]) raises -> NDArray[DType.int]`): The function to apply to the NDArray.
+- `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[DType.int]`): The function to apply to the NDArray.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `a` (`NDArray`): The NDArray to apply the function to.
-- `axis` (`Int`): The axis to apply the function to.
+- `a` (`NDArray[dtype]`) `[imm]`: The NDArray to apply the function to.
+- `axis` (`Int`) `[imm]`: The axis to apply the function to.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `NDArray`
+- `NDArray[DType.int]`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>

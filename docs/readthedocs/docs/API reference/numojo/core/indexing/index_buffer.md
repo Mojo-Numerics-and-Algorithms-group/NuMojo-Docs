@@ -1,33 +1,41 @@
 # `numojo.core.indexing.index_buffer`
 
-IndexBuffer (numojo.core.indexing.index_buffer)
-
 Shared integer buffer backend for shape/strides/item.
 
-This type owns a contiguous heap buffer of Ints and provides
-small helpers for pointer access and SIMD load/store.
+Owns a contiguous heap buffer of Ints and provides small helpers for pointer
+access and SIMD load/store.
+
+Exports
+-------
+- `IndexBuffer`: Index storage.
 
 ## Structs
 
 ### `IndexBuffer`
+
+<div class="type-header" markdown="1">
+
+<span class="badge badge-kind">struct</span>
 
 ```mojo
 struct IndexBuffer
 ```
 
 **Memory convention:** `register_passable`  
-**Implements:** `AnyType`, `Copyable`, `Equatable`, `ImplicitlyCopyable`, `ImplicitlyDestructible`, `Movable`, `RegisterPassable`, `Sized`, `Stringable`, `Writable`
+**Implements:** `AnyType`, `Copyable`, `Deinitable`, `Equatable`, `ImplicitlyCopyable`, `Movable`, `RegisterPassable`, `Sized`, `Writable`
 
 Shared integer buffer backend for shape/strides/item.
 
+</div>
+
 #### Fields
 
-- **`ptr`** (`UnsafePointer[Scalar[DType.int], MutExternalOrigin]`): Pointer to the buffer.
+- **`ptr`** (`Pointer[Int, MutUntrackedOrigin]`): Pointer to the buffer.
 - **`ndim`** (`Int`): Number of elements in the buffer.
 
 #### Aliases
 
-##### `element_type`
+#### `element_type`
 
 ```mojo
 comptime element_type
@@ -37,7 +45,7 @@ comptime element_type
 
 Element type of the buffer.
 
-##### `simd_width`
+#### `simd_width`
 
 ```mojo
 comptime simd_width
@@ -47,211 +55,133 @@ comptime simd_width
 
 SIMD width for the element type.
 
-##### `__del__is_trivial`
-
-```mojo
-comptime __del__is_trivial
-```
-
-**Value:** `False`
-
-##### `__move_ctor_is_trivial`
-
-```mojo
-comptime __move_ctor_is_trivial
-```
-
-**Value:** `True`
-
-##### `__copy_ctor_is_trivial`
-
-```mojo
-comptime __copy_ctor_is_trivial
-```
-
-**Value:** `False`
-
 #### Methods
 
 
 <div class="fn-card" markdown="1">
 
-##### `__init__`
+#### `__init__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__init__(*, size: Int) -> Self
+def __init__(*, size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize an IndexBuffer of given size.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `size` (`Int`): Number of elements in the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__init__(ptr: UnsafePointer[Scalar[DType.int], MutExternalOrigin], size: Int) -> Self
+def __init__(ptr: Pointer[Int, MutUntrackedOrigin], size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize an IndexBuffer with an existing pointer and size.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `ptr` (`UnsafePointer`): UnsafePointer to the buffer.
-- `size` (`Int`): Number of elements in the buffer.
+- `ptr` (`Pointer[Int, MutUntrackedOrigin]`) `[imm]`: UnsafePointer to the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 3
+<div class="overload-divider">Overload 3</div>
 
 ```mojo
-__init__() -> Self
+def __init__() -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize an empty IndexBuffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 4
+<div class="overload-divider">Overload 4</div>
 
 ```mojo
-__init__(*values: Int) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Initialize an IndexBuffer with given Int values.
-
-**Args:**
-
-- `*values` (`Int`): Variadic list of integer values.
-
-**Returns:**
-
-- `Self`
-
-###### Overload 5
-
-```mojo
-__init__(*values: Scalar[DType.int]) -> Self
+def __init__(*values: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize an IndexBuffer with given values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `*values` (`Scalar`): Variadic list of integer values.
+- `*values` (`Int`) `[imm]`: Variadic list of integer values.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 6
+<div class="overload-divider">Overload 5</div>
 
 ```mojo
-__init__(values: List[Scalar[DType.int]]) -> Self
+def __init__(values: List[Int]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize an IndexBuffer with a list of values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `values` (`List`): List of integer values.
+- `values` (`List[Int]`) `[imm]`: List of integer values.
 
-**Returns:**
-
-- `Self`
-
-###### Overload 7
-
-```mojo
-__init__(values: List[Int]) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Initialize an IndexBuffer with a list of Int values.
-
-**Args:**
-
-- `values` (`List`): List of integer values.
-
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 8
+<div class="overload-divider">Overload 6</div>
 
 ```mojo
-__init__(values: VariadicList[Scalar[DType.int]]) -> Self
+def __init__(values: VariadicList[Int]) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Initialize an IndexBuffer with a range of values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `values` (`VariadicList`): Range of integer values.
+- `values` (`VariadicList[Int]`) `[imm]`: Range of integer values.
 
-**Returns:**
-
-- `Self`
-
-###### Overload 9
-
-```mojo
-__init__(values: VariadicList[Int]) -> Self
-```
-
-<span class="badge badge-static">static</span>
-
-Initialize an IndexBuffer with a range of values.
-
-**Args:**
-
-- `values` (`VariadicList`): Range of integer values.
-
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 10
+<div class="overload-divider">Overload 7</div>
 
 ```mojo
-__init__(*, copy: Self) -> Self
+def __init__(*, copy: Self) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Copy-initialize an IndexBuffer from ancopy IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `copy` (`Self`): The copy IndexBuffer to copy from.
+- `copy` (`Self`) `[imm]`: The copy IndexBuffer to copy from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -260,15 +190,15 @@ Copy-initialize an IndexBuffer from ancopy IndexBuffer.
 
 <div class="fn-card" markdown="1">
 
-##### `__del__`
+#### `__deinit__`
 
 ```mojo
-__del__(deinit self)
+def __deinit__(deinit self)
 ```
 
 Deinitialize the IndexBuffer and free resources.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[deinit]`
 
@@ -277,139 +207,112 @@ Deinitialize the IndexBuffer and free resources.
 
 <div class="fn-card" markdown="1">
 
-##### `__getitem__`
+#### `__getitem__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__getitem__(self, idx: Int) -> Int
+def __getitem__(self, idx: Int) -> Int
 ```
 
 Get the element at the given index.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `idx` (`Int`): Index of the element.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Index of the element.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
 
-```mojo
-__getitem__(self, idx: Scalar[DType.int]) -> Scalar[DType.int]
-```
-
-Get the element at the given index.
-
-**Args:**
-
-- `self` (`Self`)
-- `idx` (`Scalar`): Index of the element.
-
-**Returns:**
-
-- `Scalar`
-
-!!! failure "Raises"
-
-###### Overload 3
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__getitem__(self, slice: Slice) -> Self
+def __getitem__(self, slice: Slice) -> Self
 ```
 
 Get a sub-buffer using a slice.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `slice` (`Slice`): Slice object defining the sub-buffer.
+- `self` (`Self`) `[imm]`
+- `slice` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__setitem__`
+#### `__setitem__`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-__setitem__(mut self, idx: Int, value: Int)
+def __setitem__(mut self, idx: Int, value: Int)
 ```
 
 Set the element at the given index.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Index of the element.
-- `value` (`Int`): Value to set.
+- `idx` (`Int`) `[imm]`: Index of the element.
+- `value` (`Int`) `[imm]`: Value to set.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
 
-###### Overload 2
+*Not documented in source.*
 
-```mojo
-__setitem__(mut self, idx: Scalar[DType.int], value: Scalar[DType.int])
-```
-
-Set the element at the given index.
-
-**Args:**
-
-- `self` (`Self`) `[mut]`
-- `idx` (`Scalar`): Index of the element.
-- `value` (`Scalar`): Value to set.
-
-!!! failure "Raises"
-
-###### Overload 3
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-__setitem__(mut self, slice: Slice, value: Self)
+def __setitem__(mut self, slice: Slice, value: Self)
 ```
 
 Set a sub-buffer using a slice.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `slice` (`Slice`): Slice object defining the sub-buffer.
-- `value` (`Self`): Buffer to set.
+- `slice` (`Slice`) `[imm]`: Slice object defining the sub-buffer.
+- `value` (`Self`) `[imm]`: Buffer to set.
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__eq__`
+#### `__eq__`
 
 ```mojo
-__eq__(self, other: Self) -> Bool
+def __eq__(self, other: Self) -> Bool
 ```
 
 Check if two IndexBuffers are equal.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`): The other IndexBuffer to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The other IndexBuffer to compare with.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -418,61 +321,20 @@ Check if two IndexBuffers are equal.
 
 <div class="fn-card" markdown="1">
 
-##### `__ne__`
+#### `__ne__`
 
 ```mojo
-__ne__(self, other: Self) -> Bool
+def __ne__(self, other: Self) -> Bool
 ```
 
 Check if two IndexBuffers are not equal.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `other` (`Self`): The other IndexBuffer to compare with.
+- `self` (`Self`) `[imm]`
+- `other` (`Self`) `[imm]`: The other IndexBuffer to compare with.
 
-**Returns:**
-
-- `Bool`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `__contains__`
-
-###### Overload 1
-
-```mojo
-__contains__(self, value: Scalar[DType.int]) -> Bool
-```
-
-Check if the IndexBuffer contains the given value.
-
-**Args:**
-
-- `self` (`Self`)
-- `value` (`Scalar`): Value to check for.
-
-**Returns:**
-
-- `Bool`
-
-###### Overload 2
-
-```mojo
-__contains__(self, value: Int) -> Bool
-```
-
-Check if the IndexBuffer contains the given value.
-
-**Args:**
-
-- `self` (`Self`)
-- `value` (`Int`): Value to check for.
-
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -481,177 +343,156 @@ Check if the IndexBuffer contains the given value.
 
 <div class="fn-card" markdown="1">
 
-##### `get_ptr`
+#### `__contains__`
 
 ```mojo
-get_ptr(ref self) -> ref[self.ptr] UnsafePointer[Scalar[DType.int], MutExternalOrigin]
+def __contains__(self, value: Int) -> Bool
+```
+
+Check if the IndexBuffer contains the given value.
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+- `value` (`Int`) `[imm]`: Value to check for.
+
+<div class="prose-label">Returns</div>
+
+- `Bool`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `get_ptr`
+
+```mojo
+def get_ptr(ref self) -> ref[self.ptr] Pointer[Int, MutUntrackedOrigin]
 ```
 
 Get the underlying pointer of the buffer.
 
-Notes:
+<div class="prose-label">Notes</div>
 The returned pointer is a reference to the internal pointer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `ref`
+- `ref[self.ptr] Pointer[Int, MutUntrackedOrigin]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `offset`
+#### `offset`
 
 ```mojo
-offset(ref self, offset: Int) -> UnsafePointer[Scalar[DType.int], MutExternalOrigin]
+def offset(ref self, offset: Int) -> Pointer[Int, MutUntrackedOrigin]
 ```
 
 Get a pointer offset by the given amount.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
-- `offset` (`Int`): Offset amount.
+- `offset` (`Int`) `[imm]`: Offset amount.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `UnsafePointer`
+- `Pointer[Int, MutUntrackedOrigin]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_load`
-
-###### Overload 1
+#### `unsafe_load`
 
 ```mojo
-unsafe_load[width: Int = 1](self, idx: Int) -> SIMD[DType.int, width]
+def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
 ```
 
 Unsafely load a SIMD vector from the buffer at the given index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): Width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `idx` (`Int`): Index to load from.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Index to load from.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `SIMD`
-
-###### Overload 2
-
-```mojo
-unsafe_load[width: Int = 1](self, idx: Scalar[DType.int]) -> SIMD[DType.int, width]
-```
-
-Unsafely load a SIMD vector from the buffer at the given index.
-
-**Parameters:**
-
-- `width` (`Int`): Width of the SIMD vector.
-
-**Args:**
-
-- `self` (`Self`)
-- `idx` (`Scalar`): Index to load from.
-
-**Returns:**
-
-- `SIMD`
+- `SIMD[DType.int, width]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `unsafe_store`
-
-###### Overload 1
+#### `unsafe_store`
 
 ```mojo
-unsafe_store[width: Int = 1](self, idx: Int, value: SIMD[DType.int, width])
+def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
 ```
 
 Unsafely store a SIMD vector to the buffer at the given index.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `width` (`Int`): Width of the SIMD vector.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `idx` (`Int`): Index to store to.
-- `value` (`SIMD`): SIMD vector to store.
-
-###### Overload 2
-
-```mojo
-unsafe_store[width: Int = 1](self, idx: Scalar[DType.int], value: SIMD[DType.int, width])
-```
-
-Unsafely store a SIMD vector to the buffer at the given index.
-
-**Parameters:**
-
-- `width` (`Int`): Width of the SIMD vector.
-
-**Args:**
-
-- `self` (`Self`)
-- `idx` (`Scalar`): Index to store to.
-- `value` (`SIMD`): SIMD vector to store.
+- `self` (`Self`) `[imm]`
+- `idx` (`Int`) `[imm]`: Index to store to.
+- `value` (`SIMD[DType.int, width]`) `[imm]`: SIMD vector to store.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `extend`
+#### `extend`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-extend(self, *values: Int) -> Self
+def extend(self, *values: Int) -> Self
 ```
 
 Extend the buffer by appending additional integer values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `*values` (`Int`): Variadic list of sizes of extended dimensions.
+- `self` (`Self`) `[imm]`
+- `*values` (`Int`) `[imm]`: Variadic list of sizes of extended dimensions.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-extend(self, values: List[Int]) -> Self
+def extend(self, values: List[Int]) -> Self
 ```
 
 Extend the buffer by appending additional integer values from a List.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `values` (`List`): List of sizes of extended dimensions.
+- `self` (`Self`) `[imm]`
+- `values` (`List[Int]`) `[imm]`: List of sizes of extended dimensions.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -660,15 +501,15 @@ Extend the buffer by appending additional integer values from a List.
 
 <div class="fn-card" markdown="1">
 
-##### `flip`
+#### `flip`
 
 ```mojo
-flip(mut self)
+def flip(mut self)
 ```
 
 Flip the items in-place.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
 
@@ -677,19 +518,19 @@ Flip the items in-place.
 
 <div class="fn-card" markdown="1">
 
-##### `flipped`
+#### `flipped`
 
 ```mojo
-flipped(self) -> Self
+def flipped(self) -> Self
 ```
 
 Returns a new IndexBuffer by reversing the items.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -698,20 +539,20 @@ Returns a new IndexBuffer by reversing the items.
 
 <div class="fn-card" markdown="1">
 
-##### `move_axis_to_end`
+#### `move_axis_to_end`
 
 ```mojo
-move_axis_to_end(self, axis: Int) -> Self
+def move_axis_to_end(self, axis: Int) -> Self
 ```
 
 Returns a new IndexBuffer by moving the value at axis to the end.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to move. It should be in [-ndim, ndim).
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to move. It should be in [-ndim, ndim).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -720,88 +561,92 @@ Returns a new IndexBuffer by moving the value at axis to the end.
 
 <div class="fn-card" markdown="1">
 
-##### `pop`
+#### `pop`
 
 ```mojo
-pop(self, axis: Int) -> Self
+def pop(self, axis: Int) -> Self
 ```
 
 Drops the item at the given axis (index).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to drop. It should be in [0, ndim).
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to drop. It should be in [0, ndim).
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `insert`
+#### `insert`
 
 ```mojo
-insert(self, axis: Int, value: Int) -> Self
+def insert(self, axis: Int, value: Int) -> Self
 ```
 
 Inserts a value at the given axis (index).
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `axis` (`Int`): The axis (index) to insert at. It should be in [0, ndim].
-- `value` (`Int`): The value to insert.
+- `self` (`Self`) `[imm]`
+- `axis` (`Int`) `[imm]`: The axis (index) to insert at. It should be in [0, ndim].
+- `value` (`Int`) `[imm]`: The value to insert.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `join`
+#### `join`
 
-###### Overload 1
+<div class="overload-divider">Overload 1</div>
 
 ```mojo
-join(self, *others: Self) -> Self
+def join(self, *others: Self) -> Self
 ```
 
 Join multiple IndexBuffers into a single IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `*others` (`Self`): Variable number of IndexBuffer objects.
+- `self` (`Self`) `[imm]`
+- `*others` (`Self`) `[imm]`: Variable number of IndexBuffer objects.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-###### Overload 2
+<div class="overload-divider">Overload 2</div>
 
 ```mojo
-join(self, others: List[IndexBuffer]) -> Self
+def join(self, others: List[Self]) -> Self
 ```
 
 Join multiple IndexBuffers into a single IndexBuffer from a List.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `others` (`List`): List of IndexBuffer objects.
+- `self` (`Self`) `[imm]`
+- `others` (`List[Self]`) `[imm]`: List of IndexBuffer objects.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -810,38 +655,38 @@ Join multiple IndexBuffers into a single IndexBuffer from a List.
 
 <div class="fn-card" markdown="1">
 
-##### `sort`
+#### `sort`
 
 ```mojo
-sort(mut self, order: Bool)
+def sort(mut self, order: Bool)
 ```
 
 Sort the IndexBuffer in-place.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `order` (`Bool`): If True, sort in ascending order; if False, sort in descending order.
+- `order` (`Bool`) `[imm]`: If True, sort in ascending order; if False, sort in descending order.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `sorted`
+#### `sorted`
 
 ```mojo
-sorted(self, order: Bool) -> Self
+def sorted(self, order: Bool) -> Self
 ```
 
 Returns a new IndexBuffer that is sorted.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
-- `order` (`Bool`): If True, sort in ascending order; if False, sort in descending order.
+- `self` (`Self`) `[imm]`
+- `order` (`Bool`) `[imm]`: If True, sort in ascending order; if False, sort in descending order.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -850,49 +695,51 @@ Returns a new IndexBuffer that is sorted.
 
 <div class="fn-card" markdown="1">
 
-##### `arange`
+#### `arange`
 
 ```mojo
-arange(start: Int, end: Int, step: Int = 1) -> Self
+def arange(start: Int, end: Int, step: Int = Int(1)) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a IndexBuffer with a range of values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `start` (`Int`): Start of the range.
-- `end` (`Int`): End of the range.
-- `step` (`Int`): Step size of the range.
+- `start` (`Int`) `[imm]`: Start of the range.
+- `end` (`Int`) `[imm]`: End of the range.
+- `step` (`Int`) `[imm]`: Step size of the range.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `fill`
+#### `fill`
 
 ```mojo
-fill(size: Int, value: Int) -> Self
+def fill(size: Int, value: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a IndexBuffer filled with the given value.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `size` (`Int`): Number of elements in the buffer.
-- `value` (`Int`): Value to fill the buffer with.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
+- `value` (`Int`) `[imm]`: Value to fill the buffer with.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -901,21 +748,21 @@ Create a IndexBuffer filled with the given value.
 
 <div class="fn-card" markdown="1">
 
-##### `zeros`
+#### `zeros`
 
 ```mojo
-zeros(size: Int) -> Self
+def zeros(size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a IndexBuffer filled with zeros.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `size` (`Int`): Number of elements in the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -924,21 +771,21 @@ Create a IndexBuffer filled with zeros.
 
 <div class="fn-card" markdown="1">
 
-##### `ones`
+#### `ones`
 
 ```mojo
-ones(size: Int) -> Self
+def ones(size: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a IndexBuffer filled with ones.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `size` (`Int`): Number of elements in the buffer.
+- `size` (`Int`) `[imm]`: Number of elements in the buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -947,48 +794,50 @@ Create a IndexBuffer filled with ones.
 
 <div class="fn-card" markdown="1">
 
-##### `linspace`
+#### `linspace`
 
 ```mojo
-linspace(start: Int, end: Int, num: Int) -> Self
+def linspace(start: Int, end: Int, num: Int) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Create a IndexBuffer with linearly spaced values.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `start` (`Int`): Start of the range.
-- `end` (`Int`): End of the range.
-- `num` (`Int`): Number of elements in the buffer.
+- `start` (`Int`) `[imm]`: Start of the range.
+- `end` (`Int`) `[imm]`: End of the range.
+- `num` (`Int`) `[imm]`: Number of elements in the buffer.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
-!!! failure "Raises"
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `invert_permutation`
+#### `invert_permutation`
 
 ```mojo
-invert_permutation(perm) -> Self
+def invert_permutation(perm) -> Self
 ```
 
 <span class="badge badge-static">static</span>
 
 Invert a permutation.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `perm` (`Self`): IndexBuffer representing a permutation.
+- `perm` (`Self`) `[imm]`: IndexBuffer representing a permutation.
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Self`
 
@@ -997,19 +846,19 @@ Invert a permutation.
 
 <div class="fn-card" markdown="1">
 
-##### `rank`
+#### `rank`
 
 ```mojo
-rank(self) -> Int
+def rank(self) -> Int
 ```
 
 Get the number of elements in the IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -1018,19 +867,19 @@ Get the number of elements in the IndexBuffer.
 
 <div class="fn-card" markdown="1">
 
-##### `is_empty`
+#### `is_empty`
 
 ```mojo
-is_empty(self) -> Bool
+def is_empty(self) -> Bool
 ```
 
 Check if the IndexBuffer is empty.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Bool`
 
@@ -1039,61 +888,19 @@ Check if the IndexBuffer is empty.
 
 <div class="fn-card" markdown="1">
 
-##### `sum`
+#### `sum`
 
 ```mojo
-sum(self) -> Scalar[DType.int]
+def sum(self) -> Int
 ```
 
 Compute the sum of all elements in the IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
-
-- `Scalar`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `product`
-
-```mojo
-product(self) -> Scalar[DType.int]
-```
-
-Compute the product of all elements in the IndexBuffer.
-
-**Args:**
-
-- `self` (`Self`)
-
-**Returns:**
-
-- `Scalar`
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-##### `__len__`
-
-```mojo
-__len__(self) -> Int
-```
-
-Get the number of elements in the IndexBuffer.
-
-**Args:**
-
-- `self` (`Self`)
-
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `Int`
 
@@ -1102,19 +909,61 @@ Get the number of elements in the IndexBuffer.
 
 <div class="fn-card" markdown="1">
 
-##### `__repr__`
+#### `product`
 
 ```mojo
-__repr__(self) -> String
+def product(self) -> Int
+```
+
+Compute the product of all elements in the IndexBuffer.
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Int`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `__len__`
+
+```mojo
+def __len__(self) -> Int
+```
+
+Get the number of elements in the IndexBuffer.
+
+<div class="prose-label">Args</div>
+
+- `self` (`Self`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `Int`
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+#### `__repr__`
+
+```mojo
+def __repr__(self) -> String
 ```
 
 Get the official string representation of the IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -1123,19 +972,19 @@ Get the official string representation of the IndexBuffer.
 
 <div class="fn-card" markdown="1">
 
-##### `__str__`
+#### `__str__`
 
 ```mojo
-__str__(self) -> String
+def __str__(self) -> String
 ```
 
 Get the string representation of the IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
 - `String`
 
@@ -1144,21 +993,21 @@ Get the string representation of the IndexBuffer.
 
 <div class="fn-card" markdown="1">
 
-##### `write_to`
+#### `write_to`
 
 ```mojo
-write_to[W: Writer](self, mut writer: W)
+def write_to[W: Writer](self, mut writer: W)
 ```
 
 Write the IndexBuffer to a writer.
 
-**Parameters:**
+<div class="prose-label">Parameters</div>
 
 - `W` (`Writer`)
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 - `writer` (`W`) `[mut]`
 
 
@@ -1166,82 +1015,82 @@ Write the IndexBuffer to a writer.
 
 <div class="fn-card" markdown="1">
 
-##### `init_value`
+#### `init_value`
 
 ```mojo
-init_value(mut self, idx: Int, value: Scalar[DType.int])
+def init_value(mut self, idx: Int, value: Int)
 ```
 
 Initialize the element at the given index. No bounds checking.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `idx` (`Int`): Index of the element.
-- `value` (`Scalar`): Value to set.
+- `idx` (`Int`) `[imm]`: Index of the element.
+- `value` (`Int`) `[imm]`: Value to set.
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `tolist`
+#### `tolist`
 
 ```mojo
-tolist(self) -> List[Scalar[DType.int]]
+def tolist(self) -> List[Int]
 ```
 
 Convert the buffer to a list.
 
-**Args:**
+<div class="prose-label">Args</div>
 
-- `self` (`Self`)
+- `self` (`Self`) `[imm]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `List`
+- `List[Int]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__iter__`
+#### `__iter__`
 
 ```mojo
-__iter__(ref self) -> _IndexBufferIter[DType.int, origin_of(self)]
+def __iter__(ref self) -> _IndexBufferIter[DType.int, origin_of(self)]
 ```
 
 Get a forward iterator for the IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `_IndexBufferIter`
+- `_IndexBufferIter[DType.int, origin_of(self)]`
 
 
 </div>
 
 <div class="fn-card" markdown="1">
 
-##### `__reversed__`
+#### `__reversed__`
 
 ```mojo
-__reversed__(ref self) -> _IndexBufferIter[DType.int, origin_of(self), False]
+def __reversed__(ref self) -> _IndexBufferIter[DType.int, origin_of(self), False]
 ```
 
 Get a backward iterator for the IndexBuffer.
 
-**Args:**
+<div class="prose-label">Args</div>
 
 - `self` (`Self`) `[ref]`
 
-**Returns:**
+<div class="prose-label">Returns</div>
 
-- `_IndexBufferIter`
+- `_IndexBufferIter[DType.int, origin_of(self), False]`
 
 
 </div>
