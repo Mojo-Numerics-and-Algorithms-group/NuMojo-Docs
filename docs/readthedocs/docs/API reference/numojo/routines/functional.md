@@ -19,7 +19,7 @@ Exports
 ### `apply_along_axis_reduce_to_int`
 
 ```mojo
-def apply_along_axis_reduce_to_int[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Int](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def apply_along_axis_reduce_to_int[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> Int](a: NDArray[dtype], axis: Int) -> NDArray[.int]
 ```
 
 Applies a function to a NDArray by axis and reduce that dimension. The returned data type is DType.int. When the array is 1-d, the returned array will be a 0-d array.
@@ -36,7 +36,7 @@ Applies a function to a NDArray by axis and reduce that dimension. The returned 
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
@@ -170,7 +170,7 @@ Applies a function to a NDArray by axis without reducing that dimension. The fun
 ### `apply_along_axis_indices`
 
 ```mojo
-def apply_along_axis_indices[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[DType.int]](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def apply_along_axis_indices[dtype: DType, func1d: def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[.int]](a: NDArray[dtype], axis: Int) -> NDArray[.int]
 ```
 
 Applies a function to a NDArray by axis without reducing that dimension. The resulting array will have the same shape as the input array. The resulting array is an index array. It can be used for, e.g., argsort.
@@ -178,7 +178,7 @@ Applies a function to a NDArray by axis without reducing that dimension. The res
 <div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The data type of the input NDArray elements.
-- `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[DType.int]`): The function to apply to the NDArray.
+- `func1d` (`def[dtype_func: DType](NDArray[dtype_func]) raises capturing thin -> NDArray[.int]`): The function to apply to the NDArray.
 
 <div class="prose-label">Args</div>
 
@@ -187,7 +187,7 @@ Applies a function to a NDArray by axis without reducing that dimension. The res
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 

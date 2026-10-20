@@ -1,9 +1,10 @@
+import argparse
 import json
 import re
 import shutil
 from pathlib import Path
 
-DOCS_JSON = "docs.json"
+DOCS_JSON = Path("docs.json")
 OUT_DIR = Path("docs/readthedocs/docs/API reference")
 MKDOCS_YML = Path("docs/readthedocs/mkdocs.yml")
 GETTING_STARTED = Path("docs/readthedocs/docs/getting_started/install.md")
@@ -13,6 +14,26 @@ GETTING_STARTED = Path("docs/readthedocs/docs/getting_started/install.md")
 NUMOJO_REPO = Path("../NuMojo")
 DOCS_SRC = NUMOJO_REPO / "docs"
 README_SRC = NUMOJO_REPO / "README.MD"
+
+
+def configure_sources(numojo_repo: Path, docs_json: Path) -> None:
+    """Configure the NuMojo checkout and generated JSON used as inputs."""
+    global NUMOJO_REPO, DOCS_SRC, README_SRC, DOCS_JSON
+    NUMOJO_REPO = numojo_repo.resolve()
+    DOCS_SRC = NUMOJO_REPO / "docs"
+    README_SRC = NUMOJO_REPO / "README.MD"
+    DOCS_JSON = docs_json.resolve()
+
+
+def numojo_version() -> str:
+    """Read the package version from the selected NuMojo checkout."""
+    pixi_toml = (NUMOJO_REPO / "pixi.toml").read_text(encoding="utf-8")
+    match = re.search(r'^version\s*=\s*"([^"]+)"', pixi_toml, re.MULTILINE)
+    if not match:
+        raise RuntimeError(
+            f"Could not find package version in {NUMOJO_REPO / 'pixi.toml'}"
+        )
+    return match.group(1)
 
 
 def sanitize(text: str) -> str:
@@ -1271,7 +1292,7 @@ For a pinned stable release:
 channels = ["https://repo.prefix.dev/modular-community"]
 
 [dependencies]
-numojo = "=0.10.0"
+numojo = "=__NUMOJO_VERSION__"
 ```
 
 ```bash
@@ -1311,7 +1332,10 @@ def generate():
     copy_docs_pages(docs_dir)
 
     index_path = docs_dir / "index.md"
-    index_path.write_text(INDEX_MD, encoding="utf-8")
+    index_path.write_text(
+        INDEX_MD.replace("__NUMOJO_VERSION__", numojo_version()),
+        encoding="utf-8",
+    )
     print(f"Updated {index_path}")
 
     readthedocs_dir = MKDOCS_YML.parent
@@ -1326,4 +1350,19 @@ def generate():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--numojo-repo",
+        type=Path,
+        default=NUMOJO_REPO,
+        help="NuMojo checkout used for README, guides, and version metadata",
+    )
+    parser.add_argument(
+        "--docs-json",
+        type=Path,
+        default=DOCS_JSON,
+        help="Merged mojo doc JSON generated from the same NuMojo checkout",
+    )
+    args = parser.parse_args()
+    configure_sources(args.numojo_repo, args.docs_json)
     generate()

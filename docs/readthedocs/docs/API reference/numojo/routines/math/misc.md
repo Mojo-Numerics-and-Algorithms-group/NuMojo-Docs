@@ -21,7 +21,7 @@ Exports
 ### `cbrt`
 
 ```mojo
-def cbrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def cbrt[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Element-wise cube root of a NDArray.
@@ -139,7 +139,7 @@ Element-wise square root of a NDArray.
 ### `scalb`
 
 ```mojo
-def scalb[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def scalb[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply scalb element-wise to two arrays.

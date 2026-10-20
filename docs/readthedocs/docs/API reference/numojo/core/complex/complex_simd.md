@@ -261,7 +261,7 @@ Returns the positive value of this ComplexSIMD (identity operation).
 #### `__invert__`
 
 ```mojo
-def __invert__(self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
+def __invert__(self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) or ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical NOT operation on this ComplexSIMD instance.
@@ -742,7 +742,7 @@ Raises this ComplexSIMD to an integer.
 #### `__and__`
 
 ```mojo
-def __and__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
+def __and__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) or ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical AND operation between two ComplexSIMD instances.
@@ -764,7 +764,7 @@ Element-wise logical AND operation between two ComplexSIMD instances.
 #### `__or__`
 
 ```mojo
-def __or__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
+def __or__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) or ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical OR operation between two ComplexSIMD instances.
@@ -786,7 +786,7 @@ Element-wise logical OR operation between two ComplexSIMD instances.
 #### `__xor__`
 
 ```mojo
-def __xor__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) if (ComplexSIMD[cdtype, width].dtype == DType.bool) else ComplexSIMD[cdtype, width].dtype.is_integral()
+def __xor__(self, other: Self) -> Self where (ComplexSIMD[cdtype, width].dtype == DType.bool) or ComplexSIMD[cdtype, width].dtype.is_integral()
 ```
 
 Element-wise logical XOR operation between two ComplexSIMD instances.

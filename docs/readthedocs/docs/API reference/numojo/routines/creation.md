@@ -27,7 +27,7 @@ Exports
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def arange[dtype: DType = DType.float64](start: Scalar[dtype], stop: Scalar[dtype], step: Scalar[dtype] = 1) -> NDArray[dtype]
+def arange[dtype: DType = .float64](start: Scalar[dtype], stop: Scalar[dtype], step: Scalar[dtype] = 1) -> NDArray[dtype]
 ```
 
 Generate evenly spaced values within a given interval.
@@ -66,7 +66,7 @@ print(arr2)  # [10.0, 8.0, 6.0, 4.0, 2.0]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def arange[dtype: DType = DType.float64](stop: Scalar[dtype]) -> NDArray[dtype]
+def arange[dtype: DType = .float64](stop: Scalar[dtype]) -> NDArray[dtype]
 ```
 
 Generate evenly spaced values from 0 to stop.
@@ -169,7 +169,7 @@ Overload with start=0+0j and step=1+1j for convenience.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def linspace[dtype: DType = DType.float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int = Int(50), endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
+def linspace[dtype: DType = .float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int = Int(50), endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Generate evenly spaced numbers over a specified interval.
@@ -257,7 +257,7 @@ var arr = nm.linspace[nm.cf64](start, stop, 5)
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def logspace[dtype: DType = DType.float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True, base: Scalar[dtype] = 10) -> NDArray[dtype] where dtype.is_floating_point()
+def logspace[dtype: DType = .float64, parallel: Bool = False](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True, base: Scalar[dtype] = 10) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Generate logarithmically spaced numbers over a specified interval.
@@ -339,7 +339,7 @@ The sequence starts at base^start and ends at base^stop.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def geomspace[dtype: DType = DType.float64](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
+def geomspace[dtype: DType = .float64](start: Scalar[dtype], stop: Scalar[dtype], num: Int, endpoint: Bool = True) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Generate numbers spaced evenly on a log scale (geometric progression).
@@ -415,7 +415,7 @@ This is similar to logspace, but with endpoints specified directly.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def empty[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
+def empty[dtype: DType = .float64](shape: NDArrayShape) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray of given shape with arbitrary values.
@@ -439,7 +439,7 @@ Generate an empty NDArray of given shape with arbitrary values.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def empty[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
+def empty[dtype: DType = .float64](shape: List[Int]) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray from a list of integers.
@@ -465,7 +465,7 @@ Overload of `empty` that accepts a list of integers for the shape.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def empty[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
+def empty[dtype: DType = .float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray from variadic integer arguments.
@@ -574,7 +574,7 @@ Overload of `empty` that accepts variadic integers for the shape.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def empty_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
+def empty_like[dtype: DType = .float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Generate an empty NDArray of the same shape as `array`.
@@ -629,7 +629,7 @@ Generate an empty ComplexNDArray of the same shape as `array`.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def eye[dtype: DType = DType.float64](N: Int, M: Int) -> NDArray[dtype]
+def eye[dtype: DType = .float64](N: Int, M: Int) -> NDArray[dtype]
 ```
 
 Return a 2-D NDArray with ones on the diagonal and zeros elsewhere.
@@ -696,7 +696,7 @@ Return a 2-D ComplexNDArray with ones on the diagonal and zeros elsewhere.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def identity[dtype: DType = DType.float64](N: Int) -> NDArray[dtype]
+def identity[dtype: DType = .float64](N: Int) -> NDArray[dtype]
 ```
 
 Generate an identity matrix of size N x N.
@@ -761,7 +761,7 @@ Generate a complex identity matrix of size N x N.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def ones[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
+def ones[dtype: DType = .float64](shape: NDArrayShape) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with ones.
@@ -794,7 +794,7 @@ var arr = nm.ones[nm.f64](nm.Shape(2, 3))
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def ones[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
+def ones[dtype: DType = .float64](shape: List[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with ones from a list of integers.
@@ -818,7 +818,7 @@ Generate a NDArray filled with ones from a list of integers.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def ones[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
+def ones[dtype: DType = .float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with ones from variadic integer arguments.
@@ -921,7 +921,7 @@ Generate a ComplexNDArray filled with ones from variadic integer arguments.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def ones_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
+def ones_like[dtype: DType = .float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Generate a NDArray of the same shape as `a` filled with ones.
@@ -976,7 +976,7 @@ Generate a ComplexNDArray of the same shape as `array` filled with ones.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def zeros[dtype: DType = DType.float64](shape: NDArrayShape) -> NDArray[dtype]
+def zeros[dtype: DType = .float64](shape: NDArrayShape) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with zeros.
@@ -1009,7 +1009,7 @@ var arr = nm.zeros[nm.f64](nm.Shape(2, 3))
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def zeros[dtype: DType = DType.float64](shape: List[Int]) -> NDArray[dtype]
+def zeros[dtype: DType = .float64](shape: List[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with zeros from a list of integers.
@@ -1033,7 +1033,7 @@ Generate a NDArray filled with zeros from a list of integers.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def zeros[dtype: DType = DType.float64](shape: VariadicList[Int]) -> NDArray[dtype]
+def zeros[dtype: DType = .float64](shape: VariadicList[Int]) -> NDArray[dtype]
 ```
 
 Generate a NDArray filled with zeros from variadic integer arguments.
@@ -1136,7 +1136,7 @@ Generate a ComplexNDArray filled with zeros from variadic integer arguments.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def zeros_like[dtype: DType = DType.float64](array: NDArray[dtype]) -> NDArray[dtype]
+def zeros_like[dtype: DType = .float64](array: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Generate a NDArray of the same shape as `array` filled with zeros.
@@ -1191,7 +1191,7 @@ Generate a ComplexNDArray of the same shape as `array` filled with zeros.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def full[dtype: DType = DType.float64](shape: NDArrayShape, fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full[dtype: DType = .float64](shape: NDArrayShape, fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Create a NDArray filled with a specified value.
@@ -1226,7 +1226,7 @@ var arr = nm.full[nm.f64](nm.Shape(2, 3), fill_value=7.0)
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def full[dtype: DType = DType.float64](shape: List[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full[dtype: DType = .float64](shape: List[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Create a NDArray filled with a specified value from a list of integers.
@@ -1252,7 +1252,7 @@ Create a NDArray filled with a specified value from a list of integers.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def full[dtype: DType = DType.float64](shape: VariadicList[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full[dtype: DType = .float64](shape: VariadicList[Int], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Create a NDArray filled with a specified value from variadic integer arguments.
@@ -1371,7 +1371,7 @@ Create a ComplexNDArray filled with a specified value from variadic integer argu
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def full_like[dtype: DType = DType.float64](array: NDArray[dtype], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
+def full_like[dtype: DType = .float64](array: NDArray[dtype], fill_value: Scalar[dtype], order: String = "C") -> NDArray[dtype]
 ```
 
 Generate a NDArray of the same shape as `array` filled with `fill_value`.
@@ -1430,7 +1430,7 @@ Generate a ComplexNDArray of the same shape as `array` filled with `fill_value`.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def diag[dtype: DType = DType.float64](v: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
+def diag[dtype: DType = .float64](v: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Extract a diagonal or construct a diagonal NDArray.
@@ -1504,7 +1504,7 @@ Extract a diagonal or construct a diagonal ComplexNDArray.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def diagflat[dtype: DType = DType.float64](v: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
+def diagflat[dtype: DType = .float64](v: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Create a 2-D array with the flattened input as the diagonal.
@@ -1573,7 +1573,7 @@ Create a 2-D complex array with the flattened input as the diagonal.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def tri[dtype: DType = DType.float64](N: Int, M: Int, k: Int = Int(0)) -> NDArray[dtype]
+def tri[dtype: DType = .float64](N: Int, M: Int, k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Generate a lower triangular matrix.
@@ -1653,7 +1653,7 @@ Creates a complex array with ones on and below the k-th diagonal, zeros elsewher
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def tril[dtype: DType = DType.float64](m: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
+def tril[dtype: DType = .float64](m: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Zero out elements above the k-th diagonal.
@@ -1710,7 +1710,7 @@ Zero out elements above the k-th diagonal.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def triu[dtype: DType = DType.float64](m: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
+def triu[dtype: DType = .float64](m: NDArray[dtype], k: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Zero out elements below the k-th diagonal.
@@ -1767,7 +1767,7 @@ Zero out elements below the k-th diagonal.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def vander[dtype: DType = DType.float64](x: NDArray[dtype], N: Optional[Int] = None, increasing: Bool = False) -> NDArray[dtype]
+def vander[dtype: DType = .float64](x: NDArray[dtype], N: Optional[Int] = None, increasing: Bool = False) -> NDArray[dtype]
 ```
 
 Generate a Vandermonde matrix.
@@ -1881,7 +1881,7 @@ Cast a ComplexNDArray to a different dtype.
 ### `fromstring`
 
 ```mojo
-def fromstring[dtype: DType = DType.float64](text: String, order: String = "C") -> NDArray[dtype]
+def fromstring[dtype: DType = .float64](text: String, order: String = "C") -> NDArray[dtype]
 ```
 
 NDArray initialization from string representation of an ndarray. The shape can be inferred from the string representation. The literals will be casted to the dtype of the NDArray.
@@ -1954,7 +1954,7 @@ casted to the dtype of the NDArray.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def array[dtype: DType = DType.float64](text: String, order: String = "C") -> NDArray[dtype]
+def array[dtype: DType = .float64](text: String, order: String = "C") -> NDArray[dtype]
 ```
 
 This reload is an comptime of `fromstring`.
@@ -1979,7 +1979,7 @@ This reload is an comptime of `fromstring`.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def array[dtype: DType = DType.float64](data: List[Scalar[dtype]], shape: List[Int], order: String = "C") -> NDArray[dtype]
+def array[dtype: DType = .float64](data: List[Scalar[dtype]], shape: List[Int], order: String = "C") -> NDArray[dtype]
 ```
 
 Array creation with given data, shape and order.
@@ -2051,7 +2051,7 @@ var array = nm.array[cf64](
 <div class="overload-divider">Overload 4</div>
 
 ```mojo
-def array[dtype: DType = DType.float64](data: PythonObject, order: String = "C") -> NDArray[dtype]
+def array[dtype: DType = .float64](data: PythonObject, order: String = "C") -> NDArray[dtype]
 ```
 
 Array creation with given data, shape and order.
@@ -2128,7 +2128,7 @@ A = nm.array[cf32](real=np_arr, imag=np_arr, order="C")
 ### `meshgrid`
 
 ```mojo
-def meshgrid[dtype: DType = DType.float64, indexing: String = "xy"](*arrays: NDArray[dtype]) -> List[NDArray[dtype]]
+def meshgrid[dtype: DType = .float64, indexing: String = "xy"](*arrays: NDArray[dtype]) -> List[NDArray[dtype]]
 ```
 
 Generate coordinate matrices from coordinate vectors.

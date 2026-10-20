@@ -9,6 +9,8 @@ Exports
 -------
 - `solve`: Solve linear system.
 - `inv`: Matrix inverse.
+- `lstsq`: Least-squares solution to a linear system.
+- `pinv`: Moore-Penrose pseudoinverse.
 
 ## Functions
 
@@ -207,6 +209,101 @@ The example is also a way to calculate inverse of matrix.
 <div class="prose-label">Raises</div>
 
 *Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `lstsq`
+
+```mojo
+def lstsq[dtype: DType](A: NDArray[dtype], Y: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Compute the least-squares solution to `Ax = Y`.
+
+`A` is an `(m, n)` matrix and `Y` is a vector of length `m` or a
+matrix of shape `(m, p)`. Returns `x` (shape `(n,)` or `(n, p)`,
+matching the shape of `Y`) minimizing `||Ax - Y||`.
+
+For overdetermined or square systems (`m >= n`) with `A` of full
+column rank, this uses QR decomposition. For underdetermined systems
+(`m < n`) with `A` of full row rank, this returns the minimum-norm
+solution via `A.T @ solve(A @ A.T, Y)`.
+
+This does not currently support rank-deficient `A`; for that case,
+use a SVD-based pseudoinverse instead once available.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+def main() raises:
+    var A = nm.fromstring("[[1, 1], [1, 2], [1, 3]]")
+    var y = nm.fromstring("[6, 0, 0]")
+    var x = nm.linalg.lstsq(A, y)
+    print(x)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the solution.
+
+<div class="prose-label">Args</div>
+
+- `A` (`NDArray[dtype]`) `[imm]`: Coefficient matrix of shape `(m, n)`.
+- `Y` (`NDArray[dtype]`) `[imm]`: Right-hand side, of shape `(m,)` or `(m, p)`.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `pinv`
+
+```mojo
+def pinv[dtype: DType](A: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
+```
+
+Compute the Moore-Penrose pseudoinverse of `A`, via its singular value decomposition.
+
+Matches `numpy.linalg.pinv`. Currently requires `A` to have full
+rank `min(m, n)`; rank-deficient matrices are not yet supported
+(`svd`, which this is built on, does not support them either).
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+def main() raises:
+    var A = nm.fromstring("[[1, 2], [3, 4], [5, 6]]")
+    var Ainv = nm.linalg.pinv(A)
+    print(Ainv @ A)  # approximately the identity
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the input and output matrices. Should be a
+    floating-point type.
+
+<div class="prose-label">Args</div>
+
+- `A` (`NDArray[dtype]`) `[imm]`: Matrix of shape `(m, n)`.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+    NumojoError: If the array is not 2-dimensional.
+NumojoError: If `A` is rank-deficient.
 
 
 </div>

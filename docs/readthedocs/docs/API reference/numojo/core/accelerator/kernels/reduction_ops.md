@@ -16,7 +16,7 @@ Exports
 ### `sum_reduce_kernel`
 
 ```mojo
-def sum_reduce_kernel[dtype: DType, block_size: Int](partial_sums: Pointer[Scalar[dtype], MutAnyOrigin], a: Pointer[Scalar[dtype], MutAnyOrigin], size: Int)
+def sum_reduce_kernel[dtype: DType, block_size: Int](partial_sums: Pointer[Scalar[dtype], MutAnyOrigin], a: Pointer[Scalar[dtype], MutAnyOrigin], size: Int64)
 ```
 
 GPU kernel: each block reduces its chunk of `a` to one partial sum.
@@ -33,7 +33,7 @@ The host is responsible for summing the `partial_sums` buffer
 
 - `partial_sums` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
 - `a` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
-- `size` (`Int`) `[imm]`
+- `size` (`Int64`) `[imm]`
 
 
 </div>

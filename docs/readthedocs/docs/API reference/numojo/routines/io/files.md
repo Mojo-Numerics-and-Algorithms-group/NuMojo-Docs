@@ -17,7 +17,7 @@ Exports
 ### `load`
 
 ```mojo
-def load[dtype: DType = DType.float64](file: String, allow_pickle: Bool = False, fix_imports: Bool = True, encoding: String = "ASCII", *, max_header_size: Int = Int(10000)) -> NDArray[dtype]
+def load[dtype: DType = .float64](file: String, allow_pickle: Bool = False, fix_imports: Bool = True, encoding: String = "ASCII", *, max_header_size: Int = Int(10000)) -> NDArray[dtype]
 ```
 
 Load arrays or pickled objects from .npy, .npz or pickled files.
@@ -50,7 +50,7 @@ Load arrays or pickled objects from .npy, .npz or pickled files.
 ### `save`
 
 ```mojo
-def save[dtype: DType = DType.float64](fname: String, array: NDArray[dtype], allow_pickle: Bool = True)
+def save[dtype: DType = .float64](fname: String, array: NDArray[dtype], allow_pickle: Bool = True)
 ```
 
 Save an array to a binary file in NumPy .npy format.
@@ -77,7 +77,7 @@ Save an array to a binary file in NumPy .npy format.
 ### `loadtxt`
 
 ```mojo
-def loadtxt[dtype: DType = DType.float64](fname: String, comments: String = "#", delimiter: String = " ", skiprows: Int = Int(0), ndmin: Int = Int(0)) -> NDArray[dtype]
+def loadtxt[dtype: DType = .float64](fname: String, comments: String = "#", delimiter: String = " ", skiprows: Int = Int(0), ndmin: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Load data from a text file.
@@ -110,7 +110,7 @@ Load data from a text file.
 ### `savetxt`
 
 ```mojo
-def savetxt[dtype: DType = DType.float64](fname: String, array: NDArray[dtype], fmt: String = "%.18e", delimiter: String = " ", newline: String = "\n", header: String = "", footer: String = "", comments: String = "#")
+def savetxt[dtype: DType = .float64](fname: String, array: NDArray[dtype], fmt: String = "%.18e", delimiter: String = " ", newline: String = "\n", header: String = "", footer: String = "", comments: String = "#")
 ```
 
 Save an array to a text file.

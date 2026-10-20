@@ -33,6 +33,7 @@ Notes
 | [`random`](./random.md) | module | Random number generation and sampling. |
 | [`__init__`](./__init__.md) | module | NumPy-like functionality grouped by topic (math, linalg, statistics, creation, manipulation, etc.). |
 | [`searching`](./searching.md) | module | Search operations for finding array extrema indices. |
+| [`setops`](./setops.md) | module | Operations on arrays treated as sets of elements. |
 | [`sorting`](./sorting.md) | module | Array sorting and indexing operations. |
 | [`statistics`](./statistics/index.md) | package | Statistical functions including averages, dispersion measures, and order statistics. |
 

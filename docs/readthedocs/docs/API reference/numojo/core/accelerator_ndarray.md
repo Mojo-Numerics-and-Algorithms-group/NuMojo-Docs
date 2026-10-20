@@ -18,7 +18,7 @@ Exports
 <span class="badge badge-kind">struct</span>
 
 ```mojo
-struct AcceleratorNDArray[dtype: DType = DType.float64, device: Device = Device.CPU]
+struct AcceleratorNDArray[dtype: DType = .float64, device: Device = Device.CPU]
 ```
 
 **Memory convention:** `memory_only`  
@@ -890,7 +890,7 @@ Sum of all elements in the array. Requires a densely contiguous array (no broadc
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def empty[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
+def empty[dtype: DType = .float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an uninitialized accelerator array on `device`.
@@ -916,7 +916,7 @@ Create an uninitialized accelerator array on `device`.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def empty[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
+def empty[dtype: DType = .float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an uninitialized accelerator array on `device`.
@@ -942,7 +942,7 @@ Create an uninitialized accelerator array on `device`.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def empty[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
+def empty[dtype: DType = .float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an uninitialized accelerator array on `device`.
@@ -975,7 +975,7 @@ Create an uninitialized accelerator array on `device`.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def full[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, fill_value: Scalar[dtype], order: String = "C") -> AcceleratorNDArray[dtype, device]
+def full[dtype: DType = .float64, device: Device = Device.CPU](shape: NDArrayShape, fill_value: Scalar[dtype], order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with `fill_value`.
@@ -1002,7 +1002,7 @@ Create an accelerator array filled with `fill_value`.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def full[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], fill_value: Scalar[dtype], order: String = "C") -> AcceleratorNDArray[dtype, device]
+def full[dtype: DType = .float64, device: Device = Device.CPU](shape: List[Int], fill_value: Scalar[dtype], order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with `fill_value`.
@@ -1036,7 +1036,7 @@ Create an accelerator array filled with `fill_value`.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
+def zeros[dtype: DType = .float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with zeros.
@@ -1062,7 +1062,7 @@ Create an accelerator array filled with zeros.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
+def zeros[dtype: DType = .float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with zeros.
@@ -1088,7 +1088,7 @@ Create an accelerator array filled with zeros.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def zeros[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
+def zeros[dtype: DType = .float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with zeros.
@@ -1121,7 +1121,7 @@ Create an accelerator array filled with zeros.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def ones[dtype: DType = DType.float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
+def ones[dtype: DType = .float64, device: Device = Device.CPU](shape: NDArrayShape, order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with ones.
@@ -1147,7 +1147,7 @@ Create an accelerator array filled with ones.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def ones[dtype: DType = DType.float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
+def ones[dtype: DType = .float64, device: Device = Device.CPU](shape: List[Int], order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with ones.
@@ -1173,7 +1173,7 @@ Create an accelerator array filled with ones.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def ones[dtype: DType = DType.float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
+def ones[dtype: DType = .float64, device: Device = Device.CPU](*shape: Int, *, order: String = "C") -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array filled with ones.
@@ -1331,7 +1331,7 @@ Create a filled accelerator array with `a`'s shape and device.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def arange[dtype: DType = DType.float64, device: Device = Device.CPU](start: Scalar[dtype], stop: Scalar[dtype], step: Scalar[dtype] = 1) -> AcceleratorNDArray[dtype, device]
+def arange[dtype: DType = .float64, device: Device = Device.CPU](start: Scalar[dtype], stop: Scalar[dtype], step: Scalar[dtype] = 1) -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array with evenly spaced values.
@@ -1358,7 +1358,7 @@ Create an accelerator array with evenly spaced values.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def arange[dtype: DType = DType.float64, device: Device = Device.CPU](stop: Scalar[dtype]) -> AcceleratorNDArray[dtype, device]
+def arange[dtype: DType = .float64, device: Device = Device.CPU](stop: Scalar[dtype]) -> AcceleratorNDArray[dtype, device]
 ```
 
 Create an accelerator array with values from zero to `stop`.

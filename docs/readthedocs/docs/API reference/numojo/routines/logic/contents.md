@@ -20,8 +20,10 @@ Exports
 
 ### `isinf`
 
+<div class="overload-divider">Overload 1</div>
+
 ```mojo
-def isinf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isinf[dtype: DType](array: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Checks if each element of the input array is infinite.
@@ -46,7 +48,42 @@ def main() raises:
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def isinf[dtype: DType](value: Scalar[dtype]) -> Scalar[DType.bool]
+```
+
+Checks if the input scalar is infinite.
+
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isinf
+from std.utils.numerics import inf
+
+def main() raises:
+    print(isinf(inf[f64]()))  # Output: True
+    print(isinf(Scalar[f64](1.0)))  # Output: False
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the input scalar.
+
+<div class="prose-label">Args</div>
+
+- `value` (`Scalar[dtype]`) `[imm]`: Input scalar to check.
+
+<div class="prose-label">Returns</div>
+
+- `Scalar[DType.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -59,8 +96,10 @@ def main() raises:
 
 ### `isfinite`
 
+<div class="overload-divider">Overload 1</div>
+
 ```mojo
-def isfinite[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isfinite[dtype: DType](array: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Checks if each element of the input array is finite.
@@ -85,7 +124,41 @@ def main() raises:
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def isfinite[dtype: DType](value: Scalar[dtype]) -> Scalar[DType.bool]
+```
+
+Checks if the input scalar is finite.
+
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isfinite
+
+def main() raises:
+    print(isfinite(Scalar[f64](1.0)))  # Output: True
+    print(isfinite(Float64.MAX))  # Output: True
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the input scalar.
+
+<div class="prose-label">Args</div>
+
+- `value` (`Scalar[dtype]`) `[imm]`: Input scalar to check.
+
+<div class="prose-label">Returns</div>
+
+- `Scalar[DType.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -98,8 +171,10 @@ def main() raises:
 
 ### `isnan`
 
+<div class="overload-divider">Overload 1</div>
+
 ```mojo
-def isnan[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isnan[dtype: DType](array: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Checks if each element of the input array is NaN.
@@ -124,7 +199,42 @@ def main() raises:
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def isnan[dtype: DType](value: Scalar[dtype]) -> Scalar[DType.bool]
+```
+
+Checks if the input scalar is NaN.
+
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isnan
+from std.utils.numerics import nan
+
+def main() raises:
+    print(isnan(nan[f64]()))  # Output: True
+    print(isnan(Scalar[f64](1.0)))  # Output: False
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the input scalar.
+
+<div class="prose-label">Args</div>
+
+- `value` (`Scalar[dtype]`) `[imm]`: Input scalar to check.
+
+<div class="prose-label">Returns</div>
+
+- `Scalar[DType.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -137,8 +247,10 @@ def main() raises:
 
 ### `isneginf`
 
+<div class="overload-divider">Overload 1</div>
+
 ```mojo
-def isneginf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isneginf[dtype: DType](array: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Checks if each element of the input array is negative infinity.
@@ -163,7 +275,42 @@ def main() raises:
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def isneginf[dtype: DType](value: Scalar[dtype]) -> Scalar[DType.bool]
+```
+
+Checks if the input scalar is negative infinity.
+
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isneginf
+from std.utils.numerics import neg_inf
+
+def main() raises:
+    print(isneginf(neg_inf[f64]()))  # Output: True
+    print(isneginf(Scalar[f64](-1.0)))  # Output: False
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the input scalar.
+
+<div class="prose-label">Args</div>
+
+- `value` (`Scalar[dtype]`) `[imm]`: Input scalar to check.
+
+<div class="prose-label">Returns</div>
+
+- `Scalar[DType.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -176,8 +323,10 @@ def main() raises:
 
 ### `isposinf`
 
+<div class="overload-divider">Overload 1</div>
+
 ```mojo
-def isposinf[dtype: DType](array: NDArray[dtype]) -> NDArray[DType.bool]
+def isposinf[dtype: DType](array: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Checks if each element of the input array is positive infinity.
@@ -202,7 +351,42 @@ def main() raises:
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def isposinf[dtype: DType](value: Scalar[dtype]) -> Scalar[DType.bool]
+```
+
+Checks if the input scalar is positive infinity.
+
+<div class="prose-label">Examples</div>
+```mojo
+from numojo.prelude import *
+from numojo.routines.logic.contents import isposinf
+from std.utils.numerics import inf
+
+def main() raises:
+    print(isposinf(inf[f64]()))  # Output: True
+    print(isposinf(Scalar[f64](1.0)))  # Output: False
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the input scalar.
+
+<div class="prose-label">Args</div>
+
+- `value` (`Scalar[dtype]`) `[imm]`: Input scalar to check.
+
+<div class="prose-label">Returns</div>
+
+- `Scalar[DType.bool]`
 
 <div class="prose-label">Raises</div>
 

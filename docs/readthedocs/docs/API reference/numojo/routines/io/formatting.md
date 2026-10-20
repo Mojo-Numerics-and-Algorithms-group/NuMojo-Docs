@@ -304,7 +304,7 @@ def set_printoptions(precision: Int = Int(4), suppress_small: Bool = False, sepa
 ### `format_floating_scientific`
 
 ```mojo
-def format_floating_scientific[dtype: DType = DType.float64](x: Scalar[dtype], precision: Int = Int(10), sign: Bool = False, suppress_scientific: Bool = False, exponent_threshold: Int = Int(4), formatted_width: Int = Int(8)) -> String
+def format_floating_scientific[dtype: DType = .float64](x: Scalar[dtype], precision: Int = Int(10), sign: Bool = False, suppress_scientific: Bool = False, exponent_threshold: Int = Int(4), formatted_width: Int = Int(8)) -> String
 ```
 
 Format a float in scientific notation.

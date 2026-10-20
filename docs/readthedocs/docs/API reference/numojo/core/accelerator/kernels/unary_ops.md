@@ -17,7 +17,7 @@ Exports
 ### `neg_kernel`
 
 ```mojo
-def neg_kernel[dtype: DType](result: Pointer[Scalar[dtype], MutAnyOrigin], a: Pointer[Scalar[dtype], MutAnyOrigin], size: Int)
+def neg_kernel[dtype: DType](result: Pointer[Scalar[dtype], MutAnyOrigin], a: Pointer[Scalar[dtype], MutAnyOrigin], size: Int64)
 ```
 
 GPU kernel: `result[i] = -a[i]` for contiguous buffers.
@@ -30,7 +30,7 @@ GPU kernel: `result[i] = -a[i]` for contiguous buffers.
 
 - `result` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
 - `a` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
-- `size` (`Int`) `[imm]`
+- `size` (`Int64`) `[imm]`
 
 
 </div>

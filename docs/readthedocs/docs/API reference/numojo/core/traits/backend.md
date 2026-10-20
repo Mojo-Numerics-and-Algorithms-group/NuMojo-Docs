@@ -256,7 +256,7 @@ Apply a SIMD function of two variable and one return to a NDArray.
 #### `math_func_compare_2_arrays`
 
 ```mojo
-def math_func_compare_2_arrays[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[DType.bool, simd_w]](self, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def math_func_compare_2_arrays[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[.bool, simd_w]](self, array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Apply a SIMD comparision function of two variable.
@@ -267,7 +267,7 @@ Apply a SIMD comparision function of two variable.
 <div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `func` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[DType.bool, simd_w]`): The SIMD comparision function to to apply.
+- `func` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[.bool, simd_w]`): The SIMD comparision function to to apply.
 
 <div class="prose-label">Args</div>
 
@@ -277,7 +277,7 @@ Apply a SIMD comparision function of two variable.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -291,7 +291,7 @@ Apply a SIMD comparision function of two variable.
 #### `math_func_compare_array_and_scalar`
 
 ```mojo
-def math_func_compare_array_and_scalar[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[DType.bool, simd_w]](self, array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def math_func_compare_array_and_scalar[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[.bool, simd_w]](self, array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 Apply a SIMD comparision function of two variable.
@@ -302,7 +302,7 @@ Apply a SIMD comparision function of two variable.
 <div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type.
-- `func` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[DType.bool, simd_w]`): The SIMD comparision function to to apply.
+- `func` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) -> SIMD[.bool, simd_w]`): The SIMD comparision function to to apply.
 
 <div class="prose-label">Args</div>
 
@@ -312,7 +312,7 @@ Apply a SIMD comparision function of two variable.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -326,13 +326,13 @@ Apply a SIMD comparision function of two variable.
 #### `math_func_is`
 
 ```mojo
-def math_func_is[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, simd_w]) -> SIMD[DType.bool, simd_w]](self, array: NDArray[dtype]) -> NDArray[DType.bool]
+def math_func_is[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, simd_w]) -> SIMD[.bool, simd_w]](self, array: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`)
-- `func` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) -> SIMD[DType.bool, simd_w]`)
+- `func` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) -> SIMD[.bool, simd_w]`)
 
 <div class="prose-label">Args</div>
 
@@ -341,7 +341,7 @@ def math_func_is[dtype: DType, func: def[type: DType, simd_w: Int](SIMD[type, si
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 

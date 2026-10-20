@@ -10,6 +10,9 @@ Exports
 - `dot`: Dot product of vectors.
 - `matmul`: Matrix multiplication.
 - `cross`: Cross product.
+- `outer`: Outer product of two flattened arrays.
+- `kron`: Kronecker product.
+- `tensordot`: Sum of products over given axes.
 
 ## Functions
 
@@ -19,20 +22,17 @@ Exports
 ### `cross`
 
 ```mojo
-def cross[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def cross[dtype: DType = .float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Compute the cross product of two arrays.
-
-Parameters
-    dtype: The element type.
 
 !!! info "Constraints"
     `array1` and `array2` must be of shape (3,).
 
 <div class="prose-label">Parameters</div>
 
-- `dtype` (`DType`)
+- `dtype` (`DType`): The element type.
 
 <div class="prose-label">Args</div>
 
@@ -55,7 +55,7 @@ Parameters
 ### `dot`
 
 ```mojo
-def dot[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def dot[dtype: DType = .float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Compute the dot product of two arrays.
@@ -63,8 +63,11 @@ Compute the dot product of two arrays.
 Parameters
     dtype: The element type.
 
+<div class="prose-label">Examples</div>
+`dot(a, b)` computes the inner product of vectors `a` and `b`.
+
 !!! info "Constraints"
-    `array1` and `array2` must be 1 dimensional.
+    Each input must have at most two dimensions.
 
 <div class="prose-label">Parameters</div>
 
@@ -79,31 +82,8 @@ Parameters
 
 - `NDArray[dtype]`
 
-<div class="prose-label">Raises</div>
-
-*Not documented in source.*
-
-
-</div>
-
-<div class="fn-card" markdown="1">
-
-### `tile`
-
-```mojo
-def tile[tiled_fn: def[tile_x: Int, tile_y: Int](Int, Int) capturing thin -> None, tile_x: Int, tile_y: Int](end_x: Int, end_y: Int)
-```
-
-<div class="prose-label">Parameters</div>
-
-- `tiled_fn` (`def[tile_x: Int, tile_y: Int](Int, Int) capturing thin -> None`)
-- `tile_x` (`Int`)
-- `tile_y` (`Int`)
-
-<div class="prose-label">Args</div>
-
-- `end_x` (`Int`) `[imm]`
-- `end_y` (`Int`) `[imm]`
+!!! failure "Raises"
+    NumojoError: If the inputs are not equal-length one-dimensional arrays.
 
 
 </div>
@@ -282,6 +262,175 @@ Array multiplication with three nested loops.
 
 - `A` (`NDArray[dtype]`) `[imm]`
 - `B` (`NDArray[dtype]`) `[imm]`
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `outer`
+
+```mojo
+def outer[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Compute the outer product of two arrays.
+
+Both inputs are flattened (in C order) before the product is taken,
+matching `numpy.outer`.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](3)
+var b = nm.arange[nm.f64](4)
+print(nm.linalg.outer(a, b))
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+
+<div class="prose-label">Args</div>
+
+- `A` (`NDArray[dtype]`) `[imm]`: First input, treated as a flat vector of length `A.size`.
+- `B` (`NDArray[dtype]`) `[imm]`: Second input, treated as a flat vector of length `B.size`.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `kron`
+
+```mojo
+def kron[dtype: DType](A: NDArray[dtype], B: NDArray[dtype]) -> NDArray[dtype]
+```
+
+Compute the Kronecker product of two arrays.
+
+If `A` and `B` have different numbers of dimensions, the shape of the
+array with fewer dimensions is padded with leading 1s, matching
+`numpy.kron`.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](6).reshape(nm.Shape(2, 3))
+var b = nm.eye[nm.f64](2, 2)
+print(nm.linalg.kron(a, b))
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+
+<div class="prose-label">Args</div>
+
+- `A` (`NDArray[dtype]`) `[imm]`: First input array.
+- `B` (`NDArray[dtype]`) `[imm]`: Second input array.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `tensordot`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def tensordot[dtype: DType](A: NDArray[dtype], B: NDArray[dtype], axes_a: List[Int], axes_b: List[Int]) -> NDArray[dtype]
+```
+
+Compute the tensor dot product along specified axes.
+
+Sums the products of the elements of `A` and `B` over the axes given
+in `axes_a` and `axes_b`. This is a generalization of `dot` and
+`matmul` to arbitrary axes, matching `numpy.tensordot`.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](60).reshape(nm.Shape(3, 4, 5))
+var b = nm.arange[nm.f64](24).reshape(nm.Shape(4, 3, 2))
+print(nm.linalg.tensordot(a, b, axes_a=[1, 0], axes_b=[0, 1]))
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+
+<div class="prose-label">Args</div>
+
+- `A` (`NDArray[dtype]`) `[imm]`: First input array.
+- `B` (`NDArray[dtype]`) `[imm]`: Second input array.
+- `axes_a` (`List[Int]`) `[imm]`: Axes of `A` to sum over. Negative values count from the
+    end.
+- `axes_b` (`List[Int]`) `[imm]`: Axes of `B` to sum over, paired positionally with
+    `axes_a`. Negative values count from the end.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+    NumojoError: If `axes_a` and `axes_b` have different lengths, or
+the paired axis lengths of `A` and `B` do not match.
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def tensordot[dtype: DType](A: NDArray[dtype], B: NDArray[dtype], axes: Int = Int(2)) -> NDArray[dtype]
+```
+
+(overload) Tensor dot product summing over the last `axes` axes of `A` and the first `axes` axes of `B`.
+
+`axes=2` reproduces `matmul` for 2-D inputs; `axes=1` reproduces
+`dot`-like contraction over one axis; `axes=0` reproduces the full
+outer product (no summation).
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+var a = nm.arange[nm.f64](60).reshape(nm.Shape(3, 4, 5))
+var b = nm.arange[nm.f64](120).reshape(nm.Shape(4, 5, 6))
+print(nm.linalg.tensordot(a, b, axes=2))
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+
+<div class="prose-label">Args</div>
+
+- `A` (`NDArray[dtype]`) `[imm]`: First input array.
+- `B` (`NDArray[dtype]`) `[imm]`: Second input array.
+- `axes` (`Int`) `[imm]`: Number of trailing/leading axes of `A`/`B` to sum over.
 
 <div class="prose-label">Returns</div>
 

@@ -15,7 +15,7 @@ Exports
 ### `bool_to_numeric`
 
 ```mojo
-def bool_to_numeric[dtype: DType](array: NDArray[DType.bool]) -> NDArray[dtype]
+def bool_to_numeric[dtype: DType](array: NDArray[.bool]) -> NDArray[dtype]
 ```
 
 Convert a boolean NDArray to a numeric NDArray.
@@ -26,7 +26,7 @@ Convert a boolean NDArray to a numeric NDArray.
 
 <div class="prose-label">Args</div>
 
-- `array` (`NDArray[DType.bool]`) `[imm]`: The boolean NDArray to convert.
+- `array` (`NDArray[.bool]`) `[imm]`: The boolean NDArray to convert.
 
 <div class="prose-label">Returns</div>
 

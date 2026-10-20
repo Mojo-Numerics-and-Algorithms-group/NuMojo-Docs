@@ -17,7 +17,7 @@ Exports
 ### `all`
 
 ```mojo
-def all(array: NDArray[DType.bool]) -> Scalar[DType.bool]
+def all(array: NDArray[.bool]) -> Scalar[DType.bool]
 ```
 
 Checks whether all elements of the array evaluate to True.
@@ -33,7 +33,7 @@ var result = all(a > 5) # outputs False
 
 <div class="prose-label">Args</div>
 
-- `array` (`NDArray[DType.bool]`) `[imm]`: Input NDArray (DType.bool).
+- `array` (`NDArray[.bool]`) `[imm]`: Input NDArray (DType.bool).
 
 <div class="prose-label">Returns</div>
 
@@ -51,7 +51,7 @@ var result = all(a > 5) # outputs False
 ### `any`
 
 ```mojo
-def any(array: NDArray[DType.bool]) -> Scalar[DType.bool]
+def any(array: NDArray[.bool]) -> Scalar[DType.bool]
 ```
 
 Checks whether any element of the array evaluate to True.
@@ -67,7 +67,7 @@ var result = any(a > 5) # outputs True
 
 <div class="prose-label">Args</div>
 
-- `array` (`NDArray[DType.bool]`) `[imm]`: Input NDArray (DType.bool).
+- `array` (`NDArray[.bool]`) `[imm]`: Input NDArray (DType.bool).
 
 <div class="prose-label">Returns</div>
 

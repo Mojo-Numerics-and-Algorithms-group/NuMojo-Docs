@@ -4,9 +4,9 @@ Linear algebra operations including matrix decompositions, norms, products, and 
 
 Exports
 -------
-- Decompositions: `lu_decomposition`.
-- Norms: `det`, `trace`.
-- Products: `dot`, `matmul`, `cross`.
-- Solving: `solve`, `lstsq`, `inv`.
+- Decompositions: `lu_decomposition`, `qr`, `cholesky`, `eig`, `eigh`, `svd`.
+- Norms: `det`, `trace`, `norm`, `matrix_rank`, `cond`.
+- Products: `dot`, `matmul`, `cross`, `outer`, `kron`, `tensordot`.
+- Solving: `solve`, `lstsq`, `inv`, `pinv`.
 - Miscellaneous: `diagonal`.
 

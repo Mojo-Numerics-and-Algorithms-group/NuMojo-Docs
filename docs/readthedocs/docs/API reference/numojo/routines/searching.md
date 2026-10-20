@@ -8,6 +8,7 @@ Exports
 -------
 - `argmax`: Index of maximum value.
 - `argmin`: Index of minimum value.
+- `count_nonzero`: Count of non-zero elements.
 
 ## Functions
 
@@ -106,7 +107,7 @@ of the first occurrence are returned.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def argmax[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def argmax[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[.int]
 ```
 
 Returns the indices of the maximum values of the array along an axis. When no axis is specified, the array is flattened.
@@ -154,7 +155,7 @@ End of examples.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
@@ -199,7 +200,7 @@ of the first occurrence are returned.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def argmin[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[DType.int]
+def argmin[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[.int]
 ```
 
 Returns the indices of the minimum values of the array along an axis. When no axis is specified, the array is flattened.
@@ -220,11 +221,83 @@ of the first occurrence are returned.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
 *Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
+### `count_nonzero`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def count_nonzero[dtype: DType, //](a: NDArray[dtype]) -> Int
+```
+
+Counts the number of non-zero elements in an array.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+
+var a = nm.array[nm.i32]("[3, 0, 5, 0, 2]")
+print(nm.count_nonzero(a))  # 3
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the source array.
+
+<div class="prose-label">Args</div>
+
+- `a` (`NDArray[dtype]`) `[imm]`: Input array.
+
+<div class="prose-label">Returns</div>
+
+- `Int`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def count_nonzero[dtype: DType, //](a: NDArray[dtype], axis: Int) -> NDArray[.int]
+```
+
+Counts non-zero elements along a given axis.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+
+var a = nm.array[nm.i32]("[[1, 0, 3], [0, 0, 4]]")
+print(nm.count_nonzero(a, axis=0))  # [1, 0, 2]
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): Data type of the source array.
+
+<div class="prose-label">Args</div>
+
+- `a` (`NDArray[dtype]`) `[imm]`: Input array.
+- `axis` (`Int`) `[imm]`: The axis along which to count non-zero elements.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[.int]`
+
+!!! failure "Raises"
+    NumojoError: If the axis is out of bound.
+NumojoError: If the array is 1-D (use `count_nonzero(a)` instead).
 
 
 </div>

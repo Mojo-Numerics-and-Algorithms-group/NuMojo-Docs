@@ -18,7 +18,7 @@ Exports
 ### `acosh`
 
 ```mojo
-def acosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def acosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse hyperbolic cosine.
@@ -47,7 +47,7 @@ Apply inverse hyperbolic cosine.
 ### `arccosh`
 
 ```mojo
-def arccosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def arccosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse hyperbolic cosine element-wise.
@@ -76,7 +76,7 @@ Apply inverse hyperbolic cosine element-wise.
 ### `asinh`
 
 ```mojo
-def asinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def asinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse hyperbolic sine.
@@ -105,7 +105,7 @@ Apply inverse hyperbolic sine.
 ### `arcsinh`
 
 ```mojo
-def arcsinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def arcsinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse hyperbolic sine element-wise.
@@ -134,7 +134,7 @@ Apply inverse hyperbolic sine element-wise.
 ### `atanh`
 
 ```mojo
-def atanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def atanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse hyperbolic tangent.
@@ -163,7 +163,7 @@ Apply inverse hyperbolic tangent.
 ### `arctanh`
 
 ```mojo
-def arctanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def arctanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse hyperbolic tangent element-wise.
@@ -192,7 +192,7 @@ Apply inverse hyperbolic tangent element-wise.
 ### `cosh`
 
 ```mojo
-def cosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def cosh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply hyperbolic cosine.
@@ -221,7 +221,7 @@ Apply hyperbolic cosine.
 ### `sinh`
 
 ```mojo
-def sinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def sinh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply hyperbolic sine.
@@ -250,7 +250,7 @@ Apply hyperbolic sine.
 ### `tanh`
 
 ```mojo
-def tanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def tanh[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply hyperbolic tangent.

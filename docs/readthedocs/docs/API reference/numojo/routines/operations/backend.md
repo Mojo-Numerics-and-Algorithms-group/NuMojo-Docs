@@ -126,6 +126,64 @@ Applies a SIMD-compatible unary function to an NDArray.
 
 <div class="fn-card" markdown="1">
 
+#### `apply_unary_float`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def apply_unary_float[dtype: DType, simd_width: Int, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()](scalar: SIMD[dtype, simd_width]) -> SIMD[dtype, simd_width] where dtype.is_floating_point()
+```
+
+<span class="badge badge-static">static</span>
+
+Applies a SIMD-compatible unary function that requires a floating-point `dtype` to a SIMD value.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+- `simd_width` (`Int`): The SIMD width of the input and output.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()`): The SIMD-compatible function to apply.
+
+<div class="prose-label">Args</div>
+
+- `scalar` (`SIMD[dtype, simd_width]`) `[imm]`: The input SIMD value.
+
+<div class="prose-label">Returns</div>
+
+- `SIMD[dtype, simd_width]`
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def apply_unary_float[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
+```
+
+<span class="badge badge-static">static</span>
+
+Applies a SIMD-compatible unary function that requires a floating-point `dtype` to an NDArray.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type of the NDArray.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()`): The SIMD-compatible function to apply.
+
+<div class="prose-label">Args</div>
+
+- `array` (`NDArray[dtype]`) `[imm]`: The input NDArray.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
 #### `apply_binary`
 
 <div class="overload-divider">Overload 1</div>
@@ -270,12 +328,128 @@ Applies a SIMD-compatible binary function to an NDArray and an Int scalar.
 
 <div class="fn-card" markdown="1">
 
+#### `apply_binary_float`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def apply_binary_float[dtype: DType, simd_width: Int, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()](simd1: SIMD[dtype, simd_width], simd2: SIMD[dtype, simd_width]) -> SIMD[dtype, simd_width] where dtype.is_floating_point()
+```
+
+<span class="badge badge-static">static</span>
+
+Applies a SIMD-compatible binary function that requires a floating-point `dtype` to two SIMD values.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+- `simd_width` (`Int`): The SIMD width of the input and output.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()`): The SIMD-compatible binary function to apply.
+
+<div class="prose-label">Args</div>
+
+- `simd1` (`SIMD[dtype, simd_width]`) `[imm]`: The first input SIMD value.
+- `simd2` (`SIMD[dtype, simd_width]`) `[imm]`: The second input SIMD value.
+
+<div class="prose-label">Returns</div>
+
+- `SIMD[dtype, simd_width]`
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def apply_binary_float[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
+```
+
+<span class="badge badge-static">static</span>
+
+Applies a SIMD-compatible binary function that requires a floating-point `dtype` to two NDArrays.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type of the NDArrays.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()`): The SIMD-compatible binary function to apply.
+
+<div class="prose-label">Args</div>
+
+- `array1` (`NDArray[dtype]`) `[imm]`: The first input NDArray.
+- `array2` (`NDArray[dtype]`) `[imm]`: The second input NDArray.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 3</div>
+
+```mojo
+def apply_binary_float[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()](array: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
+```
+
+<span class="badge badge-static">static</span>
+
+Applies a SIMD-compatible binary function that requires a floating-point `dtype` to an NDArray and a scalar.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type of the NDArray.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()`): The SIMD-compatible binary function to apply.
+
+<div class="prose-label">Args</div>
+
+- `array` (`NDArray[dtype]`) `[imm]`: The input NDArray.
+- `scalar` (`Scalar[dtype]`) `[imm]`: The input scalar value.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 4</div>
+
+```mojo
+def apply_binary_float[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()](scalar: Scalar[dtype], array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
+```
+
+<span class="badge badge-static">static</span>
+
+Applies a SIMD-compatible binary function that requires a floating-point `dtype` to a scalar and an NDArray.
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type of the NDArray.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) thin -> SIMD[type, simd_w] where type.is_floating_point()`): The SIMD-compatible binary function to apply.
+
+<div class="prose-label">Args</div>
+
+- `scalar` (`Scalar[dtype]`) `[imm]`: The input scalar value.
+- `array` (`NDArray[dtype]`) `[imm]`: The input NDArray.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
 #### `apply_unary_predicate`
 
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def apply_unary_predicate[dtype: DType, simd_width: Int, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]](simd: SIMD[dtype, simd_width]) -> SIMD[DType.bool, simd_width]
+def apply_unary_predicate[dtype: DType, simd_width: Int, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]](simd: SIMD[dtype, simd_width]) -> SIMD[.bool, simd_width]
 ```
 
 <span class="badge badge-static">static</span>
@@ -286,7 +460,7 @@ Applies a SIMD-compatible unary predicate to a SIMD value.
 
 - `dtype` (`DType`): The element type.
 - `simd_width` (`Int`): The SIMD width of the input and output.
-- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]`): The SIMD-compatible unary predicate function to apply.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]`): The SIMD-compatible unary predicate function to apply.
 
 <div class="prose-label">Args</div>
 
@@ -294,12 +468,12 @@ Applies a SIMD-compatible unary predicate to a SIMD value.
 
 <div class="prose-label">Returns</div>
 
-- `SIMD[DType.bool, simd_width]`
+- `SIMD[.bool, simd_width]`
 
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def apply_unary_predicate[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]](array: NDArray[dtype]) -> NDArray[DType.bool]
+def apply_unary_predicate[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]](array: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 <span class="badge badge-static">static</span>
@@ -309,7 +483,7 @@ Applies a SIMD-compatible unary predicate to an NDArray, returning a boolean NDA
 <div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type of the input NDArray.
-- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]`): The SIMD-compatible unary predicate function to apply.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]`): The SIMD-compatible unary predicate function to apply.
 
 <div class="prose-label">Args</div>
 
@@ -317,7 +491,7 @@ Applies a SIMD-compatible unary predicate to an NDArray, returning a boolean NDA
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -333,7 +507,7 @@ Applies a SIMD-compatible unary predicate to an NDArray, returning a boolean NDA
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def apply_binary_predicate[dtype: DType, simd_width: Int, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]](simd1: SIMD[dtype, simd_width], simd2: SIMD[dtype, simd_width]) -> SIMD[DType.bool, simd_width]
+def apply_binary_predicate[dtype: DType, simd_width: Int, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]](simd1: SIMD[dtype, simd_width], simd2: SIMD[dtype, simd_width]) -> SIMD[.bool, simd_width]
 ```
 
 <span class="badge badge-static">static</span>
@@ -344,7 +518,7 @@ Applies a SIMD-compatible binary predicate to two SIMD values.
 
 - `dtype` (`DType`): The element type.
 - `simd_width` (`Int`): The SIMD width of the input and output (should be 1 for SIMD).
-- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]`): The SIMD-compatible binary predicate function to apply.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]`): The SIMD-compatible binary predicate function to apply.
 
 <div class="prose-label">Args</div>
 
@@ -353,12 +527,12 @@ Applies a SIMD-compatible binary predicate to two SIMD values.
 
 <div class="prose-label">Returns</div>
 
-- `SIMD[DType.bool, simd_width]`
+- `SIMD[.bool, simd_width]`
 
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def apply_binary_predicate[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def apply_binary_predicate[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 <span class="badge badge-static">static</span>
@@ -368,7 +542,7 @@ Applies a SIMD-compatible binary predicate to two NDArrays, returning a boolean 
 <div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type of the input NDArrays.
-- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]`): The SIMD-compatible binary predicate function to apply.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]`): The SIMD-compatible binary predicate function to apply.
 
 <div class="prose-label">Args</div>
 
@@ -377,7 +551,7 @@ Applies a SIMD-compatible binary predicate to two NDArrays, returning a boolean 
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -386,7 +560,7 @@ Applies a SIMD-compatible binary predicate to two NDArrays, returning a boolean 
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def apply_binary_predicate[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def apply_binary_predicate[dtype: DType, kernel: def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 <span class="badge badge-static">static</span>
@@ -396,7 +570,7 @@ Applies a SIMD-compatible binary predicate to an NDArray and a scalar, returning
 <div class="prose-label">Parameters</div>
 
 - `dtype` (`DType`): The element type of the input NDArray.
-- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[DType.bool, simd_w]`): The SIMD-compatible binary predicate function to apply.
+- `kernel` (`def[type: DType, simd_w: Int](SIMD[type, simd_w], SIMD[type, simd_w]) capturing thin -> SIMD[.bool, simd_w]`): The SIMD-compatible binary predicate function to apply.
 
 <div class="prose-label">Args</div>
 
@@ -405,7 +579,7 @@ Applies a SIMD-compatible binary predicate to an NDArray and a scalar, returning
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -486,7 +660,7 @@ Applies a SIMD-compatible ternary function to two NDArrays and a scalar.
 ### `bool_simd_store`
 
 ```mojo
-def bool_simd_store[ptr_origin: MutOrigin, //, simd_width: Int](ptr: Pointer[Scalar[DType.bool], ptr_origin], start: Int, val: SIMD[DType.bool, simd_width])
+def bool_simd_store[ptr_origin: MutOrigin, //, simd_width: Int](ptr: Pointer[Scalar[DType.bool], ptr_origin], start: Int, val: SIMD[.bool, simd_width])
 ```
 
 Workaround function for storing bools from a SIMD vector into an UnsafePointer.
@@ -500,7 +674,7 @@ Workaround function for storing bools from a SIMD vector into an UnsafePointer.
 
 - `ptr` (`Pointer[Scalar[DType.bool], ptr_origin]`) `[imm]`: Pointer to be written to.
 - `start` (`Int`) `[imm]`: Start position in the pointer.
-- `val` (`SIMD[DType.bool, simd_width]`) `[imm]`: SIMD boolean value to store.
+- `val` (`SIMD[.bool, simd_width]`) `[imm]`: SIMD boolean value to store.
 
 
 </div>

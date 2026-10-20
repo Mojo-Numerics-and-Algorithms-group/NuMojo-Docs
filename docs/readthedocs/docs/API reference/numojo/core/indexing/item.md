@@ -363,7 +363,7 @@ Check if the Item contains the given value.
 #### `load`
 
 ```mojo
-def load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
+def load[width: Int = Int(1)](self, idx: Int) -> SIMD[.int, width]
 ```
 
 Load a SIMD vector from the Item at the specified index.
@@ -379,7 +379,7 @@ Load a SIMD vector from the Item at the specified index.
 
 <div class="prose-label">Returns</div>
 
-- `SIMD[DType.int, width]`
+- `SIMD[.int, width]`
 
 !!! failure "Raises"
     NumojoError: If the load exceeds the bounds of the Item.
@@ -392,7 +392,7 @@ Load a SIMD vector from the Item at the specified index.
 #### `store`
 
 ```mojo
-def store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
+def store[width: Int = Int(1)](self, idx: Int, value: SIMD[.int, width])
 ```
 
 Store a SIMD vector into the Item at the specified index.
@@ -405,7 +405,7 @@ Store a SIMD vector into the Item at the specified index.
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to store to.
-- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
+- `value` (`SIMD[.int, width]`) `[imm]`: The SIMD vector to store.
 
 !!! failure "Raises"
     NumojoError: If the store exceeds the bounds of the Item.
@@ -418,7 +418,7 @@ Store a SIMD vector into the Item at the specified index.
 #### `unsafe_load`
 
 ```mojo
-def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
+def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[.int, width]
 ```
 
 Unsafely load a SIMD vector from the Item at the specified index.
@@ -434,7 +434,7 @@ Unsafely load a SIMD vector from the Item at the specified index.
 
 <div class="prose-label">Returns</div>
 
-- `SIMD[DType.int, width]`
+- `SIMD[.int, width]`
 
 
 </div>
@@ -444,7 +444,7 @@ Unsafely load a SIMD vector from the Item at the specified index.
 #### `unsafe_store`
 
 ```mojo
-def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
+def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[.int, width])
 ```
 
 Unsafely store a SIMD vector into the Item at the specified index.
@@ -457,7 +457,7 @@ Unsafely store a SIMD vector into the Item at the specified index.
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: The starting index to store to.
-- `value` (`SIMD[DType.int, width]`) `[imm]`: The SIMD vector to store.
+- `value` (`SIMD[.int, width]`) `[imm]`: The SIMD vector to store.
 
 
 </div>
