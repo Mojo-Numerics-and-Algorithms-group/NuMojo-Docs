@@ -79,7 +79,7 @@ For a pinned stable release:
 channels = ["https://repo.prefix.dev/modular-community"]
 
 [dependencies]
-numojo = "=0.10.0"
+numojo = "=0.11.0"
 ```
 
 ```bash

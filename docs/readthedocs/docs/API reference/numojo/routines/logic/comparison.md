@@ -25,7 +25,7 @@ Exports
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def greater[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def greater[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are greater than values in `array2`.
@@ -52,7 +52,7 @@ print(greater[nm.f64](arr1, arr2))  # Output: [True, False, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -61,7 +61,7 @@ print(greater[nm.f64](arr1, arr2))  # Output: [True, False, True]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def greater[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def greater[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are greater than a scalar value.
@@ -87,7 +87,7 @@ print(greater[nm.f64](arr, 2.0))  # Output: [False, False, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -103,7 +103,7 @@ print(greater[nm.f64](arr, 2.0))  # Output: [False, False, True]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def greater_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def greater_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are greater than or equal to values in `array2`.
@@ -130,7 +130,7 @@ print(greater_equal[nm.f64](arr1, arr2))  # Output: [True, True, False]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -139,7 +139,7 @@ print(greater_equal[nm.f64](arr1, arr2))  # Output: [True, True, False]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def greater_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def greater_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are greater than or equal to a scalar value.
@@ -165,7 +165,7 @@ print(greater_equal[nm.f64](arr, 2.0))  # Output: [False, True, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -181,7 +181,7 @@ print(greater_equal[nm.f64](arr, 2.0))  # Output: [False, True, True]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def less[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def less[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are less than values in `array2`.
@@ -208,7 +208,7 @@ print(less[nm.f64](arr1, arr2))  # Output: [False, True, False]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -217,7 +217,7 @@ print(less[nm.f64](arr1, arr2))  # Output: [False, True, False]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def less[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def less[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are less than a scalar value.
@@ -243,7 +243,7 @@ print(less[nm.f64](arr, 2.0))  # Output: [True, False, False]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -259,7 +259,7 @@ print(less[nm.f64](arr, 2.0))  # Output: [True, False, False]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def less_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def less_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are less than or equal to values in `array2`.
@@ -286,7 +286,7 @@ print(less_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -295,7 +295,7 @@ print(less_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def less_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def less_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are less than or equal to a scalar value.
@@ -321,7 +321,7 @@ print(less_equal[nm.f64](arr, 2.0))  # Output: [True, True, False]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -337,7 +337,7 @@ print(less_equal[nm.f64](arr, 2.0))  # Output: [True, True, False]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are equal to values in `array2`.
@@ -364,7 +364,7 @@ print(equal[nm.f64](arr1, arr2))  # Output: [True, False, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -373,7 +373,7 @@ print(equal[nm.f64](arr1, arr2))  # Output: [True, False, True]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are equal to a scalar value.
@@ -399,7 +399,7 @@ print(equal[nm.f64](arr, 2.0))  # Output: [False, True, False]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -415,7 +415,7 @@ print(equal[nm.f64](arr, 2.0))  # Output: [False, True, False]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def not_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[DType.bool]
+def not_equal[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are not equal to values in `array2`.
@@ -442,7 +442,7 @@ print(not_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -451,7 +451,7 @@ print(not_equal[nm.f64](arr1, arr2))  # Output: [False, True, True]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def not_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[DType.bool]
+def not_equal[dtype: DType](array1: NDArray[dtype], scalar: Scalar[dtype]) -> NDArray[.bool]
 ```
 
 Performs element-wise comparison to check if values in `array1` are not equal to a scalar value.
@@ -477,7 +477,7 @@ print(not_equal[nm.f64](arr, 2.0))  # Output: [True, False, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -536,7 +536,7 @@ print(allclose[nm.f64](arr1, arr2))  # Output: True.
 ### `isclose`
 
 ```mojo
-def isclose[dtype: DType](a: NDArray[dtype], b: NDArray[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> NDArray[DType.bool]
+def isclose[dtype: DType](a: NDArray[dtype], b: NDArray[dtype], rtol: Scalar[dtype] = 1.0000000000000001E-5, atol: Scalar[dtype] = 1.0E-8, equal_nan: Bool = False) -> NDArray[.bool]
 ```
 
 Perform element-wise comparison of two NDArrays to check if their values are equal within a given tolerance.
@@ -568,7 +568,7 @@ print(isclose[nm.f64](arr1, arr2))  # Output: [True, True, True]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 !!! failure "Raises"
     NumojoError: If the shapes of `a` and `b` do not match.

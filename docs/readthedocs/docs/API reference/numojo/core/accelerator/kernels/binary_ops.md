@@ -51,7 +51,7 @@ comptime DIV
 ### `binary_op_kernel`
 
 ```mojo
-def binary_op_kernel[dtype: DType, op_code: Int](result: Pointer[Scalar[dtype], MutAnyOrigin], a: Pointer[Scalar[dtype], MutAnyOrigin], b: Pointer[Scalar[dtype], MutAnyOrigin], size: Int)
+def binary_op_kernel[dtype: DType, op_code: Int](result: Pointer[Scalar[dtype], MutAnyOrigin], a: Pointer[Scalar[dtype], MutAnyOrigin], b: Pointer[Scalar[dtype], MutAnyOrigin], size: Int64)
 ```
 
 GPU kernel: `result[i] = op(a[i], b[i])` for contiguous buffers.
@@ -66,7 +66,7 @@ GPU kernel: `result[i] = op(a[i], b[i])` for contiguous buffers.
 - `result` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
 - `a` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
 - `b` (`Pointer[Scalar[dtype], MutAnyOrigin]`) `[imm]`
-- `size` (`Int`) `[imm]`
+- `size` (`Int64`) `[imm]`
 
 
 </div>

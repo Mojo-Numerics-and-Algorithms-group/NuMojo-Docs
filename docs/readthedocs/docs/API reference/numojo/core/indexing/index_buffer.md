@@ -414,7 +414,7 @@ Get a pointer offset by the given amount.
 #### `unsafe_load`
 
 ```mojo
-def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[DType.int, width]
+def unsafe_load[width: Int = Int(1)](self, idx: Int) -> SIMD[.int, width]
 ```
 
 Unsafely load a SIMD vector from the buffer at the given index.
@@ -430,7 +430,7 @@ Unsafely load a SIMD vector from the buffer at the given index.
 
 <div class="prose-label">Returns</div>
 
-- `SIMD[DType.int, width]`
+- `SIMD[.int, width]`
 
 
 </div>
@@ -440,7 +440,7 @@ Unsafely load a SIMD vector from the buffer at the given index.
 #### `unsafe_store`
 
 ```mojo
-def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[DType.int, width])
+def unsafe_store[width: Int = Int(1)](self, idx: Int, value: SIMD[.int, width])
 ```
 
 Unsafely store a SIMD vector to the buffer at the given index.
@@ -453,7 +453,7 @@ Unsafely store a SIMD vector to the buffer at the given index.
 
 - `self` (`Self`) `[imm]`
 - `idx` (`Int`) `[imm]`: Index to store to.
-- `value` (`SIMD[DType.int, width]`) `[imm]`: SIMD vector to store.
+- `value` (`SIMD[.int, width]`) `[imm]`: SIMD vector to store.
 
 
 </div>
@@ -1058,7 +1058,7 @@ Convert the buffer to a list.
 #### `__iter__`
 
 ```mojo
-def __iter__(ref self) -> _IndexBufferIter[DType.int, origin_of(self)]
+def __iter__(ref self) -> _IndexBufferIter[.int, origin_of(self)]
 ```
 
 Get a forward iterator for the IndexBuffer.
@@ -1069,7 +1069,7 @@ Get a forward iterator for the IndexBuffer.
 
 <div class="prose-label">Returns</div>
 
-- `_IndexBufferIter[DType.int, origin_of(self)]`
+- `_IndexBufferIter[.int, origin_of(self)]`
 
 
 </div>
@@ -1079,7 +1079,7 @@ Get a forward iterator for the IndexBuffer.
 #### `__reversed__`
 
 ```mojo
-def __reversed__(ref self) -> _IndexBufferIter[DType.int, origin_of(self), False]
+def __reversed__(ref self) -> _IndexBufferIter[.int, origin_of(self), False]
 ```
 
 Get a backward iterator for the IndexBuffer.
@@ -1090,7 +1090,7 @@ Get a backward iterator for the IndexBuffer.
 
 <div class="prose-label">Returns</div>
 
-- `_IndexBufferIter[DType.int, origin_of(self), False]`
+- `_IndexBufferIter[.int, origin_of(self), False]`
 
 
 </div>

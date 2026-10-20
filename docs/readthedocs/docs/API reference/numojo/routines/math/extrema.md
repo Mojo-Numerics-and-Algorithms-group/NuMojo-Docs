@@ -9,6 +9,7 @@ Exports
 -------
 - `min`, `max`: Element-wise minimum and maximum.
 - `minimum`, `maximum`: Element-wise operations (aliases).
+- `ptp`: Range (max - min) of an array.
 
 ## Functions
 
@@ -225,12 +226,85 @@ var m = nm.min(a, axis=1)
 
 <div class="fn-card" markdown="1">
 
+### `ptp`
+
+<div class="overload-divider">Overload 1</div>
+
+```mojo
+def ptp[dtype: DType](a: NDArray[dtype]) -> Scalar[dtype]
+```
+
+Find the range (max - min) of an array.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+from numojo.prelude import *
+
+var a = nm.arange[f32](0, 6).reshape(Shape(2, 3))
+var r = nm.ptp(a)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+
+<div class="prose-label">Args</div>
+
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
+
+<div class="prose-label">Returns</div>
+
+- `Scalar[dtype]`
+
+<div class="prose-label">Raises</div>
+
+*Not documented in source.*
+
+<div class="overload-divider">Overload 2</div>
+
+```mojo
+def ptp[dtype: DType](a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+```
+
+Find the range (max - min) of an array along an axis.
+
+<div class="prose-label">Examples</div>
+```mojo
+import numojo as nm
+from numojo.prelude import *
+
+var a = nm.arange[f32](0, 6).reshape(Shape(2, 3))
+var r = nm.ptp(a, axis=0)
+```
+
+<div class="prose-label">Parameters</div>
+
+- `dtype` (`DType`): The element type.
+
+<div class="prose-label">Args</div>
+
+- `a` (`NDArray[dtype]`) `[imm]`: An array.
+- `axis` (`Int`) `[imm]`: The axis along which the range is computed.
+
+<div class="prose-label">Returns</div>
+
+- `NDArray[dtype]`
+
+!!! failure "Raises"
+    NumojoError: If the axis is out of bound.
+
+
+</div>
+
+<div class="fn-card" markdown="1">
+
 ### `minimum`
 
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def minimum[dtype: DType = DType.float64](s1: Scalar[dtype], s2: Scalar[dtype]) -> Scalar[dtype]
+def minimum[dtype: DType = .float64](s1: Scalar[dtype], s2: Scalar[dtype]) -> Scalar[dtype]
 ```
 
 Minimum value of two SIMD values.
@@ -251,7 +325,7 @@ Minimum value of two SIMD values.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def minimum[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def minimum[dtype: DType = .float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Element-wise minimum of two arrays.
@@ -293,7 +367,7 @@ var m = nm.minimum(a, b)
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def maximum[dtype: DType = DType.float64](s1: Scalar[dtype], s2: Scalar[dtype]) -> Scalar[dtype]
+def maximum[dtype: DType = .float64](s1: Scalar[dtype], s2: Scalar[dtype]) -> Scalar[dtype]
 ```
 
 Maximum value of two SIMD values.
@@ -314,7 +388,7 @@ Maximum value of two SIMD values.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def maximum[dtype: DType = DType.float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def maximum[dtype: DType = .float64](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Element-wise maximum of two arrays.

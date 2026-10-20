@@ -1,12 +1,13 @@
 # `numojo.__init__`
 
-Central public surface for NuMojo that exposes the primary containers, dtype helpers, common errors, and a curated set of NumPy-inspired routines.
+Public imports for NuMojo's containers, dtypes, errors, constants, and common routines.
 
 Exports
 -------
 Core container types:
 - `NDArray`
 - `Shape` / `NDArrayShape`, `Strides` / `NDArrayStrides`
+- mathematical and physical constants: `pi`, `e`, and `c`
 
 Core utilities:
 - dtype aliases (`f32`, `f64`, `i32`, `i64`, ...) along with their complex counterparts and SIMD helpers
@@ -46,7 +47,7 @@ FORMAT FOR DOCSTRING (See "Mojo docstring style guide" for more information)
 comptime __version__
 ```
 
-**Value:** `String("V0.9.0")`
+**Value:** `String("V0.11.0")`
 
 ### `pi`
 

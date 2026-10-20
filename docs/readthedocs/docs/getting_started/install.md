@@ -10,36 +10,16 @@ Add the following to your existing `pixi.toml`:
 
 ```toml
 [workspace]
+channels = [
+  "https://conda.modular.com/max",
+  "conda-forge",
+  "https://repo.prefix.dev/modular-community",
+]
+platforms = ["osx-arm64", "linux-64"]
 preview = ["pixi-build"]
 
-[package]
-name = "your_project_name"
-version = "0.1.0"
-
-[package.build]
-backend = {name = "pixi-build-mojo", version = "0.*"}
-
-[package.build.config.pkg]
-name = "your_package_name"
-
-[package.host-dependencies]
-mojo = "==1.0.0"
-max-core = "==26.5.0"
-
-[package.build-dependencies]
-mojo = "==1.0.0"
-max-core = "==26.5.0"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
-
-[package.run-dependencies]
-mojo = "==1.0.0"
-max-core = "==26.5.0"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
-
 [dependencies]
-mojo = ">=1.0.0, <1.1.0"
-max-core = ">=26.5.0,<27"
-numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", branch = "main"}
+numojo = { git = "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo", tag = "v0.11.0" }
 ```
 
 Then run:
@@ -47,9 +27,9 @@ Then run:
 pixi install
 ```
 
-**Branch Selection:**
-- **`main` branch**: Provides the latest stable release. Currently NuMojo v0.10.0, compatible with Mojo >=1.0.0, <1.1.0. For earlier NuMojo versions, use Method 2.
-- **`pre-x.y` branches**: Active development branch for the next release. Note that this branch receives frequent updates and may have breaking changes in features and syntax.
+`numojo` brings its compatible `mojo` and `max-core` versions into the environment through its package runtime dependencies. The MAX and conda-forge channels are still required so Pixi can resolve those transitive packages.
+
+For development snapshots, replace `tag = "v0.11.0"` with `branch = "main"` or the appropriate `pre-x.y` branch.
 
 The package will be automatically available in your Pixi environment, and VSCode LSP will provide intelligent code hints.
 
@@ -61,10 +41,15 @@ Add the following to your `pixi.toml` file:
 
 ```toml
 [workspace]
-channels = ["https://repo.prefix.dev/modular-community"]
+channels = [
+  "https://conda.modular.com/max",
+  "conda-forge",
+  "https://repo.prefix.dev/modular-community",
+]
+platforms = ["osx-arm64", "linux-64"]
 
 [dependencies]
-numojo = "=0.10.0"
+numojo = "=0.11.0"
 ```
 
 Then run:
@@ -76,6 +61,7 @@ pixi install
 
 | NuMojo Version | Required Mojo Version |
 | -------------- | --------------------- |
+| v0.11.0        | ==1.1.0               |
 | v0.10.0        | ==1.0.0               |
 | v0.9.0         | ==26.2                |
 | v0.8.0         | ==25.7                |
@@ -85,7 +71,7 @@ pixi install
 
 ### Method 3: Build Standalone Package
 
-This method creates a portable `numojo.mojopkg` file that you can use across multiple projects, perfect for offline development or hermetic builds.
+This method creates a portable `numojo.mojoc` package that you can use across multiple projects, perfect for offline development or hermetic builds.
 
 1. Clone the repository:
    ```bash
@@ -98,7 +84,7 @@ This method creates a portable `numojo.mojopkg` file that you can use across mul
    pixi run package
    ```
 
-3. Copy `numojo.mojopkg` to your project directory or add its parent directory to your include paths.
+3. Copy `numojo.mojoc` to your project directory or add its parent directory to your include paths.
 
 ### Method 4: Direct Source Integration
 

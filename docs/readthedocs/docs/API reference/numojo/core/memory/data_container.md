@@ -316,7 +316,7 @@ free the memory.
 <div class="overload-divider">Overload 4</div>
 
 ```mojo
-def __init__(out self, *, ptr: Pointer[Scalar[dtype], Self.origin], size: Int, refcount: Pointer[Atomic[DType.uint64], Self.origin], ownership: Ownership)
+def __init__(out self, *, ptr: Pointer[Scalar[dtype], Self.origin], size: Int, refcount: Pointer[Atomic[UInt64], Self.origin], ownership: Ownership)
 ```
 
 <span class="badge badge-static">static</span>
@@ -331,7 +331,7 @@ the caller must ensure all arguments are valid.
 
 - `ptr` (`Pointer[Scalar[dtype], Self.origin]`) `[imm]`: Pointer to the shared data buffer.
 - `size` (`Int`) `[imm]`: Number of elements in the buffer.
-- `refcount` (`Pointer[Atomic[DType.uint64], Self.origin]`) `[imm]`: Pointer to the shared atomic reference count.
+- `refcount` (`Pointer[Atomic[UInt64], Self.origin]`) `[imm]`: Pointer to the shared atomic reference count.
 - `ownership` (`Ownership`) `[imm]`: Ownership mode (should be Managed for shared handles).
 - `self` (`Self`) `[out]`
 

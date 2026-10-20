@@ -42,10 +42,24 @@ after `docs.json` is up to date:
    cross-file type-resolution bug even though the real compiler builds
    the same code cleanly. See the docstring in `gen_docs_json.py` for
    details; update it if `numojo/`'s top-level layout changes.
-2. Regenerate the site content:
+2. Regenerate the site content from the same checkout:
    ```bash
-   python3 docs.py
+   python3 docs.py --numojo-repo ../NuMojo --docs-json docs.json
    ```
+
+   Pass a release worktree to both commands when publishing versioned
+   documentation so the generated API, guides, and displayed package version
+   all come from the same NuMojo release.
+
+## Publishing versions
+
+Read the Docs builds this repository, not the main NuMojo repository. Keep
+`main` generated from the latest stable NuMojo release so the Read the Docs
+`latest` version stays current. Keep a release branch at the same documentation
+commit, for example `v0.11.0`, to preserve version-specific pages.
+
+After pushing a new release branch, activate `latest` and the release branch in
+the Read the Docs Versions dashboard. Release branches are inactive by default.
 
 ## Structure
 

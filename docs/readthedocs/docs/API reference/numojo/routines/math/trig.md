@@ -19,7 +19,7 @@ Exports
 ### `acos`
 
 ```mojo
-def acos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def acos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse cosine.
@@ -48,7 +48,7 @@ Apply inverse cosine.
 ### `arccos`
 
 ```mojo
-def arccos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def arccos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse cosine element-wise.
@@ -77,7 +77,7 @@ Apply inverse cosine element-wise.
 ### `asin`
 
 ```mojo
-def asin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def asin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse sine.
@@ -106,7 +106,7 @@ Apply inverse sine.
 ### `arcsin`
 
 ```mojo
-def arcsin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def arcsin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse sine element-wise.
@@ -135,7 +135,7 @@ Apply inverse sine element-wise.
 ### `atan`
 
 ```mojo
-def atan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def atan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse tangent.
@@ -164,7 +164,7 @@ Apply inverse tangent.
 ### `arctan`
 
 ```mojo
-def arctan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def arctan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse tangent element-wise.
@@ -193,7 +193,7 @@ Apply inverse tangent element-wise.
 ### `atan2`
 
 ```mojo
-def atan2[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def atan2[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply inverse tangent with two arrays.
@@ -229,7 +229,7 @@ Apply inverse tangent with two arrays.
 ### `cos`
 
 ```mojo
-def cos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def cos[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply cosine.
@@ -258,7 +258,7 @@ Apply cosine.
 ### `sin`
 
 ```mojo
-def sin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def sin[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply sine.
@@ -287,7 +287,7 @@ Apply sine.
 ### `tan`
 
 ```mojo
-def tan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype]
+def tan[dtype: DType](array: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply tangent.
@@ -316,7 +316,7 @@ Apply tangent.
 ### `hypot`
 
 ```mojo
-def hypot[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype]
+def hypot[dtype: DType](array1: NDArray[dtype], array2: NDArray[dtype]) -> NDArray[dtype] where dtype.is_floating_point()
 ```
 
 Apply hypotenuse calculation to two arrays.

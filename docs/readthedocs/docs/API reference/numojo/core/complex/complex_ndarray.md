@@ -587,7 +587,7 @@ Get items of ComplexNDArray with a series of either slices or integers.
 <div class="overload-divider">Overload 7</div>
 
 ```mojo
-def __getitem__(self, indices: NDArray[DType.int]) -> Self
+def __getitem__(self, indices: NDArray[.int]) -> Self
 ```
 
 Get items from 0-th dimension of a ComplexNDArray of indices. If the original array is of shape (i,j,k) and the indices array is of shape (l, m, n), then the output array will be of shape (l,m,n,j,k).
@@ -595,7 +595,7 @@ Get items from 0-th dimension of a ComplexNDArray of indices. If the original ar
 <div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
-- `indices` (`NDArray[DType.int]`) `[imm]`: Array of indices.
+- `indices` (`NDArray[.int]`) `[imm]`: Array of indices.
 
 <div class="prose-label">Returns</div>
 
@@ -627,7 +627,7 @@ Get items from 0-th dimension of a ComplexNDArray of indices. It is an overload 
 <div class="overload-divider">Overload 9</div>
 
 ```mojo
-def __getitem__(self, mask: NDArray[DType.bool]) -> Self
+def __getitem__(self, mask: NDArray[.bool]) -> Self
 ```
 
 Get item from a ComplexNDArray according to a mask array. If array shape is equal to mask shape, it returns a flattened array of the values where mask is True. If array shape is not equal to mask shape, it returns items from the 0-th dimension of the array where mask is True.
@@ -635,7 +635,7 @@ Get item from a ComplexNDArray according to a mask array. If array shape is equa
 <div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
-- `mask` (`NDArray[DType.bool]`) `[imm]`: NDArray with Dtype.bool.
+- `mask` (`NDArray[.bool]`) `[imm]`: NDArray with Dtype.bool.
 
 <div class="prose-label">Returns</div>
 
@@ -719,7 +719,7 @@ NumojoError: If any of the indices is out of bound.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def __setitem__(mut self, mask: NDArray[DType.bool], value: ComplexSIMD[cdtype])
+def __setitem__(mut self, mask: NDArray[.bool], value: ComplexSIMD[cdtype])
 ```
 
 Set the value of the array at the indices where the mask is true.
@@ -727,7 +727,7 @@ Set the value of the array at the indices where the mask is true.
 <div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `mask` (`NDArray[DType.bool]`) `[imm]`
+- `mask` (`NDArray[.bool]`) `[imm]`
 - `value` (`ComplexSIMD[cdtype]`) `[imm]`
 
 <div class="prose-label">Raises</div>
@@ -797,7 +797,7 @@ Get items by a series of either slices or integers.
 <div class="overload-divider">Overload 7</div>
 
 ```mojo
-def __setitem__(mut self, index: NDArray[DType.int], val: Self)
+def __setitem__(mut self, index: NDArray[.int], val: Self)
 ```
 
 Returns the items of the ComplexNDArray from an array of indices.
@@ -807,7 +807,7 @@ Refer to `__getitem__(self, index: List[Int])`.
 <div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `index` (`NDArray[DType.int]`) `[imm]`
+- `index` (`NDArray[.int]`) `[imm]`
 - `val` (`Self`) `[imm]`
 
 <div class="prose-label">Raises</div>
@@ -817,7 +817,7 @@ Refer to `__getitem__(self, index: List[Int])`.
 <div class="overload-divider">Overload 8</div>
 
 ```mojo
-def __setitem__(mut self, mask: NDArray[DType.bool], val: Self)
+def __setitem__(mut self, mask: NDArray[.bool], val: Self)
 ```
 
 Set the value of the ComplexNDArray at the indices where the mask is true.
@@ -825,7 +825,7 @@ Set the value of the ComplexNDArray at the indices where the mask is true.
 <div class="prose-label">Args</div>
 
 - `self` (`Self`) `[mut]`
-- `mask` (`NDArray[DType.bool]`) `[imm]`
+- `mask` (`NDArray[.bool]`) `[imm]`
 - `val` (`Self`) `[imm]`
 
 <div class="prose-label">Raises</div>
@@ -894,7 +894,7 @@ Unary positive returns self unless boolean type.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def __lt__(self, other: Self) -> NDArray[DType.bool]
+def __lt__(self, other: Self) -> NDArray[.bool]
 ```
 
 NumPy-style lexicographic ordering: compare real part first, then imaginary part.
@@ -906,7 +906,7 @@ NumPy-style lexicographic ordering: compare real part first, then imaginary part
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -915,7 +915,7 @@ NumPy-style lexicographic ordering: compare real part first, then imaginary part
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def __lt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __lt__(self, other: ComplexSIMD[cdtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -925,7 +925,7 @@ def __lt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -934,7 +934,7 @@ def __lt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def __lt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+def __lt__(self, other: Scalar[Self.dtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -944,7 +944,7 @@ def __lt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -960,7 +960,7 @@ def __lt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def __le__(self, other: Self) -> NDArray[DType.bool]
+def __le__(self, other: Self) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -970,7 +970,7 @@ def __le__(self, other: Self) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -979,7 +979,7 @@ def __le__(self, other: Self) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def __le__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __le__(self, other: ComplexSIMD[cdtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -989,7 +989,7 @@ def __le__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -998,7 +998,7 @@ def __le__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def __le__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+def __le__(self, other: Scalar[Self.dtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -1008,7 +1008,7 @@ def __le__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1024,7 +1024,7 @@ def __le__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def __eq__(self, other: Self) -> NDArray[DType.bool]
+def __eq__(self, other: Self) -> NDArray[.bool]
 ```
 
 Itemwise equivalence.
@@ -1036,7 +1036,7 @@ Itemwise equivalence.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1045,7 +1045,7 @@ Itemwise equivalence.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def __eq__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __eq__(self, other: ComplexSIMD[cdtype]) -> NDArray[.bool]
 ```
 
 Itemwise equivalence between scalar and ComplexNDArray.
@@ -1057,7 +1057,7 @@ Itemwise equivalence between scalar and ComplexNDArray.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1073,7 +1073,7 @@ Itemwise equivalence between scalar and ComplexNDArray.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def __ne__(self, other: Self) -> NDArray[DType.bool]
+def __ne__(self, other: Self) -> NDArray[.bool]
 ```
 
 Itemwise non-equivalence.
@@ -1085,7 +1085,7 @@ Itemwise non-equivalence.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1094,7 +1094,7 @@ Itemwise non-equivalence.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def __ne__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __ne__(self, other: ComplexSIMD[cdtype]) -> NDArray[.bool]
 ```
 
 Itemwise non-equivalence between scalar and ComplexNDArray.
@@ -1106,7 +1106,7 @@ Itemwise non-equivalence between scalar and ComplexNDArray.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1122,7 +1122,7 @@ Itemwise non-equivalence between scalar and ComplexNDArray.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def __gt__(self, other: Self) -> NDArray[DType.bool]
+def __gt__(self, other: Self) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -1132,7 +1132,7 @@ def __gt__(self, other: Self) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1141,7 +1141,7 @@ def __gt__(self, other: Self) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def __gt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __gt__(self, other: ComplexSIMD[cdtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -1151,7 +1151,7 @@ def __gt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1160,7 +1160,7 @@ def __gt__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def __gt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+def __gt__(self, other: Scalar[Self.dtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -1170,7 +1170,7 @@ def __gt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1186,7 +1186,7 @@ def __gt__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def __ge__(self, other: Self) -> NDArray[DType.bool]
+def __ge__(self, other: Self) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -1196,7 +1196,7 @@ def __ge__(self, other: Self) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1205,7 +1205,7 @@ def __ge__(self, other: Self) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def __ge__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
+def __ge__(self, other: ComplexSIMD[cdtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -1215,7 +1215,7 @@ def __ge__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1224,7 +1224,7 @@ def __ge__(self, other: ComplexSIMD[cdtype]) -> NDArray[DType.bool]
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def __ge__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
+def __ge__(self, other: Scalar[Self.dtype]) -> NDArray[.bool]
 ```
 
 <div class="prose-label">Args</div>
@@ -1234,7 +1234,7 @@ def __ge__(self, other: Scalar[Self.dtype]) -> NDArray[DType.bool]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 <div class="prose-label">Raises</div>
 
@@ -1669,7 +1669,7 @@ var B = A ** 3  # Cube each element
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def __pow__(self, rhs: Scalar[Self.dtype]) -> Self
+def __pow__(self, rhs: Scalar[Self.dtype]) -> Self where ComplexNDArray[cdtype].dtype.is_floating_point()
 ```
 
 Raise complex array to real scalar power element-wise.
@@ -3388,7 +3388,7 @@ Compares by magnitude: |z| = sqrt(re^2 + im^2).
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def argmax(self, axis: Int) -> NDArray[DType.int]
+def argmax(self, axis: Int) -> NDArray[.int]
 ```
 
 <div class="prose-label">Args</div>
@@ -3398,7 +3398,7 @@ def argmax(self, axis: Int) -> NDArray[DType.int]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
@@ -3444,7 +3444,7 @@ Compares by magnitude: |z| = sqrt(re^2 + im^2).
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def argmin(self, axis: Int) -> NDArray[DType.int]
+def argmin(self, axis: Int) -> NDArray[.int]
 ```
 
 <div class="prose-label">Args</div>
@@ -3454,7 +3454,7 @@ def argmin(self, axis: Int) -> NDArray[DType.int]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
@@ -3961,13 +3961,13 @@ Casts this complex array to another complex dtype.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def compress(self, condition: NDArray[DType.bool], axis: Int) -> Self
+def compress(self, condition: NDArray[.bool], axis: Int) -> Self
 ```
 
 <div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
-- `condition` (`NDArray[DType.bool]`) `[imm]`
+- `condition` (`NDArray[.bool]`) `[imm]`
 - `axis` (`Int`) `[imm]`
 
 <div class="prose-label">Returns</div>
@@ -3981,13 +3981,13 @@ def compress(self, condition: NDArray[DType.bool], axis: Int) -> Self
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def compress(self, condition: NDArray[DType.bool]) -> Self
+def compress(self, condition: NDArray[.bool]) -> Self
 ```
 
 <div class="prose-label">Args</div>
 
 - `self` (`Self`) `[imm]`
-- `condition` (`NDArray[DType.bool]`) `[imm]`
+- `condition` (`NDArray[.bool]`) `[imm]`
 
 <div class="prose-label">Returns</div>
 
@@ -4174,7 +4174,7 @@ def to_numpy(self) -> PythonObject
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def argsort(self) -> NDArray[DType.int]
+def argsort(self) -> NDArray[.int]
 ```
 
 <div class="prose-label">Args</div>
@@ -4183,7 +4183,7 @@ def argsort(self) -> NDArray[DType.int]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
@@ -4192,7 +4192,7 @@ def argsort(self) -> NDArray[DType.int]
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def argsort(self, axis: Int) -> NDArray[DType.int]
+def argsort(self, axis: Int) -> NDArray[.int]
 ```
 
 <div class="prose-label">Args</div>
@@ -4202,7 +4202,7 @@ def argsort(self, axis: Int) -> NDArray[DType.int]
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 

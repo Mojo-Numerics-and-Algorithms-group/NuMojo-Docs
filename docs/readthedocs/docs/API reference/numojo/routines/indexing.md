@@ -24,7 +24,7 @@ Exports
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def where[dtype: DType](mut x: NDArray[dtype], scalar: Scalar[dtype], mask: NDArray[DType.bool])
+def where[dtype: DType](mut x: NDArray[dtype], scalar: Scalar[dtype], mask: NDArray[.bool])
 ```
 
 Replaces elements in `x` with `scalar` where `mask` is True.
@@ -37,7 +37,7 @@ Replaces elements in `x` with `scalar` where `mask` is True.
 
 - `x` (`NDArray[dtype]`) `[mut]`: A NDArray.
 - `scalar` (`Scalar[dtype]`) `[imm]`: A SIMD value.
-- `mask` (`NDArray[DType.bool]`) `[imm]`: A NDArray.
+- `mask` (`NDArray[.bool]`) `[imm]`: A NDArray.
 
 <div class="prose-label">Raises</div>
 
@@ -46,7 +46,7 @@ Replaces elements in `x` with `scalar` where `mask` is True.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def where[dtype: DType](mut x: NDArray[dtype], y: NDArray[dtype], mask: NDArray[DType.bool])
+def where[dtype: DType](mut x: NDArray[dtype], y: NDArray[dtype], mask: NDArray[.bool])
 ```
 
 Replaces elements in `x` with elements from `y` where `mask` is True.
@@ -59,7 +59,7 @@ Replaces elements in `x` with elements from `y` where `mask` is True.
 
 - `x` (`NDArray[dtype]`) `[mut]`: NDArray[dtype].
 - `y` (`NDArray[dtype]`) `[imm]`: NDArray[dtype].
-- `mask` (`NDArray[DType.bool]`) `[imm]`: NDArray[DType.bool].
+- `mask` (`NDArray[.bool]`) `[imm]`: NDArray[DType.bool].
 
 !!! failure "Raises"
     NumojoError: If the shapes of `x` and `y` do not match.
@@ -67,7 +67,7 @@ Replaces elements in `x` with elements from `y` where `mask` is True.
 <div class="overload-divider">Overload 3</div>
 
 ```mojo
-def where[dtype: DType, //](condition: NDArray[dtype]) -> List[NDArray[DType.int]]
+def where[dtype: DType, //](condition: NDArray[dtype]) -> List[NDArray[.int]]
 ```
 
 Returns indices where `condition` is non-zero.
@@ -84,7 +84,7 @@ Returns one 1-D integer index array per dimension of `condition`.
 
 <div class="prose-label">Returns</div>
 
-- `List[NDArray[DType.int]]`
+- `List[NDArray[.int]]`
 
 <div class="prose-label">Raises</div>
 
@@ -93,7 +93,7 @@ Returns one 1-D integer index array per dimension of `condition`.
 <div class="overload-divider">Overload 4</div>
 
 ```mojo
-def where[dtype: DType](condition: NDArray[DType.bool], x: NDArray[dtype], y: NDArray[dtype]) -> NDArray[dtype]
+def where[dtype: DType](condition: NDArray[.bool], x: NDArray[dtype], y: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Returns elements chosen from `x` or `y` depending on `condition`.
@@ -120,7 +120,7 @@ print(nm.where(mask, a, b))
 
 <div class="prose-label">Args</div>
 
-- `condition` (`NDArray[DType.bool]`) `[imm]`: Boolean selector array.
+- `condition` (`NDArray[.bool]`) `[imm]`: Boolean selector array.
 - `x` (`NDArray[dtype]`) `[imm]`: Values used where ``condition`` is True.
 - `y` (`NDArray[dtype]`) `[imm]`: Values used where ``condition`` is False.
 
@@ -134,7 +134,7 @@ print(nm.where(mask, a, b))
 <div class="overload-divider">Overload 5</div>
 
 ```mojo
-def where[dtype: DType](condition: NDArray[DType.bool], x: NDArray[dtype], y: Scalar[dtype]) -> NDArray[dtype]
+def where[dtype: DType](condition: NDArray[.bool], x: NDArray[dtype], y: Scalar[dtype]) -> NDArray[dtype]
 ```
 
 Returns elements from `x` or scalar `y` depending on `condition`.
@@ -158,7 +158,7 @@ print(nm.where(mask, a, Scalar[nm.f32](0.0)))
 
 <div class="prose-label">Args</div>
 
-- `condition` (`NDArray[DType.bool]`) `[imm]`: Boolean selector array.
+- `condition` (`NDArray[.bool]`) `[imm]`: Boolean selector array.
 - `x` (`NDArray[dtype]`) `[imm]`: Values used where ``condition`` is True.
 - `y` (`Scalar[dtype]`) `[imm]`: Scalar used where ``condition`` is False.
 
@@ -172,7 +172,7 @@ print(nm.where(mask, a, Scalar[nm.f32](0.0)))
 <div class="overload-divider">Overload 6</div>
 
 ```mojo
-def where[dtype: DType](condition: NDArray[DType.bool], x: Scalar[dtype], y: NDArray[dtype]) -> NDArray[dtype]
+def where[dtype: DType](condition: NDArray[.bool], x: Scalar[dtype], y: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Returns scalar `x` or elements of `y` depending on `condition`.
@@ -196,7 +196,7 @@ print(nm.where(mask, Scalar[nm.f32](0.0), b))
 
 <div class="prose-label">Args</div>
 
-- `condition` (`NDArray[DType.bool]`) `[imm]`: Boolean selector array.
+- `condition` (`NDArray[.bool]`) `[imm]`: Boolean selector array.
 - `x` (`Scalar[dtype]`) `[imm]`: Scalar used where ``condition`` is True.
 - `y` (`NDArray[dtype]`) `[imm]`: Values used where ``condition`` is False.
 
@@ -217,7 +217,7 @@ print(nm.where(mask, Scalar[nm.f32](0.0), b))
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def fancy_index[dtype: DType, //](a: NDArray[dtype], index_arrays: List[NDArray[DType.int]]) -> NDArray[dtype]
+def fancy_index[dtype: DType, //](a: NDArray[dtype], index_arrays: List[NDArray[.int]]) -> NDArray[dtype]
 ```
 
 Element-wise multi-axis fancy (advanced) indexing.
@@ -251,7 +251,7 @@ print(a[idx])
 <div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: Source N-D array.
-- `index_arrays` (`List[NDArray[DType.int]]`) `[imm]`: List of integer NDArrays — exactly `a.ndim` entries,
+- `index_arrays` (`List[NDArray[.int]]`) `[imm]`: List of integer NDArrays — exactly `a.ndim` entries,
     one per axis.  Each array is broadcast to the common shape.
 
 <div class="prose-label">Returns</div>
@@ -266,7 +266,7 @@ NumojoError: If any index value is out of bounds for its axis.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def fancy_index[dtype: DType, //](a: NDArray[dtype], *index_arrays: NDArray[DType.int]) -> NDArray[dtype]
+def fancy_index[dtype: DType, //](a: NDArray[dtype], *index_arrays: NDArray[.int]) -> NDArray[dtype]
 ```
 
 Element-wise multi-axis fancy (advanced) indexing (variadic overload).
@@ -293,7 +293,7 @@ print(nm.fancy_index(a, rows, cols))
 <div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: Source N-D array.
-- `*index_arrays` (`NDArray[DType.int]`) `[imm]`: Exactly `a.ndim` integer index arrays, one per axis.
+- `*index_arrays` (`NDArray[.int]`) `[imm]`: Exactly `a.ndim` integer index arrays, one per axis.
 
 <div class="prose-label">Returns</div>
 
@@ -314,7 +314,7 @@ NumojoError: If any index value is out of bounds for its axis.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def compress[dtype: DType](condition: NDArray[DType.bool], a: NDArray[dtype], axis: Int) -> NDArray[dtype]
+def compress[dtype: DType](condition: NDArray[.bool], a: NDArray[dtype], axis: Int) -> NDArray[dtype]
 ```
 
 Return selected slices of an array along given axis. If no axis is provided, the array is flattened before use.
@@ -325,7 +325,7 @@ Return selected slices of an array along given axis. If no axis is provided, the
 
 <div class="prose-label">Args</div>
 
-- `condition` (`NDArray[DType.bool]`) `[imm]`: 1-D array of booleans that selects which entries to return.
+- `condition` (`NDArray[.bool]`) `[imm]`: 1-D array of booleans that selects which entries to return.
     If length of condition is less than the size of the array along the
     given axis, then output is filled to the length of the condition
     with False.
@@ -344,7 +344,7 @@ NumojoError: If the condition length is out of bound for the given axis.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def compress[dtype: DType](condition: NDArray[DType.bool], a: NDArray[dtype]) -> NDArray[dtype]
+def compress[dtype: DType](condition: NDArray[.bool], a: NDArray[dtype]) -> NDArray[dtype]
 ```
 
 Return selected slices of an array along given axis. If no axis is provided, the array is flattened before use. This is a function ***OVERLOAD***.
@@ -355,7 +355,7 @@ Return selected slices of an array along given axis. If no axis is provided, the
 
 <div class="prose-label">Args</div>
 
-- `condition` (`NDArray[DType.bool]`) `[imm]`: 1-D array of booleans that selects which entries to return.
+- `condition` (`NDArray[.bool]`) `[imm]`: 1-D array of booleans that selects which entries to return.
     If length of condition is less than the size of the array along the
     given axis, then output is filled to the length of the condition
     with False.
@@ -377,7 +377,7 @@ NumojoError: If the condition length is out of bound for the given axis.
 ### `take_along_axis`
 
 ```mojo
-def take_along_axis[dtype: DType, //](arr: NDArray[dtype], indices: NDArray[DType.int], axis: Int = Int(0)) -> NDArray[dtype]
+def take_along_axis[dtype: DType, //](arr: NDArray[dtype], indices: NDArray[.int], axis: Int = Int(0)) -> NDArray[dtype]
 ```
 
 Takes values from the input array along the given axis based on indices.
@@ -407,7 +407,7 @@ Takes values from the input array along the given axis based on indices.
 <div class="prose-label">Args</div>
 
 - `arr` (`NDArray[dtype]`) `[imm]`: The source array.
-- `indices` (`NDArray[DType.int]`) `[imm]`: The indices array.
+- `indices` (`NDArray[.int]`) `[imm]`: The indices array.
 - `axis` (`Int`) `[imm]`: The axis along which to take values. Default is 0.
 
 <div class="prose-label">Returns</div>
@@ -430,7 +430,7 @@ input array except along the given axis.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def take[dtype: DType, //](a: NDArray[dtype], indices: NDArray[DType.int], axis: Int) -> NDArray[dtype]
+def take[dtype: DType, //](a: NDArray[dtype], indices: NDArray[.int], axis: Int) -> NDArray[dtype]
 ```
 
 Takes elements from an array along an axis.
@@ -460,7 +460,7 @@ print(nm.indexing.take(a, nm.array[nm.int]("[1, 3]"), axis=1))
 <div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: Source array.
-- `indices` (`NDArray[DType.int]`) `[imm]`: Indices of values to take along the axis.
+- `indices` (`NDArray[.int]`) `[imm]`: Indices of values to take along the axis.
 - `axis` (`Int`) `[imm]`: Axis along which to select. Negative values count from the end.
 
 <div class="prose-label">Returns</div>
@@ -474,7 +474,7 @@ NumojoError: If any index is out of bounds for the given axis.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def take[dtype: DType, //](a: NDArray[dtype], indices: NDArray[DType.int]) -> NDArray[dtype]
+def take[dtype: DType, //](a: NDArray[dtype], indices: NDArray[.int]) -> NDArray[dtype]
 ```
 
 Takes elements from a flattened array by linear indices.
@@ -499,7 +499,7 @@ print(nm.indexing.take(a, nm.array[nm.int]("[0, 5, 11]")))
 <div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[imm]`: Source array (flattened before indexing).
-- `indices` (`NDArray[DType.int]`) `[imm]`: Linear indices into the flattened source. May be any shape.
+- `indices` (`NDArray[.int]`) `[imm]`: Linear indices into the flattened source. May be any shape.
 
 <div class="prose-label">Returns</div>
 
@@ -518,7 +518,7 @@ print(nm.indexing.take(a, nm.array[nm.int]("[0, 5, 11]")))
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def put[dtype: DType, //](mut a: NDArray[dtype], indices: NDArray[DType.int], values: NDArray[dtype])
+def put[dtype: DType, //](mut a: NDArray[dtype], indices: NDArray[.int], values: NDArray[dtype])
 ```
 
 Replaces values at flat (linear) index positions of `a` in-place.
@@ -546,7 +546,7 @@ print(a)
 <div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[mut]`: Destination array to be modified in-place.
-- `indices` (`NDArray[DType.int]`) `[imm]`: Linear (flat) indices into `a`. May be any shape. Negative
+- `indices` (`NDArray[.int]`) `[imm]`: Linear (flat) indices into `a`. May be any shape. Negative
     indices are normalised (counted from the end).
 - `values` (`NDArray[dtype]`) `[imm]`: Values to write. Broadcast cyclically if shorter than
     `indices`.
@@ -558,7 +558,7 @@ NumojoError: If `values` is empty while `indices` is not.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def put[dtype: DType, //](mut a: NDArray[dtype], indices: NDArray[DType.int], value: Scalar[dtype])
+def put[dtype: DType, //](mut a: NDArray[dtype], indices: NDArray[.int], value: Scalar[dtype])
 ```
 
 Replaces values at flat (linear) index positions of `a` in-place with a single broadcast scalar.
@@ -583,7 +583,7 @@ print(a)
 <div class="prose-label">Args</div>
 
 - `a` (`NDArray[dtype]`) `[mut]`: Destination array to be modified in-place.
-- `indices` (`NDArray[DType.int]`) `[imm]`: Linear (flat) indices into `a`. May be any shape. Negative
+- `indices` (`NDArray[.int]`) `[imm]`: Linear (flat) indices into `a`. May be any shape. Negative
     indices are normalised (counted from the end).
 - `value` (`Scalar[dtype]`) `[imm]`: Scalar value written to every selected position.
 
@@ -622,7 +622,7 @@ NumojoError: If `order` is not `"C"` or `"F"`.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def unravel_index(indices: NDArray[DType.int], shape: NDArrayShape, order: String = "C") -> List[NDArray[DType.int]]
+def unravel_index(indices: NDArray[.int], shape: NDArrayShape, order: String = "C") -> List[NDArray[.int]]
 ```
 
 Converts flat indices into coordinate arrays for `shape`.
@@ -632,13 +632,13 @@ Each output coordinate array has the same shape as `indices`.
 
 <div class="prose-label">Args</div>
 
-- `indices` (`NDArray[DType.int]`) `[imm]`: Flat linear indices.
+- `indices` (`NDArray[.int]`) `[imm]`: Flat linear indices.
 - `shape` (`NDArrayShape`) `[imm]`: Target shape.
 - `order` (`String`) `[imm]`: `"C"` for row-major order or `"F"` for column-major order.
 
 <div class="prose-label">Returns</div>
 
-- `List[NDArray[DType.int]]`
+- `List[NDArray[.int]]`
 
 !!! failure "Raises"
     NumojoError: If any index is out of bounds for the flattened array.
@@ -669,20 +669,20 @@ Overload of `unravel_index` accepting a shape list.
 <div class="overload-divider">Overload 4</div>
 
 ```mojo
-def unravel_index(indices: NDArray[DType.int], shape: List[Int], order: String = "C") -> List[NDArray[DType.int]]
+def unravel_index(indices: NDArray[.int], shape: List[Int], order: String = "C") -> List[NDArray[.int]]
 ```
 
 Overload of `unravel_index` accepting a shape list.
 
 <div class="prose-label">Args</div>
 
-- `indices` (`NDArray[DType.int]`) `[imm]`
+- `indices` (`NDArray[.int]`) `[imm]`
 - `shape` (`List[Int]`) `[imm]`
 - `order` (`String`) `[imm]`
 
 <div class="prose-label">Returns</div>
 
-- `List[NDArray[DType.int]]`
+- `List[NDArray[.int]]`
 
 <div class="prose-label">Raises</div>
 
@@ -698,7 +698,7 @@ Overload of `unravel_index` accepting a shape list.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def ravel_multi_index(multi_index: List[NDArray[DType.int]], shape: NDArrayShape, order: String = "C") -> NDArray[DType.int]
+def ravel_multi_index(multi_index: List[NDArray[.int]], shape: NDArrayShape, order: String = "C") -> NDArray[.int]
 ```
 
 Converts coordinate arrays into flat indices for `shape`.
@@ -708,13 +708,13 @@ broadcast shape of those coordinate arrays.
 
 <div class="prose-label">Args</div>
 
-- `multi_index` (`List[NDArray[DType.int]]`) `[imm]`: List of integer coordinate arrays, one per dimension.
+- `multi_index` (`List[NDArray[.int]]`) `[imm]`: List of integer coordinate arrays, one per dimension.
 - `shape` (`NDArrayShape`) `[imm]`: Target shape.
 - `order` (`String`) `[imm]`: `"C"` for row-major order or `"F"` for column-major order.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 !!! failure "Raises"
     NumojoError: If the number of coordinate arrays does not equal `shape.ndim`.
@@ -725,20 +725,20 @@ NumojoError: If `order` is not `"C"` or `"F"`.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def ravel_multi_index(multi_index: List[NDArray[DType.int]], shape: List[Int], order: String = "C") -> NDArray[DType.int]
+def ravel_multi_index(multi_index: List[NDArray[.int]], shape: List[Int], order: String = "C") -> NDArray[.int]
 ```
 
 Overload of `ravel_multi_index` accepting a shape list.
 
 <div class="prose-label">Args</div>
 
-- `multi_index` (`List[NDArray[DType.int]]`) `[imm]`
+- `multi_index` (`List[NDArray[.int]]`) `[imm]`
 - `shape` (`List[Int]`) `[imm]`
 - `order` (`String`) `[imm]`
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
@@ -752,7 +752,7 @@ Overload of `ravel_multi_index` accepting a shape list.
 ### `flatnonzero`
 
 ```mojo
-def flatnonzero[dtype: DType, //](a: NDArray[dtype]) -> NDArray[DType.int]
+def flatnonzero[dtype: DType, //](a: NDArray[dtype]) -> NDArray[.int]
 ```
 
 Returns flat indices of non-zero elements.
@@ -770,7 +770,7 @@ Indices are reported in C-order over the flattened array.
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 <div class="prose-label">Raises</div>
 
@@ -784,7 +784,7 @@ Indices are reported in C-order over the flattened array.
 ### `nonzero`
 
 ```mojo
-def nonzero[dtype: DType, //](a: NDArray[dtype]) -> List[NDArray[DType.int]]
+def nonzero[dtype: DType, //](a: NDArray[dtype]) -> List[NDArray[.int]]
 ```
 
 Returns the indices of elements that are non-zero.
@@ -817,7 +817,7 @@ print(idx2[1])  # [0, 1]  (col indices)
 
 <div class="prose-label">Returns</div>
 
-- `List[NDArray[DType.int]]`
+- `List[NDArray[.int]]`
 
 <div class="prose-label">Raises</div>
 
@@ -833,7 +833,7 @@ print(idx2[1])  # [0, 1]  (col indices)
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def searchsorted[dtype: DType, //](a: NDArray[dtype], v: NDArray[dtype], side: String = "left") -> NDArray[DType.int]
+def searchsorted[dtype: DType, //](a: NDArray[dtype], v: NDArray[dtype], side: String = "left") -> NDArray[.int]
 ```
 
 Finds indices where elements of `v` should be inserted into sorted 1-D array `a` to keep it sorted.
@@ -864,7 +864,7 @@ print(nm.indexing.searchsorted(a, nm.array[nm.i32]("[2, 6]")))
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.int]`
+- `NDArray[.int]`
 
 !!! failure "Raises"
     NumojoError: If `a` is not 1-D.

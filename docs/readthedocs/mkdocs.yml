@@ -174,12 +174,15 @@ nav:
       - manipulation: API reference/numojo/routines/manipulation.md
       - random: API reference/numojo/routines/random.md
       - searching: API reference/numojo/routines/searching.md
+      - setops: API reference/numojo/routines/setops.md
       - sorting: API reference/numojo/routines/sorting.md
       - io:
         - Overview: API reference/numojo/routines/io/index.md
         - io (init): API reference/numojo/routines/io/__init__.md
         - files: API reference/numojo/routines/io/files.md
         - formatting: API reference/numojo/routines/io/formatting.md
+        - npy: API reference/numojo/routines/io/npy.md
+        - torch: API reference/numojo/routines/io/torch.md
       - linalg:
         - Overview: API reference/numojo/routines/linalg/index.md
         - linalg (init): API reference/numojo/routines/linalg/__init__.md
@@ -200,13 +203,16 @@ nav:
         - math (init): API reference/numojo/routines/math/__init__.md
         - arithmetic: API reference/numojo/routines/math/arithmetic.md
         - differences: API reference/numojo/routines/math/differences.md
+        - elementwise: API reference/numojo/routines/math/elementwise.md
         - exponents: API reference/numojo/routines/math/exponents.md
         - extrema: API reference/numojo/routines/math/extrema.md
         - floating: API reference/numojo/routines/math/floating.md
         - hyper: API reference/numojo/routines/math/hyper.md
+        - integrate: API reference/numojo/routines/math/integrate.md
         - misc: API reference/numojo/routines/math/misc.md
         - products: API reference/numojo/routines/math/products.md
         - rounding: API reference/numojo/routines/math/rounding.md
+        - signal: API reference/numojo/routines/math/signal.md
         - sums: API reference/numojo/routines/math/sums.md
         - trig: API reference/numojo/routines/math/trig.md
       - operations:
@@ -217,6 +223,10 @@ nav:
         - Overview: API reference/numojo/routines/statistics/index.md
         - statistics (init): API reference/numojo/routines/statistics/__init__.md
         - averages: API reference/numojo/routines/statistics/averages.md
+        - correlation: API reference/numojo/routines/statistics/correlation.md
+        - histograms: API reference/numojo/routines/statistics/histograms.md
+        - nanfunctions: API reference/numojo/routines/statistics/nanfunctions.md
+        - percentiles: API reference/numojo/routines/statistics/percentiles.md
   - Links:
     - GitHub: "https://github.com/Mojo-Numerics-and-Algorithms-group/NuMojo"
     - Discord: "https://discord.gg/NcnSH5n26F"

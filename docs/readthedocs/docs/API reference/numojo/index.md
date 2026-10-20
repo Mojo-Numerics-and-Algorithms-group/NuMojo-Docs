@@ -1,12 +1,13 @@
 # `numojo`
 
-Central public surface for NuMojo that exposes the primary containers, dtype helpers, common errors, and a curated set of NumPy-inspired routines.
+Public imports for NuMojo's containers, dtypes, errors, constants, and common routines.
 
 Exports
 -------
 Core container types:
 - `NDArray`
 - `Shape` / `NDArrayShape`, `Strides` / `NDArrayStrides`
+- mathematical and physical constants: `pi`, `e`, and `c`
 
 Core utilities:
 - dtype aliases (`f32`, `f64`, `i32`, `i64`, ...) along with their complex counterparts and SIMD helpers
@@ -43,7 +44,7 @@ FORMAT FOR DOCSTRING (See "Mojo docstring style guide" for more information)
 | Name | Kind | Description |
 |------|------|-------------|
 | [`core`](./core/index.md) | package | Foundational data structures and utilities for NuMojo: arrays, memory layouts, dtype aliases, error handling, and complex number support. |
-| [`__init__`](./__init__.md) | module | Central public surface for NuMojo that exposes the primary containers, dtype helpers, common errors, and a curated set of NumPy-inspired routines. |
+| [`__init__`](./__init__.md) | module | Public imports for NuMojo's containers, dtypes, errors, constants, and common routines. |
 | [`prelude`](./prelude.md) | module | Core types and common utilities for day-to-day NuMojo usage. |
 | [`routines`](./routines/index.md) | package | NumPy-like functionality grouped by topic (math, linalg, statistics, creation, manipulation, etc.). |
 

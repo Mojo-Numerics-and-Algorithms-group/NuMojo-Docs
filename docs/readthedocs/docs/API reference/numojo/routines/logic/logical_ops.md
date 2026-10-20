@@ -22,7 +22,7 @@ Exports
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def logical_and[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
+def logical_and[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[.bool] where (dtype == DType.bool) or dtype.is_integral()
 ```
 
 Element-wise logical AND operation between two arrays.
@@ -51,7 +51,7 @@ var result = logical_and(a > 3, b < 10)
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 !!! failure "Raises"
     - NumojoError: If the input arrays do not have the same shape.
@@ -59,7 +59,7 @@ var result = logical_and(a > 3, b < 10)
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def logical_and[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
+def logical_and[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) or cdtype.dtype.is_integral()
 ```
 
 Element-wise logical AND operation between two complex arrays.
@@ -103,7 +103,7 @@ var result = logical_and[ci32](a, b)
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def logical_or[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
+def logical_or[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[.bool] where (dtype == DType.bool) or dtype.is_integral()
 ```
 
 Element-wise logical OR operation between two arrays.
@@ -132,7 +132,7 @@ var result = logical_or(a < 3, b > 10)
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 !!! failure "Raises"
     - NumojoError: If the input arrays do not have the same shape.
@@ -140,7 +140,7 @@ var result = logical_or(a < 3, b > 10)
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def logical_or[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
+def logical_or[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) or cdtype.dtype.is_integral()
 ```
 
 Element-wise logical OR operation between two complex arrays.
@@ -184,7 +184,7 @@ var result = logical_or[ci32](a, b)
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def logical_not[dtype: DType](a: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
+def logical_not[dtype: DType](a: NDArray[dtype]) -> NDArray[.bool] where (dtype == DType.bool) or dtype.is_integral()
 ```
 
 Element-wise logical NOT operation on an array.
@@ -203,7 +203,7 @@ var result = logical_not(a < 5)
 
 <div class="prose-label">Parameters</div>
 
-- `dtype` (`DType`)
+- `dtype` (`DType`): The element type.
 
 <div class="prose-label">Args</div>
 
@@ -211,7 +211,7 @@ var result = logical_not(a < 5)
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 !!! failure "Raises"
     - NumojoError: If the input array is not of a supported data type.
@@ -219,7 +219,7 @@ var result = logical_not(a < 5)
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def logical_not[cdtype: ComplexDType](a: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
+def logical_not[cdtype: ComplexDType](a: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) or cdtype.dtype.is_integral()
 ```
 
 Element-wise logical NOT operation on a complex array.
@@ -261,10 +261,10 @@ var result = logical_not[ci32](a)
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def logical_xor[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[DType.bool] where (dtype == DType.bool) if (dtype == DType.bool) else dtype.is_integral()
+def logical_xor[dtype: DType](a: NDArray[dtype], b: NDArray[dtype]) -> NDArray[.bool] where (dtype == DType.bool) or dtype.is_integral()
 ```
 
-Element-wise logical XOR operation between two arrays.
+Element-wise logical XOR operation between two arrayas.
 
 <div class="prose-label">Examples</div>
 ```mojo
@@ -290,7 +290,7 @@ var result = logical_xor(a > 3, b < 10)
 
 <div class="prose-label">Returns</div>
 
-- `NDArray[DType.bool]`
+- `NDArray[.bool]`
 
 !!! failure "Raises"
     - NumojoError: If the input arrays do not have the same shape.
@@ -298,7 +298,7 @@ var result = logical_xor(a > 3, b < 10)
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def logical_xor[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) if (cdtype == DType.bool) else cdtype.dtype.is_integral()
+def logical_xor[cdtype: ComplexDType](a: ComplexNDArray[cdtype], b: ComplexNDArray[cdtype]) -> ComplexNDArray[cdtype] where (cdtype == DType.bool) or cdtype.dtype.is_integral()
 ```
 
 Element-wise logical XOR operation between two complex arrays.

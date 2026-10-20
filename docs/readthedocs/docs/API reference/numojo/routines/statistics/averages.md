@@ -20,7 +20,7 @@ Exports
 ### `mean_1d`
 
 ```mojo
-def mean_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def mean_1d[dtype: DType, //, returned_dtype: DType = .float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Calculate the arithmetic average of all items in an array. Regardless of the shape of input, it is treated as a 1-d array. It is the backend function for `mean`, with or without `axis`.
@@ -52,7 +52,7 @@ Calculate the arithmetic average of all items in an array. Regardless of the sha
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def mean[dtype: DType, //, returned_dtype: DType = .float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Calculate the arithmetic average of all items in the array.
@@ -77,7 +77,7 @@ Calculate the arithmetic average of all items in the array.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def mean[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
+def mean[dtype: DType, //, returned_dtype: DType = .float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
 ```
 
 Mean of array elements over a given axis.
@@ -108,7 +108,7 @@ Mean of array elements over a given axis.
 ### `median_1d`
 
 ```mojo
-def median_1d[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def median_1d[dtype: DType, //, returned_dtype: DType = .float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Median value of all items an array. Regardless of the shape of input, it is treated as a 1-d array.
@@ -140,7 +140,7 @@ Median value of all items an array. Regardless of the shape of input, it is trea
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
+def median[dtype: DType, //, returned_dtype: DType = .float64](a: NDArray[dtype]) -> Scalar[returned_dtype]
 ```
 
 Median value of all items of an array.
@@ -165,7 +165,7 @@ Median value of all items of an array.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def median[dtype: DType, //, returned_dtype: DType = DType.float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
+def median[dtype: DType, //, returned_dtype: DType = .float64](a: NDArray[dtype], axis: Int) -> NDArray[returned_dtype]
 ```
 
 Returns median of the array elements along the given axis.
@@ -283,7 +283,7 @@ Returns mode of the array elements along the given axis.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
+def stddev[dtype: DType, //, returned_dtype: DType = .float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
 ```
 
 Compute the standard deviation.
@@ -309,7 +309,7 @@ Compute the standard deviation.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def stddev[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
+def stddev[dtype: DType, //, returned_dtype: DType = .float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
 ```
 
 Computes the standard deviation along the axis.
@@ -343,7 +343,7 @@ NumojoError: If ddof is not smaller than the size of the axis.
 <div class="overload-divider">Overload 1</div>
 
 ```mojo
-def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
+def variance[dtype: DType, //, returned_dtype: DType = .float64](A: NDArray[dtype], ddof: Int = Int(0)) -> Scalar[returned_dtype]
 ```
 
 Compute the variance.
@@ -369,7 +369,7 @@ Compute the variance.
 <div class="overload-divider">Overload 2</div>
 
 ```mojo
-def variance[dtype: DType, //, returned_dtype: DType = DType.float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
+def variance[dtype: DType, //, returned_dtype: DType = .float64](A: NDArray[dtype], axis: Int, ddof: Int = Int(0)) -> NDArray[returned_dtype]
 ```
 
 Computes the variance along the axis.
